@@ -165,7 +165,13 @@ table.mini td{padding:5px 4px; color:#444; border-bottom:1px solid #f3f3f3;}
 .cta p{color:rgba(255,255,255,.85); margin-top:14px; font-size:16px;}
 .cta .btn-primary{background:#0c0c0c; box-shadow:none; margin-top:30px;}
 .cta .btn-ghost{border-color:rgba(255,255,255,.4); color:#fff; margin-top:30px;}
-.cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px;}
+.cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:18px;}
+.contact-form{max-width:480px; margin:34px auto 0; display:flex; flex-direction:column; gap:12px;}
+.contact-form input, .contact-form textarea{font-family:var(--sans); font-size:14px; padding:13px 16px; border-radius:10px; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.1); color:#fff;}
+.contact-form input::placeholder, .contact-form textarea::placeholder{color:rgba(255,255,255,.7);}
+.contact-form textarea{min-height:90px; resize:vertical;}
+.contact-form button{align-self:center; margin-top:6px;}
+.contact-status{font-size:13px; margin-top:8px; min-height:18px;}
 
 /* ===== FOOTER ===== */
 footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
@@ -486,9 +492,15 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
   <div class="wrap reveal">
     <h2>Let's build your next system.</h2>
     <p>Tell us what's manual today — we'll show you what it looks like automated.</p>
+    <form id="contactForm" class="contact-form">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="What do you want to automate?" required></textarea>
+      <button type="submit" class="btn btn-primary" style="background:#0c0c0c;">Send Message</button>
+      <p id="contactStatus" class="contact-status"></p>
+    </form>
     <div class="cta-actions">
-      <a class="btn btn-primary" href="mailto:hello@antortiq.com">hello@antortiq.com</a>
-      <a class="btn btn-ghost" href="#">Schedule a Discovery Call</a>
+      <a class="btn btn-ghost" href="mailto:hello@antortiq.com" style="border-color:rgba(255,255,255,.4); color:#fff;">hello@antortiq.com</a>
     </div>
   </div>
 </section>
@@ -726,6 +738,41 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
     }
     draw();
   })();
+
+  // contact form -> /api/contact
+  var contactForm = document.getElementById('contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var status = document.getElementById('contactStatus');
+      var btn = contactForm.querySelector('button');
+      var data = {
+        name: contactForm.name.value,
+        email: contactForm.email.value,
+        message: contactForm.message.value
+      };
+      btn.disabled = true;
+      status.textContent = 'Sending...';
+      try{
+        var res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        var json = await res.json();
+        if(res.ok){
+          status.textContent = "Thanks! We'll get back to you soon.";
+          contactForm.reset();
+        } else {
+          status.textContent = json.error || 'Something went wrong.';
+        }
+      } catch(err){
+        status.textContent = 'Network error. Please email us directly.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
 </script>
 
 </body>
