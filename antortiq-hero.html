@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Marketplace Operations Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#d11f1f; --black:#0c0c0c; --top-bg:#ffffff;
+    --disp:'Sora', Arial, sans-serif; --sans:'Inter', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:var(--sans); background:#fff;}
+
+  .hero{
+    width:1400px; max-width:100%; margin:0 auto; position:relative;
+    background:linear-gradient(to bottom, var(--top-bg) 0%, var(--top-bg) 56%, var(--black) 56%, var(--black) 100%);
+    padding:48px 40px 56px; overflow:hidden;
+  }
+
+  /* ===== HEADLINE ===== */
+  .headline{text-align:center; position:relative; z-index:5;}
+  .headline .word{font-family:var(--disp); font-weight:800; font-size:74px; letter-spacing:-2px; color:#0c0c0c;}
+  .headline .word span{color:var(--red);}
+  .headline .tag{font-family:Georgia, serif; font-style:italic; font-size:19px; color:#3a3a3a; margin-top:6px;}
+  .headline .sub{font-family:var(--disp); font-weight:800; font-size:42px; letter-spacing:-1px; color:#0c0c0c; margin-top:8px;}
+
+  /* ===== STAGE (dashboard + floating cards) ===== */
+  .stage{position:relative; margin-top:36px; padding-bottom:170px;}
+  .card{position:absolute; background:#fff; border-radius:10px; box-shadow:0 18px 40px rgba(0,0,0,0.25);}
+
+  /* main dashboard card — normal flow so .stage auto-sizes to its real height;
+     the floating mini-cards stay absolute, layered on top via z-index */
+  .main-card{
+    position:relative; width:560px; margin:0 auto; top:auto; left:auto; transform:none;
+    border:2px solid var(--red); z-index:10; padding:0;
+  }
+  .main-card::before{
+    content:''; position:absolute; inset:-40px; z-index:-1; border-radius:50%;
+    background:radial-gradient(ellipse at center, rgba(232,52,74,0.35), transparent 65%);
+  }
+  .mc-head{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #eee;}
+  .mc-brand{font-family:var(--disp); font-weight:800; font-size:14px; color:#111; letter-spacing:-0.3px;}
+  .mc-brand span{color:var(--red);}
+  .mc-icons{display:flex; gap:10px; color:#888; font-size:13px;}
+  .mc-body{display:grid; grid-template-columns:1.2fr 1fr; gap:0; padding:14px 16px;}
+  .mc-panel-title{display:flex; justify-content:space-between; align-items:center; font-size:10.5px; font-weight:700; color:#333; margin-bottom:8px;}
+  .mc-panel-title span.drop{font-size:9px; color:#999; font-weight:500;}
+
+  table.mini{width:100%; border-collapse:collapse; font-size:9.5px;}
+  table.mini th{text-align:left; color:#999; font-weight:600; padding:4px 4px; border-bottom:1px solid #eee; font-size:8.5px; text-transform:uppercase;}
+  table.mini td{padding:5px 4px; color:#444; border-bottom:1px solid #f3f3f3;}
+  .pill-status{font-size:8px; font-weight:700; padding:2px 7px; border-radius:99px;}
+  .pill-status.dispatched{background:#e6f7ee; color:#1f9d62;}
+  .pill-status.delayed{background:#fff1e0; color:#d97a1f;}
+  .pill-status.pending{background:#f1f1f1; color:#888;}
+
+  .chart-box{padding-left:14px; border-left:1px solid #eee;}
+  .chart-val{font-family:var(--disp); font-weight:800; font-size:13px; color:#e8344a;}
+
+  .mc-foot{display:grid; grid-template-columns:1fr 1fr; gap:0; padding:0 16px 16px; border-top:1px solid #eee; margin-top:4px;}
+  .mc-foot > div{padding-top:12px;}
+  .mc-foot .chart-box{border-left:1px solid #eee; padding-left:14px;}
+  .lb-row{display:flex; align-items:center; gap:6px; font-size:9.5px; padding:3px 0; color:#444;}
+  .lb-avatar{width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:800; color:#fff; flex-shrink:0;}
+  .settle-amt{font-family:var(--disp); font-weight:800; font-size:18px; color:#111;}
+  .settle-lbl{font-size:8.5px; color:#999; margin-top:2px;}
+
+  /* floating side cards */
+  .mini-card{width:230px; padding:14px; font-size:11px;}
+  .mini-card .title{font-weight:700; font-size:11px; color:#111; margin-bottom:6px;}
+
+  .card.penalty{left:10px; top:130px; transform:rotate(-9deg); z-index:4; background:#fff;}
+  .card.penalty .tag-bar{background:var(--red); color:#fff; font-weight:700; font-size:10px; padding:8px 10px; border-radius:6px; margin-bottom:8px;}
+  .card.penalty .btn{display:inline-block; margin-top:8px; background:#111; color:#fff; font-size:9.5px; font-weight:700; padding:6px 12px; border-radius:6px;}
+
+  .card.returns{left:120px; top:60px; transform:rotate(-5deg); z-index:6; width:250px;}
+  .flow-row{display:flex; align-items:center; gap:6px; margin-top:10px; font-size:9px; color:#666;}
+  .flow-node{padding:5px 9px; border:1px solid #ddd; border-radius:6px; background:#fafafa;}
+  .flow-node.active{background:var(--red); color:#fff; border-color:var(--red); transform:rotate(45deg); width:14px; height:14px; padding:0; display:flex; align-items:center; justify-content:center;}
+
+  .card.email{right:120px; top:80px; transform:rotate(6deg); z-index:6; width:240px; background:#15151a; color:#fff; padding:16px;}
+  .card.email .e-logo{width:34px; height:34px; border-radius:8px; background:var(--red); display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:800; font-size:16px; margin:0 auto 10px;}
+  .card.email .e-title{text-align:center; font-size:12px; font-weight:700;}
+  .card.email .e-btn{display:block; margin:12px auto 0; background:var(--red); color:#fff; font-size:9.5px; font-weight:700; padding:7px 0; border-radius:6px; text-align:center; width:80px;}
+
+  .card.rto{right:6px; top:150px; transform:rotate(9deg); z-index:4; width:190px; text-align:center;}
+  .donut{width:74px; height:74px; border-radius:50%; margin:6px auto; background:conic-gradient(var(--red) 0% 35%, #e2e2e2 35% 100%); display:flex; align-items:center; justify-content:center;}
+  .donut-inner{width:48px; height:48px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; font-size:8px; color:#888; text-align:center; line-height:1.2;}
+
+  /* ===== THUMB ROW ===== */
+  .thumbs{display:flex; justify-content:center; gap:18px; margin-top:34px; position:relative; z-index:5;}
+  .thumb{width:150px;}
+  .thumb-box{height:88px; border-radius:8px; background:#1a1a1a; border:1px solid #2a2a2a; position:relative; overflow:hidden;}
+  .thumb-box .bar{position:absolute; top:8px; left:8px; right:8px; height:6px; background:var(--red); border-radius:3px; opacity:0.85;}
+  .thumb-box .line{position:absolute; left:8px; right:8px; height:4px; background:#333; border-radius:2px;}
+
+  /* AI Operations Bot viz */
+  .ai-viz{display:flex; align-items:center; justify-content:center; gap:10px; height:100%; padding-top:6px;}
+  .ai-orb{position:relative; width:30px; height:30px; border-radius:50%; background:radial-gradient(circle, var(--red), #7a0f0f); display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:800; color:#fff; font-family:var(--disp);}
+  .ai-ring{position:absolute; inset:-5px; border:1.5px solid rgba(232,52,74,0.5); border-radius:50%;}
+  .ai-bubble{display:flex; gap:3px; background:#262626; border-radius:8px; padding:7px 9px;}
+  .ai-bubble .dot{width:4px; height:4px; border-radius:50%; background:#999; display:inline-block;}
+  .ai-bubble .dot:nth-child(2){background:var(--red);}
+
+  /* Courier Sync Status viz */
+  .route-viz{display:flex; align-items:center; justify-content:center; gap:0; padding-top:14px;}
+  .rdot{width:8px; height:8px; border-radius:50%; background:#555; flex-shrink:0;}
+  .rdot.mid{width:18px; height:18px; background:var(--red); color:#fff; font-size:10px; display:flex; align-items:center; justify-content:center; border-radius:50%;}
+  .rdot.end{background:#3a6df0;}
+  .rline{width:26px; height:2px; background:#444;}
+  .route-lbl{text-align:center; font-size:7px; color:#888; margin-top:8px; letter-spacing:0.3px;}
+
+  /* Vendor Fulfilment Console viz */
+  .bars-viz{display:flex; align-items:flex-end; justify-content:center; gap:6px; height:60px; padding:10px 10px 0;}
+  .bars-viz span{width:9px; background:#3a6df0; border-radius:2px 2px 0 0; display:block;}
+
+  /* Commission Settlement donut viz */
+  .mini-donut{width:52px; height:52px; border-radius:50%; margin:14px auto 0; background:conic-gradient(var(--red) 0% 68%, #333 68% 100%); display:flex; align-items:center; justify-content:center;}
+  .md-inner{width:32px; height:32px; border-radius:50%; background:#1a1a1a; display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:700; color:#fff;}
+  .thumb-cap{text-align:center; font-size:10px; color:#cfcfcf; margin-top:8px; font-weight:500;}
+
+  /* ===== BOTTOM BADGE ===== */
+  .badge-row{display:flex; justify-content:center; margin-top:40px; position:relative; z-index:5;}
+  .badge{display:flex; align-items:center; gap:14px; border:1px solid #333; border-radius:99px; padding:11px 22px; background:#0c0c0c;}
+  .badge .txt{font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:1.5px; color:#f2f2f2; text-transform:uppercase;}
+  .toggle{width:38px; height:20px; border-radius:99px; background:var(--red); position:relative; flex-shrink:0;}
+  .toggle::after{content:''; position:absolute; top:2px; right:2px; width:16px; height:16px; border-radius:50%; background:#fff;}
+
+  @media (max-width:900px){
+    .hero{padding:32px 16px 40px;}
+    .headline .word{font-size:46px;}
+    .headline .sub{font-size:26px;}
+    .stage{height:auto; min-height:520px;}
+    .main-card{width:92%; position:relative; left:0; top:0; transform:none; margin:0 auto;}
+    .card.penalty, .card.returns, .card.email, .card.rto{display:none;}
+    .thumbs{flex-wrap:wrap; gap:12px;}
+    .thumb{width:42%;}
+    .badge{flex-wrap:wrap; justify-content:center; text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+
+  <div class="headline">
+    <div class="word">Antorti<span>q</span></div>
+    <div class="tag">Presents best in market</div>
+    <div class="sub">Marketplace Operations Platform</div>
+  </div>
+
+  <div class="stage">
+
+    <!-- penalty engine mini card -->
+    <div class="card mini-card penalty">
+      <div class="tag-bar">🔔 Penalty Engine<br>Trigger</div>
+      <div style="font-size:9.5px; color:#666;">Auto enforcement on missed dispatch windows.</div>
+      <div class="btn">Trigger now</div>
+    </div>
+
+    <!-- returns automation mini card -->
+    <div class="card mini-card returns">
+      <div class="title">Returns Automation Flow</div>
+      <div class="flow-row"><div class="flow-node">Request</div>→<div class="flow-node">Approve</div></div>
+      <div class="flow-row" style="margin-top:6px;"><div class="flow-node active">✓</div><div class="flow-node">Pickup</div>→<div class="flow-node">Resolved</div></div>
+    </div>
+
+    <!-- main dashboard card -->
+    <div class="card main-card">
+      <div class="mc-head">
+        <div class="mc-brand">Antorti<span>q</span></div>
+        <div class="mc-icons"><span>🖼</span><span>🔔</span><span>👤</span></div>
+      </div>
+      <div class="mc-body">
+        <div>
+          <div class="mc-panel-title">Real-time Order Tracking Table <span class="drop">All onward ▾</span></div>
+          <table class="mini">
+            <tr><th>Vendor</th><th>Order ID</th><th>Status</th></tr>
+            <tr><td>Vendor Name</td><td>8012003000</td><td><span class="pill-status dispatched">Dispatched</span></td></tr>
+            <tr><td>Vendor Name</td><td>8012003003</td><td><span class="pill-status dispatched">Dispatched</span></td></tr>
+            <tr><td>Vendor Name</td><td>8012003002</td><td><span class="pill-status delayed">Delayed</span></td></tr>
+            <tr><td>Vendor Name</td><td>8012003003</td><td><span class="pill-status pending">Pending</span></td></tr>
+            <tr><td>Vendor Name</td><td>8012003004</td><td><span class="pill-status pending">Pending</span></td></tr>
+            <tr><td>Vendor Name</td><td>8012003005</td><td><span class="pill-status pending">Pending</span></td></tr>
+            <tr><td>Vendor Name</td><td>8012003006</td><td><span class="pill-status pending">Pending</span></td></tr>
+            <tr><td>Vendor Name</td><td>8012003007</td><td><span class="pill-status pending">Pending</span></td></tr>
+          </table>
+        </div>
+        <div class="chart-box">
+          <div class="mc-panel-title">Live Revenue Chart <span class="drop">Revenue ▾</span></div>
+          <div class="chart-val">₹155.6K</div>
+          <svg viewBox="0 0 200 90" width="100%" height="80" preserveAspectRatio="none">
+            <polyline points="0,60 30,55 55,68 80,40 105,50 130,20 155,35 200,15" fill="none" stroke="#e8344a" stroke-width="2.5"/>
+            <polyline points="0,60 30,55 55,68 80,40 105,50 130,20 155,35 200,15 200,90 0,90" fill="rgba(232,52,74,0.08)" stroke="none"/>
+          </svg>
+          <div style="display:flex; justify-content:space-between; font-size:7.5px; color:#aaa; margin-top:2px;">
+            <span>12pm</span><span>2pm</span><span>4pm</span><span>6pm</span><span>8pm</span>
+          </div>
+        </div>
+      </div>
+      <div class="mc-foot">
+        <div>
+          <div class="mc-panel-title">Vendor Leaderboard</div>
+          <div class="lb-row"><span class="lb-avatar" style="background:#e8344a;">1</span>Vendor 1 <span style="margin-left:auto; font-weight:700;">100</span></div>
+          <div class="lb-row"><span class="lb-avatar" style="background:#3a6df0;">2</span>Vendor 2 <span style="margin-left:auto; font-weight:700;">100</span></div>
+          <div class="lb-row"><span class="lb-avatar" style="background:#e8344a;">3</span>Vendor 3 <span style="margin-left:auto; font-weight:700;">94</span></div>
+        </div>
+        <div class="chart-box" style="border-top:none;">
+          <div class="mc-panel-title">Settlement Summary</div>
+          <div class="settle-amt">₹16,008</div>
+          <div class="settle-lbl">Payable</div>
+          <div class="settle-amt" style="font-size:14px; margin-top:6px; color:#1f9d62;">Settled</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- branded email mini card -->
+    <div class="card email">
+      <div class="e-logo">A</div>
+      <div class="e-title">Welcome to Antortiq!</div>
+      <div class="e-btn">Open</div>
+    </div>
+
+    <!-- RTO analytics mini card -->
+    <div class="card mini-card rto">
+      <div class="title">RTO Analytics</div>
+      <div class="donut"><div class="donut-inner">Real Time<br>Donut Chart</div></div>
+    </div>
+
+  </div>
+
+  <div class="thumbs">
+    <div class="thumb">
+      <div class="thumb-box">
+        <div class="bar"></div>
+        <div class="ai-viz">
+          <div class="ai-orb"><div class="ai-ring"></div><span>AI</span></div>
+          <div class="ai-bubble"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="thumb-cap">AI Operations Bot</div>
+    </div>
+    <div class="thumb">
+      <div class="thumb-box">
+        <div class="bar" style="background:#3a6df0;"></div>
+        <div class="route-viz">
+          <span class="rdot"></span><span class="rline"></span><span class="rdot mid">⟳</span><span class="rline"></span><span class="rdot end"></span>
+        </div>
+        <div class="route-lbl">Origin → Transit → Delivered</div>
+      </div>
+      <div class="thumb-cap">Courier Sync Status</div>
+    </div>
+    <div class="thumb">
+      <div class="thumb-box">
+        <div class="bar"></div>
+        <div class="bars-viz">
+          <span style="height:34%;"></span><span style="height:58%;"></span><span style="height:42%;"></span><span style="height:74%;"></span><span style="height:50%; background:var(--red);"></span><span style="height:64%;"></span>
+        </div>
+      </div>
+      <div class="thumb-cap">Vendor Fulfilment Console</div>
+    </div>
+    <div class="thumb">
+      <div class="thumb-box">
+        <div class="bar" style="background:#3a6df0;"></div>
+        <div class="mini-donut"><div class="md-inner">68%</div></div>
+      </div>
+      <div class="thumb-cap">Commission Settlement Breakdown</div>
+    </div>
+  </div>
+
+  <div class="badge-row">
+    <div class="badge">
+      <span class="txt">AI-Powered · White-Labelled · Built for Scale</span>
+      <div class="toggle"></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
