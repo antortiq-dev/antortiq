@@ -113,6 +113,15 @@ table.mini td{padding:5px 4px; color:#444; border-bottom:1px solid #f3f3f3;}
 
 /* ===== SERVICES ===== */
 .services{background:linear-gradient(180deg,var(--black),#0e0e10);}
+
+/* ===== INDUSTRIES STRIP ===== */
+.ind-strip{background:var(--black); padding:50px 0 30px; border-top:1px solid #1c1c1e;}
+.ind-strip-label{text-align:center; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#6b6c70; font-weight:700; margin-bottom:6px;}
+.ind-marquee-wrap{margin-top:18px; overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.ind-marquee{display:flex; gap:36px; width:max-content; animation:marquee 30s linear infinite;}
+.ind-marquee-wrap:hover .ind-marquee{animation-play-state:paused;}
+.ind-marquee span{font-family:var(--disp); font-weight:700; font-size:14px; color:#3a3a3e; white-space:nowrap; display:flex; align-items:center; gap:10px;}
+.ind-marquee span b{color:var(--red);}
 .svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
 .svc-card{background:#141416; border:1px solid #232327; border-radius:var(--radius); padding:30px; transition:border-color .25s, transform .25s; position:relative; overflow:hidden;}
 .svc-card:hover{border-color:var(--red); transform:translateY(-6px);}
@@ -126,6 +135,144 @@ table.mini td{padding:5px 4px; color:#444; border-bottom:1px solid #f3f3f3;}
 
 /* ===== WORK / CASE STUDY ===== */
 .work{background:#0e0e10;}
+
+/* ===== CROSCROW SHOWCASE ===== */
+.cc-divider{height:1px; background:linear-gradient(90deg,transparent,#2a2a2e,transparent); margin:80px 0 60px;}
+.cc-head{text-align:center; max-width:640px; margin:0 auto 46px;}
+.cc-head h3{font-family:var(--disp); font-size:30px; color:#fff; font-weight:800; margin-top:12px;}
+.cc-head p{margin-top:12px; color:#9a9ba1; font-size:15px; line-height:1.7;}
+
+.cc-grid2{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:60px;}
+@media (max-width:1100px){.cc-grid2{grid-template-columns:1fr 1fr;}}
+@media (max-width:640px){.cc-grid2{grid-template-columns:1fr;}}
+
+.ccco-msg{background:#fafafa; border:1px solid #e3e3e3; border-radius:9px; padding:11px 13px; margin-bottom:11px;}
+.ccco-msg .t{font-size:10.5px; font-weight:700; color:#000; margin-bottom:5px;}
+.ccco-msg .b{font-size:9px; color:#555; line-height:1.55;}
+.ccco-msg .b b{color:#000;}
+
+/* exchange/return tiles */
+.ccrx-tiles{display:flex; gap:9px; margin-bottom:11px;}
+.ccrx-tile{flex:1; border:1px solid #e3e3e3; border-radius:9px; padding:12px 10px; text-align:center; transition:border-color .2s, transform .2s;}
+.ccrx-tile:hover{border-color:#0a0a0a; transform:translateY(-3px);}
+.ccrx-tile .ic{font-size:18px; margin-bottom:6px;}
+.ccrx-tile .lb{font-size:10px; font-weight:700; color:#0a0a0a;}
+.ccrx-tile .ds{font-size:7.5px; color:#999; margin-top:3px; line-height:1.4;}
+.ccrx-progress{border:1px solid #e3e3e3; border-radius:9px; padding:11px 13px;}
+.ccrx-progress .hd{display:flex; align-items:center; gap:8px; margin-bottom:10px;}
+.ccrx-progress .hd .ic{font-size:14px;}
+.ccrx-progress .hd .tt{font-size:10px; font-weight:700; color:#1a1a2e;}
+.ccrx-progress .hd .tag{margin-left:auto; font-size:7px; font-weight:700; background:#eef0ff; color:#4433cc; padding:3px 8px; border-radius:99px;}
+.ccrx-steps{display:flex; align-items:center;}
+.ccrx-step{flex:1; text-align:center; position:relative;}
+.ccrx-step .pt{width:8px; height:8px; border-radius:50%; background:#4433cc; margin:0 auto 5px; position:relative; z-index:2;}
+.ccrx-step.todo .pt{background:#ddd;}
+.ccrx-step .ln{position:absolute; top:4px; left:0; right:0; height:1.5px; background:#e3e3e3; z-index:1;}
+.ccrx-step:first-child .ln{left:50%;} .ccrx-step:last-child .ln{right:50%;}
+.ccrx-step .lb{font-size:6.5px; color:#444; font-weight:600;}
+
+/* exchange request form mock */
+.ccrx-form{border:1px solid #e3e3e3; border-radius:9px; padding:12px; margin-bottom:11px;}
+.ccrx-form .ft{font-size:9.5px; font-weight:700; color:#0a0a0a; margin-bottom:9px; display:flex; align-items:center; gap:6px;}
+.ccrx-form .item{display:flex; align-items:flex-start; gap:8px; padding-bottom:10px; border-bottom:1px solid #f0f0f0; margin-bottom:10px;}
+.ccrx-form .item .cb{width:14px; height:14px; border:1.5px solid #0a0a0a; border-radius:3px; background:#0a0a0a; flex-shrink:0; margin-top:1px;}
+.ccrx-form .item .t1{font-size:9.5px; font-weight:600; color:#222;}
+.ccrx-form .item .t2{font-size:8px; color:#999; margin-top:1px;}
+.ccrx-form .vlabel{font-size:8px; color:#999; margin:8px 0 5px;}
+.ccrx-select{border:1px solid #d4d4d4; border-radius:6px; padding:7px 9px; font-size:9px; color:#333; display:flex; justify-content:space-between; align-items:center; background:#fafafa;}
+.ccrx-fee{background:#eef0ff; border:1px solid #d8d4ff; border-radius:8px; padding:10px 11px; display:flex; align-items:center; gap:9px; margin:11px 0;}
+.ccrx-fee .ic{font-size:15px;}
+.ccrx-fee .tt{font-size:10.5px; font-weight:700; color:#4433cc;}
+.ccrx-fee .sb{font-size:7.5px; color:#888; margin-top:2px; line-height:1.4;}
+.ccrx-pay-btn{background:#1f9d62; color:#fff; text-align:center; padding:10px; border-radius:7px; font-size:10px; font-weight:700; margin-bottom:9px;}
+.ccrx-admin{border-top:1px dashed #e3e3e3; padding-top:9px; font-size:9px; color:#888; display:flex; align-items:center; gap:6px;}
+
+.cc-card{background:#141416; border:1px solid #232327; border-radius:18px; overflow:hidden; transition:transform .35s, box-shadow .35s;}
+.cc-card:hover{transform:translateY(-6px); box-shadow:0 30px 60px rgba(0,0,0,.45);}
+.cc-card-label{padding:20px 22px 14px;}
+.cc-card-label .tag{font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); font-weight:700;}
+.cc-card-label h4{font-family:var(--disp); font-size:16px; font-weight:700; color:#fff; margin-top:6px;}
+
+.cc-browser{margin:0 18px 20px; border:1px solid #2a2a2e; border-radius:12px; overflow:hidden;}
+.cc-browser-bar{display:flex; align-items:center; gap:6px; padding:9px 11px; background:#1c1c1f; border-bottom:1px solid #2a2a2e;}
+.cc-browser-bar .dot{width:8px; height:8px; border-radius:50%; background:#3a3a3e;}
+.cc-browser-bar .url{flex:1; background:#0e0e10; border-radius:5px; padding:4px 11px; font-size:9px; color:#777; margin-left:6px;}
+.cc-browser-body{background:#fff; padding:16px;}
+
+/* track page mock */
+.cctp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+.cctp-brand{font-family:var(--disp); font-weight:800; font-size:12px; color:#0a0a0a; letter-spacing:0.5px;}
+.cctp-order{font-size:9.5px; color:#999;}
+.cctp-steps{display:flex; align-items:center; margin-bottom:18px;}
+.cctp-step{flex:1; text-align:center; position:relative;}
+.cctp-step .pt{width:10px; height:10px; border-radius:50%; background:#0a0a0a; margin:0 auto 6px; position:relative; z-index:2; transition:transform .3s;}
+.cctp-step.todo .pt{background:#ddd;}
+.cctp-step .ln{position:absolute; top:5px; left:0; right:0; height:1.5px; background:#e3e3e3; z-index:1;}
+.cctp-step:first-child .ln{left:50%;} .cctp-step:last-child .ln{right:50%;}
+.cctp-step .lb{font-size:8px; color:#444; font-weight:600;}
+.cctp-card{background:#fafafa; border:1px solid #e3e3e3; border-radius:9px; padding:11px 13px; margin-bottom:11px;}
+.cctp-card .k{font-size:8px; color:#999; text-transform:uppercase; letter-spacing:0.5px;}
+.cctp-card .v{font-size:12px; font-weight:700; color:#000; margin-top:2px; font-family:'SF Mono',monospace;}
+.cctp-item{display:flex; gap:9px; align-items:center; padding:8px 0; border-bottom:1px solid #f0f0f0;}
+.cctp-item .ph{width:32px; height:32px; border-radius:6px; background:#eee; flex-shrink:0;}
+.cctp-item .t1{font-size:10px; font-weight:600; color:#222;}
+.cctp-item .t2{font-size:8.5px; color:#999; margin-top:1px;}
+.cctp-vendor{display:inline-block; font-size:7px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; background:#f2f2f2; color:#666; padding:3px 7px; border-radius:5px; margin-top:9px;}
+
+/* confirm order page mock */
+.ccco-card{border:1px solid #e3e3e3; border-radius:9px; padding:13px; margin-bottom:11px;}
+.ccco-header{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:11px;}
+.ccco-header .name{font-size:12px; font-weight:700; color:#000;}
+.ccco-header .sub{font-size:8.5px; color:#999; margin-top:2px;}
+.ccco-amt{font-size:14px; font-weight:800; color:#000; text-align:right;}
+.ccco-item{display:flex; gap:9px; align-items:center; padding:7px 0; border-bottom:1px solid #f3f3f3;}
+.ccco-item .ph{width:28px; height:28px; border-radius:6px; background:#eee; flex-shrink:0;}
+.ccco-item .t1{font-size:9.5px; font-weight:600; color:#222;}
+.ccco-item .t2{font-size:8px; color:#999;}
+.ccco-cod{background:#fff7e8; border:1px solid #f3d9a3; border-radius:8px; padding:10px 12px; margin:11px 0; text-align:center;}
+.ccco-cod .k{font-size:8px; color:#a06b1f; text-transform:uppercase; letter-spacing:0.5px; font-weight:700;}
+.ccco-cod .v{font-size:15px; font-weight:800; color:#7a4f12; margin-top:2px;}
+.ccco-btn{background:#0a0a0a; color:#fff; text-align:center; padding:10px; border-radius:7px; font-size:10.5px; font-weight:700; margin-bottom:9px;}
+.ccco-upsell{background:#f0fbf5; border:1.5px solid #1f9d62; border-radius:9px; padding:11px 13px;}
+.ccco-upsell .row1{display:flex; justify-content:space-between; align-items:center;}
+.ccco-upsell .ttl{font-size:10px; font-weight:700; color:#0a0a0a;}
+.ccco-upsell .save{font-size:7.5px; font-weight:800; background:#1f9d62; color:#fff; padding:2px 8px; border-radius:99px;}
+.ccco-upsell .price{font-size:14px; font-weight:800; color:#1f9d62; margin-top:7px;}
+.ccco-upsell .price s{font-size:10px; color:#999; font-weight:500; margin-left:6px;}
+.ccco-upsell .btn2{background:#1f9d62; color:#fff; text-align:center; padding:9px; border-radius:7px; font-size:10px; font-weight:700; margin-top:9px;}
+
+/* journey stepper */
+.cc-journey{display:flex; align-items:flex-start; max-width:100%; margin:0 auto 38px; position:relative; overflow-x:auto; padding-bottom:8px;}
+.cc-jnode{flex:1; min-width:96px; text-align:center; position:relative; padding:0 4px;}
+.cc-jnode .dot{width:14px; height:14px; border-radius:50%; background:#333; margin:0 auto 9px; position:relative; z-index:2; border:2px solid #0e0e10; transition:background .4s, box-shadow .4s, transform .4s;}
+.cc-jnode .ln{position:absolute; top:6px; left:0; right:0; height:2px; background:#26262a; z-index:1;}
+.cc-jnode:first-child .ln{left:50%;} .cc-jnode:last-child .ln{right:50%;}
+.cc-jnode .lb{font-size:10px; font-weight:700; color:#cfcfd2;}
+.cc-jnode .nn{font-size:8.5px; color:#666; margin-top:2px;}
+.cc-jnode.lit .dot{background:var(--red); box-shadow:0 0 0 4px rgba(232,52,74,.2); transform:scale(1.15);}
+.cc-jnode.lit .ln{background:var(--red);}
+
+/* email carousel */
+.cc-carousel-wrap{position:relative;}
+.cc-carousel{display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x proximity; padding:6px 4px 18px; cursor:grab; scrollbar-width:thin;}
+.cc-carousel:active{cursor:grabbing;}
+.cc-carousel::-webkit-scrollbar{height:6px;}
+.cc-carousel::-webkit-scrollbar-thumb{background:#2a2a2e; border-radius:99px;}
+.cc-email{flex:0 0 230px; scroll-snap-align:start; background:#fff; border-radius:13px; overflow:hidden; box-shadow:0 16px 36px rgba(0,0,0,.35); transition:transform .3s;}
+.cc-email:hover{transform:translateY(-5px);}
+.cc-email .hero{height:100px; background-size:cover; background-position:center; position:relative;}
+.cc-email .hero::after{content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.3) 65%, transparent 100%);}
+.cc-email .hero .ov{position:absolute; bottom:9px; left:11px; right:11px; z-index:2;}
+.cc-email .hero .eb{font-size:6px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.55);}
+.cc-email .hero .hl{font-size:12px; font-weight:900; text-transform:uppercase; line-height:1.1; margin-top:3px;}
+.cc-email .bar{background:#111; padding:9px 13px; display:flex; justify-content:space-between;}
+.cc-email .bar .k{font-size:6px; color:#555; text-transform:uppercase; letter-spacing:0.5px;}
+.cc-email .bar .v{font-size:10px; font-weight:800; color:#fff; margin-top:1px;}
+.cc-email .panel{background:#161616; padding:11px 13px;}
+.cc-email .panel .ln{font-size:7.5px; color:#888;}
+.cc-email .cap{padding:10px 13px; font-size:10.5px; font-weight:700; color:#000; border-top:1px solid #f0f0f0; display:flex; justify-content:space-between; align-items:center;}
+.cc-email .cap .n{font-size:8.5px; color:#aaa; font-weight:600;}
+.cc-drag-hint{text-align:center; font-size:11.5px; color:#6b6c70; margin-top:4px;}
 .work-card{background:#141416; border:1px solid #232327; border-radius:20px; padding:46px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
 .work-card h3{font-size:26px; color:#fff; margin:14px 0 14px;}
 .work-card p{color:#9a9ba1; font-size:15px; line-height:1.7;}
@@ -166,12 +313,6 @@ table.mini td{padding:5px 4px; color:#444; border-bottom:1px solid #f3f3f3;}
 .cta .btn-primary{background:#0c0c0c; box-shadow:none; margin-top:30px;}
 .cta .btn-ghost{border-color:rgba(255,255,255,.4); color:#fff; margin-top:30px;}
 .cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:18px;}
-.contact-form{max-width:480px; margin:34px auto 0; display:flex; flex-direction:column; gap:12px;}
-.contact-form input, .contact-form textarea{font-family:var(--sans); font-size:14px; padding:13px 16px; border-radius:10px; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.1); color:#fff;}
-.contact-form input::placeholder, .contact-form textarea::placeholder{color:rgba(255,255,255,.7);}
-.contact-form textarea{min-height:90px; resize:vertical;}
-.contact-form button{align-self:center; margin-top:6px;}
-.contact-status{font-size:13px; margin-top:8px; min-height:18px;}
 
 /* ===== FOOTER ===== */
 footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
@@ -341,7 +482,7 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
 <div class="strip">
   <div class="wrap strip-grid">
     <div><b data-count="60" data-suffix="+">0</b><span>Automations Shipped</span></div>
-    <div><b data-count="12">0</b><span>Industries Served</span></div>
+    <div><b data-count="8">0</b><span>D2C &amp; Ecommerce Verticals</span></div>
     <div><b data-count="10" data-suffix="x">0</b><span>Faster Ops Cycles</span></div>
     <div><b>24/7</b><span>AI Agents in Production</span></div>
   </div>
@@ -356,34 +497,34 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
     </div>
     <div class="svc-grid">
       <div class="svc-card reveal tilt" style="--d:0s">
-        <div class="ico">🗄️</div>
-        <h3>Backend Portals &amp; Admin Systems</h3>
-        <p>Multi-tenant dashboards, internal tools, vendor &amp; ops consoles built on rock-solid APIs — designed for the people who run your business daily.</p>
-        <div class="tags"><span>Node.js</span><span>PostgreSQL</span><span>RBAC</span></div>
+        <div class="ico">🛒</div>
+        <h3>D2C &amp; Ecommerce Operations Management</h3>
+        <p>End-to-end ops for brands shipping physical products — order tracking, returns/exchange flows, vendor fulfilment, RTO analytics and settlement, all under one console.</p>
+        <div class="tags"><span>Order Tracking</span><span>Returns &amp; Exchange</span><span>Vendor Ops</span></div>
       </div>
       <div class="svc-card reveal tilt" style="--d:0.08s">
-        <div class="ico">⚡</div>
-        <h3>Workflow &amp; Process Automation</h3>
-        <p>We replace manual spreadsheets and Slack pings with event-driven pipelines — order tracking, settlements, penalty engines, returns flows, you name it.</p>
-        <div class="tags"><span>n8n</span><span>Webhooks</span><span>Queues</span></div>
-      </div>
-      <div class="svc-card reveal tilt" style="--d:0.16s">
         <div class="ico">🎨</div>
         <h3>Web &amp; Product UI/UX</h3>
-        <p>Interfaces that feel inevitable — research-led design systems, motion, and pixel-perfect builds for web apps, SaaS dashboards, and marketing sites.</p>
+        <p>Interfaces that feel inevitable — research-led design systems, motion, and pixel-perfect builds for web apps, SaaS dashboards, and storefronts.</p>
         <div class="tags"><span>Figma</span><span>React</span><span>Design Systems</span></div>
       </div>
-      <div class="svc-card reveal tilt" style="--d:0.24s">
+      <div class="svc-card reveal tilt" style="--d:0.16s">
         <div class="ico">🧠</div>
-        <h3>AI Agents &amp; LLM Integrations</h3>
-        <p>Custom AI ops bots, support agents, document intelligence and copilots wired directly into your existing systems — not bolted-on chat widgets.</p>
+        <h3>AI Agents &amp; Integrations</h3>
+        <p>Custom AI ops bots, support agents, and document intelligence wired directly into your existing systems and data — not bolted-on chat widgets.</p>
         <div class="tags"><span>RAG</span><span>LLM APIs</span><span>Agentic Workflows</span></div>
       </div>
+      <div class="svc-card reveal tilt" style="--d:0.24s">
+        <div class="ico">💬</div>
+        <h3>WhatsApp &amp; Email Automation</h3>
+        <p>Branded lifecycle messaging that fires itself — order placed to delivered, abandoned cart nudges, exchange updates, all on autopilot.</p>
+        <div class="tags"><span>WhatsApp API</span><span>Lifecycle Email</span><span>Drip Flows</span></div>
+      </div>
       <div class="svc-card reveal tilt" style="--d:0.32s">
-        <div class="ico">🛒</div>
-        <h3>Marketplace Operations Platforms</h3>
-        <p>End-to-end ops layers for marketplaces and D2C brands — real-time order tracking, RTO analytics, courier sync, and commission settlement.</p>
-        <div class="tags"><span>Multi-vendor</span><span>Analytics</span><span>White-label</span></div>
+        <div class="ico">🗄️</div>
+        <h3>Backend Portals &amp; Admin Systems</h3>
+        <p>Multi-tenant dashboards, internal tools, and ops consoles built on rock-solid APIs — designed for the people who run your business daily.</p>
+        <div class="tags"><span>Node.js</span><span>PostgreSQL</span><span>RBAC</span></div>
       </div>
       <div class="svc-card reveal tilt" style="--d:0.4s">
         <div class="ico">☁️</div>
@@ -423,6 +564,222 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
         </div>
       </div>
     </div>
+
+    <div class="cc-divider"></div>
+
+    <div class="cc-head reveal">
+      <span class="eyebrow">Client Build · CrosCrow</span>
+      <h3>Multi-vendor marketplace ops, end to end</h3>
+      <p>From the customer's first order to a resolved exchange — every surface and every email, designed and shipped by Antortiq.</p>
+    </div>
+
+    <div class="cc-grid2">
+      <div class="cc-card reveal tilt">
+        <div class="cc-card-label"><div class="tag">Customer-Facing</div><h4>Live Order Tracking Page</h4></div>
+        <div class="cc-browser">
+          <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.croscrow.com</div></div>
+          <div class="cc-browser-body">
+            <div class="cctp-head"><div class="cctp-brand">CROSCROW</div><div class="cctp-order">#2339</div></div>
+            <div class="cctp-steps">
+              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Confirmed</div></div>
+              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Ready</div></div>
+              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Transit</div></div>
+              <div class="cctp-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Delivered</div></div>
+            </div>
+            <div class="cctp-card"><div class="k">Courier · AWB</div><div class="v">Delhivery · 8012003045</div></div>
+            <div class="cctp-item"><div class="ph"></div><div class="info"><div class="t1">FOURMEN — 001 CORE</div><div class="t2">Qty 1 · Size S</div></div></div>
+            <div class="cctp-item"><div class="ph"></div><div class="info"><div class="t1">Oversized T-Shirt</div><div class="t2">Qty 1 · Size L</div></div></div>
+            <div class="cctp-vendor">Vendor: FOURONE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-card reveal tilt" style="--d:0.1s">
+        <div class="cc-card-label"><div class="tag">Pre-Dispatch</div><h4>Confirm Order Page</h4></div>
+        <div class="cc-browser">
+          <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">dashboard.croscrow.com/confirm-order</div></div>
+          <div class="cc-browser-body">
+            <div class="ccco-card">
+              <div class="ccco-header"><div><div class="name">#2339</div><div class="sub">1 item</div></div><div class="ccco-amt">₹1,486.00</div></div>
+              <div class="ccco-item"><div class="ph"></div><div><div class="t1">FOURMEN — 001 CORE</div><div class="t2">Size S · Qty 1</div></div></div>
+            </div>
+            <div class="ccco-msg">
+              <div class="t">Why we ask for a small confirmation</div>
+              <div class="b">COD orders are sometimes placed by mistake or refused at the door — and the return shipping costs us (and you) a lot. A tiny confirmation helps us know <b>you really want this order</b>. It's <b>not an extra charge</b>; it's deducted from your final bill.</div>
+            </div>
+            <div class="ccco-cod"><div class="k">Amount Payable on Delivery</div><div class="v">₹1,387.00</div></div>
+            <div class="ccco-btn">Pay ₹99 &amp; Confirm Order</div>
+            <div class="ccco-upsell">
+              <div class="row1"><div class="ttl">💸 Pay in full &amp; save more</div><div class="save">SAVE ₹149</div></div>
+              <div class="price">₹1,337 <s>₹1,486</s></div>
+              <div class="btn2">Pay ₹1,337 &amp; Go Prepaid</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-card reveal tilt" style="--d:0.2s">
+        <div class="cc-card-label"><div class="tag">Self-Serve</div><h4>Return / Exchange Request</h4></div>
+        <div class="cc-browser">
+          <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.croscrow.com/2339</div></div>
+          <div class="cc-browser-body">
+            <div class="ccrx-tiles">
+              <div class="ccrx-tile"><div class="ic">🔄</div><div class="lb">Exchange</div><div class="ds">Swap for a different size or variant</div></div>
+              <div class="ccrx-tile"><div class="ic">↩</div><div class="lb">Return</div><div class="ds">Return items for a refund or credit</div></div>
+            </div>
+
+            <div class="ccrx-form">
+              <div class="ft">🔄 Exchange Request</div>
+              <div class="item">
+                <div class="cb"></div>
+                <div>
+                  <div class="t1">FOURMEN — 001 CORE</div>
+                  <div class="t2">Size S · Qty 1</div>
+                  <div class="vlabel">Select exchange size/variant:</div>
+                  <div class="ccrx-select"><span>Size — M</span><span>▾</span></div>
+                </div>
+              </div>
+              <div class="ccrx-fee">
+                <span class="ic">💳</span>
+                <div>
+                  <div class="tt">₹199 Processing Fee</div>
+                  <div class="sb">One-time fee to process your exchange · Razorpay (UPI, Card, Net Banking)</div>
+                </div>
+              </div>
+              <div class="ccrx-pay-btn">💳 Pay ₹199 &amp; Submit Exchange</div>
+              <div class="ccrx-admin">🔑 Have an admin code?</div>
+            </div>
+
+            <div class="ccrx-progress">
+              <div class="hd"><span class="ic">🚚</span><span class="tt">Exchange Request — RR-1042</span><span class="tag">Exchange Dispatch</span></div>
+              <div class="ccrx-steps">
+                <div class="ccrx-step"><div class="ln"></div><div class="pt"></div><div class="lb">Submitted</div></div>
+                <div class="ccrx-step"><div class="ln"></div><div class="pt"></div><div class="lb">Approved</div></div>
+                <div class="ccrx-step"><div class="ln"></div><div class="pt"></div><div class="lb">Pickup</div></div>
+                <div class="ccrx-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">In Transit</div></div>
+                <div class="ccrx-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Completed</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cc-head reveal" style="margin-bottom:30px;">
+      <span class="eyebrow">Branded Lifecycle Email</span>
+      <h3 style="font-size:24px;">One automated email for every step of the journey</h3>
+    </div>
+
+    <div class="cc-journey reveal" id="ccJourney">
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Placed</div><div class="nn">01</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Confirmed</div><div class="nn">02</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">On Hold</div><div class="nn">03</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Packed</div><div class="nn">04</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Shipped</div><div class="nn">05</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Out for Delivery</div><div class="nn">06</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Missed You</div><div class="nn">07</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Delivered</div><div class="nn">08</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Exchange Req.</div><div class="nn">09</div></div>
+      <div class="cc-jnode"><div class="ln"></div><div class="dot"></div><div class="lb">Exchange Done</div><div class="nn">10</div></div>
+    </div>
+
+    <div class="cc-carousel-wrap reveal">
+      <div class="cc-carousel" id="ccCarousel">
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">60+ Brands · One Stop</div><div class="hl" style="color:#fff;">Order<br>Received.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Order</div><div class="v">#2339</div></div><div style="text-align:right;"><div class="k">Total</div><div class="v" style="color:#7eb8f7;">₹1,486</div></div></div>
+          <div class="panel"><div class="ln">Cash on Delivery · 2 items</div></div>
+          <div class="cap">Order Placed <span class="n">01</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">60+ Brands · One Stop</div><div class="hl" style="color:#fff;">Order<br>Confirmed.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Order</div><div class="v">#2339</div></div><div style="text-align:right;"><div class="k">Total</div><div class="v" style="color:#7eb8f7;">₹1,486</div></div></div>
+          <div class="panel"><div class="ln">Being prepared for dispatch</div></div>
+          <div class="cap">Order Confirmed <span class="n">02</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Order Update · Action Required</div><div class="hl" style="color:#f59e0b;">Order<br>On Hold.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Order</div><div class="v">#2339</div></div><div style="text-align:right;"><div class="k">Total</div><div class="v" style="color:#f59e0b;">₹1,486</div></div></div>
+          <div class="panel"><div class="ln">Awaiting your confirmation</div></div>
+          <div class="cap">Order On Hold <span class="n">03</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Getting Ready</div><div class="hl" style="color:#fff;">Order<br>Packed.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Order</div><div class="v">#2339</div></div><div style="text-align:right;"><div class="k">Total</div><div class="v" style="color:#7eb8f7;">₹1,486</div></div></div>
+          <div class="panel"><div class="ln">Handover to courier today</div></div>
+          <div class="cap">Order Packed <span class="n">04</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Shipped · On The Move</div><div class="hl" style="color:#fff;">Your Order<br>Is On Its Way.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">AWB</div><div class="v" style="font-family:'SF Mono',monospace;">8012003045</div></div><div style="text-align:right;"><div class="k">Courier</div><div class="v">Delhivery</div></div></div>
+          <div class="panel"><div class="ln">Track your order →</div></div>
+          <div class="cap">Shipped <span class="n">05</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Out for Delivery · Today</div><div class="hl" style="color:#fff; font-size:11px;">Arriving<br>Today.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">AWB</div><div class="v" style="font-family:'SF Mono',monospace;">8012003045</div></div><div style="text-align:right;"><div class="k">ETA</div><div class="v">Today</div></div></div>
+          <div class="panel"><div class="ln">Arriving today</div></div>
+          <div class="cap">Out for Delivery <span class="n">06</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Delivery Attempted</div><div class="hl" style="color:#f59e0b; font-size:12px;">We Missed<br>You Today.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Remark</div><div class="v" style="color:#f59e0b; font-size:9px;">Customer Not Available</div></div></div>
+          <div class="panel"><div class="ln">Re-delivery being arranged</div></div>
+          <div class="cap">Missed You <span class="n">07</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Delivered · Thank You</div><div class="hl" style="color:#fff;">Order<br>Delivered.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Order</div><div class="v">#2339</div></div><div style="text-align:right;"><div class="k">Total</div><div class="v" style="color:#7eb8f7;">₹1,486</div></div></div>
+          <div class="panel"><div class="ln">🎉 Delivered successfully</div></div>
+          <div class="cap">Delivered <span class="n">08</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Request Received</div><div class="hl" style="color:#fff;">Exchange<br>Requested.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Request</div><div class="v">RR-1042</div></div><div style="text-align:right;"><div class="k">Item</div><div class="v" style="font-size:9px;">S → M</div></div></div>
+          <div class="panel"><div class="ln">Under review · 1–2 business days</div></div>
+          <div class="cap">Exchange Requested <span class="n">09</span></div>
+        </div>
+
+        <div class="cc-email">
+          <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb">Request Complete</div><div class="hl" style="color:#fff;">Exchange<br>Delivered.</div></div>
+          </div>
+          <div class="bar"><div><div class="k">Request</div><div class="v">RR-1042</div></div><div style="text-align:right;"><div class="k">Status</div><div class="v" style="color:#7eb8f7;">Resolved</div></div></div>
+          <div class="panel"><div class="ln">🎉 Hope you love it!</div></div>
+          <div class="cap">Exchange Done <span class="n">10</span></div>
+        </div>
+
+      </div>
+      <div class="cc-drag-hint">← Drag to explore the full email journey →</div>
+    </div>
+
   </div>
 </section>
 
@@ -481,6 +838,18 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
   </div>
 </section>
 
+<div class="ind-strip">
+  <div class="wrap">
+    <div class="ind-strip-label reveal">Built for D2C &amp; ecommerce — shipped across</div>
+    <div class="ind-marquee-wrap reveal">
+      <div class="ind-marquee">
+        <span>👕 <b>Fashion</b></span><span>🧴 <b>Skincare</b></span><span>🛒 <b>FMCG</b></span><span>🛍️ <b>Marketplaces</b></span><span>🔌 <b>Electronics</b></span><span>🏡 <b>Home &amp; Living</b></span><span>🍫 <b>Food &amp; Beverage</b></span><span>💊 <b>Wellness</b></span>
+        <span>👕 <b>Fashion</b></span><span>🧴 <b>Skincare</b></span><span>🛒 <b>FMCG</b></span><span>🛍️ <b>Marketplaces</b></span><span>🔌 <b>Electronics</b></span><span>🏡 <b>Home &amp; Living</b></span><span>🍫 <b>Food &amp; Beverage</b></span><span>💊 <b>Wellness</b></span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="testi">
   <div class="wrap reveal">
     <blockquote>"Antortiq didn't just build us a dashboard — they rebuilt how our entire ops team works. The AI agent alone replaced three full-time roles."</blockquote>
@@ -492,15 +861,15 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
   <div class="wrap reveal">
     <h2>Let's build your next system.</h2>
     <p>Tell us what's manual today — we'll show you what it looks like automated.</p>
-    <form id="contactForm" class="contact-form">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <textarea name="message" placeholder="What do you want to automate?" required></textarea>
-      <button type="submit" class="btn btn-primary" style="background:#0c0c0c;">Send Message</button>
-      <p id="contactStatus" class="contact-status"></p>
-    </form>
-    <div class="cta-actions">
-      <a class="btn btn-ghost" href="mailto:hello@antortiq.com" style="border-color:rgba(255,255,255,.4); color:#fff;">hello@antortiq.com</a>
+    <div class="cta-actions" style="margin-top:34px;">
+      <a class="btn btn-primary" style="background:#0c0c0c;" target="_blank" rel="noopener"
+         href="https://wa.me/918209544626?text=Hi%20Antortiq%2C%20I%27d%20like%20to%20talk%20about%20a%20project%20%E2%80%94%20we%27re%20looking%20to%20automate%2Fbuild%3A%20">
+        💬 Chat on WhatsApp
+      </a>
+      <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.4); color:#fff;"
+         href="mailto:antortiq@gmail.com?subject=Project%20Inquiry%20%E2%80%94%20Antortiq&body=Hi%20Antortiq%20team%2C%0A%0AWe%27d%20like%20to%20talk%20about%20a%20project.%0A%0AWhat%20we%20want%20to%20build%2Fautomate%3A%20%0ATimeline%3A%20%0ABudget%20range%3A%20%0A%0AThanks!">
+        ✉️ antortiq@gmail.com
+      </a>
     </div>
   </div>
 </section>
@@ -739,40 +1108,54 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
     draw();
   })();
 
-  // contact form -> /api/contact
-  var contactForm = document.getElementById('contactForm');
-  if(contactForm){
-    contactForm.addEventListener('submit', async function(e){
-      e.preventDefault();
-      var status = document.getElementById('contactStatus');
-      var btn = contactForm.querySelector('button');
-      var data = {
-        name: contactForm.name.value,
-        email: contactForm.email.value,
-        message: contactForm.message.value
-      };
-      btn.disabled = true;
-      status.textContent = 'Sending...';
-      try{
-        var res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(data)
-        });
-        var json = await res.json();
-        if(res.ok){
-          status.textContent = "Thanks! We'll get back to you soon.";
-          contactForm.reset();
-        } else {
-          status.textContent = json.error || 'Something went wrong.';
-        }
-      } catch(err){
-        status.textContent = 'Network error. Please email us directly.';
-      } finally {
-        btn.disabled = false;
-      }
+  // CrosCrow email carousel: drag-to-scroll + journey stepper sync
+  (function(){
+    var carousel = document.getElementById('ccCarousel');
+    var journey = document.getElementById('ccJourney');
+    if(!carousel || !journey) return;
+    var nodes = journey.querySelectorAll('.cc-jnode');
+
+    var isDown = false, startX, scrollLeft;
+    carousel.addEventListener('mousedown', function(e){
+      isDown = true; startX = e.pageX; scrollLeft = carousel.scrollLeft;
     });
-  }
+    window.addEventListener('mouseup', function(){ isDown = false; });
+    carousel.addEventListener('mouseleave', function(){ isDown = false; });
+    carousel.addEventListener('mousemove', function(e){
+      if(!isDown) return;
+      e.preventDefault();
+      carousel.scrollLeft = scrollLeft - (e.pageX - startX) * 1.4;
+    });
+
+    function syncJourney(){
+      var cards = carousel.querySelectorAll('.cc-email');
+      var center = carousel.scrollLeft + carousel.clientWidth / 2;
+      var activeIndex = 0;
+      cards.forEach(function(card, i){
+        var cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        if(cardCenter <= center) activeIndex = i;
+      });
+      nodes.forEach(function(node, i){
+        node.classList.toggle('lit', i <= activeIndex);
+      });
+    }
+    carousel.addEventListener('scroll', syncJourney);
+
+    var journeyObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var i = 0;
+          var step = setInterval(function(){
+            if(i >= nodes.length){ clearInterval(step); return; }
+            nodes[i].classList.add('lit');
+            i++;
+          }, 120);
+          journeyObs.unobserve(journey);
+        }
+      });
+    }, {threshold:0.4});
+    journeyObs.observe(journey);
+  })();
 </script>
 
 </body>
