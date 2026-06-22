@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Work Showcase</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#d11f1f; --black:#0c0c0c; --bg:#f4f4f4; --line:#e3e3e3;
+    --disp:'Sora', Arial, sans-serif; --sans:'Inter', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:var(--sans); background:var(--bg); padding:50px 30px;}
+
+  .wrap{max-width:1280px; margin:0 auto;}
+  .head{text-align:center; margin-bottom:46px;}
+  .head .eyebrow{font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--red); font-weight:700;}
+  .head h1{font-family:var(--disp); font-weight:800; font-size:34px; color:#000; margin-top:8px; letter-spacing:-0.5px;}
+  .head p{font-size:13.5px; color:#666; margin-top:8px; max-width:480px; margin-left:auto; margin-right:auto;}
+
+  .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  @media (max-width:980px){ .grid{grid-template-columns:1fr;} }
+
+  .showcase-card{background:#fff; border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column;}
+  .sc-label{padding:18px 20px 14px;}
+  .sc-label .tag{font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); font-weight:700;}
+  .sc-label h3{font-family:var(--disp); font-size:15px; font-weight:700; color:#000; margin-top:4px;}
+
+  /* browser chrome frame */
+  .browser{margin:0 16px 18px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fafafa;}
+  .browser-bar{display:flex; align-items:center; gap:6px; padding:8px 10px; background:#eeeeee; border-bottom:1px solid var(--line);}
+  .browser-bar .dot{width:8px; height:8px; border-radius:50%; background:#ccc;}
+  .browser-bar .url{flex:1; background:#fff; border-radius:5px; padding:3px 10px; font-size:8.5px; color:#999; margin-left:6px;}
+  .browser-body{background:#fff; padding:14px; min-height:300px;}
+
+  /* ===== TRACK PAGE MOCKUP ===== */
+  .tp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .tp-brand{font-family:var(--disp); font-weight:800; font-size:11px; color:#000;}
+  .tp-brand span{color:var(--red);}
+  .tp-order{font-size:8.5px; color:#999;}
+  .tp-steps{display:flex; align-items:center; margin-bottom:16px;}
+  .tp-step{flex:1; text-align:center; position:relative;}
+  .tp-step .pt{width:9px; height:9px; border-radius:50%; background:var(--red); margin:0 auto 5px; position:relative; z-index:2;}
+  .tp-step.todo .pt{background:#ddd;}
+  .tp-step .ln{position:absolute; top:4px; left:0; right:0; height:1.5px; background:var(--line); z-index:1;}
+  .tp-step:first-child .ln{left:50%;} .tp-step:last-child .ln{right:50%;}
+  .tp-step .lb{font-size:7px; color:#444; font-weight:600;}
+  .tp-card{background:#fafafa; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin-bottom:10px;}
+  .tp-card .k{font-size:7.5px; color:#999; text-transform:uppercase; letter-spacing:0.5px;}
+  .tp-card .v{font-size:11px; font-weight:700; color:#000; margin-top:2px;}
+  .tp-item{display:flex; gap:8px; align-items:center; padding:7px 0; border-bottom:1px solid #f0f0f0;}
+  .tp-item .ph{width:30px; height:30px; border-radius:5px; background:#eee; flex-shrink:0;}
+  .tp-item .info{flex:1;}
+  .tp-item .t1{font-size:9px; font-weight:600; color:#222;}
+  .tp-item .t2{font-size:7.5px; color:#999; margin-top:1px;}
+
+  /* ===== EXCHANGE FLOW MOCKUP ===== */
+  .ex-stepper{display:flex; gap:6px; margin-bottom:14px;}
+  .ex-pill{flex:1; text-align:center; font-size:7px; font-weight:700; padding:6px 4px; border-radius:99px; background:#f1f1f1; color:#999;}
+  .ex-pill.active{background:var(--red); color:#fff;}
+  .ex-pill.done{background:#1f9d62; color:#fff;}
+  .ex-box{border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin-bottom:10px;}
+  .ex-box .lbl{font-size:8px; color:#999; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; font-weight:600;}
+  .ex-radio{display:flex; align-items:center; gap:6px; font-size:9px; color:#333; padding:4px 0;}
+  .ex-radio .rb{width:10px; height:10px; border-radius:50%; border:1.5px solid #ccc;}
+  .ex-radio.sel .rb{border-color:var(--red); background:radial-gradient(circle, var(--red) 0 40%, #fff 45%);}
+  .ex-select{border:1px solid var(--line); border-radius:6px; padding:7px 9px; font-size:9px; color:#444; display:flex; justify-content:space-between;}
+  .ex-btn{background:var(--red); color:#fff; font-size:9.5px; font-weight:700; text-align:center; padding:9px; border-radius:6px; margin-top:6px;}
+
+  /* ===== EMAIL TEMPLATE MOCKUP ===== */
+  .em-inbox-bar{display:flex; align-items:center; gap:8px; padding:8px 10px; background:#fff; border-bottom:1px solid var(--line); font-size:8.5px; color:#666;}
+  .em-inbox-bar .av{width:18px; height:18px; border-radius:50%; background:var(--red); color:#fff; font-size:8px; font-weight:700; display:flex; align-items:center; justify-content:center;}
+  .em-body{background:#0c0c0c;}
+  .em-hero{padding:22px 18px 16px; text-align:center; background:linear-gradient(160deg, #1a1a1a, #0c0c0c);}
+  .em-hero .logo{font-family:var(--disp); font-weight:800; font-size:13px; color:#fff;}
+  .em-hero .logo span{color:var(--red);}
+  .em-hero .h{font-family:var(--disp); font-weight:800; font-size:16px; color:#fff; margin-top:10px; letter-spacing:0.5px;}
+  .em-hero .s{font-size:8.5px; color:#999; margin-top:4px;}
+  .em-panel{background:#161616; margin:0 14px; border-radius:8px; padding:12px; margin-top:-8px; position:relative; z-index:2;}
+  .em-row{display:flex; justify-content:space-between; font-size:8.5px; color:#999; padding:4px 0; border-bottom:1px solid #232323;}
+  .em-row b{color:#fff; font-weight:700;}
+  .em-btn{margin:14px; background:var(--red); color:#fff; text-align:center; padding:9px; border-radius:6px; font-size:9.5px; font-weight:700;}
+  .em-foot{padding:10px 14px 16px; text-align:center; font-size:7px; color:#555;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow">Antortiq — Selected Work</div>
+    <h1>Built for the customer, not just the dashboard</h1>
+    <p>A look at the customer-facing surfaces that ship alongside the operations platform — order tracking, self-serve exchanges, and branded email.</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- TRACK PAGE -->
+    <div class="showcase-card">
+      <div class="sc-label"><div class="tag">Customer-Facing</div><h3>Live Order Tracking Page</h3></div>
+      <div class="browser">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.yourbrand.com</div></div>
+        <div class="browser-body">
+          <div class="tp-head"><div class="tp-brand">YOUR<span>BRAND</span></div><div class="tp-order">#10234</div></div>
+          <div class="tp-steps">
+            <div class="tp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Confirmed</div></div>
+            <div class="tp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Packed</div></div>
+            <div class="tp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Shipped</div></div>
+            <div class="tp-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Delivered</div></div>
+          </div>
+          <div class="tp-card"><div class="k">Courier · AWB</div><div class="v">Delhivery · 8012003045</div></div>
+          <div class="tp-item"><div class="ph"></div><div class="info"><div class="t1">Oversized Tee — Black</div><div class="t2">Qty 1 · Size L</div></div></div>
+          <div class="tp-item"><div class="ph"></div><div class="info"><div class="t1">Cargo Pants — Olive</div><div class="t2">Qty 1 · Size 32</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXCHANGE FLOW -->
+    <div class="showcase-card">
+      <div class="sc-label"><div class="tag">Self-Serve</div><h3>Return / Exchange Flow</h3></div>
+      <div class="browser">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.yourbrand.com/exchange</div></div>
+        <div class="browser-body">
+          <div class="ex-stepper">
+            <div class="ex-pill done">Request</div>
+            <div class="ex-pill active">Approve</div>
+            <div class="ex-pill">Pickup</div>
+            <div class="ex-pill">Resolved</div>
+          </div>
+          <div class="ex-box">
+            <div class="lbl">Reason</div>
+            <div class="ex-radio sel"><span class="rb"></span>Size doesn't fit</div>
+            <div class="ex-radio"><span class="rb"></span>Changed my mind</div>
+            <div class="ex-radio"><span class="rb"></span>Damaged / defective</div>
+          </div>
+          <div class="ex-box">
+            <div class="lbl">Exchange For</div>
+            <div class="ex-select"><span>Size — L → XL</span><span>▾</span></div>
+          </div>
+          <div class="ex-btn">Confirm Exchange Request</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL TEMPLATE -->
+    <div class="showcase-card">
+      <div class="sc-label"><div class="tag">Branded Comms</div><h3>Automated Email Template</h3></div>
+      <div class="browser">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">Inbox · Order Shipped</div></div>
+        <div class="em-inbox-bar"><div class="av">Y</div>Your Brand &lt;hello@yourbrand.com&gt;</div>
+        <div class="em-body">
+          <div class="em-hero">
+            <div class="logo">YOUR<span>BRAND</span></div>
+            <div class="h">YOUR ORDER<br>IS ON ITS WAY</div>
+            <div class="s">#10234 · Dispatched today</div>
+          </div>
+          <div class="em-panel">
+            <div class="em-row"><span>Courier</span><b>Delhivery</b></div>
+            <div class="em-row"><span>AWB</span><b>8012003045</b></div>
+            <div class="em-row" style="border-bottom:none;"><span>ETA</span><b>2–4 days</b></div>
+          </div>
+          <div class="em-btn">Track Your Order →</div>
+          <div class="em-foot">© Your Brand · Automated Notification</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

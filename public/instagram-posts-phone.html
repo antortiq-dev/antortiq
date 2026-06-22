@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Instagram Post Kit (Phone Style)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{ --red:#e8344a; --red-deep:#d11f1f; --black:#0c0c0c; --disp:'Sora',Arial,sans-serif; --sans:'Inter',Arial,sans-serif; }
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:var(--sans); background:#0a0a0b; color:#e9e9ea; padding:50px 24px 100px;}
+.page-head{text-align:center; max-width:640px; margin:0 auto 50px;}
+.page-head .eyebrow{font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--red);}
+.page-head h1{font-family:var(--disp); font-weight:800; font-size:32px; color:#fff; margin-top:10px;}
+.page-head p{margin-top:12px; color:#9a9ba1; font-size:14.5px; line-height:1.65;}
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:1160px; margin:0 auto;}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.grid{grid-template-columns:1fr; max-width:340px;}}
+.slot{display:flex; flex-direction:column; align-items:center; gap:14px;}
+.frame{width:324px; height:405px; overflow:hidden; border-radius:14px; box-shadow:0 24px 60px rgba(0,0,0,.5); position:relative; background:#000;}
+.frame .scale-wrap{width:1080px; height:1350px; transform:scale(0.3); transform-origin:top left;}
+.dl-btn{display:inline-flex; align-items:center; gap:8px; font-family:var(--disp); font-weight:700; font-size:13px; padding:10px 20px; border-radius:99px; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff; border:none; cursor:pointer; box-shadow:0 8px 20px rgba(232,52,74,.35); transition:transform .2s;}
+.dl-btn:hover{transform:translateY(-2px);}
+.slot-label{font-family:var(--disp); font-size:12.5px; color:#cfcfd2; font-weight:600; text-align:center;}
+
+/* ============ POST BASE ============ */
+.post{width:1080px; height:1350px; position:relative; overflow:hidden; font-family:var(--sans); background:var(--black);}
+.glow1{position:absolute; bottom:-220px; left:50%; transform:translateX(-50%); width:1100px; height:700px; border-radius:50%; background:radial-gradient(ellipse, rgba(255,255,255,.16), rgba(232,52,74,.18) 45%, transparent 75%); filter:blur(10px);}
+.post .top-row{position:absolute; top:64px; left:64px; right:64px; display:flex; justify-content:space-between; align-items:center; z-index:5;}
+.brand-mark{width:54px; height:54px; position:relative;}
+.brand-mark .bar{position:absolute; bottom:0; border-radius:6px; background:linear-gradient(180deg,var(--red),var(--red-deep));}
+.brand-mark .b1{width:14px; height:18px; left:0;}
+.brand-mark .b2{width:14px; height:30px; left:20px; opacity:.85;}
+.brand-mark .b3{width:14px; height:46px; left:40px;}
+.domain{font-size:18px; color:#999; font-weight:600;}
+
+/* phone */
+.phone-wrap{position:relative; margin-top:170px; display:flex; justify-content:center; z-index:3;}
+.phone{width:760px; height:560px; border-radius:56px 56px 0 0; background:linear-gradient(160deg,#2b2b30,#0c0c0c); border:2px solid #3a3a3e; position:relative; overflow:hidden; box-shadow:0 40px 90px rgba(0,0,0,.6);}
+.phone-screen{position:absolute; inset:12px; border-radius:46px 46px 0 0; overflow:hidden; background:#fff;}
+.phone-notch{position:absolute; top:26px; left:50%; transform:translateX(-50%); width:230px; height:42px; background:#0a0a0a; border-radius:30px; display:flex; align-items:center; justify-content:space-between; padding:0 22px; z-index:6;}
+.phone-notch .dots{display:flex; gap:4px;}
+.phone-notch .dots span{width:6px; height:6px; border-radius:50%; background:#444;}
+.phone-notch .cam{width:14px; height:14px; border-radius:50%; background:#1c1c1f; border:1.5px solid #333;}
+
+/* quote/screenshot card overlapping bottom of phone */
+.quote-card{position:absolute; left:60px; right:60px; bottom:0; transform:translateY(38%); background:linear-gradient(135deg,var(--red),var(--red-deep)); border-radius:36px; padding:50px 46px 56px; box-shadow:0 50px 90px rgba(0,0,0,.55); z-index:5;}
+.quote-card .qbrand{display:flex; align-items:center; gap:16px; margin-bottom:26px;}
+.quote-card .qbrand .avatar{width:50px; height:50px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--red); font-family:var(--disp); font-size:20px;}
+.quote-card .qbrand b{font-family:var(--disp); font-size:21px; color:#fff; display:block;}
+.quote-card .qbrand span{display:block; font-size:14.5px; color:rgba(255,255,255,.72);}
+.quote-card h2{font-family:var(--disp); font-weight:800; font-size:38px; color:#fff; line-height:1.32;}
+.quote-card h2 .dim{display:block; font-weight:500; color:rgba(255,255,255,.85); font-size:29px; margin-top:8px;}
+
+/* real component scaling */
+.scale-box{position:relative; overflow:hidden;}
+.scale-box .inner{transform-origin:top left; position:absolute; top:0; left:0;}
+.cc-browser{border:1px solid #2a2a2e; border-radius:12px; overflow:hidden; background:#15151a;}
+.cc-browser-bar{display:flex; align-items:center; gap:6px; padding:9px 11px; background:#1c1c1f; border-bottom:1px solid #2a2a2e;}
+.cc-browser-bar .dot{width:8px; height:8px; border-radius:50%; background:#3a3a3e;}
+.cc-browser-bar .url{flex:1; background:#0e0e10; border-radius:5px; padding:4px 11px; font-size:9px; color:#777; margin-left:6px;}
+.cc-browser-body{background:#fff; padding:16px;}
+.cctp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+.cctp-brand{font-family:var(--disp); font-weight:800; font-size:12px; color:#0a0a0a; letter-spacing:0.5px;}
+.cctp-order{font-size:9.5px; color:#999;}
+.cctp-steps{display:flex; align-items:center; margin-bottom:18px;}
+.cctp-step{flex:1; text-align:center; position:relative;}
+.cctp-step .pt{width:10px; height:10px; border-radius:50%; background:#0a0a0a; margin:0 auto 6px; position:relative; z-index:2;}
+.cctp-step.todo .pt{background:#ddd;}
+.cctp-step .ln{position:absolute; top:5px; left:0; right:0; height:1.5px; background:#e3e3e3; z-index:1;}
+.cctp-step:first-child .ln{left:50%;} .cctp-step:last-child .ln{right:50%;}
+.cctp-step .lb{font-size:8px; color:#444; font-weight:600;}
+.cctp-card{background:#fafafa; border:1px solid #e3e3e3; border-radius:9px; padding:11px 13px; margin-bottom:11px;}
+.cctp-card .k{font-size:8px; color:#999; text-transform:uppercase; letter-spacing:0.5px;}
+.cctp-card .v{font-size:12px; font-weight:700; color:#000; margin-top:2px; font-family:'SF Mono',monospace;}
+.cctp-item{display:flex; gap:9px; align-items:center; padding:8px 0; border-bottom:1px solid #f0f0f0;}
+.cctp-item .ph{width:32px; height:32px; border-radius:6px; background:#eee; flex-shrink:0;}
+.cctp-item .t1{font-size:10px; font-weight:600; color:#222;}
+.cctp-item .t2{font-size:8.5px; color:#999; margin-top:1px;}
+.ccco-card{border:1px solid #e3e3e3; border-radius:9px; padding:13px; margin-bottom:11px;}
+.ccco-header{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:11px;}
+.ccco-header .name{font-size:12px; font-weight:700; color:#000;}
+.ccco-header .sub{font-size:8.5px; color:#999; margin-top:2px;}
+.ccco-amt{font-size:14px; font-weight:800; color:#000; text-align:right;}
+.ccco-item{display:flex; gap:9px; align-items:center; padding:7px 0; border-bottom:1px solid #f3f3f3;}
+.ccco-item .ph{width:28px; height:28px; border-radius:6px; background:#eee; flex-shrink:0;}
+.ccco-item .t1{font-size:9.5px; font-weight:600; color:#222;}
+.ccco-item .t2{font-size:8px; color:#999;}
+.ccco-cod{background:#fff7e8; border:1px solid #f3d9a3; border-radius:8px; padding:10px 12px; margin:11px 0; text-align:center;}
+.ccco-cod .k{font-size:8px; color:#a06b1f; text-transform:uppercase; letter-spacing:0.5px; font-weight:700;}
+.ccco-cod .v{font-size:15px; font-weight:800; color:#7a4f12; margin-top:2px;}
+.ccco-btn{background:#0a0a0a; color:#fff; text-align:center; padding:10px; border-radius:7px; font-size:10.5px; font-weight:700; margin-bottom:9px;}
+.ccrx-tiles{display:flex; gap:9px; margin-bottom:11px;}
+.ccrx-tile{flex:1; border:1px solid #e3e3e3; border-radius:9px; padding:12px 10px; text-align:center;}
+.ccrx-tile .ic{font-size:18px; margin-bottom:6px;}
+.ccrx-tile .lb{font-size:10px; font-weight:700; color:#0a0a0a;}
+.ccrx-tile .ds{font-size:7.5px; color:#999; margin-top:3px; line-height:1.4;}
+.ccrx-fee{background:#eef0ff; border:1px solid #d8d4ff; border-radius:8px; padding:10px 11px; display:flex; align-items:center; gap:9px; margin:11px 0;}
+.ccrx-fee .ic{font-size:15px;}
+.ccrx-fee .tt{font-size:10.5px; font-weight:700; color:#4433cc;}
+.ccrx-pay-btn{background:#1f9d62; color:#fff; text-align:center; padding:10px; border-radius:7px; font-size:10px; font-weight:700; margin-bottom:9px;}
+.cc-email{flex:0 0 230px; width:230px; background:#fff; border-radius:13px; overflow:hidden; box-shadow:0 16px 36px rgba(0,0,0,.35);}
+.cc-email .hero{height:100px; background-size:cover; background-position:center; position:relative;}
+.cc-email .hero::after{content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.3) 65%, transparent 100%);}
+.cc-email .hero .ov{position:absolute; bottom:9px; left:11px; right:11px; z-index:2;}
+.cc-email .hero .eb{font-size:6px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.55);}
+.cc-email .hero .hl{font-size:12px; font-weight:900; text-transform:uppercase; line-height:1.1; margin-top:3px;}
+.cc-email .bar{background:#111; padding:9px 13px; display:flex; justify-content:space-between;}
+.cc-email .bar .k{font-size:6px; color:#555; text-transform:uppercase; letter-spacing:0.5px;}
+.cc-email .bar .v{font-size:10px; font-weight:800; color:#fff; margin-top:1px;}
+.cc-email .panel{background:#161616; padding:11px 13px;}
+.cc-email .panel .ln{font-size:7.5px; color:#888;}
+.cc-email .cap{padding:10px 13px; font-size:10.5px; font-weight:700; color:#000; border-top:1px solid #f0f0f0; display:flex; justify-content:space-between; align-items:center;}
+.cc-email .cap .n{font-size:8.5px; color:#aaa; font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="eyebrow">Antortiq · Social Kit — Set 2</div>
+  <h1>6 More Instagram Posts, Phone-Mockup Style</h1>
+  <p>True 4:5 (1080×1350) cards — a peeking app screenshot inside a phone frame, with a bold quote card overlapping below.</p>
+</div>
+
+<div class="grid">
+
+  <!-- POST 1 — Track page -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="ph1">
+        <div class="glow1"></div>
+        <div class="top-row"><div class="brand-mark"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div></div><div class="domain">antortiq.com</div></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-notch"><div class="dots"><span></span><span></span><span></span></div><div class="cam"></div></div>
+            <div class="phone-screen">
+              <div class="scale-box" style="width:732px; height:560px;">
+                <div class="inner" style="width:300px; transform:scale(2.44);">
+                  <div class="cc-browser">
+                    <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.yourbrand.com</div></div>
+                    <div class="cc-browser-body">
+                      <div class="cctp-head"><div class="cctp-brand">YOURBRAND</div><div class="cctp-order">#2339</div></div>
+                      <div class="cctp-steps">
+                        <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Confirmed</div></div>
+                        <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Ready</div></div>
+                        <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Transit</div></div>
+                        <div class="cctp-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Delivered</div></div>
+                      </div>
+                      <div class="cctp-card"><div class="k">Courier · AWB</div><div class="v">Delhivery · 8012003045</div></div>
+                      <div class="cctp-item"><div class="ph"></div><div><div class="t1">FOURMEN — 001 CORE</div><div class="t2">Qty 1 · Size S</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="qbrand"><div class="avatar">A</div><div><b>Antortiq</b><span>@antortiq</span></div></div>
+            <h2>Antortiq doesn't wait for updates.<span class="dim">It tracks in real time.</span></h2>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('ph1','antortiq-phone-1-track.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 1 · Live Tracking</div>
+  </div>
+
+  <!-- POST 2 — Confirm order -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="ph2">
+        <div class="glow1"></div>
+        <div class="top-row"><div class="brand-mark"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div></div><div class="domain">antortiq.com</div></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-notch"><div class="dots"><span></span><span></span><span></span></div><div class="cam"></div></div>
+            <div class="phone-screen">
+              <div class="scale-box" style="width:732px; height:560px;">
+                <div class="inner" style="width:260px; transform:scale(2.82);">
+                  <div class="cc-browser">
+                    <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">/confirm-order</div></div>
+                    <div class="cc-browser-body">
+                      <div class="ccco-card">
+                        <div class="ccco-header"><div><div class="name">#2339</div><div class="sub">1 item</div></div><div class="ccco-amt">₹1,486.00</div></div>
+                        <div class="ccco-item"><div class="ph"></div><div><div class="t1">FOURMEN — 001 CORE</div><div class="t2">Size S · Qty 1</div></div></div>
+                      </div>
+                      <div class="ccco-cod"><div class="k">Amount Payable on Delivery</div><div class="v">₹1,387.00</div></div>
+                      <div class="ccco-btn">Pay ₹99 &amp; Confirm Order</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="qbrand"><div class="avatar">A</div><div><b>Antortiq</b><span>@antortiq</span></div></div>
+            <h2>Every COD order, confirmed<span class="dim">before it ever ships.</span></h2>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('ph2','antortiq-phone-2-confirm.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 2 · Confirm Order</div>
+  </div>
+
+  <!-- POST 3 — Exchange -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="ph3">
+        <div class="glow1"></div>
+        <div class="top-row"><div class="brand-mark"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div></div><div class="domain">antortiq.com</div></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-notch"><div class="dots"><span></span><span></span><span></span></div><div class="cam"></div></div>
+            <div class="phone-screen">
+              <div class="scale-box" style="width:732px; height:560px;">
+                <div class="inner" style="width:260px; transform:scale(2.82);">
+                  <div class="cc-browser">
+                    <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">/track/2339</div></div>
+                    <div class="cc-browser-body">
+                      <div class="ccrx-tiles">
+                        <div class="ccrx-tile"><div class="ic">🔄</div><div class="lb">Exchange</div><div class="ds">Different size</div></div>
+                        <div class="ccrx-tile"><div class="ic">↩</div><div class="lb">Return</div><div class="ds">Refund or credit</div></div>
+                      </div>
+                      <div class="ccrx-fee"><span class="ic">💳</span><div><div class="tt">₹199 Processing Fee</div></div></div>
+                      <div class="ccrx-pay-btn">💳 Pay ₹199 &amp; Submit Exchange</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="qbrand"><div class="avatar">A</div><div><b>Antortiq</b><span>@antortiq</span></div></div>
+            <h2>Exchanges that<span class="dim">resolve themselves.</span></h2>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('ph3','antortiq-phone-3-exchange.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 3 · Exchange Flow</div>
+  </div>
+
+  <!-- POST 4 — Email template -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="ph4">
+        <div class="glow1"></div>
+        <div class="top-row"><div class="brand-mark"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div></div><div class="domain">antortiq.com</div></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-notch"><div class="dots"><span></span><span></span><span></span></div><div class="cam"></div></div>
+            <div class="phone-screen" style="background:#0e0e10; display:flex; align-items:flex-start; justify-content:center; padding-top:40px;">
+              <div class="scale-box" style="width:380px; height:480px;">
+                <div class="inner" style="width:230px; transform:scale(1.65);">
+                  <div class="cc-email">
+                    <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+                      <div class="ov"><div class="eb">60+ Brands · One Stop</div><div class="hl" style="color:#fff;">Order<br>Received.</div></div>
+                    </div>
+                    <div class="bar"><div><div class="k">Order</div><div class="v">#2339</div></div><div style="text-align:right;"><div class="k">Total</div><div class="v" style="color:#7eb8f7;">₹1,486</div></div></div>
+                    <div class="panel"><div class="ln">Cash on Delivery · 2 items</div></div>
+                    <div class="cap">Order Placed <span class="n">01</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="qbrand"><div class="avatar">A</div><div><b>Antortiq</b><span>@antortiq</span></div></div>
+            <h2>One email. Every step.<span class="dim">Zero manual sends.</span></h2>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('ph4','antortiq-phone-4-email.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 4 · Lifecycle Email</div>
+  </div>
+
+  <!-- POST 5 — Settlement / dashboard -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="ph5">
+        <div class="glow1"></div>
+        <div class="top-row"><div class="brand-mark"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div></div><div class="domain">antortiq.com</div></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-notch"><div class="dots"><span></span><span></span><span></span></div><div class="cam"></div></div>
+            <div class="phone-screen" style="background:#fff; padding:40px 36px;">
+              <div style="font-family:var(--disp); font-weight:800; font-size:22px; color:#111;">Antorti<span style="color:var(--red);">q</span> Console</div>
+              <div style="margin-top:30px; font-size:14px; color:#999; text-transform:uppercase; letter-spacing:1px;">Settlement Summary</div>
+              <div style="font-family:var(--disp); font-weight:800; font-size:54px; color:#111; margin-top:10px;">₹16,008</div>
+              <div style="font-size:16px; color:#1f9d62; font-weight:700; margin-top:6px;">● Settled</div>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="qbrand"><div class="avatar">A</div><div><b>Antortiq</b><span>@antortiq</span></div></div>
+            <h2>Settlements, automated<span class="dim">down to the rupee.</span></h2>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('ph5','antortiq-phone-5-settlement.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 5 · Settlement Engine</div>
+  </div>
+
+  <!-- POST 6 — CTA -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="ph6">
+        <div class="glow1"></div>
+        <div class="top-row"><div class="brand-mark"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div></div><div class="domain">antortiq.com</div></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-notch"><div class="dots"><span></span><span></span><span></span></div><div class="cam"></div></div>
+            <div class="phone-screen" style="background:#0c0c0c; display:flex; align-items:center; justify-content:center;">
+              <div style="font-family:var(--disp); font-weight:900; font-size:64px; color:#fff;">Antorti<span style="color:var(--red);">q</span></div>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="qbrand"><div class="avatar">A</div><div><b>Antortiq</b><span>@antortiq</span></div></div>
+            <h2>We build the backend<span class="dim">so you don't have to.</span></h2>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('ph6','antortiq-phone-6-cta.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 6 · Brand CTA</div>
+  </div>
+
+</div>
+
+<script>
+  function downloadPost(id, filename){
+    var el = document.getElementById(id);
+    html2canvas(el, {scale:1, width:1080, height:1350, useCORS:true}).then(function(canvas){
+      var link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Fan Posts (Print)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{ --red:#e8344a; --red-deep:#d11f1f; --black:#0c0c0c; --disp:'Sora',Arial,sans-serif; --sans:'Inter',Arial,sans-serif; }
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:var(--sans); background:#000;}
+@page{ size: 8in 10in; margin:0; }
+
+.printpage{width:768px; height:960px; overflow:hidden; position:relative; page-break-after:always; background:#0c0c0c;}
+.printpage:last-child{page-break-after:auto;}
+.scaler{width:1080px; height:1350px; transform:scale(0.711111); transform-origin:top left;}
+
+.post{width:1080px; height:1350px; position:relative; overflow:hidden; font-family:var(--sans); background:
+  radial-gradient(ellipse 700px 900px at 50% 100%, rgba(232,52,74,.18), transparent 60%), var(--black);}
+.post::after{content:''; position:absolute; left:0; right:0; bottom:0; height:260px; background:linear-gradient(to top, rgba(0,0,0,.9), transparent); z-index:1;}
+.fan-head{position:relative; z-index:5; text-align:center; padding-top:90px;}
+.fan-head h1{font-family:var(--disp); font-weight:800; font-size:46px; color:#fff; line-height:1.18; max-width:880px; margin:0 auto;}
+.fan-head h1 .hl{color:var(--red);}
+.fan-stage{position:relative; height:840px; margin-top:30px; z-index:3;}
+.fan-card{position:absolute; left:50%; top:30px; width:380px; height:560px; border-radius:26px; background:#fff; box-shadow:0 30px 60px rgba(0,0,0,.45); overflow:hidden; display:flex; flex-direction:column;}
+.fan-card.back1{transform:translate(-50%) rotate(-11deg) translateX(-190px) translateY(10px);}
+.fan-card.back2{transform:translate(-50%) rotate(11deg) translateX(190px) translateY(10px); opacity:.92;}
+.folder{position:absolute; left:50%; bottom:60px; transform:translateX(-50%); width:540px; height:620px; border-radius:0 32px 32px 32px; background:linear-gradient(160deg, rgba(232,52,74,.5), rgba(12,12,12,.85)); border:1.5px solid rgba(255,255,255,.18); box-shadow:0 50px 100px rgba(0,0,0,.6); z-index:4;}
+.folder::before{content:''; position:absolute; top:-46px; left:0; width:200px; height:50px; background:inherit; border-radius:24px 24px 0 0; border:1.5px solid rgba(255,255,255,.18); border-bottom:none;}
+.folder-foot{position:absolute; left:34px; right:34px; bottom:30px; display:flex; align-items:center; justify-content:space-between;}
+.folder-brand{font-family:var(--disp); font-weight:800; font-size:20px; color:#fff; display:flex; align-items:center; gap:10px;}
+.folder-brand span{color:var(--red);}
+.folder-icons{display:flex; gap:14px; font-size:20px; color:rgba(255,255,255,.85);}
+.pill-tag{position:absolute; z-index:6; font-family:var(--disp); font-weight:700; font-size:18px; color:#fff; padding:12px 24px; border-radius:99px; box-shadow:0 14px 30px rgba(0,0,0,.4);}
+.pill-tag.red{background:linear-gradient(135deg,var(--red),var(--red-deep));}
+.pill-tag.dark{background:#1c1c1f; border:1.5px solid #333;}
+.pill-tag.blue{background:linear-gradient(135deg,#3a6df0,#1f3fae);}
+.fan-foot{position:relative; z-index:6; text-align:center; padding-bottom:60px;}
+.fan-foot .tagline{font-size:19px; color:#cfcfd2; max-width:760px; margin:0 auto;}
+.cta-pill{display:inline-flex; align-items:center; gap:10px; margin-top:24px; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff; font-family:var(--disp); font-weight:700; font-size:18px; padding:16px 30px; border-radius:99px; box-shadow:0 16px 34px rgba(232,52,74,.4);}
+.cc-browser{border:1px solid #2a2a2e; border-radius:12px; overflow:hidden; background:#15151a;}
+.cc-browser-bar{display:flex; align-items:center; gap:6px; padding:9px 11px; background:#1c1c1f; border-bottom:1px solid #2a2a2e;}
+.cc-browser-bar .dot{width:8px; height:8px; border-radius:50%; background:#3a3a3e;}
+.cc-browser-bar .url{flex:1; background:#0e0e10; border-radius:5px; padding:4px 11px; font-size:9px; color:#777; margin-left:6px;}
+.cc-browser-body{background:#fff; padding:16px;}
+.cctp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+.cctp-brand{font-family:var(--disp); font-weight:800; font-size:12px; color:#0a0a0a; letter-spacing:0.5px;}
+.cctp-order{font-size:9.5px; color:#999;}
+.cctp-steps{display:flex; align-items:center; margin-bottom:18px;}
+.cctp-step{flex:1; text-align:center; position:relative;}
+.cctp-step .pt{width:10px; height:10px; border-radius:50%; background:#0a0a0a; margin:0 auto 6px; position:relative; z-index:2;}
+.cctp-step.todo .pt{background:#ddd;}
+.cctp-step .ln{position:absolute; top:5px; left:0; right:0; height:1.5px; background:#e3e3e3; z-index:1;}
+.cctp-step:first-child .ln{left:50%;} .cctp-step:last-child .ln{right:50%;}
+.cctp-step .lb{font-size:8px; color:#444; font-weight:600;}
+.cctp-card{background:#fafafa; border:1px solid #e3e3e3; border-radius:9px; padding:11px 13px; margin-bottom:11px;}
+.cctp-card .k{font-size:8px; color:#999; text-transform:uppercase; letter-spacing:0.5px;}
+.cctp-card .v{font-size:12px; font-weight:700; color:#000; margin-top:2px; font-family:'SF Mono',monospace;}
+.ccco-card{border:1px solid #e3e3e3; border-radius:9px; padding:13px; margin-bottom:11px;}
+.ccco-header{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:11px;}
+.ccco-header .name{font-size:12px; font-weight:700; color:#000;}
+.ccco-amt{font-size:14px; font-weight:800; color:#000; text-align:right;}
+.ccco-cod{background:#fff7e8; border:1px solid #f3d9a3; border-radius:8px; padding:10px 12px; margin:11px 0; text-align:center;}
+.ccco-cod .k{font-size:8px; color:#a06b1f; text-transform:uppercase; letter-spacing:0.5px; font-weight:700;}
+.ccco-cod .v{font-size:15px; font-weight:800; color:#7a4f12; margin-top:2px;}
+.ccco-btn{background:#0a0a0a; color:#fff; text-align:center; padding:10px; border-radius:7px; font-size:10.5px; font-weight:700;}
+.cc-email{width:230px; background:#fff; border-radius:13px; overflow:hidden; box-shadow:0 16px 36px rgba(0,0,0,.35);}
+.cc-email .hero{height:100px; background-size:cover; background-position:center; position:relative;}
+.cc-email .hero::after{content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.3) 65%, transparent 100%);}
+.cc-email .hero .ov{position:absolute; bottom:9px; left:11px; right:11px; z-index:2;}
+.cc-email .hero .eb{font-size:6px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.55);}
+.cc-email .hero .hl{font-size:12px; font-weight:900; text-transform:uppercase; line-height:1.1; margin-top:3px;}
+.cc-email .bar{background:#111; padding:9px 13px; display:flex; justify-content:space-between;}
+.cc-email .bar .k{font-size:6px; color:#555; text-transform:uppercase; letter-spacing:0.5px;}
+.cc-email .bar .v{font-size:10px; font-weight:800; color:#fff; margin-top:1px;}
+.svc-row{display:flex; align-items:center; gap:18px; padding:20px; border-bottom:1px solid #eee;}
+.svc-row:last-child{border-bottom:none;}
+.svc-ico{width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,var(--red),var(--red-deep)); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;}
+.svc-row h4{font-family:var(--disp); font-size:15px; color:#111;}
+.svc-row p{font-size:11.5px; color:#888; margin-top:2px;}
+.stat-box{padding:30px; text-align:center;}
+.stat-box .v{font-family:var(--disp); font-weight:800; font-size:46px; color:var(--red);}
+.stat-box .l{font-size:13px; color:#888; margin-top:6px; text-transform:uppercase; letter-spacing:.5px;}
+.ind-chip-row{display:flex; flex-wrap:wrap; gap:10px; padding:24px;}
+.ind-chip-row span{background:#f2f2f2; border-radius:99px; padding:9px 16px; font-size:13px; font-weight:700; color:#222;}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — Lifecycle email -->
+<div class="printpage"><div class="scaler">
+  <div class="post">
+    <div class="fan-head"><h1>One automated <span class="hl">email</span> for every step of the journey.</h1></div>
+    <div class="fan-stage">
+      <div class="pill-tag dark" style="top:40px; left:60px; transform:rotate(-8deg);">Placed</div>
+      <div class="pill-tag red" style="top:10px; right:50px; transform:rotate(7deg);">Delivered</div>
+      <div class="fan-card back1">
+        <div class="cc-email" style="width:380px;">
+          <div class="hero" style="height:160px; background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb" style="font-size:11px;">Shipped · On The Move</div><div class="hl" style="font-size:20px;color:#fff;">Your Order Is<br>On Its Way.</div></div>
+          </div>
+          <div class="bar" style="padding:16px 20px;"><div><div class="k" style="font-size:10px;">AWB</div><div class="v" style="font-size:16px;">8012003045</div></div></div>
+        </div>
+      </div>
+      <div class="fan-card back2">
+        <div class="cc-email" style="width:380px;">
+          <div class="hero" style="height:160px; background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+            <div class="ov"><div class="eb" style="font-size:11px;">Delivered · Thank You</div><div class="hl" style="font-size:20px;color:#fff;">Order<br>Delivered.</div></div>
+          </div>
+          <div class="bar" style="padding:16px 20px;"><div><div class="k" style="font-size:10px;">Order</div><div class="v" style="font-size:16px;">#2339</div></div></div>
+        </div>
+      </div>
+      <div class="folder">
+        <div class="folder-foot">
+          <div class="folder-brand">Antorti<span>q</span></div>
+          <div class="folder-icons">♡ ⤴ 🔖</div>
+        </div>
+      </div>
+    </div>
+    <div class="fan-foot"><div class="tagline">10 branded emails. Placed → Confirmed → Packed → Shipped → Delivered.</div></div>
+  </div>
+</div></div>
+
+<!-- PAGE 2 — Customer pages -->
+<div class="printpage"><div class="scaler">
+  <div class="post">
+    <div class="fan-head"><h1>Built for the <span class="hl">customer</span>, not just the dashboard.</h1></div>
+    <div class="fan-stage">
+      <div class="pill-tag dark" style="top:30px; left:50px; transform:rotate(-9deg);">Track</div>
+      <div class="pill-tag red" style="top:0px; right:40px; transform:rotate(8deg);">Exchange</div>
+      <div class="fan-card back1">
+        <div style="padding:18px;">
+          <div class="cc-browser">
+            <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">/confirm-order</div></div>
+            <div class="cc-browser-body">
+              <div class="ccco-card"><div class="ccco-header"><div><div class="name">#2339</div></div><div class="ccco-amt">₹1,486</div></div></div>
+              <div class="ccco-cod"><div class="k">Payable on Delivery</div><div class="v">₹1,387.00</div></div>
+              <div class="ccco-btn">Pay ₹99 &amp; Confirm Order</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fan-card back2">
+        <div style="padding:18px;">
+          <div class="cc-browser">
+            <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.yourbrand.com</div></div>
+            <div class="cc-browser-body">
+              <div class="cctp-head"><div class="cctp-brand">YOURBRAND</div><div class="cctp-order">#2339</div></div>
+              <div class="cctp-steps">
+                <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Confirmed</div></div>
+                <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Ready</div></div>
+                <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Transit</div></div>
+                <div class="cctp-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Delivered</div></div>
+              </div>
+              <div class="cctp-card"><div class="k">Courier · AWB</div><div class="v">Delhivery · 8012003045</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="folder">
+        <div class="folder-foot">
+          <div class="folder-brand">Antorti<span>q</span></div>
+          <div class="folder-icons">♡ ⤴ 🔖</div>
+        </div>
+      </div>
+    </div>
+    <div class="fan-foot"><div class="tagline">Live tracking, confirmation flows &amp; self-serve exchanges — all white-labelled.</div></div>
+  </div>
+</div></div>
+
+<!-- PAGE 3 — Services -->
+<div class="printpage"><div class="scaler">
+  <div class="post">
+    <div class="fan-head"><h1>One studio. Every <span class="hl">layer</span> of the stack.</h1></div>
+    <div class="fan-stage">
+      <div class="pill-tag dark" style="top:30px; left:50px; transform:rotate(-9deg);">AI Agents</div>
+      <div class="pill-tag red" style="top:0px; right:40px; transform:rotate(8deg);">UI/UX</div>
+      <div class="fan-card back1">
+        <div class="svc-row"><div class="svc-ico">🛒</div><div><h4>D2C &amp; Ecommerce Ops</h4><p>Order tracking, returns</p></div></div>
+        <div class="svc-row"><div class="svc-ico">💬</div><div><h4>WhatsApp &amp; Email</h4><p>Lifecycle automation</p></div></div>
+      </div>
+      <div class="fan-card back2">
+        <div class="svc-row"><div class="svc-ico">🎨</div><div><h4>Web &amp; UI/UX</h4><p>Design systems</p></div></div>
+        <div class="svc-row"><div class="svc-ico">🧠</div><div><h4>AI Agents</h4><p>Wired into your data</p></div></div>
+      </div>
+      <div class="folder">
+        <div class="folder-foot">
+          <div class="folder-brand">Antorti<span>q</span></div>
+          <div class="folder-icons">♡ ⤴ 🔖</div>
+        </div>
+      </div>
+    </div>
+    <div class="fan-foot"><div class="tagline">Backend portals, automation, AI agents &amp; the UI that ties it together.</div></div>
+  </div>
+</div></div>
+
+<!-- PAGE 4 — Case study -->
+<div class="printpage"><div class="scaler">
+  <div class="post">
+    <div class="fan-head"><h1>Real systems. <span class="hl">Real</span> numbers.</h1></div>
+    <div class="fan-stage">
+      <div class="pill-tag dark" style="top:30px; left:50px; transform:rotate(-9deg);">Order Flow</div>
+      <div class="pill-tag red" style="top:0px; right:40px; transform:rotate(8deg);">Penalties</div>
+      <div class="pill-tag blue" style="top:90px; right:90px; transform:rotate(-4deg);">Settlements</div>
+      <div class="fan-card back1"><div class="stat-box"><div class="v">↓70%</div><div class="l">Manual Ops Time</div></div></div>
+      <div class="fan-card back2"><div class="stat-box"><div class="v">₹15.6L+</div><div class="l">Settled Monthly</div></div></div>
+      <div class="folder">
+        <div class="folder-foot">
+          <div class="folder-brand">Antorti<span>q</span></div>
+          <div class="folder-icons">♡ ⤴ 🔖</div>
+        </div>
+      </div>
+    </div>
+    <div class="fan-foot"><div class="tagline">YourBrand runs on the same engine — live, today.</div></div>
+  </div>
+</div></div>
+
+<!-- PAGE 5 — Industries -->
+<div class="printpage"><div class="scaler">
+  <div class="post">
+    <div class="fan-head"><h1>Built for D2C &amp; <span class="hl">ecommerce</span> — and what's next.</h1></div>
+    <div class="fan-stage">
+      <div class="pill-tag dark" style="top:30px; left:50px; transform:rotate(-9deg);">Fashion</div>
+      <div class="pill-tag red" style="top:0px; right:40px; transform:rotate(8deg);">Skincare</div>
+      <div class="pill-tag blue" style="top:90px; right:90px; transform:rotate(-4deg);">FMCG</div>
+      <div class="fan-card back1"><div class="ind-chip-row"><span>👕 Fashion</span><span>🧴 Skincare</span><span>🛒 FMCG</span></div></div>
+      <div class="fan-card back2"><div class="ind-chip-row"><span>🛍️ Marketplaces</span><span>🔌 Electronics</span><span>🏡 Home</span></div></div>
+      <div class="folder">
+        <div class="folder-foot">
+          <div class="folder-brand">Antorti<span>q</span></div>
+          <div class="folder-icons">♡ ⤴ 🔖</div>
+        </div>
+      </div>
+    </div>
+    <div class="fan-foot"><div class="tagline">8 verticals served · one operations engine.</div></div>
+  </div>
+</div></div>
+
+<!-- PAGE 6 — CTA -->
+<div class="printpage"><div class="scaler">
+  <div class="post">
+    <div class="fan-head" style="padding-top:160px;"><h1>Let's build your <span class="hl">next system.</span></h1></div>
+    <div class="fan-stage" style="height:560px;">
+      <div class="folder" style="bottom:40px;">
+        <div class="folder-foot">
+          <div class="folder-brand">Antorti<span>q</span></div>
+          <div class="folder-icons">♡ ⤴ 🔖</div>
+        </div>
+      </div>
+    </div>
+    <div class="fan-foot">
+      <div class="tagline">Tell us what's manual today — we'll show you what it looks like automated.</div>
+      <div class="cta-pill">💬 Message us now →</div>
+    </div>
+  </div>
+</div></div>
+
+</body>
+</html>

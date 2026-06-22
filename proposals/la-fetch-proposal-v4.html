@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq × La-Fetch — v4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c1320; --panel:#101a2c; --ink:#eef2fb; --ink-dim:#8d99b8; --line:#22304a;
+    --teal:#43e8c4; --lime:#c6f24a; --red:#ff6b6b;
+    --disp:'Sora', Arial, sans-serif; --sans:'Inter', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:var(--sans); background:var(--bg); color:var(--ink); line-height:1.55; font-size:13.5px;}
+  .page{width:210mm; min-height:296mm; margin:0 auto 14px; padding:16mm 16mm; background:var(--bg); page-break-after:always;}
+  .page:last-child{page-break-after:auto;}
+  h1{font-family:var(--disp); font-weight:800; font-size:32px; line-height:1.1; letter-spacing:-0.5px; color:#fff;}
+  h2{font-family:var(--disp); font-weight:700; font-size:20px; letter-spacing:-0.2px; color:#fff;}
+  h3{font-family:var(--disp); font-weight:700; font-size:13.5px; color:#fff;}
+  p{color:var(--ink-dim);}
+  .eyebrow{font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--teal); font-weight:700; margin-bottom:8px;}
+
+  .bar{display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--line); padding-bottom:10px; margin-bottom:18px;}
+  .brand{font-family:var(--disp); font-weight:800; font-size:14px; letter-spacing:0.3px; color:#fff;}
+  .brand span{color:var(--teal);}
+  .pg-tag{font-size:10.5px; color:var(--ink-dim); letter-spacing:1px; text-transform:uppercase;}
+
+  /* ===== COVER ===== */
+  .cover-hero{margin-top:50px;}
+  .pills{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+  .pill{font-size:10.5px; font-weight:600; padding:6px 12px; border-radius:99px; background:rgba(67,232,196,0.1); border:1px solid rgba(67,232,196,0.3); color:var(--teal);}
+  .for-box{margin-top:46px; background:var(--panel); border:1px solid var(--line); color:#fff; border-radius:12px; padding:18px 22px; display:flex; justify-content:space-between; align-items:center;}
+  .for-box .l{font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-dim);}
+  .for-box .v{font-family:var(--disp); font-weight:700; font-size:16px; margin-top:2px;}
+
+  /* ===== COMPARISON — v3 chip-pair style ===== */
+  .cmp-grid{margin-top:18px;}
+  .cmp-item{display:grid; grid-template-columns:140px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--line); align-items:start;}
+  .cmp-item .cap{font-weight:700; color:#fff; font-size:12.5px; padding-top:2px; font-family:var(--disp);}
+  .vs-row{display:flex; gap:10px;}
+  .vs-chip{flex:1; border-radius:9px; padding:9px 12px; font-size:11.5px; line-height:1.4;}
+  .vs-chip.no{background:rgba(255,107,107,0.08); border:1px solid rgba(255,107,107,0.25); color:#ffb3b3;}
+  .vs-chip.yes{background:rgba(67,232,196,0.08); border:1px solid rgba(67,232,196,0.3); color:#bdf5e8;}
+  .vs-chip b{display:block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; margin-bottom:3px; opacity:0.75;}
+
+  /* ===== FEATURE STRIP (v2 dense rows, recolored) ===== */
+  .flist{margin-top:4px;}
+  .frow{display:flex; gap:14px; padding:13px 0; border-bottom:1px solid var(--line);}
+  .frow:last-child{border-bottom:none;}
+  .fnum{flex-shrink:0; width:30px; height:30px; border-radius:8px; background:rgba(67,232,196,0.12); border:1px solid rgba(67,232,196,0.4); color:var(--teal); font-family:var(--disp); font-weight:800; font-size:12px; display:flex; align-items:center; justify-content:center;}
+  .fbody h3{font-size:13.5px;}
+  .fbody p{font-size:12px; margin-top:2px;}
+
+  /* ===== TUNE STRIP (v2 cards, recolored) ===== */
+  .tune-strip{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:6px;}
+  .tcard{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:13px 12px;}
+  .tcard .tt{font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--teal); font-weight:700;}
+  .tcard h3{font-size:12px; margin-top:6px;}
+  .tcard p{font-size:10.8px; margin-top:3px; color:var(--ink-dim);}
+
+  /* ===== CLOSING — v3 donut ===== */
+  .donut-row{display:flex; align-items:center; gap:30px; margin-top:20px;}
+  .donut{width:140px; height:140px; border-radius:50%; background:conic-gradient(var(--teal) 0% 30%, var(--line) 30% 100%); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .donut-inner{width:96px; height:96px; border-radius:50%; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .donut-inner .v{font-family:var(--disp); font-weight:800; font-size:24px; color:#fff;}
+  .donut-inner .l{font-size:9px; color:var(--ink-dim); letter-spacing:1px; text-transform:uppercase;}
+  .donut-legend{display:flex; flex-direction:column; gap:10px;}
+  .leg{display:flex; align-items:center; gap:9px; font-size:12.5px; color:var(--ink);}
+  .leg .sw{width:11px; height:11px; border-radius:3px;}
+  .leg .sw.a{background:var(--teal);} .leg .sw.b{background:var(--line);}
+
+  .cta{margin-top:26px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px 26px;}
+  .cta .eyebrow{color:var(--lime);}
+  .cta p{margin-top:8px;}
+  .cta .price{margin-top:16px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:#cdd4e6;}
+  .cta .price b{color:var(--lime);}
+  .cta .ask{margin-top:14px; font-weight:700; font-size:12.5px; color:#fff;}
+  .contact-row{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;}
+  .contact-btn{display:inline-flex; align-items:center; gap:9px; padding:12px 20px; border-radius:9px; font-family:var(--disp); font-weight:700; font-size:12.5px; text-decoration:none; flex:1; justify-content:center;}
+  .contact-btn.wa{background:#25d366; color:#06281a;}
+  .contact-btn.mail{background:transparent; border:1.5px solid var(--teal); color:var(--teal);}
+  .contact-meta{margin-top:12px; font-size:11px; color:var(--ink-dim);}
+  @media screen and (max-width:640px){ .contact-row{flex-direction:column;} }
+
+  @media print{ body{background:#0c1320;} .page{margin:0; width:auto; min-height:0;} @page{size:A4; margin:0;} }
+  @media screen and (max-width:640px){
+    .page{width:100%; min-height:0; padding:22px 16px;}
+    h1{font-size:25px;}
+    .cmp-item{grid-template-columns:1fr;}
+    .vs-row{flex-direction:column;}
+    .tune-strip{grid-template-columns:1fr 1fr;}
+    .for-box{flex-direction:column; align-items:flex-start; gap:8px;}
+    .donut-row{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- PAGE 1 — COVER + COMPARISON -->
+  <section class="page">
+    <div class="bar"><div class="brand">ANTORTI<span>Q</span></div><div class="pg-tag">v4 · 01/03</div></div>
+    <div class="cover-hero">
+      <div class="eyebrow">Marketplace Operations Platform</div>
+      <h1>Everything traditional providers leave<br>manual — we automate.</h1>
+      <p style="margin-top:12px; max-width:480px; font-size:13px;">A point-by-point look at where today's plug-in tools stop, and what a purpose-built operations platform does instead — tuned to how La-Fetch actually runs.</p>
+      <div class="pills">
+        <div class="pill">Order Flow</div><div class="pill">Penalties</div><div class="pill">Settlements</div>
+        <div class="pill">Live Analytics</div><div class="pill">Auto Tracking</div><div class="pill">Returns</div>
+      </div>
+    </div>
+
+    <div style="margin-top:34px;">
+      <div class="eyebrow">Where Today's Tools Stop</div>
+      <div class="cmp-grid">
+        <div class="cmp-item"><div class="cap">Order Routing</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>Basic split, no custom rules</div><div class="vs-chip yes"><b>Antortiq</b>Per-vendor stage flow, auto-routing, full multi-vendor split</div></div></div>
+        <div class="cmp-item"><div class="cap">Email Comms</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>Generic, unbranded</div><div class="vs-chip yes"><b>Antortiq</b>Branded for confirm, dispatch, delay, deliver, settle, penalty, OOS, returns</div></div></div>
+        <div class="cmp-item"><div class="cap">Late Dispatch</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>No enforcement</div><div class="vs-chip yes"><b>Antortiq</b>Auto window tracking, warnings, penalty triggers, audit trail</div></div></div>
+        <div class="cmp-item"><div class="cap">Settlements</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>Manual, spreadsheets</div><div class="vs-chip yes"><b>Antortiq</b>One-click, auto commission split, auto move-to-payable</div></div></div>
+        <div class="cmp-item"><div class="cap">Analytics</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>Static, delayed</div><div class="vs-chip yes"><b>Antortiq</b>Real-time dispatch/delivery/RTO, vendor leaderboard</div></div></div>
+        <div class="cmp-item"><div class="cap">Order Tracking</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>Manual AWB entry</div><div class="vs-chip yes"><b>Antortiq</b>Auto courier sync, live status both sides</div></div></div>
+        <div class="cmp-item"><div class="cap">Returns/Exchanges</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>Email/spreadsheet</div><div class="vs-chip yes"><b>Antortiq</b>Fully automated, hands-off end to end</div></div></div>
+        <div class="cmp-item"><div class="cap">Customization</div><div class="vs-row"><div class="vs-chip no"><b>Today</b>Fixed plug-in</div><div class="vs-chip yes"><b>Antortiq</b>Built around your rules, stages, brand</div></div></div>
+      </div>
+    </div>
+
+    <div class="for-box">
+      <div><div class="l">Prepared For</div><div class="v">La-Fetch</div></div>
+      <div><div class="l">Prepared By</div><div class="v">Antortiq Technologies</div></div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 — FEATURES + TUNING -->
+  <section class="page">
+    <div class="bar"><div class="brand">ANTORTI<span>Q</span></div><div class="pg-tag">v4 · 02/03</div></div>
+    <div class="eyebrow">What You Get</div>
+    <h2>Eight systems, one platform</h2>
+    <div class="flist">
+      <div class="frow"><div class="fnum">01</div><div class="fbody"><h3>Order Flow Engine</h3><p>Auto vendor-split orders moved through your defined stage pipeline (New → Confirmed → Ready → Dispatched → Delivered); COD, prepaid &amp; partial-payment logic built in.</p></div></div>
+      <div class="frow"><div class="fnum">02</div><div class="fbody"><h3>Operations Console</h3><p>One screen for every order &amp; vendor — vendor-wise fulfilment view, bulk actions, manual overrides, role-based access.</p></div></div>
+      <div class="frow"><div class="fnum">03</div><div class="fbody"><h3>Custom Email Automation</h3><p>Branded emails for every event: confirmed, dispatched, delayed, delivered, settled, penalty, out-of-stock, returns.</p></div></div>
+      <div class="frow"><div class="fnum">04</div><div class="fbody"><h3>Dispatch Penalty Engine</h3><p>Configurable dispatch-window per vendor, auto warning → penalty escalation, full audit log for disputes.</p></div></div>
+      <div class="frow"><div class="fnum">05</div><div class="fbody"><h3>Easy Settlements</h3><p>Auto commission &amp; payable calculation, one-click move-to-payable, full settlement history — no manual push.</p></div></div>
+      <div class="frow"><div class="fnum">06</div><div class="fbody"><h3>Real-Time Analytics</h3><p>Live dispatch/delivery/RTO rate, vendor performance leaderboard, revenue &amp; payment-mode breakdown.</p></div></div>
+      <div class="frow"><div class="fnum">07</div><div class="fbody"><h3>Auto Order Tracking</h3><p>Courier API integration, live tracking page for customers, out-for-delivery &amp; delay alerts — zero manual AWB entry.</p></div></div>
+      <div class="frow"><div class="fnum">08</div><div class="fbody"><h3>Returns &amp; Exchanges</h3><p>Fully automated request → approval → pickup → resolution — your team doesn't need to know it happened until it's done.</p></div></div>
+    </div>
+    <div style="margin-top:24px;">
+      <div class="eyebrow">Tuned To You</div>
+      <h2 style="margin-bottom:10px;">Not a fixed product — your rules, built in</h2>
+      <div class="tune-strip">
+        <div class="tcard"><div class="tt">Stages</div><h3>Your pipeline</h3><p>Stage flow &amp; dispatch windows matched to how vendors run today.</p></div>
+        <div class="tcard"><div class="tt">Branding</div><h3>Your brand</h3><p>Every email &amp; page white-labelled to La-Fetch.</p></div>
+        <div class="tcard"><div class="tt">Commission</div><h3>Your split</h3><p>Per-vendor/category commission &amp; shipping rules built in.</p></div>
+        <div class="tcard"><div class="tt">Couriers</div><h3>Your partners</h3><p>Wired to whichever courier network(s) you already use.</p></div>
+        <div class="tcard"><div class="tt">Access</div><h3>Your team</h3><p>Admin, ops &amp; vendor roles matched to your structure.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 — CLOSING -->
+  <section class="page">
+    <div class="bar"><div class="brand">ANTORTI<span>Q</span></div><div class="pg-tag">v4 · 03/03</div></div>
+    <div class="eyebrow">Before We Go Further</div>
+    <h2 style="font-size:24px;">This is just the starting point</h2>
+    <p style="margin-top:8px; max-width:560px; font-size:13px;">Everything above is roughly 30% of what the platform can actually do. The deeper layer — advanced automation, vendor scoring, workflows built specifically for La-Fetch — is best shown live.</p>
+    <div class="donut-row">
+      <div class="donut"><div class="donut-inner"><div class="v">30%</div><div class="l">Shown Here</div></div></div>
+      <div class="donut-legend">
+        <div class="leg"><span class="sw a"></span>Shown in this brief — 30%</div>
+        <div class="leg"><span class="sw b"></span>Reserved for the live demo — 70%</div>
+      </div>
+    </div>
+    <div class="cta">
+      <div class="eyebrow">Next Step</div>
+      <h2>See it running, not just described</h2>
+      <p>A focused 20–30 minute live demo — real order flows, the penalty engine, settlements, and everything we didn't put on paper.</p>
+      <div class="price">And don't worry about the cost — this isn't another <b>₹15–20k/month</b> panel subscription. Antortiq is a <b>one-time cost</b>, a small fraction of what you'd pay in a single year for old-generation panels.</div>
+      <div class="ask">Reply to this proposal or reach out directly to schedule a time that works for your team.</div>
+      <div class="contact-row">
+        <a class="contact-btn wa" target="_blank" rel="noopener" href="https://wa.me/918209544626?text=Hey%20Harshit%2C%20we're%20interested%20in%20your%20proposal.%20When%20can%20we%20schedule%20a%20meeting%3F">💬 WhatsApp Antortiq</a>
+        <a class="contact-btn mail" href="mailto:antortiq@gmail.com?subject=Re%3A%20Antortiq%20%C3%97%20La-Fetch%20Proposal&body=Hey%20Harshit%2C%20we're%20interested%20in%20your%20proposal.%20When%20can%20we%20schedule%20a%20meeting%3F">✉ Email Antortiq</a>
+      </div>
+      <div class="contact-meta">+91 82095 44626 · antortiq@gmail.com</div>
+    </div>
+  </section>
+
+</body>
+</html>

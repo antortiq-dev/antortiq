@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Explainer Post Kit (3 Carousels)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{ --red:#e8344a; --red-deep:#d11f1f; --black:#0c0c0c; --disp:'Sora',Arial,sans-serif; --sans:'Inter',Arial,sans-serif; }
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:var(--sans); background:#0a0a0b; color:#e9e9ea; padding:50px 24px 100px;}
+.page-head{text-align:center; max-width:680px; margin:0 auto 40px;}
+.page-head .eyebrow{font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--red);}
+.page-head h1{font-family:var(--disp); font-weight:800; font-size:32px; color:#fff; margin-top:10px;}
+.page-head p{margin-top:12px; color:#9a9ba1; font-size:14.5px; line-height:1.65;}
+
+.carousel-block{max-width:1160px; margin:0 auto 64px;}
+.carousel-label{font-family:var(--disp); font-weight:800; font-size:15px; color:#fff; margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+.carousel-label .num{width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--red-deep)); display:flex; align-items:center; justify-content:center; font-size:13px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+.grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+@media (max-width:1180px){.grid4{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.grid4{grid-template-columns:1fr; max-width:340px; margin:0 auto;}}
+
+/* ===== blind-spot checklist (A new slide) ===== */
+.blind-list{margin-top:46px; display:flex; flex-direction:column; gap:18px;}
+.blind-row{display:flex; align-items:center; gap:24px; background:#141416; border:1px solid #232327; border-radius:18px; padding:26px 30px;}
+.blind-ico{width:64px; height:64px; border-radius:16px; background:#1c1316; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.blind-ico svg{width:30px; height:30px; stroke:var(--red); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+.blind-text{flex:1;}
+.blind-text .t{font-family:var(--disp); font-weight:700; font-size:21px; color:#fff;}
+.blind-text .s{font-size:14px; color:#888; margin-top:3px;}
+.blind-tag{font-family:var(--disp); font-weight:800; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--red); background:rgba(232,52,74,.12); border:1px solid rgba(232,52,74,.4); padding:6px 12px; border-radius:99px; white-space:nowrap;}
+@media (max-width:980px){.grid3{grid-template-columns:1fr; max-width:340px; margin:0 auto;}}
+
+.slot{display:flex; flex-direction:column; align-items:center; gap:12px;}
+.frame{width:324px; height:405px; overflow:hidden; border-radius:14px; box-shadow:0 24px 60px rgba(0,0,0,.5); position:relative; background:#000;}
+.frame .scale-wrap{width:1080px; height:1350px; transform:scale(0.3); transform-origin:top left;}
+.dl-btn{display:inline-flex; align-items:center; gap:8px; font-family:var(--disp); font-weight:700; font-size:13px; padding:10px 20px; border-radius:99px; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff; border:none; cursor:pointer; box-shadow:0 8px 20px rgba(232,52,74,.35); transition:transform .2s;}
+.dl-btn:hover{transform:translateY(-2px);}
+.slot-label{font-family:var(--disp); font-size:12px; color:#cfcfd2; font-weight:600; text-align:center;}
+
+/* ============ POST BASE ============ */
+.post{width:1080px; height:1350px; position:relative; overflow:hidden; font-family:var(--sans); background:var(--black);}
+.pad{position:absolute; inset:0; padding:84px; display:flex; flex-direction:column;}
+.brand-row{display:flex; justify-content:space-between; align-items:center; flex-shrink:0;}
+.logo{font-family:var(--disp); font-weight:800; font-size:26px; color:#fff;}
+.logo span{color:var(--red);}
+.slide-no{font-size:15px; color:#666; font-weight:600;}
+.content{flex:1; display:flex; flex-direction:column; justify-content:center; padding-bottom:60px;}
+.kicker{font-family:var(--disp); font-weight:700; font-size:14px; letter-spacing:2.5px; text-transform:uppercase; color:var(--red);}
+.headline{font-family:var(--disp); font-weight:800; font-size:54px; color:#fff; line-height:1.16; margin-top:18px; max-width:900px;}
+.headline.center{text-align:center; max-width:100%; margin-left:auto; margin-right:auto;}
+.headline .hl{color:var(--red);}
+.sub{margin-top:20px; font-size:20px; color:#9a9ba1; line-height:1.6; max-width:780px;}
+.swipe-hint{position:absolute; bottom:84px; left:84px; right:84px; display:flex; justify-content:space-between; align-items:center;}
+.swipe-hint .dots{display:flex; gap:8px;}
+.swipe-hint .dots span{width:8px; height:8px; border-radius:50%; background:#2a2a2e;}
+.swipe-hint .dots span.on{background:var(--red); width:22px; border-radius:5px;}
+.swipe-hint .lbl{font-size:14px; color:#666; font-weight:600;}
+
+/* ===== A1: crossed-out manual icons ===== */
+.chip-row{display:flex; gap:26px; margin-top:50px; flex-wrap:wrap; justify-content:center;}
+.chip{width:200px; height:200px; border-radius:30px; background:#141416; border:1px solid #232327; display:flex; align-items:center; justify-content:center; position:relative;}
+.chip svg{width:84px; height:84px; stroke:#666; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+.chip .strike{position:absolute; inset:0;}
+.chip .strike line{stroke:var(--red); stroke-width:5; stroke-linecap:round;}
+
+/* ===== A2: bar chart stat ===== */
+.stat-graphic{margin-top:50px; display:flex; align-items:flex-end; gap:30px; height:420px; justify-content:center;}
+.stat-graphic .bar{width:100px; border-radius:12px 12px 0 0; background:#1c1c1f; position:relative;}
+.stat-graphic .bar.hot{background:linear-gradient(180deg,var(--red),var(--red-deep));}
+.stat-big{text-align:center; margin-top:30px;}
+.stat-big .num{font-family:var(--disp); font-weight:900; font-size:170px; color:#fff; line-height:1;}
+.stat-big .num span{color:var(--red);}
+.stat-cap{font-size:18px; color:#888; margin-top:30px; text-align:center; max-width:640px; margin-left:auto; margin-right:auto;}
+
+/* ===== A3: convergence checkmarks ===== */
+.conv-row{margin-top:50px; display:flex; justify-content:center; gap:40px; position:relative;}
+.conv-icon{width:120px; height:120px; border-radius:26px; background:#141416; border:1.5px solid var(--red); display:flex; align-items:center; justify-content:center; position:relative;}
+.conv-icon svg{width:54px; height:54px; stroke:var(--red); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+.conv-icon .check{position:absolute; bottom:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#1f9d62; display:flex; align-items:center; justify-content:center;}
+.conv-icon .check svg{width:14px; height:14px; stroke:#fff; stroke-width:3;}
+.conv-arrow{display:flex; justify-content:center; margin-top:40px;}
+.conv-arrow svg{width:60px; height:60px; stroke:#444; fill:none; stroke-width:1.6;}
+.conv-hub{margin:40px auto 0; width:220px; height:220px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--red-deep)); display:flex; align-items:center; justify-content:center; box-shadow:0 30px 70px rgba(232,52,74,.4);}
+.conv-hub .logo2{font-family:var(--disp); font-weight:800; font-size:36px; color:#fff;}
+
+/* ===== B1: NOT/NOT/IS comparison ===== */
+.cmp-list{margin-top:50px; display:flex; flex-direction:column; gap:26px;}
+.cmp-row2{display:flex; align-items:center; gap:28px; background:#141416; border:1px solid #232327; border-radius:20px; padding:36px 38px;}
+.cmp-row2.yes{border-color:var(--red); background:linear-gradient(135deg,rgba(232,52,74,.12),#141416);}
+.cmp-mark{width:64px; height:64px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;}
+.cmp-mark.no{background:#241516;}
+.cmp-mark.no svg{width:24px; height:24px; stroke:#888; stroke-width:2.4;}
+.cmp-mark.yes{background:var(--red);}
+.cmp-mark.yes svg{width:26px; height:26px; stroke:#fff; stroke-width:3;}
+.cmp-text{font-family:var(--disp); font-weight:700; font-size:28px; color:#cfcfd2;}
+.cmp-row2.yes .cmp-text{color:#fff;}
+
+/* ===== B2: org chart ===== */
+.org-wrap{margin-top:50px; position:relative; height:600px;}
+.org-node{position:absolute; background:#141416; border:1.5px solid #232327; border-radius:16px; padding:18px 24px; text-align:center;}
+.org-node .t{font-family:var(--disp); font-weight:700; font-size:16px; color:#fff;}
+.org-node .s{font-size:12px; color:#888; margin-top:3px;}
+.org-node.center{background:linear-gradient(135deg,var(--red),var(--red-deep)); border:none; box-shadow:0 24px 50px rgba(232,52,74,.4);}
+.org-node.center .t{color:#fff; font-size:20px;}
+.org-node.center .s{color:rgba(255,255,255,.8);}
+.org-line{position:absolute; background:#2a2a2e;}
+
+/* ===== B3: layered stack ===== */
+.stack-wrap{margin-top:46px; display:flex; flex-direction:column; gap:16px;}
+.stack-layer{height:118px; border-radius:18px; display:flex; align-items:center; padding:0 36px; gap:24px;}
+.stack-layer .si{width:46px; height:46px; border-radius:12px; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.stack-layer .si svg{width:24px; height:24px; stroke:#fff; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+.stack-layer .t{font-family:var(--disp); font-weight:700; font-size:20px; color:#fff;}
+.stack-layer .s{font-size:13px; color:rgba(255,255,255,.65); margin-top:2px;}
+.stack-layer.l1{background:#141416; border:1px solid #232327;}
+.stack-layer.l2{background:#1a1316;}
+.stack-layer.l3{background:#231116;}
+.stack-layer.l4{background:linear-gradient(135deg,var(--red),var(--red-deep));}
+
+/* ===== C1: orbit constellation ===== */
+.orbit-wrap{position:relative; width:912px; height:740px; margin:40px auto 0;}
+.orbit-ring{position:absolute; border:1px solid #232327; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);}
+.orbit-hub{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--red-deep)); display:flex; align-items:center; justify-content:center; box-shadow:0 30px 70px rgba(232,52,74,.4); z-index:3;}
+.orbit-hub .t{font-family:var(--disp); font-weight:800; font-size:26px; color:#fff;}
+.orbit-node{position:absolute; width:148px; height:148px; border-radius:50%; background:#141416; border:1.5px solid #232327; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:2;}
+.orbit-node svg{width:30px; height:30px; stroke:var(--red); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+.orbit-node .lb{font-size:11px; color:#cfcfd2; font-weight:700; margin-top:6px; text-align:center; padding:0 8px;}
+
+/* ===== C2: timeline ===== */
+.timeline{margin-top:70px; position:relative;}
+.timeline-line{position:absolute; top:34px; left:0; right:0; height:3px; background:#232327;}
+.timeline-row{display:flex; justify-content:space-between;}
+.tl-step{width:180px; text-align:center; position:relative;}
+.tl-dot{width:84px; height:84px; border-radius:50%; background:#141416; border:2px solid var(--red); display:flex; align-items:center; justify-content:center; margin:0 auto; font-family:var(--disp); font-weight:800; font-size:24px; color:var(--red); position:relative; z-index:2;}
+.tl-step.done .tl-dot{background:var(--red); color:#fff;}
+.tl-cap{font-family:var(--disp); font-weight:700; font-size:16px; color:#fff; margin-top:20px;}
+.tl-sub{font-size:13px; color:#888; margin-top:6px; line-height:1.5;}
+
+/* ===== C3: before/after ===== */
+.ba-wrap{margin-top:46px; display:grid; grid-template-columns:1fr 1fr; gap:28px; height:700px;}
+.ba-panel{border-radius:20px; padding:30px; position:relative; overflow:hidden;}
+.ba-panel.before{background:#141416; border:1px solid #232327;}
+.ba-panel.after{background:linear-gradient(160deg,#1c1014,#141416); border:1px solid rgba(232,52,74,.4);}
+.ba-tag{font-family:var(--disp); font-weight:800; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; color:#888;}
+.ba-panel.after .ba-tag{color:var(--red);}
+.ba-tangle{margin-top:30px; width:100%; height:440px;}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="eyebrow">Antortiq · Social Kit — Explainer Set</div>
+  <h1>9 New Posts, 3 Carousels</h1>
+  <p>Industry context, company explainer, and capability showcase — each a self-contained 3-slide carousel with original graphics, not text-only cards.</p>
+</div>
+
+<!-- ============ CAROUSEL A: INDUSTRY PROBLEM ============ -->
+<div class="carousel-block">
+  <div class="carousel-label"><span class="num">A</span> Carousel A · Why This Matters (Industry) — 4 slides</div>
+  <div class="grid4">
+
+    <!-- A1 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="a1">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">1/4</div></div>
+            <div class="content">
+            <div class="kicker">The D2C Reality</div>
+            <div class="headline">Your ops team is doing a <span class="hl">robot's job.</span></div>
+            <div class="sub">Spreadsheets for orders. WhatsApp for vendors. Email for returns. Sound familiar?</div>
+            <div class="chip-row">
+              <div class="chip">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                <svg class="strike" viewBox="0 0 150 150"><line x1="20" y1="20" x2="130" y2="130"/></svg>
+              </div>
+              <div class="chip">
+                <svg viewBox="0 0 24 24"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+                <svg class="strike" viewBox="0 0 150 150"><line x1="20" y1="20" x2="130" y2="130"/></svg>
+              </div>
+              <div class="chip">
+                <svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M8 14h8M8 18h5"/></svg>
+                <svg class="strike" viewBox="0 0 150 150"><line x1="20" y1="20" x2="130" y2="130"/></svg>
+              </div>
+              <div class="chip">
+                <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>
+                <svg class="strike" viewBox="0 0 150 150"><line x1="20" y1="20" x2="130" y2="130"/></svg>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span class="on"></span><span></span><span></span><span></span></div><div class="lbl">Swipe →</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('a1','antortiq-a1-robot-job.png')">⬇ Download PNG</button>
+      <div class="slot-label">A1 · The Hook</div>
+    </div>
+
+    <!-- A2 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="a2">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">2/4</div></div>
+            <div class="content" style="text-align:center; align-items:center;">
+            <div class="kicker">The Numbers</div>
+            <div class="headline center" style="font-size:40px; max-width:700px;">Most D2C brands are running blind.</div>
+            <div class="stat-big"><div class="num">73<span>%</span></div></div>
+            <div class="stat-graphic">
+              <div class="bar" style="height:120px;"></div>
+              <div class="bar" style="height:170px;"></div>
+              <div class="bar hot" style="height:300px;"></div>
+              <div class="bar" style="height:150px;"></div>
+              <div class="bar" style="height:90px;"></div>
+            </div>
+            <div class="stat-cap">of D2C order ops still run on spreadsheets &amp; chat groups — not a system.</div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span></span><span class="on"></span><span></span><span></span></div><div class="lbl">Swipe →</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('a2','antortiq-a2-stat.png')">⬇ Download PNG</button>
+      <div class="slot-label">A2 · The Stat</div>
+    </div>
+
+    <!-- A3 (new) -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="a3b">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">3/4</div></div>
+            <div class="content">
+            <div class="kicker">What "Running Blind" Means</div>
+            <div class="headline" style="font-size:42px;">No reality check. No visibility. No tracker.</div>
+            <div class="blind-list">
+              <div class="blind-row">
+                <div class="blind-ico"><svg viewBox="0 0 24 24"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <div class="blind-text"><div class="t">No profit reality check</div><div class="s">Revenue looks fine — margins after returns &amp; penalties don't</div></div>
+                <div class="blind-tag">Untracked</div>
+              </div>
+              <div class="blind-row">
+                <div class="blind-ico"><svg viewBox="0 0 24 24"><path d="M12 12l5-3"/><circle cx="12" cy="12" r="9"/><path d="M12 7v1M7.8 9l.9.5M16.2 9l-.9.5"/></svg></div>
+                <div class="blind-text"><div class="t">No view of operations capacity</div><div class="s">No one knows how many orders the team can actually handle today</div></div>
+                <div class="blind-tag">Untracked</div>
+              </div>
+              <div class="blind-row">
+                <div class="blind-ico"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 2h6v4H9z"/><path d="M9 12h6M9 16h4"/><circle cx="8" cy="12" r=".6"/></svg></div>
+                <div class="blind-text"><div class="t">Unassigned &amp; pending tasks pile up</div><div class="s">Orders, exchanges &amp; vendor follow-ups sit with no clear owner</div></div>
+                <div class="blind-tag">Untracked</div>
+              </div>
+              <div class="blind-row">
+                <div class="blind-ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div>
+                <div class="blind-text"><div class="t">No performance tracker</div><div class="s">No record of who's fast, who's slow, who's actually delivering</div></div>
+                <div class="blind-tag">Untracked</div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span></span><span></span><span class="on"></span><span></span></div><div class="lbl">Swipe →</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('a3b','antortiq-a3b-blindspots.png')">⬇ Download PNG</button>
+      <div class="slot-label">A3 · The Blind Spots</div>
+    </div>
+
+    <!-- A4 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="a4">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">4/4</div></div>
+            <div class="content">
+            <div class="kicker">The Fix</div>
+            <div class="headline">Antortiq replaces <span class="hl">all of it</span> with one system.</div>
+            <div class="conv-row">
+              <div class="conv-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg><div class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div></div>
+              <div class="conv-icon"><svg viewBox="0 0 24 24"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg><div class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div></div>
+              <div class="conv-icon"><svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><div class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div></div>
+            </div>
+            <div class="conv-arrow"><svg viewBox="0 0 24 24"><path d="M12 4v14"/><path d="M6 14l6 6 6-6"/></svg></div>
+            <div class="conv-hub"><div class="logo2">Aq</div></div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span></span><span></span><span></span><span class="on"></span></div><div class="lbl">Follow for more</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('a4','antortiq-a4-fix.png')">⬇ Download PNG</button>
+      <div class="slot-label">A4 · The Resolution</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ CAROUSEL B: COMPANY EXPLAINER ============ -->
+<div class="carousel-block">
+  <div class="carousel-label"><span class="num">B</span> Carousel B · What Antortiq Actually Is</div>
+  <div class="grid3">
+
+    <!-- B1 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="b1">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">1/3</div></div>
+            <div class="content">
+            <div class="kicker">Let's Be Clear</div>
+            <div class="headline" style="font-size:42px;">We're not what you think.</div>
+            <div class="cmp-list">
+              <div class="cmp-row2"><div class="cmp-mark no"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="cmp-text">Not a generic agency</div></div>
+              <div class="cmp-row2"><div class="cmp-mark no"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="cmp-text">Not an off-the-shelf SaaS</div></div>
+              <div class="cmp-row2 yes"><div class="cmp-mark yes"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div><div class="cmp-text">An engineering team that builds your system</div></div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span class="on"></span><span></span><span></span></div><div class="lbl">Swipe →</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('b1','antortiq-b1-not.png')">⬇ Download PNG</button>
+      <div class="slot-label">B1 · The Definition</div>
+    </div>
+
+    <!-- B2 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="b2">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">2/3</div></div>
+            <div class="content">
+            <div class="kicker">How We Fit In</div>
+            <div class="headline" style="font-size:40px;">The engineering team you don't have to hire.</div>
+            <div class="org-wrap">
+              <div class="org-node center" style="top:40px; left:50%; transform:translateX(-50%); width:220px;"><div class="t">Antortiq</div><div class="s">Builds &amp; runs the system</div></div>
+              <div class="org-line" style="top:140px; left:50%; width:2px; height:80px;"></div>
+              <div class="org-line" style="top:220px; left:18%; width:64%; height:2px;"></div>
+              <div class="org-line" style="top:220px; left:18%; width:2px; height:70px;"></div>
+              <div class="org-line" style="top:220px; left:50%; width:2px; height:70px;"></div>
+              <div class="org-line" style="top:220px; left:82%; width:2px; height:70px;"></div>
+              <div class="org-node" style="top:290px; left:18%; transform:translateX(-50%); width:200px;"><div class="t">Founder / Team</div><div class="s">Focuses on growth</div></div>
+              <div class="org-node" style="top:290px; left:50%; transform:translateX(-50%); width:200px;"><div class="t">Vendors</div><div class="s">Auto-synced ops</div></div>
+              <div class="org-node" style="top:290px; left:82%; transform:translateX(-50%); width:200px;"><div class="t">Customers</div><div class="s">Self-serve tracking</div></div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span></span><span class="on"></span><span></span></div><div class="lbl">Swipe →</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('b2','antortiq-b2-orgchart.png')">⬇ Download PNG</button>
+      <div class="slot-label">B2 · How We Fit</div>
+    </div>
+
+    <!-- B3 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="b3">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">3/3</div></div>
+            <div class="content">
+            <div class="kicker">One Team, Every Layer</div>
+            <div class="headline" style="font-size:42px;">Backend. Automation. AI. UI.</div>
+            <div class="stack-wrap">
+              <div class="stack-layer l1"><div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="t">Backend Portals</div><div class="s">Admin systems, APIs, databases</div></div></div>
+              <div class="stack-layer l2"><div class="si"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><div><div class="t">Workflow Automation</div><div class="s">Orders, settlements, alerts</div></div></div>
+              <div class="stack-layer l3"><div class="si"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><circle cx="9" cy="14" r="1.4"/><circle cx="15" cy="14" r="1.4"/></svg></div><div><div class="t">AI Agents</div><div class="s">Support, ops copilots</div></div></div>
+              <div class="stack-layer l4"><div class="si"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/></svg></div><div><div class="t">Product UI/UX</div><div class="s">What your customers see</div></div></div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span></span><span></span><span class="on"></span></div><div class="lbl">Follow for more</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('b3','antortiq-b3-stack.png')">⬇ Download PNG</button>
+      <div class="slot-label">B3 · The Full Stack</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ CAROUSEL C: CAPABILITY SHOWCASE ============ -->
+<div class="carousel-block">
+  <div class="carousel-label"><span class="num">C</span> Carousel C · What We Can Build For You</div>
+  <div class="grid3">
+
+    <!-- C1 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="c1">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">1/3</div></div>
+            <div class="content">
+            <div class="kicker">The Capability Map</div>
+            <div class="headline" style="font-size:42px; text-align:center; max-width:100%;">Six systems. One operations engine.</div>
+            <div class="orbit-wrap">
+              <div class="orbit-ring" style="width:680px; height:680px;"></div>
+              <div class="orbit-hub"><div class="t">Aq</div></div>
+              <div class="orbit-node" style="top:0; left:50%; transform:translate(-50%,0);"><svg viewBox="0 0 24 24"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 8H6"/></svg><div class="lb">Order Ops</div></div>
+              <div class="orbit-node" style="top:130px; left:0;"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><circle cx="9" cy="14" r="1.2"/><circle cx="15" cy="14" r="1.2"/></svg><div class="lb">AI Agents</div></div>
+              <div class="orbit-node" style="top:130px; right:0;"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 1 1-4-7.2"/><path d="M21 4l-9 9"/></svg><div class="lb">Automation</div></div>
+              <div class="orbit-node" style="bottom:0; left:50%; transform:translate(-50%,0);"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/></svg><div class="lb">UI/UX</div></div>
+              <div class="orbit-node" style="bottom:130px; left:0;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10a2.5 2.5 0 0 1 2.5-1.5"/></svg><div class="lb">Settlements</div></div>
+              <div class="orbit-node" style="bottom:130px; right:0;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div class="lb">WhatsApp</div></div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span class="on"></span><span></span><span></span></div><div class="lbl">Swipe →</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('c1','antortiq-c1-orbit.png')">⬇ Download PNG</button>
+      <div class="slot-label">C1 · Capability Map</div>
+    </div>
+
+    <!-- C2 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="c2">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">2/3</div></div>
+            <div class="content">
+            <div class="kicker">How We Ship</div>
+            <div class="headline" style="font-size:40px;">Manual to automated in 4 weeks.</div>
+            <div class="timeline">
+              <div class="timeline-line"></div>
+              <div class="timeline-row">
+                <div class="tl-step done"><div class="tl-dot">W1</div><div class="tl-cap">Discover</div><div class="tl-sub">Map your current ops &amp; bottlenecks</div></div>
+                <div class="tl-step done"><div class="tl-dot">W2</div><div class="tl-cap">Build</div><div class="tl-sub">Backend, automations, UI in parallel</div></div>
+                <div class="tl-step"><div class="tl-dot">W3</div><div class="tl-cap">Connect</div><div class="tl-sub">Couriers, payments, WhatsApp/email</div></div>
+                <div class="tl-step"><div class="tl-dot">W4</div><div class="tl-cap">Launch</div><div class="tl-sub">Live, monitored, handed over</div></div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span></span><span class="on"></span><span></span></div><div class="lbl">Swipe →</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('c2','antortiq-c2-timeline.png')">⬇ Download PNG</button>
+      <div class="slot-label">C2 · The Timeline</div>
+    </div>
+
+    <!-- C3 -->
+    <div class="slot">
+      <div class="frame"><div class="scale-wrap">
+        <div class="post" id="c3">
+          <div class="pad">
+            <div class="brand-row"><div class="logo">Antorti<span>q</span></div><div class="slide-no">3/3</div></div>
+            <div class="content">
+            <div class="kicker">The Outcome</div>
+            <div class="headline" style="font-size:42px;">Your stack, <span class="hl">rebuilt.</span></div>
+            <div class="ba-wrap">
+              <div class="ba-panel before">
+                <div class="ba-tag">Before</div>
+                <svg class="ba-tangle" viewBox="0 0 300 420">
+                  <circle cx="60" cy="60" r="14" fill="#2a2a2e"/><circle cx="220" cy="90" r="14" fill="#2a2a2e"/><circle cx="120" cy="180" r="14" fill="#2a2a2e"/><circle cx="240" cy="240" r="14" fill="#2a2a2e"/><circle cx="80" cy="300" r="14" fill="#2a2a2e"/><circle cx="190" cy="360" r="14" fill="#2a2a2e"/>
+                  <path d="M60 60 C150 100 60 150 120 180 C200 210 150 260 240 240 C260 300 100 260 80 300 C40 340 230 320 190 360" stroke="#3a3a3e" stroke-width="2.5" fill="none"/>
+                  <path d="M220 90 C140 130 200 210 120 180" stroke="#3a3a3e" stroke-width="2.5" fill="none"/>
+                </svg>
+              </div>
+              <div class="ba-panel after">
+                <div class="ba-tag">After</div>
+                <svg class="ba-tangle" viewBox="0 0 300 420">
+                  <line x1="60" y1="40" x2="60" y2="380" stroke="#2a2a2e" stroke-width="2"/>
+                  <line x1="150" y1="40" x2="150" y2="380" stroke="#2a2a2e" stroke-width="2"/>
+                  <line x1="240" y1="40" x2="240" y2="380" stroke="#2a2a2e" stroke-width="2"/>
+                  <circle cx="60" cy="60" r="13" fill="var(--red)"/><circle cx="60" cy="160" r="13" fill="var(--red)"/><circle cx="60" cy="260" r="13" fill="var(--red)"/><circle cx="60" cy="360" r="13" fill="var(--red)"/>
+                  <circle cx="150" cy="100" r="13" fill="var(--red)"/><circle cx="150" cy="220" r="13" fill="var(--red)"/><circle cx="150" cy="340" r="13" fill="var(--red)"/>
+                  <circle cx="240" cy="80" r="13" fill="var(--red)"/><circle cx="240" cy="200" r="13" fill="var(--red)"/><circle cx="240" cy="320" r="13" fill="var(--red)"/>
+                </svg>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="swipe-hint"><div class="dots"><span></span><span></span><span class="on"></span></div><div class="lbl">DM "BUILD" to start</div></div>
+        </div>
+      </div></div>
+      <button class="dl-btn" onclick="downloadPost('c3','antortiq-c3-beforeafter.png')">⬇ Download PNG</button>
+      <div class="slot-label">C3 · Before / After</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function downloadPost(id, filename){
+    var el = document.getElementById(id);
+    html2canvas(el, {scale:1, width:1080, height:1350, useCORS:true}).then(function(canvas){
+      var link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+</script>
+
+</body>
+</html>

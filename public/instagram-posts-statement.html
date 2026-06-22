@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Instagram Post Kit (Statement Style)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{ --red:#e8344a; --red-deep:#d11f1f; --black:#0c0c0c; --disp:'Sora',Arial,sans-serif; --sans:'Inter',Arial,sans-serif; }
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:var(--sans); background:#0a0a0b; color:#e9e9ea; padding:50px 24px 100px;}
+.page-head{text-align:center; max-width:640px; margin:0 auto 50px;}
+.page-head .eyebrow{font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--red);}
+.page-head h1{font-family:var(--disp); font-weight:800; font-size:32px; color:#fff; margin-top:10px;}
+.page-head p{margin-top:12px; color:#9a9ba1; font-size:14.5px; line-height:1.65;}
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:1160px; margin:0 auto;}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.grid{grid-template-columns:1fr; max-width:340px;}}
+.slot{display:flex; flex-direction:column; align-items:center; gap:14px;}
+.frame{width:324px; height:405px; overflow:hidden; border-radius:14px; box-shadow:0 24px 60px rgba(0,0,0,.5); position:relative; background:#000;}
+.frame .scale-wrap{width:1080px; height:1350px; transform:scale(0.3); transform-origin:top left;}
+.dl-btn{display:inline-flex; align-items:center; gap:8px; font-family:var(--disp); font-weight:700; font-size:13px; padding:10px 20px; border-radius:99px; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff; border:none; cursor:pointer; box-shadow:0 8px 20px rgba(232,52,74,.35); transition:transform .2s;}
+.dl-btn:hover{transform:translateY(-2px);}
+.slot-label{font-family:var(--disp); font-size:12.5px; color:#cfcfd2; font-weight:600; text-align:center;}
+
+/* ============ POST BASE ============ */
+.post{width:1080px; height:1350px; position:relative; overflow:hidden; font-family:var(--sans); background:
+  radial-gradient(ellipse 760px 560px at 85% 8%, rgba(232,52,74,.28), transparent 60%), var(--black); padding:80px;}
+.st-top{display:flex; justify-content:space-between; align-items:center;}
+.st-logo{width:56px; height:56px; border-radius:16px; border:2px solid #2a2a2a; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:800; color:#fff; font-size:22px; background:#141416;}
+.st-domain{font-size:17px; color:#888; font-weight:600;}
+.st-headline{margin-top:120px; font-family:var(--disp); font-weight:800; font-size:58px; color:#fff; line-height:1.16; max-width:880px;}
+.st-headline .hl{color:var(--red);}
+.st-sub{margin-top:22px; font-size:20px; color:#9a9ba1; max-width:700px; line-height:1.6;}
+.st-icon-wrap{display:flex; justify-content:center; align-items:center; height:420px; margin-top:30px;}
+.st-icon-badge{width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(232,52,74,.25), transparent 70%); border:2px solid rgba(232,52,74,.4); display:flex; align-items:center; justify-content:center; font-size:140px;}
+.st-bottom{position:absolute; left:80px; right:80px; bottom:70px; background:#141416; border:1px solid #232327; border-radius:18px; padding:24px 30px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
+.st-bottom .brand{display:flex; align-items:center; gap:14px; font-family:var(--disp); font-weight:700; color:#fff; font-size:19px;}
+.st-bottom .brand .dot6{width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,var(--red),var(--red-deep));}
+.st-bottom .contacts{display:flex; flex-direction:column; gap:4px; font-size:15px; color:#ccc; text-align:right;}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="eyebrow">Antortiq · Social Kit — Set 4</div>
+  <h1>6 More Posts, Bold Statement Style</h1>
+  <p>One punchy line, a glowing icon badge, and a contact bar — built for quick, high-impact scroll-stopping posts.</p>
+</div>
+
+<div class="grid">
+
+  <!-- POST 1 -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="st1">
+        <div class="st-top"><div class="st-logo">Aq</div><div class="st-domain">antortiq.com</div></div>
+        <div class="st-headline">AI Agents <span class="hl">Built For</span> D2C Operations.</div>
+        <div class="st-sub">Support bots and ops copilots wired into your live order data — not a chatbot bolted on top.</div>
+        <div class="st-icon-wrap"><div class="st-icon-badge">🤖</div></div>
+        <div class="st-bottom">
+          <div class="brand"><div class="dot6"></div>Antortiq</div>
+          <div class="contacts"><span>+91 82095 44626</span><span>antortiq@gmail.com</span></div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('st1','antortiq-statement-1-ai.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 1 · AI Agents</div>
+  </div>
+
+  <!-- POST 2 -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="st2">
+        <div class="st-top"><div class="st-logo">Aq</div><div class="st-domain">antortiq.com</div></div>
+        <div class="st-headline">Your Order Data <span class="hl">Should Stay Yours.</span></div>
+        <div class="st-sub">We design systems with controlled access, role-based usage, and secure data handling — no third-party panel locking you out.</div>
+        <div class="st-icon-wrap"><div class="st-icon-badge">🔒</div></div>
+        <div class="st-bottom">
+          <div class="brand"><div class="dot6"></div>Antortiq</div>
+          <div class="contacts"><span>+91 82095 44626</span><span>antortiq@gmail.com</span></div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('st2','antortiq-statement-2-data.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 2 · Data Ownership</div>
+  </div>
+
+  <!-- POST 3 -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="st3">
+        <div class="st-top"><div class="st-logo">Aq</div><div class="st-domain">antortiq.com</div></div>
+        <div class="st-headline">We Don't Sell <span class="hl">Templates.</span> We Build Systems.</div>
+        <div class="st-sub">Antortiq designs, builds, and customizes around how your business actually runs — not the other way around.</div>
+        <div class="st-icon-wrap"><div class="st-icon-badge">⚙️</div></div>
+        <div class="st-bottom">
+          <div class="brand"><div class="dot6"></div>Antortiq</div>
+          <div class="contacts"><span>+91 82095 44626</span><span>antortiq@gmail.com</span></div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('st3','antortiq-statement-3-systems.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 3 · Build vs Buy</div>
+  </div>
+
+  <!-- POST 4 -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="st4">
+        <div class="st-top"><div class="st-logo">Aq</div><div class="st-domain">antortiq.com</div></div>
+        <div class="st-headline">Manual Ops <span class="hl">Don't Scale.</span> Automation Does.</div>
+        <div class="st-sub">As orders grow, manual processes create delays, errors, and dependency on people. We replace repetitive work with systems built for scale.</div>
+        <div class="st-icon-wrap"><div class="st-icon-badge">📦</div></div>
+        <div class="st-bottom">
+          <div class="brand"><div class="dot6"></div>Antortiq</div>
+          <div class="contacts"><span>+91 82095 44626</span><span>antortiq@gmail.com</span></div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('st4','antortiq-statement-4-scale.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 4 · Manual vs Automated</div>
+  </div>
+
+  <!-- POST 5 -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="st5">
+        <div class="st-top"><div class="st-logo">Aq</div><div class="st-domain">antortiq.com</div></div>
+        <div class="st-headline">Every Order Stage. <span class="hl">One Branded Email.</span></div>
+        <div class="st-sub">From "Order Placed" to "Exchange Done" — ten branded touchpoints, fired automatically, every time.</div>
+        <div class="st-icon-wrap"><div class="st-icon-badge">✉️</div></div>
+        <div class="st-bottom">
+          <div class="brand"><div class="dot6"></div>Antortiq</div>
+          <div class="contacts"><span>+91 82095 44626</span><span>antortiq@gmail.com</span></div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('st5','antortiq-statement-5-email.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 5 · Lifecycle Email</div>
+  </div>
+
+  <!-- POST 6 -->
+  <div class="slot">
+    <div class="frame"><div class="scale-wrap">
+      <div class="post" id="st6">
+        <div class="st-top"><div class="st-logo">Aq</div><div class="st-domain">antortiq.com</div></div>
+        <div class="st-headline">Settlements That <span class="hl">Run Themselves.</span></div>
+        <div class="st-sub">Auto commission splits, one-click payables, and a settlement history that finally replaces the spreadsheet.</div>
+        <div class="st-icon-wrap"><div class="st-icon-badge">📊</div></div>
+        <div class="st-bottom">
+          <div class="brand"><div class="dot6"></div>Antortiq</div>
+          <div class="contacts"><span>+91 82095 44626</span><span>antortiq@gmail.com</span></div>
+        </div>
+      </div>
+    </div></div>
+    <button class="dl-btn" onclick="downloadPost('st6','antortiq-statement-6-settlement.png')">⬇ Download PNG</button>
+    <div class="slot-label">Post 6 · Settlement Engine</div>
+  </div>
+
+</div>
+
+<script>
+  function downloadPost(id, filename){
+    var el = document.getElementById(id);
+    html2canvas(el, {scale:1, width:1080, height:1350, useCORS:true}).then(function(canvas){
+      var link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+</script>
+
+</body>
+</html>

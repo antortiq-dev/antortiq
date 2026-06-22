@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Showcase Post</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{ --red:#e8344a; --red-deep:#d11f1f; --black:#0c0c0c; --disp:'Sora',Arial,sans-serif; --sans:'Inter',Arial,sans-serif; }
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{background:#0a0a0b;}
+body{display:flex; justify-content:center; padding:40px 0; font-family:var(--sans);}
+.dl-wrap{position:fixed; top:20px; left:20px; z-index:50;}
+.dl-btn{display:inline-flex; align-items:center; gap:8px; font-family:var(--disp); font-weight:700; font-size:13px; padding:10px 20px; border-radius:99px; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff; border:none; cursor:pointer; box-shadow:0 8px 20px rgba(232,52,74,.35);}
+
+.post{width:1080px; height:1350px; position:relative; overflow:hidden; background:var(--black);}
+
+/* top curved light zone */
+.curve{position:absolute; top:-560px; left:-200px; width:1480px; height:1180px; border-radius:50%; background:#f4f4f2; z-index:1;}
+.ring{position:absolute; top:-160px; left:50%; transform:translateX(-50%); border-radius:50%; border:1px solid rgba(0,0,0,.07); z-index:2;}
+.ring.r1{width:560px; height:560px;}
+.ring.r2{width:760px; height:760px;}
+.ring.r3{width:960px; height:960px;}
+.ring.r4{width:1160px; height:1160px;}
+
+.logo-block{position:absolute; top:78px; left:0; right:0; text-align:center; z-index:5;}
+.logo-block .logo-word{font-family:var(--disp); font-weight:800; font-size:42px; color:#111;}
+.logo-block .logo-word span{color:var(--red);}
+
+.title-block{position:absolute; top:200px; left:0; right:0; text-align:center; z-index:5;}
+.title-block .l1{font-family:var(--disp); font-weight:800; font-size:62px; color:#111; line-height:1.08;}
+.title-block .l2{font-family:var(--disp); font-weight:800; font-size:62px; line-height:1.08; background:linear-gradient(135deg,var(--red),var(--red-deep)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+.seam-glow{position:absolute; top:480px; left:50%; transform:translateX(-50%); width:1000px; height:420px; background:radial-gradient(ellipse, rgba(255,255,255,.9), rgba(232,52,74,.25) 55%, transparent 80%); z-index:3; filter:blur(6px);}
+
+/* fan stage */
+.fan-stage{position:absolute; top:430px; left:0; right:0; height:760px; z-index:6;}
+.fan-card{position:absolute; left:50%; top:0; width:360px; height:400px; border-radius:22px; background:#fff; box-shadow:0 30px 70px rgba(0,0,0,.45); overflow:hidden;}
+.fan-card.left{transform:translate(-50%) rotate(-11deg) translateX(-260px) translateY(34px);}
+.fan-card.right{transform:translate(-50%) rotate(11deg) translateX(260px) translateY(34px);}
+
+.folder{position:absolute; left:50%; top:60px; transform:translateX(-50%); width:460px; border-radius:0 30px 30px 30px; background:linear-gradient(160deg,#1a1a1d,#0c0c0c); border:1.5px solid #2a2a2e; box-shadow:0 60px 110px rgba(0,0,0,.6); overflow:hidden; z-index:7;}
+.folder::before{content:''; position:absolute; top:-42px; left:0; width:190px; height:46px; background:inherit; border-radius:22px 22px 0 0; border:1.5px solid #2a2a2e; border-bottom:none;}
+.folder-inner{padding:18px 18px 0;}
+.folder-foot{display:flex; align-items:center; justify-content:space-between; padding:22px 26px;}
+.folder-brand{font-family:var(--disp); font-weight:800; font-size:20px; color:#fff; display:flex; align-items:center; gap:8px;}
+.folder-brand span{color:var(--red);}
+.folder-icons{display:flex; gap:16px; font-size:19px; color:rgba(255,255,255,.85);}
+
+/* bottom row */
+.thumb-row{position:absolute; left:90px; right:90px; bottom:170px; display:flex; gap:18px; z-index:6;}
+.thumb-mod{flex:1; height:130px; border-radius:14px; background:#141416; border:1px solid #232327; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;}
+.thumb-mod .ic{width:44px; height:44px; border-radius:50%; background:rgba(232,52,74,.12); display:flex; align-items:center; justify-content:center;}
+.thumb-mod .ic svg{width:22px; height:22px; stroke:var(--red); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+.thumb-mod .lb{font-size:11px; color:#9a9ba1; font-weight:600; text-align:center; padding:0 6px;}
+.ico-red{stroke:var(--red); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; display:inline-block; vertical-align:middle;}
+
+.cap-row{position:absolute; left:90px; right:90px; bottom:70px; display:flex; justify-content:space-between; align-items:center; z-index:6;}
+.cap-row .left-cap{font-size:11px; color:#6b6c70; letter-spacing:.5px;}
+.cap-row .left-cap b{display:block; font-family:var(--disp); font-size:17px; color:#fff; margin-top:4px; letter-spacing:0;}
+.swatches{display:flex; gap:8px;}
+.swatches span{width:26px; height:26px; border-radius:6px; border:1px solid #333;}
+.cap-row .right-cap{font-size:11px; color:#6b6c70; letter-spacing:.5px; text-align:right;}
+.cap-row .right-cap b{display:block; font-family:var(--disp); font-size:17px; color:#fff; margin-top:4px; letter-spacing:0;}
+
+/* real components */
+.cc-browser{border:1px solid #2a2a2e; border-radius:12px; overflow:hidden; background:#15151a;}
+.cc-browser-bar{display:flex; align-items:center; gap:6px; padding:9px 11px; background:#1c1c1f; border-bottom:1px solid #2a2a2e;}
+.cc-browser-bar .dot{width:8px; height:8px; border-radius:50%; background:#3a3a3e;}
+.cc-browser-bar .url{flex:1; background:#0e0e10; border-radius:5px; padding:4px 11px; font-size:9px; color:#777; margin-left:6px;}
+.cc-browser-body{background:#fff; padding:16px;}
+.cctp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+.cctp-brand{font-family:var(--disp); font-weight:800; font-size:12px; color:#0a0a0a; letter-spacing:0.5px;}
+.cctp-order{font-size:9.5px; color:#999;}
+.cctp-steps{display:flex; align-items:center; margin-bottom:18px;}
+.cctp-step{flex:1; text-align:center; position:relative;}
+.cctp-step .pt{width:10px; height:10px; border-radius:50%; background:#0a0a0a; margin:0 auto 6px; position:relative; z-index:2;}
+.cctp-step.todo .pt{background:#ddd;}
+.cctp-step .ln{position:absolute; top:5px; left:0; right:0; height:1.5px; background:#e3e3e3; z-index:1;}
+.cctp-step:first-child .ln{left:50%;} .cctp-step:last-child .ln{right:50%;}
+.cctp-step .lb{font-size:8px; color:#444; font-weight:600;}
+.cctp-card{background:#fafafa; border:1px solid #e3e3e3; border-radius:9px; padding:11px 13px; margin-bottom:11px;}
+.cctp-card .k{font-size:8px; color:#999; text-transform:uppercase; letter-spacing:0.5px;}
+.cctp-card .v{font-size:12px; font-weight:700; color:#000; margin-top:2px; font-family:'SF Mono',monospace;}
+.cctp-item{display:flex; gap:9px; align-items:center; padding:8px 0; border-bottom:1px solid #f0f0f0;}
+.cctp-item .ph{width:32px; height:32px; border-radius:6px; background:#eee; flex-shrink:0;}
+.cctp-item .t1{font-size:10px; font-weight:600; color:#222;}
+.cctp-item .t2{font-size:8.5px; color:#999; margin-top:1px;}
+.ccrx-tiles{display:flex; gap:9px; margin-bottom:11px;}
+.ccrx-tile{flex:1; border:1px solid #e3e3e3; border-radius:9px; padding:12px 10px; text-align:center;}
+.ccrx-tile .ic{font-size:18px; margin-bottom:6px;}
+.ccrx-tile .lb{font-size:10px; font-weight:700; color:#0a0a0a;}
+.ccrx-tile .ds{font-size:7.5px; color:#999; margin-top:3px; line-height:1.4;}
+.ccrx-form{border:1px solid #e3e3e3; border-radius:9px; padding:12px; margin-bottom:11px;}
+.ccrx-form .ft{font-size:9.5px; font-weight:700; color:#0a0a0a; margin-bottom:9px; display:flex; align-items:center; gap:6px;}
+.ccrx-form .item{display:flex; align-items:flex-start; gap:8px; padding-bottom:10px; border-bottom:1px solid #f0f0f0; margin-bottom:10px;}
+.ccrx-form .item .cb{width:14px; height:14px; border:1.5px solid #0a0a0a; border-radius:3px; background:#0a0a0a; flex-shrink:0; margin-top:1px;}
+.ccrx-form .item .t1{font-size:9.5px; font-weight:600; color:#222;}
+.ccrx-form .item .t2{font-size:8px; color:#999; margin-top:1px;}
+.ccrx-form .vlabel{font-size:8px; color:#999; margin:8px 0 5px;}
+.ccrx-select{border:1px solid #d4d4d4; border-radius:6px; padding:7px 9px; font-size:9px; color:#333; display:flex; justify-content:space-between; align-items:center; background:#fafafa;}
+.ccrx-fee{background:#eef0ff; border:1px solid #d8d4ff; border-radius:8px; padding:10px 11px; display:flex; align-items:center; gap:9px; margin:11px 0;}
+.ccrx-fee .ic{font-size:15px;}
+.ccrx-fee .tt{font-size:10.5px; font-weight:700; color:#4433cc;}
+.ccrx-fee .sb{font-size:7.5px; color:#888; margin-top:2px; line-height:1.4;}
+.ccrx-pay-btn{background:#1f9d62; color:#fff; text-align:center; padding:10px; border-radius:7px; font-size:10px; font-weight:700; margin-bottom:9px;}
+.ccrx-admin{border-top:1px dashed #e3e3e3; padding-top:9px; font-size:9px; color:#888; display:flex; align-items:center; gap:6px;}
+.cc-email{width:360px; background:#fff; border-radius:13px; overflow:hidden;}
+.cc-email .hero{height:150px; background-size:cover; background-position:center; position:relative;}
+.cc-email .hero::after{content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.3) 65%, transparent 100%);}
+.cc-email .hero .ov{position:absolute; bottom:14px; left:16px; right:16px; z-index:2;}
+.cc-email .hero .eb{font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.55);}
+.cc-email .hero .hl{font-size:18px; font-weight:900; text-transform:uppercase; line-height:1.1; margin-top:4px; color:#fff;}
+.cc-email .bar{background:#111; padding:14px 18px; display:flex; justify-content:space-between;}
+.cc-email .bar .k{font-size:9px; color:#555; text-transform:uppercase; letter-spacing:0.5px;}
+.cc-email .bar .v{font-size:15px; font-weight:800; color:#fff; margin-top:2px;}
+.cc-email .panel{background:#161616; padding:16px 18px;}
+.cc-email .panel .ln{font-size:11px; color:#888;}
+.cc-email .cap2{padding:14px 18px; font-size:15px; font-weight:700; color:#000; border-top:1px solid #f0f0f0; display:flex; justify-content:space-between; align-items:center; background:#fff;}
+.cc-email .cap2 .n{font-size:12px; color:#aaa; font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="dl-wrap" id="dlWrap"><button class="dl-btn" onclick="downloadPost()">⬇ Download PNG</button></div>
+<script>if(location.search.includes('clean')) document.write('<style>.dl-wrap{display:none!important;}</style>');</script>
+
+<div class="post" id="post">
+  <div class="curve"></div>
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="ring r3"></div>
+  <div class="ring r4"></div>
+
+  <div class="logo-block">
+    <div class="logo-word">Antorti<span>q</span></div>
+  </div>
+
+  <div class="title-block">
+    <div class="l1">Customer Journey</div>
+    <div class="l2">Card Designs</div>
+  </div>
+
+  <div class="seam-glow"></div>
+
+  <div class="fan-stage">
+
+    <!-- LEFT: Return/Exchange Request -->
+    <div class="fan-card left">
+      <div class="cc-browser">
+        <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">/track/2339</div></div>
+        <div class="cc-browser-body">
+          <div class="ccrx-tiles">
+            <div class="ccrx-tile"><div class="ic"><svg class="ico-red" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><div class="lb">Exchange</div><div class="ds">Different size</div></div>
+            <div class="ccrx-tile"><div class="ic"><svg class="ico-red" viewBox="0 0 24 24"><path d="M9 14l-5-5 5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg></div><div class="lb">Return</div><div class="ds">Refund or credit</div></div>
+          </div>
+          <div class="ccrx-form">
+            <div class="ft"><svg class="ico-red" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> Exchange Request</div>
+            <div class="item">
+              <div class="cb"></div>
+              <div>
+                <div class="t1">FOURMEN — 001 CORE</div>
+                <div class="t2">Size S · Qty 1</div>
+                <div class="vlabel">Select exchange size/variant:</div>
+                <div class="ccrx-select"><span>Size — M</span><span>▾</span></div>
+              </div>
+            </div>
+            <div class="ccrx-fee">
+              <span class="ic"><svg class="ico-red" viewBox="0 0 24 24" style="width:16px;height:16px; stroke:#4433cc;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+              <div><div class="tt">₹199 Processing Fee</div></div>
+            </div>
+            <div class="ccrx-pay-btn"><svg class="ico-red" viewBox="0 0 24 24" style="width:14px;height:14px; stroke:#fff;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Pay ₹199 &amp; Submit Exchange</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Email Template (exact card from PDF) -->
+    <div class="fan-card right">
+      <div class="cc-email">
+        <div class="hero" style="background-image:url('https://i.ibb.co/YFCVGFxR/Concrete-is-a-construct-So-are-the-rules-The-jungle-isn-t-wild-it-s-designed.jpg');">
+          <div class="ov"><div class="eb">60+ Brands · One Stop</div><div class="hl">Order<br>Received.</div></div>
+        </div>
+        <div class="bar"><div><div class="k">Order</div><div class="v">#2339</div></div><div style="text-align:right;"><div class="k">Total</div><div class="v" style="color:#7eb8f7;">₹1,486</div></div></div>
+        <div class="panel"><div class="ln">Cash on Delivery · 2 items</div></div>
+        <div class="cap2">Order Placed <span class="n">01</span></div>
+      </div>
+    </div>
+
+    <!-- CENTER FOLDER: Track Page -->
+    <div class="folder">
+      <div class="folder-inner">
+        <div class="cc-browser">
+          <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.yourbrand.com</div></div>
+          <div class="cc-browser-body">
+            <div class="cctp-head"><div class="cctp-brand">YOURBRAND</div><div class="cctp-order">#2339</div></div>
+            <div class="cctp-steps">
+              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Confirmed</div></div>
+              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Ready</div></div>
+              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Transit</div></div>
+              <div class="cctp-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Delivered</div></div>
+            </div>
+            <div class="cctp-card"><div class="k">Courier · AWB</div><div class="v">Delhivery · 8012003045</div></div>
+            <div class="cctp-item"><div class="ph"></div><div><div class="t1">FOURMEN — 001 CORE</div><div class="t2">Qty 1 · Size S</div></div></div>
+            <div class="cctp-item"><div class="ph"></div><div><div class="t1">Oversized T-Shirt</div><div class="t2">Qty 1 · Size L</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="folder-foot">
+        <div class="folder-brand">Antorti<span>q</span></div>
+        <div class="folder-icons">
+          <svg class="ico-red" viewBox="0 0 24 24" style="width:18px;height:18px; stroke:rgba(255,255,255,.85);"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          <svg class="ico-red" viewBox="0 0 24 24" style="width:18px;height:18px; stroke:rgba(255,255,255,.85);"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+          <svg class="ico-red" viewBox="0 0 24 24" style="width:18px;height:18px; stroke:rgba(255,255,255,.85);"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="thumb-row">
+    <div class="thumb-mod"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4"/><circle cx="12" cy="4" r="1.4"/><circle cx="9" cy="14" r="1.2"/><circle cx="15" cy="14" r="1.2"/><path d="M9 18h6"/></svg></div><div class="lb">AI Ops Bot</div></div>
+    <div class="thumb-mod"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7h11v8H3z"/><path d="M14 11h4l3 3v1h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></div><div class="lb">Courier Sync</div></div>
+    <div class="thumb-mod"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 14l-5-5 5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg></div><div class="lb">Returns Automation</div></div>
+    <div class="thumb-mod"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v8"/><path d="M9.5 10a2.5 2.5 0 0 1 2.5-1.5h.3a2.2 2.2 0 0 1 0 4.4h-.6a2.2 2.2 0 0 0 0 4.4h.3A2.5 2.5 0 0 0 14.5 15.8"/></svg></div><div class="lb">Settlement Engine</div></div>
+  </div>
+
+  <div class="cap-row">
+    <div class="left-cap">BUILT BY<b>Antortiq</b></div>
+    <div class="swatches"><span style="background:var(--red);"></span><span style="background:var(--black);"></span><span style="background:#fff;"></span></div>
+    <div class="right-cap">MAIL<b>antortiq@gmail.com</b></div>
+  </div>
+
+</div>
+
+<script>
+  function downloadPost(){
+    html2canvas(document.getElementById('post'), {scale:1, width:1080, height:1350, useCORS:true}).then(function(canvas){
+      var link = document.createElement('a');
+      link.download = 'antortiq-showcase-post.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+</script>
+
+</body>
+</html>
