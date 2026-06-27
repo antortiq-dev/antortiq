@@ -297,6 +297,67 @@ table.mini td{padding:5px 4px; color:#444; border-bottom:1px solid #f3f3f3;}
 .cta .meta{margin-top:18px; font-size:13px; color:rgba(255,255,255,.75);}
 
 footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:34px 0; text-align:center; font-size:12.5px; color:#6b6c70;}
+
+/* ===== Internal AI Brain — watch insight cards ===== */
+.brain-block{margin-top:60px;}
+.brain-head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:24px;}
+.brain-head h3{font-size:24px; color:#fff;}
+.brain-head p{color:#9a9ba1; font-size:14px; margin-top:8px; max-width:560px; line-height:1.6;}
+.brain-list{display:flex; flex-direction:column; gap:14px;}
+.brain-card{background:#141416; border:1px solid #232327; border-left:3px solid #e8a33d; border-radius:12px; padding:20px 24px;}
+.brain-card-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+.brain-watch{display:inline-flex; align-items:center; gap:7px; font-family:var(--disp); font-weight:800; font-size:11px; letter-spacing:1px; color:#e8a33d;}
+.brain-watch .dot{width:9px; height:9px; border-radius:50%; background:#e8a33d;}
+.brain-tag{font-size:11px; color:#777; font-weight:600;}
+.brain-card h4{font-size:16.5px; color:#fff; font-weight:700; margin-bottom:6px;}
+.brain-card p{font-size:13.5px; color:#9a9ba1; line-height:1.6;}
+
+.brain-card.accent-red{border-left-color:var(--red);}
+.brain-card.accent-red .brain-watch{color:var(--red);}
+.brain-card.accent-red .brain-watch .dot{background:var(--red);}
+.brain-card.accent-purple{border-left-color:#9b6bf2;}
+.brain-card.accent-purple .brain-watch{color:#9b6bf2;}
+.brain-card.accent-purple .brain-watch .dot{background:#9b6bf2;}
+
+.brain-card-wrap{position:relative; border-radius:12px;}
+.brain-card-wrap.locked{cursor:pointer;}
+.brain-card-wrap.locked > *:not(.lock-overlay){filter:blur(6px); user-select:none; transition:filter .35s ease;}
+.brain-card-wrap.locked .lock-overlay{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:rgba(10,10,11,.45); border-radius:14px; opacity:0; transition:opacity .35s ease; text-align:center; padding:0 24px; z-index:2;}
+.brain-card-wrap.locked .lock-overlay .lk{font-size:20px;}
+.brain-card-wrap.locked .lock-overlay .lt{font-family:var(--disp); font-weight:800; font-size:13px; letter-spacing:1.5px; color:#fff; text-transform:uppercase;}
+.brain-card-wrap.locked .lock-overlay .ls{font-size:12px; color:#cfcfd2;}
+.brain-card-wrap.locked:hover > *:not(.lock-overlay){filter:blur(8px);}
+.brain-card-wrap.locked:hover .lock-overlay{opacity:1;}
+
+.glass-banner{margin-top:50px; padding:54px 30px; border-radius:24px; text-align:center; position:relative; overflow:hidden;
+  background:linear-gradient(135deg, rgba(232,52,74,.12), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 30px 70px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);}
+.glass-banner::before{content:''; position:absolute; top:-60%; left:-20%; width:60%; height:220%; background:rgba(255,255,255,.06); transform:rotate(20deg); pointer-events:none;}
+.glass-text{font-family:var(--disp); font-weight:800; font-size:clamp(28px,5vw,52px); line-height:1.15; letter-spacing:-0.5px; margin:0; position:relative;
+  background:linear-gradient(135deg, #ffffff 10%, rgba(255,255,255,.55) 50%, #ffffff 90%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 1px 0 rgba(255,255,255,.15);}
+.glass-text .hl{background:linear-gradient(135deg,var(--red),#ff8a5b); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+/* ===== AI Sales Assistant chat-widget mockups ===== */
+.chat-mocks{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:18px;}
+@media (max-width:860px){.chat-mocks{grid-template-columns:1fr;}}
+.chat-mock{background:#fff; border-radius:16px; overflow:hidden; border:1px solid #2a2a2e;}
+.chat-head{display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid #eee;}
+.chat-head .dot{width:9px; height:9px; border-radius:50%; background:#1f9d62; flex-shrink:0;}
+.chat-head .name{font-weight:700; font-size:13px; color:#111;}
+.chat-head .sub{font-size:10.5px; color:#999;}
+.chat-body{padding:14px 16px; background:#fff;}
+.chat-bubble{background:#f3f3f3; border-radius:12px; padding:10px 13px; font-size:11px; color:#222; line-height:1.55; margin-bottom:10px;}
+.chat-bubble b{color:#000;}
+.chat-cta{background:#0a0a0a; color:#fff; text-align:center; padding:11px; border-radius:8px; font-size:11.5px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:12px;}
+.chat-products{display:flex; gap:9px; overflow:hidden;}
+.chat-product{flex:0 0 30%; border:1px solid #eee; border-radius:8px; padding:8px; text-align:left;}
+.chat-product .ph{height:46px; background:#f1f1f1; border-radius:6px; margin-bottom:6px;}
+.chat-product .t{font-size:7.5px; font-weight:700; color:#111; line-height:1.3;}
+.chat-product .pr{font-size:7.5px; color:#1f9d62; margin-top:2px; font-weight:700;}
+
 </style>
 </head>
 <body>
@@ -696,6 +757,114 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:34px 0; text-al
 
       </div>
       <div class="cc-drag-hint">← Drag to explore the full email journey →</div>
+    </div>
+
+    <div class="brain-block reveal">
+      <div class="brain-head">
+        <div>
+          <span class="eyebrow">Internal AI Brain</span>
+          <h3>AI sees stuff you can't imagine doing manually.</h3>
+          <p>It quietly scans every order, tag, and cancellation in the background and surfaces patterns no ops team would ever catch by hand.</p>
+        </div>
+      </div>
+      <div class="brain-list">
+        <div class="brain-card">
+          <div class="brain-card-top"><div class="brain-watch"><span class="dot"></span>WATCH</div><div class="brain-tag">Regional Tag Cluster</div></div>
+          <h4>"Bad Address" is disproportionately coming from Assam</h4>
+          <p>7 of 12 orders tagged "Bad Address" this week are from Assam, which only accounts for &lt;1% of total order volume — about 3.4× its expected share.</p>
+        </div>
+        <div class="brain-card">
+          <div class="brain-card-top"><div class="brain-watch"><span class="dot"></span>WATCH</div><div class="brain-tag">Cancellation Hotspot</div></div>
+          <h4>Gujarat (state) cancellation rate is 33% vs 10% overall</h4>
+          <p>2 of 6 orders from Gujarat were cancelled this period.</p>
+        </div>
+        <div class="brain-card">
+          <div class="brain-card-top"><div class="brain-watch"><span class="dot"></span>WATCH</div><div class="brain-tag">Repeat RTO Customers</div></div>
+          <h4>6 customers with 2+ RTO orders in the last 90 days</h4>
+          <p>Hamza Talha — 8340303018: #1875, #1555, #1554 (3 RTOs) · Sam Kumar — 8837801031: #1870, #1680, #1577 (3 RTOs) · Chintu Meena — 6376888406: #2140, #2101 (2 RTOs)</p>
+        </div>
+
+        <div class="brain-card-wrap locked">
+          <div class="brain-card accent-red">
+            <div class="brain-card-top"><div class="brain-watch"><span class="dot"></span>ALERT</div><div class="brain-tag">Vendor Dispatch Risk</div></div>
+            <h4>Vendor "FOURONE" missed the dispatch window on 41% of orders this week</h4>
+            <p>A sharp jump from its 9% baseline — pattern suggests a capacity or staffing issue, not a one-off delay.</p>
+          </div>
+          <div class="lock-overlay"><div class="lk">🔒</div><div class="lt">Confidential</div><div class="ls">Unlocked inside your Antortiq dashboard</div></div>
+        </div>
+
+        <div class="brain-card-wrap locked">
+          <div class="brain-card accent-purple">
+            <div class="brain-card-top"><div class="brain-watch"><span class="dot"></span>INSIGHT</div><div class="brain-tag">Reorder Behavior</div></div>
+            <h4>Customers who exchange Size S → M reorder 2.3× faster than average</h4>
+            <p>A sizing signal the catalog page could act on automatically — not something anyone's tracking by hand today.</p>
+          </div>
+          <div class="lock-overlay"><div class="lk">🔒</div><div class="lt">Confidential</div><div class="ls">Unlocked inside your Antortiq dashboard</div></div>
+        </div>
+
+        <div class="brain-card-wrap locked">
+          <div class="brain-card accent-red">
+            <div class="brain-card-top"><div class="brain-watch"><span class="dot"></span>ALERT</div><div class="brain-tag">Payment Mode Shift</div></div>
+            <h4>COD-to-prepaid conversion dropped 12% after the last price change</h4>
+            <p>Correlated with a single SKU price update — worth a second look before it compounds across the catalog.</p>
+          </div>
+          <div class="lock-overlay"><div class="lk">🔒</div><div class="lt">Confidential</div><div class="ls">Unlocked inside your Antortiq dashboard</div></div>
+        </div>
+
+        <div class="brain-card-wrap locked">
+          <div class="brain-card accent-purple">
+            <div class="brain-card-top"><div class="brain-watch"><span class="dot"></span>INSIGHT</div><div class="brain-tag">Order Timing</div></div>
+            <h4>Orders placed Tue 6–8PM have 22% lower RTO than any other slot</h4>
+            <p>A timing pattern that could quietly inform when to push promotions or restock alerts.</p>
+          </div>
+          <div class="lock-overlay"><div class="lk">🔒</div><div class="lt">Confidential</div><div class="ls">Unlocked inside your Antortiq dashboard</div></div>
+        </div>
+      </div>
+
+      <div class="brain-head" style="margin-top:44px;">
+        <div>
+          <span class="eyebrow">AI Sales Assistant</span>
+          <h3>The same brain talks to your customers too.</h3>
+          <p>A live chat agent wired into your catalog — recommending products, surfacing collections, and helping customers check out, without a human typing a word.</p>
+        </div>
+      </div>
+
+      <div class="chat-mocks">
+        <div class="chat-mock">
+          <div class="chat-head"><span class="dot"></span><div><div class="name">YOUR BRAND Support</div><div class="sub">Online · usually replies instantly</div></div></div>
+          <div class="chat-body">
+            <div class="chat-bubble">im looking for tshirts</div>
+            <div class="chat-bubble">We've got a bunch of tees starting from just ₹999! A few standouts:<br><br>• <b>Sincerely Yours T-Shirt (Black)</b> — classic black tee, ₹999<br>• <b>Cloud 9 T-Shirt (Sky Blue)</b> — fresh summer vibe, ₹999<br>• <b>Thunder Shade T-Shirt</b> — a bit more unique at ₹1,599</div>
+            <div class="chat-cta">Browse the full "TSHIRT 002" collection →</div>
+            <div class="chat-products">
+              <div class="chat-product"><div class="ph"></div><div class="t">SINCERELY YOURS BLACK</div><div class="pr">From ₹999</div></div>
+              <div class="chat-product"><div class="ph"></div><div class="t">SUNRAY TSHIRT WHITE</div><div class="pr">From ₹999</div></div>
+              <div class="chat-product"><div class="ph"></div><div class="t">CLOUD 9 SKY BLUE</div><div class="pr">From ₹999</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brain-card-wrap locked">
+          <div class="chat-mock">
+            <div class="chat-head"><span class="dot"></span><div><div class="name">YOUR BRAND Support</div><div class="sub">Online · usually replies instantly</div></div></div>
+            <div class="chat-body">
+              <div class="chat-bubble">do you have anything for under ₹800, and can i track my last order?</div>
+              <div class="chat-bubble">Yes — here's what's under ₹800 right now, and I pulled up your last order status too. Want me to also flag you when it's restocked in your size?</div>
+              <div class="chat-cta">Browse the full "Under ₹800" collection →</div>
+              <div class="chat-products">
+                <div class="chat-product"><div class="ph"></div><div class="t">BASIC TEE WHITE</div><div class="pr">From ₹699</div></div>
+                <div class="chat-product"><div class="ph"></div><div class="t">CORE CREW NAVY</div><div class="pr">From ₹749</div></div>
+                <div class="chat-product"><div class="ph"></div><div class="t">ESSENTIAL GREY</div><div class="pr">From ₹799</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="lock-overlay"><div class="lk">🔒</div><div class="lt">Confidential</div><div class="ls">Unlocked inside your Antortiq dashboard</div></div>
+        </div>
+      </div>
+
+      <div class="glass-banner reveal">
+        <p class="glass-text">WE CAN GO <span class="hl">AS FAR</span><br>AS YOU CAN IMAGINE</p>
+      </div>
     </div>
 
     <div class="proof-grid">
