@@ -13,8 +13,9 @@ body{font-family:var(--sans); background:var(--black); color:#e9e9ea; padding:50
 .wrap{max-width:1180px; margin:0 auto;}
 .head{margin-bottom:32px;}
 .eyebrow{font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--red);}
-h1{font-family:var(--disp); font-weight:800; font-size:30px; color:#fff; margin-top:10px;}
-.head p{margin-top:10px; color:#9a9ba1; font-size:14.5px;}
+h1{font-family:var(--disp); font-weight:800; font-size:clamp(22px,7vw,30px); color:#fff; margin-top:10px; overflow-wrap:break-word;}
+.head p{margin-top:10px; color:#9a9ba1; font-size:14.5px; overflow-wrap:break-word;}
+.head p code{overflow-wrap:break-word; word-break:break-all;}
 .toolbar{display:flex; gap:12px; align-items:center; margin-bottom:18px; flex-wrap:wrap;}
 .toolbar input, .toolbar select{background:#141416; border:1px solid #232327; color:#e9e9ea; padding:9px 14px; border-radius:8px; font-size:13px; font-family:var(--sans);}
 .toolbar .count{font-size:13px; color:#777; margin-left:auto;}
@@ -34,6 +35,26 @@ a:hover{text-decoration:underline;}
 .brand-cell{display:flex; align-items:center; gap:11px;}
 .avatar{width:36px; height:36px; border-radius:50%; object-fit:cover; flex-shrink:0; background:#232327; border:1px solid #2a2a2e;}
 .avatar-fallback{width:36px; height:36px; border-radius:50%; flex-shrink:0; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff; font-family:var(--disp); font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; text-transform:uppercase;}
+
+html, body{overflow-x:hidden; max-width:100%;}
+
+@media (max-width:760px){
+  body{padding:30px 16px 80px;}
+  .wrap{max-width:100%; width:100%;}
+  .toolbar{flex-wrap:wrap;}
+  .toolbar input, .toolbar select{flex:1 1 100%; width:100%;}
+  .toolbar .count{margin-left:0;}
+  table{display:block; width:100%; background:none; border:none; border-radius:0;}
+  thead{display:none;}
+  tbody{display:block; width:100%;}
+  tr{display:block; width:100%; background:#141416; border:1px solid #232327; border-radius:14px; padding:4px 16px; margin-bottom:14px; overflow:hidden;}
+  td{display:block; width:100%; padding:10px 0; border-bottom:1px solid #1d1d1f; text-align:left; overflow-wrap:anywhere; word-break:break-word;}
+  tr td:last-child{border-bottom:none;}
+  td::before{content:attr(data-label); display:block; font-size:10px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#777; margin-bottom:4px;}
+  td[data-label="Brand"]{padding-top:16px;}
+  td[data-label="Brand"]::before{display:none;}
+  td[data-label="Status"]{padding-bottom:16px;}
+}
 </style>
 </head>
 <body>
@@ -95,7 +116,7 @@ function render() {
   const rows = document.getElementById('rows');
   rows.innerHTML = filtered.map((l) => `
     <tr>
-      <td>
+      <td data-label="Brand">
         <div class="brand-cell">
           ${l.avatar
             ? `<img class="avatar" src="/api/leads/avatar?url=${encodeURIComponent(l.avatar)}" alt="" onerror="this.outerHTML='<div class=&quot;avatar-fallback&quot;>${(l.name || l.handle).charAt(0)}</div>'">`
@@ -103,12 +124,12 @@ function render() {
           <div><b>${l.name}</b><br><span class="muted">@${l.handle}</span></div>
         </div>
       </td>
-      <td>${l.sector || 'Unknown'}</td>
-      <td>${l.followers ? l.followers.toLocaleString('en-IN') : '—'}</td>
-      <td><a href="${l.instagram}" target="_blank" rel="noopener">@${l.handle}</a></td>
-      <td>${l.website ? `<a href="${l.website}" target="_blank" rel="noopener">${l.website.replace(/^https?:\/\//, '')}</a>` : '<span class="muted">—</span>'}</td>
-      <td>${l.email ? `<a href="mailto:${l.email}">${l.email}</a><br>` : ''}${l.phone ? `<span class="muted">${l.phone}</span>` : (!l.email ? '<span class="muted">—</span>' : '')}</td>
-      <td>
+      <td data-label="Sector">${l.sector || 'Unknown'}</td>
+      <td data-label="Followers">${l.followers ? l.followers.toLocaleString('en-IN') : '—'}</td>
+      <td data-label="Instagram"><a href="${l.instagram}" target="_blank" rel="noopener">@${l.handle}</a></td>
+      <td data-label="Website">${l.website ? `<a href="${l.website}" target="_blank" rel="noopener">${l.website.replace(/^https?:\/\//, '')}</a>` : '<span class="muted">—</span>'}</td>
+      <td data-label="Email / Phone">${l.email ? `<a href="mailto:${l.email}">${l.email}</a><br>` : ''}${l.phone ? `<span class="muted">${l.phone}</span>` : (!l.email ? '<span class="muted">—</span>' : '')}</td>
+      <td data-label="Status">
         <select class="status-select" data-handle="${l.handle}">
           <option value="new" ${l.status === 'new' ? 'selected' : ''}>New</option>
           <option value="contacted" ${l.status === 'contacted' ? 'selected' : ''}>Contacted</option>
