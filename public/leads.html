@@ -30,6 +30,10 @@ a:hover{text-decoration:underline;}
 .pill.contacted{background:rgba(31,157,98,.15); color:#1f9d62;}
 .pill.ignored{background:#232327; color:#888;}
 .status-select{background:#0e0e10; border:1px solid #2a2a2e; color:#e9e9ea; font-size:11px; padding:4px 8px; border-radius:6px;}
+.send-btn{background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff; font-size:11px; font-weight:700; font-family:var(--disp); padding:6px 13px; border-radius:99px; border:none; cursor:pointer; white-space:nowrap; transition:opacity .2s;}
+.send-btn:hover{opacity:.85;}
+.send-btn:disabled{opacity:.4; cursor:default;}
+.send-btn.sent{background:#1f9d62;}
 .empty{padding:60px 20px; text-align:center; color:#777; font-size:14px;}
 .muted{color:#666;}
 .brand-cell{display:flex; align-items:center; gap:11px;}
@@ -87,6 +91,7 @@ html, body{overflow-x:hidden; max-width:100%;}
         <th>Website</th>
         <th>Email / Phone</th>
         <th>Status</th>
+        <th>Proposal</th>
       </tr>
     </thead>
     <tbody id="rows"></tbody>
@@ -136,6 +141,13 @@ function render() {
           <option value="ignored" ${l.status === 'ignored' ? 'selected' : ''}>Ignored</option>
         </select>
       </td>
+      <td data-label="Proposal">
+        ${l.email
+          ? `<button class="send-btn ${l.proposal_sent_at ? 'sent' : ''}" data-handle="${l.handle}" data-name="${(l.name||l.handle).replace(/"/g,'')}" data-email="${l.email}">
+              ${l.proposal_sent_at ? '✓ Sent' : '✉ Send Proposal'}
+            </button>`
+          : `<span class="muted" style="font-size:12px;">No email</span>`}
+      </td>
     </tr>
   `).join('');
 
@@ -149,6 +161,42 @@ function render() {
       });
       const lead = allLeads.find((l) => l.handle === handle);
       if (lead) lead.status = e.target.value;
+    });
+  });
+
+  rows.querySelectorAll('.send-btn').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const handle = btn.getAttribute('data-handle');
+      const name = btn.getAttribute('data-name');
+      const email = btn.getAttribute('data-email');
+      if (btn.classList.contains('sent')) {
+        if (!confirm(`Proposal already sent to ${email}. Send again?`)) return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      try {
+        const res = await fetch(`/api/leads/${handle}/send-proposal`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          btn.textContent = '✓ Sent';
+          btn.classList.add('sent');
+          btn.disabled = false;
+          const lead = allLeads.find((l) => l.handle === handle);
+          if (lead) { lead.proposal_sent_at = new Date().toISOString(); lead.status = 'contacted'; }
+        } else {
+          alert('Failed: ' + (data.error || 'Unknown error'));
+          btn.textContent = '✉ Send Proposal';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        alert('Network error');
+        btn.textContent = '✉ Send Proposal';
+        btn.disabled = false;
+      }
     });
   });
 }

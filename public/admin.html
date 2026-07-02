@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antortiq — Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --red:#e8344a; --red-deep:#d11f1f; --black:#0c0c0c; --sans:'Inter',Arial,sans-serif; --disp:'Sora',Arial,sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);background:var(--black);color:#e9e9ea;padding:48px 28px 100px;}
+.wrap{max-width:1300px;margin:0 auto;}
+.eyebrow{font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);}
+h1{font-family:var(--disp);font-size:clamp(22px,5vw,30px);font-weight:800;color:#fff;margin:10px 0 6px;}
+.subtitle{font-size:14px;color:#666;margin-bottom:32px;}
+
+/* Tabs */
+.tab-bar{display:flex;align-items:center;gap:12px;margin-bottom:28px;border-bottom:1px solid #1e1e22;}
+.tab-row{display:flex;gap:0;flex:1;}
+.tab{padding:11px 20px;font-size:13px;font-weight:600;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;white-space:nowrap;}
+.tab.active{color:#fff;border-bottom-color:var(--red);}
+.tab:hover:not(.active){color:#aaa;}
+.panel{display:none;}.panel.active{display:block;}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px;}
+.stat-card{background:#141416;border:1px solid #1e1e22;border-radius:12px;padding:16px 18px;}
+.stat-card .val{font-family:var(--disp);font-size:26px;font-weight:800;color:#fff;line-height:1;}
+.stat-card .lbl{font-size:10px;color:#555;margin-top:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.stat-card.red .val{color:var(--red);}
+.stat-card.green .val{color:#1f9d62;}
+.stat-card.blue .val{color:#7eb8f7;}
+.stat-card.amber .val{color:#e8a33d;}
+
+/* Toolbar */
+.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.toolbar input,.toolbar select{background:#141416;border:1px solid #1e1e22;color:#e9e9ea;padding:8px 13px;border-radius:8px;font-size:13px;font-family:var(--sans);}
+.toolbar input:focus,.toolbar select:focus{outline:none;border-color:#333;}
+.toolbar .count{font-size:12px;color:#555;margin-left:auto;}
+
+/* Activity feed */
+.feed{display:flex;flex-direction:column;gap:7px;}
+.event{display:flex;align-items:flex-start;gap:14px;background:#141416;border:1px solid #1e1e22;border-radius:10px;padding:11px 15px;}
+.event-icon{font-size:17px;flex-shrink:0;line-height:1;padding-top:2px;}
+.event-body{flex:1;min-width:0;}
+.event-handle{font-size:13px;font-weight:700;color:#fff;}
+.event-meta{font-size:12px;color:#666;margin-top:2px;}
+.event-time{font-size:11px;color:#444;flex-shrink:0;padding-top:3px;text-align:right;}
+.event-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px;margin-left:6px;text-transform:uppercase;letter-spacing:0.4px;}
+.tag-open{background:rgba(126,184,247,.12);color:#7eb8f7;}
+.tag-click{background:rgba(232,52,74,.15);color:var(--red);}
+.tag-visit{background:rgba(31,157,98,.12);color:#1f9d62;}
+.tag-wa{background:rgba(37,211,102,.12);color:#25d366;}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;background:#141416;border:1px solid #1e1e22;border-radius:12px;overflow:hidden;}
+th{text-align:left;font-size:10px;letter-spacing:0.6px;text-transform:uppercase;color:#555;padding:11px 14px;border-bottom:1px solid #1e1e22;}
+td{padding:11px 14px;border-bottom:1px solid #191919;font-size:13px;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#181818;}
+
+/* Lead-specific */
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#232327;border:1px solid #2a2a2e;}
+.avatar-fallback{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--red),var(--red-deep));color:#fff;font-family:var(--disp);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+.brand-cell{display:flex;align-items:center;gap:10px;}
+.pill{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:0.4px;}
+.pill.new{background:rgba(232,52,74,.15);color:var(--red);}
+.pill.contacted{background:rgba(31,157,98,.15);color:#1f9d62;}
+.pill.ignored{background:#1e1e22;color:#555;}
+.status-select{background:#0e0e10;border:1px solid #2a2a2e;color:#e9e9ea;font-size:11px;padding:4px 8px;border-radius:6px;cursor:pointer;}
+.send-btn{background:linear-gradient(135deg,var(--red),var(--red-deep));color:#fff;font-size:10.5px;font-weight:700;font-family:var(--disp);padding:5px 11px;border-radius:99px;border:none;cursor:pointer;white-space:nowrap;transition:opacity .2s;}
+.send-btn:hover{opacity:.85;}
+.send-btn:disabled{opacity:.35;cursor:default;}
+.send-btn.sent{background:#1f9d62;}
+.fu-btn{background:#1e1e22;color:#aaa;font-size:10px;font-weight:700;font-family:var(--disp);padding:4px 9px;border-radius:99px;border:1px solid #2a2a2e;cursor:pointer;white-space:nowrap;transition:all .2s;margin-top:4px;}
+.fu-btn:hover{background:#2a2a2e;color:#fff;}
+.fu-btn.sent{background:rgba(31,157,98,.15);color:#1f9d62;border-color:rgba(31,157,98,.3);}
+.eng-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle;}
+
+/* Score bar */
+.score-bar-wrap{background:#1e1e22;border-radius:99px;height:4px;width:70px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px;}
+.score-bar{background:var(--red);height:4px;border-radius:99px;}
+
+/* Template leaderboard */
+.template-card{background:#141416;border:1px solid #1e1e22;border-radius:10px;padding:15px 20px;margin-bottom:9px;display:flex;align-items:center;gap:16px;}
+.template-rank{font-family:var(--disp);font-size:20px;font-weight:800;color:#2a2a2e;width:26px;text-align:center;flex-shrink:0;}
+.template-rank.gold{color:var(--red);}
+.template-info{flex:1;}
+.template-label{font-size:13px;font-weight:700;color:#fff;}
+.template-sub{font-size:11px;color:#444;margin-top:2px;}
+.template-metrics{display:flex;gap:20px;}
+.template-metrics .m{text-align:center;}
+.template-metrics .m .v{font-size:15px;font-weight:800;color:#fff;}
+.template-metrics .m .k{font-size:9px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-top:1px;}
+
+/* Category badge */
+.cat{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;letter-spacing:0.3px;white-space:nowrap;}
+.cat-clothing{background:rgba(139,92,246,.15);color:#a78bfa;}
+.cat-food{background:rgba(251,146,60,.15);color:#fb923c;}
+.cat-health{background:rgba(52,211,153,.15);color:#34d399;}
+.cat-bags{background:rgba(251,191,36,.15);color:#fbbf24;}
+.cat-home{background:rgba(96,165,250,.15);color:#60a5fa;}
+.cat-art{background:rgba(244,114,182,.15);color:#f472b4;}
+.cat-beauty{background:rgba(232,52,74,.15);color:var(--red);}
+.cat-tech{background:rgba(99,102,241,.15);color:#818cf8;}
+.cat-media{background:rgba(100,116,139,.15);color:#94a3b8;}
+.cat-other{background:#1e1e22;color:#555;}
+
+/* Bulk send panel */
+.bulk-panel{background:#141416;border:1px solid #1e1e22;border-radius:14px;padding:22px 24px;margin-bottom:24px;}
+.bulk-panel h3{font-family:var(--disp);font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;}
+.bulk-panel p{font-size:13px;color:#666;margin-bottom:18px;}
+.bulk-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+.bulk-field{display:flex;flex-direction:column;gap:5px;}
+.bulk-field label{font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:0.5px;}
+.bulk-field select,.bulk-field input[type="checkbox"]{background:#0e0e10;border:1px solid #2a2a2e;color:#e9e9ea;padding:9px 13px;border-radius:8px;font-size:13px;font-family:var(--sans);min-width:180px;}
+.bulk-send-btn{background:linear-gradient(135deg,var(--red),var(--red-deep));color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--disp);white-space:nowrap;}
+.bulk-send-btn:disabled{opacity:.4;cursor:default;}
+.bulk-send-btn:hover:not(:disabled){opacity:.85;}
+.bulk-preview{margin-top:14px;background:#0e0e10;border-radius:8px;padding:12px 16px;font-size:12px;color:#666;line-height:1.7;border:1px solid #1e1e22;}
+.bulk-preview b{color:#fff;}
+.progress-bar-wrap{background:#1e1e22;border-radius:99px;height:6px;margin-top:10px;overflow:hidden;display:none;}
+.progress-bar{background:var(--red);height:6px;border-radius:99px;width:0%;transition:width .3s;}
+
+/* Buttons */
+.refresh-btn{background:var(--red);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--disp);white-space:nowrap;flex-shrink:0;}
+.refresh-btn:hover{opacity:.85;}
+
+.empty{padding:48px;text-align:center;color:#444;font-size:14px;}
+.muted{color:#555;}
+a{color:var(--red);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+@media(max-width:760px){
+  .stats-row{grid-template-columns:1fr 1fr;}
+  body{padding:28px 14px 80px;}
+  .template-metrics{gap:10px;}
+  table{display:block;overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">Internal · Admin</span>
+  <h1>Antortiq Dashboard</h1>
+  <p class="subtitle">Leads, proposals, engagement tracking, and template performance — all in one place.</p>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-card"><div class="val" id="statLeads">—</div><div class="lbl">Total Leads</div></div>
+    <div class="stat-card green"><div class="val" id="statContacted">—</div><div class="lbl">Contacted</div></div>
+    <div class="stat-card blue"><div class="val" id="statVisits">—</div><div class="lbl">Page Visits</div></div>
+    <div class="stat-card red"><div class="val" id="statClicks">—</div><div class="lbl">Email Clicks</div></div>
+    <div class="stat-card amber"><div class="val" id="statWa">—</div><div class="lbl">WA Taps</div></div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <div class="tab-row">
+      <div class="tab active" onclick="switchTab('leads')">🎯 Leads</div>
+      <div class="tab" onclick="switchTab('feed')">⚡ Activity Feed</div>
+      <div class="tab" onclick="switchTab('engagement')">📊 Engagement</div>
+      <div class="tab" onclick="switchTab('templates')">📧 Templates</div>
+    </div>
+    <button class="refresh-btn" onclick="load()">↻ Refresh</button>
+  </div>
+
+  <!-- LEADS TAB -->
+  <div class="panel active" id="panel-leads">
+
+    <!-- BULK SEND PANEL -->
+    <div class="bulk-panel">
+      <h3>📤 Bulk Send</h3>
+      <p>Send a proposal or follow-up sequence to all leads in a category that have an email address.</p>
+      <div class="bulk-row">
+        <div class="bulk-field">
+          <label>Category</label>
+          <select id="bulkCategory" onchange="updateBulkPreview()">
+            <option value="">Select category…</option>
+          </select>
+        </div>
+        <div class="bulk-field">
+          <label>Template</label>
+          <select id="bulkTemplate" onchange="updateBulkPreview()">
+            <option value="proposal">Day 1 — Main Proposal</option>
+            <option value="followup-1">Day 2 — WhatsApp Chaos</option>
+            <option value="followup-2">Day 3 — Flying Blind</option>
+            <option value="followup-3">Day 4 — Boring Emails</option>
+            <option value="all">🔥 All 4 in sequence</option>
+          </select>
+        </div>
+        <div class="bulk-field" style="justify-content:flex-end;padding-bottom:2px;">
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="checkbox" id="bulkSkipContacted" onchange="updateBulkPreview()" style="width:14px;height:14px;min-width:0;padding:0;accent-color:var(--red);">
+            <span style="font-size:11px;color:#666;text-transform:none;letter-spacing:0;">Skip already contacted</span>
+          </label>
+        </div>
+        <div class="bulk-field" style="justify-content:flex-end;padding-bottom:1px;">
+          <button class="bulk-send-btn" id="bulkSendBtn" onclick="runBulkSend()" disabled>Send →</button>
+        </div>
+      </div>
+      <div class="bulk-preview" id="bulkPreview">Select a category to see who will receive this email.</div>
+      <div class="progress-bar-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+
+    <div class="toolbar">
+      <input id="leadsSearch" type="text" placeholder="Search brand or sector…" oninput="renderLeadsTable()">
+      <select id="leadsStatus" onchange="renderLeadsTable()">
+        <option value="">All statuses</option>
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="ignored">Ignored</option>
+      </select>
+      <select id="leadsCategory" onchange="renderLeadsTable()">
+        <option value="">All categories</option>
+      </select>
+      <span class="count" id="leadsCount"></span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Followers</th>
+          <th>Contact</th>
+          <th>Status</th>
+          <th>Engagement</th>
+          <th>Proposal</th>
+          <th>Follow-ups</th>
+        </tr>
+      </thead>
+      <tbody id="leadsRows"></tbody>
+    </table>
+  </div>
+
+  <!-- ACTIVITY FEED TAB -->
+  <div class="panel" id="panel-feed">
+    <div class="toolbar">
+      <select id="typeFilter" onchange="renderFeed()">
+        <option value="">All events</option>
+        <option value="email_open">Opens</option>
+        <option value="email_click">Clicks</option>
+        <option value="page_visit">Page Visits</option>
+        <option value="wa_click">WA Taps</option>
+      </select>
+      <input id="feedSearch" type="text" placeholder="Search brand…" oninput="renderFeed()">
+      <span class="count" id="feedCount"></span>
+    </div>
+    <div class="feed" id="feedEl"><div class="empty">Loading…</div></div>
+  </div>
+
+  <!-- ENGAGEMENT TAB -->
+  <div class="panel" id="panel-engagement">
+    <div class="toolbar">
+      <input id="engSearch" type="text" placeholder="Search brand…" oninput="renderEngagement()">
+      <span class="count" id="engCount"></span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Opens</th>
+          <th>Clicks</th>
+          <th>Visits</th>
+          <th>WA Taps</th>
+          <th>Score</th>
+          <th>Last Seen</th>
+        </tr>
+      </thead>
+      <tbody id="engRows"></tbody>
+    </table>
+  </div>
+
+  <!-- TEMPLATES TAB -->
+  <div class="panel" id="panel-templates">
+    <div id="templateList"><div class="empty">Loading…</div></div>
+  </div>
+</div>
+
+<script>
+let allEvents = [];
+let engLeads = [];
+let allTemplates = [];
+let rawLeads = [];
+let allCategories = [];
+
+const TABS = ['leads','feed','engagement','templates'];
+
+const CAT_CLASS = {
+  'Clothing & Apparel':'cat-clothing','Food & Beverage':'cat-food','Health & Wellness':'cat-health',
+  'Bags & Accessories':'cat-bags','Home & Lifestyle':'cat-home','Art & Creative':'cat-art',
+  'Beauty & Personal Care':'cat-beauty','Tech & Electronics':'cat-tech',
+  'Media & Entertainment':'cat-media','Gaming & Toys':'cat-other','Travel & Other':'cat-other','Other':'cat-other',
+};
+const EVENT_ICONS = { email_open:'📬', email_click:'🔥', page_visit:'👀', wa_click:'💬' };
+const EVENT_TAGS  = { email_open:'open', email_click:'click', page_visit:'visit', wa_click:'whatsapp' };
+const TAG_CLS     = { email_open:'tag-open', email_click:'tag-click', page_visit:'tag-visit', wa_click:'tag-wa' };
+const TMPL_LABELS = {
+  proposal:    'Day 1 — Main Proposal',
+  'followup-1':'Day 2 — WhatsApp Chaos',
+  'followup-2':'Day 3 — Flying Blind',
+  'followup-3':'Day 4 — Boring Emails',
+};
+
+function timeAgo(ts) {
+  const d = (Date.now() - new Date(ts)) / 1000;
+  if (d < 60) return 'just now';
+  if (d < 3600) return Math.floor(d/60) + 'm ago';
+  if (d < 86400) return Math.floor(d/3600) + 'h ago';
+  return Math.floor(d/86400) + 'd ago';
+}
+function fmtDate(ts) {
+  return new Date(ts).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ─── LEADS TABLE ──────────────────────────────────────────────
+function engFor(leadName) {
+  return engLeads.find(e => e.handle === leadName) || { opens:0, clicks:0, visits:0, wa_clicks:0, score:0 };
+}
+
+function catBadge(cat) {
+  if (!cat) return '';
+  return `<span class="cat ${CAT_CLASS[cat]||'cat-other'}">${cat}</span>`;
+}
+
+function populateCategoryDropdowns() {
+  const opts = allCategories.map(c => `<option value="${c.category}">${c.category} (${c.total})</option>`).join('');
+  document.getElementById('leadsCategory').innerHTML = '<option value="">All categories</option>' + opts;
+  document.getElementById('bulkCategory').innerHTML  = '<option value="">Select category…</option>' + opts;
+}
+
+function updateBulkPreview() {
+  const cat = document.getElementById('bulkCategory').value;
+  const tmpl = document.getElementById('bulkTemplate').value;
+  const skipContacted = document.getElementById('bulkSkipContacted').checked;
+  const btn = document.getElementById('bulkSendBtn');
+
+  if (!cat) { document.getElementById('bulkPreview').innerHTML = 'Select a category to see who will receive this email.'; btn.disabled = true; return; }
+
+  const targets = rawLeads.filter(l => l.category === cat && l.email && (!skipContacted || l.status !== 'contacted'));
+  const noEmail = rawLeads.filter(l => l.category === cat && !l.email).length;
+  const tmplLabel = { proposal:'Day 1 — Main Proposal', 'followup-1':'Day 2 — WhatsApp Chaos', 'followup-2':'Day 3 — Flying Blind', 'followup-3':'Day 4 — Boring Emails', all:'All 4 templates in sequence' }[tmpl] || tmpl;
+
+  document.getElementById('bulkPreview').innerHTML =
+    `Will send <b>${tmplLabel}</b> to <b>${targets.length} leads</b> in <b>${cat}</b>` +
+    (noEmail ? ` <span style="color:#555;">(${noEmail} skipped — no email)</span>` : '') +
+    (skipContacted ? ` · <span style="color:#555;">Already contacted excluded</span>` : '') +
+    (targets.length ? `<br><span style="color:#444;font-size:11px;">${targets.slice(0,6).map(l=>l.name||l.handle).join(', ')}${targets.length>6?' & '+(targets.length-6)+' more':''}</span>` : '');
+
+  btn.disabled = targets.length === 0;
+}
+
+async function runBulkSend() {
+  const cat   = document.getElementById('bulkCategory').value;
+  const tmpl  = document.getElementById('bulkTemplate').value;
+  const skipContacted = document.getElementById('bulkSkipContacted').checked;
+  if (!cat || !tmpl) return;
+
+  const targets = rawLeads.filter(l => l.category === cat && l.email && (!skipContacted || l.status !== 'contacted'));
+  if (!confirm(`Send to ${targets.length} leads in "${cat}"? This cannot be undone.`)) return;
+
+  const btn = document.getElementById('bulkSendBtn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('progressBar').style.width = '5%';
+
+  try {
+    const r = await fetch('/api/leads/bulk-send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category: cat, template: tmpl, skip_contacted: skipContacted }),
+    });
+    document.getElementById('progressBar').style.width = '100%';
+    const d = await r.json();
+    if (r.ok) {
+      document.getElementById('bulkPreview').innerHTML =
+        `✅ Done! Sent to <b>${d.sent}</b> leads` +
+        (d.failed ? ` · <span style="color:var(--red);">${d.failed} failed</span>` : '') +
+        '. Refresh to see updated statuses.';
+      btn.textContent = '✓ Sent';
+      await load();
+    } else {
+      alert('Failed: ' + (d.error || 'Unknown error'));
+      btn.disabled = false; btn.textContent = 'Send →';
+    }
+  } catch { alert('Network error'); btn.disabled = false; btn.textContent = 'Send →'; }
+  setTimeout(() => { document.getElementById('progressWrap').style.display = 'none'; document.getElementById('progressBar').style.width = '0%'; }, 2000);
+}
+
+function renderLeadsTable() {
+  const search = document.getElementById('leadsSearch').value.toLowerCase();
+  const status = document.getElementById('leadsStatus').value;
+  const cat    = document.getElementById('leadsCategory').value;
+  const filtered = rawLeads.filter(l =>
+    (!search || (l.name+l.handle+l.category+l.sector+'').toLowerCase().includes(search)) &&
+    (!status || (l.status||'new') === status) &&
+    (!cat    || l.category === cat)
+  );
+  document.getElementById('leadsCount').textContent = filtered.length + ' of ' + rawLeads.length + ' leads';
+
+  const maxScore = Math.max(...engLeads.map(e => e.score), 1);
+
+  document.getElementById('leadsRows').innerHTML = filtered.map(l => {
+    const eng = engFor(l.name || l.handle);
+    const initial = (l.name || l.handle).charAt(0);
+    const avatar = l.avatar
+      ? `<img class="avatar" src="/api/leads/avatar?url=${encodeURIComponent(l.avatar)}" alt="" onerror="this.outerHTML='<div class=&quot;avatar-fallback&quot;>${initial}</div>'">`
+      : `<div class="avatar-fallback">${initial}</div>`;
+
+    const engDots = [
+      eng.opens   ? `<span class="eng-dot" style="background:#7eb8f7;" title="Opened email"></span>` : '',
+      eng.clicks  ? `<span class="eng-dot" style="background:var(--red);" title="Clicked CTA"></span>` : '',
+      eng.visits  ? `<span class="eng-dot" style="background:#1f9d62;" title="Visited proposal"></span>` : '',
+      eng.wa_clicks ? `<span class="eng-dot" style="background:#25d366;" title="Tapped WhatsApp"></span>` : '',
+    ].join('');
+
+    const scoreW = Math.round((eng.score/maxScore)*100);
+
+    const sentAt = l.proposal_sent_at ? `<br><span style="font-size:10px;color:#444;">${timeAgo(l.proposal_sent_at)}</span>` : '';
+
+    return `<tr>
+      <td>
+        <div class="brand-cell">
+          ${avatar}
+          <div>
+            <b style="color:#fff;">${esc(l.name||l.handle)}</b>
+            <br><span class="muted" style="font-size:11px;">@${esc(l.handle)}</span>
+          </div>
+        </div>
+      </td>
+      <td>${catBadge(l.category)}</td>
+      <td style="font-size:12px;color:#777;">${esc(l.sector||'—')}</td>
+      <td style="font-size:12px;color:#777;">${l.followers ? l.followers.toLocaleString('en-IN') : '—'}</td>
+      <td style="font-size:12px;">
+        ${l.email ? `<a href="mailto:${esc(l.email)}">${esc(l.email)}</a>` : ''}
+        ${l.phone ? `<br><span class="muted">${esc(l.phone)}</span>` : ''}
+        ${!l.email && !l.phone ? '<span class="muted">—</span>' : ''}
+      </td>
+      <td>
+        <select class="status-select" data-handle="${esc(l.handle)}" onchange="updateStatus(this)">
+          <option value="new" ${(l.status||'new')==='new'?'selected':''}>New</option>
+          <option value="contacted" ${l.status==='contacted'?'selected':''}>Contacted</option>
+          <option value="ignored" ${l.status==='ignored'?'selected':''}>Ignored</option>
+        </select>
+      </td>
+      <td>
+        ${engDots || '<span class="muted" style="font-size:11px;">No activity</span>'}
+        ${eng.score ? `<div style="margin-top:5px;"><div class="score-bar-wrap"><div class="score-bar" style="width:${scoreW}%"></div></div><span style="font-size:10px;color:#444;">${eng.score}</span></div>` : ''}
+      </td>
+      <td>
+        ${l.email
+          ? `<button class="send-btn ${l.proposal_sent_at?'sent':''}" data-handle="${esc(l.handle)}" data-email="${esc(l.email)}" onclick="sendProposal(this)">
+               ${l.proposal_sent_at ? '✓ Sent' : '✉ Send'}
+             </button>${sentAt}`
+          : '<span class="muted" style="font-size:11px;">No email</span>'}
+      </td>
+      <td>
+        ${l.email ? `
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            ${[1,2,3].map(d => `
+              <button class="fu-btn ${l['followup_'+d+'_sent_at']?'sent':''}" data-handle="${esc(l.handle)}" data-email="${esc(l.email)}" data-day="${d}" onclick="sendFollowup(this)">
+                ${l['followup_'+d+'_sent_at'] ? `✓ Day ${d+1}` : `Day ${d+1}`}
+              </button>`).join('')}
+          </div>` : '<span class="muted" style="font-size:11px;">—</span>'}
+      </td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="9" class="empty">No leads match.</td></tr>';
+}
+
+async function updateStatus(sel) {
+  const handle = sel.getAttribute('data-handle');
+  await fetch(`/api/leads/${handle}/status`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: sel.value }),
+  });
+  const lead = rawLeads.find(l => l.handle === handle);
+  if (lead) lead.status = sel.value;
+}
+
+async function sendProposal(btn) {
+  if (btn.classList.contains('sent') && !confirm('Already sent. Send again?')) return;
+  const handle = btn.dataset.handle, email = btn.dataset.email;
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const r = await fetch(`/api/leads/${handle}/send-proposal`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const d = await r.json();
+    if (r.ok) {
+      btn.textContent = '✓ Sent'; btn.classList.add('sent'); btn.disabled = false;
+      const lead = rawLeads.find(l => l.handle === handle);
+      if (lead) { lead.proposal_sent_at = new Date().toISOString(); lead.status = 'contacted'; }
+      renderLeadsTable();
+    } else { alert('Failed: ' + (d.error||'Unknown')); btn.textContent = '✉ Send'; btn.disabled = false; }
+  } catch { alert('Network error'); btn.textContent = '✉ Send'; btn.disabled = false; }
+}
+
+async function sendFollowup(btn) {
+  const handle = btn.dataset.handle, email = btn.dataset.email, day = btn.dataset.day;
+  if (btn.classList.contains('sent') && !confirm(`Day ${Number(day)+1} already sent. Send again?`)) return;
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const r = await fetch(`/api/leads/${handle}/send-followup/${day}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const d = await r.json();
+    if (r.ok) {
+      btn.textContent = `✓ Day ${Number(day)+1}`; btn.classList.add('sent'); btn.disabled = false;
+      const lead = rawLeads.find(l => l.handle === handle);
+      if (lead) lead[`followup_${day}_sent_at`] = new Date().toISOString();
+    } else { alert('Failed: ' + (d.error||'Unknown')); btn.textContent = `Day ${Number(day)+1}`; btn.disabled = false; }
+  } catch { alert('Network error'); btn.textContent = `Day ${Number(day)+1}`; btn.disabled = false; }
+}
+
+// ─── ACTIVITY FEED ────────────────────────────────────────────
+function eventDesc(e) {
+  if (e.type==='email_open')  return `Opened <b>${TMPL_LABELS[e.template]||e.template||'email'}</b>`;
+  if (e.type==='email_click') return `Clicked CTA in <b>${TMPL_LABELS[e.template]||e.template||'email'}</b>`;
+  if (e.type==='page_visit')  return `Visited proposal page${e.ref?` via <span style="color:#444">${esc(e.ref)}</span>`:''}`;
+  if (e.type==='wa_click')    return `Tapped WhatsApp on <b>${TMPL_LABELS[e.template]||e.template||'proposal'}</b>`;
+  return e.type;
+}
+
+function renderFeed() {
+  const typeF  = document.getElementById('typeFilter').value;
+  const search = document.getElementById('feedSearch').value.toLowerCase();
+  const filtered = allEvents.filter(e =>
+    (!typeF  || e.type === typeF) &&
+    (!search || e.handle.toLowerCase().includes(search))
+  );
+  document.getElementById('feedCount').textContent = filtered.length + ' events';
+  document.getElementById('feedEl').innerHTML = filtered.length
+    ? filtered.map(e => `
+        <div class="event">
+          <div class="event-icon">${EVENT_ICONS[e.type]||'•'}</div>
+          <div class="event-body">
+            <div class="event-handle">${esc(e.handle)}<span class="event-tag ${TAG_CLS[e.type]}">${EVENT_TAGS[e.type]}</span></div>
+            <div class="event-meta">${eventDesc(e)}</div>
+          </div>
+          <div class="event-time">${timeAgo(e.ts)}<br><span style="color:#333;font-size:10px;">${fmtDate(e.ts)}</span></div>
+        </div>`).join('')
+    : '<div class="empty">No events yet. Send a proposal and have someone open it.</div>';
+}
+
+// ─── ENGAGEMENT TABLE ─────────────────────────────────────────
+function renderEngagement() {
+  const search = document.getElementById('engSearch').value.toLowerCase();
+  const filtered = engLeads.filter(l => !search || l.handle.toLowerCase().includes(search));
+  document.getElementById('engCount').textContent = filtered.length + ' brands';
+  const maxScore = Math.max(...filtered.map(l => l.score), 1);
+  document.getElementById('engRows').innerHTML = filtered.map(l => `
+    <tr>
+      <td><b style="color:#fff;">${esc(l.handle)}</b></td>
+      <td>${l.opens  ? `<span style="color:#7eb8f7;font-weight:700;">${l.opens}</span>`    : '<span class="muted">0</span>'}</td>
+      <td>${l.clicks ? `<span style="color:var(--red);font-weight:700;">${l.clicks}</span>` : '<span class="muted">0</span>'}</td>
+      <td>${l.visits ? `<span style="color:#1f9d62;font-weight:700;">${l.visits}</span>`    : '<span class="muted">0</span>'}</td>
+      <td>${l.wa_clicks ? `<span style="color:#25d366;font-weight:700;">${l.wa_clicks}</span>` : '<span class="muted">0</span>'}</td>
+      <td>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:${Math.round((l.score/maxScore)*100)}%"></div></div>
+        <span style="font-size:11px;color:#555;">${l.score}</span>
+      </td>
+      <td style="font-size:12px;color:#555;">${l.last_seen ? timeAgo(l.last_seen) : '—'}</td>
+    </tr>`).join('') || '<tr><td colspan="7" class="empty">No engagement data yet.</td></tr>';
+}
+
+// ─── TEMPLATES ────────────────────────────────────────────────
+function renderTemplates() {
+  document.getElementById('templateList').innerHTML = allTemplates.length
+    ? allTemplates.map((t,i) => `
+        <div class="template-card">
+          <div class="template-rank ${i===0?'gold':''}">${i+1}</div>
+          <div class="template-info">
+            <div class="template-label">${esc(t.label)}</div>
+            <div class="template-sub">${esc(t.id)}</div>
+          </div>
+          <div class="template-metrics">
+            <div class="m"><div class="v" style="color:var(--red);">${t.clicks}</div><div class="k">Clicks</div></div>
+            <div class="m"><div class="v" style="color:#7eb8f7;">${t.opens}</div><div class="k">Opens</div></div>
+            <div class="m"><div class="v" style="color:#555;">${t.opens ? Math.round((t.clicks/t.opens)*100)+'%' : '—'}</div><div class="k">CTR</div></div>
+          </div>
+        </div>`).join('')
+    : '<div class="empty">No email sends tracked yet. Send a proposal to start.</div>';
+}
+
+// ─── TAB SWITCHING ────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', TABS[i]===name));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+}
+
+// ─── LOAD ALL DATA ────────────────────────────────────────────
+async function load() {
+  try {
+    const [leadsRes, evRes, stRes, catRes] = await Promise.all([
+      fetch('/api/leads'),
+      fetch('/api/track/events?limit=500'),
+      fetch('/api/track/stats'),
+      fetch('/api/leads/categories'),
+    ]);
+    rawLeads    = await leadsRes.json();
+    allEvents   = await evRes.json();
+    const stats = await stRes.json();
+    allCategories = await catRes.json();
+    populateCategoryDropdowns();
+    engLeads    = stats.leads;
+    allTemplates = stats.templates;
+
+    // Summary stats
+    document.getElementById('statLeads').textContent     = rawLeads.length;
+    document.getElementById('statContacted').textContent = rawLeads.filter(l => l.status==='contacted').length;
+    document.getElementById('statVisits').textContent    = allEvents.filter(e => e.type==='page_visit').length;
+    document.getElementById('statClicks').textContent    = allEvents.filter(e => e.type==='email_click').length;
+    document.getElementById('statWa').textContent        = allEvents.filter(e => e.type==='wa_click').length;
+
+    renderLeadsTable();
+    renderFeed();
+    renderEngagement();
+    renderTemplates();
+  } catch(err) { console.error(err); }
+}
+
+document.getElementById('leadsSearch').addEventListener('input', renderLeadsTable);
+document.getElementById('leadsStatus').addEventListener('change', renderLeadsTable);
+document.getElementById('engSearch').addEventListener('input', renderEngagement);
+
+load();
+setInterval(load, 60000);
+</script>
+</body>
+</html>

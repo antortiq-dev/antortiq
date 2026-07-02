@@ -8,9 +8,14 @@
     "website": "https://www.the1970shop.com",
     "email": null,
     "phone": "7415991515",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:17.441Z",
-    "avatar": "https://scontent-mia5-1.cdninstagram.com/v/t51.82787-19/535864584_17907514608217586_1188441369396258468_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia5-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gH3sM5iCTeeQtkyU4TKnyLxDDpmGBN1fIQU6QQg-mskg8m-gYHPbYAQWrkUvUrGdM4&_nc_ohc=XXREVpHQtYEQ7kNvwF-S5aL&_nc_gid=2oTvkUAFRyvn5s-h8otbVA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8ZVnonNAeWNZHzXhajuYloFh-0Gtcpuu4psURQXktuFA&oe=6A45DACF&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia5-1.cdninstagram.com/v/t51.82787-19/535864584_17907514608217586_1188441369396258468_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia5-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gH3sM5iCTeeQtkyU4TKnyLxDDpmGBN1fIQU6QQg-mskg8m-gYHPbYAQWrkUvUrGdM4&_nc_ohc=XXREVpHQtYEQ7kNvwF-S5aL&_nc_gid=2oTvkUAFRyvn5s-h8otbVA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8ZVnonNAeWNZHzXhajuYloFh-0Gtcpuu4psURQXktuFA&oe=6A45DACF&_nc_sid=8b3546",
+    "proposal_sent_at": "2026-07-02T18:41:30.195Z",
+    "followup_1_sent_at": "2026-07-02T19:21:30.637Z",
+    "followup_2_sent_at": "2026-07-02T19:22:19.066Z",
+    "followup_3_sent_at": "2026-07-02T19:22:23.016Z",
+    "category": "Food & Beverage"
   },
   {
     "handle": "smallbatch.co.in",
@@ -23,7 +28,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:37:17.581Z",
-    "avatar": "https://scontent-msp1-1.cdninstagram.com/v/t51.2885-19/455213345_1538349526754221_7252971673180502899_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-msp1-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gGzj2tKklGzJ0muX8zxCyXp8bMz_m_HCcbVi5fwDAsrvB1-dx3-KXffyyJc7mD1RJ4&_nc_ohc=bL0SiN2Ny0YQ7kNvwE2ANUu&_nc_gid=qaYGM5uakBcr75Avf4kvxA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af81Yyu0HuJuAQrZZ8wmspjcGmAwkGlAmJLWf649OiGy5A&oe=6A45E6CC&_nc_sid=8b3546"
+    "avatar": "https://scontent-msp1-1.cdninstagram.com/v/t51.2885-19/455213345_1538349526754221_7252971673180502899_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-msp1-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gGzj2tKklGzJ0muX8zxCyXp8bMz_m_HCcbVi5fwDAsrvB1-dx3-KXffyyJc7mD1RJ4&_nc_ohc=bL0SiN2Ny0YQ7kNvwE2ANUu&_nc_gid=qaYGM5uakBcr75Avf4kvxA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af81Yyu0HuJuAQrZZ8wmspjcGmAwkGlAmJLWf649OiGy5A&oe=6A45E6CC&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "itsprolicious",
@@ -34,9 +40,11 @@
     "website": "https://bit.ly/4jAn9F5",
     "email": "info@samyogfoods.com",
     "phone": "6120954270",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:18.676Z",
-    "avatar": "https://scontent-mia5-2.cdninstagram.com/v/t51.82787-19/687786135_18099115106028887_3217984731725051680_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gF-iW9k5D3t0IZpGdSNXVJVgrYjFyUDsPEMRi-Ixa0Tyc4W_e12QKgZGq3mCpUAC1Y&_nc_ohc=2leZTPLqkx0Q7kNvwEgRD0K&_nc_gid=eCEsq-v5kPYLn-frELUvYg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_Zm8Wo0GOxrVP_QWM16gVjo1M4bFaguAdP70N2Ck_zYA&oe=6A4600BC&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia5-2.cdninstagram.com/v/t51.82787-19/687786135_18099115106028887_3217984731725051680_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gF-iW9k5D3t0IZpGdSNXVJVgrYjFyUDsPEMRi-Ixa0Tyc4W_e12QKgZGq3mCpUAC1Y&_nc_ohc=2leZTPLqkx0Q7kNvwEgRD0K&_nc_gid=eCEsq-v5kPYLn-frELUvYg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_Zm8Wo0GOxrVP_QWM16gVjo1M4bFaguAdP70N2Ck_zYA&oe=6A4600BC&_nc_sid=8b3546",
+    "category": "Food & Beverage",
+    "proposal_sent_at": "2026-07-02T19:52:39.984Z"
   },
   {
     "handle": "laviesportworld",
@@ -47,9 +55,11 @@
     "website": "https://bit.ly/LavieSportWeb",
     "email": "support@lavieworld.com",
     "phone": "9582404695",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:19.880Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/455815594_1105878287628419_2091986412912439032_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MDAuYzIifQ&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gG87TcgwBXsxWZfQxjztohMQvocB3tilAyHyB3TVACWyRjQujaA_GYtx5srLxG7QII&_nc_ohc=pwc6eg0dcvAQ7kNvwG3apew&_nc_gid=C-JXnOKiC6iIXJ95z8pUCw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8hjKxPyhTKVMNF67tUedP3fi4ZWefc876dMU6vpJUyFQ&oe=6A45FC6D&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/455815594_1105878287628419_2091986412912439032_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MDAuYzIifQ&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gG87TcgwBXsxWZfQxjztohMQvocB3tilAyHyB3TVACWyRjQujaA_GYtx5srLxG7QII&_nc_ohc=pwc6eg0dcvAQ7kNvwG3apew&_nc_gid=C-JXnOKiC6iIXJ95z8pUCw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8hjKxPyhTKVMNF67tUedP3fi4ZWefc876dMU6vpJUyFQ&oe=6A45FC6D&_nc_sid=8b3546",
+    "category": "Bags & Accessories",
+    "proposal_sent_at": "2026-07-02T19:52:44.068Z"
   },
   {
     "handle": "rena.india",
@@ -62,7 +72,8 @@
     "phone": "9837617504",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:20.307Z",
-    "avatar": "https://instagram.fhnl1-1.fna.fbcdn.net/v/t51.2885-19/472550761_1112072990655572_5508322388051378515_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fhnl1-1.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2gGXPyn1YQ7U68PiuhmeQSt7QuOaIMYLYFjAjJetyNm05dCq2eP9n0dALEFCXZBA-C0&_nc_ohc=aJl-9XeA9DQQ7kNvwFg_rlC&_nc_gid=_ZEfOaMtnL4Cv9nJclwYEA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9FkKRkSyINCN_coqBbBrPd_RRJNhwLSUBDiPNK1Dt5qw&oe=6A45D701&_nc_sid=8b3546"
+    "avatar": "https://instagram.fhnl1-1.fna.fbcdn.net/v/t51.2885-19/472550761_1112072990655572_5508322388051378515_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fhnl1-1.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2gGXPyn1YQ7U68PiuhmeQSt7QuOaIMYLYFjAjJetyNm05dCq2eP9n0dALEFCXZBA-C0&_nc_ohc=aJl-9XeA9DQQ7kNvwFg_rlC&_nc_gid=_ZEfOaMtnL4Cv9nJclwYEA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9FkKRkSyINCN_coqBbBrPd_RRJNhwLSUBDiPNK1Dt5qw&oe=6A45D701&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "opensecretsnacks",
@@ -75,7 +86,8 @@
     "phone": "7977727570",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:20.745Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/570034661_18097921519666723_1651683261785319977_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gGdSHf4ZhnAwBB9Fb8Ss9H3rNhGQlNys9-C15ndNYEyIJrEGAi-CKRwPLGxnmXaorQ&_nc_ohc=DOkQlmf10DsQ7kNvwEl8rZr&_nc_gid=EsO0RrTrP-T0FQgy8M7KpQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9HC4MlUX6jmtHwmMUmHvfw5eVGtyKxbz8qtal1tyZDog&oe=6A45E461&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/570034661_18097921519666723_1651683261785319977_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gGdSHf4ZhnAwBB9Fb8Ss9H3rNhGQlNys9-C15ndNYEyIJrEGAi-CKRwPLGxnmXaorQ&_nc_ohc=DOkQlmf10DsQ7kNvwEl8rZr&_nc_gid=EsO0RrTrP-T0FQgy8M7KpQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9HC4MlUX6jmtHwmMUmHvfw5eVGtyKxbz8qtal1tyZDog&oe=6A45E461&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "getawaydesserts",
@@ -88,7 +100,8 @@
     "phone": "7689665590",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:20.938Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/315290982_2064366603751222_760925823939273081_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gEAbIYBcCbaQwXmKvdHGHDHYTL5On5lJfpE1VCF2MWQoFLizF1vUiLGhoJq2iVWAAQ&_nc_ohc=L5kQfK9OMZcQ7kNvwHUH9tE&_nc_gid=uDHTXv5V84MVstKNgVBnbQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_4ocboLIZHtcE0qyCbhDRPFXF4kS7V_ZP1uT-dIy3BCg&oe=6A4602AA&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/315290982_2064366603751222_760925823939273081_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gEAbIYBcCbaQwXmKvdHGHDHYTL5On5lJfpE1VCF2MWQoFLizF1vUiLGhoJq2iVWAAQ&_nc_ohc=L5kQfK9OMZcQ7kNvwHUH9tE&_nc_gid=uDHTXv5V84MVstKNgVBnbQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_4ocboLIZHtcE0qyCbhDRPFXF4kS7V_ZP1uT-dIy3BCg&oe=6A4602AA&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "ekadwiindia",
@@ -99,9 +112,11 @@
     "website": "https://www.ekadwi.com/",
     "email": "hello@ekadwi.com",
     "phone": "6130515278",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:21.557Z",
-    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/277213934_1343836559449867_9066968868992986787_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gHeULUtJB1LzbSBtrs_l_8YVZX_EfiPlRj36iBKlcFI3AkDiBivwpCkTdK5R3lCpfU&_nc_ohc=Hu-I0tIr3ZMQ7kNvwFR07yT&_nc_gid=aXUnlBfMjA27sYypqxv6gw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-n0BZh47x4m5dSmb2ZgObQ0vO-02OfW9NBmO2KJXcw1Q&oe=6A45E597&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/277213934_1343836559449867_9066968868992986787_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gHeULUtJB1LzbSBtrs_l_8YVZX_EfiPlRj36iBKlcFI3AkDiBivwpCkTdK5R3lCpfU&_nc_ohc=Hu-I0tIr3ZMQ7kNvwFR07yT&_nc_gid=aXUnlBfMjA27sYypqxv6gw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-n0BZh47x4m5dSmb2ZgObQ0vO-02OfW9NBmO2KJXcw1Q&oe=6A45E597&_nc_sid=8b3546",
+    "category": "Clothing & Apparel",
+    "proposal_sent_at": "2026-07-02T19:52:48.512Z"
   },
   {
     "handle": "dohfulcookies",
@@ -112,9 +127,11 @@
     "website": "https://linktr.ee/dohfulcookies",
     "email": "hello@dohful.com",
     "phone": "7823984840",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:21.638Z",
-    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/212729899_958585758254215_3444708900523898853_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4yNTYuYzIifQ&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFc7q53O3teOA-xJqZdYDaV5qtmDda_6J-bpZHrh32e58INr3hoVqqkhUuhWT3ZYW0&_nc_ohc=ekjf77g658AQ7kNvwEqzmUV&_nc_gid=X2bZie4Y1gc3MBgMiBkFIw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_reigjlADsBhXm8m98sBPQlHhKBMXCSHPcv3TE7NM1IA&oe=6A46020C&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/212729899_958585758254215_3444708900523898853_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4yNTYuYzIifQ&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFc7q53O3teOA-xJqZdYDaV5qtmDda_6J-bpZHrh32e58INr3hoVqqkhUuhWT3ZYW0&_nc_ohc=ekjf77g658AQ7kNvwEqzmUV&_nc_gid=X2bZie4Y1gc3MBgMiBkFIw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_reigjlADsBhXm8m98sBPQlHhKBMXCSHPcv3TE7NM1IA&oe=6A46020C&_nc_sid=8b3546",
+    "category": "Food & Beverage",
+    "proposal_sent_at": "2026-07-02T19:52:53.107Z"
   },
   {
     "handle": "harvestsaladco",
@@ -127,7 +144,8 @@
     "phone": "7648343870",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:21.712Z",
-    "avatar": "https://instagram.fluk1-1.fna.fbcdn.net/v/t51.82787-19/518252964_18016981145729616_1200369840058291002_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=instagram.fluk1-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2gHmAGDw_hkdsAS4TKRuXr3jQwtxOOzV3GCJPVPMRfJT4yuy2k2vVphET_FBEGmIZmI&_nc_ohc=n8Hc8Lk2QTgQ7kNvwFlXQRW&_nc_gid=WgAnxDzbtZVMdEqkvcDdVQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-RxLuRCkOFvEYkcQ0JJWPZT1oqZabs7wzqsCxcIA13ug&oe=6A45F554&_nc_sid=8b3546"
+    "avatar": "https://instagram.fluk1-1.fna.fbcdn.net/v/t51.82787-19/518252964_18016981145729616_1200369840058291002_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=instagram.fluk1-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2gHmAGDw_hkdsAS4TKRuXr3jQwtxOOzV3GCJPVPMRfJT4yuy2k2vVphET_FBEGmIZmI&_nc_ohc=n8Hc8Lk2QTgQ7kNvwFlXQRW&_nc_gid=WgAnxDzbtZVMdEqkvcDdVQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-RxLuRCkOFvEYkcQ0JJWPZT1oqZabs7wzqsCxcIA13ug&oe=6A45F554&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "the_healthybinge",
@@ -140,7 +158,8 @@
     "phone": "7805562440",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:21.783Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/472214766_1354895032544051_3654183283080525249_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gEDk9mcpc4qP4KFzrEC3AY70jvpYYxWCiMGRVB6I-7AEIllzwxlktQzUtyrWrFC8Dw&_nc_ohc=a4mNUhKQ1LEQ7kNvwHEnLsV&_nc_gid=xE7D6UdyjNE2PoKDlYehjA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_CqHyF-5FZNYMsj-Vou-NiITZkFtEov972XR3jZY15CQ&oe=6A45D2DE&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/472214766_1354895032544051_3654183283080525249_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gEDk9mcpc4qP4KFzrEC3AY70jvpYYxWCiMGRVB6I-7AEIllzwxlktQzUtyrWrFC8Dw&_nc_ohc=a4mNUhKQ1LEQ7kNvwHEnLsV&_nc_gid=xE7D6UdyjNE2PoKDlYehjA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_CqHyF-5FZNYMsj-Vou-NiITZkFtEov972XR3jZY15CQ&oe=6A45D2DE&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "embercookware",
@@ -151,9 +170,11 @@
     "website": "https://embercookware.com/products/ember-set-of-3-ti-enamel-tawa-ti-enamel-dutch-oven-ti-enamel-grill-pan?variant=52169178939694",
     "email": "support@embercookware.com",
     "phone": "7747210475",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:22.798Z",
-    "avatar": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/461277858_905127380947774_4872157692308001037_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gH7of7c8lD0LBs7G7AmcKfK5y3zQBpCtOxFwzolPgbPBeafE0pAgzB6sErjGixv2Hk2O56xIgehLO_hTLdl4_eC&_nc_ohc=adG8KybMaRgQ7kNvwEEsqhQ&_nc_gid=gDutB_qAyrqfnkZ3OODAPA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9rDG9b89nzmmdkvgYZQv7FiQQBC8fEWnbnMyNH7l65pg&oe=6A45DE7B&_nc_sid=8b3546"
+    "avatar": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/461277858_905127380947774_4872157692308001037_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gH7of7c8lD0LBs7G7AmcKfK5y3zQBpCtOxFwzolPgbPBeafE0pAgzB6sErjGixv2Hk2O56xIgehLO_hTLdl4_eC&_nc_ohc=adG8KybMaRgQ7kNvwEEsqhQ&_nc_gid=gDutB_qAyrqfnkZ3OODAPA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9rDG9b89nzmmdkvgYZQv7FiQQBC8fEWnbnMyNH7l65pg&oe=6A45DE7B&_nc_sid=8b3546",
+    "category": "Home & Lifestyle",
+    "proposal_sent_at": "2026-07-02T19:52:57.756Z"
   },
   {
     "handle": "originprotein",
@@ -166,7 +187,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:37:23.212Z",
-    "avatar": "https://scontent-dfw5-2.cdninstagram.com/v/t51.2885-19/272765208_460179945768967_1401247599013758464_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42OTIuYzIifQ&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gEcMo4w9Um_9zCY10QHXnUJNLx-8SDIfXl5HnNd3jp4c3btudUDT01p_93jPQ4pjIc&_nc_ohc=a8lFH0Hb3eQQ7kNvwGllBVL&_nc_gid=UyrI-m1BhSRDyJ5BVYVy_w&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9HZEiU5naxhGLvgCEoQB6XmcQYAM7C0ejbjz1Zfh69uQ&oe=6A45ED22&_nc_sid=8b3546"
+    "avatar": "https://scontent-dfw5-2.cdninstagram.com/v/t51.2885-19/272765208_460179945768967_1401247599013758464_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42OTIuYzIifQ&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gEcMo4w9Um_9zCY10QHXnUJNLx-8SDIfXl5HnNd3jp4c3btudUDT01p_93jPQ4pjIc&_nc_ohc=a8lFH0Hb3eQQ7kNvwGllBVL&_nc_gid=UyrI-m1BhSRDyJ5BVYVy_w&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9HZEiU5naxhGLvgCEoQB6XmcQYAM7C0ejbjz1Zfh69uQ&oe=6A45ED22&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "goudagamesindia",
@@ -179,7 +201,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:37:32.109Z",
-    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/399964593_1721578178339599_3831046431390653525_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45MjQuYzIifQ&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gENXa6Yc_11QMYtpA2g6Zmcowb2NpAwka5qw4W5X9fZ-Cp7FGXtHmazKua142XzR88&_nc_ohc=6P0nKYPHEaQQ7kNvwGbkxnF&_nc_gid=aZnst-0jjFCt5YoECfHsIA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8j-Bv7Yii7qD5uroX4OYa8m-gHDyaAz1DQnLzj_rtrDw&oe=6A45F8E0&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/399964593_1721578178339599_3831046431390653525_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45MjQuYzIifQ&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gENXa6Yc_11QMYtpA2g6Zmcowb2NpAwka5qw4W5X9fZ-Cp7FGXtHmazKua142XzR88&_nc_ohc=6P0nKYPHEaQQ7kNvwGbkxnF&_nc_gid=aZnst-0jjFCt5YoECfHsIA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8j-Bv7Yii7qD5uroX4OYa8m-gHDyaAz1DQnLzj_rtrDw&oe=6A45F8E0&_nc_sid=8b3546",
+    "category": "Gaming & Toys"
   },
   {
     "handle": "getphab",
@@ -192,7 +215,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:37:32.110Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/729716700_18167301598447474_3047473962164384692_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gEbDPm3S2-nI-53k6-t9t62hwrX3Y3lDKpTkk2Vac3eHF5JjKc4fok5mfTwe7rcp1c&_nc_ohc=AqssWz0ojhkQ7kNvwFkKFXW&_nc_gid=9nKNXuW26hRX7FDAe-lJsg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-X2PH7vTCcOE1JHsAEAkGbXCJsItC9Lb9cUKjnHdD6TA&oe=6A460019&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/729716700_18167301598447474_3047473962164384692_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gEbDPm3S2-nI-53k6-t9t62hwrX3Y3lDKpTkk2Vac3eHF5JjKc4fok5mfTwe7rcp1c&_nc_ohc=AqssWz0ojhkQ7kNvwFkKFXW&_nc_gid=9nKNXuW26hRX7FDAe-lJsg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-X2PH7vTCcOE1JHsAEAkGbXCJsItC9Lb9cUKjnHdD6TA&oe=6A460019&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "scarters.shop",
@@ -203,9 +227,11 @@
     "website": "http://www.scarters.com",
     "email": "support@scarters.com",
     "phone": "9837617504",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:32.924Z",
-    "avatar": "https://scontent-det1-1.cdninstagram.com/v/t51.2885-19/471697492_500427102529677_2846892777889463419_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-det1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGHus1ETEIEU9o51BjMlaFlDhdbdiQy6dql-u-iKfeFbBJWjue6V6kTILrvWFuwlDU&_nc_ohc=wpzh9OjUocsQ7kNvwGcmf9r&_nc_gid=iA5xHIZ8kFWqsro0WF4IaA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9jMg7z_oJ8Ro608226ne0POuiDIgVTqp9XjBW4xx47jQ&oe=6A45ECEB&_nc_sid=8b3546"
+    "avatar": "https://scontent-det1-1.cdninstagram.com/v/t51.2885-19/471697492_500427102529677_2846892777889463419_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-det1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGHus1ETEIEU9o51BjMlaFlDhdbdiQy6dql-u-iKfeFbBJWjue6V6kTILrvWFuwlDU&_nc_ohc=wpzh9OjUocsQ7kNvwGcmf9r&_nc_gid=iA5xHIZ8kFWqsro0WF4IaA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9jMg7z_oJ8Ro608226ne0POuiDIgVTqp9XjBW4xx47jQ&oe=6A45ECEB&_nc_sid=8b3546",
+    "category": "Bags & Accessories",
+    "proposal_sent_at": "2026-07-02T19:53:01.683Z"
   },
   {
     "handle": "bohecoindia",
@@ -218,7 +244,8 @@
     "phone": "6551879985",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:33.421Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/328351319_575992714116226_2911487247720168558_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDU1LmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gG4nrZ00z4VI2bsq2Vjha_0ukoW79QKGr4IOxKuteO7XqJ-wcx9AEynj64MUUPjqME&_nc_ohc=ggDV5W0z8lwQ7kNvwEhN1-f&_nc_gid=CCyyhuQcHgTLMQTO-m4W2g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-ruSqUuD-tOsi00TRFrSUb_LSSZE5OAscp3PayavESdg&oe=6A45DF4B&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/328351319_575992714116226_2911487247720168558_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDU1LmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gG4nrZ00z4VI2bsq2Vjha_0ukoW79QKGr4IOxKuteO7XqJ-wcx9AEynj64MUUPjqME&_nc_ohc=ggDV5W0z8lwQ7kNvwEhN1-f&_nc_gid=CCyyhuQcHgTLMQTO-m4W2g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-ruSqUuD-tOsi00TRFrSUb_LSSZE5OAscp3PayavESdg&oe=6A45DF4B&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "qb.men",
@@ -231,7 +258,8 @@
     "phone": "6522457715",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:33.852Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/450627726_470274859128557_6508837917834552700_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gHPwEBgOGL-DEdva8FEcs00shGcAKAe9A3ISfcOzCoz09gNmPa7moGa8fqSExb3fvY&_nc_ohc=Lp8TSUt2vAYQ7kNvwEtEoOP&_nc_gid=u87SZKOIfdp1_qjWtuwUSQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9u7JGBRl5nIo6RMJJKdZ2hbCrnPKsi7aEACa2SJCI9OQ&oe=6A45E88E&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/450627726_470274859128557_6508837917834552700_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gHPwEBgOGL-DEdva8FEcs00shGcAKAe9A3ISfcOzCoz09gNmPa7moGa8fqSExb3fvY&_nc_ohc=Lp8TSUt2vAYQ7kNvwEtEoOP&_nc_gid=u87SZKOIfdp1_qjWtuwUSQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9u7JGBRl5nIo6RMJJKdZ2hbCrnPKsi7aEACa2SJCI9OQ&oe=6A45E88E&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "simplify.foods",
@@ -244,7 +272,8 @@
     "phone": "6641680284",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:34.834Z",
-    "avatar": "https://scontent-den2-1.cdninstagram.com/v/t51.2885-19/451179385_1140347533690148_949418844504614154_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-den2-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFPnXiv3efm7ombaKFIq0MrcA9YcUetbcI95eeDTpM3_1hWbqixmihabK1zDfWcGx4&_nc_ohc=T89nC-mE9sMQ7kNvwENjAI9&_nc_gid=4Ff9rPb3FUOZj27XsHuf2A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_r51PJ6rRCSSqulKrVr2noUYz6yGdeWSbjHVV6AtmCyg&oe=6A460408&_nc_sid=8b3546"
+    "avatar": "https://scontent-den2-1.cdninstagram.com/v/t51.2885-19/451179385_1140347533690148_949418844504614154_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-den2-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFPnXiv3efm7ombaKFIq0MrcA9YcUetbcI95eeDTpM3_1hWbqixmihabK1zDfWcGx4&_nc_ohc=T89nC-mE9sMQ7kNvwENjAI9&_nc_gid=4Ff9rPb3FUOZj27XsHuf2A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_r51PJ6rRCSSqulKrVr2noUYz6yGdeWSbjHVV6AtmCyg&oe=6A460408&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "thefunclab",
@@ -257,7 +286,8 @@
     "phone": "7779051720",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:35.111Z",
-    "avatar": "https://instagram.fsac1-2.fna.fbcdn.net/v/t51.2885-19/501809007_17872419450361298_151067974059117251_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fsac1-2.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2gFQpyWFI9fWLMCWaNh5rc895TTg1COsuQfZI7_Ft6UVRe1hTxbXl2UurUY7wObWDJU&_nc_ohc=raYTUZqv0XEQ7kNvwHGj6Gk&_nc_gid=okNvBQM1Q6W4fwiO3DO_Rg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8xAVVyhcVJC3RpKfkEXI2Qp3DXP_KRUj40pER-YH94cg&oe=6A45EB8E&_nc_sid=8b3546"
+    "avatar": "https://instagram.fsac1-2.fna.fbcdn.net/v/t51.2885-19/501809007_17872419450361298_151067974059117251_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fsac1-2.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2gFQpyWFI9fWLMCWaNh5rc895TTg1COsuQfZI7_Ft6UVRe1hTxbXl2UurUY7wObWDJU&_nc_ohc=raYTUZqv0XEQ7kNvwHGj6Gk&_nc_gid=okNvBQM1Q6W4fwiO3DO_Rg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8xAVVyhcVJC3RpKfkEXI2Qp3DXP_KRUj40pER-YH94cg&oe=6A45EB8E&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "baristacoffeecompany",
@@ -268,9 +298,11 @@
     "website": "https://baristashop.co.in/",
     "email": "onlinebarista@barista.co.in",
     "phone": "9554810912",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:36.008Z",
-    "avatar": "https://instagram.frca1-1.fna.fbcdn.net/v/t51.82787-19/628619784_18561064378012329_21592572862968032_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=instagram.frca1-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gHjBw0twchojM53B6At4jH-NMo-nPVh0nrtQI0irVU7RLXjgkNjSkFPLIGVwK42Z_I&_nc_ohc=8OmUd3FUPpgQ7kNvwFWN15a&_nc_gid=Ur26hZI_QTHUlpXKGDAa4Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-PcrXWelKPtjjkzd87sNYoccnhdmDVtQPdKAYaxmWimw&oe=6A45F5F9&_nc_sid=8b3546"
+    "avatar": "https://instagram.frca1-1.fna.fbcdn.net/v/t51.82787-19/628619784_18561064378012329_21592572862968032_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=instagram.frca1-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gHjBw0twchojM53B6At4jH-NMo-nPVh0nrtQI0irVU7RLXjgkNjSkFPLIGVwK42Z_I&_nc_ohc=8OmUd3FUPpgQ7kNvwFWN15a&_nc_gid=Ur26hZI_QTHUlpXKGDAa4Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-PcrXWelKPtjjkzd87sNYoccnhdmDVtQPdKAYaxmWimw&oe=6A45F5F9&_nc_sid=8b3546",
+    "category": "Food & Beverage",
+    "proposal_sent_at": "2026-07-02T19:53:06.203Z"
   },
   {
     "handle": "brevistay",
@@ -283,7 +315,8 @@
     "phone": "9090909090",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:37.227Z",
-    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-19/527984157_18413392543108859_8968043722025748788_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42MDEuYzIifQ&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gF7RfyPAgusa_KYx6m-2Xb3vm4HAKkU8U-6Qf1dcvRHqMomDMyG1VePttVBVUtXiqQ&_nc_ohc=jLG_uQavvD8Q7kNvwF-OEj6&_nc_gid=RE0PYso0BGJ_LOp7VlZ5Og&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8Al7T18EGECfyOPIDnOHqKy-V5kmIuc4abiQylU1j6Hw&oe=6A45FA86&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-19/527984157_18413392543108859_8968043722025748788_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42MDEuYzIifQ&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gF7RfyPAgusa_KYx6m-2Xb3vm4HAKkU8U-6Qf1dcvRHqMomDMyG1VePttVBVUtXiqQ&_nc_ohc=jLG_uQavvD8Q7kNvwF-OEj6&_nc_gid=RE0PYso0BGJ_LOp7VlZ5Og&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8Al7T18EGECfyOPIDnOHqKy-V5kmIuc4abiQylU1j6Hw&oe=6A45FA86&_nc_sid=8b3546",
+    "category": "Travel & Other"
   },
   {
     "handle": "bushirt.in",
@@ -294,9 +327,11 @@
     "website": "http://www.bushirt.in",
     "email": "sales@bushirt.in",
     "phone": "6611253320",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:37.545Z",
-    "avatar": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-19/642455216_18186726454367218_2083421147956909282_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gEsPeGSq1t-Q7uZ5sA3J9X1lP8asU0UmDB1OFwX9iPfAgGXbc_R4lf9GjLiB5r5LCI&_nc_ohc=Uezzr_Naat8Q7kNvwH7BQyn&_nc_gid=zgUsw5wzeYCbx6Pvp1FlbA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-vj-cCuaH4xFKTe4oYn1Krr3JoBMl7FM5JGCz2VW45Jw&oe=6A460477&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-19/642455216_18186726454367218_2083421147956909282_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gEsPeGSq1t-Q7uZ5sA3J9X1lP8asU0UmDB1OFwX9iPfAgGXbc_R4lf9GjLiB5r5LCI&_nc_ohc=Uezzr_Naat8Q7kNvwH7BQyn&_nc_gid=zgUsw5wzeYCbx6Pvp1FlbA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-vj-cCuaH4xFKTe4oYn1Krr3JoBMl7FM5JGCz2VW45Jw&oe=6A460477&_nc_sid=8b3546",
+    "category": "Clothing & Apparel",
+    "proposal_sent_at": "2026-07-02T19:53:10.147Z"
   },
   {
     "handle": "lovepangolin",
@@ -307,9 +342,11 @@
     "website": "https://www.lovepangolin.com/pages/link-in-bio",
     "email": "hello@lovepangolin.com",
     "phone": "8139770009",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:38.019Z",
-    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/449870770_336058096212849_1880181398884499751_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gEx5xkXdw6KgC9YWvEpURCaK0y0CO1hMEpLr6cusC1cZBTuM0DeV9PLB72VXqYX0WWySxEiLgMzs8f5k6SDm01v&_nc_ohc=FmfE40tSZOkQ7kNvwGv4z1P&_nc_gid=9JQ6HbYqzorr6vAUawgG6A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8ezo84aTzqEPP3WPXW-AdppK6V1vSCBwYguYC3Lb6UFg&oe=6A45EB1B&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/449870770_336058096212849_1880181398884499751_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gEx5xkXdw6KgC9YWvEpURCaK0y0CO1hMEpLr6cusC1cZBTuM0DeV9PLB72VXqYX0WWySxEiLgMzs8f5k6SDm01v&_nc_ohc=FmfE40tSZOkQ7kNvwGv4z1P&_nc_gid=9JQ6HbYqzorr6vAUawgG6A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8ezo84aTzqEPP3WPXW-AdppK6V1vSCBwYguYC3Lb6UFg&oe=6A45EB1B&_nc_sid=8b3546",
+    "category": "Clothing & Apparel",
+    "proposal_sent_at": "2026-07-02T19:53:14.090Z"
   },
   {
     "handle": "dynamocks",
@@ -320,9 +357,11 @@
     "website": "https://www.dynamocks.com/",
     "email": "sales@dynamocks.com",
     "phone": "8909034269",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:38.447Z",
-    "avatar": "https://scontent-lga3-3.cdninstagram.com/v/t51.2885-19/117819743_120825646153994_3309241838660673745_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zNzAuYzIifQ&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gFV7n-Oj0erzGXhPFc-ukoIG9d-WFx0LwRyymYGr5fDvHEk1yLisSU_Uy3mHWXA4Ds&_nc_ohc=98pCgjGsdNcQ7kNvwHZxufZ&_nc_gid=6h-4qrZzF9t1g-Unh-iuSA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_4w-7JRXnEhQHONdm2dCexXuoDuIrCktU0FEllD5BGGg&oe=6A45EB35&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-3.cdninstagram.com/v/t51.2885-19/117819743_120825646153994_3309241838660673745_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zNzAuYzIifQ&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gFV7n-Oj0erzGXhPFc-ukoIG9d-WFx0LwRyymYGr5fDvHEk1yLisSU_Uy3mHWXA4Ds&_nc_ohc=98pCgjGsdNcQ7kNvwHZxufZ&_nc_gid=6h-4qrZzF9t1g-Unh-iuSA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_4w-7JRXnEhQHONdm2dCexXuoDuIrCktU0FEllD5BGGg&oe=6A45EB35&_nc_sid=8b3546",
+    "category": "Clothing & Apparel",
+    "proposal_sent_at": "2026-07-02T19:53:17.992Z"
   },
   {
     "handle": "beanly",
@@ -335,7 +374,8 @@
     "phone": "6334979667",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:38.932Z",
-    "avatar": "https://scontent-lax3-1.cdninstagram.com/v/t51.82787-19/552500416_18285405340275158_5760567384300184921_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gG9Vdq9GpIOwrYhn9md_q0-cHMREsWlrQix-jl9uqmn2mmMh9zz3fWQgtCZyfP5PEA&_nc_ohc=V8rH0DjAQWQQ7kNvwFcSS6V&_nc_gid=T1XgmhOtrmZuA9JTxo7I4g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_-VOP8A1qDe_iqiDHmRUVDE2j9-cv0r7f6r0Nf5At-Jw&oe=6A46077A&_nc_sid=8b3546"
+    "avatar": "https://scontent-lax3-1.cdninstagram.com/v/t51.82787-19/552500416_18285405340275158_5760567384300184921_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gG9Vdq9GpIOwrYhn9md_q0-cHMREsWlrQix-jl9uqmn2mmMh9zz3fWQgtCZyfP5PEA&_nc_ohc=V8rH0DjAQWQQ7kNvwFcSS6V&_nc_gid=T1XgmhOtrmZuA9JTxo7I4g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_-VOP8A1qDe_iqiDHmRUVDE2j9-cv0r7f6r0Nf5At-Jw&oe=6A46077A&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "mnmlstindia",
@@ -346,9 +386,11 @@
     "website": "https://www.mnmlst.in/",
     "email": "support@mnmlst.in",
     "phone": "9837617504",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:39.368Z",
-    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.2885-19/452620773_392210553435244_2643850688588075791_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gEuPC2IyjMglJ-VaRnzGKVxcxPvFx6WwJzAO5WWezP-r3UfQfBUCRJ2Jyl0tq0-erc&_nc_ohc=GPQdsK0yf0gQ7kNvwFJhMkb&_nc_gid=5dvDKLb75h3QVSWVbtWb1g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8pmgKKgoap7crmxblyr8ff3Tr0P-TL0c7-6vaHLXvUMA&oe=6A45DA58&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.2885-19/452620773_392210553435244_2643850688588075791_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gEuPC2IyjMglJ-VaRnzGKVxcxPvFx6WwJzAO5WWezP-r3UfQfBUCRJ2Jyl0tq0-erc&_nc_ohc=GPQdsK0yf0gQ7kNvwFJhMkb&_nc_gid=5dvDKLb75h3QVSWVbtWb1g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8pmgKKgoap7crmxblyr8ff3Tr0P-TL0c7-6vaHLXvUMA&oe=6A45DA58&_nc_sid=8b3546",
+    "category": "Clothing & Apparel",
+    "proposal_sent_at": "2026-07-02T19:53:21.851Z"
   },
   {
     "handle": "nomadpizzaofficial",
@@ -361,7 +403,8 @@
     "phone": "7823556130",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:40.019Z",
-    "avatar": "https://scontent-dfw6-1.cdninstagram.com/v/t51.2885-19/485126634_1166150324680525_5550899535069402042_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gGDlbe81EbHWnqnq6eWLwkkWJYjpfDsjDDq7Yh8JRQ0QTvTDKHWCjm03mjLOOk9TFM&_nc_ohc=2fhL8fxdmksQ7kNvwFijkW7&_nc_gid=s9Nvsf3asImcvfgJYu9Vlw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9Mvb0j_8B7NvTwa6F-kcv1-DXw_TBfl4BkqYn6k5kgrw&oe=6A45FB8C&_nc_sid=8b3546"
+    "avatar": "https://scontent-dfw6-1.cdninstagram.com/v/t51.2885-19/485126634_1166150324680525_5550899535069402042_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gGDlbe81EbHWnqnq6eWLwkkWJYjpfDsjDDq7Yh8JRQ0QTvTDKHWCjm03mjLOOk9TFM&_nc_ohc=2fhL8fxdmksQ7kNvwFijkW7&_nc_gid=s9Nvsf3asImcvfgJYu9Vlw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9Mvb0j_8B7NvTwa6F-kcv1-DXw_TBfl4BkqYn6k5kgrw&oe=6A45FB8C&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "decodeage",
@@ -372,9 +415,11 @@
     "website": "https://decodeage.com/",
     "email": "care@decodeage.com",
     "phone": "6981895920",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:40.715Z",
-    "avatar": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-19/600823629_18070043945607474_1677848718517370506_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40MDAuYzIifQ&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gEBACA_Uv9Il7MugsJ-ECATSRBjZ1uMOisfG89774susZIbfvJvHFzg_iRHuxDoGbI&_nc_ohc=wSmomJV6IBQQ7kNvwHvH7pA&_nc_gid=Ne7s8annhIl_075n4T2tGg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-jNtWnVtQxEgZ_iNYP4vWUSEA3nEJUlLsDWvXRLSHNew&oe=6A46033C&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-19/600823629_18070043945607474_1677848718517370506_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40MDAuYzIifQ&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gEBACA_Uv9Il7MugsJ-ECATSRBjZ1uMOisfG89774susZIbfvJvHFzg_iRHuxDoGbI&_nc_ohc=wSmomJV6IBQQ7kNvwHvH7pA&_nc_gid=Ne7s8annhIl_075n4T2tGg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-jNtWnVtQxEgZ_iNYP4vWUSEA3nEJUlLsDWvXRLSHNew&oe=6A46033C&_nc_sid=8b3546",
+    "category": "Health & Wellness",
+    "proposal_sent_at": "2026-07-02T19:53:25.721Z"
   },
   {
     "handle": "skore_india",
@@ -385,9 +430,11 @@
     "website": "https://bit.ly/RockerOnLoveDepot",
     "email": "care@lovedepot.com",
     "phone": "8251544750",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:41.556Z",
-    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/323546610_698281425133608_6294621884499408060_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40ODAuYzIifQ&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gEs1oD1aF8Tg4cAn60X0kovdBC-nH_-lF0QGi-D6PbxcCO7o2wTCtuvkzhLRkEfLKc&_nc_ohc=p34aXCtkq9gQ7kNvwHzx0CM&_nc_gid=0HBOB0CETccqVVKlNLz-fQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af91TrzMUlCy-kdS8AFDyw4R6fCXX-Y2ClZ4upQX-jLWBg&oe=6A45D8C0&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/323546610_698281425133608_6294621884499408060_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40ODAuYzIifQ&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gEs1oD1aF8Tg4cAn60X0kovdBC-nH_-lF0QGi-D6PbxcCO7o2wTCtuvkzhLRkEfLKc&_nc_ohc=p34aXCtkq9gQ7kNvwHzx0CM&_nc_gid=0HBOB0CETccqVVKlNLz-fQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af91TrzMUlCy-kdS8AFDyw4R6fCXX-Y2ClZ4upQX-jLWBg&oe=6A45D8C0&_nc_sid=8b3546",
+    "category": "Beauty & Personal Care",
+    "proposal_sent_at": "2026-07-02T19:53:30.038Z"
   },
   {
     "handle": "alpenliebe_india",
@@ -400,7 +447,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:37:41.556Z",
-    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/144297603_432016661572599_7674664284068316332_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40MDAuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFVhI6Rgu5Fask7Wm5ywLUp2EqYatwrdVj1dQ6nW2tuceYYbPtgjzht3aJrTzb0Z8Y&_nc_ohc=GWG_O4ZQMboQ7kNvwH3YEL0&_nc_gid=tiZ8yfufseHIeVzpaUkhww&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af962ycNvkO96hqMPO2eaWR7ZtRCkclslyF3GcWktSlhXQ&oe=6A45F66D&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/144297603_432016661572599_7674664284068316332_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40MDAuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFVhI6Rgu5Fask7Wm5ywLUp2EqYatwrdVj1dQ6nW2tuceYYbPtgjzht3aJrTzb0Z8Y&_nc_ohc=GWG_O4ZQMboQ7kNvwH3YEL0&_nc_gid=tiZ8yfufseHIeVzpaUkhww&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af962ycNvkO96hqMPO2eaWR7ZtRCkclslyF3GcWktSlhXQ&oe=6A45F66D&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "theapparelbox",
@@ -413,7 +461,8 @@
     "phone": "6857110962",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:42.093Z",
-    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.82787-19/658626120_18576670294008118_8719201336221034384_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFA879-VmG2OhX5QONYLynjHMMdQhoLuvcl5fODA-wyouLVXVPzZXJhRaDYv7z8NiA&_nc_ohc=66VBgaUstG4Q7kNvwHv-02y&_nc_gid=FEyQl93QB8HrByHUyCum_g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8zw3V2Msi8OF_IsZa0O2F5MLKUtmMpJWiPzXvzgYqANQ&oe=6A45F4C9&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.82787-19/658626120_18576670294008118_8719201336221034384_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFA879-VmG2OhX5QONYLynjHMMdQhoLuvcl5fODA-wyouLVXVPzZXJhRaDYv7z8NiA&_nc_ohc=66VBgaUstG4Q7kNvwHv-02y&_nc_gid=FEyQl93QB8HrByHUyCum_g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8zw3V2Msi8OF_IsZa0O2F5MLKUtmMpJWiPzXvzgYqANQ&oe=6A45F4C9&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "blackbazacoffee",
@@ -426,7 +475,8 @@
     "phone": "7690663900",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:42.387Z",
-    "avatar": "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/717066727_18587048785062547_7018252248556471408_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFwQ2a-EN6ZDmlUWrmPWerQlGtuZtvfVoG0hH5FOivoEwzl23F-NMSUK3Gg1HmwtOU&_nc_ohc=xdk7p20RG1kQ7kNvwELvdaI&_nc_gid=cIv_e7nU9Dd8eQ21DdkVfA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af__b7QtCEV0kd_tbm2-_TbHAReq3LAGGrJuBsprhAcvCg&oe=6A45F9C9&_nc_sid=8b3546"
+    "avatar": "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/717066727_18587048785062547_7018252248556471408_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFwQ2a-EN6ZDmlUWrmPWerQlGtuZtvfVoG0hH5FOivoEwzl23F-NMSUK3Gg1HmwtOU&_nc_ohc=xdk7p20RG1kQ7kNvwELvdaI&_nc_gid=cIv_e7nU9Dd8eQ21DdkVfA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af__b7QtCEV0kd_tbm2-_TbHAReq3LAGGrJuBsprhAcvCg&oe=6A45F9C9&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "cothas_coffee",
@@ -437,9 +487,11 @@
     "website": "https://www.cothas.com/shop/",
     "email": "customercare@cothas.com",
     "phone": "9285926386",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:43.369Z",
-    "avatar": "https://scontent-mia5-2.cdninstagram.com/v/t51.82787-19/610890326_18087967520083608_7472411057935855975_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gFtg_dOrPb_XN48GoV_1FUSrFtpXDIVIo3TXzfvLCXGrhxDC4q8b1E162iSrIVbQDE&_nc_ohc=gToa9XHjEksQ7kNvwHuY3Wv&_nc_gid=fUTLkDNI9-TeoKb86TT5Qw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9lXw7kiTt8fUg7ARKiRheIXlFZv9WSNyL5WuZW6Nifxg&oe=6A45E0E3&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia5-2.cdninstagram.com/v/t51.82787-19/610890326_18087967520083608_7472411057935855975_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gFtg_dOrPb_XN48GoV_1FUSrFtpXDIVIo3TXzfvLCXGrhxDC4q8b1E162iSrIVbQDE&_nc_ohc=gToa9XHjEksQ7kNvwHuY3Wv&_nc_gid=fUTLkDNI9-TeoKb86TT5Qw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9lXw7kiTt8fUg7ARKiRheIXlFZv9WSNyL5WuZW6Nifxg&oe=6A45E0E3&_nc_sid=8b3546",
+    "category": "Food & Beverage",
+    "proposal_sent_at": "2026-07-02T19:53:34.358Z"
   },
   {
     "handle": "heliosindia",
@@ -452,7 +504,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:37:43.680Z",
-    "avatar": "https://scontent-den2-1.cdninstagram.com/v/t51.82787-19/648695491_18518615821073731_5642803652188331885_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-den2-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gEKRf6h9ZAHlr2HsYMvGcKELPY9peFWuY33QZYdIfJDqXFJm-BO4vGZMbgZQDHdMUA&_nc_ohc=k4kWD6IkFAgQ7kNvwGlcp3r&_nc_gid=_H0FX_kDXqFkDemrigFr-Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8-JmiE9Akx_B_qAEppSJPSQi1bY9xeowFm3vhj61o_0g&oe=6A460198&_nc_sid=8b3546"
+    "avatar": "https://scontent-den2-1.cdninstagram.com/v/t51.82787-19/648695491_18518615821073731_5642803652188331885_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-den2-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gEKRf6h9ZAHlr2HsYMvGcKELPY9peFWuY33QZYdIfJDqXFJm-BO4vGZMbgZQDHdMUA&_nc_ohc=k4kWD6IkFAgQ7kNvwGlcp3r&_nc_gid=_H0FX_kDXqFkDemrigFr-Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8-JmiE9Akx_B_qAEppSJPSQi1bY9xeowFm3vhj61o_0g&oe=6A460198&_nc_sid=8b3546",
+    "category": "Bags & Accessories"
   },
   {
     "handle": "tobehonestfoods",
@@ -463,9 +516,11 @@
     "website": "https://www.tobehonest.in/",
     "email": "care@tobehonest.in",
     "phone": "9568510366",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:43.997Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/503059763_18056510540248093_6968380797045928717_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gEh6zi4-t1VpfMdKgGsOjjv1ptMsHVR8pOUQmxYvj3qtsYqbswi6bkoe4KLUBZDR9Y&_nc_ohc=xFQTmjroj5UQ7kNvwGCi_7R&_nc_gid=EeWbjWbeU78qdy4ZyClZBw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8zYt0sYaJfADxqXKvFwoJQyfwZ6sypWvIufQFQHwuiRw&oe=6A45D56E&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/503059763_18056510540248093_6968380797045928717_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gEh6zi4-t1VpfMdKgGsOjjv1ptMsHVR8pOUQmxYvj3qtsYqbswi6bkoe4KLUBZDR9Y&_nc_ohc=xFQTmjroj5UQ7kNvwGCi_7R&_nc_gid=EeWbjWbeU78qdy4ZyClZBw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8zYt0sYaJfADxqXKvFwoJQyfwZ6sypWvIufQFQHwuiRw&oe=6A45D56E&_nc_sid=8b3546",
+    "category": "Food & Beverage",
+    "proposal_sent_at": "2026-07-02T19:53:38.652Z"
   },
   {
     "handle": "fittr_one",
@@ -478,7 +533,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:37:45.429Z",
-    "avatar": "https://instagram.fbis1-1.fna.fbcdn.net/v/t51.82787-19/553050074_17894980629303903_2106793664729629999_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMxIn0&_nc_ht=instagram.fbis1-1.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gH_BQ2OYgDAryF4lQ_W8W7H5yI6h8LkQ--35fz71TSDHtWhmqqfdFU_f_LToODDLi4&_nc_ohc=tKJPV7NeRbgQ7kNvwFHPs4u&_nc_gid=IE8o2G1v4xPnHUTSmX-YfQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_ZkjVRza8E24yl8csZiuP0qUYXp_8Md1C8xl-V0TyMJg&oe=6A4609C1&_nc_sid=8b3546"
+    "avatar": "https://instagram.fbis1-1.fna.fbcdn.net/v/t51.82787-19/553050074_17894980629303903_2106793664729629999_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMxIn0&_nc_ht=instagram.fbis1-1.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gH_BQ2OYgDAryF4lQ_W8W7H5yI6h8LkQ--35fz71TSDHtWhmqqfdFU_f_LToODDLi4&_nc_ohc=tKJPV7NeRbgQ7kNvwFHPs4u&_nc_gid=IE8o2G1v4xPnHUTSmX-YfQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_ZkjVRza8E24yl8csZiuP0qUYXp_8Md1C8xl-V0TyMJg&oe=6A4609C1&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "svasthyaaorganics",
@@ -489,9 +545,11 @@
     "website": "https://svasthyaa.com/",
     "email": "hello@svasthyaa.com",
     "phone": "9812707256",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:46.544Z",
-    "avatar": "https://scontent-sjc6-1.cdninstagram.com/v/t51.2885-19/481196643_1370703673938928_1211727933541355564_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40ODcuYzIifQ&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gEJ5I65yNIZQHyK9Hr5m7aIOUQGQfB6Q64HIogfMS0B_regwnT9J17JLHSvi4riVJw&_nc_ohc=SNFLa3E3xcQQ7kNvwGTdSzq&_nc_gid=oyGQtGNxM64GMO2g0P218Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9YyXX1nHpHUmVjpXmu_3k2f7_ag_2UwBpZaXtQdLafIA&oe=6A4606C0&_nc_sid=8b3546"
+    "avatar": "https://scontent-sjc6-1.cdninstagram.com/v/t51.2885-19/481196643_1370703673938928_1211727933541355564_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40ODcuYzIifQ&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gEJ5I65yNIZQHyK9Hr5m7aIOUQGQfB6Q64HIogfMS0B_regwnT9J17JLHSvi4riVJw&_nc_ohc=SNFLa3E3xcQQ7kNvwGTdSzq&_nc_gid=oyGQtGNxM64GMO2g0P218Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9YyXX1nHpHUmVjpXmu_3k2f7_ag_2UwBpZaXtQdLafIA&oe=6A4606C0&_nc_sid=8b3546",
+    "category": "Health & Wellness",
+    "proposal_sent_at": "2026-07-02T19:53:42.618Z"
   },
   {
     "handle": "chuppslife",
@@ -502,9 +560,11 @@
     "website": "https://www.chupps.com",
     "email": "customercare@chupps.com",
     "phone": "8134956259",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:47.069Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/709266341_18082013777386519_1317531312432549888_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFr0aAWWDYO3otAs9UJoZMDXJfiNVg4UlWgAoqJERZwp_PIKBIDG1mfo_Y-k1rpsOw&_nc_ohc=0PZSSX7OfPoQ7kNvwGKUfj9&_nc_gid=cgpYhCJBoI9c7nF83cGuUA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_cvWo5xXL55Y22BWhAVO1GrefqPHmOIdKABDSKQYpWPw&oe=6A4609C6&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/709266341_18082013777386519_1317531312432549888_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFr0aAWWDYO3otAs9UJoZMDXJfiNVg4UlWgAoqJERZwp_PIKBIDG1mfo_Y-k1rpsOw&_nc_ohc=0PZSSX7OfPoQ7kNvwGKUfj9&_nc_gid=cgpYhCJBoI9c7nF83cGuUA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_cvWo5xXL55Y22BWhAVO1GrefqPHmOIdKABDSKQYpWPw&oe=6A4609C6&_nc_sid=8b3546",
+    "category": "Clothing & Apparel",
+    "proposal_sent_at": "2026-07-02T19:53:46.774Z"
   },
   {
     "handle": "arakucoffeein",
@@ -517,7 +577,8 @@
     "phone": "6817429067",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:47.235Z",
-    "avatar": "https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/164896068_194250878854869_1232669329528899194_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gFugkIlxCRUufvAYvZSxkYAUxJ-XZIbteZ_52ueV8MHGUHgc1mXeYKeEH9tuBC6Jog&_nc_ohc=LnG49S3TsSUQ7kNvwGj8ihI&_nc_gid=A22rNVSyR3wsxozkk3fl4Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_gD_VnO9Pi7w5mTgC60GQ24qkC4U0h13pBf3OEY8H_BQ&oe=6A45D286&_nc_sid=8b3546"
+    "avatar": "https://scontent-bos5-1.cdninstagram.com/v/t51.2885-19/164896068_194250878854869_1232669329528899194_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gFugkIlxCRUufvAYvZSxkYAUxJ-XZIbteZ_52ueV8MHGUHgc1mXeYKeEH9tuBC6Jog&_nc_ohc=LnG49S3TsSUQ7kNvwGj8ihI&_nc_gid=A22rNVSyR3wsxozkk3fl4Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_gD_VnO9Pi7w5mTgC60GQ24qkC4U0h13pBf3OEY8H_BQ&oe=6A45D286&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "milldproteinatta",
@@ -530,7 +591,8 @@
     "phone": "7725324719",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:47.824Z",
-    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/580490672_17846063118604850_6319625702031863622_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmV4cGVyaW1lbnRhbCJ9&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gH1a2ItB_rZbgF1q9-2Ubz6ltOENYaadLg1ZLO-hQ4inRqwRwDPJCZL_T_jowc_OlU&_nc_ohc=0pHFpK8emCAQ7kNvwEBHysl&_nc_gid=BXUD4h_ypylpxKXiYJtXtw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_7voFlZ5fhJZLVM74NL98oc_xJsJkicsNvmoYbZfNh0w&oe=6A45E952&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/580490672_17846063118604850_6319625702031863622_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmV4cGVyaW1lbnRhbCJ9&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gH1a2ItB_rZbgF1q9-2Ubz6ltOENYaadLg1ZLO-hQ4inRqwRwDPJCZL_T_jowc_OlU&_nc_ohc=0pHFpK8emCAQ7kNvwEBHysl&_nc_gid=BXUD4h_ypylpxKXiYJtXtw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_7voFlZ5fhJZLVM74NL98oc_xJsJkicsNvmoYbZfNh0w&oe=6A45E952&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "swissmilitaryindia",
@@ -541,9 +603,11 @@
     "website": "https://www.swissmilitaryindia.com/collections/black-gold-collection",
     "email": "feedback@swissmilitaryindia.com",
     "phone": "9113999703",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:48.546Z",
-    "avatar": "https://scontent-ord5-1.cdninstagram.com/v/t51.2885-19/495992814_18356113093150524_8673085193900508837_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gESFY1WZ4mSxUCHAFhJhygz4a1ZgFqX5SvfLW2BqYJFIAiEX-MwVKY_T3mRy-j9-RI&_nc_ohc=po-1zhQm6RoQ7kNvwGwtNvW&_nc_gid=JpD5f9mLV7ibfJFLDHpbdA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-EGuSv3uNNHPoJGeBDwQBCFTCWdFvuChPJyIAXLsxDiQ&oe=6A45F300&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-1.cdninstagram.com/v/t51.2885-19/495992814_18356113093150524_8673085193900508837_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gESFY1WZ4mSxUCHAFhJhygz4a1ZgFqX5SvfLW2BqYJFIAiEX-MwVKY_T3mRy-j9-RI&_nc_ohc=po-1zhQm6RoQ7kNvwGwtNvW&_nc_gid=JpD5f9mLV7ibfJFLDHpbdA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-EGuSv3uNNHPoJGeBDwQBCFTCWdFvuChPJyIAXLsxDiQ&oe=6A45F300&_nc_sid=8b3546",
+    "category": "Bags & Accessories",
+    "proposal_sent_at": "2026-07-02T19:53:50.396Z"
   },
   {
     "handle": "nutrova",
@@ -556,7 +620,8 @@
     "phone": "7804028040",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:48.783Z",
-    "avatar": "https://scontent-phl2-1.cdninstagram.com/v/t51.2885-19/461934168_899709358902214_6074785488799422981_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44MDAuYzIifQ&_nc_ht=scontent-phl2-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGCqiwtZSsUjRLh_5fK6w7JCxozVtz-i9ooVBN5wdaU7YTHpIbMPmvkrfRdR1KKIFP2pF03v1ar5QI5RbghxHbw&_nc_ohc=e7LyBKP87wUQ7kNvwFcGm22&_nc_gid=ytqC9iM_vZ4eHU79sOwouA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-JqXyLtoPTO64BKo-F9xv1fyCwv1aTSeogrP9ucR8Y7A&oe=6A45FCEF&_nc_sid=8b3546"
+    "avatar": "https://scontent-phl2-1.cdninstagram.com/v/t51.2885-19/461934168_899709358902214_6074785488799422981_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44MDAuYzIifQ&_nc_ht=scontent-phl2-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGCqiwtZSsUjRLh_5fK6w7JCxozVtz-i9ooVBN5wdaU7YTHpIbMPmvkrfRdR1KKIFP2pF03v1ar5QI5RbghxHbw&_nc_ohc=e7LyBKP87wUQ7kNvwFcGm22&_nc_gid=ytqC9iM_vZ4eHU79sOwouA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-JqXyLtoPTO64BKo-F9xv1fyCwv1aTSeogrP9ucR8Y7A&oe=6A45FCEF&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "eattulua",
@@ -567,9 +632,11 @@
     "website": "https://tulua.shop/",
     "email": "Hello@eattulua.com",
     "phone": "7743256645",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:49.132Z",
-    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.2885-19/334574226_899630654652076_8948976807467086447_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gFwWAKjW3WIb1O6fEIxX3Orgn-SpdvkZuikfMJ6VCdggS2hiTyAflV-7jcVnUqLalM&_nc_ohc=0ghZXsFcaycQ7kNvwFwA0Hz&_nc_gid=jFpLbx_Ew9MI4mIJ9asjXQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_6OxueC2k34ZqOohYhBuBkW16GIZBuXfe25pHfI4npiQ&oe=6A45E0CF&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.2885-19/334574226_899630654652076_8948976807467086447_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gFwWAKjW3WIb1O6fEIxX3Orgn-SpdvkZuikfMJ6VCdggS2hiTyAflV-7jcVnUqLalM&_nc_ohc=0ghZXsFcaycQ7kNvwFwA0Hz&_nc_gid=jFpLbx_Ew9MI4mIJ9asjXQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_6OxueC2k34ZqOohYhBuBkW16GIZBuXfe25pHfI4npiQ&oe=6A45E0CF&_nc_sid=8b3546",
+    "category": "Food & Beverage",
+    "proposal_sent_at": "2026-07-02T19:53:54.308Z"
   },
   {
     "handle": "suchalisartisanbakehouse",
@@ -582,7 +649,8 @@
     "phone": "7820511210",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:49.208Z",
-    "avatar": "https://scontent-lax3-2.cdninstagram.com/v/t51.82787-19/534320278_18399257377188912_2752691234182438924_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43NzMuYzIifQ&_nc_ht=scontent-lax3-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gE0X2QucS6iZE7OfY88YW4pra76tkRHPeMoJ9tLG107Gb4KinBmcayucSWfETiPtXs&_nc_ohc=qOaH55d1CZAQ7kNvwG-VtPK&_nc_gid=qVwN2ZhYDipTxeBOb2NT2A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af__6KDO7bldiWtQFsK40VVusL4kKWo0otk43xKcD7ewlA&oe=6A45D4D3&_nc_sid=8b3546"
+    "avatar": "https://scontent-lax3-2.cdninstagram.com/v/t51.82787-19/534320278_18399257377188912_2752691234182438924_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43NzMuYzIifQ&_nc_ht=scontent-lax3-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gE0X2QucS6iZE7OfY88YW4pra76tkRHPeMoJ9tLG107Gb4KinBmcayucSWfETiPtXs&_nc_ohc=qOaH55d1CZAQ7kNvwG-VtPK&_nc_gid=qVwN2ZhYDipTxeBOb2NT2A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af__6KDO7bldiWtQFsK40VVusL4kKWo0otk43xKcD7ewlA&oe=6A45D4D3&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "elevarsports_official",
@@ -593,9 +661,11 @@
     "website": "https://linktr.ee/elevar_sports",
     "email": "support@elevarsports.com",
     "phone": "7788561830",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:37:49.301Z",
-    "avatar": "https://scontent-dfw5-2.cdninstagram.com/v/t51.2885-19/313925546_644796750514456_747123125309376724_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40MDguYzIifQ&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gEOHtdsnLoGIYVYZcf8K4lINpRdUQuCp-VmhJFTO22UD6uSOtc0rd8KMomP8vK5D-Q&_nc_ohc=-TIhi6F_vtAQ7kNvwHcsIs-&_nc_gid=tpv4BccmLlbLueF83ewKTw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_HCIahBEIJG7ZLb6Mkfc2OvjuVDrNGI93EY_o7DS9tDw&oe=6A45F50B&_nc_sid=8b3546"
+    "avatar": "https://scontent-dfw5-2.cdninstagram.com/v/t51.2885-19/313925546_644796750514456_747123125309376724_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40MDguYzIifQ&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gEOHtdsnLoGIYVYZcf8K4lINpRdUQuCp-VmhJFTO22UD6uSOtc0rd8KMomP8vK5D-Q&_nc_ohc=-TIhi6F_vtAQ7kNvwHcsIs-&_nc_gid=tpv4BccmLlbLueF83ewKTw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_HCIahBEIJG7ZLb6Mkfc2OvjuVDrNGI93EY_o7DS9tDw&oe=6A45F50B&_nc_sid=8b3546",
+    "category": "Health & Wellness",
+    "proposal_sent_at": "2026-07-02T19:53:58.526Z"
   },
   {
     "handle": "nuutjob",
@@ -608,7 +678,8 @@
     "phone": "7620493124",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:50.087Z",
-    "avatar": "https://scontent-lax3-2.cdninstagram.com/v/t51.2885-19/157615228_3770736319674659_9055505783206466234_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-lax3-2.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gGXHTv1D2kvrYHSPgXbe8yhs3gK8naw67xLqgpW51_3537e7eau4Z2HopBGL37uvBw&_nc_ohc=t_8pOViZK3cQ7kNvwEBOE9d&_nc_gid=For53f0UgMnia7CYaVWZjw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9tY4A8NGoS4Z0LHs4xyYhi-mKw-sFi1CfD6ba1fzC9eA&oe=6A45D877&_nc_sid=8b3546"
+    "avatar": "https://scontent-lax3-2.cdninstagram.com/v/t51.2885-19/157615228_3770736319674659_9055505783206466234_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-lax3-2.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gGXHTv1D2kvrYHSPgXbe8yhs3gK8naw67xLqgpW51_3537e7eau4Z2HopBGL37uvBw&_nc_ohc=t_8pOViZK3cQ7kNvwEBOE9d&_nc_gid=For53f0UgMnia7CYaVWZjw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9tY4A8NGoS4Z0LHs4xyYhi-mKw-sFi1CfD6ba1fzC9eA&oe=6A45D877&_nc_sid=8b3546",
+    "category": "Beauty & Personal Care"
   },
   {
     "handle": "gear.bags",
@@ -621,7 +692,8 @@
     "phone": "7225017536",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:50.481Z",
-    "avatar": "https://scontent-xxc1-1.cdninstagram.com/v/t51.2885-19/277940327_360527805836118_6978475026925737588_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zNjcuYzIifQ&_nc_ht=scontent-xxc1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gF5bt5KkAIkvUQvt88mps8VmwTfpQ1geLbNoqq2YFhhY7_nt6E_xRaJeT1XIgtXP7Y&_nc_ohc=Hgq_wxMFUksQ7kNvwHc5zVg&_nc_gid=AmFC2jj8OdAdRmLlb8BJBw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9jUrDqCKNh0Mh-3Tzdhd_QsK17HuvYE7_SRk96fyQPvw&oe=6A4601FF&_nc_sid=8b3546"
+    "avatar": "https://scontent-xxc1-1.cdninstagram.com/v/t51.2885-19/277940327_360527805836118_6978475026925737588_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zNjcuYzIifQ&_nc_ht=scontent-xxc1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gF5bt5KkAIkvUQvt88mps8VmwTfpQ1geLbNoqq2YFhhY7_nt6E_xRaJeT1XIgtXP7Y&_nc_ohc=Hgq_wxMFUksQ7kNvwHc5zVg&_nc_gid=AmFC2jj8OdAdRmLlb8BJBw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9jUrDqCKNh0Mh-3Tzdhd_QsK17HuvYE7_SRk96fyQPvw&oe=6A4601FF&_nc_sid=8b3546",
+    "category": "Bags & Accessories"
   },
   {
     "handle": "hex_a_fun",
@@ -634,7 +706,8 @@
     "phone": "7804069060",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:50.560Z",
-    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/546210006_18068411927337263_8832116065467631471_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMxIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gEN8dXNwuMLyl6qfrBGsGV8OlGC7wl0qLwUAnHO_AC5_JKgUmlAfvcTV0T1L0Q7Q6I&_nc_ohc=rbsWAi6quGwQ7kNvwF1hWSF&_nc_gid=WmI5xT3LGe1pFz5ZuEghzA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-5Hbem8mSevElr2uDhky-6XRUW5CJEPbDZ-ih65Iaydg&oe=6A45FE0E&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/546210006_18068411927337263_8832116065467631471_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMxIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gEN8dXNwuMLyl6qfrBGsGV8OlGC7wl0qLwUAnHO_AC5_JKgUmlAfvcTV0T1L0Q7Q6I&_nc_ohc=rbsWAi6quGwQ7kNvwF1hWSF&_nc_gid=WmI5xT3LGe1pFz5ZuEghzA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-5Hbem8mSevElr2uDhky-6XRUW5CJEPbDZ-ih65Iaydg&oe=6A45FE0E&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "darkinschocolate",
@@ -647,7 +720,8 @@
     "phone": "7276100946",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:50.920Z",
-    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/94454830_2679424945680413_4977128103991050240_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43MjAuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gEHKH21EcnAcGsIRuReKkAwuzmdi5JxZ_M6gOy56kDLXmoBG64ZWS8bzTO5KA4sg5U&_nc_ohc=z_umPxMafZMQ7kNvwGS061d&_nc_gid=C68_CrMdW8pfDJrK6fZhwQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_HKkhg3NlPpd5ZvbVDY1rSfr-hDxp3JGvNJy77UgP6Cg&oe=6A45D881&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/94454830_2679424945680413_4977128103991050240_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43MjAuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gEHKH21EcnAcGsIRuReKkAwuzmdi5JxZ_M6gOy56kDLXmoBG64ZWS8bzTO5KA4sg5U&_nc_ohc=z_umPxMafZMQ7kNvwGS061d&_nc_gid=C68_CrMdW8pfDJrK6fZhwQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_HKkhg3NlPpd5ZvbVDY1rSfr-hDxp3JGvNJy77UgP6Cg&oe=6A45D881&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "qua.nutrition",
@@ -660,7 +734,8 @@
     "phone": "7793518830",
     "status": "new",
     "discovered_at": "2026-06-27T18:37:51.006Z",
-    "avatar": "https://scontent-bos5-1.cdninstagram.com/v/t51.82787-19/617429224_18434495407128771_4808558061994490098_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gHVH93HHIxZLvLpAXoxDmqwRNK5oUQsN3DebLlbN6jSMzqMj0JqzrjFL-veql_WvOY&_nc_ohc=E9Sd0CuugQ4Q7kNvwHlZMPw&_nc_gid=9eUsxHgILOSvunv1-wq_Rw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9yPmOM7i-SrKbVj6K7iOvdd4cN3Bm8JCegaFEJov1pfg&oe=6A45F5CF&_nc_sid=8b3546"
+    "avatar": "https://scontent-bos5-1.cdninstagram.com/v/t51.82787-19/617429224_18434495407128771_4808558061994490098_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gHVH93HHIxZLvLpAXoxDmqwRNK5oUQsN3DebLlbN6jSMzqMj0JqzrjFL-veql_WvOY&_nc_ohc=E9Sd0CuugQ4Q7kNvwHlZMPw&_nc_gid=9eUsxHgILOSvunv1-wq_Rw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9yPmOM7i-SrKbVj6K7iOvdd4cN3Bm8JCegaFEJov1pfg&oe=6A45F5CF&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "fuelledlifestyle",
@@ -673,7 +748,8 @@
     "phone": "8640365176",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:03.756Z",
-    "avatar": "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/728093086_18104632772109785_1929648466150966716_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gGS-Br5lou-EQUnjjD28EtQ4UcNZG317SA5q2y41m0HVJCsrzMC5uJIFpEe1z2GqVs&_nc_ohc=FRoaLwSJG_oQ7kNvwGmWwvg&_nc_gid=PlnJwrZ0I8CQhdpuSDBMRQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9znWnbx148ziPOZxleW1DjpGzPAEDr1aQ7nA5yFrht6w&oe=6A46038A&_nc_sid=8b3546"
+    "avatar": "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/728093086_18104632772109785_1929648466150966716_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gGS-Br5lou-EQUnjjD28EtQ4UcNZG317SA5q2y41m0HVJCsrzMC5uJIFpEe1z2GqVs&_nc_ohc=FRoaLwSJG_oQ7kNvwGmWwvg&_nc_gid=PlnJwrZ0I8CQhdpuSDBMRQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9znWnbx148ziPOZxleW1DjpGzPAEDr1aQ7nA5yFrht6w&oe=6A46038A&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "bombay.daak",
@@ -686,7 +762,8 @@
     "phone": "7770419220",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:03.833Z",
-    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/543684407_17917551270169210_8118226407012914497_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFXo6L4JycesShngISGQYIM7DnKswJBEIenwDKb8eATagYYTfP10VKnf3e6gu9uMNU&_nc_ohc=jmTLmxFEggQQ7kNvwFuS4NI&_nc_gid=K98G5Lz5DCjdYWHEqNia6A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_6bUnCj7qCs3MuTPGvN7JTGp_hLBxPv71seY07A7j8OA&oe=6A45ED0D&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/543684407_17917551270169210_8118226407012914497_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFXo6L4JycesShngISGQYIM7DnKswJBEIenwDKb8eATagYYTfP10VKnf3e6gu9uMNU&_nc_ohc=jmTLmxFEggQQ7kNvwFuS4NI&_nc_gid=K98G5Lz5DCjdYWHEqNia6A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_6bUnCj7qCs3MuTPGvN7JTGp_hLBxPv71seY07A7j8OA&oe=6A45ED0D&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "atmosphere.in",
@@ -697,9 +774,11 @@
     "website": "http://www.atmospherestudio.in",
     "email": "hello@atmospherestudio.in",
     "phone": "9963956132",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:38:04.642Z",
-    "avatar": "https://scontent-lga3-3.cdninstagram.com/v/t51.2885-19/103928432_261091031654394_2479563285530147881_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41NzAuYzIifQ&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gEtKtkEeutI8R6gDeqUJ7KOuA-72hUQLcE0x84sUVUFTApAlankLp6CcrmDXqD2EHk&_nc_ohc=f2Gl1ExwerQQ7kNvwGYAQHY&_nc_gid=pSqerSmKsmU1EWn3raj9yA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8EOSQt2z_3eOoHGkA37pIhQxgx_KUH0F0uf7Dlb_LSiA&oe=6A45F01E&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-3.cdninstagram.com/v/t51.2885-19/103928432_261091031654394_2479563285530147881_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41NzAuYzIifQ&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gEtKtkEeutI8R6gDeqUJ7KOuA-72hUQLcE0x84sUVUFTApAlankLp6CcrmDXqD2EHk&_nc_ohc=f2Gl1ExwerQQ7kNvwGYAQHY&_nc_gid=pSqerSmKsmU1EWn3raj9yA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8EOSQt2z_3eOoHGkA37pIhQxgx_KUH0F0uf7Dlb_LSiA&oe=6A45F01E&_nc_sid=8b3546",
+    "category": "Art & Creative",
+    "proposal_sent_at": "2026-07-02T19:54:02.669Z"
   },
   {
     "handle": "toffeecoffeeroasters",
@@ -710,9 +789,11 @@
     "website": "http://www.toffeecoffeeroasters.com",
     "email": "info@stagheaddesigns.com",
     "phone": "7179745418",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:38:05.492Z",
-    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/476020526_934319898889809_2540210046576547872_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45MjUuYzIifQ&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gHebl4A_EJJItUO0m2m6UoCETTzcopL8HjYqfcJz9s99uJYhxDyuVLysYdxtbKXuxw&_nc_ohc=nyiu8d05ySwQ7kNvwFOQc4r&_nc_gid=VPZ3aCCEtyRgbuc7s3nfRA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_eVxWuGsJCMQtPji-k2qSV2OQDgE-bGwVT3oJk724-0w&oe=6A45E769&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/476020526_934319898889809_2540210046576547872_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45MjUuYzIifQ&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gHebl4A_EJJItUO0m2m6UoCETTzcopL8HjYqfcJz9s99uJYhxDyuVLysYdxtbKXuxw&_nc_ohc=nyiu8d05ySwQ7kNvwFOQc4r&_nc_gid=VPZ3aCCEtyRgbuc7s3nfRA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_eVxWuGsJCMQtPji-k2qSV2OQDgE-bGwVT3oJk724-0w&oe=6A45E769&_nc_sid=8b3546",
+    "category": "Food & Beverage",
+    "proposal_sent_at": "2026-07-02T19:54:06.761Z"
   },
   {
     "handle": "minusonelifestyle",
@@ -725,7 +806,8 @@
     "phone": "8158673003",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:06.176Z",
-    "avatar": "https://scontent-lga3-3.cdninstagram.com/v/t51.2885-19/429140788_408744595039396_6400714751475719084_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gGYm1U0OQBvqqdM_R0RnsC5uR2qMELP-v7L4onzhMQQ2iKQAl2rqzIuBdXmxFCrV_A&_nc_ohc=ye4XfRbxs-kQ7kNvwHd8AEP&_nc_gid=GPpJlOoId-xWlsJ8s49RlQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_y8HRQU5U22BswPevj2ebFGYpkvb_N4whY1ucGEU0qzA&oe=6A45DE34&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-3.cdninstagram.com/v/t51.2885-19/429140788_408744595039396_6400714751475719084_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gGYm1U0OQBvqqdM_R0RnsC5uR2qMELP-v7L4onzhMQQ2iKQAl2rqzIuBdXmxFCrV_A&_nc_ohc=ye4XfRbxs-kQ7kNvwHd8AEP&_nc_gid=GPpJlOoId-xWlsJ8s49RlQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_y8HRQU5U22BswPevj2ebFGYpkvb_N4whY1ucGEU0qzA&oe=6A45DE34&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "stroom.in",
@@ -738,7 +820,8 @@
     "phone": "8048027491",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:06.666Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/480017721_17980574636803338_832545925490148399_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDY5LmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gEZ7sbr-5CB0xwYnGbtZcbYRQcvC7cNbcF87ce8lywXiOypWXOLv7xo1LYEGkEm2jM&_nc_ohc=59DAYbVQ3zAQ7kNvwGN5XNP&_nc_gid=Qk14c-lA2r0jIflwpg6Yxg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8CBqB6dKG4BAnWSyWSLK4Af9Y8YvgsGxGV9z9TzxC8Qg&oe=6A45D467&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/480017721_17980574636803338_832545925490148399_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDY5LmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gEZ7sbr-5CB0xwYnGbtZcbYRQcvC7cNbcF87ce8lywXiOypWXOLv7xo1LYEGkEm2jM&_nc_ohc=59DAYbVQ3zAQ7kNvwGN5XNP&_nc_gid=Qk14c-lA2r0jIflwpg6Yxg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8CBqB6dKG4BAnWSyWSLK4Af9Y8YvgsGxGV9z9TzxC8Qg&oe=6A45D467&_nc_sid=8b3546",
+    "category": "Health & Wellness"
   },
   {
     "handle": "eatopiaworld",
@@ -751,7 +834,8 @@
     "phone": "8152768508",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:07.753Z",
-    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/308069893_1297911390970768_5965166598679480365_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43MzIuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gF3OkoAyOHIzJFjMrjtpSE5ap64aHGxbYaa2aiKbuCcpILDcGYcFg_mTqVq05lYPok&_nc_ohc=H7qwz_G56ugQ7kNvwEohCsn&_nc_gid=-lzyr5Pk6YMCEYkzzuelOg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8MZHE0_s1ChLhUroCf1umGV4gWAQx_Xe_3wn5ob2QbxQ&oe=6A45DA3C&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/308069893_1297911390970768_5965166598679480365_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43MzIuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gF3OkoAyOHIzJFjMrjtpSE5ap64aHGxbYaa2aiKbuCcpILDcGYcFg_mTqVq05lYPok&_nc_ohc=H7qwz_G56ugQ7kNvwEohCsn&_nc_gid=-lzyr5Pk6YMCEYkzzuelOg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8MZHE0_s1ChLhUroCf1umGV4gWAQx_Xe_3wn5ob2QbxQ&oe=6A45DA3C&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "hello_tempayy",
@@ -764,7 +848,8 @@
     "phone": "8384061616",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:08.263Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/148923503_144787370807896_7186214856563517342_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NTUuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gH0Mqb1hRtbKk1drWDsLk_zwqRPpFGUSiYkkFaTqeKHRu0yOyilfIq7rvxwVilQzr4&_nc_ohc=YFc1TaghcFgQ7kNvwGc6lix&_nc_gid=dFhdk6HwG1fr4iIuVj_gig&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-5wMHk2VdREkU5AaBRi5IAUmdi-lKHTuCwE9KEGVMscw&oe=6A45F644&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/148923503_144787370807896_7186214856563517342_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NTUuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gH0Mqb1hRtbKk1drWDsLk_zwqRPpFGUSiYkkFaTqeKHRu0yOyilfIq7rvxwVilQzr4&_nc_ohc=YFc1TaghcFgQ7kNvwGc6lix&_nc_gid=dFhdk6HwG1fr4iIuVj_gig&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-5wMHk2VdREkU5AaBRi5IAUmdi-lKHTuCwE9KEGVMscw&oe=6A45F644&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "hajmolaindia",
@@ -777,7 +862,8 @@
     "phone": "9284829493",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:08.499Z",
-    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/443264969_1374147369970103_613393260943637130_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFtUZWJOv6_9BSPkfZw8Ta9ZSJ4j0Ve1UQTwiour50vFAbZUeaPIagpx-LDSry12tE&_nc_ohc=OBW93-T0NdMQ7kNvwFi_l8S&_nc_gid=rkUl_AjWZJDmEFCpH84HQA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8OZwuBm1oxm8mll8yZpB1iqVFpu74cPSOOrm9YUFGHyg&oe=6A45FD33&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/443264969_1374147369970103_613393260943637130_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFtUZWJOv6_9BSPkfZw8Ta9ZSJ4j0Ve1UQTwiour50vFAbZUeaPIagpx-LDSry12tE&_nc_ohc=OBW93-T0NdMQ7kNvwFi_l8S&_nc_gid=rkUl_AjWZJDmEFCpH84HQA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8OZwuBm1oxm8mll8yZpB1iqVFpu74cPSOOrm9YUFGHyg&oe=6A45FD33&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "get.outlive",
@@ -788,9 +874,11 @@
     "website": "https://getoutlive.in/products/5-day-program",
     "email": "info@getoutlive.com",
     "phone": "6174490773",
-    "status": "new",
+    "status": "contacted",
     "discovered_at": "2026-06-27T18:38:08.997Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/317931472_124484613789406_3899942660076292587_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gEzdyOWcyS0Pm_QdOml-T7IokygcBwuR5FTjcF0ASRi9qExGmNS_v7GCt-dP8Dmuts&_nc_ohc=aj3GD94uhCgQ7kNvwHZ4QJo&_nc_gid=EGQmHOAlVOhvDRHgJc6cRw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8kh3A5v36JCY98VcCRuJ3Qj-TCqw_-NjXi2Nj2_AQmXg&oe=6A45F396&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/317931472_124484613789406_3899942660076292587_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gEzdyOWcyS0Pm_QdOml-T7IokygcBwuR5FTjcF0ASRi9qExGmNS_v7GCt-dP8Dmuts&_nc_ohc=aj3GD94uhCgQ7kNvwHZ4QJo&_nc_gid=EGQmHOAlVOhvDRHgJc6cRw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8kh3A5v36JCY98VcCRuJ3Qj-TCqw_-NjXi2Nj2_AQmXg&oe=6A45F396&_nc_sid=8b3546",
+    "category": "Health & Wellness",
+    "proposal_sent_at": "2026-07-02T19:54:10.701Z"
   },
   {
     "handle": "roycechocolateindia",
@@ -803,7 +891,8 @@
     "phone": "9916363614",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:09.925Z",
-    "avatar": "https://scontent-phx1-1.cdninstagram.com/v/t51.2885-19/452379451_1572700543653646_7634377969056622262_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43ODkuYzIifQ&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gHB-ELDAX0COvDFG7KzsUxA-9FiZQLM6tL8zRDZSaun9VPp4KiRG4XWXwSrGAKOIG0&_nc_ohc=PNiFTVRBCYIQ7kNvwFxlQIM&_nc_gid=CJU9Y89jhjU652q9bcB6rQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-rk9TOn0uOuZ2OMmP2bVnK_8SK-wYDLoE4U_4jkA1t2w&oe=6A45EA3E&_nc_sid=8b3546"
+    "avatar": "https://scontent-phx1-1.cdninstagram.com/v/t51.2885-19/452379451_1572700543653646_7634377969056622262_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43ODkuYzIifQ&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gHB-ELDAX0COvDFG7KzsUxA-9FiZQLM6tL8zRDZSaun9VPp4KiRG4XWXwSrGAKOIG0&_nc_ohc=PNiFTVRBCYIQ7kNvwFxlQIM&_nc_gid=CJU9Y89jhjU652q9bcB6rQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-rk9TOn0uOuZ2OMmP2bVnK_8SK-wYDLoE4U_4jkA1t2w&oe=6A45EA3E&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "smthingsbrewing",
@@ -816,7 +905,8 @@
     "phone": "7800498560",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:11.533Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/121357075_139325081214931_5235137472473016984_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDU0LmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gF8AkJxkEhnD4IpYcJbs93gNzloAqjTOBCnvhU9-wZn3wLxY15fEAwdjthoTGTE518&_nc_ohc=10ZiGvdzNccQ7kNvwHAAx1i&_nc_gid=L6sqfhGk6_jvUMw5NKpJVw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_LKtpZN-zpACA-wb21EDJSZvQdV5Uh6AhV8ii5WYjPgw&oe=6A4602A8&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/121357075_139325081214931_5235137472473016984_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDU0LmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gF8AkJxkEhnD4IpYcJbs93gNzloAqjTOBCnvhU9-wZn3wLxY15fEAwdjthoTGTE518&_nc_ohc=10ZiGvdzNccQ7kNvwHAAx1i&_nc_gid=L6sqfhGk6_jvUMw5NKpJVw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_LKtpZN-zpACA-wb21EDJSZvQdV5Uh6AhV8ii5WYjPgw&oe=6A4602A8&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "beyondwater.in",
@@ -829,7 +919,8 @@
     "phone": "6625053300",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:11.899Z",
-    "avatar": "https://scontent-atl3-1.cdninstagram.com/v/t51.2885-19/335915839_2199222666953244_2932789624861119430_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43NjguYzIifQ&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gHEDtqAhLItoAwNfCKdGAY4fXdUpmIWJaE5dAOL8s5D0vBHjdOsbQQqQSfjlswACm4&_nc_ohc=_ccclB-0r5MQ7kNvwFvREmF&_nc_gid=6sJr03q2EpHz3u27Rp_MWA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_OTDeN7QD0tkVYUIQJQtpmBFsiS8HERn-ArfDalzFa_g&oe=6A45EF7B&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-1.cdninstagram.com/v/t51.2885-19/335915839_2199222666953244_2932789624861119430_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43NjguYzIifQ&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gHEDtqAhLItoAwNfCKdGAY4fXdUpmIWJaE5dAOL8s5D0vBHjdOsbQQqQSfjlswACm4&_nc_ohc=_ccclB-0r5MQ7kNvwFvREmF&_nc_gid=6sJr03q2EpHz3u27Rp_MWA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_OTDeN7QD0tkVYUIQJQtpmBFsiS8HERn-ArfDalzFa_g&oe=6A45EF7B&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "thehivado.official",
@@ -842,7 +933,8 @@
     "phone": "7804981850",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:11.987Z",
-    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/308681820_626820032349211_7321651059333171842_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45NDQuYzIifQ&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFtVeoWe1rqZnl1bz8pwtioURkSjEHDD3Ia-u26KqsDYxCVbququBgpDal-VPNx-Ow&_nc_ohc=LFkKeLbDTEUQ7kNvwGPR_KO&_nc_gid=bjXYMc7myAxr0_FxBb-MRw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af83lFGGK7_ZxFWSKexm3z_C3gt7t69EhmTNlk2YUISIyQ&oe=6A4600A0&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/308681820_626820032349211_7321651059333171842_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45NDQuYzIifQ&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFtVeoWe1rqZnl1bz8pwtioURkSjEHDD3Ia-u26KqsDYxCVbququBgpDal-VPNx-Ow&_nc_ohc=LFkKeLbDTEUQ7kNvwGPR_KO&_nc_gid=bjXYMc7myAxr0_FxBb-MRw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af83lFGGK7_ZxFWSKexm3z_C3gt7t69EhmTNlk2YUISIyQ&oe=6A4600A0&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "milkstudios.store",
@@ -855,7 +947,8 @@
     "phone": "7001528700",
     "status": "new",
     "discovered_at": "2026-06-27T18:38:12.721Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/489612141_975635724722998_223689126214381445_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFbjGwxIVgEY8IadrS0YeyX75eS7j28wAyIt0Dwl7j5laoEIsNGMM_my4KBgBf1sNs&_nc_ohc=Lqn_BYnhzg4Q7kNvwEtaz07&_nc_gid=Tgk1XvQDxx8GU6tzMpXEBg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9-dGSF5GFRb-1ensPAJa_bSxdXluNqX8VhIKScroIh8g&oe=6A460023&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/489612141_975635724722998_223689126214381445_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFbjGwxIVgEY8IadrS0YeyX75eS7j28wAyIt0Dwl7j5laoEIsNGMM_my4KBgBf1sNs&_nc_ohc=Lqn_BYnhzg4Q7kNvwEtaz07&_nc_gid=Tgk1XvQDxx8GU6tzMpXEBg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9-dGSF5GFRb-1ensPAJa_bSxdXluNqX8VhIKScroIh8g&oe=6A460023&_nc_sid=8b3546",
+    "category": "Art & Creative"
   },
   {
     "handle": "freesociety.in",
@@ -868,7 +961,8 @@
     "phone": "7349558855",
     "status": "new",
     "discovered_at": "2026-06-27T18:43:58.902Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/110010160_567632503905840_2536693024982454865_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44NzUuYzIifQ&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gHkxyil4QU6K4j-h-Fe7vYxD8MB1LBIDHrz0anymM8YdBmhVCBz0NKXWzj5LhPnSwM&_nc_ohc=cz3yZpT-LKkQ7kNvwGtEtL5&_nc_gid=o0Zb-etmQUmuXvn2O9vo0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9x0V4dWwyTZd2-crl-0hcfuTelwdhaF3l0d37tUxI17w&oe=6A45F59D&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/110010160_567632503905840_2536693024982454865_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44NzUuYzIifQ&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gHkxyil4QU6K4j-h-Fe7vYxD8MB1LBIDHrz0anymM8YdBmhVCBz0NKXWzj5LhPnSwM&_nc_ohc=cz3yZpT-LKkQ7kNvwGtEtL5&_nc_gid=o0Zb-etmQUmuXvn2O9vo0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9x0V4dWwyTZd2-crl-0hcfuTelwdhaF3l0d37tUxI17w&oe=6A45F59D&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "strangestorein",
@@ -881,7 +975,8 @@
     "phone": "8885938553",
     "status": "new",
     "discovered_at": "2026-06-27T18:43:59.549Z",
-    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.2885-19/351452664_1432081320908235_5349009811300027064_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gGbpe6PumfuDMa8m6M0WISQ1RO2sZDxb6yqLAxiPYouoJNmMGxFSpIcN4_BMTvBO3I&_nc_ohc=2ijH7lltO5QQ7kNvwGdmHe1&_nc_gid=z3jUXKk3SMLYDWcaBhOr3Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_FBpiYHP773LflStT5UAL7PoEb9-9I5AI3pe6JtrOHww&oe=6A4608ED&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.2885-19/351452664_1432081320908235_5349009811300027064_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gGbpe6PumfuDMa8m6M0WISQ1RO2sZDxb6yqLAxiPYouoJNmMGxFSpIcN4_BMTvBO3I&_nc_ohc=2ijH7lltO5QQ7kNvwGdmHe1&_nc_gid=z3jUXKk3SMLYDWcaBhOr3Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_FBpiYHP773LflStT5UAL7PoEb9-9I5AI3pe6JtrOHww&oe=6A4608ED&_nc_sid=8b3546",
+    "category": "Art & Creative"
   },
   {
     "handle": "odd.noteven",
@@ -894,7 +989,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:43:59.852Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/485163568_962702596049425_1193492596540092964_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gFZA5TjUs9f62iTLrZSyEh9UI_VB94WvRXfSE4alRagfGE4XKvVQ5AXlo_hKg63pEg&_nc_ohc=6Fi6hvwKRRsQ7kNvwGM1DXQ&_nc_gid=XpH_mWdt20JYGCao5hJN7g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9aG5k9nJSCIXUU1AQJ5bkJtEctwQwmmJaAwi0cyLCPLA&oe=6A45E736&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/485163568_962702596049425_1193492596540092964_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gFZA5TjUs9f62iTLrZSyEh9UI_VB94WvRXfSE4alRagfGE4XKvVQ5AXlo_hKg63pEg&_nc_ohc=6Fi6hvwKRRsQ7kNvwGM1DXQ&_nc_gid=XpH_mWdt20JYGCao5hJN7g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9aG5k9nJSCIXUU1AQJ5bkJtEctwQwmmJaAwi0cyLCPLA&oe=6A45E736&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "popifyhomes",
@@ -907,7 +1003,8 @@
     "phone": "7637273303",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:00.703Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/472417145_1120860626340874_3701096031841874856_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44ODkuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFBlcG_sSL_M7CmViB5-aJ-7yduPsPt1wQfg_0DAWW_harjcpQa543nksRTSyrr7EQ&_nc_ohc=xRf8e8MBDKAQ7kNvwGXOqM2&_nc_gid=QmKRCgzDQG74PjwFo4eOUg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_akqOopvgq47KLZzG6yijjoj2Bit6xMzNUQXK3IaJC-A&oe=6A45FBFB&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/472417145_1120860626340874_3701096031841874856_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44ODkuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFBlcG_sSL_M7CmViB5-aJ-7yduPsPt1wQfg_0DAWW_harjcpQa543nksRTSyrr7EQ&_nc_ohc=xRf8e8MBDKAQ7kNvwGXOqM2&_nc_gid=QmKRCgzDQG74PjwFo4eOUg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_akqOopvgq47KLZzG6yijjoj2Bit6xMzNUQXK3IaJC-A&oe=6A45FBFB&_nc_sid=8b3546",
+    "category": "Home & Lifestyle"
   },
   {
     "handle": "__struct",
@@ -920,7 +1017,8 @@
     "phone": "7383056447",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:01.070Z",
-    "avatar": "https://scontent-mia5-2.cdninstagram.com/v/t51.82787-19/587792787_18059130629646096_5443351638211142636_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gGDP5dEooxwL5Hwx6K9yusWLwwRXWwywouY7nnXbLcKFcaXKENr18UQuSObrn1qP14&_nc_ohc=g1e3nPecRs0Q7kNvwF08RnT&_nc_gid=RZz9PTj0xrIg3cy8EBKQ2Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8_E-BOW0PL1A_HdoKW-tgk8nlcpO3OHALVdqfeODwWpw&oe=6A45DF3B&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia5-2.cdninstagram.com/v/t51.82787-19/587792787_18059130629646096_5443351638211142636_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gGDP5dEooxwL5Hwx6K9yusWLwwRXWwywouY7nnXbLcKFcaXKENr18UQuSObrn1qP14&_nc_ohc=g1e3nPecRs0Q7kNvwF08RnT&_nc_gid=RZz9PTj0xrIg3cy8EBKQ2Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8_E-BOW0PL1A_HdoKW-tgk8nlcpO3OHALVdqfeODwWpw&oe=6A45DF3B&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "insolecrew",
@@ -933,7 +1031,8 @@
     "phone": "6077177340",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:02.643Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.82787-19/607521348_18071986613378723_182269283799773683_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMxIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gGQU1N-5ceVZcGQs-ZnOZPgwak6SS77znF3EjdHqQeQ9koqAdA5cGtZfc6qZYGeN1c&_nc_ohc=1cJ9tHG9WBIQ7kNvwE-gH05&_nc_gid=mWjpGJeJ-1uaoN001gANCg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_qWfBke5A6SaUegMceSP89OCCBLpULv0Oc8IMB9DTVvw&oe=6A460722&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.82787-19/607521348_18071986613378723_182269283799773683_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMxIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gGQU1N-5ceVZcGQs-ZnOZPgwak6SS77znF3EjdHqQeQ9koqAdA5cGtZfc6qZYGeN1c&_nc_ohc=1cJ9tHG9WBIQ7kNvwE-gH05&_nc_gid=mWjpGJeJ-1uaoN001gANCg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_qWfBke5A6SaUegMceSP89OCCBLpULv0Oc8IMB9DTVvw&oe=6A460722&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "letsrug.in",
@@ -946,7 +1045,8 @@
     "phone": "8644437274",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:03.555Z",
-    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/407308702_338926185418366_8771826911722429907_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFQ1dQr3Gwqe4oKP-TRMVWn5RD0saKpIBcjrH8gsdDiN3BikNgH2gxJJTwfcR8FsF0&_nc_ohc=i6Hjay3bm80Q7kNvwEjlO0J&_nc_gid=HIyJUtF-dtPXTsQdsYrwdg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9CFkmMrStlNPtM-YQd-GKU8lP2XO8mUaQ7nlTjlhjVAg&oe=6A45EF18&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/407308702_338926185418366_8771826911722429907_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gFQ1dQr3Gwqe4oKP-TRMVWn5RD0saKpIBcjrH8gsdDiN3BikNgH2gxJJTwfcR8FsF0&_nc_ohc=i6Hjay3bm80Q7kNvwEjlO0J&_nc_gid=HIyJUtF-dtPXTsQdsYrwdg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9CFkmMrStlNPtM-YQd-GKU8lP2XO8mUaQ7nlTjlhjVAg&oe=6A45EF18&_nc_sid=8b3546",
+    "category": "Home & Lifestyle"
   },
   {
     "handle": "futuresaints.in",
@@ -959,7 +1059,8 @@
     "phone": "8654104650",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:04.314Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/454565543_1407549833267964_7452942890214208330_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gFjmXEFiuwa8zijki79xW4Did2Xo-BOtxaWuxAoMcHROWNTkc4oqjY3jDbPtyj_NuA&_nc_ohc=8u9Rrq2KXucQ7kNvwHcGOhB&_nc_gid=5C0Koh4mtjmlOLG0ayya9Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8uwbyJpDxSepwzC_LWHo-nb0DwRbv8NoQsV3IY1rOo9Q&oe=6A45F5DE&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/454565543_1407549833267964_7452942890214208330_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gFjmXEFiuwa8zijki79xW4Did2Xo-BOtxaWuxAoMcHROWNTkc4oqjY3jDbPtyj_NuA&_nc_ohc=8u9Rrq2KXucQ7kNvwHcGOhB&_nc_gid=5C0Koh4mtjmlOLG0ayya9Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8uwbyJpDxSepwzC_LWHo-nb0DwRbv8NoQsV3IY1rOo9Q&oe=6A45F5DE&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "hypestopindia",
@@ -972,7 +1073,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:44:04.314Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/283476384_820090968951191_1997694564177900811_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42OTEuYzIifQ&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gFHbXVDM6WSOEnJmhKCnteXeOh8FoavvoFn5ilg3lA50r434prdfVWF_3XGrvX-Qcw&_nc_ohc=Za3__37h4hkQ7kNvwGS3B9n&_nc_gid=nyZqKdTNIh4W6HMUl2b3NA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-KV6OU_Brq_NQgQYospKuoAmlnN1MjgCeLnuHp04O6gw&oe=6A45E4CD&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.2885-19/283476384_820090968951191_1997694564177900811_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42OTEuYzIifQ&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gFHbXVDM6WSOEnJmhKCnteXeOh8FoavvoFn5ilg3lA50r434prdfVWF_3XGrvX-Qcw&_nc_ohc=Za3__37h4hkQ7kNvwGS3B9n&_nc_gid=nyZqKdTNIh4W6HMUl2b3NA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-KV6OU_Brq_NQgQYospKuoAmlnN1MjgCeLnuHp04O6gw&oe=6A45E4CD&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "hotheadscap",
@@ -985,7 +1087,8 @@
     "phone": "6341463414",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:04.801Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/418046490_399702379172192_2267660801003125979_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45MTIuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gHX512FfB4iLL7YVdSkPsCW8g7eipoirQrjDI2-ft8WkxI34qE_WO6p965-qwnrrgw&_nc_ohc=1RjpEXmqig0Q7kNvwGRTTZv&_nc_gid=1ZX-tjSBVTwgOF4zhOrNoQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-tPiPTAZDoCepJ28-i7myD5n5N1djJzz9nwlUDWYf8Tg&oe=6A45E63B&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/418046490_399702379172192_2267660801003125979_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45MTIuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gHX512FfB4iLL7YVdSkPsCW8g7eipoirQrjDI2-ft8WkxI34qE_WO6p965-qwnrrgw&_nc_ohc=1RjpEXmqig0Q7kNvwGRTTZv&_nc_gid=1ZX-tjSBVTwgOF4zhOrNoQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-tPiPTAZDoCepJ28-i7myD5n5N1djJzz9nwlUDWYf8Tg&oe=6A45E63B&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "10hillsstudio",
@@ -998,7 +1101,8 @@
     "phone": "6869416815",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:05.233Z",
-    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/474005260_581794824647581_2605649630565275874_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gFrl5nMZrUmtPwZPIW5svcdNe08VsZpHIHA-P8Wr4v4P_Co_XFIqj9gckkjUTj72ww&_nc_ohc=KQtPCOsV67cQ7kNvwH9kArW&_nc_gid=r4_ZZ2x3yJdzE2xT-2Ld7A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_CVVzvpBIYZI13SvVGLpc-27873H4wOQYlbEZXQePiFw&oe=6A45FE83&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/474005260_581794824647581_2605649630565275874_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gFrl5nMZrUmtPwZPIW5svcdNe08VsZpHIHA-P8Wr4v4P_Co_XFIqj9gckkjUTj72ww&_nc_ohc=KQtPCOsV67cQ7kNvwH9kArW&_nc_gid=r4_ZZ2x3yJdzE2xT-2Ld7A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_CVVzvpBIYZI13SvVGLpc-27873H4wOQYlbEZXQePiFw&oe=6A45FE83&_nc_sid=8b3546",
+    "category": "Art & Creative"
   },
   {
     "handle": "pistabarfimithai",
@@ -1011,7 +1115,8 @@
     "phone": "9535800478",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:05.912Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/226291360_208323164565784_575257965932638634_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NzUuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gE3QJBePktSGAPBMXDzsOn407gw2mw3yk_4aoaojzlLPrGZNPT-Ao9Uo_rLTxDrg1w&_nc_ohc=QE4lrvmbuNYQ7kNvwG-5ufj&_nc_gid=tz5ZlFGlQ7W6t0V08sJPrw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_1Fht3KAI2NutO6S959z-__R8zWJ-EQrAx8kpDGBrLLw&oe=6A45E165&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/226291360_208323164565784_575257965932638634_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NzUuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gE3QJBePktSGAPBMXDzsOn407gw2mw3yk_4aoaojzlLPrGZNPT-Ao9Uo_rLTxDrg1w&_nc_ohc=QE4lrvmbuNYQ7kNvwG-5ufj&_nc_gid=tz5ZlFGlQ7W6t0V08sJPrw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_1Fht3KAI2NutO6S959z-__R8zWJ-EQrAx8kpDGBrLLw&oe=6A45E165&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "privatelimtd",
@@ -1024,7 +1129,8 @@
     "phone": "9116743597",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:06.770Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.82787-19/721601394_17997451685951267_5799697884562777422_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmV4cGVyaW1lbnRhbCJ9&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gG2NWUyfOX16i8grgx18LECsBzuAYG2CXi0HyJeyeB12DhRCX-YhDRz4_DyCkm3vzY&_nc_ohc=eW4G1dR6_wsQ7kNvwGK8zIj&_nc_gid=0OIaH8ZEuDbee0XDuAKC7A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_1C3sCWIgq3MwdXLwCCWePnOOHWgWCtl-1xXZqzv09LA&oe=6A45F540&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.82787-19/721601394_17997451685951267_5799697884562777422_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmV4cGVyaW1lbnRhbCJ9&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gG2NWUyfOX16i8grgx18LECsBzuAYG2CXi0HyJeyeB12DhRCX-YhDRz4_DyCkm3vzY&_nc_ohc=eW4G1dR6_wsQ7kNvwGK8zIj&_nc_gid=0OIaH8ZEuDbee0XDuAKC7A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_1C3sCWIgq3MwdXLwCCWePnOOHWgWCtl-1xXZqzv09LA&oe=6A45F540&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "gochk.co",
@@ -1037,7 +1143,8 @@
     "phone": "6335217675",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:07.453Z",
-    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.82787-19/706719185_17916313068384705_8281544198879868384_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gErwck8HH733xGiN1t6z0iarEmaz_C0EsHR4Sx9liRrWRumrWV4pwgkMJGg9vmh1w8&_nc_ohc=OdNywGNmZFgQ7kNvwHywN7X&_nc_gid=3ntgzxRguq2k-m1gVwDmhw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8PqJ-ZCAY1I5M9XHl_NK8PAYacMzMykgb7lkhXiySwtA&oe=6A45D48C&_nc_sid=8b3546"
+    "avatar": "https://scontent-hou1-1.cdninstagram.com/v/t51.82787-19/706719185_17916313068384705_8281544198879868384_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gErwck8HH733xGiN1t6z0iarEmaz_C0EsHR4Sx9liRrWRumrWV4pwgkMJGg9vmh1w8&_nc_ohc=OdNywGNmZFgQ7kNvwHywN7X&_nc_gid=3ntgzxRguq2k-m1gVwDmhw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8PqJ-ZCAY1I5M9XHl_NK8PAYacMzMykgb7lkhXiySwtA&oe=6A45D48C&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "funkvibes.co",
@@ -1050,7 +1157,8 @@
     "phone": "6492414362",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:08.073Z",
-    "avatar": "https://instagram.fcps4-2.fna.fbcdn.net/v/t51.82787-19/616056956_17918224911276215_2439023352929621532_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fcps4-2.fna.fbcdn.net&_nc_cat=111&_nc_oc=Q6cZ2gGvCALcMCt5rUV2FuHEAJQpFc81qMhdMXVwGlSz3AQGxSApCKnDRkG1-WaAFguodecpbS9pNU---sVeV1rdncjR&_nc_ohc=kz_LOhuSfZoQ7kNvwGRMVc9&_nc_gid=WJgb8dAJ-Ru5ejqkWialBQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-kYhR9yVTLbyhaN8gsZvT2nmn_qKK4Us1pwyOo19k21A&oe=6A45F3DE&_nc_sid=8b3546"
+    "avatar": "https://instagram.fcps4-2.fna.fbcdn.net/v/t51.82787-19/616056956_17918224911276215_2439023352929621532_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fcps4-2.fna.fbcdn.net&_nc_cat=111&_nc_oc=Q6cZ2gGvCALcMCt5rUV2FuHEAJQpFc81qMhdMXVwGlSz3AQGxSApCKnDRkG1-WaAFguodecpbS9pNU---sVeV1rdncjR&_nc_ohc=kz_LOhuSfZoQ7kNvwGRMVc9&_nc_gid=WJgb8dAJ-Ru5ejqkWialBQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-kYhR9yVTLbyhaN8gsZvT2nmn_qKK4Us1pwyOo19k21A&oe=6A45F3DE&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "offkicks.co",
@@ -1063,7 +1171,8 @@
     "phone": "7803102980",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:08.320Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-19/635113905_18121628626606712_3448320305683696542_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gE89ARA0tjawxatiH6VcXN9FDeyMgmBX1MzqmkTKlNxRdsVA54mxF8rGwcgKfV1NtQ&_nc_ohc=92BB87Ja9hAQ7kNvwFzbf4E&_nc_gid=6PjpXOutlH-qpMWYL0Qjcw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8rp2QUjFiUE8_sSk4_OBr62a7ehBSgyoAEueMyFQiUoQ&oe=6A4605C6&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-19/635113905_18121628626606712_3448320305683696542_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gE89ARA0tjawxatiH6VcXN9FDeyMgmBX1MzqmkTKlNxRdsVA54mxF8rGwcgKfV1NtQ&_nc_ohc=92BB87Ja9hAQ7kNvwFzbf4E&_nc_gid=6PjpXOutlH-qpMWYL0Qjcw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8rp2QUjFiUE8_sSk4_OBr62a7ehBSgyoAEueMyFQiUoQ&oe=6A4605C6&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "vestirio_",
@@ -1076,7 +1185,8 @@
     "phone": "7608011273",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:09.158Z",
-    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/648326727_18047293124707247_2864953557574689024_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gHz3-t5cresOBkim5awF7g2dhVAGxfuTJjTyVPPxSWhKy1Ef3D7Tk1SbccpONjrqi8&_nc_ohc=lnvc8BFKxsIQ7kNvwFLKFC1&_nc_gid=MxjTc-u4DCezxRkvu__rFw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_v87Vf62OiOdA3inLIpSx_W3NKFMsxS_XDN9f1k3scYw&oe=6A45DEC8&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-19/648326727_18047293124707247_2864953557574689024_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gHz3-t5cresOBkim5awF7g2dhVAGxfuTJjTyVPPxSWhKy1Ef3D7Tk1SbccpONjrqi8&_nc_ohc=lnvc8BFKxsIQ7kNvwFLKFC1&_nc_gid=MxjTc-u4DCezxRkvu__rFw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_v87Vf62OiOdA3inLIpSx_W3NKFMsxS_XDN9f1k3scYw&oe=6A45DEC8&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "warping_theories",
@@ -1089,7 +1199,8 @@
     "phone": "6665604161",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:09.786Z",
-    "avatar": "https://scontent-det1-1.cdninstagram.com/v/t51.82787-19/617603307_18301409635279759_524348560051176653_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-det1-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gGh0u9I2gUJcJ4r6sFkT7aTA5bGmd2NlVflPNn4ZvIJjdhPFkaWT1w6Jiju4AxZWrE&_nc_ohc=UhJWN4efCDMQ7kNvwGhx5cC&_nc_gid=gBJzI3sIa68_kIZ2938Jtg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-HpP2gX5gzc6AFhA4g15noC2psCXLgPc_Mp00bJlnp7A&oe=6A45E7ED&_nc_sid=8b3546"
+    "avatar": "https://scontent-det1-1.cdninstagram.com/v/t51.82787-19/617603307_18301409635279759_524348560051176653_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-det1-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gGh0u9I2gUJcJ4r6sFkT7aTA5bGmd2NlVflPNn4ZvIJjdhPFkaWT1w6Jiju4AxZWrE&_nc_ohc=UhJWN4efCDMQ7kNvwGhx5cC&_nc_gid=gBJzI3sIa68_kIZ2938Jtg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-HpP2gX5gzc6AFhA4g15noC2psCXLgPc_Mp00bJlnp7A&oe=6A45E7ED&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "7upuk",
@@ -1102,7 +1213,8 @@
     "phone": "8178258585",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:10.179Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/369669567_2076721479341438_3443289849625339775_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFzVyxWTJnBIILNH_lat1DUO5kP-dyd32NfKEWpsELu0mLluIPtfX4BEdHvWWVferg&_nc_ohc=M5tz7GjwTtwQ7kNvwFdpfLW&_nc_gid=ceZow36-_YPFIfnIQ_w6MA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-4qD7FUHDLNHWEvxd6jhU8ZGloB4sng9WjCWkSGqnaPw&oe=6A45EF8E&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/369669567_2076721479341438_3443289849625339775_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFzVyxWTJnBIILNH_lat1DUO5kP-dyd32NfKEWpsELu0mLluIPtfX4BEdHvWWVferg&_nc_ohc=M5tz7GjwTtwQ7kNvwFdpfLW&_nc_gid=ceZow36-_YPFIfnIQ_w6MA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-4qD7FUHDLNHWEvxd6jhU8ZGloB4sng9WjCWkSGqnaPw&oe=6A45EF8E&_nc_sid=8b3546",
+    "category": "Food & Beverage"
   },
   {
     "handle": "_toffle",
@@ -1115,7 +1227,8 @@
     "phone": "7656147930",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:10.939Z",
-    "avatar": "https://instagram.ffcm1-2.fna.fbcdn.net/v/t51.2885-19/328261825_5753504188074944_1564713346995986519_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDUwLmMyIn0&_nc_ht=instagram.ffcm1-2.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2gEw4-RuuEogLNIwvb3xVvwMzDHxlNGSg5iOydqikguBPJBFXUgXfPJemhZrX0flfow&_nc_ohc=0Ly7JnVOrjIQ7kNvwE6K3HE&_nc_gid=SIlwc0jOuxxkoBED2xTH8Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8zCviReAPNAXvXJUFYoQEMFyjljK9J6VW6hDbS5oDLDw&oe=6A4609BA&_nc_sid=8b3546"
+    "avatar": "https://instagram.ffcm1-2.fna.fbcdn.net/v/t51.2885-19/328261825_5753504188074944_1564713346995986519_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDUwLmMyIn0&_nc_ht=instagram.ffcm1-2.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2gEw4-RuuEogLNIwvb3xVvwMzDHxlNGSg5iOydqikguBPJBFXUgXfPJemhZrX0flfow&_nc_ohc=0Ly7JnVOrjIQ7kNvwE6K3HE&_nc_gid=SIlwc0jOuxxkoBED2xTH8Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8zCviReAPNAXvXJUFYoQEMFyjljK9J6VW6hDbS5oDLDw&oe=6A4609BA&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "gullylabs.tv",
@@ -1128,7 +1241,8 @@
     "phone": "7819561290",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:11.521Z",
-    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/477446892_1167680982034893_9157301970568434531_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gGSrBWx_lYPQIyXWJe1OUM0UCr6f3gMrbwChTXDqfVMB3iyIHq-fdKyE5MU4x_Fqbk&_nc_ohc=AdsTA_ukXnIQ7kNvwHC6XIx&_nc_gid=KgSpJpRJ9dkBx0wtrfFKIw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af97baC-SNAi3Uiz8ys-Lx83BovB77ip2fedQWjQ9oqu6g&oe=6A45E3BD&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/477446892_1167680982034893_9157301970568434531_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gGSrBWx_lYPQIyXWJe1OUM0UCr6f3gMrbwChTXDqfVMB3iyIHq-fdKyE5MU4x_Fqbk&_nc_ohc=AdsTA_ukXnIQ7kNvwHC6XIx&_nc_gid=KgSpJpRJ9dkBx0wtrfFKIw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af97baC-SNAi3Uiz8ys-Lx83BovB77ip2fedQWjQ9oqu6g&oe=6A45E3BD&_nc_sid=8b3546",
+    "category": "Art & Creative"
   },
   {
     "handle": "evemen.co",
@@ -1141,7 +1255,8 @@
     "phone": "6957783472",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:11.990Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/582079846_18091425302497056_364844947135054056_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gGCXFzqnyAYWxotgw7z_Mr4V7GdWTs_N4vImXZrUi6uVbnt3k5FKn8EzxulsdGPgJ8&_nc_ohc=wr-HviRi-jYQ7kNvwFRGxQk&_nc_gid=AnXP7GwhDORB9wzikWKgdA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af81Jqkba4r46jWAAzhzYI6b1dn5YDKTiKvAIz9P8XJ-oQ&oe=6A45FDF4&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/582079846_18091425302497056_364844947135054056_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gGCXFzqnyAYWxotgw7z_Mr4V7GdWTs_N4vImXZrUi6uVbnt3k5FKn8EzxulsdGPgJ8&_nc_ohc=wr-HviRi-jYQ7kNvwFRGxQk&_nc_gid=AnXP7GwhDORB9wzikWKgdA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af81Jqkba4r46jWAAzhzYI6b1dn5YDKTiKvAIz9P8XJ-oQ&oe=6A45FDF4&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "esthreall",
@@ -1154,7 +1269,8 @@
     "phone": "8251544750",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:12.598Z",
-    "avatar": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-19/649510276_18086502212467246_315477005968040819_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gGkkk1_h7lC3TdEeOaZD0xLlm7DbAQ7ac9QbbY4B2hy74h-o1gefAfKt1DPmp2hRCY&_nc_ohc=qHuXNC4J_H0Q7kNvwHLTwF6&_nc_gid=dRaKznCsx2MTC5c_iWtSsg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8cP3IiE_M5NdS1A9KCoUSNdGclFOGIQBTE3THcdCiR_Q&oe=6A45E431&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-19/649510276_18086502212467246_315477005968040819_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gGkkk1_h7lC3TdEeOaZD0xLlm7DbAQ7ac9QbbY4B2hy74h-o1gefAfKt1DPmp2hRCY&_nc_ohc=qHuXNC4J_H0Q7kNvwHLTwF6&_nc_gid=dRaKznCsx2MTC5c_iWtSsg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8cP3IiE_M5NdS1A9KCoUSNdGclFOGIQBTE3THcdCiR_Q&oe=6A45E431&_nc_sid=8b3546",
+    "category": "Art & Creative"
   },
   {
     "handle": "six5sixstreet",
@@ -1167,7 +1283,8 @@
     "phone": "7693801243",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:13.618Z",
-    "avatar": "https://scontent-ord5-1.cdninstagram.com/v/t51.2885-19/472861024_596772293095376_7890826601307807888_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gEA-bOqO02e_bK6ZKKUKQNZFDH1g2vm7bjCXYRWWKFR2JUPIovDX7VWnushgQRbRTc&_nc_ohc=fa87qTLKK3UQ7kNvwFvCxOs&_nc_gid=Noa06u_HK1jybVTElEmp2A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_YagOGQUBwWmrNDVjf7btyFVg74QHwAw_V4TelLb-EbA&oe=6A45DB12&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-1.cdninstagram.com/v/t51.2885-19/472861024_596772293095376_7890826601307807888_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gEA-bOqO02e_bK6ZKKUKQNZFDH1g2vm7bjCXYRWWKFR2JUPIovDX7VWnushgQRbRTc&_nc_ohc=fa87qTLKK3UQ7kNvwFvCxOs&_nc_gid=Noa06u_HK1jybVTElEmp2A&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_YagOGQUBwWmrNDVjf7btyFVg74QHwAw_V4TelLb-EbA&oe=6A45DB12&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "blackcrew.in",
@@ -1180,7 +1297,8 @@
     "phone": "8909034269",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:14.179Z",
-    "avatar": "https://scontent-iad3-2.cdninstagram.com/v/t51.82787-19/536252078_18044995190640303_3742706449656805693_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-iad3-2.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gF9duSmltpU22Zjpu_HknaLHwSWYFL-K__7TAxVQxuLLJ_wdBaIn8Iiv25UGk5shOlRDQAiGLu2CQs2O1FdtvL0&_nc_ohc=rnBz_wj2XscQ7kNvwH6C0ls&_nc_gid=_tPHKptZe1TT8oQt6kLvTQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-yNWdcl_yHvGxvuyuuv4P6EKXOAX-IGXYbsuN31qQu8g&oe=6A45D9B6&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-2.cdninstagram.com/v/t51.82787-19/536252078_18044995190640303_3742706449656805693_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDAwLmMyIn0&_nc_ht=scontent-iad3-2.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gF9duSmltpU22Zjpu_HknaLHwSWYFL-K__7TAxVQxuLLJ_wdBaIn8Iiv25UGk5shOlRDQAiGLu2CQs2O1FdtvL0&_nc_ohc=rnBz_wj2XscQ7kNvwH6C0ls&_nc_gid=_tPHKptZe1TT8oQt6kLvTQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-yNWdcl_yHvGxvuyuuv4P6EKXOAX-IGXYbsuN31qQu8g&oe=6A45D9B6&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "thedripco._rugs",
@@ -1193,7 +1311,8 @@
     "phone": "7816972510",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:14.246Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/283412549_444651004138790_5792084703286479698_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42ODcuYzIifQ&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gHZII5aN0TcarZN79_UqUWw-AfUgJSU3WDAfDOTDD-XGV19EpJWzkeLu9Z94BdsbXU&_nc_ohc=5JTh6Rdvm1cQ7kNvwGiZz17&_nc_gid=10kx0ps9pA10SpBIXrtyoQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_gS9_zXx_9K635GqFLIXRFG1cFqyWJ48wUnvD4458lQg&oe=6A460579&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/283412549_444651004138790_5792084703286479698_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42ODcuYzIifQ&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gHZII5aN0TcarZN79_UqUWw-AfUgJSU3WDAfDOTDD-XGV19EpJWzkeLu9Z94BdsbXU&_nc_ohc=5JTh6Rdvm1cQ7kNvwGiZz17&_nc_gid=10kx0ps9pA10SpBIXrtyoQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_gS9_zXx_9K635GqFLIXRFG1cFqyWJ48wUnvD4458lQg&oe=6A460579&_nc_sid=8b3546",
+    "category": "Home & Lifestyle"
   },
   {
     "handle": "noughtone01",
@@ -1206,7 +1325,8 @@
     "phone": "6881469132",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:14.611Z",
-    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/438348187_1357311168319511_2257311860433976492_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45NDguYzIifQ&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gFrZ3kjGn1SELWSwnrKyh-ymm_68RVkZk3GIbIEiRMoFbToT6Ddwal5ok3ayL3Y1TU&_nc_ohc=5nPCIRVLWvoQ7kNvwHW2css&_nc_gid=YZkoUa6SJu2czNFmB7IC9g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8TwKrYKB53fD34Ll56754lhgDuXz556H-UqgxKhHAPBg&oe=6A45F222&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/438348187_1357311168319511_2257311860433976492_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45NDguYzIifQ&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gFrZ3kjGn1SELWSwnrKyh-ymm_68RVkZk3GIbIEiRMoFbToT6Ddwal5ok3ayL3Y1TU&_nc_ohc=5nPCIRVLWvoQ7kNvwHW2css&_nc_gid=YZkoUa6SJu2czNFmB7IC9g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8TwKrYKB53fD34Ll56754lhgDuXz556H-UqgxKhHAPBg&oe=6A45F222&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "blckorchid.in",
@@ -1219,7 +1339,8 @@
     "phone": "9496944046",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:14.961Z",
-    "avatar": "https://instagram.fmri1-1.fna.fbcdn.net/v/t51.2885-19/437734149_1443760509567060_8496022149194410300_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fmri1-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2gEa07VZmKsGwJ6dRlTAKc8MzIxI4hTXFR0e4D8O6EJ1qZK5rfHc9eSuNDtuULU7h3k&_nc_ohc=PAE9Zp-gsmoQ7kNvwGmLeor&_nc_gid=qRNMJ6LOzSUhK2du_5KPHQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8dsD8CvMMmIOXIYUildIXTf1fm8R3jigPEp26Yf4cz7A&oe=6A4606FA&_nc_sid=8b3546"
+    "avatar": "https://instagram.fmri1-1.fna.fbcdn.net/v/t51.2885-19/437734149_1443760509567060_8496022149194410300_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fmri1-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2gEa07VZmKsGwJ6dRlTAKc8MzIxI4hTXFR0e4D8O6EJ1qZK5rfHc9eSuNDtuULU7h3k&_nc_ohc=PAE9Zp-gsmoQ7kNvwGmLeor&_nc_gid=qRNMJ6LOzSUhK2du_5KPHQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8dsD8CvMMmIOXIYUildIXTf1fm8R3jigPEp26Yf4cz7A&oe=6A4606FA&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "yall.co.in",
@@ -1232,7 +1353,8 @@
     "phone": "919507028283",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:15.443Z",
-    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/466819726_530436389813627_162431575617382917_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gFdn6GEOaL-mdr_qMnD9tqkIbNVhafe_XuU-znubwWEVvve6vnh5C1tZyxTubJ_vmA&_nc_ohc=Y_uSTaNdT3YQ7kNvwGE9cCp&_nc_gid=la2ZYHQ_e-m4mq3w5EJNmw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9KDJCGsWcU0JrEFT9-VBj6TDDfIPfowWLXYuoJ9eDvnQ&oe=6A45F41D&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-3.cdninstagram.com/v/t51.2885-19/466819726_530436389813627_162431575617382917_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_cat=111&_nc_oc=Q6cZ2gFdn6GEOaL-mdr_qMnD9tqkIbNVhafe_XuU-znubwWEVvve6vnh5C1tZyxTubJ_vmA&_nc_ohc=Y_uSTaNdT3YQ7kNvwGE9cCp&_nc_gid=la2ZYHQ_e-m4mq3w5EJNmw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9KDJCGsWcU0JrEFT9-VBj6TDDfIPfowWLXYuoJ9eDvnQ&oe=6A45F41D&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "delluk",
@@ -1245,7 +1367,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:44:16.915Z",
-    "avatar": "https://scontent-sjc6-1.cdninstagram.com/v/t51.2885-19/459967616_1157076525353894_6792511051672110361_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gG_enDDCGVfDtz-nlylmtWl9rgceCkoMVtsfZs3ouZaUIBTRIRxSXKhOBpR6xJaf6w&_nc_ohc=NLv1ZSkhKEQQ7kNvwF0ybEh&_nc_gid=0pluHpYKcdnvllWcUOfZbQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9DYHRLhGpvb-ZVw7XK8qmnYYWfOWhg669XUQbujRsNWg&oe=6A460703&_nc_sid=8b3546"
+    "avatar": "https://scontent-sjc6-1.cdninstagram.com/v/t51.2885-19/459967616_1157076525353894_6792511051672110361_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gG_enDDCGVfDtz-nlylmtWl9rgceCkoMVtsfZs3ouZaUIBTRIRxSXKhOBpR6xJaf6w&_nc_ohc=NLv1ZSkhKEQQ7kNvwF0ybEh&_nc_gid=0pluHpYKcdnvllWcUOfZbQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9DYHRLhGpvb-ZVw7XK8qmnYYWfOWhg669XUQbujRsNWg&oe=6A460703&_nc_sid=8b3546",
+    "category": "Tech & Electronics"
   },
   {
     "handle": "sonypicturessg",
@@ -1258,7 +1381,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:44:18.114Z",
-    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/429941513_1131535924531096_4535219866435601279_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gHdQdAMoabmeactwbTHC5CMlc5nDTMQ4nNz28Oqkz9-axSLgbgAPCMRwZyhjCKfyiA&_nc_ohc=1r0mQ___44kQ7kNvwHsIJGV&_nc_gid=tou7GcEN5opLoFvyzgLblQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_ubZKaE7Rp5g3C5PC8NGv64VI7aQ4SDs64jvO2ZCoisQ&oe=6A45D397&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/429941513_1131535924531096_4535219866435601279_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gHdQdAMoabmeactwbTHC5CMlc5nDTMQ4nNz28Oqkz9-axSLgbgAPCMRwZyhjCKfyiA&_nc_ohc=1r0mQ___44kQ7kNvwHsIJGV&_nc_gid=tou7GcEN5opLoFvyzgLblQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_ubZKaE7Rp5g3C5PC8NGv64VI7aQ4SDs64jvO2ZCoisQ&oe=6A45D397&_nc_sid=8b3546",
+    "category": "Media & Entertainment"
   },
   {
     "handle": "woodchopproducts",
@@ -1271,7 +1395,8 @@
     "phone": "6419942016",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:20.166Z",
-    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/495511360_18052882772360674_2533119954339388403_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43ODAuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gGGBxsaCtBA2cRnKmtHXHZJGK0xEtmu-hAmtfaqUg80ePvn7NnZk_2rgq4yKG_6JQQ&_nc_ohc=DYix3-wi90kQ7kNvwGyu7Ar&_nc_gid=mClORChAmBOwIV0mYm3uyg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-gDHxKqtyA-Sir3cYL-yZm6UBjiMdJCTd3kmlC0zENTw&oe=6A45DBFC&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad3-1.cdninstagram.com/v/t51.2885-19/495511360_18052882772360674_2533119954339388403_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43ODAuYzIifQ&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gGGBxsaCtBA2cRnKmtHXHZJGK0xEtmu-hAmtfaqUg80ePvn7NnZk_2rgq4yKG_6JQQ&_nc_ohc=DYix3-wi90kQ7kNvwGyu7Ar&_nc_gid=mClORChAmBOwIV0mYm3uyg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-gDHxKqtyA-Sir3cYL-yZm6UBjiMdJCTd3kmlC0zENTw&oe=6A45DBFC&_nc_sid=8b3546",
+    "category": "Home & Lifestyle"
   },
   {
     "handle": "mina.jaipur",
@@ -1284,7 +1409,8 @@
     "phone": "9837617504",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:20.780Z",
-    "avatar": "https://scontent-mia5-1.cdninstagram.com/v/t51.2885-19/302014256_466202202072170_4665350081741156313_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NTguYzIifQ&_nc_ht=scontent-mia5-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gFxKjwSX7RbFBsH5WylJXHUnoM1VE1DNZnfiuiWfxha0AE3f0X-RK4u_KE6seZUUlE&_nc_ohc=PmMXiIc_YMMQ7kNvwGpGo1n&_nc_gid=B-GaVo14Mvm5H_tauxu2LQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-nJgcgEJ22S7YOcrbUAgxr6m5KFeMcGtehqDJcpgt9SQ&oe=6A45F118&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia5-1.cdninstagram.com/v/t51.2885-19/302014256_466202202072170_4665350081741156313_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NTguYzIifQ&_nc_ht=scontent-mia5-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gFxKjwSX7RbFBsH5WylJXHUnoM1VE1DNZnfiuiWfxha0AE3f0X-RK4u_KE6seZUUlE&_nc_ohc=PmMXiIc_YMMQ7kNvwGpGo1n&_nc_gid=B-GaVo14Mvm5H_tauxu2LQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-nJgcgEJ22S7YOcrbUAgxr6m5KFeMcGtehqDJcpgt9SQ&oe=6A45F118&_nc_sid=8b3546",
+    "category": "Bags & Accessories"
   },
   {
     "handle": "themirage.store",
@@ -1297,7 +1423,8 @@
     "phone": "8158673003",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:21.524Z",
-    "avatar": "https://instagram.ftpa1-1.fna.fbcdn.net/v/t51.82787-19/658832173_18081699569577957_7262383975000544107_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.ftpa1-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gHfM5yJVHyIAWOUIgixRRkFYW3wgxhD4btMaHzq57FUSBSZTGYbovdhipzoaPBlXxtwQC_XmttkfgJrPqYBLDPj&_nc_ohc=QS5TISKhc1EQ7kNvwGf01mS&_nc_gid=htbVgNHp5--ZQfT3AJIOWA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af894gZglzuZBG99kDa79Hgtzcm7UWxqB0s6L_xsy0grQQ&oe=6A45FBC7&_nc_sid=8b3546"
+    "avatar": "https://instagram.ftpa1-1.fna.fbcdn.net/v/t51.82787-19/658832173_18081699569577957_7262383975000544107_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.ftpa1-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gHfM5yJVHyIAWOUIgixRRkFYW3wgxhD4btMaHzq57FUSBSZTGYbovdhipzoaPBlXxtwQC_XmttkfgJrPqYBLDPj&_nc_ohc=QS5TISKhc1EQ7kNvwGf01mS&_nc_gid=htbVgNHp5--ZQfT3AJIOWA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af894gZglzuZBG99kDa79Hgtzcm7UWxqB0s6L_xsy0grQQ&oe=6A45FBC7&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "hophead.apparel",
@@ -1310,7 +1437,8 @@
     "phone": "+919004254957",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:22.813Z",
-    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/495838986_18041527613547424_8526771825967648804_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40OTkuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gFylb2N5AsGe6BbwZnWRlkFUl83sU4DaJeZ5gPa6rIwR5REbeP93GXfv2wBImyYa9k&_nc_ohc=OgXuykre00gQ7kNvwEK37gS&_nc_gid=GSFYernzNOX7Fbs7OmsHqw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8_IumXgErOOLBqr_1rRU8Rz4D9xpfpOZmLZzAcyW84ag&oe=6A45D2FD&_nc_sid=8b3546"
+    "avatar": "https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/495838986_18041527613547424_8526771825967648804_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40OTkuYzIifQ&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gFylb2N5AsGe6BbwZnWRlkFUl83sU4DaJeZ5gPa6rIwR5REbeP93GXfv2wBImyYa9k&_nc_ohc=OgXuykre00gQ7kNvwEK37gS&_nc_gid=GSFYernzNOX7Fbs7OmsHqw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8_IumXgErOOLBqr_1rRU8Rz4D9xpfpOZmLZzAcyW84ag&oe=6A45D2FD&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "hitchbybillie",
@@ -1323,7 +1451,8 @@
     "phone": "7689488250",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:25.129Z",
-    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/272641961_1120474262085909_6487810281778872997_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NTQuYzIifQ&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gGPG2zP1a71YDiTKsh1AIKNJ2TiQoBOpXKYV4sO_Srs_R7kxUspS5A0Be0OdWHpkB0&_nc_ohc=CngRYL44OSMQ7kNvwGCFkz6&_nc_gid=_yL6u5m0_Io5W9FIdvIzuQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8KP09Nt91248MGbSFwJwBxvWtH_S8X0abtK-9lEEJu_Q&oe=6A45D870&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/272641961_1120474262085909_6487810281778872997_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NTQuYzIifQ&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gGPG2zP1a71YDiTKsh1AIKNJ2TiQoBOpXKYV4sO_Srs_R7kxUspS5A0Be0OdWHpkB0&_nc_ohc=CngRYL44OSMQ7kNvwGCFkz6&_nc_gid=_yL6u5m0_Io5W9FIdvIzuQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8KP09Nt91248MGbSFwJwBxvWtH_S8X0abtK-9lEEJu_Q&oe=6A45D870&_nc_sid=8b3546",
+    "category": "Bags & Accessories"
   },
   {
     "handle": "bawse_official",
@@ -1336,7 +1465,8 @@
     "phone": "6341463414",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:25.740Z",
-    "avatar": "https://scontent-sea1-1.cdninstagram.com/v/t51.2885-19/486104561_1370298887752789_7686699737351113690_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gESavYycTbI6ItwfAP5jQIwsspKMyeo0KAqexkrqEJjRuZV1NINy4O7S0-GBnb8bKg&_nc_ohc=3cGwdiAfeTsQ7kNvwFuWIJb&_nc_gid=ULMAcHpmUkgF3b2H3SKZ2Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9BmG-LP0QhDO5hQfW7snWujsw4UX5vr7xhK_LxxzUomw&oe=6A45F6C2&_nc_sid=8b3546"
+    "avatar": "https://scontent-sea1-1.cdninstagram.com/v/t51.2885-19/486104561_1370298887752789_7686699737351113690_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gESavYycTbI6ItwfAP5jQIwsspKMyeo0KAqexkrqEJjRuZV1NINy4O7S0-GBnb8bKg&_nc_ohc=3cGwdiAfeTsQ7kNvwFuWIJb&_nc_gid=ULMAcHpmUkgF3b2H3SKZ2Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9BmG-LP0QhDO5hQfW7snWujsw4UX5vr7xhK_LxxzUomw&oe=6A45F6C2&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "instinctfirst",
@@ -1349,7 +1479,8 @@
     "phone": "6533854026",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:26.261Z",
-    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-19/542525683_18056390804612104_197421571088372273_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gHbtSiv0lO_Mbq3EKUAm_srlQTCzaDe18RKZyvmF4t92Q3X8Jl9KON8X4V_gxSJeiY&_nc_ohc=FqcvJARyNwwQ7kNvwF8zAFA&_nc_gid=wI8YE_cQ35Hnc6wAOsgDBg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_DXb8PDCm8jQ5rheNF9XXp9aPpziICuTyUcFwCBvm0NA&oe=6A45DBEE&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-19/542525683_18056390804612104_197421571088372273_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gHbtSiv0lO_Mbq3EKUAm_srlQTCzaDe18RKZyvmF4t92Q3X8Jl9KON8X4V_gxSJeiY&_nc_ohc=FqcvJARyNwwQ7kNvwF8zAFA&_nc_gid=wI8YE_cQ35Hnc6wAOsgDBg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_DXb8PDCm8jQ5rheNF9XXp9aPpziICuTyUcFwCBvm0NA&oe=6A45DBEE&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "sixbyeleven",
@@ -1362,7 +1493,8 @@
     "phone": "8200850491",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:27.042Z",
-    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-19/683872780_18081480359436770_5938200614219791888_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4yNjAuYzIifQ&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gHXq6AWuWHRoeMa4kg41mhSlG39Ck6BTiUFs8GSY864N-3PMTKjfd_JqHf3pNJi-7k&_nc_ohc=YJ8O3lz7qVQQ7kNvwHB4yAT&_nc_gid=GzysOIBuRqY-L3gWciyE2Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9QM-1WMh2dOpyIgShHnHQX9-irMpkP3_aOTI3YvCGsSQ&oe=6A45F720&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-19/683872780_18081480359436770_5938200614219791888_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4yNjAuYzIifQ&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gHXq6AWuWHRoeMa4kg41mhSlG39Ck6BTiUFs8GSY864N-3PMTKjfd_JqHf3pNJi-7k&_nc_ohc=YJ8O3lz7qVQQ7kNvwHB4yAT&_nc_gid=GzysOIBuRqY-L3gWciyE2Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9QM-1WMh2dOpyIgShHnHQX9-irMpkP3_aOTI3YvCGsSQ&oe=6A45F720&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "hermodindia",
@@ -1375,7 +1507,8 @@
     "phone": "8005762553",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:33.121Z",
-    "avatar": "https://instagram.fpit1-1.fna.fbcdn.net/v/t51.82787-19/650228149_18261173539292590_3969290434014488312_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fpit1-1.fna.fbcdn.net&_nc_cat=110&_nc_oc=Q6cZ2gFJpYw4qSFoQdr8K3sPtUz2W8i3OHFlOb5f5oJ2LlK1t_cnk8sUOgDcEgL9GdVvmbs&_nc_ohc=SIQgV6FYkeMQ7kNvwEskaed&_nc_gid=nBNmW-GXI9Q_DGJd7RAilg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-clSjn9F4osm1q5XN_tmh8gC-oVb1I0I-pIPGUU0P_AQ&oe=6A4601C9&_nc_sid=8b3546"
+    "avatar": "https://instagram.fpit1-1.fna.fbcdn.net/v/t51.82787-19/650228149_18261173539292590_3969290434014488312_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fpit1-1.fna.fbcdn.net&_nc_cat=110&_nc_oc=Q6cZ2gFJpYw4qSFoQdr8K3sPtUz2W8i3OHFlOb5f5oJ2LlK1t_cnk8sUOgDcEgL9GdVvmbs&_nc_ohc=SIQgV6FYkeMQ7kNvwEskaed&_nc_gid=nBNmW-GXI9Q_DGJd7RAilg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-clSjn9F4osm1q5XN_tmh8gC-oVb1I0I-pIPGUU0P_AQ&oe=6A4601C9&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "roarfoxofficial",
@@ -1388,7 +1521,8 @@
     "phone": "8000151823",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:33.809Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/287963640_1551865751896857_5245923016476867875_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gH0RYCQhDsjTi39X5Awhwt7U2EHbF1S5ptzrGhIiywG65G1GEtYpwuwlvGq8wtJEyw&_nc_ohc=aQTAar2l_7YQ7kNvwFNpEql&_nc_gid=pe2kVMbxVa-OkdCa92jJiw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9-R9G3F078hem2SwSQMh7WJUgzuyfoczunvpGi7GOx-g&oe=6A45F393&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/287963640_1551865751896857_5245923016476867875_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gH0RYCQhDsjTi39X5Awhwt7U2EHbF1S5ptzrGhIiywG65G1GEtYpwuwlvGq8wtJEyw&_nc_ohc=aQTAar2l_7YQ7kNvwFNpEql&_nc_gid=pe2kVMbxVa-OkdCa92jJiw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9-R9G3F078hem2SwSQMh7WJUgzuyfoczunvpGi7GOx-g&oe=6A45F393&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "adityab27",
@@ -1401,7 +1535,8 @@
     "phone": "8910536663",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:34.741Z",
-    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.82787-19/650698621_18568338541060471_3845097143317590825_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFdtS6T7Rh_K4d3bfw7tYqv-aZEqoSkXl-v2I9OatXxTnYhXkEXlhCTnVHP4rivQlg&_nc_ohc=l9twpgXAuW4Q7kNvwFeggd4&_nc_gid=VC6pRGkfdlZ9-RyPvsjbgg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af90KOPcI1Xs3_bk6IEQvvZZZZzYdPoBgy01RB42RTF0dw&oe=6A45E121&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.82787-19/650698621_18568338541060471_3845097143317590825_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gFdtS6T7Rh_K4d3bfw7tYqv-aZEqoSkXl-v2I9OatXxTnYhXkEXlhCTnVHP4rivQlg&_nc_ohc=l9twpgXAuW4Q7kNvwFeggd4&_nc_gid=VC6pRGkfdlZ9-RyPvsjbgg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af90KOPcI1Xs3_bk6IEQvvZZZZzYdPoBgy01RB42RTF0dw&oe=6A45E121&_nc_sid=8b3546",
+    "category": "Other"
   },
   {
     "handle": "bpl.india",
@@ -1414,7 +1549,8 @@
     "phone": "9954188750",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:35.205Z",
-    "avatar": "https://instagram.frst1-1.fna.fbcdn.net/v/t51.2885-19/17333911_793391817483173_4758812601347997696_a.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42MTUuYzIifQ&_nc_ht=instagram.frst1-1.fna.fbcdn.net&_nc_cat=105&_nc_oc=Q6cZ2gF7TlYHISwXYzTAnyvsYg_KQNrP6jXxTSQTPzT5f_etisICXlr02d5PGASTpmhg9pY&_nc_ohc=-mbJu66JkyYQ7kNvwH_kokf&_nc_gid=BVlIiFY9ZE-S8icrNDMM1w&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9jyV_HV6mbCP_xXQijLHF_Dwn5X_EwpP0jT_YMwYi76w&oe=6A45D4AA&_nc_sid=8b3546"
+    "avatar": "https://instagram.frst1-1.fna.fbcdn.net/v/t51.2885-19/17333911_793391817483173_4758812601347997696_a.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42MTUuYzIifQ&_nc_ht=instagram.frst1-1.fna.fbcdn.net&_nc_cat=105&_nc_oc=Q6cZ2gF7TlYHISwXYzTAnyvsYg_KQNrP6jXxTSQTPzT5f_etisICXlr02d5PGASTpmhg9pY&_nc_ohc=-mbJu66JkyYQ7kNvwH_kokf&_nc_gid=BVlIiFY9ZE-S8icrNDMM1w&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9jyV_HV6mbCP_xXQijLHF_Dwn5X_EwpP0jT_YMwYi76w&oe=6A45D4AA&_nc_sid=8b3546",
+    "category": "Tech & Electronics"
   },
   {
     "handle": "dopamean.in",
@@ -1427,7 +1563,8 @@
     "phone": "9837617504",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:35.598Z",
-    "avatar": "https://scontent-ord5-1.cdninstagram.com/v/t51.82787-19/543385745_17944748049021990_7594764030739325402_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43MjEuYzIifQ&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gGRavjoMEtmTfKV9EMEOAMDOC6aeKw3Dr9nbMCNNLMFpKZjtKPD3uiFenwRaGqZnMY&_nc_ohc=cGIWo0nFIgYQ7kNvwHDMWzQ&_nc_gid=NKG7-tZgL908JRaBws1fmg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9GQURtrnUWXgiY3Tn5LYLFXmgFzSxEDspXZoFYuDrDUw&oe=6A45D5AE&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-1.cdninstagram.com/v/t51.82787-19/543385745_17944748049021990_7594764030739325402_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43MjEuYzIifQ&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gGRavjoMEtmTfKV9EMEOAMDOC6aeKw3Dr9nbMCNNLMFpKZjtKPD3uiFenwRaGqZnMY&_nc_ohc=cGIWo0nFIgYQ7kNvwHDMWzQ&_nc_gid=NKG7-tZgL908JRaBws1fmg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9GQURtrnUWXgiY3Tn5LYLFXmgFzSxEDspXZoFYuDrDUw&oe=6A45D5AE&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "ogforreal_",
@@ -1440,7 +1577,8 @@
     "phone": "7640255684",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:36.192Z",
-    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-19/726337047_18094056569610504_1733167902065259213_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gG1_SJV9UUtAIFGJHqIGj4z4Fk_dkCb660RKtH5kOXoRg6T2FkaYMkUCu4EcdZQkvs&_nc_ohc=MGgCtNR9G6EQ7kNvwHv67K8&_nc_gid=e8CWC3YyAdorCamy-rY5Ag&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_qAEtbT_v-dVWGcIVrIWapdR0Pb_9eOARbCrJxKukjxw&oe=6A45FAF5&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-19/726337047_18094056569610504_1733167902065259213_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gG1_SJV9UUtAIFGJHqIGj4z4Fk_dkCb660RKtH5kOXoRg6T2FkaYMkUCu4EcdZQkvs&_nc_ohc=MGgCtNR9G6EQ7kNvwHv67K8&_nc_gid=e8CWC3YyAdorCamy-rY5Ag&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_qAEtbT_v-dVWGcIVrIWapdR0Pb_9eOARbCrJxKukjxw&oe=6A45FAF5&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "decadesrevisited_okc",
@@ -1453,7 +1591,8 @@
     "phone": "6067007636",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:37.521Z",
-    "avatar": "https://scontent-msp1-1.cdninstagram.com/v/t51.82787-19/658871002_18571970734016176_987888211251811278_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-msp1-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gGthUr3PhUt7pWj8l7Kg6UP-0oZn8IPMWBZHe3Rg4iQXpMC5mKeLNRfVHZMNJyFZXs&_nc_ohc=t5GQ_1lJf1UQ7kNvwF8PN7J&_nc_gid=4OZ3SCd__9y0IXqGV_qNhw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-3l0DhDdVHzFITxqYFqXcRDzZn7-sFZpCiestcjQUyqA&oe=6A45F8E3&_nc_sid=8b3546"
+    "avatar": "https://scontent-msp1-1.cdninstagram.com/v/t51.82787-19/658871002_18571970734016176_987888211251811278_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-msp1-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gGthUr3PhUt7pWj8l7Kg6UP-0oZn8IPMWBZHe3Rg4iQXpMC5mKeLNRfVHZMNJyFZXs&_nc_ohc=t5GQ_1lJf1UQ7kNvwF8PN7J&_nc_gid=4OZ3SCd__9y0IXqGV_qNhw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-3l0DhDdVHzFITxqYFqXcRDzZn7-sFZpCiestcjQUyqA&oe=6A45F8E3&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "tclmobiletr",
@@ -1466,7 +1605,8 @@
     "phone": null,
     "status": "new",
     "discovered_at": "2026-06-27T18:44:47.975Z",
-    "avatar": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/341300287_6279873652077038_8350903018302033968_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmV4cGVyaW1lbnRhbCJ9&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gHEy2SVPpOhJr7t8-9Fph3hPUoJ7TvZrpE8onyxkitkzZd-wszVOZYxiiWEZbtPUFw&_nc_ohc=6IoxAm7HwhQQ7kNvwFfuMSX&_nc_gid=S6wFhFB9uc36pQLt73w8pA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_9uikSERzaWHkNGUqQaveaBqfkFUB2e-PbTOdbRP74Ew&oe=6A45E5C5&_nc_sid=8b3546"
+    "avatar": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/341300287_6279873652077038_8350903018302033968_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmV4cGVyaW1lbnRhbCJ9&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gHEy2SVPpOhJr7t8-9Fph3hPUoJ7TvZrpE8onyxkitkzZd-wszVOZYxiiWEZbtPUFw&_nc_ohc=6IoxAm7HwhQQ7kNvwFfuMSX&_nc_gid=S6wFhFB9uc36pQLt73w8pA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_9uikSERzaWHkNGUqQaveaBqfkFUB2e-PbTOdbRP74Ew&oe=6A45E5C5&_nc_sid=8b3546",
+    "category": "Tech & Electronics"
   },
   {
     "handle": "freezestudios_",
@@ -1479,7 +1619,8 @@
     "phone": "9837617504",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:48.367Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/452926801_858075115780377_4620460768048992490_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gFx_jKSDLXeKjAjcnyYp02h5Pyyp6dchi9t0DSFHUPh-QeSjC2D0Y93JD_x4OFazpw&_nc_ohc=BpsVoewSdtkQ7kNvwFQpijL&_nc_gid=8o62sEbnzhL1d0xKLfAAYQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_5A1qlWwwV8y2JruZq8PhTE3D-v96hySSa_tCwDVfALw&oe=6A45FDEA&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.2885-19/452926801_858075115780377_4620460768048992490_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gFx_jKSDLXeKjAjcnyYp02h5Pyyp6dchi9t0DSFHUPh-QeSjC2D0Y93JD_x4OFazpw&_nc_ohc=BpsVoewSdtkQ7kNvwFQpijL&_nc_gid=8o62sEbnzhL1d0xKLfAAYQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_5A1qlWwwV8y2JruZq8PhTE3D-v96hySSa_tCwDVfALw&oe=6A45FDEA&_nc_sid=8b3546",
+    "category": "Art & Creative"
   },
   {
     "handle": "sonypictures.nz",
@@ -1492,7 +1633,8 @@
     "phone": "6432156244",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:49.770Z",
-    "avatar": "https://instagram.fsac1-1.fna.fbcdn.net/v/t51.2885-19/428587540_417692457291108_1789258612922425161_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fsac1-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2gEYbBGI6UpTRkNeKQvkIg2RfgGABhr54P8tNRfi81uaIIc7cNAyVRjmaC16z5KMxl4&_nc_ohc=H6N1GW-HFO8Q7kNvwG2A8NZ&_nc_gid=xvK5tRGgPuJ2VfK0GLjPcQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9HArzr0ZTXOVGsDrMu48saOTY3ppU3jMlcVi6D56UqOg&oe=6A45F727&_nc_sid=8b3546"
+    "avatar": "https://instagram.fsac1-1.fna.fbcdn.net/v/t51.2885-19/428587540_417692457291108_1789258612922425161_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fsac1-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2gEYbBGI6UpTRkNeKQvkIg2RfgGABhr54P8tNRfi81uaIIc7cNAyVRjmaC16z5KMxl4&_nc_ohc=H6N1GW-HFO8Q7kNvwG2A8NZ&_nc_gid=xvK5tRGgPuJ2VfK0GLjPcQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9HArzr0ZTXOVGsDrMu48saOTY3ppU3jMlcVi6D56UqOg&oe=6A45F727&_nc_sid=8b3546",
+    "category": "Media & Entertainment"
   },
   {
     "handle": "bluorngcommune",
@@ -1505,7 +1647,8 @@
     "phone": "9837617504",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:50.327Z",
-    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/569385178_17946750990025245_511281379625759015_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gH8KSQYg-ANqP9-K16JFwr7RFgBnQN711jmUP75HqOYL5nsciHbzXZqiB8VHJLdGfM&_nc_ohc=BOLQEdoZVuEQ7kNvwEsFexF&_nc_gid=RfSXVTzLHqEQkAErxMhVPA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_Uz1ssGacueu7T2LWmzDDE0_FtDiLo8vn638d8X6lwHw&oe=6A45E7B9&_nc_sid=8b3546"
+    "avatar": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-19/569385178_17946750990025245_511281379625759015_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_cat=109&_nc_oc=Q6cZ2gH8KSQYg-ANqP9-K16JFwr7RFgBnQN711jmUP75HqOYL5nsciHbzXZqiB8VHJLdGfM&_nc_ohc=BOLQEdoZVuEQ7kNvwEsFexF&_nc_gid=RfSXVTzLHqEQkAErxMhVPA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_Uz1ssGacueu7T2LWmzDDE0_FtDiLo8vn638d8X6lwHw&oe=6A45E7B9&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "ripoff.in",
@@ -1518,7 +1661,8 @@
     "phone": "9116743597",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:51.173Z",
-    "avatar": "https://instagram.fdtw2-1.fna.fbcdn.net/v/t51.2885-19/344064348_597681328987815_8677959199474418644_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fdtw2-1.fna.fbcdn.net&_nc_cat=103&_nc_oc=Q6cZ2gELXm3eFJ8Rj_AYS5H0JS_w-fV0c3x1uqYTFe9VscRV2NnWkFhJUxPdIOOUJspuVis&_nc_ohc=kkUrzB_yYIYQ7kNvwE76KeG&_nc_gid=VkStl-bNhp1Whel_XAbsqg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9UgB7l7MO8QVV6wiQtdGXWDRpV3SHr17FyVq9_cn9fAA&oe=6A45DD30&_nc_sid=8b3546"
+    "avatar": "https://instagram.fdtw2-1.fna.fbcdn.net/v/t51.2885-19/344064348_597681328987815_8677959199474418644_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fdtw2-1.fna.fbcdn.net&_nc_cat=103&_nc_oc=Q6cZ2gELXm3eFJ8Rj_AYS5H0JS_w-fV0c3x1uqYTFe9VscRV2NnWkFhJUxPdIOOUJspuVis&_nc_ohc=kkUrzB_yYIYQ7kNvwE76KeG&_nc_gid=VkStl-bNhp1Whel_XAbsqg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9UgB7l7MO8QVV6wiQtdGXWDRpV3SHr17FyVq9_cn9fAA&oe=6A45DD30&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "dl.street",
@@ -1531,7 +1675,8 @@
     "phone": "9837617504",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:52.160Z",
-    "avatar": "https://scontent-det1-1.cdninstagram.com/v/t51.82787-19/708345490_18080659856542722_1844286343968515367_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-det1-1.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gED8p1eNTIDGmC1paD4fDHjM3XymiIVB-peD7o5OuaZiEAmDNGKgEdU7Oh-T2fx934&_nc_ohc=4CG2r_Oqsw0Q7kNvwHd5cOT&_nc_gid=12xnYq5zc2WPLRbcZPwsOA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9I_n-iRLicj_OOOf-QEA9jX0cKqLnXd5Hdk5n89g5KNw&oe=6A45F3CF&_nc_sid=8b3546"
+    "avatar": "https://scontent-det1-1.cdninstagram.com/v/t51.82787-19/708345490_18080659856542722_1844286343968515367_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-det1-1.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gED8p1eNTIDGmC1paD4fDHjM3XymiIVB-peD7o5OuaZiEAmDNGKgEdU7Oh-T2fx934&_nc_ohc=4CG2r_Oqsw0Q7kNvwHd5cOT&_nc_gid=12xnYq5zc2WPLRbcZPwsOA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af9I_n-iRLicj_OOOf-QEA9jX0cKqLnXd5Hdk5n89g5KNw&oe=6A45F3CF&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "offlane.in",
@@ -1544,7 +1689,8 @@
     "phone": "+918660296522",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:53.337Z",
-    "avatar": "https://scontent-sea5-1.cdninstagram.com/v/t51.2885-19/424936135_1082993882950049_1039778995622990090_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gH6aBaZCDYaybtiXhAcZL57d-vCpwfyD1kimFTyyyKO1awM723zCDnI6EaDaMzAkzo&_nc_ohc=DA6wZZF1PS4Q7kNvwGFeuCP&_nc_gid=d91k4jzGCw7PaaD2schUUw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8lXXdb9ZeXmB3SUn8kQhUZKaQUSE9MhsX_arAdZrDMvw&oe=6A45FC07&_nc_sid=8b3546"
+    "avatar": "https://scontent-sea5-1.cdninstagram.com/v/t51.2885-19/424936135_1082993882950049_1039778995622990090_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gH6aBaZCDYaybtiXhAcZL57d-vCpwfyD1kimFTyyyKO1awM723zCDnI6EaDaMzAkzo&_nc_ohc=DA6wZZF1PS4Q7kNvwGFeuCP&_nc_gid=d91k4jzGCw7PaaD2schUUw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8lXXdb9ZeXmB3SUn8kQhUZKaQUSE9MhsX_arAdZrDMvw&oe=6A45FC07&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "houseofbrahma",
@@ -1557,7 +1703,8 @@
     "phone": "9257285150",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:54.407Z",
-    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/454941669_325158727343683_4788625504342991537_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44OTQuYzIifQ&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gE4VDjn6l42etchKK22Wz4AQSRxkFey7XX4zvBPkJoyneReCIW-kWt8JJyJdtM_oiE&_nc_ohc=ZqMuTEd8GXMQ7kNvwF_7gP4&_nc_gid=n_uV0qz0cazG1B_qFs7eVA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8vVokc-wISfh96eWdASnRJOsWKc-TZHT6kp8AAQEITDA&oe=6A45FFE6&_nc_sid=8b3546"
+    "avatar": "https://scontent-ord5-3.cdninstagram.com/v/t51.2885-19/454941669_325158727343683_4788625504342991537_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby44OTQuYzIifQ&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gE4VDjn6l42etchKK22Wz4AQSRxkFey7XX4zvBPkJoyneReCIW-kWt8JJyJdtM_oiE&_nc_ohc=ZqMuTEd8GXMQ7kNvwF_7gP4&_nc_gid=n_uV0qz0cazG1B_qFs7eVA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8vVokc-wISfh96eWdASnRJOsWKc-TZHT6kp8AAQEITDA&oe=6A45FFE6&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "veloce.in",
@@ -1570,7 +1717,8 @@
     "phone": "8153436254",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:55.031Z",
-    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/459996820_2044572032645329_2662213414546278829_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gHDVbtduhIEwkezH_PSGhK6BAXUdd1bXa6FQZQeOAMLejUkyujfXa1oSEHleNJXjqQ&_nc_ohc=VpaiULyqfokQ7kNvwGlOcoz&_nc_gid=ENJesx82vyxdbklACjfGBA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-HY44A7_oElXMlRqBaSfkiAWXWOP2zwzMOXu-Ga4glrg&oe=6A45D491&_nc_sid=8b3546"
+    "avatar": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/459996820_2044572032645329_2662213414546278829_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gHDVbtduhIEwkezH_PSGhK6BAXUdd1bXa6FQZQeOAMLejUkyujfXa1oSEHleNJXjqQ&_nc_ohc=VpaiULyqfokQ7kNvwGlOcoz&_nc_gid=ENJesx82vyxdbklACjfGBA&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af-HY44A7_oElXMlRqBaSfkiAWXWOP2zwzMOXu-Ga4glrg&oe=6A45D491&_nc_sid=8b3546",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "uppercase_ecobags",
@@ -1583,7 +1731,8 @@
     "phone": "6753914085",
     "status": "new",
     "discovered_at": "2026-06-27T18:44:55.560Z",
-    "avatar": "https://scontent-mia3-2.cdninstagram.com/v/t51.2885-19/299868345_603721247832869_2128389285946447046_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-mia3-2.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gEsP_LFfEuAJ2QbxH-eEbeISqbr3z_QLbxANpVaeR_Yn41_5zygv4yMWjsPKZBmaIU&_nc_ohc=CjvAKWu5_zoQ7kNvwFeWxB6&_nc_gid=XXvQ-d9z3K13KWFO3zUj2g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8IvRu4w01M_Vx0iZOCDDwvZjMA1AbvSPdy9Hb7SKgn4w&oe=6A45F21E&_nc_sid=8b3546"
+    "avatar": "https://scontent-mia3-2.cdninstagram.com/v/t51.2885-19/299868345_603721247832869_2128389285946447046_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zMjAuYzIifQ&_nc_ht=scontent-mia3-2.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gEsP_LFfEuAJ2QbxH-eEbeISqbr3z_QLbxANpVaeR_Yn41_5zygv4yMWjsPKZBmaIU&_nc_ohc=CjvAKWu5_zoQ7kNvwFeWxB6&_nc_gid=XXvQ-d9z3K13KWFO3zUj2g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af8IvRu4w01M_Vx0iZOCDDwvZjMA1AbvSPdy9Hb7SKgn4w&oe=6A45F21E&_nc_sid=8b3546",
+    "category": "Bags & Accessories"
   },
   {
     "handle": "thetintedstory",
@@ -1596,7 +1745,8 @@
     "email": null,
     "phone": "7932480703",
     "status": "new",
-    "discovered_at": "2026-06-27T19:02:15.271Z"
+    "discovered_at": "2026-06-27T19:02:15.271Z",
+    "category": "Bags & Accessories"
   },
   {
     "handle": "thebadpoetsclub",
@@ -1609,7 +1759,8 @@
     "email": "hello@badpoetsclub.com",
     "phone": "7378687549",
     "status": "new",
-    "discovered_at": "2026-06-27T19:02:15.801Z"
+    "discovered_at": "2026-06-27T19:02:15.801Z",
+    "category": "Art & Creative"
   },
   {
     "handle": "armadioindia",
@@ -1622,7 +1773,8 @@
     "email": null,
     "phone": "9837617504",
     "status": "new",
-    "discovered_at": "2026-06-27T19:02:16.310Z"
+    "discovered_at": "2026-06-27T19:02:16.310Z",
+    "category": "Clothing & Apparel"
   },
   {
     "handle": "thestruttstore",
@@ -1635,7 +1787,8 @@
     "email": "connect@thestruttstore.com",
     "phone": "8909034269",
     "status": "new",
-    "discovered_at": "2026-06-27T19:02:17.311Z"
+    "discovered_at": "2026-06-27T19:02:17.311Z",
+    "category": "Bags & Accessories"
   },
   {
     "handle": "crunkthread",
@@ -1648,6 +1801,7 @@
     "email": "support@crunkthread.com",
     "phone": "7405685987",
     "status": "new",
-    "discovered_at": "2026-06-27T19:02:18.187Z"
+    "discovered_at": "2026-06-27T19:02:18.187Z",
+    "category": "Clothing & Apparel"
   }
 ]
