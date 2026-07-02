@@ -141,6 +141,16 @@ a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
+<div id="lockScreen" style="display:none;position:fixed;inset:0;background:#0c0c0c;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+  <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#e8344a;margin:0;">Antortiq · Admin</p>
+  <h2 style="color:#fff;margin:0;font-size:22px;">Enter password</h2>
+  <div style="display:flex;gap:8px;">
+    <input id="lockInput" type="password" placeholder="Password" style="background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;outline:none;width:180px;" onkeydown="if(event.key==='Enter')unlock()">
+    <button onclick="unlock()" style="background:#e8344a;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;">Enter</button>
+  </div>
+  <p id="lockError" style="color:#e8344a;font-size:12px;margin:0;opacity:0;">Wrong password</p>
+</div>
+<div id="mainContent" style="display:none;">
 <div class="wrap">
   <span class="eyebrow">Internal · Admin</span>
   <h1>Antortiq Dashboard</h1>
@@ -629,8 +639,33 @@ document.getElementById('leadsSearch').addEventListener('input', renderLeadsTabl
 document.getElementById('leadsStatus').addEventListener('change', renderLeadsTable);
 document.getElementById('engSearch').addEventListener('input', renderEngagement);
 
-load();
-setInterval(load, 60000);
+function unlock() {
+  const val = document.getElementById('lockInput').value;
+  if (val === 'qqqq') {
+    sessionStorage.setItem('admin_auth', '1');
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+    load();
+    setInterval(load, 60000);
+  } else {
+    const err = document.getElementById('lockError');
+    err.style.opacity = '1';
+    document.getElementById('lockInput').value = '';
+    setTimeout(() => { err.style.opacity = '0'; }, 2000);
+  }
+}
+
+// Check session on load
+if (sessionStorage.getItem('admin_auth') === '1') {
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+  load();
+  setInterval(load, 60000);
+} else {
+  document.getElementById('lockScreen').style.display = 'flex';
+  document.getElementById('mainContent').style.display = 'none';
+}
 </script>
+</div><!-- /mainContent -->
 </body>
 </html>
