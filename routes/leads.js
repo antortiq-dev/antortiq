@@ -43,17 +43,23 @@ router.get('/', async (req, res) => {
   res.json(leads);
 });
 
-// Instagram avatar proxy
+// Avatar proxy — fetches any HTTPS image so browser CORS/CORP headers don't block it
 router.get('/avatar', async (req, res) => {
   const { url } = req.query;
-  if (!url || !url.startsWith('https://') || !url.includes('cdninstagram.com')) {
+  if (!url || !url.startsWith('https://')) {
     return res.status(400).send('Invalid avatar URL');
   }
   try {
-    const upstream = await fetch(url);
+    const upstream = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+        'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+        'Referer': 'https://www.instagram.com/',
+      },
+    });
     if (!upstream.ok) return res.status(upstream.status).send('Upstream error');
     res.set('Content-Type', upstream.headers.get('content-type') || 'image/jpeg');
-    res.set('Cache-Control', 'public, max-age=86400');
+    res.set('Cache-Control', 'public, max-age=3600');
     res.send(Buffer.from(await upstream.arrayBuffer()));
   } catch {
     res.status(502).send('Failed to fetch avatar');
