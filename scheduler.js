@@ -2,15 +2,7 @@ const cron = require('node-cron');
 const fs = require('fs');
 const path = require('path');
 const nodemailer = require('nodemailer');
-
-const LEADS_FILE = path.join(__dirname, 'data', 'leads.json');
-
-function readLeads() {
-  return JSON.parse(fs.readFileSync(LEADS_FILE, 'utf8'));
-}
-function writeLeads(leads) {
-  fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
-}
+const Lead = require('./models/Lead');
 
 function getTransporter() {
   return nodemailer.createTransport({
@@ -50,15 +42,13 @@ async function sendWithRetry(transporter, mailOptions, brandName, day) {
 
 async function runDailyFollowups() {
   console.log(`[scheduler] Running follow-up sequence at ${new Date().toISOString()}`);
-  const leads = readLeads();
+  const leads = await Lead.find({ email: { $exists: true, $ne: '' } });
   const transporter = getTransporter();
   const trackBase = 'https://antortiq.onrender.com/api/track';
 
   let sent = 0, skipped = 0, failed = 0;
 
   for (const lead of leads) {
-    if (!lead.email) { skipped++; continue; }
-
     // Determine which day to send next
     let day = null;
     if (lead.proposal_sent_at && !lead.followup_1_sent_at) day = 1;
@@ -94,16 +84,14 @@ async function runDailyFollowups() {
     }, brandName, day);
 
     if (ok) {
-      lead[`followup_${day}_sent_at`] = new Date().toISOString();
-      // Write after each success so a crash mid-run doesn't lose progress
-      writeLeads(leads);
+      lead[`followup_${day}_sent_at`] = new Date();
+      await lead.save(); // persisted to MongoDB immediately
       sent++;
       console.log(`[scheduler] ✓ Day ${day+1} → ${brandName} <${lead.email}>`);
     } else {
       failed++;
     }
 
-    // Gap between each lead to avoid bursting the SMTP limit
     await new Promise(r => setTimeout(r, 500));
   }
 
