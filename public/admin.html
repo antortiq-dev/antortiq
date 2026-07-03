@@ -478,12 +478,12 @@ function renderLeadsTable() {
         </div>
       </td>
       <td>${catBadge(l.category)}</td>
-      <td style="font-size:12px;color:#777;">${esc(l.sector||'—')}</td>
       <td style="font-size:12px;color:#777;">${l.followers ? l.followers.toLocaleString('en-IN') : '—'}</td>
       <td style="font-size:12px;">
         ${l.email ? `<a href="mailto:${esc(l.email)}">${esc(l.email)}</a>` : ''}
         ${l.phone ? `<br><span class="muted">${esc(l.phone)}</span>` : ''}
-        ${!l.email && !l.phone ? '<span class="muted">—</span>' : ''}
+        ${l.website ? `<br><a href="${esc(l.website)}" target="_blank" style="font-size:11px;color:#7eb8f7;">${esc(l.website.replace(/^https?:\/\//,''))}</a>` : ''}
+        ${!l.email && !l.phone && !l.website ? '<span class="muted">—</span>' : ''}
       </td>
       <td>
         <select class="status-select" data-handle="${esc(l.handle)}" onchange="updateStatus(this)">
