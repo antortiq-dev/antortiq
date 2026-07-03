@@ -40,8 +40,11 @@ async function sendWithRetry(transporter, mailOptions, brandName, day) {
   }
 }
 
+const PROPOSAL_SUBJECTS = b => `${b} × Antortiq — We built something for you`;
+
 async function runDailyFollowups() {
   console.log(`[scheduler] Running follow-up sequence at ${new Date().toISOString()}`);
+  const now = new Date();
   const leads = await Lead.find({ email: { $exists: true, $ne: '' } });
   const transporter = getTransporter();
   const trackBase = 'https://antortiq.onrender.com/api/track';
@@ -50,12 +53,22 @@ async function runDailyFollowups() {
 
   for (const lead of leads) {
     // Determine which day to send next
-    let day = null;
-    if (lead.proposal_sent_at && !lead.followup_1_sent_at) day = 1;
-    else if (lead.followup_1_sent_at && !lead.followup_2_sent_at) day = 2;
-    else if (lead.followup_2_sent_at && !lead.followup_3_sent_at) day = 3;
+    let day = null; // null = proposal (day 1), 1/2/3 = followups
+    let templateFile, templateId, subject;
 
-    if (!day) { skipped++; continue; }
+    const started = lead.sequence_start_at && lead.sequence_start_at <= now;
+
+    if (started && !lead.proposal_sent_at) {
+      day = 0; // Day 1 — proposal
+    } else if (lead.proposal_sent_at && !lead.followup_1_sent_at) {
+      day = 1;
+    } else if (lead.followup_1_sent_at && !lead.followup_2_sent_at) {
+      day = 2;
+    } else if (lead.followup_2_sent_at && !lead.followup_3_sent_at) {
+      day = 3;
+    }
+
+    if (day === null) { skipped++; continue; }
 
     const brandName = lead.name || lead.handle;
     const brandDomain = lead.website
@@ -63,11 +76,13 @@ async function runDailyFollowups() {
       : lead.handle;
     const brandNameEncoded = encodeURIComponent(brandName);
     const proposalLink = `https://antortiq.onrender.com/d2c-proposal.html?brand=${brandNameEncoded}`;
-    const templateId = `followup-${day}`;
+    templateId = day === 0 ? 'proposal' : `followup-${day}`;
     const clickTracked = `${trackBase}/click/${brandNameEncoded}/${templateId}?to=${encodeURIComponent(proposalLink)}`;
     const openPixel = `${trackBase}/open/${brandNameEncoded}/${templateId}`;
+    subject = day === 0 ? PROPOSAL_SUBJECTS(brandName) : FOLLOWUP_SUBJECTS[day](brandName);
 
-    const raw = fs.readFileSync(path.join(__dirname, 'proposals', `d2c-followup-${day}.html`), 'utf8');
+    const templateFileName = day === 0 ? 'd2c-email.html' : `d2c-followup-${day}.html`;
+    const raw = fs.readFileSync(path.join(__dirname, 'proposals', templateFileName), 'utf8');
     const html = raw
       .replace(/\{\{BRAND_NAME\}\}/g, brandName)
       .replace(/\{\{BRAND_NAME_UPPER\}\}/g, brandName.toUpperCase())
@@ -79,12 +94,13 @@ async function runDailyFollowups() {
     const ok = await sendWithRetry(transporter, {
       from: `"Antortiq" <${process.env.SMTP_USER}>`,
       to: lead.email,
-      subject: FOLLOWUP_SUBJECTS[day](brandName),
+      subject,
       html,
     }, brandName, day);
 
     if (ok) {
-      lead[`followup_${day}_sent_at`] = new Date();
+      if (day === 0) { lead.proposal_sent_at = new Date(); lead.status = 'contacted'; }
+      else lead[`followup_${day}_sent_at`] = new Date();
       await lead.save(); // persisted to MongoDB immediately
       sent++;
       console.log(`[scheduler] ✓ Day ${day+1} → ${brandName} <${lead.email}>`);
