@@ -108,7 +108,7 @@ async function runDailyFollowups() {
       failed++;
     }
 
-    await new Promise(r => setTimeout(r, 500));
+    await new Promise(r => setTimeout(r, 15000));
   }
 
   console.log(`[scheduler] Done — sent ${sent}, failed ${failed}, skipped ${skipped}`);

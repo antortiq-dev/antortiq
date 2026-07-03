@@ -193,7 +193,7 @@ router.post('/bulk-send', async (req, res) => {
         }
         await lead.save();
         results.push({ handle: lead.handle, template: tmpl, ok: true });
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 15000));
       } catch (err) {
         results.push({ handle: lead.handle, template: tmpl, ok: false, error: err.message });
       }
