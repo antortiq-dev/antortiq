@@ -5,6 +5,7 @@ const { connect } = require('./db');
 const contactRoute = require('./routes/contact');
 const leadsRoute = require('./routes/leads');
 const trackRoute = require('./routes/track');
+const crmRoute = require('./routes/crm');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/contact', contactRoute);
 app.use('/api/leads', leadsRoute);
 app.use('/api/track', trackRoute);
+app.use('/api/crm', crmRoute);
 
 app.get('/healthz', (req, res) => res.json({ status: 'ok' }));
 

@@ -172,6 +172,7 @@ a:hover{text-decoration:underline;}
       <div class="tab" onclick="switchTab('feed')">⚡ Activity Feed</div>
       <div class="tab" onclick="switchTab('engagement')">📊 Engagement</div>
       <div class="tab" onclick="switchTab('templates')">📧 Templates</div>
+      <div class="tab" onclick="switchTab('crm')">🤖 AI Assistant</div>
     </div>
     <button class="refresh-btn" onclick="load()">↻ Refresh</button>
   </div>
@@ -286,6 +287,41 @@ a:hover{text-decoration:underline;}
   <div class="panel" id="panel-templates">
     <div id="templateList"><div class="empty">Loading…</div></div>
   </div>
+
+  <!-- CRM / AI ASSISTANT TAB -->
+  <div class="panel" id="panel-crm" style="display:none;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+
+      <!-- Chat -->
+      <div>
+        <h3 style="color:#fff;font-size:14px;font-weight:700;margin-bottom:14px;font-family:var(--disp);">AI Assistant <span style="font-size:11px;color:#555;font-weight:400;">· powered by DeepSeek</span></h3>
+        <div id="crmMessages" style="background:#0e0e10;border:1px solid #1e1e22;border-radius:12px;padding:14px;height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:10px;">
+          <div class="crm-msg assistant" style="background:#1a1a1e;border-radius:10px;padding:12px 14px;font-size:13px;color:#ccc;line-height:1.6;max-width:90%;">
+            Hey Harshit 👋 Tell me anything about your leads — intel, interest signals, competitor tools they use, follow-ups needed. I'll tag them, add notes, and create tasks automatically.
+            <br><br>Try: <em style="color:#666;">"six5six uses ReturnPrime for returns"</em> or <em style="color:#666;">"1970 seems very interested, call them tomorrow"</em>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <input id="crmInput" type="text" placeholder="Tell me something about a lead…" style="flex:1;background:#141416;border:1px solid #2a2a2e;color:#fff;padding:11px 14px;border-radius:10px;font-size:13px;outline:none;" onkeydown="if(event.key==='Enter')sendCrmMessage()">
+          <button onclick="sendCrmMessage()" style="background:var(--red);color:#fff;border:none;padding:11px 18px;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;">Send →</button>
+        </div>
+      </div>
+
+      <!-- Tasks -->
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <h3 style="color:#fff;font-size:14px;font-weight:700;font-family:var(--disp);">Tasks <span id="taskCount" style="font-size:11px;color:#555;font-weight:400;"></span></h3>
+          <div style="display:flex;gap:6px;">
+            <button onclick="filterTasks('open')" id="taskFilterOpen" style="font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;border:1px solid var(--red);background:rgba(232,52,74,.15);color:var(--red);cursor:pointer;">Open</button>
+            <button onclick="filterTasks('done')" id="taskFilterDone" style="font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;border:1px solid #2a2a2e;background:transparent;color:#555;cursor:pointer;">Done</button>
+          </div>
+        </div>
+        <div id="taskList" style="display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto;">
+          <div class="empty" style="text-align:center;padding:40px;color:#333;">No tasks yet. Tell the AI about a lead to auto-create tasks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -295,7 +331,7 @@ let allTemplates = [];
 let rawLeads = [];
 let allCategories = [];
 
-const TABS = ['leads','feed','engagement','templates'];
+const TABS = ['leads','feed','engagement','templates','crm'];
 
 const CAT_CLASS = {
   'Clothing & Apparel':'cat-clothing','Food & Beverage':'cat-food','Health & Wellness':'cat-health',
@@ -437,6 +473,7 @@ function renderLeadsTable() {
           <div>
             <b style="color:#fff;">${esc(l.name||l.handle)}</b>
             <br><span class="muted" style="font-size:11px;">@${esc(l.handle)}</span>
+            ${(l.tags||[]).length ? `<br><span style="display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;">${l.tags.map(t=>`<span style="font-size:9px;font-weight:700;background:rgba(232,52,74,.1);color:#e8344a;padding:1px 7px;border-radius:99px;border:1px solid rgba(232,52,74,.2);">${esc(t)}</span>`).join('')}</span>` : ''}
           </div>
         </div>
       </td>
@@ -602,6 +639,7 @@ function switchTab(name) {
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', TABS[i]===name));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
+  if (name === 'crm') loadTasks();
 }
 
 // ─── LOAD ALL DATA ────────────────────────────────────────────
@@ -638,6 +676,110 @@ async function load() {
 document.getElementById('leadsSearch').addEventListener('input', renderLeadsTable);
 document.getElementById('leadsStatus').addEventListener('change', renderLeadsTable);
 document.getElementById('engSearch').addEventListener('input', renderEngagement);
+
+// ─── CRM / AI ASSISTANT ────────────────────────────────────────
+let crmTaskFilter = 'open';
+
+function appendCrmMsg(text, role, actions) {
+  const box = document.getElementById('crmMessages');
+  const el = document.createElement('div');
+  el.className = 'crm-msg ' + role;
+  const isUser = role === 'user';
+  el.style.cssText = `background:${isUser?'var(--red)':'#1a1a1e'};border-radius:10px;padding:12px 14px;font-size:13px;color:${isUser?'#fff':'#ccc'};line-height:1.6;max-width:85%;${isUser?'align-self:flex-end':''}`;
+  el.textContent = text;
+
+  if (actions && actions.length) {
+    const chips = document.createElement('div');
+    chips.style.cssText = 'margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;';
+    actions.forEach(a => {
+      const chip = document.createElement('span');
+      const labels = { tag:'🏷 Tagged', note:'📝 Note saved', task:'✅ Task created', status:'🔄 Status updated' };
+      chip.textContent = labels[a.type] || a.type;
+      if (a.type==='tag' && a.added?.length) chip.textContent += `: ${a.added.join(', ')}`;
+      if (a.type==='task') chip.textContent += `: ${a.title}`;
+      chip.style.cssText = 'font-size:10px;font-weight:700;background:rgba(255,255,255,.08);padding:3px 9px;border-radius:99px;color:#888;';
+      chips.appendChild(chip);
+    });
+    el.appendChild(chips);
+  }
+
+  box.appendChild(el);
+  box.scrollTop = box.scrollHeight;
+}
+
+async function sendCrmMessage() {
+  const input = document.getElementById('crmInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  appendCrmMsg(msg, 'user');
+
+  const thinking = document.createElement('div');
+  thinking.style.cssText = 'color:#444;font-size:12px;padding:6px 14px;';
+  thinking.textContent = 'Thinking…';
+  document.getElementById('crmMessages').appendChild(thinking);
+
+  try {
+    const r = await fetch('/api/crm/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ message: msg }) });
+    const d = await r.json();
+    thinking.remove();
+    appendCrmMsg(d.message || d.error || 'Done.', 'assistant', d.actions);
+    loadTasks();
+    if (d.actions?.some(a => a.type==='tag'||a.type==='status')) load();
+  } catch {
+    thinking.remove();
+    appendCrmMsg('Something went wrong. Try again.', 'assistant');
+  }
+}
+
+const PRIORITY_COLOR = { high:'#e8344a', medium:'#f59e0b', low:'#6b7280' };
+const PRIORITY_BG    = { high:'rgba(232,52,74,.12)', medium:'rgba(245,158,11,.12)', low:'rgba(107,114,128,.12)' };
+
+function renderTasks(tasks) {
+  const list = document.getElementById('taskList');
+  document.getElementById('taskCount').textContent = `· ${tasks.filter(t=>t.status==='open').length} open`;
+  if (!tasks.length) { list.innerHTML = '<div class="empty" style="text-align:center;padding:40px;color:#333;">No tasks here.</div>'; return; }
+  list.innerHTML = tasks.map(t => `
+    <div style="background:#141416;border:1px solid #1e1e22;border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+      <input type="checkbox" ${t.status==='done'?'checked':''} onchange="toggleTask('${t._id}',this.checked)" style="margin-top:2px;accent-color:var(--red);width:15px;height:15px;flex-shrink:0;cursor:pointer;">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:13px;font-weight:700;color:${t.status==='done'?'#444':'#e9e9ea'};${t.status==='done'?'text-decoration:line-through;':''}">${esc(t.title)}</div>
+        ${t.leadName?`<div style="font-size:11px;color:#555;margin-top:2px;">↳ ${esc(t.leadName)}</div>`:''}
+        ${t.description?`<div style="font-size:12px;color:#666;margin-top:5px;line-height:1.5;">${esc(t.description)}</div>`:''}
+        <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;align-items:center;">
+          <span style="font-size:10px;font-weight:700;padding:2px 9px;border-radius:99px;background:${PRIORITY_BG[t.priority]};color:${PRIORITY_COLOR[t.priority]};">${t.priority}</span>
+          <span style="font-size:10px;color:#444;">${timeAgo(t.createdAt)}</span>
+        </div>
+      </div>
+      <button onclick="deleteTask('${t._id}')" style="background:none;border:none;color:#333;font-size:16px;cursor:pointer;padding:0;flex-shrink:0;" title="Delete">×</button>
+    </div>
+  `).join('');
+}
+
+async function loadTasks() {
+  try {
+    const r = await fetch(`/api/crm/tasks?status=${crmTaskFilter}`);
+    const tasks = await r.json();
+    renderTasks(tasks);
+  } catch {}
+}
+
+async function toggleTask(id, done) {
+  await fetch(`/api/crm/tasks/${id}`, { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ status: done?'done':'open' }) });
+  loadTasks();
+}
+
+async function deleteTask(id) {
+  await fetch(`/api/crm/tasks/${id}`, { method:'DELETE' });
+  loadTasks();
+}
+
+function filterTasks(f) {
+  crmTaskFilter = f;
+  document.getElementById('taskFilterOpen').style.cssText = f==='open' ? 'font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;border:1px solid var(--red);background:rgba(232,52,74,.15);color:var(--red);cursor:pointer;' : 'font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;border:1px solid #2a2a2e;background:transparent;color:#555;cursor:pointer;';
+  document.getElementById('taskFilterDone').style.cssText = f==='done' ? 'font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;border:1px solid var(--red);background:rgba(232,52,74,.15);color:var(--red);cursor:pointer;' : 'font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;border:1px solid #2a2a2e;background:transparent;color:#555;cursor:pointer;';
+  loadTasks();
+}
 
 function unlock() {
   const val = document.getElementById('lockInput').value;

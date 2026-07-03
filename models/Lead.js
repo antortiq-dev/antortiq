@@ -11,6 +11,8 @@ const LeadSchema = new mongoose.Schema({
   website:             String,
   followers:           Number,
   status:              { type: String, default: 'new' },
+  tags:                [{ type: String }],
+  notes:               [{ text: String, createdAt: { type: Date, default: Date.now } }],
   sequence_start_at:   Date,
   proposal_sent_at:    Date,
   followup_1_sent_at:  Date,
