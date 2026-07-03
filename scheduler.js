@@ -114,8 +114,17 @@ async function runDailyFollowups() {
   console.log(`[scheduler] Done — sent ${sent}, failed ${failed}, skipped ${skipped}`);
 }
 
-// Every day at 12:00 PM server time
+// Every day at 12:00 PM IST
 cron.schedule('0 12 * * *', runDailyFollowups, { timezone: 'Asia/Kolkata' });
+
+// Keepalive ping every 10 minutes so Render free/starter doesn't spin down before noon
+// Pings own /healthz endpoint — harmless, just keeps the process alive
+if (process.env.RENDER_EXTERNAL_URL) {
+  cron.schedule('*/10 * * * *', () => {
+    fetch(`${process.env.RENDER_EXTERNAL_URL}/healthz`).catch(() => {});
+  });
+  console.log('[scheduler] Keepalive ping every 10 min →', process.env.RENDER_EXTERNAL_URL);
+}
 
 console.log('[scheduler] Follow-up cron loaded — fires daily at 12:00 PM IST');
 

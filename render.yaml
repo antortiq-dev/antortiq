@@ -2,7 +2,7 @@ services:
   - type: web
     name: antortiq
     env: node
-    plan: free
+    plan: starter
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -16,3 +16,7 @@ services:
         sync: false
       - key: CONTACT_TO
         value: hello@antortiq.com
+      - key: MONGO_URI
+        sync: false
+      - key: DEEPSEEK_API_KEY
+        sync: false
