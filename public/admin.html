@@ -226,6 +226,13 @@ a:hover{text-decoration:underline;}
       <select id="leadsCategory" onchange="renderLeadsTable()">
         <option value="">All categories</option>
       </select>
+      <select id="leadsSort" onchange="renderLeadsTable()">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="followers_desc">Most followers</option>
+        <option value="followers_asc">Least followers</option>
+        <option value="name_asc">Name A→Z</option>
+      </select>
       <span class="count" id="leadsCount"></span>
     </div>
     <table>
@@ -439,11 +446,18 @@ function renderLeadsTable() {
   const search = document.getElementById('leadsSearch').value.toLowerCase();
   const status = document.getElementById('leadsStatus').value;
   const cat    = document.getElementById('leadsCategory').value;
+  const sort = document.getElementById('leadsSort').value;
   const filtered = rawLeads.filter(l =>
     (!search || (l.name+l.handle+l.category+l.sector+'').toLowerCase().includes(search)) &&
     (!status || (l.status||'new') === status) &&
     (!cat    || l.category === cat)
-  );
+  ).sort((a, b) => {
+    if (sort === 'oldest')         return new Date(a.createdAt||0) - new Date(b.createdAt||0);
+    if (sort === 'followers_desc') return (b.followers||0) - (a.followers||0);
+    if (sort === 'followers_asc')  return (a.followers||0) - (b.followers||0);
+    if (sort === 'name_asc')       return (a.name||a.handle).localeCompare(b.name||b.handle);
+    return new Date(b.createdAt||0) - new Date(a.createdAt||0); // newest first (default)
+  });
   document.getElementById('leadsCount').textContent = filtered.length + ' of ' + rawLeads.length + ' leads';
 
   const maxScore = Math.max(...engLeads.map(e => e.score), 1);
