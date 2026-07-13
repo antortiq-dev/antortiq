@@ -8,7 +8,7 @@ function getTransporter() {
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT),
-    secure: false,
+    secure: Number(process.env.SMTP_PORT) === 465,
     auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
   });
 }
@@ -19,56 +19,53 @@ const FOLLOWUP_SUBJECTS = {
   3: (brand) => `${brand} — last one. here's what your emails should look like.`,
 };
 
-// Retry delays: 2 min, 10 min, 30 min
-const RETRY_DELAYS = [2 * 60 * 1000, 10 * 60 * 1000, 30 * 60 * 1000];
+// Only retry transient errors — skip immediately if it's a daily limit / auth / policy error
+// so we don't block the event loop for 30+ minutes on an unrecoverable failure
+const FATAL_PATTERNS = [
+  'Daily user sending limit exceeded',
+  '550-5.4.5',
+  '550 5.4.5',
+  'limit exceeded',
+  'auth',
+  'invalid credentials',
+  'username and password',
+];
+function isFatalError(msg) {
+  const m = msg.toLowerCase();
+  return FATAL_PATTERNS.some(p => m.includes(p.toLowerCase()));
+}
 
-async function sendWithRetry(transporter, mailOptions, brandName, day) {
-  for (let attempt = 0; attempt <= RETRY_DELAYS.length; attempt++) {
-    try {
-      await transporter.sendMail(mailOptions);
-      return true;
-    } catch (err) {
-      if (attempt < RETRY_DELAYS.length) {
-        const wait = RETRY_DELAYS[attempt];
-        console.log(`[scheduler] ✗ Day ${day+1} → ${brandName}: ${err.message} — retrying in ${wait/60000} min`);
-        await new Promise(r => setTimeout(r, wait));
-      } else {
-        console.error(`[scheduler] ✗ Day ${day+1} → ${brandName}: gave up after ${RETRY_DELAYS.length} retries — ${err.message}`);
-        return false;
-      }
-    }
-  }
+async function trySend(transporter, mailOptions) {
+  // Single attempt — no blocking retries. Transient network errors are handled
+  // by the cron running again tomorrow (idempotent). Daily-limit errors are fatal
+  // for that day regardless of retries.
+  await transporter.sendMail(mailOptions);
 }
 
 const PROPOSAL_SUBJECTS = b => `${b} × Antortiq — We built something for you`;
 
 async function runDailyFollowups() {
-  console.log(`[scheduler] Running follow-up sequence at ${new Date().toISOString()}`);
+  console.log(`[scheduler] Running at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`);
   const now = new Date();
-  const leads = await Lead.find({ email: { $exists: true, $ne: '' } });
+  const leads = await Lead.find({ email: { $exists: true, $ne: '' } }).lean();
   const transporter = getTransporter();
   const trackBase = 'https://antortiq.onrender.com/api/track';
 
-  let sent = 0, skipped = 0, failed = 0;
+  let sent = 0, skipped = 0, failed = 0, limitHit = false;
 
   for (const lead of leads) {
-    // Determine which day to send next
-    let day = null; // null = proposal (day 1), 1/2/3 = followups
-    let templateFile, templateId, subject;
+    const started = lead.sequence_start_at && new Date(lead.sequence_start_at) <= now;
 
-    const started = lead.sequence_start_at && lead.sequence_start_at <= now;
-
-    if (started && !lead.proposal_sent_at) {
-      day = 0; // Day 1 — proposal
-    } else if (lead.proposal_sent_at && !lead.followup_1_sent_at) {
-      day = 1;
-    } else if (lead.followup_1_sent_at && !lead.followup_2_sent_at) {
-      day = 2;
-    } else if (lead.followup_2_sent_at && !lead.followup_3_sent_at) {
-      day = 3;
-    }
+    let day = null;
+    if (started && !lead.proposal_sent_at)                                    day = 0;
+    else if (lead.proposal_sent_at && !lead.followup_1_sent_at)               day = 1;
+    else if (lead.followup_1_sent_at && !lead.followup_2_sent_at)             day = 2;
+    else if (lead.followup_2_sent_at && !lead.followup_3_sent_at)             day = 3;
 
     if (day === null) { skipped++; continue; }
+
+    // If we already hit the daily SMTP limit this run, skip remaining to avoid spam errors
+    if (limitHit) { skipped++; continue; }
 
     const brandName = lead.name || lead.handle;
     const brandDomain = lead.website
@@ -76,10 +73,10 @@ async function runDailyFollowups() {
       : lead.handle;
     const brandNameEncoded = encodeURIComponent(brandName);
     const proposalLink = `https://antortiq.onrender.com/d2c-proposal.html?brand=${brandNameEncoded}`;
-    templateId = day === 0 ? 'proposal' : `followup-${day}`;
+    const templateId   = day === 0 ? 'proposal' : `followup-${day}`;
     const clickTracked = `${trackBase}/click/${brandNameEncoded}/${templateId}?to=${encodeURIComponent(proposalLink)}`;
-    const openPixel = `${trackBase}/open/${brandNameEncoded}/${templateId}`;
-    subject = day === 0 ? PROPOSAL_SUBJECTS(brandName) : FOLLOWUP_SUBJECTS[day](brandName);
+    const openPixel    = `${trackBase}/open/${brandNameEncoded}/${templateId}`;
+    const subject      = day === 0 ? PROPOSAL_SUBJECTS(brandName) : FOLLOWUP_SUBJECTS[day](brandName);
 
     const templateFileName = day === 0 ? 'd2c-email.html' : `d2c-followup-${day}.html`;
     const raw = fs.readFileSync(path.join(__dirname, 'proposals', templateFileName), 'utf8');
@@ -91,20 +88,28 @@ async function runDailyFollowups() {
       .replace(/\{\{PROPOSAL_LINK\}\}/g, clickTracked)
       .replace(/\{\{OPEN_PIXEL\}\}/g, openPixel);
 
-    const ok = await sendWithRetry(transporter, {
-      from: `"Antortiq" <${process.env.SMTP_USER}>`,
-      to: lead.email,
-      subject,
-      html,
-    }, brandName, day);
+    try {
+      await trySend(transporter, {
+        from: `"Antortiq" <${process.env.SMTP_USER}>`,
+        to: lead.email,
+        subject,
+        html,
+      });
 
-    if (ok) {
-      if (day === 0) { lead.proposal_sent_at = new Date(); lead.status = 'contacted'; }
-      else lead[`followup_${day}_sent_at`] = new Date();
-      await lead.save(); // persisted to MongoDB immediately
+      // Use findOneAndUpdate to avoid VersionError from concurrent saves
+      const update = day === 0
+        ? { proposal_sent_at: new Date(), status: 'contacted' }
+        : { [`followup_${day}_sent_at`]: new Date() };
+      await Lead.findOneAndUpdate({ _id: lead._id }, { $set: update });
+
       sent++;
-      console.log(`[scheduler] ✓ Day ${day+1} → ${brandName} <${lead.email}>`);
-    } else {
+      console.log(`[scheduler] ✓ Day ${day + 1} → ${brandName} <${lead.email}>`);
+    } catch (err) {
+      console.error(`[scheduler] ✗ Day ${day + 1} → ${brandName}: ${err.message}`);
+      if (isFatalError(err.message)) {
+        console.log('[scheduler] Daily limit or auth error — stopping for today, will resume tomorrow');
+        limitHit = true;
+      }
       failed++;
     }
 
@@ -114,11 +119,13 @@ async function runDailyFollowups() {
   console.log(`[scheduler] Done — sent ${sent}, failed ${failed}, skipped ${skipped}`);
 }
 
-// Every day at 12:00 PM IST
+// Primary: every day at 12:00 PM IST
 cron.schedule('0 12 * * *', runDailyFollowups, { timezone: 'Asia/Kolkata' });
 
-// Keepalive ping every 10 minutes so Render free/starter doesn't spin down before noon
-// Pings own /healthz endpoint — harmless, just keeps the process alive
+// Backup: 12:05 PM IST in case :00 tick was missed
+cron.schedule('5 12 * * *', runDailyFollowups, { timezone: 'Asia/Kolkata' });
+
+// Keepalive ping every 10 min so Render doesn't spin down
 if (process.env.RENDER_EXTERNAL_URL) {
   cron.schedule('*/10 * * * *', () => {
     fetch(`${process.env.RENDER_EXTERNAL_URL}/healthz`).catch(() => {});
