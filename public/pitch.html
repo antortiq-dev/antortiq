@@ -1869,85 +1869,213 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 <div class="slide" id="s8">
   <div class="slide-bg"></div>
   <div class="grid-tex" style="opacity:.3"></div>
-  <div class="slide-inner">
-    <div class="meta-head">
-      <div style="font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#3B82F6;margin-bottom:8px;">FEATURE — 07</div>
-      <h2>Meta Ads Intelligence</h2>
-      <div class="meta-sub">Live data pulled from your Meta ad account. Last 30 days — no spreadsheets, no manual exports.</div>
+  <div class="slide-inner" style="overflow:hidden;">
+<style>
+/* ── Meta Ads Intelligence — slide styles ── */
+.mai-wrap{display:flex;flex-direction:column;height:100%;padding:14px 20px 10px;gap:8px;font-family:system-ui,-apple-system,sans-serif;}
+.mai-topbar{display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.mai-title{display:flex;align-items:center;gap:10px;}
+.mai-title h2{font-size:18px;font-weight:800;color:#111;margin:0;}
+.mai-title .mai-sub{font-size:11px;color:#6b7280;margin-top:2px;}
+.mai-date-badge{background:#111;color:#fff;font-size:11px;font-weight:600;padding:5px 12px;border-radius:99px;border:1px solid #333;}
+
+/* Date filters */
+.mai-filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex-shrink:0;}
+.mai-filter-group{display:flex;gap:4px;align-items:center;}
+.mai-filter-label{font-size:9px;font-weight:700;letter-spacing:1.5px;color:#9ca3af;text-transform:uppercase;margin-right:2px;}
+.mai-chip{font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;color:#374151;cursor:pointer;white-space:nowrap;}
+.mai-chip.active{background:#111;color:#fff;border-color:#111;}
+
+/* KPI tiles */
+.mai-tiles{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;flex-shrink:0;}
+.mai-tiles-row2{display:grid;grid-template-columns:repeat(3,1fr) 6fr;gap:6px;flex-shrink:0;}
+.mai-tile{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;}
+.mai-tile .mt-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;margin-bottom:4px;}
+.mai-tile .mt-val{font-size:16px;font-weight:900;color:#111;line-height:1.1;}
+.mai-tile .mt-val.green{color:#10b981;}
+.mai-tile .mt-val.blue{color:#3b82f6;}
+.mai-tile .mt-val.amber{color:#f59e0b;}
+.mai-tile .mt-sub{font-size:9px;color:#9ca3af;margin-top:2px;}
+
+/* Tabs */
+.mai-tabs{display:flex;gap:2px;border-bottom:2px solid #e5e7eb;flex-shrink:0;}
+.mai-tab{font-size:11px;font-weight:600;padding:6px 14px;color:#6b7280;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+.mai-tab.active{color:#111;border-bottom-color:#111;}
+
+/* Tab content */
+.mai-content{flex:1;overflow:hidden;min-height:0;}
+.mai-panel{display:none;height:100%;}
+.mai-panel.active{display:block;}
+
+/* Table */
+.mai-table{width:100%;border-collapse:collapse;font-size:11px;}
+.mai-table th{text-align:left;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;padding:6px 8px;border-bottom:1px solid #e5e7eb;white-space:nowrap;}
+.mai-table td{padding:7px 8px;border-bottom:1px solid #f3f4f6;color:#111;white-space:nowrap;}
+.mai-table tr:last-child td{border-bottom:none;}
+.mai-table .roas-green{color:#10b981;font-weight:700;}
+.mai-table .roas-amber{color:#f59e0b;font-weight:700;}
+.mai-table .freq-red{color:#ef4444;font-weight:700;}
+.mai-table .freq-amber{color:#f59e0b;font-weight:700;}
+.mai-table .freq-ok{color:#6b7280;font-weight:600;}
+.mai-table td:first-child{font-weight:600;max-width:200px;overflow:hidden;text-overflow:ellipsis;}
+
+/* Interest cards */
+.mai-interest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;height:100%;overflow-y:auto;align-content:start;}
+.mai-icard{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;}
+.mai-icard.gold{border-color:#f59e0b;border-width:2px;}
+.mai-icard.silver{border-color:#9ca3af;border-width:2px;}
+.mai-icard.bronze{border-color:#d97706;border-width:2px;}
+.mai-icard .ic-name{font-size:12px;font-weight:700;color:#111;margin-bottom:8px;line-height:1.3;}
+.mai-icard .ic-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.mai-icard .ic-stat .ics-l{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;}
+.mai-icard .ic-stat .ics-v{font-size:13px;font-weight:800;color:#10b981;}
+.mai-icard .ic-stat .ics-v.black{color:#111;}
+.mai-icard .ic-stat .ics-v.blue{color:#3b82f6;}
+.mai-icard .ic-footer{font-size:9px;color:#9ca3af;margin-top:6px;padding-top:6px;border-top:1px solid #f3f4f6;}
+</style>
+
+<div class="mai-wrap" style="background:#f9fafb;">
+
+  <!-- Top bar -->
+  <div class="mai-topbar">
+    <div class="mai-title">
+      <span style="font-size:20px;">📊</span>
+      <div>
+        <h2>Meta Ads Intelligence</h2>
+        <div class="mai-sub">ROAS · funnel · audience · platform · frequency — live from Meta</div>
+      </div>
     </div>
-    <div class="meta-hero">
-      <div class="meta-kpi mk1">
-        <div class="mk-label">Total Spend</div>
-        <div class="mk-val num">₹2.2L</div>
-        <div class="mk-unit">₹2,19,845 exact</div>
-      </div>
-      <div class="meta-kpi mk2">
-        <div class="mk-label">Revenue Generated</div>
-        <div class="mk-val num">₹15.2L</div>
-        <div class="mk-unit">Attributed purchases</div>
-      </div>
-      <div class="meta-kpi mk3">
-        <div class="mk-label">ROAS</div>
-        <div class="mk-val num">6.95x</div>
-        <div class="mk-unit">Return on ad spend</div>
-      </div>
-      <div class="meta-kpi mk4">
-        <div class="mk-label">Purchases</div>
-        <div class="mk-val num">772</div>
-        <div class="mk-unit">Conversions tracked</div>
+    <div class="mai-date-badge">📅 This Year</div>
+  </div>
+
+  <!-- Date chips -->
+  <div class="mai-filters">
+    <span class="mai-filter-label">SHORT</span>
+    <div class="mai-filter-group">
+      <span class="mai-chip">Today</span><span class="mai-chip">Yesterday</span><span class="mai-chip">Last 7 Days</span><span class="mai-chip">Last 14 Days</span>
+    </div>
+    <span class="mai-filter-label" style="margin-left:8px;">MONTHLY</span>
+    <div class="mai-filter-group">
+      <span class="mai-chip">Last 28 Days</span><span class="mai-chip">Last 30 Days</span><span class="mai-chip">This Month</span><span class="mai-chip">Last Month</span>
+    </div>
+    <span class="mai-filter-label" style="margin-left:8px;">LONG</span>
+    <div class="mai-filter-group">
+      <span class="mai-chip">This Week</span><span class="mai-chip">Last Week</span><span class="mai-chip">This Quarter</span><span class="mai-chip">Last Quarter</span><span class="mai-chip active">This Year</span><span class="mai-chip">Last Year</span>
+    </div>
+  </div>
+
+  <!-- KPI tiles row 1 -->
+  <div class="mai-tiles">
+    <div class="mai-tile"><div class="mt-label">Spend</div><div class="mt-val">₹4.6L</div><div class="mt-sub">2026-01-01 → 2026-08-04</div></div>
+    <div class="mai-tile"><div class="mt-label">Revenue</div><div class="mt-val green">₹28.1L</div><div class="mt-sub">Attributed</div></div>
+    <div class="mai-tile"><div class="mt-label">ROAS</div><div class="mt-val green">6.18x</div><div class="mt-sub">&nbsp;</div></div>
+    <div class="mai-tile"><div class="mt-label">Purchases</div><div class="mt-val">1402</div><div class="mt-sub">₹324.94 / purchase</div></div>
+    <div class="mai-tile"><div class="mt-label">Add to Cart</div><div class="mt-val">8819</div><div class="mt-sub">&nbsp;</div></div>
+    <div class="mai-tile"><div class="mt-label">Checkout</div><div class="mt-val">3498</div><div class="mt-sub">&nbsp;</div></div>
+    <div class="mai-tile"><div class="mt-label">Reach</div><div class="mt-val">2.9M</div><div class="mt-sub">&nbsp;</div></div>
+    <div class="mai-tile"><div class="mt-label">Frequency</div><div class="mt-val amber">3.07</div><div class="mt-sub">Monitor closely</div></div>
+    <div class="mai-tile"><div class="mt-label">Impressions</div><div class="mt-val">9.0M</div><div class="mt-sub">&nbsp;</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr) 6fr;gap:6px;flex-shrink:0;">
+    <div class="mai-tile"><div class="mt-label">Clicks</div><div class="mt-val">238K</div><div class="mt-sub">CTR 2.65%</div></div>
+    <div class="mai-tile"><div class="mt-label">CPM</div><div class="mt-val">₹51</div><div class="mt-sub">per 1K imp</div></div>
+    <div class="mai-tile"><div class="mt-label">CPC</div><div class="mt-val">₹2</div><div class="mt-sub">&nbsp;</div></div>
+    <div></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="mai-tabs">
+    <div class="mai-tab" onclick="maiTab('age')">👥 Age × Gender</div>
+    <div class="mai-tab active" onclick="maiTab('campaigns')">🎯 Campaigns</div>
+    <div class="mai-tab" onclick="maiTab('platform')">📱 Platform</div>
+    <div class="mai-tab" onclick="maiTab('interests')">🎯 Interest Audiences</div>
+  </div>
+
+  <!-- Tab panels -->
+  <div class="mai-content">
+
+    <!-- Age × Gender -->
+    <div class="mai-panel" id="mai-age" style="overflow-y:auto;">
+      <table class="mai-table">
+        <thead><tr><th>AGE</th><th>GENDER</th><th>SPEND</th><th>REVENUE</th><th>ROAS</th><th>PURCHASES</th><th>CPP</th><th>ADD TO CART</th><th>CTR</th></tr></thead>
+        <tbody>
+          <tr><td>Unknown</td><td>unknown</td><td>₹0</td><td class="roas-green">₹1.3K</td><td class="roas-green">6419x</td><td>1</td><td>₹0</td><td>2</td><td>0.00%</td></tr>
+          <tr><td>35–44</td><td>unknown</td><td>₹150</td><td class="roas-green">₹1.4K</td><td class="roas-green">9.55x</td><td>1</td><td>₹150</td><td>5</td><td>0.00%</td></tr>
+          <tr><td>55–64</td><td>male</td><td>₹2.1K</td><td class="roas-green">₹16.1K</td><td class="roas-green">7.63x</td><td>7</td><td>₹301</td><td>43</td><td>0.00%</td></tr>
+          <tr><td>18–24</td><td>male</td><td>₹2.4L</td><td class="roas-green">₹15.5L</td><td class="roas-green">6.57x</td><td>786</td><td>₹300</td><td>5265</td><td>0.00%</td></tr>
+          <tr><td>25–34</td><td>male</td><td>₹1.5L</td><td class="roas-green">₹9.4L</td><td class="roas-green">6.12x</td><td>467</td><td>₹328</td><td>2495</td><td>0.00%</td></tr>
+          <tr><td>18–24</td><td>female</td><td>₹15.3K</td><td class="roas-green">₹93.5K</td><td class="roas-green">6.10x</td><td>42</td><td>₹365</td><td>312</td><td>0.00%</td></tr>
+          <tr><td>35–44</td><td>male</td><td>₹24.9K</td><td class="roas-amber">₹1.4L</td><td class="roas-amber">5.43x</td><td>58</td><td>₹429</td><td>345</td><td>0.00%</td></tr>
+          <tr><td>45–54</td><td>male</td><td>₹9.0K</td><td class="roas-amber">₹36.2K</td><td class="roas-amber">4.02x</td><td>17</td><td>₹530</td><td>137</td><td>0.00%</td></tr>
+          <tr><td>25–34</td><td>female</td><td>₹7.2K</td><td class="roas-amber">₹26.0K</td><td class="roas-amber">3.63x</td><td>11</td><td>₹651</td><td>66</td><td>0.00%</td></tr>
+          <tr><td>65+</td><td>male</td><td>₹2.2K</td><td class="roas-amber">₹7.6K</td><td class="roas-amber">3.42x</td><td>5</td><td>₹444</td><td>40</td><td>0.00%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Campaigns -->
+    <div class="mai-panel active" id="mai-campaigns" style="overflow-y:auto;">
+      <table class="mai-table">
+        <thead><tr><th>CAMPAIGN</th><th>SPEND</th><th>REVENUE</th><th>ROAS</th><th>PURCHASES</th><th>CPP</th><th>REACH</th><th>FREQ</th><th>CTR</th></tr></thead>
+        <tbody>
+          <tr><td>Sales // Northstory // Broad // 07 Jan // 1500</td><td>₹5.0K</td><td class="roas-green">₹64.6K</td><td class="roas-green">12.94x</td><td>22</td><td>₹227</td><td>59K</td><td class="freq-ok">1.3</td><td>0.00%</td></tr>
+          <tr><td>11th June - Catalog - CD</td><td>₹45.7K</td><td class="roas-green">₹4.4L</td><td class="roas-green">9.65x</td><td>220</td><td>₹208</td><td>168K</td><td class="freq-red">4.3</td><td>0.00%</td></tr>
+          <tr><td>Sales // 20 DEC // 1000 // Winter catalogue // Op…</td><td>₹12.9K</td><td class="roas-green">₹99.8K</td><td class="roas-green">7.71x</td><td>45</td><td>₹288</td><td>58K</td><td class="freq-ok">2.4</td><td>0.00%</td></tr>
+          <tr><td>sales / may 20 / mix</td><td>₹31.5K</td><td class="roas-green">₹2.4L</td><td class="roas-green">7.56x</td><td>125</td><td>₹252</td><td>145K</td><td class="freq-ok">2.6</td><td>0.00%</td></tr>
+          <tr><td>New Sales campaign 3 cats live</td><td>₹20.4K</td><td class="roas-green">₹1.5L</td><td class="roas-green">7.37x</td><td>71</td><td>₹287</td><td>92K</td><td class="freq-ok">2.6</td><td>0.00%</td></tr>
+          <tr><td>sales / april / 3 catalog</td><td>₹69.4K</td><td class="roas-green">₹5.0L</td><td class="roas-green">7.24x</td><td>241</td><td>₹288</td><td>166K</td><td class="freq-amber">4.2</td><td>0.00%</td></tr>
+          <tr><td>sales / march / 4 creatives</td><td>₹60.1K</td><td class="roas-green">₹4.2L</td><td class="roas-green">7.02x</td><td>231</td><td>₹260</td><td>241K</td><td class="freq-ok">3.0</td><td>0.00%</td></tr>
+          <tr><td>sales / april / reels</td><td>₹56.4K</td><td class="roas-amber">₹3.3L</td><td class="roas-amber">5.81x</td><td>174</td><td>₹324</td><td>279K</td><td class="freq-ok">2.8</td><td>0.00%</td></tr>
+          <tr><td>Sales // sweatpants // S1 // 08 Jan // 1500</td><td>₹37.1K</td><td class="roas-amber">₹2.1L</td><td class="roas-amber">5.54x</td><td>97</td><td>₹383</td><td>223K</td><td class="freq-ok">2.4</td><td>0.00%</td></tr>
+          <tr><td>New Sales campaign 11</td><td>₹27.8K</td><td class="roas-amber">₹1.4L</td><td class="roas-amber">5.12x</td><td>70</td><td>₹397</td><td>116K</td><td class="freq-amber">3.2</td><td>0.00%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Platform -->
+    <div class="mai-panel" id="mai-platform">
+      <table class="mai-table">
+        <thead><tr><th>PLATFORM</th><th>SPEND</th><th>REVENUE</th><th>ROAS</th><th>PURCHASES</th><th>CPP</th><th>REACH</th><th>IMPRESSIONS</th><th>CTR</th></tr></thead>
+        <tbody>
+          <tr><td>📘 Facebook Feed</td><td>₹1.8L</td><td class="roas-green">₹11.2L</td><td class="roas-green">6.48x</td><td>589</td><td>₹312</td><td>1.4M</td><td>4.8M</td><td>2.41%</td></tr>
+          <tr><td>📸 Instagram Feed</td><td>₹1.1L</td><td class="roas-green">₹7.9L</td><td class="roas-green">6.97x</td><td>412</td><td>₹271</td><td>980K</td><td>2.9M</td><td>3.12%</td></tr>
+          <tr><td>🎥 Instagram Reels</td><td>₹85.4K</td><td class="roas-green">₹5.4L</td><td class="roas-green">6.28x</td><td>247</td><td>₹346</td><td>610K</td><td>1.8M</td><td>3.87%</td></tr>
+          <tr><td>📖 Facebook Stories</td><td>₹32.1K</td><td class="roas-amber">₹1.4L</td><td class="roas-amber">4.31x</td><td>89</td><td>₹361</td><td>280K</td><td>690K</td><td>1.92%</td></tr>
+          <tr><td>🔍 Audience Network</td><td>₹18.7K</td><td class="roas-amber">₹62.4K</td><td class="roas-amber">3.34x</td><td>55</td><td>₹340</td><td>198K</td><td>540K</td><td>1.24%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Interest Audiences -->
+    <div class="mai-panel" id="mai-interests" style="overflow-y:auto;">
+      <div class="mai-interest-grid">
+        <div class="mai-icard gold"><div class="ic-name">🥇 Cosmetics (personal care)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard silver"><div class="ic-name">🥈 Tattoos (body art)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard bronze"><div class="ic-name">🥉 Coupons (coupons and discounts)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Toys (toys)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Beauty salons (cosmetics)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Boutiques (retailers)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Discount stores (retail)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Jewellery (clothing)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Online shopping (retail)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.15x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.2L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹23.4K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹209</div></div></div><div class="ic-footer">112 purchases · Across 4 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Luxury goods (retail)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.15x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.2L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹23.4K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹209</div></div></div><div class="ic-footer">112 purchases · Across 4 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Hair products (hair care)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
+        <div class="mai-icard"><div class="ic-name">Fragrances (cosmetics)</div><div class="ic-grid"><div class="ic-stat"><div class="ics-l">ROAS</div><div class="ics-v">9.46x</div></div><div class="ic-stat"><div class="ics-l">Revenue</div><div class="ics-v">₹2.1L</div></div><div class="ic-stat"><div class="ics-l">Spend</div><div class="ics-v black">₹22.7K</div></div><div class="ic-stat"><div class="ics-l">CPP</div><div class="ics-v black">₹210</div></div></div><div class="ic-footer">108 purchases · Across 2 ad sets · CTR 2.94%</div></div>
       </div>
     </div>
-    <div class="meta-mid">
-      <div class="meta-panel">
-        <div class="mp-title">Platform ROAS</div>
-        <div class="plat-row">
-          <div class="plat-label" style="color:#4267B2;">Facebook</div>
-          <div class="plat-bar-track"><div class="plat-bar-fill" style="width:81%;background:#4267B2;"></div></div>
-          <div class="plat-val">6.48x</div>
-        </div>
-        <div class="plat-row">
-          <div class="plat-label" style="color:#E1306C;">Instagram</div>
-          <div class="plat-bar-track"><div class="plat-bar-fill" style="width:87%;background:#E1306C;"></div></div>
-          <div class="plat-val">6.97x</div>
-        </div>
-        <div style="margin-top:12px;padding:10px;border-radius:8px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-size:11px;color:var(--muted);">
-          Instagram outperforming Facebook by <span style="color:var(--green);font-weight:700;">7.5%</span> — shift budget toward Reels.
-        </div>
-      </div>
-      <div class="meta-panel">
-        <div class="mp-title">Device Split</div>
-        <div class="plat-row">
-          <div class="plat-label">Mobile App</div>
-          <div class="plat-bar-track"><div class="plat-bar-fill" style="width:78%;background:var(--accent);"></div></div>
-          <div class="plat-val">78%</div>
-        </div>
-        <div class="plat-row">
-          <div class="plat-label">Mobile Web</div>
-          <div class="plat-bar-track"><div class="plat-bar-fill" style="width:18%;background:var(--accent2);"></div></div>
-          <div class="plat-val">18%</div>
-        </div>
-        <div class="plat-row">
-          <div class="plat-label">Desktop</div>
-          <div class="plat-bar-track"><div class="plat-bar-fill" style="width:4%;background:var(--muted);"></div></div>
-          <div class="plat-val">4%</div>
-        </div>
-      </div>
-      <div class="meta-panel">
-        <div class="mp-title">Reach & Awareness</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="text-align:center;"><div class="num" style="font-size:22px;font-weight:900;color:#3B82F6;">1.3M</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Reach</div></div>
-          <div style="text-align:center;"><div class="num" style="font-size:22px;font-weight:900;color:#8B5CF6;">3.7M</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Impressions</div></div>
-          <div style="text-align:center;"><div class="num" style="font-size:22px;font-weight:900;color:var(--amber);">98K</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Clicks</div></div>
-          <div style="text-align:center;"><div class="num" style="font-size:22px;font-weight:900;color:var(--green);">2.67%</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">CTR</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="meta-bottom">
-      <div class="meta-small"><div class="ms-l">CPM</div><div class="ms-v num" style="color:#3B82F6;">₹60</div></div>
-      <div class="meta-small"><div class="ms-l">CPC</div><div class="ms-v num" style="color:var(--accent2);">₹2</div></div>
-      <div class="meta-small"><div class="ms-l">Cost / Purchase</div><div class="ms-v num" style="color:var(--amber);">₹284</div></div>
-      <div class="meta-small"><div class="ms-l">Frequency</div><div class="ms-v num" style="color:var(--green);">2.8x</div></div>
-    </div>
+
+  </div>
+</div>
+
+<script>
+function maiTab(id) {
+  document.querySelectorAll('#s8 .mai-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#s8 .mai-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('mai-' + id).classList.add('active');
+}
+</script>
+
   </div>
 </div>
 
