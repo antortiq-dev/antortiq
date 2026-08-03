@@ -1581,6 +1581,244 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
   </div>
 </div>
 
+<!-- ── SLIDE 3B: BRAINS — PATTERN INTELLIGENCE ── -->
+<div class="slide" id="sbrains">
+  <div class="slide-bg" style="background:#f5f6f8;"></div>
+  <div class="slide-inner" style="padding:0;overflow:hidden;">
+<style>
+/* ── Brains slide ── */
+.br-wrap{display:flex;height:100%;font-family:system-ui,-apple-system,sans-serif;background:#f5f6f8;}
+.br-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+.br-sidebar{width:180px;flex-shrink:0;background:#fff;border-left:1px solid #e5e7eb;display:flex;flex-direction:column;overflow-y:auto;}
+
+/* Topbar */
+.br-topbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.br-logo{display:flex;align-items:center;gap:10px;}
+.br-logo .br-icon{font-size:22px;}
+.br-logo .br-title{font-size:16px;font-weight:800;color:#111;}
+.br-logo .br-sub{font-size:10px;color:#9ca3af;margin-top:1px;}
+.br-actions{display:flex;gap:6px;}
+.br-btn{font-size:11px;font-weight:600;padding:5px 12px;border-radius:7px;border:1.5px solid #d1d5db;background:#fff;color:#374151;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.br-btn.primary{background:#111;color:#fff;border-color:#111;}
+
+/* Filter bar */
+.br-filters{background:#fff;border-bottom:1px solid #e5e7eb;padding:8px 18px;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
+.br-fl{font-size:10px;font-weight:700;color:#6b7280;white-space:nowrap;}
+.br-chip{font-size:11px;font-weight:600;padding:4px 10px;border-radius:7px;border:1.5px solid #e5e7eb;background:#f9fafb;color:#374151;white-space:nowrap;}
+.br-chip.active{background:#111;color:#fff;border-color:#111;}
+.br-sep{width:1px;height:20px;background:#e5e7eb;margin:0 2px;}
+.br-input{font-size:11px;padding:4px 8px;border:1.5px solid #e5e7eb;border-radius:7px;background:#fff;color:#374151;width:90px;}
+.br-cb-row{display:flex;align-items:center;gap:5px;font-size:11px;color:#6b7280;}
+
+/* Content area */
+.br-content{flex:1;overflow-y:auto;padding:12px 16px;}
+
+/* Section */
+.br-section{margin-bottom:10px;}
+.br-sec-header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;cursor:pointer;margin-bottom:6px;}
+.br-sec-header.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);}
+.br-sec-header.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);}
+.br-sec-header.blue{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);}
+.br-sec-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;}
+.br-sec-title.red{color:#dc2626;}
+.br-sec-title.amber{color:#d97706;}
+.br-sec-title.blue{color:#4f46e5;}
+.br-badge{font-size:10px;font-weight:700;padding:1px 8px;border-radius:99px;}
+.br-badge.red{background:rgba(239,68,68,.15);color:#dc2626;}
+.br-badge.amber{background:rgba(245,158,11,.15);color:#d97706;}
+.br-badge.blue{background:rgba(99,102,241,.15);color:#4f46e5;}
+.br-collapse{font-size:10px;color:#9ca3af;}
+
+/* Finding cards */
+.br-card{background:#fff;border-radius:10px;border:1px solid #e5e7eb;padding:12px 14px;margin-bottom:6px;display:flex;gap:12px;align-items:flex-start;}
+.br-card.red{border-left:3px solid #ef4444;}
+.br-card.amber{border-left:3px solid #f59e0b;}
+.br-card.blue{border-left:3px solid #6366f1;}
+.br-card-img{width:42px;height:42px;border-radius:8px;background:#f3f4f6;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;}
+.br-card-img img{width:100%;height:100%;object-fit:cover;}
+.br-card-body{flex:1;min-width:0;}
+.br-cat{font-size:8px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
+.br-cat.red{color:#ef4444;}
+.br-cat.amber{color:#f59e0b;}
+.br-cat.blue{color:#6366f1;}
+.br-cat.purple{color:#8b5cf6;}
+.br-cat.green{color:#10b981;}
+.br-headline{font-size:12px;font-weight:700;color:#111;line-height:1.4;margin-bottom:3px;}
+.br-desc{font-size:11px;color:#6b7280;line-height:1.5;}
+
+/* Sidebar */
+.br-sb-header{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#6b7280;padding:14px 14px 8px;}
+.br-sb-row{padding:8px 14px;border-bottom:1px solid #f3f4f6;cursor:pointer;}
+.br-sb-row:hover{background:#f9fafb;}
+.br-sb-date{font-size:12px;font-weight:700;color:#111;margin-bottom:4px;}
+.br-sb-dots{display:flex;gap:3px;align-items:center;flex-wrap:wrap;}
+.br-dot{width:10px;height:10px;border-radius:50%;}
+.br-dot-r{background:#ef4444;}
+.br-dot-a{background:#f59e0b;}
+.br-dot-label{font-size:9px;color:#9ca3af;margin-left:2px;}
+</style>
+
+<div class="br-wrap">
+  <!-- Main -->
+  <div class="br-main">
+
+    <!-- Top bar -->
+    <div class="br-topbar">
+      <div class="br-logo">
+        <span class="br-icon">🧠</span>
+        <div>
+          <div class="br-title">Brains — Pattern Intelligence</div>
+          <div class="br-sub">Analyzing last 14 days vs 60d baseline · 97 orders · 21 findings</div>
+        </div>
+      </div>
+      <div class="br-actions">
+        <button class="br-btn">⚙ Settings</button>
+        <button class="br-btn">↺ Refresh</button>
+        <button class="br-btn primary">⚡ Run &amp; Save</button>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="br-filters">
+      <span class="br-fl">Analysis window:</span>
+      <span class="br-chip">7d vs 30d</span>
+      <span class="br-chip active">14d vs 60d</span>
+      <span class="br-chip">30d vs 90d</span>
+      <input class="br-input" value="current day" readonly>
+      <span style="font-size:11px;color:#9ca3af;">vs</span>
+      <input class="br-input" value="baseline day" readonly>
+      <div class="br-sep"></div>
+      <div class="br-cb-row"><input type="checkbox"> Email on next run</div>
+    </div>
+
+    <!-- Content -->
+    <div class="br-content">
+
+      <!-- Red Flags -->
+      <div class="br-section">
+        <div class="br-sec-header red">
+          <div class="br-sec-title red">🔴 Red Flags — Act Now <span class="br-badge red">3</span></div>
+          <span class="br-collapse">▲</span>
+        </div>
+        <div class="br-card red">
+          <div class="br-card-img">👕</div>
+          <div class="br-card-body">
+            <div class="br-cat red">PRODUCT CANCELLATION</div>
+            <div class="br-headline">"BA CHECKMATE SHIRT" is 63% of all cancellations — 36% of its own orders cancelled</div>
+            <div class="br-desc">5 of 14 orders containing this product were cancelled this period.</div>
+          </div>
+        </div>
+        <div class="br-card red">
+          <div class="br-card-body" style="margin-left:54px;">
+            <div class="br-cat red">CANCELLATION HOTSPOT</div>
+            <div class="br-headline">Rajasthan (state) cancellation rate is 50% vs 8% overall</div>
+            <div class="br-desc">2 of 4 orders from Rajasthan were cancelled this period.</div>
+          </div>
+        </div>
+        <div class="br-card red">
+          <div class="br-card-img">🧦</div>
+          <div class="br-card-body">
+            <div class="br-cat red">FUNNEL DROP-OFF</div>
+            <div class="br-headline">"Who Cares Crew Socks" starts checkout but rarely completes — 0% vs 35% average</div>
+            <div class="br-desc">4 checkouts started, only 0 completed. Check for a payment/COD issue specific to this product or its price point.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Watch -->
+      <div class="br-section">
+        <div class="br-sec-header amber">
+          <div class="br-sec-title amber">🟡 Watch — Needs Attention <span class="br-badge amber">9</span></div>
+          <span class="br-collapse">▲</span>
+        </div>
+        <div class="br-card amber">
+          <div class="br-card-body" style="margin-left:54px;">
+            <div class="br-cat amber">DISPATCH SPEED</div>
+            <div class="br-headline">Avg dispatch time has fallen from 80h to 51h</div>
+            <div class="br-desc">Based on 289 baseline shipments (trailing 60d) vs 61 in the current 14d window. Dispatch speed has improved — whatever changed, keep doing it.</div>
+          </div>
+        </div>
+        <div class="br-card amber">
+          <div class="br-card-body" style="margin-left:54px;">
+            <div class="br-cat amber">VENDOR WATCHLIST</div>
+            <div class="br-headline">ODD GRAB: RTO rate 40% vs 12% marketplace average</div>
+            <div class="br-desc">2 of 5 orders from ODD GRAB this week came back RTO.</div>
+          </div>
+        </div>
+        <div class="br-card amber">
+          <div class="br-card-img">👔</div>
+          <div class="br-card-body">
+            <div class="br-cat amber">PRODUCT DISPATCH DELAY</div>
+            <div class="br-headline">"SICKBLUE - CORE 002" takes 30h longer to dispatch than this vendor's other products</div>
+            <div class="br-desc">Avg 107h for this product vs 77h vendor average this week. Could be a stocking/sourcing delay specific to this SKU.</div>
+          </div>
+        </div>
+        <div class="br-card amber">
+          <div class="br-card-body" style="margin-left:54px;">
+            <div class="br-cat amber">CANCELLATION HOTSPOT</div>
+            <div class="br-headline">BROKEN ALLEY: cancellation rate 27% vs 8% marketplace average</div>
+            <div class="br-desc">6 of 22 orders from BROKEN ALLEY were cancelled this period.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Noticed -->
+      <div class="br-section">
+        <div class="br-sec-header blue">
+          <div class="br-sec-title blue">🔵 Noticed — Good to Know <span class="br-badge blue">9</span></div>
+          <span class="br-collapse">▲</span>
+        </div>
+        <div class="br-card blue">
+          <div class="br-card-img">👕</div>
+          <div class="br-card-body">
+            <div class="br-cat green">SILENT WINNER</div>
+            <div class="br-headline">"BA CHECKMATE SHIRT" sold 14 units in the last 14d after near-zero sales in the prior 60 days</div>
+            <div class="br-desc">Sudden demand with no prior trend — check stock levels before it runs out, and look for what triggered it.</div>
+          </div>
+        </div>
+        <div class="br-card blue">
+          <div class="br-card-body" style="margin-left:54px;">
+            <div class="br-cat purple">REPEAT RTO CUSTOMERS</div>
+            <div class="br-headline">12 customers with 2+ RTO orders in the last 90 days</div>
+            <div class="br-desc">Pranay Majji — 9994144800: #2726, #2646 · Mohammed Asif: #2709, #2232 · Ritesh Rai: #2615, #2336 · Zeeshan Khan: #2571, #2393 · 8 more flagged</div>
+          </div>
+        </div>
+        <div class="br-card blue">
+          <div class="br-card-img">👔</div>
+          <div class="br-card-body">
+            <div class="br-cat blue">PIXEL TRENDING</div>
+            <div class="br-headline">"SEA BREEZE LINEN/COTTON SHIRT" got 199 views in the last 14d after almost no traffic before</div>
+            <div class="br-desc">Sudden interest with no prior browsing trend — check what's driving it and make sure stock can handle a sales spike.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+
+  <!-- Sidebar -->
+  <div class="br-sidebar">
+    <div class="br-sb-header">PAST REPORTS</div>
+    <div class="br-sb-row"><div class="br-sb-date">1 Aug 26</div><div class="br-sb-dots"><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">29 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">26 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">23 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">19 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">16 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">13 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">10 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">7 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">4 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">1 Jul 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">28 Jun 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">24 Jun 26</div><div class="br-sb-dots"><div class="br-dot br-dot-r"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+    <div class="br-sb-row"><div class="br-sb-date">21 Jun 26</div><div class="br-sb-dots"><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div><div class="br-dot br-dot-a"></div></div></div>
+  </div><!-- /sidebar -->
+
+</div><!-- /br-wrap -->
+  </div>
+</div>
+
 <!-- ── SLIDE 4: PIXEL TRACKER ── -->
 <div class="slide" id="s4">
   <div class="slide-bg"></div>
