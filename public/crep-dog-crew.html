@@ -13,8 +13,8 @@
   --disp:'Sora',Arial,sans-serif; --sans:'Inter',Arial,sans-serif;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--sans); background:var(--black); color:#e9e9ea; overflow-x:hidden;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{font-family:var(--sans); background:var(--black); color:#e9e9ea;}
 a{color:inherit; text-decoration:none;}
 .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
 .eyebrow{font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--red);}
@@ -358,9 +358,137 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:34px 0; text-al
 .chat-product .t{font-size:7.5px; font-weight:700; color:#111; line-height:1.3;}
 .chat-product .pr{font-size:7.5px; color:#1f9d62; margin-top:2px; font-weight:700;}
 
+/* ── CDC Intro Overlay ── */
+#cdc-intro{
+  position:fixed; inset:0; z-index:9999;
+  background:#AAEC00;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  transition:opacity 0.6s ease;
+}
+#cdc-intro.leaving{opacity:0; pointer-events:none;}
+#cdc-intro .ci-grid{
+  position:absolute; inset:0; perspective:600px; overflow:hidden;
+}
+#cdc-intro .ci-grid::before{
+  content:''; position:absolute; left:-50%; right:-50%; bottom:0; height:200%;
+  background-image:linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px);
+  background-size:60px 60px;
+  transform:rotateX(75deg) translateZ(-100px);
+  transform-origin:bottom;
+  opacity:0;
+  animation:ciGridMove 6s linear infinite, ciGridFade 1.5s ease 1s forwards;
+}
+@keyframes ciGridMove{from{background-position-y:0}to{background-position-y:60px}}
+@keyframes ciGridFade{to{opacity:1}}
+#cdc-intro .ci-stage{position:relative; z-index:2; text-align:center;}
+#cdc-intro .ci-logo-wrap{
+  display:flex; flex-wrap:wrap; justify-content:center;
+  transform-style:preserve-3d; max-width:90vw; gap:0 2px;
+}
+#cdc-intro .ci-letter{
+  font-family:'Anton',Impact,'Arial Black',sans-serif;
+  font-size:clamp(28px,7vw,100px);
+  color:#0a0a0a; line-height:1; letter-spacing:2px;
+  display:inline-block; transform-style:preserve-3d;
+  opacity:0;
+  text-shadow:0 1px 0 rgba(0,0,0,.1),0 3px 6px rgba(0,0,0,.12),0 8px 20px rgba(0,0,0,.08);
+  animation:ciDrop 0.9s cubic-bezier(.2,.9,.25,1.2) forwards;
+}
+@keyframes ciDrop{
+  0%{opacity:0; transform:translateY(-280px) translateZ(-350px) rotateX(80deg);}
+  60%{opacity:1;}
+  100%{opacity:1; transform:translateY(0) translateZ(0) rotateX(0deg);}
+}
+#cdc-intro .ci-glow{
+  position:absolute; inset:-40px;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,0,0,.08),transparent 70%);
+  filter:blur(28px); opacity:0; z-index:-1; pointer-events:none;
+  animation:ciGlowIn 1s ease 1.4s forwards, ciGlowBreath 3s ease-in-out 2.4s infinite;
+}
+@keyframes ciGlowIn{to{opacity:1}}
+@keyframes ciGlowBreath{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.08);opacity:1}}
+#cdc-intro .ci-tag{
+  margin-top:22px; font-size:12px; font-weight:700; letter-spacing:5px;
+  text-transform:uppercase; color:rgba(0,0,0,.5); opacity:0;
+  animation:ciUp 0.8s ease 1.5s forwards;
+}
+#cdc-intro .ci-line{
+  width:0; height:1.5px; margin:16px auto 0;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.2),rgba(0,0,0,.5),rgba(0,0,0,.2),transparent);
+  animation:ciLine 1s ease 1.7s forwards;
+}
+@keyframes ciLine{to{width:240px}}
+#cdc-intro .ci-btn-wrap{margin-top:44px; opacity:0; animation:ciUp 0.8s ease 2.1s forwards;}
+#cdc-intro .ci-btn{
+  padding:13px 40px; background:transparent;
+  border:2px solid rgba(0,0,0,.3); color:#0a0a0a;
+  font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase;
+  border-radius:999px; cursor:pointer; font-family:inherit;
+  transition:border-color .3s, letter-spacing .3s, transform .2s, background .3s;
+}
+#cdc-intro .ci-btn:hover{border-color:#000;background:rgba(0,0,0,.08);letter-spacing:4px;transform:translateY(-2px);}
+#cdc-intro .ci-skip{
+  position:fixed; bottom:22px; right:26px;
+  font-size:10px; letter-spacing:2px; color:rgba(0,0,0,.35);
+  cursor:pointer; text-transform:uppercase; background:none; border:none;
+  opacity:0; animation:ciUp 0.6s ease 1s forwards; font-family:inherit;
+}
+#cdc-intro .ci-skip:hover{color:#000;}
+@keyframes ciUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+
+<!-- ── CDC Intro Overlay ── -->
+<div id="cdc-intro">
+  <div class="ci-grid"></div>
+  <button class="ci-skip" id="ciSkip">Skip &#8594;</button>
+  <div class="ci-stage">
+    <div style="position:relative;">
+      <div class="ci-glow"></div>
+      <div class="ci-logo-wrap" id="ciLogoWrap"></div>
+    </div>
+    <div class="ci-tag">Marketplace Operations Platform</div>
+    <div class="ci-line"></div>
+    <div class="ci-btn-wrap">
+      <button class="ci-btn" id="ciEnter">View Proposal</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Build letter-by-letter wordmark
+  var wrap = document.getElementById('ciLogoWrap');
+  var word = 'CREP DOG CREW';
+  word.split('').forEach(function(ch, i){
+    var s = document.createElement('span');
+    s.className = 'ci-letter';
+    if(ch === ' '){ s.innerHTML = '&nbsp;'; s.style.width = '0.28em'; }
+    else { s.textContent = ch; }
+    s.style.animationDelay = (0.12 + i * 0.055) + 's';
+    wrap.appendChild(s);
+  });
+
+
+  function onMove(e){
+    var x = (e.clientX / window.innerWidth - 0.5) * 2;
+    var y = (e.clientY / window.innerHeight - 0.5) * 2;
+    wrap.style.transform = 'rotateY(' + (x*6) + 'deg) rotateX(' + (-y*4) + 'deg)';
+  }
+  document.addEventListener('mousemove', onMove);
+
+  function leave(){
+    var el = document.getElementById('cdc-intro');
+    el.classList.add('leaving');
+    setTimeout(function(){ el.style.display = 'none'; }, 650);
+    document.removeEventListener('mousemove', onMove);
+  }
+
+  document.getElementById('ciEnter').addEventListener('click', leave);
+  document.getElementById('ciSkip').addEventListener('click', leave);
+})();
+</script>
 
 <header>
   <div class="nav">

@@ -20,6 +20,22 @@ app.use('/api/crm', crmRoute);
 
 app.get('/healthz', (req, res) => res.json({ status: 'ok' }));
 
+// Proxy demo login to JARVIS — avoids cross-origin fetch from browser
+app.post('/api/demo-login', async (req, res) => {
+  const JARVIS = process.env.JARVIS_URL || 'http://localhost:3001';
+  try {
+    const r = await fetch(`${JARVIS}/demo/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(req.body)
+    });
+    const data = await r.json();
+    res.status(r.status).json(data);
+  } catch (e) {
+    res.status(502).json({ error: 'Could not reach auth server' });
+  }
+});
+
 connect().then(() => {
   require('./scheduler');
   app.listen(PORT, () => console.log(`Antortiq web app running on port ${PORT}`));
