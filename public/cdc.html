@@ -794,6 +794,37 @@
   </style>
 </head>
 <body>
+
+<!-- ── CDC Intro (shown after green gate passes) ── -->
+<style>
+  #cc-intro { position:fixed; inset:0; z-index:999999; background:#AAEC00; }
+  #cc-intro.cc-leaving { transition:opacity .5s ease; opacity:0; pointer-events:none; }
+  #cc-intro iframe { width:100%; height:100%; border:none; display:block; }
+</style>
+<script>
+  (function(){
+    if (sessionStorage.getItem('cdc_demo_auth') === '1') {
+      var wrap = document.createElement('div');
+      wrap.id = 'cc-intro';
+      wrap.innerHTML = '<iframe src="/intro-cdc.html?auto=1" title="intro"></iframe>';
+      document.body.appendChild(wrap);
+      var introDone = false, pageLoaded = false;
+      function tryDismiss() {
+        if (!introDone || !pageLoaded) return;
+        var el = document.getElementById('cc-intro');
+        if (!el) return;
+        el.classList.add('cc-leaving');
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 550);
+      }
+      window.addEventListener('message', function(e) {
+        if (e.data === 'cc-intro-done') { introDone = true; tryDismiss(); }
+      });
+      window.addEventListener('load', function(){ pageLoaded = true; tryDismiss(); });
+      setTimeout(function(){ introDone = true; tryDismiss(); }, 8000);
+    }
+  })();
+</script>
+
 <!-- ── CDC Demo Config ── -->
 <script>
   window.API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
@@ -881,15 +912,26 @@
       return Promise.resolve(jsonResp({ data: [], items: [], orders: [], total: 0 }));
     }
 
-    // Pass-through URLs that must reach the real server (auth, demo login)
-    var PASSTHROUGH = ['/admin/login', '/admin/logout', '/admin/verify', '/demo/login', '/api/demo-login'];
+    // Fake demo token — all API calls are intercepted so value doesn't matter
+    var DEMO_TOKEN = 'cdc-demo-token-' + Date.now();
+    try {
+      var stored = localStorage.getItem('admin_token');
+      if (!stored) { localStorage.setItem('admin_token', JSON.stringify(DEMO_TOKEN)); }
+    } catch(e){}
 
     window.fetch = function(url, opts) {
       var urlStr = typeof url === 'string' ? url : (url && url.url) || '';
 
-      // Always pass through auth endpoints
-      for (var i = 0; i < PASSTHROUGH.length; i++) {
-        if (urlStr.includes(PASSTHROUGH[i])) return _fetch(url, opts);
+      // Auth: bypass JARVIS entirely — green gate IS the auth
+      if (urlStr.includes('/admin/verify') || urlStr.includes('/admin/login')) {
+        return Promise.resolve(new Response(JSON.stringify({ valid: true, token: DEMO_TOKEN, role: 'admin', name: 'CDC Admin' }), {
+          status: 200, headers: { 'Content-Type': 'application/json' }
+        }));
+      }
+
+      // Pass through only logout and demo-login proxy (non-data)
+      if (urlStr.includes('/admin/logout') || urlStr.includes('/api/demo-login')) {
+        return _fetch(url, opts);
       }
 
       // Route /admin/* and relevant API patterns to CDC data
