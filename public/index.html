@@ -633,12 +633,13 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
       .phone-showcase{
         display:flex;align-items:center;gap:0;
         background:#080810;border-radius:24px;overflow:hidden;
-        margin-bottom:60px;min-height:600px;position:relative;
+        margin-bottom:60px;min-height:580px;position:relative;
+        width:100%;box-sizing:border-box;
       }
       /* Left info panel */
       .ps-info{
-        flex:0 0 200px;display:flex;flex-direction:column;justify-content:center;
-        padding:48px 32px 48px 40px;align-self:stretch;
+        flex:0 0 170px;display:flex;flex-direction:column;justify-content:center;
+        padding:48px 24px 48px 32px;align-self:stretch;
       }
       .ps-eye{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px;}
       .ps-info h3{font-family:var(--disp);font-size:36px;font-weight:900;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-1px;}
@@ -663,23 +664,24 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
       .ps-arrow.right{right:140px;}
       /* Phones center */
       .ps-phones{
-        flex:1;display:flex;align-items:flex-end;justify-content:center;
-        gap:14px;padding:50px 20px 0;overflow:hidden;
+        flex:1;display:flex;align-items:stretch;justify-content:center;
+        gap:12px;padding:36px 16px 36px;overflow:hidden;min-width:0;
       }
       /* Right stats */
       .ps-stats{
-        flex:0 0 120px;display:flex;flex-direction:column;justify-content:center;
-        gap:24px;padding:0 32px 0 12px;
+        flex:0 0 100px;display:flex;flex-direction:column;justify-content:center;
+        gap:20px;padding:0 24px 0 8px;
       }
       .ps-stat-val{font-family:var(--disp);font-size:36px;font-weight:900;color:#fff;line-height:1;}
       .ps-stat-val.green{color:#22c55e;}
       .ps-stat-val.wa{color:#25d366;font-size:30px;}
 
       /* Phone frame */
-      .ph-frame{flex:1;max-width:190px;display:flex;flex-direction:column;align-items:center;}
+      .ph-frame{flex:1;min-width:0;max-width:220px;display:flex;flex-direction:column;align-items:center;}
       .ph-frame .ph-label{font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#333;margin-bottom:10px;text-align:center;}
-      .ph-device{background:#fff;border-radius:36px;border:3px solid #d1d5db;overflow:hidden;width:100%;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+      .ph-device{background:#fff;border-radius:36px;border:3px solid #d1d5db;overflow:hidden;width:100%;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6);display:flex;flex-direction:column;flex:1;}
       .ph-device.dark-phone{background:#12121f;border-color:#232338;}
+      .ph-screen{flex:1;overflow:hidden;}
       .ph-top{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 0;font-size:7.5px;}
       .ph-top .t{font-weight:700;color:#111;}
       .ph-device.dark-phone .ph-top .t{color:#fff;}
@@ -768,92 +770,101 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
     </style>
 
     <div class="phone-showcase reveal">
-      <!-- Left info panel -->
-      <div class="phone-showcase-left">
+
+      <!-- Left info -->
+      <div class="ps-info">
         <div class="ps-eye">Customer Experience</div>
         <h3>ANTORTIQ</h3>
+        <div class="ps-line"></div>
         <p>End-to-end order intelligence — from confirm to delivery, returns and exchanges.</p>
         <ul>
-          <li>Real-time stage tracking</li>
-          <li>One-tap exchange / return</li>
-          <li>COD + Prepaid supported</li>
-          <li>WhatsApp notifications</li>
-          <li>Built for Indian streetwear</li>
+          <li><span class="dot red"></span>Real-time stage tracking</li>
+          <li><span class="dot green"></span>One-tap exchange / return</li>
+          <li><span class="dot amber"></span>COD + Prepaid supported</li>
+          <li><span class="dot blue"></span>WhatsApp notifications</li>
+          <li><span class="dot red"></span>Built for Indian streetwear</li>
         </ul>
-        <div class="ps-stats">
-          <div><div class="ps-stat-val">89%</div><div class="ps-stat-lbl">Delivery rate</div></div>
-          <div><div class="ps-stat-val">237</div><div class="ps-stat-lbl">Orders tracked</div></div>
-          <div><div class="ps-stat-val green">4.8★</div><div class="ps-stat-lbl">Avg rating</div></div>
-          <div><div class="ps-stat-val wa">WA</div><div class="ps-stat-lbl">Notify channel</div></div>
-        </div>
       </div>
 
-      <!-- 4 phone cards -->
-      <div class="phone-showcase-right">
+
+      <!-- 4 phones -->
+      <div class="ps-phones">
 
         <!-- 01 Confirm Order -->
         <div class="ph-frame">
-          <div class="ph-label">01 — Confirm Order</div>
           <div class="ph-device">
-            <div class="ph-notch"><div class="nt"></div><span class="time">9:41</span><span class="icons">▲ ☰ ▮</span></div>
+            <div class="ph-top"><span class="t">9:41</span><span class="ic">▲▲ ▮</span></div>
             <div class="ph-pill"></div>
             <div class="ph-screen">
-              <div class="phs1-img">MIAMI</div>
+              <img src="https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg" style="width:100%;height:100px;object-fit:cover;border-radius:10px;margin-bottom:8px;" alt="Miami Gingham Shirt">
               <div class="phs1-brand">Miami Gingham Shirt</div>
               <div class="phs1-size">SIZE M · RED GINGHAM</div>
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
-                <div class="phs1-price">₹1,799</div><span class="phs1-cod">COD</span>
+                <div class="phs1-price">₹1,799</div><span style="font-size:7px;background:#f0f0f0;padding:2px 7px;border-radius:99px;font-weight:700;color:#333;">MRP</span><span class="phs1-cod">COD</span>
               </div>
               <div class="phs1-row"><span>SUBTOTAL</span><span class="v">₹1,799</span></div>
               <div class="phs1-row"><span>DELIVERY</span><span class="v" style="color:#22c55e;">Free</span></div>
               <div class="phs1-row" style="border:none;"><span>TOTAL</span><span class="v">₹1,799</span></div>
-              <div class="phs1-address">Rahul Sharma, 12 Andheri West,<br>Mumbai 400053, MH</div>
-              <div class="phs1-btn">CONFIRM ORDER — COD</div>
-              <div style="height:6px;"></div>
+              <div class="phs1-address" style="font-size:7.5px;color:#888;margin:5px 0 8px;line-height:1.4;">Rahul Sharma, 12 Andheri West,<br>Mumbai 400053, MH</div>
+              <div class="phs1-btn">Pay ₹99 &amp; Confirm Order</div>
+              <div style="height:5px;"></div>
               <div class="phs1-btn2">Pay Online &amp; Save ₹90</div>
             </div>
           </div>
+          <div class="ph-label" style="margin-top:12px;">01 — Confirm Order</div>
         </div>
 
         <!-- 02 Order Confirmed -->
         <div class="ph-frame">
-          <div class="ph-label">02 — Order Confirmed</div>
           <div class="ph-device dark-phone">
-            <div class="ph-notch dark"><div class="nt"></div><span class="time" style="color:#fff;">9:41</span><span class="icons" style="color:#fff;">▲ ☰ ▮</span></div>
+            <div class="ph-top"><span class="t">9:41</span><span class="ic">▲▲ ▮</span></div>
             <div class="ph-pill"></div>
             <div class="ph-screen">
               <div class="phs2-circle">✓</div>
               <div class="phs2-title">Order Confirmed!</div>
               <div class="phs2-sub">Estimated delivery:<br><strong style="color:#fff;">Aug 7 – 8, 2026</strong></div>
               <div class="phs2-ordid">#ORD-1847</div>
-              <div class="phs2-prog-lbl">Order Progress</div>
-              <div class="phs2-steps">
-                <div class="phs2-step"><div class="ln"></div><div class="dot done"></div><div class="lb" style="color:#4f8ef7;">Confirmed</div></div>
-                <div class="phs2-step"><div class="ln"></div><div class="dot active"></div><div class="lb" style="color:#4f8ef7;">Dispatched</div></div>
-                <div class="phs2-step"><div class="ln"></div><div class="dot todo"></div><div class="lb">Transit</div></div>
-                <div class="phs2-step"><div class="ln"></div><div class="dot todo"></div><div class="lb">Delivered</div></div>
+              <!-- Delivery Address -->
+              <div style="background:#1a1a30;border:1px solid #2a2a45;border-radius:9px;padding:7px 10px;margin-bottom:7px;">
+                <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:4px;">Delivery Address</div>
+                <div style="font-size:8.5px;font-weight:600;color:#e0e0f0;margin-bottom:1px;">Rahul Sharma</div>
+                <div style="font-size:7.5px;color:#6b6b80;line-height:1.4;">12 Andheri West, Mumbai · MH 400053</div>
+                <div style="display:flex;gap:5px;margin-top:6px;">
+                  <div style="flex:1;text-align:center;padding:5px;border:1px solid #2a2a45;border-radius:6px;font-size:7.5px;font-weight:700;color:#aaa;">✏ Edit</div>
+                  <div style="flex:1;text-align:center;padding:5px;background:#4f8ef7;border-radius:6px;font-size:7.5px;font-weight:700;color:#fff;">✓ Confirm</div>
+                </div>
+              </div>
+              <!-- Product Size -->
+              <div style="background:#1a1a30;border:1px solid #2a2a45;border-radius:9px;padding:7px 10px;margin-bottom:7px;">
+                <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:4px;">Product Size</div>
+                <div style="font-size:8.5px;font-weight:600;color:#e0e0f0;margin-bottom:1px;">Miami Gingham Shirt · <strong style="color:#fff;">Size M</strong></div>
+                <div style="font-size:7.5px;color:#6b6b80;margin-bottom:6px;">Red Gingham</div>
+                <div style="display:flex;gap:5px;">
+                  <div style="flex:1;text-align:center;padding:5px;border:1px solid #2a2a45;border-radius:6px;font-size:7.5px;font-weight:700;color:#aaa;">✏ Edit Size</div>
+                  <div style="flex:1;text-align:center;padding:5px;background:#4f8ef7;border-radius:6px;font-size:7.5px;font-weight:700;color:#fff;">✓ Confirm</div>
+                </div>
               </div>
               <div class="phs2-row"><span class="k">Payment</span><span class="v">Cash on Delivery</span></div>
               <div class="phs2-row"><span class="k">WA Notification</span><span class="v" style="color:#22c55e;">Sent ✓</span></div>
               <div class="phs2-row" style="border:none;"><span class="k">Vendor</span><span class="v">Mumbai Threads Co.</span></div>
-              <div class="phs2-item">
-                <div class="phs2-item img"></div>
-                <div><div class="t1">Miami Gingham Shirt</div><div class="t2">SIZE M · Red Gingham</div></div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+                <img src="https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg" style="width:32px;height:32px;object-fit:cover;border-radius:6px;flex-shrink:0;" alt="">
+                <div><div class="phs2-item t1">Miami Gingham Shirt</div><div class="phs2-item t2">SIZE M · Red Gingham · ₹1,799</div></div>
               </div>
             </div>
           </div>
+          <div class="ph-label" style="margin-top:12px;color:#333;">02 — Order Confirmed</div>
         </div>
 
         <!-- 03 In Transit -->
         <div class="ph-frame">
-          <div class="ph-label">03 — In Transit</div>
           <div class="ph-device">
-            <div class="ph-notch"><div class="nt"></div><span class="time">9:41</span><span class="icons">▲ ☰ ▮</span></div>
+            <div class="ph-top"><span class="t">9:41</span><span class="ic">▲▲ ▮</span></div>
             <div class="ph-pill"></div>
             <div class="ph-screen">
               <div class="phs3-topbar"><span class="phs3-brand">ANTORTIQ</span><span class="phs3-order">Order #1847 · Mumbai Threads</span></div>
               <div class="phs3-badge">● In Transit</div>
-              <div class="phs3-courier"><div><div class="k">Courier</div><div class="v">Delhivery · 1234567890</div></div></div>
+              <div class="phs3-courier"><div><div class="k">COURIER</div><div class="v">Delhivery · 1234567890</div></div></div>
               <div class="phs3-timeline">
                 <div class="phs3-tl-item"><div><div class="tl-lbl">Order Confirmed</div><div class="tl-time">Aug 4 · 2:10 PM</div></div></div>
                 <div class="phs3-tl-item"><div><div class="tl-lbl">Picked Up — Mumbai</div><div class="tl-time">Aug 4 · 2:15 PM</div></div></div>
@@ -863,24 +874,24 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
               <div class="phs3-map">📍 Live Route — Delhi → Mumbai</div>
               <div class="phs3-btns">
                 <div class="phs3-btn outline">Track Live</div>
-                <div class="phs3-btn solid">⇄ Exchange</div>
+                <div class="phs3-btn solid">💬 Contact Support</div>
               </div>
             </div>
           </div>
+          <div class="ph-label" style="margin-top:12px;">03 — In Transit</div>
         </div>
 
         <!-- 04 Exchange -->
         <div class="ph-frame">
-          <div class="ph-label">04 — Exchange</div>
           <div class="ph-device">
-            <div class="ph-notch"><div class="nt"></div><span class="time">9:41</span><span class="icons">▲ ☰ ▮</span></div>
+            <div class="ph-top"><span class="t">9:41</span><span class="ic">▲▲ ▮</span></div>
             <div class="ph-pill"></div>
             <div class="ph-screen">
               <div class="phs4-back">← Order #1847</div>
               <div class="phs4-title">Exchange Item</div>
               <div class="phs4-sub">Select new size. We'll arrange pickup from your address.</div>
               <div class="phs4-item">
-                <div class="phs4-item img"></div>
+                <img src="https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg" style="width:36px;height:36px;object-fit:cover;border-radius:8px;flex-shrink:0;" alt="">
                 <div><div class="t1">Miami Gingham Shirt <span class="phs4-badge">SIZE M</span></div><div class="t2">Delivery · AWB 1234567890</div></div>
               </div>
               <div class="phs4-size-lbl">SELECT NEW SIZE</div>
@@ -893,9 +904,12 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
               <div class="phs4-btn">SUBMIT EXCHANGE REQUEST</div>
             </div>
           </div>
+          <div class="ph-label" style="margin-top:12px;">04 — Exchange</div>
         </div>
 
       </div>
+
+
     </div>
 
     <div class="cc-head reveal" style="margin-bottom:30px;">
