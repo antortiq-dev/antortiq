@@ -22,7 +22,7 @@ app.get('/healthz', (req, res) => res.json({ status: 'ok' }));
 
 // Proxy demo login to JARVIS — avoids cross-origin fetch from browser
 app.post('/api/demo-login', async (req, res) => {
-  const JARVIS = process.env.JARVIS_URL || 'http://localhost:3001';
+  const JARVIS = process.env.JARVIS_URL || 'https://autoaijarvis1.onrender.com';
   try {
     const r = await fetch(`${JARVIS}/demo/login`, {
       method: 'POST',
