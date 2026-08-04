@@ -975,9 +975,14 @@
           return _fetch('/api/cdc/settlements').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
         }
 
-        // Pixel tracker — catches /admin/pixel-tracker/* and /pixel-tracker/*
+        // Pixel tracker — each sub-endpoint needs a different shape
         if (urlStr.includes('/admin/pixel-tracker') || urlStr.includes('/pixel-tracker')) {
-          return _fetch('/api/cdc/pixel').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+          return _fetch('/api/cdc/pixel').then(function(r) { return r.json(); }).then(function(d) {
+            if (urlStr.includes('/summary')) return jsonResp(d.summary || {});
+            if (urlStr.includes('/top-products') || urlStr.includes('/leaderboard')) return jsonResp({ products: d.products || [] });
+            if (urlStr.includes('/recent-logs')) return jsonResp({ logs: [] });
+            return jsonResp(d);
+          });
         }
 
         // Meta ads — use meta-ads specifically to avoid matching /admin/metafield-audit
