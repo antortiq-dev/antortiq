@@ -795,50 +795,52 @@
 </head>
 <body>
 
-<!-- ── CDC Intro (shown after green gate passes) ── -->
+<!-- ── CDC Intro + Password Gate ── -->
 <style>
-  #cc-intro { position:fixed; inset:0; z-index:999999; background:#AAEC00; }
+  #cc-intro { position:fixed; inset:0; z-index:9999999; background:#AAEC00; }
   #cc-intro.cc-leaving { transition:opacity .5s ease; opacity:0; pointer-events:none; }
   #cc-intro iframe { width:100%; height:100%; border:none; display:block; }
+  #cdc-gate {
+    position:fixed; inset:0; z-index:9999998;
+    background:#AAEC00;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:'Inter',sans-serif;
+    opacity:0; pointer-events:none;
+    transition: opacity 0.5s ease;
+  }
+  #cdc-gate.visible { opacity:1; pointer-events:auto; }
 </style>
 <script>
   (function(){
-    if (sessionStorage.getItem('cdc_demo_auth') === '1') {
-      var wrap = document.createElement('div');
-      wrap.id = 'cc-intro';
-      wrap.innerHTML = '<iframe src="/intro-cdc.html?auto=1" title="intro"></iframe>';
-      document.body.appendChild(wrap);
-      var introDone = false, pageLoaded = false;
-      function tryDismiss() {
-        if (!introDone || !pageLoaded) return;
-        var el = document.getElementById('cc-intro');
-        if (!el) return;
-        el.classList.add('cc-leaving');
-        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 550);
-      }
-      window.addEventListener('message', function(e) {
-        if (e.data === 'cc-intro-done') { introDone = true; tryDismiss(); }
-      });
-      window.addEventListener('load', function(){ pageLoaded = true; tryDismiss(); });
-      setTimeout(function(){ introDone = true; tryDismiss(); }, 8000);
-    }
-  })();
-</script>
-
-<!-- ── CDC Demo Config ── -->
-<script>
-  window.API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-    ? 'http://localhost:3001'
-    : 'https://autoaijarvis1.onrender.com';
-
-  /* ── Password gate ── */
-  (function(){
     var KEY = 'cdc_demo_auth';
     var PASS = 'crew2025';
-    if (sessionStorage.getItem(KEY) !== '1') {
+    var authed = sessionStorage.getItem(KEY) === '1';
+
+    /* ── Always show intro first ── */
+    var intro = document.createElement('div');
+    intro.id = 'cc-intro';
+    intro.innerHTML = '<iframe src="/intro-cdc.html' + (authed ? '?auto=1' : '?auto=1') + '" title="intro"></iframe>';
+    document.body.appendChild(intro);
+
+    function dismissIntro(cb) {
+      intro.classList.add('cc-leaving');
+      setTimeout(function(){ if (intro.parentNode) intro.parentNode.removeChild(intro); if(cb) cb(); }, 550);
+    }
+
+    if (authed) {
+      /* Already authenticated — just run intro then show dashboard */
+      var introDone = false, pageLoaded = false;
+      function tryDismissAuthed() {
+        if (!introDone || !pageLoaded) return;
+        dismissIntro();
+      }
+      window.addEventListener('message', function(e){ if(e.data==='cc-intro-done'){ introDone=true; tryDismissAuthed(); } });
+      window.addEventListener('load', function(){ pageLoaded=true; tryDismissAuthed(); });
+      setTimeout(function(){ introDone=true; tryDismissAuthed(); }, 8000);
+    } else {
+      /* Not authenticated — intro plays, then password gate appears */
       var gate = document.createElement('div');
       gate.id = 'cdc-gate';
-      gate.style.cssText = 'position:fixed;inset:0;z-index:9999999;background:#AAEC00;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Inter,sans-serif;';
       gate.innerHTML = '<div style="text-align:center;max-width:340px;padding:0 24px;">'
         + '<div style="font-family:\'Alfa Slab One\',serif;font-size:clamp(28px,6vw,52px);color:#0a0a0a;letter-spacing:1px;line-height:1.1;margin-bottom:8px;">CREP DOG<br>CREW</div>'
         + '<div style="font-size:10px;font-weight:700;letter-spacing:4px;color:rgba(0,0,0,.45);text-transform:uppercase;margin-bottom:36px;">Marketplace Operations Platform</div>'
@@ -847,26 +849,24 @@
         + '<button id="cdc-enter" style="margin-top:20px;width:100%;padding:14px;background:#0a0a0a;color:#AAEC00;border:none;border-radius:12px;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:inherit;">Enter</button>'
         + '</div>';
       document.body.appendChild(gate);
+
+      /* After intro finishes → fade in password gate */
+      var introDone = false, pageLoaded = false;
+      function tryShowGate() {
+        if (!introDone || !pageLoaded) return;
+        dismissIntro(function(){ gate.classList.add('visible'); setTimeout(function(){ document.getElementById('cdc-pw') && document.getElementById('cdc-pw').focus(); }, 100); });
+      }
+      window.addEventListener('message', function(e){ if(e.data==='cc-intro-done'){ introDone=true; tryShowGate(); } });
+      window.addEventListener('load', function(){ pageLoaded=true; tryShowGate(); });
+      setTimeout(function(){ introDone=true; tryShowGate(); }, 8000);
+
       function tryEnter() {
         var v = document.getElementById('cdc-pw').value.trim();
         if (v === PASS) {
           sessionStorage.setItem(KEY, '1');
-          // Show loading state while fetching token
           document.getElementById('cdc-enter').textContent = 'Loading...';
           document.getElementById('cdc-enter').disabled = true;
-          fetch('/api/demo-login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ password: v })
-          }).then(function(r){ return r.json(); }).then(function(d){
-            if (d.token) {
-              try { localStorage.setItem('admin_token', JSON.stringify(d.token)); } catch(e){}
-            }
-            window.location.reload();
-          }).catch(function(){
-            // If fetch fails (CORS/network), reload anyway — login screen will show
-            window.location.reload();
-          });
+          window.location.reload();
         } else {
           var err = document.getElementById('cdc-err');
           err.style.opacity = '1';
@@ -877,6 +877,13 @@
       document.getElementById('cdc-pw').addEventListener('keydown', function(e){ if(e.key==='Enter') tryEnter(); });
     }
   })();
+</script>
+
+<!-- ── CDC Demo Config ── -->
+<script>
+  window.API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:3001'
+    : 'https://autoaijarvis1.onrender.com';
 
   /* ── CDC Demo: Smart fetch interceptor — routes all /admin/* calls to CDC dummy data ── */
   (function(){
