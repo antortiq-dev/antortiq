@@ -14,14 +14,71 @@
   --text:#F0F0FF;
   --muted:rgba(240,240,255,0.45);
   --dim:rgba(240,240,255,0.25);
-  --accent:#6366F1;
-  --accent2:#818CF8;
+  --accent:#E8344A;
+  --accent2:#FF6B7A;
   --green:#10B981;
   --amber:#F59E0B;
   --red:#EF4444;
   --wa:#25D366;
   --wa-dark:#075E54;
 }
+/* White card backgrounds — only card/panel elements flip, not the slide text */
+#s1,#s2,#s3,#s6,#s10{
+  --card:#ffffff;
+  --card2:#f3f4f6;
+  --border:rgba(0,0,0,0.09);
+  --border2:rgba(0,0,0,0.15);
+}
+/* Dark text inside white cards — high specificity overrides */
+/* s1 */
+#s1 .panel, #s1 .feature-card, #s1 .hero-stat, #s1 .fc-text { color: #111; }
+#s1 .panel .panel-title { color: #666 !important; }
+#s1 .hero-stat .l { color: #888 !important; }
+#s1 .fc-text .sub { color: #666 !important; }
+#s1 .fc-text .title { color: #111 !important; }
+/* s2 */
+#s2 .panel, #s2 .kpi, #s2 .stage { color: #111; }
+#s2 .panel .panel-title { color: #666 !important; }
+#s2 .kpi .label { color: #666 !important; }
+#s2 .kpi .num, #s2 .delta.up, #s2 .delta.dn { color: revert; }
+/* funnel labels and stage hrs */
+#s2 .funnel-step .fs-label { color: #888 !important; }
+#s2 .stage-info .name { color: #111 !important; }
+#s2 .stage-info .hrs { color: #888 !important; }
+/* kpi delta text */
+#s2 .kpi .delta { color: revert; }
+#s2 .kpi > *:last-child { color: #666; }
+/* s3 */
+#s3 .report-card, #s3 .insight { color: #111; }
+#s3 .insight .ititle { color: #111 !important; }
+#s3 .insight .isub { color: #666 !important; }
+#s3 .report-card .rc-body .rt { color: #111 !important; }
+#s3 .report-card .rc-body .rs { color: #666 !important; }
+#s3 .report-card .rc-val { color: revert; }
+/* s6 */
+#s6 .sf-step { color: #111; }
+#s6 .sf-body .sf-title { color: #111 !important; }
+#s6 .sf-body .sf-sub { color: #666 !important; }
+#s6 .invoice-preview, #s6 .invoice-preview * { color: #111; }
+#s6 .inv-header .inv-num { color: #666; }
+#s6 .inv-label { color: #888; }
+#s6 .inv-row.total .ir-label { color: #111; }
+/* s7 — fully hardcoded in slide CSS, no overrides needed */
+/* s10 */
+#s10 .rx-order-card, #s10 .rx-timeline, #s10 .rx-product, #s10 .rx-ai-card, #s10 .rx-ship-card { color: #111; }
+#s10 .rx-order-id { color: #E8344A !important; }
+#s10 .rx-label { color: #888 !important; }
+#s10 .rx-val { color: #111 !important; }
+#s10 .rx-step-title { color: #111 !important; }
+#s10 .rx-step-time { color: #888 !important; }
+#s10 .rx-step-row .rxk { color: #888 !important; }
+#s10 .rx-step-row .rxv { color: #111 !important; }
+#s10 .rx-prod-name { color: #111 !important; }
+#s10 .rx-prod-meta { color: #888 !important; }
+#s10 .rx-ship-label { color: #888 !important; }
+#s10 .rx-ship-val { color: #111 !important; }
+#s10 .rx-ship-row .k { color: #888 !important; }
+#s10 .rx-ship-row .v { color: #111; }
 html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--text);}
 
 /* ── Deck container ── */
@@ -76,7 +133,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
   padding:5px 12px;border-radius:999px;font-size:10px;font-weight:700;
   letter-spacing:2px;text-transform:uppercase;border:1px solid;
 }
-.badge-accent{background:rgba(99,102,241,.15);color:var(--accent2);border-color:rgba(99,102,241,.3);}
+.badge-accent{background:rgba(232,52,74,.15);color:var(--accent2);border-color:rgba(232,52,74,.3);}
 .badge-green{background:rgba(16,185,129,.12);color:#34D399;border-color:rgba(16,185,129,.25);}
 .badge-amber{background:rgba(245,158,11,.12);color:#FCD34D;border-color:rgba(245,158,11,.25);}
 .badge-red{background:rgba(239,68,68,.12);color:#FCA5A5;border-color:rgba(239,68,68,.25);}
@@ -102,7 +159,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 ═══════════════════════════════════════ */
 #s1 .slide-bg{
   background:
-    radial-gradient(ellipse 900px 600px at 30% 40%,rgba(99,102,241,.18) 0%,transparent 60%),
+    radial-gradient(ellipse 900px 600px at 30% 40%,rgba(232,52,74,.18) 0%,transparent 60%),
     radial-gradient(ellipse 600px 500px at 80% 70%,rgba(16,185,129,.10) 0%,transparent 55%),
     var(--ink);
 }
@@ -157,7 +214,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 ═══════════════════════════════════════ */
 #s2 .slide-bg{
   background:
-    radial-gradient(ellipse 700px 400px at 70% 20%,rgba(99,102,241,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 700px 400px at 70% 20%,rgba(232,52,74,.12) 0%,transparent 60%),
     var(--surface);
 }
 #s2 .slide-inner{padding:40px 60px 60px;}
@@ -212,13 +269,55 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 .stage-info .name{font-size:11px;font-weight:600;}
 .stage-info .hrs{font-size:10px;color:var(--muted);}
 
+/* ── AI Insights Bar (s2) ── */
+.ai-insights-bar{
+  margin-top:14px;
+  background:#0a0a14;
+  border:1px solid rgba(232,52,74,.25);
+  border-radius:14px;
+  padding:12px 16px;
+}
+#s2 .ai-insights-bar{
+  background:rgba(232,52,74,.05);
+  border-color:rgba(232,52,74,.18);
+}
+.aib-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.aib-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#E8344A;}
+.aib-live{font-size:9px;font-weight:700;color:#10b981;letter-spacing:1px;animation:aib-blink 2s infinite;}
+@keyframes aib-blink{0%,100%{opacity:1;}50%{opacity:.4;}}
+.aib-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.aib-card{
+  display:flex;flex-direction:column;gap:6px;
+  padding:10px 12px;border-radius:10px;
+  border-left:3px solid transparent;
+  background:rgba(255,255,255,.04);
+  position:relative;
+}
+#s2 .aib-card{background:rgba(255,255,255,.6);box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.aib-red{border-left-color:#ef4444;}
+.aib-amber{border-left-color:#f59e0b;}
+.aib-purple{border-left-color:#E8344A;}
+.aib-green{border-left-color:#10b981;}
+.aib-icon{font-size:16px;line-height:1;}
+.aib-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.55;color:#111;}
+.aib-msg{font-size:11px;line-height:1.45;color:#111;}
+.aib-msg strong{font-weight:700;}
+.aib-action{
+  font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  opacity:.5;margin-top:2px;cursor:pointer;
+}
+.aib-red .aib-action{color:#ef4444;}
+.aib-amber .aib-action{color:#f59e0b;}
+.aib-purple .aib-action{color:#E8344A;}
+.aib-green .aib-action{color:#10b981;}
+
 /* ═══════════════════════════════════════
    SLIDE 3 — JARVIS AI BRAIN
 ═══════════════════════════════════════ */
 #s3 .slide-bg{
   background:
-    radial-gradient(ellipse 800px 600px at 20% 60%,rgba(99,102,241,.2) 0%,transparent 55%),
-    radial-gradient(ellipse 500px 400px at 85% 20%,rgba(139,92,246,.12) 0%,transparent 50%),
+    radial-gradient(ellipse 800px 600px at 20% 60%,rgba(232,52,74,.2) 0%,transparent 55%),
+    radial-gradient(ellipse 500px 400px at 85% 20%,rgba(232,52,74,.12) 0%,transparent 50%),
     var(--ink);
 }
 #s3 .slide-inner{padding:50px 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
@@ -251,7 +350,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 /* ═══════════════════════════════════════
    SLIDE 4 — PIXEL TRACKER
 ═══════════════════════════════════════ */
-#s4 .slide-bg{background:radial-gradient(ellipse 80% 60% at 30% 50%,rgba(99,102,241,0.07) 0%,transparent 70%);}
+#s4 .slide-bg{background:radial-gradient(ellipse 80% 60% at 30% 50%,rgba(232,52,74,0.07) 0%,transparent 70%);}
 #s4 .s4-wrap{display:grid;grid-template-columns:300px 1fr;gap:32px;height:100%;padding:40px 48px;align-items:center;}
 #s4 .s4-left{display:flex;flex-direction:column;gap:0;}
 #s4 .s4-kicker{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
@@ -288,7 +387,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s4 .cvr.c1 .cvr-val{color:#d97706;}
 #s4 .cvr.c2 .cvr-val{color:#0891b2;}
 #s4 .cvr.c3 .cvr-val{color:#16a34a;}
-#s4 .cvr.c4 .cvr-val{color:#7c3aed;}
+#s4 .cvr.c4 .cvr-val{color:#c0202e;}
 #s4 .dash-lower{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;min-height:0;}
 #s4 .dash-card{background:#fff;border-radius:9px;padding:9px 11px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.05);}
 #s4 .dc-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex-shrink:0;}
@@ -327,7 +426,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s4 .live-icon{font-size:11px;width:14px;text-align:center;flex-shrink:0;}
 #s4 .live-name{flex:1;font-size:8.5px;font-weight:600;color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 #s4 .live-evt{font-size:8.5px;font-weight:700;flex-shrink:0;}
-#s4 .live-evt.ev{color:#6366f1;}
+#s4 .live-evt.ev{color:#E8344A;}
 #s4 .live-evt.ea{color:#d97706;}
 #s4 .live-evt.ep{color:#16a34a;}
 #s4 .live-ago{font-size:7.5px;color:#ccc;flex-shrink:0;}
@@ -436,7 +535,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
   overflow:hidden;
 }
 .inv-header{
-  background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(99,102,241,.15));
+  background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(232,52,74,.15));
   padding:18px 20px;border-bottom:1px solid var(--border);
   display:flex;justify-content:space-between;align-items:center;
 }
@@ -463,44 +562,45 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 ═══════════════════════════════════════ */
 #s7 .slide-bg{
   background:
-    radial-gradient(ellipse 600px 400px at 80% 20%,rgba(139,92,246,.12) 0%,transparent 55%),
-    var(--surface);
+    radial-gradient(ellipse 600px 400px at 80% 20%,rgba(232,52,74,.12) 0%,transparent 55%),
+    #0F0F18;
 }
 #s7 .slide-inner{padding:40px 60px 50px;}
 #s7 .s7-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;}
-#s7 h2{font-family:'Arial Black',sans-serif;font-size:38px;font-weight:900;letter-spacing:-2px;}
+#s7 h2{font-family:'Arial Black',sans-serif;font-size:38px;font-weight:900;letter-spacing:-2px;color:#fff;}
 .vendor-table{width:100%;border-collapse:collapse;font-size:12px;}
 .vendor-table th{
   padding:10px 14px;text-align:left;font-size:9px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:var(--muted);
-  border-bottom:1px solid var(--border);
+  letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 .vendor-table td{
-  padding:13px 14px;border-bottom:1px solid var(--border);vertical-align:middle;
+  padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:middle;
+  color:#e9e9ea;
 }
 .vendor-table tr:last-child td{border-bottom:none;}
-.vendor-table tr:hover td{background:rgba(255,255,255,.02);}
+.vendor-table tr:hover td{background:rgba(255,255,255,.03);}
 .vendor-rank{
   width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;
   font-size:11px;font-weight:800;
 }
-.vendor-name{font-weight:700;font-size:13px;}
-.vendor-city{font-size:10px;color:var(--muted);}
+.vendor-name{font-weight:700;font-size:13px;color:#fff;}
+.vendor-city{font-size:10px;color:rgba(255,255,255,.4);}
 .heat{
   padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;
   display:inline-block;
 }
-.heat.h1{background:rgba(16,185,129,.15);color:#34D399;}
-.heat.h2{background:rgba(245,158,11,.12);color:#FCD34D;}
-.heat.h3{background:rgba(239,68,68,.12);color:#FCA5A5;}
-.score-bar{height:5px;border-radius:3px;background:var(--border);overflow:hidden;}
+.heat.h1{background:rgba(16,185,129,.18);color:#34d399;}
+.heat.h2{background:rgba(245,158,11,.18);color:#fbbf24;}
+.heat.h3{background:rgba(239,68,68,.18);color:#f87171;}
+.score-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;}
 .score-fill{height:100%;border-radius:3px;}
 #s7 .bottom-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}
 .bs{
-  padding:14px;border-radius:12px;background:var(--card);border:1px solid var(--border);text-align:center;
+  padding:14px;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,.08);text-align:center;
 }
 .bs .bv{font-family:'Arial Black',sans-serif;font-size:26px;font-weight:900;}
-.bs .bl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.bs .bl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-top:2px;}
 
 /* ═══════════════════════════════════════
    SLIDE 8 — META ADS
@@ -508,7 +608,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s8 .slide-bg{
   background:
     radial-gradient(ellipse 700px 500px at 60% 30%,rgba(59,130,246,.15) 0%,transparent 55%),
-    radial-gradient(ellipse 500px 400px at 20% 80%,rgba(99,102,241,.12) 0%,transparent 50%),
+    radial-gradient(ellipse 500px 400px at 20% 80%,rgba(232,52,74,.12) 0%,transparent 50%),
     var(--ink);
 }
 #s8 .slide-inner{padding:40px 60px 50px;}
@@ -523,7 +623,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 .meta-kpi.mk1{border-top-color:#3B82F6;}
 .meta-kpi.mk2{border-top-color:var(--green);}
 .meta-kpi.mk3{border-top-color:var(--amber);}
-.meta-kpi.mk4{border-top-color:#8B5CF6;}
+.meta-kpi.mk4{border-top-color:#E8344A;}
 .meta-kpi .mk-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
 .meta-kpi .mk-val{font-family:'Arial Black',sans-serif;font-size:28px;font-weight:900;letter-spacing:-1px;}
 .meta-kpi .mk-unit{font-size:11px;color:var(--muted);margin-top:2px;}
@@ -750,7 +850,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s10 .slide-bg{
   background:
     radial-gradient(ellipse 800px 500px at 80% 20%,rgba(16,185,129,.1) 0%,transparent 55%),
-    radial-gradient(ellipse 600px 500px at 10% 80%,rgba(99,102,241,.1) 0%,transparent 55%),
+    radial-gradient(ellipse 600px 500px at 10% 80%,rgba(232,52,74,.1) 0%,transparent 55%),
     var(--surface);
 }
 #s10 .slide-inner{padding:32px 48px 40px;display:flex;flex-direction:column;gap:18px;}
@@ -762,8 +862,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s10 h2{font-family:'Arial Black',sans-serif;font-size:32px;font-weight:900;letter-spacing:-1.5px;}
 #s10 .rx-meta{display:flex;gap:10px;align-items:center;}
 #s10 .rx-pill{padding:5px 14px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
-#s10 .rx-pill.auto{background:rgba(16,185,129,.12);color:#34D399;border:1px solid rgba(16,185,129,.25);}
-#s10 .rx-pill.live{background:rgba(239,68,68,.12);color:#FCA5A5;border:1px solid rgba(239,68,68,.25);animation:rxblink 1.4s ease infinite;}
+#s10 .rx-pill.auto{background:rgba(16,185,129,.12);color:#059669;border:1px solid rgba(16,185,129,.3);}
+#s10 .rx-pill.live{background:rgba(239,68,68,.10);color:#dc2626;border:1px solid rgba(239,68,68,.3);animation:rxblink 1.4s ease infinite;}
 @keyframes rxblink{0%,100%{opacity:1;}50%{opacity:.5;}}
 
 /* Main grid */
@@ -782,7 +882,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s10 .rx-prod-img img{width:100%;height:100%;object-fit:cover;}
 #s10 .rx-prod-name{font-size:11px;font-weight:700;}
 #s10 .rx-prod-meta{font-size:9px;color:var(--muted);}
-#s10 .rx-type-badge{margin-top:4px;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(99,102,241,.12);color:var(--accent2);border:1px solid rgba(99,102,241,.25);}
+#s10 .rx-type-badge{margin-top:4px;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(232,52,74,.12);color:var(--accent2);border:1px solid rgba(232,52,74,.25);}
 
 /* Center: automation timeline */
 #s10 .rx-timeline{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;display:flex;flex-direction:column;gap:0;overflow:hidden;}
@@ -796,10 +896,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
   font-size:11px;font-weight:800;flex-shrink:0;z-index:1;
 }
 .rx-step-dot.done{background:var(--green);color:#fff;box-shadow:0 0 0 3px rgba(16,185,129,.2);}
-.rx-step-dot.active{background:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(99,102,241,.2);animation:dotpulse 1.5s ease infinite;}
+.rx-step-dot.active{background:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(232,52,74,.2);animation:dotpulse 1.5s ease infinite;}
 .rx-step-dot.done-amber{background:var(--amber);color:#fff;box-shadow:0 0 0 3px rgba(245,158,11,.2);}
 .rx-step-dot.done-blue{background:#3B82F6;color:#fff;box-shadow:0 0 0 3px rgba(59,130,246,.2);}
-@keyframes dotpulse{0%,100%{box-shadow:0 0 0 4px rgba(99,102,241,.2);}50%{box-shadow:0 0 0 8px rgba(99,102,241,.05);}}
+@keyframes dotpulse{0%,100%{box-shadow:0 0 0 4px rgba(232,52,74,.2);}50%{box-shadow:0 0 0 8px rgba(232,52,74,.05);}}
 .rx-connector{width:2px;flex:1;margin:3px 0;min-height:14px;}
 .rx-connector.done{background:var(--green);}
 .rx-connector.active{background:linear-gradient(to bottom,var(--green),var(--accent));}
@@ -819,10 +919,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 .rx-step-row .rxk{color:var(--muted);}
 .rx-step-row .rxv{font-weight:600;}
 .rx-step-tag{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;}
-.rx-tag-green{background:rgba(16,185,129,.12);color:#34D399;}
-.rx-tag-blue{background:rgba(59,130,246,.12);color:#93C5FD;}
-.rx-tag-amber{background:rgba(245,158,11,.12);color:#FCD34D;}
-.rx-tag-purple{background:rgba(139,92,246,.12);color:#C4B5FD;}
+.rx-tag-green{background:rgba(16,185,129,.15);color:#059669;}
+.rx-tag-blue{background:rgba(59,130,246,.15);color:#2563eb;}
+.rx-tag-amber{background:rgba(245,158,11,.15);color:#d97706;}
+.rx-tag-purple{background:rgba(232,52,74,.15);color:#c0202e;}
 .rx-razorpay{display:flex;align-items:center;gap:6px;}
 .rx-razorpay-logo{font-size:9px;font-weight:800;color:#3395FF;letter-spacing:.5px;}
 
@@ -838,7 +938,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s10 .rx-ship-status{font-size:9px;padding:2px 8px;border-radius:4px;font-weight:700;}
 #s10 .rx-ship-rows{display:flex;flex-direction:column;gap:5px;}
 #s10 .rx-ship-row{display:flex;justify-content:space-between;font-size:10px;}
-#s10 .rx-ship-row .k{color:var(--muted);}
+#s10 .rx-ship-row .k{color:#888;}
 #s10 .rx-ship-row .v{font-weight:600;}
 #s10 .rx-track-bar{margin-top:10px;display:flex;align-items:center;gap:4px;}
 #s10 .rx-track-step{flex:1;height:4px;border-radius:2px;background:var(--border);}
@@ -848,7 +948,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 #s10 .rx-track-label{font-size:7px;color:var(--muted);font-weight:600;}
 
 #s10 .rx-credit-card{
-  background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(99,102,241,.08));
+  background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(232,52,74,.08));
   border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:14px;
   display:flex;flex-direction:column;gap:8px;
 }
@@ -887,7 +987,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
         <div class="fc-text"><div class="title">Order Confirmed</div><div class="sub">WhatsApp sent • 2s ago</div></div>
       </div>
       <div class="float-card">
-        <div class="fc-icon" style="background:rgba(99,102,241,.15);">🧠</div>
+        <div class="fc-icon" style="background:rgba(232,52,74,.15);">🧠</div>
         <div class="fc-text"><div class="title">AI Insight Ready</div><div class="sub">RTO spike detected</div></div>
       </div>
       <div class="float-card">
@@ -1310,8 +1410,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
               <div class="rx-step-title">Exchange Delivered — Case Closed</div>
               <div class="rx-step-time" style="color:var(--accent2);">Pending · ETA Aug 11</div>
             </div>
-            <div class="rx-step-content" style="border-color:rgba(99,102,241,.25);">
-              <div class="rx-step-row"><span class="rxk">Delivery Confirmation</span><span class="rxv rx-step-tag" style="background:rgba(99,102,241,.1);color:var(--accent2);">⏳ Awaiting</span></div>
+            <div class="rx-step-content" style="border-color:rgba(232,52,74,.25);">
+              <div class="rx-step-row"><span class="rxk">Delivery Confirmation</span><span class="rxv rx-step-tag" style="background:rgba(232,52,74,.1);color:var(--accent2);">⏳ Awaiting</span></div>
               <div class="rx-step-row"><span class="rxk">WA Delivery Ping</span><span class="rxv" style="color:var(--muted);">Will auto-send</span></div>
               <div class="rx-step-row"><span class="rxk">Settlement Impact</span><span class="rxv" style="color:var(--muted);">Auto-adjusted in next cycle</span></div>
             </div>
@@ -1428,7 +1528,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
       <div class="kpi am">
         <div class="label">In Transit</div>
         <div class="val num">31</div>
-        <div class="delta" style="color:var(--muted);">Active shipments</div>
+        <div class="delta" style="color:#888;">Active shipments</div>
       </div>
       <div class="kpi r">
         <div class="label">RTO / Returns</div>
@@ -1476,7 +1576,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
         <div class="panel-title">Avg Stage Time</div>
         <div class="stage-grid">
           <div class="stage-item">
-            <div class="stage-icon" style="background:rgba(99,102,241,.15);">⏱</div>
+            <div class="stage-icon" style="background:rgba(232,52,74,.15);">⏱</div>
             <div class="stage-info"><div class="name">Confirm</div><div class="hrs">2.4 hrs avg</div></div>
           </div>
           <div class="stage-item">
@@ -1500,29 +1600,72 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           <circle cx="35" cy="35" r="28" fill="none" stroke="var(--border)" stroke-width="7"/>
           <circle cx="35" cy="35" r="28" fill="none" stroke="var(--green)" stroke-width="7"
             stroke-dasharray="157 176" stroke-linecap="round" transform="rotate(-90 35 35)"/>
-          <text x="35" y="40" text-anchor="middle" fill="white" font-size="14" font-weight="900" font-family="Arial Black">89%</text>
+          <text x="35" y="40" text-anchor="middle" fill="#111" font-size="14" font-weight="900" font-family="Arial Black">89%</text>
         </svg>
-        <div><div class="panel-title" style="margin-bottom:4px;">Delivery Rate</div><div style="font-size:12px;color:var(--muted);">189 of 237 orders<br>delivered successfully</div></div>
+        <div><div class="panel-title" style="margin-bottom:4px;">Delivery Rate</div><div style="font-size:12px;color:#666;">189 of 237 orders<br>delivered successfully</div></div>
       </div>
       <div class="panel" style="display:flex;align-items:center;gap:14px;">
         <svg width="70" height="70" viewBox="0 0 70 70">
           <circle cx="35" cy="35" r="28" fill="none" stroke="var(--border)" stroke-width="7"/>
           <circle cx="35" cy="35" r="28" fill="none" stroke="var(--accent)" stroke-width="7"
             stroke-dasharray="120 176" stroke-linecap="round" transform="rotate(-90 35 35)"/>
-          <text x="35" y="40" text-anchor="middle" fill="white" font-size="14" font-weight="900" font-family="Arial Black">68%</text>
+          <text x="35" y="40" text-anchor="middle" fill="#111" font-size="14" font-weight="900" font-family="Arial Black">68%</text>
         </svg>
-        <div><div class="panel-title" style="margin-bottom:4px;">Prepaid Mix</div><div style="font-size:12px;color:var(--muted);">161 prepaid orders<br>lower RTO risk</div></div>
+        <div><div class="panel-title" style="margin-bottom:4px;">Prepaid Mix</div><div style="font-size:12px;color:#666;">161 prepaid orders<br>lower RTO risk</div></div>
       </div>
       <div class="panel" style="display:flex;align-items:center;gap:14px;">
         <svg width="70" height="70" viewBox="0 0 70 70">
           <circle cx="35" cy="35" r="28" fill="none" stroke="var(--border)" stroke-width="7"/>
           <circle cx="35" cy="35" r="28" fill="none" stroke="var(--amber)" stroke-width="7"
             stroke-dasharray="96 176" stroke-linecap="round" transform="rotate(-90 35 35)"/>
-          <text x="35" y="40" text-anchor="middle" fill="white" font-size="14" font-weight="900" font-family="Arial Black">55%</text>
+          <text x="35" y="40" text-anchor="middle" fill="#111" font-size="14" font-weight="900" font-family="Arial Black">55%</text>
         </svg>
-        <div><div class="panel-title" style="margin-bottom:4px;">WA Engagement</div><div style="font-size:12px;color:var(--muted);">Customers opening<br>tracking messages</div></div>
+        <div><div class="panel-title" style="margin-bottom:4px;">WA Engagement</div><div style="font-size:12px;color:#666;">Customers opening<br>tracking messages</div></div>
       </div>
     </div>
+
+    <!-- AI Smart Insights Bar -->
+    <div class="ai-insights-bar">
+      <div class="aib-header">
+        <span class="aib-label">⚡ JARVIS Findings</span>
+        <span class="aib-live">● LIVE</span>
+      </div>
+      <div class="aib-cards">
+        <div class="aib-card aib-red">
+          <div class="aib-icon">💬</div>
+          <div class="aib-body">
+            <div class="aib-tag">WhatsApp · Unresolved</div>
+            <div class="aib-msg">Harsh — Order <strong>#2678</strong> texting about exchange for 3 days straight. Zero resolution. Customer patience thinning fast.</div>
+          </div>
+          <div class="aib-action">Resolve →</div>
+        </div>
+        <div class="aib-card aib-amber">
+          <div class="aib-icon">📦</div>
+          <div class="aib-body">
+            <div class="aib-tag">RTO Intelligence · Zones</div>
+            <div class="aib-msg"><strong>Assam, Bihar &amp; AP</strong> driving 40% of total RTOs. High-risk COD pockets — consider prepaid-only or OTP delivery.</div>
+          </div>
+          <div class="aib-action">View Map →</div>
+        </div>
+        <div class="aib-card aib-purple">
+          <div class="aib-icon">👕</div>
+          <div class="aib-body">
+            <div class="aib-tag">Catalog Waste · Ad Spend</div>
+            <div class="aib-msg"><strong>BA Checkmate Shirt</strong> in live ads for 15 days — only XL left. Burning budget on a size nobody's buying.</div>
+          </div>
+          <div class="aib-action">Pause Ad →</div>
+        </div>
+        <div class="aib-card aib-green">
+          <div class="aib-icon">🚀</div>
+          <div class="aib-body">
+            <div class="aib-tag">Conversion Signal · Scale</div>
+            <div class="aib-msg"><strong>MIAMI Shirt</strong> view-to-checkout at 35% — well above category avg. Strong scaling candidate. Increase ad budget now.</div>
+          </div>
+          <div class="aib-action">Scale →</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1553,7 +1696,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
     <div class="brain-right">
       <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">SMART REPORTS</div>
       <div class="report-card">
-        <div class="rc-icon" style="background:rgba(99,102,241,.15);">📊</div>
+        <div class="rc-icon" style="background:rgba(232,52,74,.15);">📊</div>
         <div class="rc-body"><div class="rt">Weekly Operations Report</div><div class="rs">Auto-generated every Monday 9AM</div></div>
         <div class="rc-val num" style="color:var(--accent2);">89%</div>
       </div>
@@ -1618,30 +1761,30 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 .br-sec-header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;cursor:pointer;margin-bottom:6px;}
 .br-sec-header.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);}
 .br-sec-header.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);}
-.br-sec-header.blue{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);}
+.br-sec-header.blue{background:rgba(232,52,74,.08);border:1px solid rgba(232,52,74,.18);}
 .br-sec-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;}
 .br-sec-title.red{color:#dc2626;}
 .br-sec-title.amber{color:#d97706;}
-.br-sec-title.blue{color:#4f46e5;}
+.br-sec-title.blue{color:#d11f1f;}
 .br-badge{font-size:10px;font-weight:700;padding:1px 8px;border-radius:99px;}
 .br-badge.red{background:rgba(239,68,68,.15);color:#dc2626;}
 .br-badge.amber{background:rgba(245,158,11,.15);color:#d97706;}
-.br-badge.blue{background:rgba(99,102,241,.15);color:#4f46e5;}
+.br-badge.blue{background:rgba(232,52,74,.15);color:#d11f1f;}
 .br-collapse{font-size:10px;color:#9ca3af;}
 
 /* Finding cards */
 .br-card{background:#fff;border-radius:10px;border:1px solid #e5e7eb;padding:12px 14px;margin-bottom:6px;display:flex;gap:12px;align-items:flex-start;}
 .br-card.red{border-left:3px solid #ef4444;}
 .br-card.amber{border-left:3px solid #f59e0b;}
-.br-card.blue{border-left:3px solid #6366f1;}
+.br-card.blue{border-left:3px solid #E8344A;}
 .br-card-img{width:42px;height:42px;border-radius:8px;background:#f3f4f6;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;}
 .br-card-img img{width:100%;height:100%;object-fit:cover;}
 .br-card-body{flex:1;min-width:0;}
 .br-cat{font-size:8px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
 .br-cat.red{color:#ef4444;}
 .br-cat.amber{color:#f59e0b;}
-.br-cat.blue{color:#6366f1;}
-.br-cat.purple{color:#8b5cf6;}
+.br-cat.blue{color:#E8344A;}
+.br-cat.purple{color:#E8344A;}
 .br-cat.green{color:#10b981;}
 .br-headline{font-size:12px;font-weight:700;color:#111;line-height:1.4;margin-bottom:3px;}
 .br-desc{font-size:11px;color:#6b7280;line-height:1.5;}
@@ -1701,7 +1844,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           <span class="br-collapse">▲</span>
         </div>
         <div class="br-card red">
-          <div class="br-card-img">👕</div>
+          <div class="br-card-img"><img src="https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg" alt="BA CHECKMATE SHIRT"></div>
           <div class="br-card-body">
             <div class="br-cat red">PRODUCT CANCELLATION</div>
             <div class="br-headline">"BA CHECKMATE SHIRT" is 63% of all cancellations — 36% of its own orders cancelled</div>
@@ -1716,7 +1859,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           </div>
         </div>
         <div class="br-card red">
-          <div class="br-card-img">🧦</div>
+          <div class="br-card-img"><img src="https://i.ibb.co/PZTF3ywR/Untitled-design-74.png" alt="Who Cares Crew Socks"></div>
           <div class="br-card-body">
             <div class="br-cat red">FUNNEL DROP-OFF</div>
             <div class="br-headline">"Who Cares Crew Socks" starts checkout but rarely completes — 0% vs 35% average</div>
@@ -1746,7 +1889,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           </div>
         </div>
         <div class="br-card amber">
-          <div class="br-card-img">👔</div>
+          <div class="br-card-img"><img src="https://i.ibb.co/x5Cb7HL/002-fotor-20240712163918.webp" alt="SICKBLUE CORE 002"></div>
           <div class="br-card-body">
             <div class="br-cat amber">PRODUCT DISPATCH DELAY</div>
             <div class="br-headline">"SICKBLUE - CORE 002" takes 30h longer to dispatch than this vendor's other products</div>
@@ -1769,7 +1912,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           <span class="br-collapse">▲</span>
         </div>
         <div class="br-card blue">
-          <div class="br-card-img">👕</div>
+          <div class="br-card-img"><img src="https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg" alt="BA CHECKMATE SHIRT"></div>
           <div class="br-card-body">
             <div class="br-cat green">SILENT WINNER</div>
             <div class="br-headline">"BA CHECKMATE SHIRT" sold 14 units in the last 14d after near-zero sales in the prior 60 days</div>
@@ -1784,7 +1927,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           </div>
         </div>
         <div class="br-card blue">
-          <div class="br-card-img">👔</div>
+          <div class="br-card-img"><img src="https://i.ibb.co/Z1pyv3T/Sintitulo-1.webp" alt="SEA BREEZE LINEN SHIRT"></div>
           <div class="br-card-body">
             <div class="br-cat blue">PIXEL TRENDING</div>
             <div class="br-headline">"SEA BREEZE LINEN/COTTON SHIRT" got 199 views in the last 14d after almost no traffic before</div>
@@ -2013,10 +2156,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
   <div class="slide-inner">
     <div class="s7-head">
       <div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#8B5CF6;margin-bottom:6px;">FEATURE — 06</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E8344A;margin-bottom:6px;">FEATURE — 06</div>
         <h2>Vendor Scorecard</h2>
       </div>
-      <span class="badge" style="background:rgba(139,92,246,.12);color:#A78BFA;border-color:rgba(139,92,246,.3);">LIVE RANKINGS</span>
+      <span class="badge" style="background:rgba(232,52,74,.12);color:#A78BFA;border-color:rgba(232,52,74,.3);">LIVE RANKINGS</span>
     </div>
     <table class="vendor-table">
       <thead>
@@ -2048,7 +2191,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           <td><span class="badge badge-green" style="font-size:9px;">PREFERRED</span></td>
         </tr>
         <tr>
-          <td><div class="vendor-rank" style="background:rgba(255,255,255,.06);color:var(--muted);">2</div></td>
+          <td><div class="vendor-rank" style="background:rgba(0,0,0,.06);color:#555;">2</div></td>
           <td><div class="vendor-name">StreetLab Jaipur</div><div class="vendor-city">Jaipur, RJ</div></td>
           <td><strong>61</strong></td>
           <td><span class="heat h1">17.8 hrs</span></td>
@@ -2063,7 +2206,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           <td><span class="badge badge-accent" style="font-size:9px;">ACTIVE</span></td>
         </tr>
         <tr>
-          <td><div class="vendor-rank" style="background:rgba(255,255,255,.06);color:var(--muted);">3</div></td>
+          <td><div class="vendor-rank" style="background:rgba(0,0,0,.06);color:#555;">3</div></td>
           <td><div class="vendor-name">UrbanKicks Delhi</div><div class="vendor-city">Delhi, DL</div></td>
           <td><strong>47</strong></td>
           <td><span class="heat h2">24.1 hrs</span></td>
@@ -2078,7 +2221,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
           <td><span class="badge badge-amber" style="font-size:9px;">REVIEW</span></td>
         </tr>
         <tr>
-          <td><div class="vendor-rank" style="background:rgba(255,255,255,.06);color:var(--muted);">4</div></td>
+          <td><div class="vendor-rank" style="background:rgba(0,0,0,.06);color:#555;">4</div></td>
           <td><div class="vendor-name">Denim District BLR</div><div class="vendor-city">Bengaluru, KA</div></td>
           <td><strong>40</strong></td>
           <td><span class="heat h3">31.7 hrs</span></td>
@@ -2089,7 +2232,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
             </div>
           </td>
           <td style="color:var(--red);">22.5%</td>
-          <td><strong class="num" style="font-size:16px;">3.1</strong><span style="color:var(--muted);"> ★</span></td>
+          <td><strong class="num" style="font-size:16px;">3.1</strong><span style="color:rgba(255,255,255,.3);"> ★</span></td>
           <td><span class="badge badge-red" style="font-size:9px;">AT RISK</span></td>
         </tr>
       </tbody>
@@ -2390,6 +2533,162 @@ document.addEventListener('touchend',e=>{
   const dx=tsx-e.changedTouches[0].clientX;
   if(Math.abs(dx)>50){ dx>0?goTo(cur+1):goTo(cur-1,'prev'); }
 },{passive:true});
+
+
+// ── Slide entry hint animations (BIG) ──
+(function(){
+  var allSlides = Array.from(document.querySelectorAll('.slide'));
+  var BRAINS_IDX = allSlides.findIndex(function(s){ return s.id==='sbrains'; });
+  var META_IDX   = allSlides.findIndex(function(s){ return s.id==='s8'; });
+
+  /* ── inject CSS ── */
+  var css = document.createElement('style');
+  css.textContent = `
+    /* === SCROLL HINT (Brains) === */
+    .big-scroll-hint {
+      position:absolute; right:10px; top:50%; transform:translateY(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      z-index:9999; pointer-events:none;
+      animation: hint-entrance .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes hint-entrance { from{opacity:0;transform:translateY(-40%) scale(.6)} to{opacity:1;transform:translateY(-50%) scale(1)} }
+    .big-scroll-hint .sh-arrow {
+      font-size:36px; line-height:1;
+      animation: sh-bounce 0.7s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 10px rgba(232,52,74,.9));
+    }
+    .big-scroll-hint .sh-arrow:nth-child(2){ animation-delay:.15s; opacity:.7; }
+    .big-scroll-hint .sh-arrow:nth-child(3){ animation-delay:.3s;  opacity:.4; }
+    @keyframes sh-bounce { 0%{transform:translateY(-8px)} 100%{transform:translateY(8px)} }
+    .big-scroll-hint .sh-label {
+      font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase;
+      color:#E8344A; background:rgba(232,52,74,.12); border:1.5px solid rgba(232,52,74,.35);
+      padding:4px 10px; border-radius:99px; white-space:nowrap;
+      animation: sh-pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes sh-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,52,74,.4)} 50%{box-shadow:0 0 0 6px rgba(232,52,74,0)} }
+
+    /* === TAB HINT (Meta Ads) === */
+    .big-tab-hint {
+      position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      z-index:9999; pointer-events:none;
+      animation: hint-entrance .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .big-tab-hint .th-arrows {
+      display:flex; gap:18px;
+    }
+    .big-tab-hint .th-arr {
+      font-size:32px; line-height:1;
+      animation: th-tap 0.65s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 10px rgba(232,52,74,.9));
+    }
+    .big-tab-hint .th-arr:nth-child(2){ animation-delay:.2s; }
+    .big-tab-hint .th-arr:nth-child(3){ animation-delay:.4s; }
+    @keyframes th-tap { 0%{transform:translateY(0) scale(1)} 100%{transform:translateY(-10px) scale(1.15)} }
+    .big-tab-hint .th-label {
+      font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase;
+      color:#E8344A; background:rgba(232,52,74,.12); border:1.5px solid rgba(232,52,74,.35);
+      padding:4px 14px; border-radius:99px; white-space:nowrap;
+      animation: sh-pulse 1.2s ease-in-out infinite;
+    }
+
+    /* === GLOWING TAB FLASH === */
+    .mai-tab.hint-flash {
+      background: rgba(232,52,74,.18) !important;
+      color: #d11f1f !important;
+      border-radius: 6px;
+      box-shadow: 0 0 14px rgba(232,52,74,.5);
+      transition: all .25s;
+    }
+
+    /* === FADE OUT === */
+    .big-scroll-hint.hint-fade,
+    .big-tab-hint.hint-fade {
+      opacity:0 !important;
+      transition: opacity .6s ease !important;
+    }
+
+    /* === SIDE ARROWS for scroll (left side too) === */
+    .big-scroll-hint-left {
+      position:absolute; left:10px; top:50%; transform:translateY(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      z-index:9999; pointer-events:none;
+      animation: hint-entrance .4s cubic-bezier(.34,1.56,.64,1) .1s both;
+    }
+    .big-scroll-hint-left .sh-arrow {
+      font-size:36px; line-height:1;
+      animation: sh-bounce 0.7s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 10px rgba(232,52,74,.9));
+    }
+    .big-scroll-hint-left .sh-arrow:nth-child(2){ animation-delay:.15s; opacity:.7; }
+    .big-scroll-hint-left .sh-arrow:nth-child(3){ animation-delay:.3s;  opacity:.4; }
+    .big-scroll-hint-left.hint-fade { opacity:0 !important; transition: opacity .6s ease !important; }
+  `;
+  document.head.appendChild(css);
+
+  function showScrollHint(slide){
+    if(slide._hintShown) return; slide._hintShown=true;
+    var wrap = slide.querySelector('.br-content');
+    if(!wrap) return;
+    var parent = wrap.parentElement;
+    parent.style.position = 'relative';
+
+    // Right side arrows
+    var r = document.createElement('div');
+    r.className = 'big-scroll-hint';
+    r.innerHTML = '<div class="sh-arrow">⬇</div><div class="sh-arrow">⬇</div><div class="sh-arrow">⬇</div><div class="sh-label">SCROLL</div>';
+    parent.appendChild(r);
+
+    // Left side arrows
+    var l = document.createElement('div');
+    l.className = 'big-scroll-hint-left';
+    l.innerHTML = '<div class="sh-arrow">⬇</div><div class="sh-arrow">⬇</div><div class="sh-arrow">⬇</div>';
+    parent.appendChild(l);
+
+    setTimeout(function(){ r.classList.add('hint-fade'); l.classList.add('hint-fade'); }, 2400);
+    setTimeout(function(){ r.remove(); l.remove(); }, 3100);
+  }
+
+  function showTabHint(slide){
+    if(slide._hintShown) return; slide._hintShown=true;
+    var tabs = Array.from(slide.querySelectorAll('.mai-tab'));
+    if(!tabs.length) return;
+    var wrap = slide.querySelector('.mai-wrap');
+    if(!wrap) return;
+    var old = wrap.style.position; wrap.style.position = 'relative';
+
+    // Bottom bouncing fingers pointing at tabs
+    var h = document.createElement('div');
+    h.className = 'big-tab-hint';
+    h.innerHTML = '<div class="th-arrows"><div class="th-arr">☝</div><div class="th-arr">☝</div><div class="th-arr">☝</div></div><div class="th-label">TAP TABS TO EXPLORE</div>';
+    wrap.appendChild(h);
+
+    // Flash tabs one by one
+    tabs.forEach(function(t,i){
+      setTimeout(function(){
+        tabs.forEach(function(x){ x.classList.remove('hint-flash'); });
+        t.classList.add('hint-flash');
+      }, 200 + i*550);
+    });
+    setTimeout(function(){ tabs.forEach(function(x){ x.classList.remove('hint-flash'); }); }, 200+tabs.length*550);
+
+    setTimeout(function(){ h.classList.add('hint-fade'); }, 2800);
+    setTimeout(function(){ h.remove(); wrap.style.position=old; }, 3500);
+  }
+
+  var last = -1;
+  setInterval(function(){
+    if(typeof cur === 'undefined') return;
+    if(cur === last) return;
+    last = cur;
+    var s = allSlides[cur];
+    if(!s) return;
+    if(cur === BRAINS_IDX) setTimeout(function(){ showScrollHint(s); }, 400);
+    if(cur === META_IDX)   setTimeout(function(){ showTabHint(s); }, 400);
+  }, 250);
+})();
+
 
 // Inject product photo once
 (function(){
