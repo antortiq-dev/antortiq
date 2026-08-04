@@ -847,22 +847,10 @@
     }
   })();
 
-  /* ── Data masking — anonymise phones & customer names in API responses ── */
+  /* ── CDC Demo: Smart fetch interceptor — routes all /admin/* calls to CDC dummy data ── */
   (function(){
     var _fetch = window.fetch;
-    window.fetch = function(url, opts) {
-      return _fetch(url, opts).then(function(res) {
-        var ct = res.headers.get('content-type') || '';
-        if (!ct.includes('application/json')) return res;
-        return res.json().then(function(data) {
-          mask(data);
-          return new Response(JSON.stringify(data), {
-            status: res.status,
-            headers: { 'Content-Type': 'application/json' }
-          });
-        });
-      });
-    };
+
     function mask(obj) {
       if (!obj || typeof obj !== 'object') return;
       if (Array.isArray(obj)) { obj.forEach(mask); return; }
@@ -871,7 +859,7 @@
         if (typeof v === 'string') {
           if (/phone|mobile|contact/i.test(k) && v.replace(/\D/g,'').length >= 7)
             obj[k] = v.replace(/\d(?=\d{4})/g, 'X');
-          else if (/^(customer_name|buyerName|name)$/.test(k) && v && !v.startsWith('Customer'))
+          else if (/^(customer_name|buyerName)$/.test(k) && v && !v.startsWith('Customer'))
             obj[k] = 'Customer #' + (Math.floor(Math.random()*8000)+1000);
           else if (/email/i.test(k) && v.includes('@'))
             obj[k] = 'user' + Math.floor(Math.random()*9000+1000) + '@example.com';
@@ -880,6 +868,88 @@
         }
       });
     }
+
+    function jsonResp(data, status) {
+      mask(data);
+      return new Response(JSON.stringify(data), {
+        status: status || 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    function safeEmpty() {
+      return Promise.resolve(jsonResp({ data: [], items: [], orders: [], total: 0 }));
+    }
+
+    // Pass-through URLs that must reach the real server (auth, demo login)
+    var PASSTHROUGH = ['/admin/login', '/admin/logout', '/admin/verify', '/demo/login', '/api/demo-login'];
+
+    window.fetch = function(url, opts) {
+      var urlStr = typeof url === 'string' ? url : (url && url.url) || '';
+
+      // Always pass through auth endpoints
+      for (var i = 0; i < PASSTHROUGH.length; i++) {
+        if (urlStr.includes(PASSTHROUGH[i])) return _fetch(url, opts);
+      }
+
+      // Route /admin/* and relevant API patterns to CDC data
+      if (urlStr.includes('/admin/') || urlStr.includes('/pixel-tracker') || urlStr.includes('/support/insights')) {
+
+        // Orders
+        if (/\/admin\/orders(\?|$)/.test(urlStr) || urlStr.includes('/admin/orders?')) {
+          var qs = urlStr.includes('?') ? urlStr.slice(urlStr.indexOf('?')) : '';
+          return _fetch('/api/cdc/orders' + qs).then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // Analytics / dashboard stats
+        if (urlStr.includes('/admin/analytics') || urlStr.includes('/admin/dashboard') || urlStr.includes('/admin/vendor-scorecard')) {
+          return _fetch('/api/cdc/stats').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // Vendors
+        if (urlStr.includes('/admin/vendors') || urlStr.includes('/admin/croscrow-profile')) {
+          return _fetch('/api/cdc/vendors').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // Settlements
+        if (urlStr.includes('/admin/settlements')) {
+          return _fetch('/api/cdc/settlements').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // Pixel tracker
+        if (urlStr.includes('/admin/pixel') || urlStr.includes('/pixel-tracker')) {
+          return _fetch('/api/cdc/pixel').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // Meta ads
+        if (urlStr.includes('/admin/meta') || urlStr.includes('/admin/ad')) {
+          return _fetch('/api/cdc/meta').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // Support / chat
+        if (urlStr.includes('/admin/support') || urlStr.includes('/admin/chat') || urlStr.includes('/support/insights')) {
+          return _fetch('/api/cdc/support').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // Brain
+        if (urlStr.includes('/admin/brain')) {
+          return _fetch('/api/cdc/brain').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
+        // All other /admin/* JSON calls — return safe empty so UI doesn't crash
+        return safeEmpty();
+      }
+
+      // Everything else (static assets, healthz, etc.) — pass through
+      return _fetch(url, opts).then(function(res) {
+        var ct = res.headers.get('content-type') || '';
+        if (!ct.includes('application/json')) return res;
+        return res.json().then(function(data) {
+          mask(data);
+          return jsonResp(data, res.status);
+        });
+      });
+    };
   })();
 </script>
 

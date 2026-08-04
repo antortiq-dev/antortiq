@@ -6,6 +6,7 @@ const contactRoute = require('./routes/contact');
 const leadsRoute = require('./routes/leads');
 const trackRoute = require('./routes/track');
 const crmRoute = require('./routes/crm');
+const cdcRoute = require('./routes/cdc');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use('/api/contact', contactRoute);
 app.use('/api/leads', leadsRoute);
 app.use('/api/track', trackRoute);
 app.use('/api/crm', crmRoute);
+app.use('/api/cdc', cdcRoute);
 
 app.get('/healthz', (req, res) => res.json({ status: 'ok' }));
 
