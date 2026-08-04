@@ -627,101 +627,274 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
 
     <div class="cc-divider"></div>
 
-    <div class="cc-head reveal">
-      <span class="eyebrow">Client Build · YourBrand</span>
-      <h3>Multi-vendor marketplace ops, end to end</h3>
-      <p>From the customer's first order to a resolved exchange — every surface and every email, designed and shipped by Antortiq.</p>
-    </div>
+    <!-- 4-phone showcase -->
+    <style>
+      /* === Phone Showcase === */
+      .phone-showcase{
+        display:flex;align-items:center;gap:0;
+        background:#080810;border-radius:24px;overflow:hidden;
+        margin-bottom:60px;min-height:600px;position:relative;
+      }
+      /* Left info panel */
+      .ps-info{
+        flex:0 0 200px;display:flex;flex-direction:column;justify-content:center;
+        padding:48px 32px 48px 40px;align-self:stretch;
+      }
+      .ps-eye{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px;}
+      .ps-info h3{font-family:var(--disp);font-size:36px;font-weight:900;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-1px;}
+      .ps-info .ps-line{width:36px;height:3px;background:var(--red);border-radius:2px;margin-bottom:16px;}
+      .ps-info p{font-size:12px;color:#5a5a6a;line-height:1.65;margin-bottom:20px;}
+      .ps-info ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+      .ps-info ul li{font-size:11px;color:#6a6a7a;display:flex;align-items:center;gap:8px;}
+      .ps-info ul li .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+      .ps-info ul li .dot.red{background:var(--red);}
+      .ps-info ul li .dot.green{background:#22c55e;}
+      .ps-info ul li .dot.amber{background:#f59e0b;}
+      .ps-info ul li .dot.blue{background:#3b82f6;}
+      /* Carousel arrows */
+      .ps-arrow{
+        width:38px;height:38px;border-radius:50%;border:1px solid #222;
+        display:flex;align-items:center;justify-content:center;
+        color:#fff;font-size:14px;cursor:pointer;flex-shrink:0;
+        position:absolute;top:50%;transform:translateY(-50%);
+        background:#111;z-index:10;
+      }
+      .ps-arrow.left{left:190px;}
+      .ps-arrow.right{right:140px;}
+      /* Phones center */
+      .ps-phones{
+        flex:1;display:flex;align-items:flex-end;justify-content:center;
+        gap:14px;padding:50px 20px 0;overflow:hidden;
+      }
+      /* Right stats */
+      .ps-stats{
+        flex:0 0 120px;display:flex;flex-direction:column;justify-content:center;
+        gap:24px;padding:0 32px 0 12px;
+      }
+      .ps-stat-val{font-family:var(--disp);font-size:36px;font-weight:900;color:#fff;line-height:1;}
+      .ps-stat-val.green{color:#22c55e;}
+      .ps-stat-val.wa{color:#25d366;font-size:30px;}
 
-    <div class="cc-grid2">
-      <div class="cc-card reveal tilt">
-        <div class="cc-card-label"><div class="tag">Customer-Facing</div><h4>Live Order Tracking Page</h4></div>
-        <div class="cc-browser">
-          <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.yourbrand.com</div></div>
-          <div class="cc-browser-body">
-            <div class="cctp-head"><div class="cctp-brand">YOURBRAND</div><div class="cctp-order">#2339</div></div>
-            <div class="cctp-steps">
-              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Confirmed</div></div>
-              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Ready</div></div>
-              <div class="cctp-step"><div class="ln"></div><div class="pt"></div><div class="lb">Transit</div></div>
-              <div class="cctp-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Delivered</div></div>
-            </div>
-            <div class="cctp-card"><div class="k">Courier · AWB</div><div class="v">Delhivery · 8012003045</div></div>
-            <div class="cctp-item"><div class="ph"></div><div class="info"><div class="t1">FOURMEN — 001 CORE</div><div class="t2">Qty 1 · Size S</div></div></div>
-            <div class="cctp-item"><div class="ph"></div><div class="info"><div class="t1">Oversized T-Shirt</div><div class="t2">Qty 1 · Size L</div></div></div>
-            <div class="cctp-vendor">Vendor: FOURONE</div>
-          </div>
+      /* Phone frame */
+      .ph-frame{flex:1;max-width:190px;display:flex;flex-direction:column;align-items:center;}
+      .ph-frame .ph-label{font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#333;margin-bottom:10px;text-align:center;}
+      .ph-device{background:#fff;border-radius:36px;border:3px solid #d1d5db;overflow:hidden;width:100%;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+      .ph-device.dark-phone{background:#12121f;border-color:#232338;}
+      .ph-top{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 0;font-size:7.5px;}
+      .ph-top .t{font-weight:700;color:#111;}
+      .ph-device.dark-phone .ph-top .t{color:#fff;}
+      .ph-top .ic{color:#111;letter-spacing:1px;}
+      .ph-device.dark-phone .ph-top .ic{color:#fff;}
+      .ph-pill{width:64px;height:9px;background:#111;border-radius:99px;margin:2px auto 6px;}
+      .ph-device.dark-phone .ph-pill{background:#fff;}
+      .ph-screen{padding:8px 10px 14px;font-size:9px;font-family:system-ui,-apple-system,sans-serif;}
+
+      /* Card 1 — Confirm Order */
+      .phs1-brand{font-size:10px;font-weight:800;color:#111;margin-bottom:2px;}
+      .phs1-size{font-size:8px;color:#888;margin-bottom:8px;}
+      .phs1-img{width:100%;height:90px;background:linear-gradient(135deg,#e8344a,#ff6b6b);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:8px;color:#fff;font-weight:900;font-family:var(--disp);}
+      .phs1-price{font-size:15px;font-weight:900;color:#111;margin-bottom:2px;}
+      .phs1-mrp{font-size:8px;color:#999;margin-bottom:8px;}
+      .phs1-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0;font-size:8px;color:#666;}
+      .phs1-row .v{color:#111;font-weight:600;}
+      .phs1-address{font-size:7.5px;color:#888;margin:6px 0 10px;line-height:1.4;}
+      .phs1-btn{background:#111;color:#fff;font-size:9px;font-weight:700;text-align:center;padding:9px;border-radius:8px;margin-bottom:6px;}
+      .phs1-btn2{background:#fff;color:#111;font-size:9px;font-weight:700;text-align:center;padding:8px;border-radius:8px;border:1.5px solid #111;}
+      .phs1-cod{display:inline-block;background:#f0f0f0;color:#333;font-size:7px;font-weight:700;padding:2px 7px;border-radius:99px;margin-bottom:6px;}
+
+      /* Card 2 — Order Confirmed */
+      .phs2-circle{width:48px;height:48px;border-radius:50%;background:#4f8ef7;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:10px auto 10px;}
+      .phs2-title{font-size:12px;font-weight:900;color:#fff;text-align:center;margin-bottom:4px;}
+      .phs2-sub{font-size:8px;color:#8a8aaa;text-align:center;margin-bottom:12px;}
+      .phs2-ordid{background:#1e1e30;border:1px solid #2a2a45;border-radius:8px;text-align:center;padding:6px;font-size:9px;font-weight:700;color:#fff;margin-bottom:12px;}
+      .phs2-prog-lbl{font-size:7.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:7px;}
+      .phs2-steps{display:flex;align-items:center;margin-bottom:12px;}
+      .phs2-step{flex:1;text-align:center;position:relative;}
+      .phs2-step .dot{width:8px;height:8px;border-radius:50%;margin:0 auto 4px;position:relative;z-index:2;}
+      .phs2-step .dot.active{background:#4f8ef7;}
+      .phs2-step .dot.done{background:#4f8ef7;}
+      .phs2-step .dot.todo{background:#2a2a40;}
+      .phs2-step .ln{position:absolute;top:4px;left:0;right:0;height:1.5px;background:#2a2a40;z-index:1;}
+      .phs2-step:first-child .ln{left:50%;}.phs2-step:last-child .ln{right:50%;}
+      .phs2-step .lb{font-size:6.5px;color:#555;}
+      .phs2-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e1e2e;font-size:8px;}
+      .phs2-row .k{color:#555;}.phs2-row .v{color:#ccc;font-weight:600;}
+      .phs2-item{display:flex;align-items:center;gap:8px;padding:8px 0;margin-top:4px;}
+      .phs2-item .img{width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#e8344a,#ff6b6b);flex-shrink:0;}
+      .phs2-item .t1{font-size:8.5px;font-weight:700;color:#e0e0f0;}
+      .phs2-item .t2{font-size:7.5px;color:#555;}
+
+      /* Card 3 — In Transit */
+      .phs3-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+      .phs3-brand{font-size:8px;font-weight:800;color:var(--red);}
+      .phs3-order{font-size:7.5px;color:#555;}
+      .phs3-badge{background:#fff3cd;color:#856404;font-size:7px;font-weight:700;padding:2px 7px;border-radius:99px;margin-bottom:8px;display:inline-block;}
+      .phs3-courier{display:flex;justify-content:space-between;font-size:7.5px;margin-bottom:8px;padding:6px 8px;background:#f9f9f9;border-radius:7px;}
+      .phs3-courier .k{color:#888;font-size:7px;text-transform:uppercase;font-weight:700;}
+      .phs3-courier .v{color:#111;font-weight:600;}
+      .phs3-timeline{margin-bottom:8px;}
+      .phs3-tl-item{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-left:2px solid #e8344a;padding-left:10px;position:relative;margin-left:4px;}
+      .phs3-tl-item::before{content:'';width:7px;height:7px;border-radius:50%;background:#e8344a;position:absolute;left:-5px;top:8px;}
+      .phs3-tl-item.todo{border-left-color:#e5e7eb;}
+      .phs3-tl-item.todo::before{background:#e5e7eb;}
+      .phs3-tl-item .tl-lbl{font-size:8.5px;font-weight:700;color:#111;}
+      .phs3-tl-item.todo .tl-lbl{color:#bbb;}
+      .phs3-tl-item .tl-time{font-size:7px;color:#999;}
+      .phs3-map{background:linear-gradient(135deg,#e8344a18,#e8344a08);border:1px solid #e8344a30;border-radius:8px;padding:7px 10px;font-size:8px;color:#e8344a;font-weight:600;margin-bottom:8px;}
+      .phs3-btns{display:flex;gap:6px;}
+      .phs3-btn{flex:1;text-align:center;padding:7px;border-radius:7px;font-size:8px;font-weight:700;}
+      .phs3-btn.outline{border:1.5px solid #e5e7eb;color:#111;}
+      .phs3-btn.solid{background:#111;color:#fff;}
+
+      /* Card 4 — Exchange */
+      .phs4-back{font-size:8px;color:#555;margin-bottom:6px;}
+      .phs4-title{font-size:12px;font-weight:900;color:#111;margin-bottom:3px;}
+      .phs4-sub{font-size:8px;color:#888;margin-bottom:10px;line-height:1.4;}
+      .phs4-item{display:flex;gap:8px;align-items:center;padding:8px;background:#f9f9f9;border-radius:8px;margin-bottom:10px;}
+      .phs4-item .img{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#e8344a,#ff6b6b);flex-shrink:0;}
+      .phs4-item .t1{font-size:8.5px;font-weight:700;color:#111;}
+      .phs4-item .t2{font-size:7.5px;color:#999;}
+      .phs4-badge{display:inline-block;background:#111;color:#fff;font-size:7px;font-weight:700;padding:2px 7px;border-radius:99px;margin-left:4px;}
+      .phs4-size-lbl{font-size:8px;color:#888;margin-bottom:6px;font-weight:600;}
+      .phs4-sizes{display:flex;gap:5px;margin-bottom:12px;}
+      .phs4-sz{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:1.5px solid #e5e7eb;border-radius:6px;font-size:8px;font-weight:700;color:#555;}
+      .phs4-sz.active{border-color:#111;background:#111;color:#fff;}
+      .phs4-reason-lbl{font-size:8px;color:#888;margin-bottom:5px;}
+      .phs4-reason-box{border:1px solid #e5e7eb;border-radius:7px;padding:7px;font-size:7.5px;color:#999;margin-bottom:10px;line-height:1.4;}
+      .phs4-fee{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#fff8f0;border:1px solid #fde8c8;border-radius:8px;margin-bottom:10px;}
+      .phs4-fee .k{font-size:8px;color:#a05000;font-weight:600;}
+      .phs4-fee .v{font-size:11px;font-weight:900;color:#e8344a;}
+      .phs4-btn{background:#111;color:#fff;font-size:9px;font-weight:700;text-align:center;padding:10px;border-radius:8px;}
+    </style>
+
+    <div class="phone-showcase reveal">
+      <!-- Left info panel -->
+      <div class="phone-showcase-left">
+        <div class="ps-eye">Customer Experience</div>
+        <h3>ANTORTIQ</h3>
+        <p>End-to-end order intelligence — from confirm to delivery, returns and exchanges.</p>
+        <ul>
+          <li>Real-time stage tracking</li>
+          <li>One-tap exchange / return</li>
+          <li>COD + Prepaid supported</li>
+          <li>WhatsApp notifications</li>
+          <li>Built for Indian streetwear</li>
+        </ul>
+        <div class="ps-stats">
+          <div><div class="ps-stat-val">89%</div><div class="ps-stat-lbl">Delivery rate</div></div>
+          <div><div class="ps-stat-val">237</div><div class="ps-stat-lbl">Orders tracked</div></div>
+          <div><div class="ps-stat-val green">4.8★</div><div class="ps-stat-lbl">Avg rating</div></div>
+          <div><div class="ps-stat-val wa">WA</div><div class="ps-stat-lbl">Notify channel</div></div>
         </div>
       </div>
 
-      <div class="cc-card reveal tilt" style="--d:0.1s">
-        <div class="cc-card-label"><div class="tag">Pre-Dispatch</div><h4>Confirm Order Page</h4></div>
-        <div class="cc-browser">
-          <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">dashboard.yourbrand.com/confirm-order</div></div>
-          <div class="cc-browser-body">
-            <div class="ccco-card">
-              <div class="ccco-header"><div><div class="name">#2339</div><div class="sub">1 item</div></div><div class="ccco-amt">₹1,486.00</div></div>
-              <div class="ccco-item"><div class="ph"></div><div><div class="t1">FOURMEN — 001 CORE</div><div class="t2">Size S · Qty 1</div></div></div>
-            </div>
-            <div class="ccco-msg">
-              <div class="t">Why we ask for a small confirmation</div>
-              <div class="b">COD orders are sometimes placed by mistake or refused at the door — and the return shipping costs us (and you) a lot. A tiny confirmation helps us know <b>you really want this order</b>. It's <b>not an extra charge</b>; it's deducted from your final bill.</div>
-            </div>
-            <div class="ccco-cod"><div class="k">Amount Payable on Delivery</div><div class="v">₹1,387.00</div></div>
-            <div class="ccco-btn">Pay ₹99 &amp; Confirm Order</div>
-            <div class="ccco-upsell">
-              <div class="row1"><div class="ttl">💸 Pay in full &amp; save more</div><div class="save">SAVE ₹149</div></div>
-              <div class="price">₹1,337 <s>₹1,486</s></div>
-              <div class="btn2">Pay ₹1,337 &amp; Go Prepaid</div>
+      <!-- 4 phone cards -->
+      <div class="phone-showcase-right">
+
+        <!-- 01 Confirm Order -->
+        <div class="ph-frame">
+          <div class="ph-label">01 — Confirm Order</div>
+          <div class="ph-device">
+            <div class="ph-notch"><div class="nt"></div><span class="time">9:41</span><span class="icons">▲ ☰ ▮</span></div>
+            <div class="ph-pill"></div>
+            <div class="ph-screen">
+              <div class="phs1-img">MIAMI</div>
+              <div class="phs1-brand">Miami Gingham Shirt</div>
+              <div class="phs1-size">SIZE M · RED GINGHAM</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                <div class="phs1-price">₹1,799</div><span class="phs1-cod">COD</span>
+              </div>
+              <div class="phs1-row"><span>SUBTOTAL</span><span class="v">₹1,799</span></div>
+              <div class="phs1-row"><span>DELIVERY</span><span class="v" style="color:#22c55e;">Free</span></div>
+              <div class="phs1-row" style="border:none;"><span>TOTAL</span><span class="v">₹1,799</span></div>
+              <div class="phs1-address">Rahul Sharma, 12 Andheri West,<br>Mumbai 400053, MH</div>
+              <div class="phs1-btn">CONFIRM ORDER — COD</div>
+              <div style="height:6px;"></div>
+              <div class="phs1-btn2">Pay Online &amp; Save ₹90</div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="cc-card reveal tilt" style="--d:0.2s">
-        <div class="cc-card-label"><div class="tag">Self-Serve</div><h4>Return / Exchange Request</h4></div>
-        <div class="cc-browser">
-          <div class="cc-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">track.yourbrand.com/2339</div></div>
-          <div class="cc-browser-body">
-            <div class="ccrx-tiles">
-              <div class="ccrx-tile"><div class="ic">🔄</div><div class="lb">Exchange</div><div class="ds">Swap for a different size or variant</div></div>
-              <div class="ccrx-tile"><div class="ic">↩</div><div class="lb">Return</div><div class="ds">Return items for a refund or credit</div></div>
-            </div>
-
-            <div class="ccrx-form">
-              <div class="ft">🔄 Exchange Request</div>
-              <div class="item">
-                <div class="cb"></div>
-                <div>
-                  <div class="t1">FOURMEN — 001 CORE</div>
-                  <div class="t2">Size S · Qty 1</div>
-                  <div class="vlabel">Select exchange size/variant:</div>
-                  <div class="ccrx-select"><span>Size — M</span><span>▾</span></div>
-                </div>
+        <!-- 02 Order Confirmed -->
+        <div class="ph-frame">
+          <div class="ph-label">02 — Order Confirmed</div>
+          <div class="ph-device dark-phone">
+            <div class="ph-notch dark"><div class="nt"></div><span class="time" style="color:#fff;">9:41</span><span class="icons" style="color:#fff;">▲ ☰ ▮</span></div>
+            <div class="ph-pill"></div>
+            <div class="ph-screen">
+              <div class="phs2-circle">✓</div>
+              <div class="phs2-title">Order Confirmed!</div>
+              <div class="phs2-sub">Estimated delivery:<br><strong style="color:#fff;">Aug 7 – 8, 2026</strong></div>
+              <div class="phs2-ordid">#ORD-1847</div>
+              <div class="phs2-prog-lbl">Order Progress</div>
+              <div class="phs2-steps">
+                <div class="phs2-step"><div class="ln"></div><div class="dot done"></div><div class="lb" style="color:#4f8ef7;">Confirmed</div></div>
+                <div class="phs2-step"><div class="ln"></div><div class="dot active"></div><div class="lb" style="color:#4f8ef7;">Dispatched</div></div>
+                <div class="phs2-step"><div class="ln"></div><div class="dot todo"></div><div class="lb">Transit</div></div>
+                <div class="phs2-step"><div class="ln"></div><div class="dot todo"></div><div class="lb">Delivered</div></div>
               </div>
-              <div class="ccrx-fee">
-                <span class="ic">💳</span>
-                <div>
-                  <div class="tt">₹199 Processing Fee</div>
-                  <div class="sb">One-time fee to process your exchange · Razorpay (UPI, Card, Net Banking)</div>
-                </div>
-              </div>
-              <div class="ccrx-pay-btn">💳 Pay ₹199 &amp; Submit Exchange</div>
-              <div class="ccrx-admin">🔑 Have an admin code?</div>
-            </div>
-
-            <div class="ccrx-progress">
-              <div class="hd"><span class="ic">🚚</span><span class="tt">Exchange Request — RR-1042</span><span class="tag">Exchange Dispatch</span></div>
-              <div class="ccrx-steps">
-                <div class="ccrx-step"><div class="ln"></div><div class="pt"></div><div class="lb">Submitted</div></div>
-                <div class="ccrx-step"><div class="ln"></div><div class="pt"></div><div class="lb">Approved</div></div>
-                <div class="ccrx-step"><div class="ln"></div><div class="pt"></div><div class="lb">Pickup</div></div>
-                <div class="ccrx-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">In Transit</div></div>
-                <div class="ccrx-step todo"><div class="ln"></div><div class="pt"></div><div class="lb">Completed</div></div>
+              <div class="phs2-row"><span class="k">Payment</span><span class="v">Cash on Delivery</span></div>
+              <div class="phs2-row"><span class="k">WA Notification</span><span class="v" style="color:#22c55e;">Sent ✓</span></div>
+              <div class="phs2-row" style="border:none;"><span class="k">Vendor</span><span class="v">Mumbai Threads Co.</span></div>
+              <div class="phs2-item">
+                <div class="phs2-item img"></div>
+                <div><div class="t1">Miami Gingham Shirt</div><div class="t2">SIZE M · Red Gingham</div></div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- 03 In Transit -->
+        <div class="ph-frame">
+          <div class="ph-label">03 — In Transit</div>
+          <div class="ph-device">
+            <div class="ph-notch"><div class="nt"></div><span class="time">9:41</span><span class="icons">▲ ☰ ▮</span></div>
+            <div class="ph-pill"></div>
+            <div class="ph-screen">
+              <div class="phs3-topbar"><span class="phs3-brand">ANTORTIQ</span><span class="phs3-order">Order #1847 · Mumbai Threads</span></div>
+              <div class="phs3-badge">● In Transit</div>
+              <div class="phs3-courier"><div><div class="k">Courier</div><div class="v">Delhivery · 1234567890</div></div></div>
+              <div class="phs3-timeline">
+                <div class="phs3-tl-item"><div><div class="tl-lbl">Order Confirmed</div><div class="tl-time">Aug 4 · 2:10 PM</div></div></div>
+                <div class="phs3-tl-item"><div><div class="tl-lbl">Picked Up — Mumbai</div><div class="tl-time">Aug 4 · 2:15 PM</div></div></div>
+                <div class="phs3-tl-item"><div><div class="tl-lbl" style="color:#e8344a;">In Transit — Delhi Hub</div><div class="tl-time" style="color:#e8344a;">Aug 5 · 9:04 AM · Now</div></div></div>
+                <div class="phs3-tl-item todo"><div><div class="tl-lbl">Out for Delivery</div><div class="tl-time">Expected Aug 7</div></div></div>
+              </div>
+              <div class="phs3-map">📍 Live Route — Delhi → Mumbai</div>
+              <div class="phs3-btns">
+                <div class="phs3-btn outline">Track Live</div>
+                <div class="phs3-btn solid">⇄ Exchange</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 Exchange -->
+        <div class="ph-frame">
+          <div class="ph-label">04 — Exchange</div>
+          <div class="ph-device">
+            <div class="ph-notch"><div class="nt"></div><span class="time">9:41</span><span class="icons">▲ ☰ ▮</span></div>
+            <div class="ph-pill"></div>
+            <div class="ph-screen">
+              <div class="phs4-back">← Order #1847</div>
+              <div class="phs4-title">Exchange Item</div>
+              <div class="phs4-sub">Select new size. We'll arrange pickup from your address.</div>
+              <div class="phs4-item">
+                <div class="phs4-item img"></div>
+                <div><div class="t1">Miami Gingham Shirt <span class="phs4-badge">SIZE M</span></div><div class="t2">Delivery · AWB 1234567890</div></div>
+              </div>
+              <div class="phs4-size-lbl">SELECT NEW SIZE</div>
+              <div class="phs4-sizes">
+                <div class="phs4-sz">XS</div><div class="phs4-sz">S</div><div class="phs4-sz">M</div><div class="phs4-sz active">L</div><div class="phs4-sz">XL</div>
+              </div>
+              <div class="phs4-reason-lbl">REASON FOR EXCHANGE</div>
+              <div class="phs4-reason-box">Size too small — fits a size below label</div>
+              <div class="phs4-fee"><span class="k">Exchange Processing Fee</span><span class="v">₹99</span></div>
+              <div class="phs4-btn">SUBMIT EXCHANGE REQUEST</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 

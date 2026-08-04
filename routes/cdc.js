@@ -19,43 +19,61 @@ router.get('/data', async (req, res) => {
   }
 });
 
-// Orders — paginated, filterable
+// Orders — return all when created_at_min present (full load), else paginate
 router.get('/orders', async (req, res) => {
   try {
     const doc = await getCdcData();
     if (!doc) return res.json({ orders: [], total: 0 });
 
     let orders = doc.orders || [];
-    const { status, search, page = 1, limit = 25 } = req.query;
+    const { stage, vendor, search, page, limit, created_at_min } = req.query;
 
-    if (status && status !== 'all') {
-      orders = orders.filter(o => o.status === status || o.stage === status);
+    if (stage && stage !== 'all') {
+      orders = orders.filter(o => o.stage === stage);
+    }
+    if (vendor) {
+      orders = orders.filter(o => (o.vendors || []).some(v => v.toLowerCase() === vendor.toLowerCase()));
     }
     if (search) {
       const q = search.toLowerCase();
       orders = orders.filter(o =>
-        (o.name || '').toLowerCase().includes(q) ||
-        (o.customer_name || '').toLowerCase().includes(q) ||
-        (o.city || '').toLowerCase().includes(q)
+        (o.id || '').toLowerCase().includes(q) ||
+        (o.customer || '').toLowerCase().includes(q) ||
+        String(o.shopifyId || '').includes(q)
       );
     }
 
     const total = orders.length;
-    const p = parseInt(page, 10);
-    const lim = parseInt(limit, 10);
-    const paged = orders.slice((p - 1) * lim, p * lim);
 
+    // When created_at_min is present the React app wants all orders (no pagination)
+    if (created_at_min || !page) {
+      return res.json({ orders, total });
+    }
+
+    const p   = parseInt(page, 10) || 1;
+    const lim = parseInt(limit, 10) || 25;
+    const paged = orders.slice((p - 1) * lim, p * lim);
     res.json({ orders: paged, total, page: p, limit: lim, pages: Math.ceil(total / lim) });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-// Stats
+// Analytics — returns exact JARVIS /admin/analytics shape
+router.get('/analytics', async (req, res) => {
+  try {
+    const doc = await getCdcData();
+    res.json(doc ? doc.analytics : {});
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Stats (legacy)
 router.get('/stats', async (req, res) => {
   try {
     const doc = await getCdcData();
-    res.json(doc ? doc.stats : {});
+    res.json(doc ? doc.analytics : doc ? doc.stats : {});
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

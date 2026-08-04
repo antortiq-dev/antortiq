@@ -951,7 +951,10 @@
         }
 
         // Analytics / dashboard stats
-        if (urlStr.includes('/admin/analytics') || urlStr.includes('/admin/dashboard') || urlStr.includes('/admin/vendor-scorecard')) {
+        if (urlStr.includes('/admin/analytics')) {
+          return _fetch('/api/cdc/analytics').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+        if (urlStr.includes('/admin/dashboard') || urlStr.includes('/admin/vendor-scorecard')) {
           return _fetch('/api/cdc/stats').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
         }
 
