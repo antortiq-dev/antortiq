@@ -985,9 +985,13 @@
           });
         }
 
-        // Meta ads — use meta-ads specifically to avoid matching /admin/metafield-audit
+        // Meta ads — slice by sub-endpoint to match JARVIS response shapes
         if (urlStr.includes('/admin/meta-ads') || urlStr.includes('/admin/ads')) {
-          return _fetch('/api/cdc/meta').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+          return _fetch('/api/cdc/meta').then(function(r) { return r.json(); }).then(function(d) {
+            if (urlStr.includes('/audiences'))  return jsonResp({ audiences: d.interests || [] });
+            if (urlStr.includes('/insights'))   return jsonResp({ insights: d.campaigns || [], summary: d.summary || {}, ageGender: d.ageGender || [], platform: d.platform || [], campaigns: d.campaigns || [] });
+            return jsonResp(d);
+          });
         }
 
         // Support / chat

@@ -398,12 +398,73 @@ function generatePixel() {
 
 // ── Meta Ads ──────────────────────────────────────────────────────────────────
 function generateMeta() {
-  return [
-    { id:1, name:'CDC OG Collection',       status:'active',  spend:28000, revenue:89600,  roas:3.2, impressions:142000, clicks:3840, ctr:2.7, cpc:7.3, orders:38 },
-    { id:2, name:'Crep Dog Hoodie Launch',  status:'active',  spend:45000, revenue:184500, roas:4.1, impressions:210000, clicks:5880, ctr:2.8, cpc:7.6, orders:61 },
-    { id:3, name:'End of Season Sale',      status:'paused',  spend:18000, revenue:50400,  roas:2.8, impressions:98000,  clicks:2156, ctr:2.2, cpc:8.3, orders:24 },
-    { id:4, name:'CDC Varsity Jacket Drop', status:'draft',   spend:0,     revenue:0,      roas:0,   impressions:0,      clicks:0,    ctr:0,   cpc:0,   orders:0  },
+  const campaigns = [
+    { id:1, name:'CDC OG Collection — Catalog',        status:'active',  spend:69400,  revenue:501600,  roas:7.24, purchases:241, cpp:288, reach:166000, frequency:4.2, impressions:697200, clicks:17952, ctr:2.57, cpm:99,  adsets:3 },
+    { id:2, name:'Crep Dog Hoodie Launch — Reels',     status:'active',  spend:56400,  revenue:327600,  roas:5.81, purchases:174, cpp:324, reach:279000, frequency:2.8, impressions:781200, clicks:22356, ctr:2.86, cpm:72,  adsets:2 },
+    { id:3, name:'CDC Drop 2025 — Broad Retarget',     status:'active',  spend:45700,  revenue:441050,  roas:9.65, purchases:220, cpp:208, reach:168000, frequency:4.3, impressions:722100, clicks:18975, ctr:2.63, cpm:63,  adsets:4 },
+    { id:4, name:'Sales // Streetwear // Mar',         status:'active',  spend:60100,  revenue:421500,  roas:7.02, purchases:231, cpp:260, reach:241000, frequency:3.0, impressions:723000, clicks:18075, ctr:2.50, cpm:83,  adsets:3 },
+    { id:5, name:'CDC Winter Collection // Jan',       status:'paused',  spend:12900,  revenue:99500,   roas:7.71, purchases:45,  cpp:288, reach:58000,  frequency:2.4, impressions:139200, clicks:3618,  ctr:2.60, cpm:93,  adsets:2 },
+    { id:6, name:'Sales // May Mix — 3 Creatives',    status:'paused',  spend:31500,  revenue:238200,  roas:7.56, purchases:125, cpp:252, reach:145000, frequency:2.6, impressions:377000, clicks:9804,  ctr:2.60, cpm:84,  adsets:3 },
+    { id:7, name:'New Sales — 3 Cats Live',            status:'paused',  spend:20400,  revenue:150400,  roas:7.37, purchases:71,  cpp:287, reach:92000,  frequency:2.6, impressions:239200, clicks:6220,  ctr:2.60, cpm:85,  adsets:2 },
+    { id:8, name:'CDC Sweatpants S1 // Jan',           status:'paused',  spend:37100,  revenue:205400,  roas:5.54, purchases:97,  cpp:383, reach:223000, frequency:2.4, impressions:535200, clicks:13917, ctr:2.60, cpm:69,  adsets:2 },
+    { id:9, name:'New Sales Campaign 11',              status:'paused',  spend:27800,  revenue:142300,  roas:5.12, purchases:70,  cpp:397, reach:116000, frequency:3.2, impressions:371200, clicks:9649,  ctr:2.60, cpm:75,  adsets:2 },
+    { id:10,name:'Northstory Broad // 07 Jan',         status:'draft',   spend:5000,   revenue:64700,   roas:12.94,purchases:22,  cpp:227, reach:59000,  frequency:1.3, impressions:76700,  clicks:1994,  ctr:2.60, cpm:65,  adsets:1 },
   ];
+
+  const ageGender = [
+    { age:'18–24', gender:'male',    spend:240000, revenue:1576500, roas:6.57, purchases:786, cpp:305, atc:5265, ctr:2.94 },
+    { age:'25–34', gender:'male',    spend:153000, revenue:937000,  roas:6.12, purchases:467, cpp:328, atc:2495, ctr:2.61 },
+    { age:'18–24', gender:'female',  spend:15300,  revenue:93500,   roas:6.10, purchases:42,  cpp:365, atc:312,  ctr:3.02 },
+    { age:'35–44', gender:'male',    spend:24900,  revenue:135200,  roas:5.43, purchases:58,  cpp:429, atc:345,  ctr:2.41 },
+    { age:'45–54', gender:'male',    spend:9000,   revenue:36200,   roas:4.02, purchases:17,  cpp:530, atc:137,  ctr:2.18 },
+    { age:'25–34', gender:'female',  spend:7200,   revenue:26100,   roas:3.63, purchases:11,  cpp:651, atc:66,   ctr:2.22 },
+    { age:'55–64', gender:'male',    spend:2100,   revenue:16100,   roas:7.63, purchases:7,   cpp:301, atc:43,   ctr:2.55 },
+    { age:'35–44', gender:'unknown', spend:150,    revenue:1400,    roas:9.55, purchases:1,   cpp:150, atc:5,    ctr:0.0  },
+    { age:'65+',   gender:'male',    spend:2200,   revenue:7600,    roas:3.42, purchases:5,   cpp:444, atc:40,   ctr:2.11 },
+    { age:'Unknown',gender:'unknown',spend:0,      revenue:1300,    roas:0,    purchases:1,   cpp:0,   atc:2,    ctr:0.0  },
+  ];
+
+  const platform = [
+    { name:'📘 Facebook Feed',     spend:183000, revenue:1185600, roas:6.48, purchases:589, cpp:311, reach:1400000, impressions:4800000, ctr:2.41 },
+    { name:'📸 Instagram Feed',    spend:112000, revenue:780400,  roas:6.97, purchases:412, cpp:272, reach:980000,  impressions:2900000, ctr:3.12 },
+    { name:'🎥 Instagram Reels',   spend:85400,  revenue:536400,  roas:6.28, purchases:247, cpp:346, reach:610000,  impressions:1800000, ctr:3.87 },
+    { name:'📖 Facebook Stories',  spend:32100,  revenue:138300,  roas:4.31, purchases:89,  cpp:361, reach:280000,  impressions:690000,  ctr:1.92 },
+    { name:'🔍 Audience Network',  spend:18700,  revenue:62500,   roas:3.34, purchases:55,  cpp:340, reach:198000,  impressions:540000,  ctr:1.24 },
+  ];
+
+  const interests = [
+    { rank:'🥇', name:'Sneakers & Streetwear',        roas:9.46, revenue:210000, spend:22200, cpp:206, purchases:108, adsets:2, ctr:2.94 },
+    { rank:'🥈', name:'Urban Fashion (18–24)',          roas:8.91, revenue:196000, spend:22000, cpp:214, purchases:103, adsets:3, ctr:3.01 },
+    { rank:'🥉', name:'Hip Hop / Rap Culture',         roas:8.44, revenue:184000, spend:21800, cpp:218, purchases:100, adsets:2, ctr:2.87 },
+    { rank:'',   name:'Online Shopping (retail)',       roas:9.15, revenue:220000, spend:24000, cpp:209, purchases:112, adsets:4, ctr:2.94 },
+    { rank:'',   name:'Luxury Goods',                   roas:7.80, revenue:172000, spend:22100, cpp:246, purchases:90,  adsets:2, ctr:2.71 },
+    { rank:'',   name:'Skateboarding / BMX',            roas:7.24, revenue:159000, spend:22000, cpp:253, purchases:87,  adsets:2, ctr:2.65 },
+    { rank:'',   name:'Music Festivals',                roas:6.98, revenue:154000, spend:22000, cpp:261, purchases:84,  adsets:2, ctr:2.58 },
+    { rank:'',   name:'Fitness & Gym (18–24)',           roas:6.72, revenue:148000, spend:22000, cpp:272, purchases:81,  adsets:3, ctr:2.52 },
+    { rank:'',   name:'NBA / Basketball',               roas:6.41, revenue:141000, spend:22000, cpp:285, purchases:77,  adsets:2, ctr:2.44 },
+    { rank:'',   name:'Gaming (Mobile & PC)',            roas:5.94, revenue:131000, spend:22000, cpp:307, purchases:72,  adsets:2, ctr:2.31 },
+    { rank:'',   name:'Tattoos & Body Art',              roas:5.54, revenue:122000, spend:22000, cpp:329, purchases:67,  adsets:2, ctr:2.19 },
+    { rank:'',   name:'Discount Stores (value buyers)',  roas:4.81, revenue:106000, spend:22000, cpp:379, purchases:58,  adsets:2, ctr:1.98 },
+  ];
+
+  const summary = {
+    totalSpend:    campaigns.reduce((s,c)=>s+c.spend, 0),
+    totalRevenue:  campaigns.reduce((s,c)=>s+c.revenue, 0),
+    avgRoas:       parseFloat((campaigns.filter(c=>c.roas>0).reduce((s,c)=>s+c.roas,0)/campaigns.filter(c=>c.roas>0).length).toFixed(2)),
+    totalPurchases:campaigns.reduce((s,c)=>s+c.purchases, 0),
+    totalAtc:      ageGender.reduce((s,r)=>s+r.atc, 0),
+    totalCheckout: Math.round(ageGender.reduce((s,r)=>s+r.atc, 0) * 0.40),
+    totalReach:    platform.reduce((s,p)=>s+p.reach, 0),
+    totalImpressions: platform.reduce((s,p)=>s+p.impressions, 0),
+    avgFrequency:  3.07,
+    totalClicks:   campaigns.reduce((s,c)=>s+c.clicks, 0),
+    avgCpm:        51,
+    avgCpc:        2,
+    avgCtr:        2.65,
+    totalOrders:   campaigns.reduce((s,c)=>s+c.purchases, 0),
+  };
+
+  return { campaigns, ageGender, platform, interests, summary, insights: campaigns };
 }
 
 // ── Settlements ────────────────────────────────────────────────────────────────

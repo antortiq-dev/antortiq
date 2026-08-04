@@ -182,27 +182,12 @@ router.get('/brain', async (req, res) => {
   }
 });
 
-// Meta ads — returns both /admin/meta-ads/insights and audiences shape
+// Meta ads — all sub-shapes in one endpoint; interceptor slices by URL
 router.get('/meta', async (req, res) => {
   try {
     const doc = await getCdcData();
-    const campaigns = doc ? doc.meta : [];
-    res.json({
-      campaigns,
-      insights: campaigns,
-      audiences: [
-        { name: 'Streetwear Enthusiasts 18-24', size: 480000, cpm: 82, relevance: 8.4 },
-        { name: 'Sneaker Culture India',         size: 210000, cpm: 94, relevance: 9.1 },
-        { name: 'Urban Fashion Delhi/Mumbai',     size: 340000, cpm: 76, relevance: 7.8 },
-        { name: 'Lookalike — Past Buyers',        size: 156000, cpm: 68, relevance: 9.6 },
-      ],
-      summary: {
-        totalSpend: campaigns.reduce((s, c) => s + c.spend, 0),
-        totalRevenue: campaigns.reduce((s, c) => s + c.revenue, 0),
-        avgRoas: parseFloat((campaigns.filter(c=>c.roas>0).reduce((s,c)=>s+c.roas,0) / campaigns.filter(c=>c.roas>0).length).toFixed(2)),
-        totalOrders: campaigns.reduce((s, c) => s + c.orders, 0),
-      },
-    });
+    const meta = doc ? doc.meta : { campaigns:[], ageGender:[], platform:[], interests:[], summary:{}, insights:[] };
+    res.json(meta);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
