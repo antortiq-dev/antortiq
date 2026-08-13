@@ -1,0 +1,1188 @@
+<!doctype html>
+<title>Antortiq Meta Ad Cards</title>
+<meta name="description" content="9 carousel slides + 6 single posts — 1080×1350 PNG downloads, ready to run on Meta Ads.">
+<meta charset="utf-8">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;--surface:#111111;--border:#1C1C20;
+  --text:#EDE8E3;--muted:#636370;
+  --red:#E63946;--green:#16A34A;--blue:#3B82F6;
+  --page-pad:40px;
+}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;min-height:100vh}
+
+/* ── PAGE HEADER ── */
+.ph{padding:44px var(--page-pad) 36px;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.ph-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.ph-title{font-size:34px;font-weight:900;letter-spacing:-.045em;line-height:1}
+.ph-title em{color:var(--red);font-style:normal}
+.ph-sub{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.5}
+.ph-actions{display:flex;gap:10px;flex-shrink:0}
+.btn{border:none;padding:11px 20px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn-primary{background:var(--red);color:#fff}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+
+/* ── GALLERY ── */
+.gallery{padding:44px var(--page-pad)}
+.section{margin-bottom:64px}
+.section-hd{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.section-name{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.section-meta{font-size:11px;color:var(--border);background:var(--surface);padding:3px 11px;border-radius:999px;border:1px solid var(--border)}
+
+/* ── SINGLES GRID ── */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+/* ── CAROUSEL ── */
+.carousel-group{margin-bottom:36px}
+.c-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:6px 14px;border-radius:6px;display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.c-label span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.c-label.c2 span{background:var(--green)}
+.c-label.c3 span{background:var(--blue)}
+.c-slides{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.c-slide-num{font-size:10px;color:var(--muted);text-align:center;margin-top:6px;letter-spacing:.06em}
+
+/* ── CARD WRAP ── */
+.cw{position:relative;border-radius:12px;overflow:hidden}
+canvas{width:100%;height:auto;display:block}
+.cw-over{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .2s;display:flex;align-items:flex-end;justify-content:flex-end;padding:12px;opacity:0;transition:opacity .2s}
+.cw:hover .cw-over{opacity:1;background:rgba(0,0,0,.35)}
+.dl-btn{background:#fff;color:#000;border:none;padding:8px 15px;border-radius:6px;font-size:11px;font-weight:800;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+.dl-btn:hover{background:#eee}
+
+/* ── FOOTER ── */
+.page-footer{padding:24px var(--page-pad);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-note{font-size:11px;color:var(--muted)}
+</style>
+
+<!-- PAGE HEADER -->
+<div class="ph">
+  <div>
+    <div class="ph-eyebrow">Meta Ad Cards · 1080 × 1350 · 4:5</div>
+    <div class="ph-title"><em>Antortiq</em> — Ready to Run</div>
+    <div class="ph-sub">6 single posts &nbsp;·&nbsp; 3 carousels (3 slides each) &nbsp;·&nbsp; Hover a card to download PNG</div>
+  </div>
+  <div class="ph-actions">
+    <button class="btn btn-ghost" onclick="downloadAll()">↓ Download All</button>
+    <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
+  </div>
+</div>
+
+<div class="gallery">
+
+  <!-- ── SINGLE POSTS ── -->
+  <div class="section">
+    <div class="section-hd">
+      <span class="section-name">Single Posts</span>
+      <span class="section-meta">6 cards · hook in &lt; 1 sec</span>
+    </div>
+    <div class="grid-3">
+      <div class="cw"><canvas id="sp1" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp1','antortiq-hero')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp2" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp2','antortiq-sync')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp3" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp3','antortiq-ai-calls')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp4" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp4','antortiq-meta-ads')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp5" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp5','antortiq-returns')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp6" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp6','antortiq-revenue')">↓ PNG</button></div></div>
+    </div>
+  </div>
+
+  <!-- ── CAROUSELS ── -->
+  <div class="section">
+    <div class="section-hd">
+      <span class="section-name">Carousels</span>
+      <span class="section-meta">3 sets · 3 slides each · swipe sequence</span>
+    </div>
+
+    <!-- Carousel 1 -->
+    <div class="carousel-group">
+      <div class="c-label"><span></span>Carousel 1 — The Old Way vs The Antortiq Way</div>
+      <div class="c-slides">
+        <div><div class="cw"><canvas id="c1s1" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c1s1','c1-slide1')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 1 / 3</div></div>
+        <div><div class="cw"><canvas id="c1s2" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c1s2','c1-slide2')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 2 / 3</div></div>
+        <div><div class="cw"><canvas id="c1s3" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c1s3','c1-slide3')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 3 / 3</div></div>
+      </div>
+    </div>
+
+    <!-- Carousel 2 -->
+    <div class="carousel-group">
+      <div class="c-label c2"><span></span>Carousel 2 — What Antortiq Actually Does</div>
+      <div class="c-slides">
+        <div><div class="cw"><canvas id="c2s1" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c2s1','c2-slide1')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 1 / 3</div></div>
+        <div><div class="cw"><canvas id="c2s2" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c2s2','c2-slide2')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 2 / 3</div></div>
+        <div><div class="cw"><canvas id="c2s3" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c2s3','c2-slide3')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 3 / 3</div></div>
+      </div>
+    </div>
+
+    <!-- Carousel 3 -->
+    <div class="carousel-group">
+      <div class="c-label c3"><span></span>Carousel 3 — Live in 60 Minutes</div>
+      <div class="c-slides">
+        <div><div class="cw"><canvas id="c3s1" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c3s1','c3-slide1')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 1 / 3</div></div>
+        <div><div class="cw"><canvas id="c3s2" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c3s2','c3-slide2')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 2 / 3</div></div>
+        <div><div class="cw"><canvas id="c3s3" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c3s3','c3-slide3')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 3 / 3</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <span class="footer-note">All cards render at full 1080×1350 resolution internally. Download as PNG for Meta Ads upload.</span>
+  <span class="footer-note">antortiq.com</span>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  CONSTANTS
+// ─────────────────────────────────────────────
+const W = 1080, H = 1350, M = 72; // canvas dimensions + margin
+
+const C = {
+  bg:      '#080808',
+  surface: '#111111',
+  card:    '#161618',
+  border:  '#1E1E22',
+  text:    '#EDE8E3',
+  muted:   '#636370',
+  dimmed:  '#3A3A42',
+  red:     '#E63946',
+  redDark: '#8B1219',
+  redBg:   '#160406',
+  green:   '#16A34A',
+  greenBr: '#22C55E',
+  greenBg: '#061208',
+  blue:    '#3B82F6',
+  blueBg:  '#060E1A',
+  gold:    '#D97706',
+  white:   '#FFFFFF',
+  offwhite:'#F0ECE8',
+};
+
+// ─────────────────────────────────────────────
+//  HELPERS
+// ─────────────────────────────────────────────
+function g(id){ return document.getElementById(id); }
+
+function rr(ctx, x, y, w, h, r, fill, stroke, lw){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);
+  ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);
+  ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.lineWidth=lw||2;ctx.strokeStyle=stroke;ctx.stroke();}
+}
+
+function logo(ctx, cx, y){
+  ctx.save();
+  ctx.font = '800 38px system-ui,sans-serif';
+  try{ctx.letterSpacing='7px';}catch(e){}
+  ctx.fillStyle = C.white;
+  ctx.textAlign = 'center';
+  ctx.fillText('ANTORTIQ', cx, y);
+  try{ctx.letterSpacing='0px';}catch(e){}
+  // red dot after
+  ctx.fillStyle = C.red;
+  ctx.beginPath();
+  const tw = ctx.measureText('ANTORTIQ').width;
+  ctx.arc(cx + tw/2 + 14, y - 10, 6, 0, Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function footer(ctx, cta){
+  // red footer bar
+  ctx.fillStyle = C.red;
+  ctx.fillRect(0, H-90, W, 90);
+  ctx.fillStyle = C.white;
+  ctx.font = '700 34px system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(cta || 'Book a free demo  →  antortiq.com', W/2, H-90+56);
+}
+
+function pill(ctx, text, cx, y, bgFill, textFill, fs){
+  fs = fs||26;
+  ctx.save();
+  ctx.font = `700 ${fs}px system-ui,sans-serif`;
+  try{ctx.letterSpacing='2px';}catch(e){}
+  const tw = ctx.measureText(text).width;
+  const pw = tw+40, ph = fs+22;
+  rr(ctx, cx-pw/2, y-ph+10, pw, ph, ph/2, bgFill);
+  ctx.fillStyle = textFill;
+  ctx.textAlign = 'center';
+  ctx.fillText(text, cx, y);
+  try{ctx.letterSpacing='0px';}catch(e){}
+  ctx.restore();
+}
+
+function hline(ctx, y, color, xl, xr){
+  ctx.strokeStyle = color||C.border;
+  ctx.lineWidth=1;
+  ctx.beginPath();
+  ctx.moveTo(xl??0, y);
+  ctx.lineTo(xr??W, y);
+  ctx.stroke();
+}
+
+function numStat(ctx, val, label, x, y, valColor){
+  ctx.save();
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 96px system-ui,sans-serif';
+  ctx.fillStyle = valColor||C.white;
+  ctx.fillText(val, x, y);
+  ctx.font = '500 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText(label, x, y+44);
+  ctx.restore();
+}
+
+function checkRow(ctx, text, x, y, ok){
+  ctx.save();
+  // icon circle
+  const r = 26;
+  rr(ctx, x, y-r, r*2, r*2, r, ok?C.green:C.redDark);
+  ctx.font = `700 26px system-ui,sans-serif`;
+  ctx.fillStyle = ok ? C.greenBr : C.red;
+  ctx.textAlign = 'center';
+  ctx.fillText(ok?'✓':'✕', x+r, y+10);
+  // text
+  ctx.textAlign = 'left';
+  ctx.font = `${ok?'600':'400'} 38px system-ui,sans-serif`;
+  ctx.fillStyle = ok ? C.text : C.muted;
+  ctx.fillText(text, x+r*2+22, y+10);
+  ctx.restore();
+}
+
+function slideNum(ctx, cur, total, accent){
+  ctx.save();
+  ctx.font = '600 24px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'right';
+  ctx.fillText(`${cur} / ${total}`, W-M, 90);
+  // progress dots
+  const dotY = 78, spacing = 22, startX = W-M - (total-1)*spacing - 8;
+  for(let i=0;i<total;i++){
+    ctx.beginPath();
+    ctx.arc(startX + i*spacing - (total*spacing)/2 + W/2 + 20, dotY+32, i+1===cur?6:4, 0, Math.PI*2);
+    ctx.fillStyle = i+1===cur ? (accent||C.red) : C.dimmed;
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────
+//  SINGLE POST 1  — Brand Hero "Your pipeline is broken."
+// ─────────────────────────────────────────────
+function drawSP1(cv){
+  const ctx = cv.getContext('2d');
+
+  // bg
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+
+  // top accent line
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  // logo
+  logo(ctx, W/2, 98);
+
+  // big headline
+  ctx.save();
+  ctx.textAlign = 'left';
+
+  ctx.font = 'italic 900 154px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('YOUR', M, 370);
+  ctx.fillText('SALES', M, 530);
+
+  // "MACHINE" with red underline style
+  const grd = ctx.createLinearGradient(M, 640, M+680, 700);
+  grd.addColorStop(0, C.red);
+  grd.addColorStop(1, C.redDark);
+  ctx.fillStyle = grd;
+  ctx.fillText('MACHINE', M, 690);
+
+  ctx.font = 'italic 900 100px system-ui,sans-serif';
+  ctx.fillStyle = C.dimmed;
+  ctx.fillText('IS BROKEN.', M, 810);
+  ctx.restore();
+
+  // divider
+  hline(ctx, 880, C.border, M, W-M);
+
+  // solution
+  ctx.font = '500 42px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'left';
+  ctx.fillText('We automated the entire sales loop.', M, 950);
+
+  // feature row
+  const tags = [['AUTO SYNC',C.red,'#1A0406'],['AI CALLS',C.green,'#061209'],['META ADS',C.blue,'#060A18'],['ANALYTICS',C.gold,'#130D02']];
+  let fx = M;
+  const fy = 1030;
+  tags.forEach(([t,tc,tbg])=>{
+    ctx.font = '700 23px system-ui,sans-serif';
+    const tw = ctx.measureText(t).width;
+    const pw = tw+36, ph = 52;
+    rr(ctx, fx, fy, pw, ph, 10, tbg);
+    rr(ctx, fx, fy, pw, ph, 10, null, tc, 1);
+    ctx.fillStyle = tc;
+    ctx.textAlign = 'left';
+    ctx.fillText(t, fx+18, fy+34);
+    fx += pw+14;
+  });
+
+  // large stat tease
+  ctx.font = '500 36px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'left';
+  ctx.fillText('Trusted by growing D2C brands across India.', M, 1160);
+
+  footer(ctx);
+}
+
+// ─────────────────────────────────────────────
+//  SINGLE POST 2  — Auto Contact Sync "0 leads lost."
+// ─────────────────────────────────────────────
+function drawSP2(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  pill(ctx,'AUTO CONTACT SYNC',W/2,198,C.redBg,C.red,24);
+
+  // massive "0"
+  ctx.save();
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 340px system-ui,sans-serif';
+  const grd0 = ctx.createLinearGradient(M,200,M+400,620);
+  grd0.addColorStop(0, C.white);
+  grd0.addColorStop(1, C.dimmed);
+  ctx.fillStyle = grd0;
+  ctx.fillText('0', M, 610);
+  ctx.restore();
+
+  // label next to it
+  ctx.font = '800 58px system-ui,sans-serif';
+  ctx.fillStyle = C.text;
+  ctx.textAlign = 'left';
+  ctx.fillText('leads', M+340, 460);
+  ctx.font = '500 42px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('slipped through', M+340, 520);
+  ctx.fillText('the cracks.', M+340, 572);
+
+  hline(ctx, 700, C.border, M, W-M);
+
+  // how it works mini
+  ctx.font = '700 40px system-ui,sans-serif';
+  ctx.fillStyle = C.text;
+  ctx.textAlign = 'left';
+  ctx.fillText('Every customer. Every channel.', M, 780);
+  ctx.fillText('Synced automatically.', M, 840);
+
+  // mini contact cards
+  const contacts = [
+    {name:'Priya Sharma', tag:'Instagram DM', clr:C.blue},
+    {name:'Rahul Mehta', tag:'WhatsApp', clr:C.greenBr},
+    {name:'Anita Joshi', tag:'Shopify Order', clr:C.red},
+    {name:'Dev Kapoor', tag:'Email Lead', clr:C.gold},
+  ];
+  contacts.forEach((c,i)=>{
+    const row = Math.floor(i/2), col = i%2;
+    const cx = M + col*(W/2-M-10), cy = 920 + row*110;
+    rr(ctx, cx, cy, W/2-M*1.5+10, 90, 12, C.surface);
+    rr(ctx, cx, cy, 4, 90, 2, c.clr); // left accent
+    ctx.font = '700 28px system-ui,sans-serif';
+    ctx.fillStyle = C.text;
+    ctx.textAlign = 'left';
+    ctx.fillText(c.name, cx+20, cy+36);
+    ctx.font = '500 22px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(c.tag, cx+20, cy+66);
+  });
+
+  ctx.font = '700 34px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.textAlign = 'left';
+  ctx.fillText('↑ 500+ contacts tracked. No spreadsheets.', M, 1220);
+
+  footer(ctx);
+}
+
+// ─────────────────────────────────────────────
+//  SINGLE POST 3  — AI Sales Agent
+// ─────────────────────────────────────────────
+function drawSP3(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+
+  // left red bar
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,10,H);
+
+  logo(ctx, W/2, 98);
+  pill(ctx,'AI SALES AGENT',W/2,198,C.redBg,C.red,24);
+
+  // headline
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 124px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('Never', M+16, 380);
+  ctx.fillText('miss', M+16, 510);
+  ctx.fillText('another', M+16, 640);
+
+  ctx.font = 'italic 900 100px system-ui,sans-serif';
+  ctx.fillStyle = C.red;
+  ctx.fillText('call.', M+16, 760);
+
+  // chat bubble visual
+  const bx = M+16, by = 820, bw = W-M*2-16, bh = 200;
+  rr(ctx, bx, by, bw, bh, 20, C.surface);
+  rr(ctx, bx, by, 6, bh, 3, C.green);
+
+  // AI avatar dot
+  ctx.fillStyle = C.greenBr;
+  ctx.beginPath(); ctx.arc(bx+50, by+60, 28, 0, Math.PI*2); ctx.fill();
+  ctx.font = '700 24px system-ui,sans-serif';
+  ctx.fillStyle = C.surface;
+  ctx.textAlign = 'center';
+  ctx.fillText('AI', bx+50, by+68);
+
+  ctx.textAlign = 'left';
+  ctx.font = '700 28px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.fillText('Antortiq Agent · Now', bx+96, by+46);
+  ctx.font = '500 30px system-ui,sans-serif';
+  ctx.fillStyle = C.text;
+  ctx.fillText('"Hi! I noticed your order is ready for', bx+96, by+90);
+  ctx.fillText(' pickup. Want me to schedule delivery?"', bx+96, by+130);
+  ctx.font = '400 24px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Handles calls · Books appointments · Resolves queries', bx+30, by+178);
+
+  // stats row
+  const stats = [['24/7','Always on'],['3 sec','Response time'],['85%','Issues resolved']];
+  stats.forEach(([v,l],i)=>{
+    const sx = M+16 + i*((W-M*2)/3), sy = 1100;
+    ctx.font = 'italic 800 56px system-ui,sans-serif';
+    ctx.fillStyle = i===0?C.red:i===1?C.greenBr:C.blue;
+    ctx.textAlign = 'left';
+    ctx.fillText(v, sx, sy);
+    ctx.font = '500 26px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(l, sx, sy+40);
+  });
+
+  hline(ctx, 1220, C.border, M, W-M);
+  ctx.font = '500 34px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'left';
+  ctx.fillText('No coffee breaks. No sick days. No missed leads.', M+16, 1280);
+  // no standard footer — already at 1280
+  ctx.fillStyle = C.red; ctx.fillRect(0,H-8,W,8);
+}
+
+// ─────────────────────────────────────────────
+//  SINGLE POST 4  — Meta Ads Dashboard
+// ─────────────────────────────────────────────
+function drawSP4(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  pill(ctx,'META ADS INTELLIGENCE',W/2,198,C.blueBg,C.blue,24);
+
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 100px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('10 campaigns.', M, 380);
+  ctx.fillText('1 dashboard.', M, 490);
+  ctx.font = 'italic 900 100px system-ui,sans-serif';
+  ctx.fillStyle = C.blue;
+  ctx.fillText('∞ clarity.', M, 600);
+
+  hline(ctx, 660, C.border, M, W-M);
+
+  // stat cards 2×2
+  const stats2 = [
+    {v:'4.2×',l:'ROAS',sub:'Return on ad spend',c:C.greenBr,bg:'#061209'},
+    {v:'3.8%',l:'CTR',sub:'Click-through rate',c:C.blue,bg:C.blueBg},
+    {v:'₹85K',l:'AD SPEND',sub:'This month tracked',c:C.gold,bg:'#130D02'},
+    {v:'10',  l:'CAMPAIGNS',sub:'Live & monitored',c:C.red,bg:C.redBg},
+  ];
+  stats2.forEach((s,i)=>{
+    const col=i%2, row=Math.floor(i/2);
+    const sx = M + col*((W-M*2)/2+6), sy = 700 + row*240;
+    const sw = (W-M*2)/2-6, sh = 216;
+    rr(ctx,sx,sy,sw,sh,16,s.bg);
+    rr(ctx,sx,sy,sw,sh,16,null,C.border+'88',1);
+    ctx.font = 'italic 800 68px system-ui,sans-serif';
+    ctx.fillStyle = s.c;
+    ctx.textAlign = 'left';
+    ctx.fillText(s.v, sx+24, sy+84);
+    ctx.font = '700 24px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    try{ctx.letterSpacing='3px';}catch(e){}
+    ctx.fillText(s.l, sx+24, sy+120);
+    try{ctx.letterSpacing='0px';}catch(e){}
+    ctx.font = '400 26px system-ui,sans-serif';
+    ctx.fillStyle = C.dimmed;
+    ctx.fillText(s.sub, sx+24, sy+158);
+  });
+
+  ctx.font = '500 34px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'left';
+  ctx.fillText('Age · gender · platform · interests. All live.', M, 1230);
+
+  footer(ctx);
+}
+
+// ─────────────────────────────────────────────
+//  SINGLE POST 5  — Return & Exchange
+// ─────────────────────────────────────────────
+function drawSP5(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  pill(ctx,'RETURN & EXCHANGE',W/2,198,C.greenBg,C.greenBr,24);
+
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 104px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('Returns that', M, 380);
+  ctx.fillText("don't cost", M, 490);
+  ctx.font = 'italic 900 104px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.fillText('customers.', M, 600);
+
+  hline(ctx, 660, C.border, M, W-M);
+
+  // 3-step flow
+  const steps = [
+    {n:'01',title:'Customer Requests',desc:'Logged instantly via Shopify pixel'},
+    {n:'02',title:'AI Reviews Order',desc:'Eligibility checked in seconds'},
+    {n:'03',title:'Exchange Approved',desc:'Customer notified automatically'},
+  ];
+  steps.forEach((s,i)=>{
+    const sy = 720 + i*176;
+    // connector line
+    if(i<2){ ctx.strokeStyle=C.border; ctx.lineWidth=1; ctx.setLineDash([6,6]); ctx.beginPath(); ctx.moveTo(M+30,sy+100); ctx.lineTo(M+30,sy+176); ctx.stroke(); ctx.setLineDash([]); }
+    // circle
+    rr(ctx,M,sy,60,60,30,i===2?C.green:C.surface,i===2?null:C.border,1);
+    ctx.font = '800 26px system-ui,sans-serif';
+    ctx.fillStyle = i===2?C.white:C.muted;
+    ctx.textAlign = 'center';
+    ctx.fillText(s.n, M+30, sy+38);
+    ctx.textAlign = 'left';
+    ctx.font = '700 38px system-ui,sans-serif';
+    ctx.fillStyle = C.text;
+    ctx.fillText(s.title, M+82, sy+32);
+    ctx.font = '400 28px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(s.desc, M+82, sy+70);
+  });
+
+  hline(ctx,1248,C.border,M,W-M);
+  ctx.font = '600 34px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.textAlign = 'left';
+  ctx.fillText('Happy customers come back. Broken flows don't.', M, 1310);
+
+  ctx.fillStyle = C.red; ctx.fillRect(0,H-8,W,8);
+}
+
+// ─────────────────────────────────────────────
+//  SINGLE POST 6  — Revenue / GMV
+// ─────────────────────────────────────────────
+function drawSP6(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  pill(ctx,'REAL-TIME ANALYTICS',W/2,198,C.greenBg,C.greenBr,24);
+
+  // big number
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 128px system-ui,sans-serif';
+  const grdG = ctx.createLinearGradient(M,300,M+850,520);
+  grdG.addColorStop(0,C.greenBr);
+  grdG.addColorStop(1,'#0A8A30');
+  ctx.fillStyle = grdG;
+  ctx.fillText('₹12,00,000', M, 480);
+
+  ctx.font = '500 44px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('In GMV tracked', M, 550);
+  ctx.fillText('across active stores.', M, 604);
+
+  hline(ctx,670,C.border,M,W-M);
+
+  // bar chart (7 bars, growing)
+  const bars = [0.25,0.38,0.42,0.55,0.63,0.80,1.0];
+  const bw2 = 80, bg2 = 28, bBase = 1040, bTop = 720;
+  bars.forEach((v,i)=>{
+    const bh2 = (bBase-bTop)*v;
+    const bx2 = M + i*(bw2+bg2);
+    const by2 = bBase-bh2;
+    const isLast = i===6;
+    rr(ctx, bx2, by2, bw2, bh2, 8, isLast?C.greenBr:C.surface);
+    if(isLast){
+      ctx.font = '700 26px system-ui,sans-serif';
+      ctx.fillStyle = C.greenBr;
+      ctx.textAlign = 'center';
+      ctx.fillText('↑', bx2+bw2/2, by2-16);
+    }
+  });
+  // x-axis
+  ctx.strokeStyle = C.border; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(M,bBase+8); ctx.lineTo(M+(bw2+bg2)*7,bBase+8); ctx.stroke();
+
+  ctx.textAlign = 'left';
+  ctx.font = '400 26px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('7-month growth tracked in real time', M, 1090);
+
+  // metric row
+  const mx = [
+    {v:'500+',l:'Orders/day',c:C.blue},
+    {v:'98%',l:'Uptime',c:C.greenBr},
+    {v:'3×',l:'GMV growth',c:C.red},
+  ];
+  mx.forEach((m,i)=>{
+    const sx = M + i*((W-M*2)/3);
+    ctx.font = 'italic 800 66px system-ui,sans-serif';
+    ctx.fillStyle = m.c;
+    ctx.textAlign = 'left';
+    ctx.fillText(m.v, sx, 1210);
+    ctx.font = '500 28px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(m.l, sx, 1252);
+  });
+
+  footer(ctx,'See your numbers live  →  antortiq.com');
+}
+
+// ─────────────────────────────────────────────
+//  CAROUSEL 1 — OLD WAY VS ANTORTIQ WAY
+// ─────────────────────────────────────────────
+function drawC1S1(cv){
+  const ctx = cv.getContext('2d');
+  // Full red background — pattern-break cover
+  const grdR = ctx.createLinearGradient(0,0,0,H);
+  grdR.addColorStop(0,'#C41020');
+  grdR.addColorStop(1,'#8B0010');
+  ctx.fillStyle = grdR; ctx.fillRect(0,0,W,H);
+
+  // Subtle diagonal lines texture
+  ctx.save();
+  ctx.globalAlpha = 0.06;
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1;
+  for(let i=-H;i<W+H;i+=60){
+    ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i+H,H); ctx.stroke();
+  }
+  ctx.restore();
+
+  // logo white
+  ctx.font = '800 38px system-ui,sans-serif';
+  try{ctx.letterSpacing='7px';}catch(e){}
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.textAlign = 'center';
+  ctx.fillText('ANTORTIQ', W/2, 98);
+  try{ctx.letterSpacing='0px';}catch(e){}
+
+  slideNum(ctx,1,3,'#ffffff');
+
+  // Main headline
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 136px system-ui,sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('THERE IS', M, 420);
+  ctx.fillText('A BETTER', M, 560);
+  ctx.fillText('WAY TO', M, 700);
+
+  ctx.font = 'italic 900 100px system-ui,sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.fillText('RUN SALES.', M, 820);
+
+  hline(ctx, 890, 'rgba(255,255,255,0.2)', M, W-M);
+
+  ctx.font = '500 42px system-ui,sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  ctx.textAlign = 'left';
+  ctx.fillText('Swipe to see the difference.', M, 970);
+
+  // Swipe arrow
+  ctx.font = '300 100px system-ui,sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.textAlign = 'right';
+  ctx.fillText('→', W-M, 1100);
+
+  // bottom white
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle = C.red;
+  ctx.font = '700 34px system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('antortiq.com  ·  Built for D2C brands', W/2, H-90+56);
+}
+
+function drawC1S2(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,2,3);
+
+  pill(ctx,'THE OLD WAY',W/2,200,C.redBg,C.red,28);
+
+  // Big X
+  ctx.font = '900 120px system-ui,sans-serif';
+  ctx.fillStyle = C.redDark;
+  ctx.textAlign = 'center';
+  ctx.fillText('✕', W/2, 390);
+
+  const pains = [
+    'Contacts lost across WhatsApp, DMs & email',
+    'Missed calls = missed revenue, every day',
+    'Meta Ads with zero visibility into performance',
+    'Returns handled manually — slowly, badly',
+    'Gut-feel decisions with no real data',
+    'Your team drowning in copy-paste work',
+  ];
+  pains.forEach((p,i)=>{
+    checkRow(ctx, p, M, 500+i*126, false);
+  });
+
+  hline(ctx,1270,C.border,M,W-M);
+  ctx.font = '500 30px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'center';
+  ctx.fillText('Sound familiar? There\'s a way out. →', W/2, 1325);
+}
+
+function drawC1S3(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.green; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,3,3,C.greenBr);
+
+  pill(ctx,'THE ANTORTIQ WAY',W/2,200,C.greenBg,C.greenBr,28);
+
+  ctx.font = '900 120px system-ui,sans-serif';
+  ctx.fillStyle = C.green;
+  ctx.textAlign = 'center';
+  ctx.fillText('✓', W/2, 390);
+
+  const wins = [
+    'All contacts synced automatically',
+    'AI agent answers every call, 24/7',
+    'Live Meta Ads: ROAS, CTR, spend tracked',
+    'Returns handled in 3 steps, automatically',
+    '₹12L+ GMV tracked. Real decisions, real data.',
+    'Your team focuses on growth, not admin',
+  ];
+  wins.forEach((w,i)=>{
+    checkRow(ctx, w, M, 500+i*126, true);
+  });
+
+  // CTA
+  ctx.fillStyle = C.green; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle = C.white;
+  ctx.font = '700 34px system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Get started today  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  CAROUSEL 2 — WHAT WE DO
+// ─────────────────────────────────────────────
+function drawC2S1(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,1,3,C.greenBr);
+
+  // 3 color dots
+  const dots = [C.red, C.greenBr, C.blue];
+  dots.forEach((d,i)=>{
+    ctx.fillStyle = d;
+    ctx.beginPath();
+    ctx.arc(M + i*80, 230, 18, 0, Math.PI*2);
+    ctx.fill();
+  });
+
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 120px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('WE DO', M, 440);
+  ctx.fillText('4 THINGS', M, 570);
+  ctx.font = 'italic 900 100px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('EXCEPTIONALLY', M, 690);
+  ctx.font = 'italic 900 120px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.fillText('WELL.', M, 820);
+
+  hline(ctx,890,C.border,M,W-M);
+
+  const features = ['01  AUTO CONTACT SYNC','02  AI CALL HANDLING','03  META ADS DASHBOARD','04  REAL-TIME ANALYTICS'];
+  const clrs = [C.red,C.greenBr,C.blue,C.gold];
+  features.forEach((f,i)=>{
+    ctx.font = '700 36px system-ui,sans-serif';
+    ctx.fillStyle = clrs[i];
+    ctx.textAlign = 'left';
+    ctx.fillText(f, M, 980+i*74);
+  });
+
+  ctx.font = '500 34px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'right';
+  ctx.fillText('Swipe to explore →', W-M, 1260);
+
+  footer(ctx);
+}
+
+function drawC2S2(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,2,3,C.greenBr);
+
+  // Feature block 1
+  rr(ctx,M,160,W-M*2,460,20,C.surface);
+  rr(ctx,M,160,8,460,4,C.red);
+
+  ctx.textAlign = 'left';
+  pill(ctx,'01 / AUTO CONTACT SYNC',M+50,220,C.redBg,C.red,24);
+  ctx.font = '800 56px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('Every contact,', M+28, 340);
+  ctx.fillText('captured instantly.', M+28, 406);
+  ctx.font = '400 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Shopify · WhatsApp · Instagram DMs · Email', M+28, 470);
+  ctx.font = '700 32px system-ui,sans-serif';
+  ctx.fillStyle = C.red;
+  ctx.fillText('500+ contacts synced daily. Zero manual work.', M+28, 530);
+  ctx.font = '600 28px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('All sources → One clean contact list', M+28, 590);
+
+  // Feature block 2
+  rr(ctx,M,660,W-M*2,460,20,C.surface);
+  rr(ctx,M,660,8,460,4,C.greenBr);
+
+  pill(ctx,'02 / AI CALL HANDLING',M+50,720,C.greenBg,C.greenBr,24);
+  ctx.font = '800 56px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.textAlign = 'left';
+  ctx.fillText('Your AI agent,', M+28, 840);
+  ctx.fillText('always available.', M+28, 906);
+  ctx.font = '400 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Answers · Books · Resolves · Upsells', M+28, 970);
+  ctx.font = '700 32px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.fillText('85% of queries resolved without human.', M+28, 1030);
+  ctx.font = '600 28px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('24/7 · 3-second response · Multilingual', M+28, 1090);
+
+  footer(ctx);
+}
+
+function drawC2S3(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,3,3,C.greenBr);
+
+  // Feature block 3
+  rr(ctx,M,160,W-M*2,460,20,C.surface);
+  rr(ctx,M,160,8,460,4,C.blue);
+
+  pill(ctx,'03 / META ADS DASHBOARD',M+50,220,C.blueBg,C.blue,24);
+  ctx.font = '800 56px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.textAlign = 'left';
+  ctx.fillText('10 campaigns,', M+28, 340);
+  ctx.fillText('one command center.', M+28, 406);
+  ctx.font = '400 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('ROAS · CTR · Spend · Age · Gender · Platform', M+28, 470);
+  ctx.font = '700 32px system-ui,sans-serif';
+  ctx.fillStyle = C.blue;
+  ctx.fillText('ROAS 4.2×  |  CTR 3.8%  |  ₹85K live tracked', M+28, 530);
+  ctx.font = '600 28px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Real-time · No spreadsheets · No guessing', M+28, 590);
+
+  // Feature block 4
+  rr(ctx,M,660,W-M*2,460,20,C.surface);
+  rr(ctx,M,660,8,460,4,C.gold);
+
+  pill(ctx,'04 / REAL-TIME ANALYTICS',M+50,720,'#130D02',C.gold,24);
+  ctx.font = '800 56px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.textAlign = 'left';
+  ctx.fillText('₹12L+ GMV.', M+28, 840);
+  ctx.fillText('Tracked live.', M+28, 906);
+  ctx.font = '400 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Orders · Returns · Revenue · Conversion rate', M+28, 970);
+  ctx.font = '700 32px system-ui,sans-serif';
+  ctx.fillStyle = C.gold;
+  ctx.fillText('500+ orders/day. Every rupee accounted for.', M+28, 1030);
+  ctx.font = '600 28px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Live scorecards · GMV trends · Leaderboard', M+28, 1090);
+
+  ctx.fillStyle = C.green; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle = C.white;
+  ctx.font = '700 34px system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('See it live  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  CAROUSEL 3 — LIVE IN 60 MINUTES
+// ─────────────────────────────────────────────
+function drawC3S1(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+
+  // Dark teal/blue bg tint
+  ctx.fillStyle = '#040D12'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.blue; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,1,3,C.blue);
+
+  // clock visual — simple circle
+  ctx.save();
+  ctx.strokeStyle = C.border; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(W/2, 520, 180, 0, Math.PI*2); ctx.stroke();
+  // clock hands — pointing to ~1:00 (60 min)
+  ctx.strokeStyle = C.blue; ctx.lineWidth = 8; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(W/2,520); ctx.lineTo(W/2,380); ctx.stroke(); // minute
+  ctx.strokeStyle = C.white; ctx.lineWidth = 5;
+  ctx.beginPath(); ctx.moveTo(W/2,520); ctx.lineTo(W/2+70,480); ctx.stroke(); // hour
+  ctx.fillStyle = C.blue; ctx.beginPath(); ctx.arc(W/2,520,12,0,Math.PI*2); ctx.fill();
+  // "60" text inside
+  ctx.font = 'italic 800 80px system-ui,sans-serif';
+  ctx.fillStyle = C.blue;
+  ctx.textAlign = 'center';
+  ctx.fillText('60', W/2, 540);
+  ctx.font = '600 28px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('MINUTES', W/2, 582);
+  ctx.restore();
+
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 110px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('UP AND', M, 820);
+  ctx.fillText('RUNNING.', M, 940);
+
+  ctx.font = '500 40px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.textAlign = 'left';
+  ctx.fillText('No dev team. No weeks of setup.', M, 1020);
+  ctx.fillText('Just your store — automated.', M, 1072);
+
+  ctx.font = '500 36px system-ui,sans-serif';
+  ctx.fillStyle = C.blue;
+  ctx.textAlign = 'right';
+  ctx.fillText('How it works →', W-M, 1200);
+
+  ctx.fillStyle = C.blue; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle = C.white;
+  ctx.font = '700 34px system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('antortiq.com  ·  Book your onboarding', W/2, H-90+56);
+}
+
+function drawC3S2(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#040D12'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.blue; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,2,3,C.blue);
+
+  // Step 1
+  rr(ctx,M,160,W-M*2,330,18,C.surface);
+  ctx.font = 'italic 900 72px system-ui,sans-serif';
+  ctx.fillStyle = C.blue;
+  ctx.textAlign = 'left';
+  ctx.fillText('01', M+30, 265);
+  ctx.font = '700 46px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('Connect your store', M+140, 242);
+  ctx.font = '400 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Shopify · WooCommerce · Custom', M+140, 292);
+  ctx.font = '700 28px system-ui,sans-serif';
+  ctx.fillStyle = C.blue;
+  ctx.fillText('→ Takes 4 minutes', M+140, 442);
+  // arrow connector
+  ctx.font = '300 48px system-ui,sans-serif';
+  ctx.fillStyle = C.dimmed; ctx.textAlign = 'center';
+  ctx.fillText('↓', W/2, 540);
+
+  // Step 2
+  rr(ctx,M,560,W-M*2,330,18,C.surface);
+  ctx.font = 'italic 900 72px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.textAlign = 'left';
+  ctx.fillText('02', M+30, 665);
+  ctx.font = '700 46px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('Configure your AI agent', M+140, 642);
+  ctx.font = '400 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('Tone · Language · Products · Policies', M+140, 692);
+  ctx.font = '700 28px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.fillText('→ Done in under 30 minutes', M+140, 842);
+  // arrow
+  ctx.font = '300 48px system-ui,sans-serif';
+  ctx.fillStyle = C.dimmed; ctx.textAlign = 'center';
+  ctx.fillText('↓', W/2, 940);
+
+  // Step 3 preview
+  rr(ctx,M,960,W-M*2,220,18,C.greenBg,null,null);
+  rr(ctx,M,960,W-M*2,220,18,null,C.green,1);
+  ctx.font = 'italic 900 72px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.textAlign = 'left';
+  ctx.fillText('03', M+30, 1065);
+  ctx.font = '700 46px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.fillText('Watch the results roll in', M+140, 1042);
+  ctx.font = '500 32px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText('(next slide →)', M+140, 1090);
+
+  ctx.fillStyle = C.blue; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle = C.white;
+  ctx.font = '700 34px system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Your team does zero manual work.', W/2, H-90+56);
+}
+
+function drawC3S3(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#040D12'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.green; ctx.fillRect(0,0,W,8);
+
+  logo(ctx, W/2, 98);
+  slideNum(ctx,3,3,C.greenBr);
+
+  pill(ctx,'STEP 03 — RESULTS',W/2,200,C.greenBg,C.greenBr,28);
+
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 96px system-ui,sans-serif';
+  ctx.fillStyle = C.white;
+  ctx.fillText('WATCH IT', M, 400);
+  ctx.font = 'italic 900 116px system-ui,sans-serif';
+  ctx.fillStyle = C.greenBr;
+  ctx.fillText('WORK.', M, 520);
+
+  hline(ctx,570,C.border,M,W-M);
+
+  const results = [
+    {v:'3×',desc:'More contacts captured',c:C.blue},
+    {v:'85%',desc:'Calls handled by AI',c:C.greenBr},
+    {v:'4.2×',desc:'Average ROAS on Meta Ads',c:C.red},
+    {v:'₹12L+',desc:'GMV tracked per store/month',c:C.gold},
+    {v:'<60min',desc:'From signup to fully live',c:C.blue},
+  ];
+  results.forEach((r,i)=>{
+    const ry = 640 + i*120;
+    hline(ctx,ry-20,C.border,M,W-M);
+    ctx.font = 'italic 800 56px system-ui,sans-serif';
+    ctx.fillStyle = r.c;
+    ctx.textAlign = 'left';
+    ctx.fillText(r.v, M, ry+50);
+    ctx.font = '500 36px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.textAlign = 'right';
+    ctx.fillText(r.desc, W-M, ry+50);
+  });
+
+  // Strong CTA
+  ctx.fillStyle = C.greenBr; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle = '#000';
+  ctx.font = '800 36px system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Start free  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  DRAW ALL
+// ─────────────────────────────────────────────
+const cards = [
+  ['sp1',drawSP1],['sp2',drawSP2],['sp3',drawSP3],
+  ['sp4',drawSP4],['sp5',drawSP5],['sp6',drawSP6],
+  ['c1s1',drawC1S1],['c1s2',drawC1S2],['c1s3',drawC1S3],
+  ['c2s1',drawC2S1],['c2s2',drawC2S2],['c2s3',drawC2S3],
+  ['c3s1',drawC3S1],['c3s2',drawC3S2],['c3s3',drawC3S3],
+];
+
+function drawAll(){
+  cards.forEach(([id,fn])=>{
+    const cv = g(id);
+    if(!cv){ console.warn('canvas not found:', id); return; }
+    try{ fn(cv); }
+    catch(e){ console.error('draw error on', id, e); }
+  });
+}
+
+// ─────────────────────────────────────────────
+//  DOWNLOAD
+// ─────────────────────────────────────────────
+function dl(id, name){
+  const cv = g(id);
+  if(!cv) return;
+  const a = document.createElement('a');
+  a.download = (name||id)+'.png';
+  a.href = cv.toDataURL('image/png', 1.0);
+  a.click();
+}
+
+function downloadAll(){
+  cards.forEach(([id],i)=>{
+    setTimeout(()=>dl(id,'antortiq-'+id), i*180);
+  });
+}
+
+// Robust init — works whether load fired already or not
+if(document.readyState === 'complete' || document.readyState === 'interactive'){
+  requestAnimationFrame(drawAll);
+} else {
+  document.addEventListener('DOMContentLoaded', ()=>requestAnimationFrame(drawAll));
+  window.addEventListener('load', drawAll);
+}
+</script>

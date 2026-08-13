@@ -349,21 +349,30 @@ function generateVendors() {
 // ── Brain insights ────────────────────────────────────────────────────────────
 function generateBrain() {
   return [
-    { id:1,  type:'warning',     priority:'high',   section:'orders',    title:'High RTO in 3 cities',                    body:'73% of RTO orders come from Lucknow, Patna, and Agra. Consider COD restrictions for these pincodes.',              metric:'RTO Rate',         change:'+12%' },
-    { id:2,  type:'opportunity', priority:'high',   section:'inventory', title:'CDC Varsity Jacket — restock alert',        body:'CDC Varsity Jacket has 0 units in stock but 34 active wishlists. Restocking 50 units = ₹1.5L+ opportunity.',      metric:'Wishlist Demand',  change:'34 wishlists' },
-    { id:3,  type:'trend',       priority:'medium', section:'orders',    title:'Avg dispatch time improved',                body:'Avg dispatch time dropped from 3.8 days → 2.1 days this month. Top performers: Delhi Stitch House, Tiruppur Knits.', metric:'Dispatch Speed',   change:'-44%' },
-    { id:4,  type:'opportunity', priority:'high',   section:'customers', title:'Repeat customer rate at 18%',               body:'91 customers ordered 2+ times. Remarketing campaigns targeting these buyers can drive 30% revenue uplift.',         metric:'Repeat Rate',      change:'18%' },
-    { id:5,  type:'warning',     priority:'medium', section:'vendors',   title:'3 vendors exceeding 12% RTO',               body:'Kanpur Textile House (14%), Indore Print Lab (13%) and Nagpur Craft Co. (12.8%) need performance reviews.',          metric:'Vendor RTO',       change:'Above threshold' },
-    { id:6,  type:'trend',       priority:'low',    section:'revenue',   title:'Prepaid orders up 8% this month',           body:'Prepaid orders grew from 22% to 30% of total. Lower RTO risk and faster settlement improve cash flow.',              metric:'Prepaid Share',    change:'+8%' },
-    { id:7,  type:'action',      priority:'high',   section:'orders',    title:'12 orders stuck in "Ready" for 4+ days',    body:'12 orders flagged as "Ready to Ship" have not moved in 4+ days. Vendor follow-up needed immediately.',                metric:'Stuck Orders',     change:'4 days' },
-    { id:8,  type:'opportunity', priority:'medium', section:'revenue',   title:'Weekend orders 40% higher',                 body:'Saturday-Sunday order volume is 40% above weekday average. Running weekend flash sales can push this further.',       metric:'Weekend Lift',     change:'+40%' },
-    { id:9,  type:'trend',       priority:'low',    section:'orders',    title:'Mumbai & Delhi = 48% of orders',            body:'Mumbai (27%) and Delhi (21%) together account for nearly half of all orders. Strong metro concentration.',            metric:'City Concentration',change:'48%' },
-    { id:10, type:'action',      priority:'medium', section:'vendors',   title:'Settlement pending for 6 vendors (>21 days)',body:'6 vendor settlements are overdue beyond 21 days. Release payments to maintain vendor trust and dispatch priority.',  metric:'Overdue Payouts',  change:'6 vendors' },
-    { id:11, type:'warning',     priority:'high',   section:'orders',    title:'COD cancellation rate: 9.2%',               body:'9.2% of COD orders are cancelled before dispatch. Address verification and IVR confirmation can halve this.',         metric:'COD Cancellations',change:'9.2%' },
-    { id:12, type:'opportunity', priority:'medium', section:'inventory', title:'CDC Cap is top gifting SKU',                 body:'CDC Cap has 3.1x ATC-to-purchase ratio during evenings. Promoted as a gift item, it can be a ₹40K/month add-on.',    metric:'ATC Ratio',        change:'3.1x' },
-    { id:13, type:'trend',       priority:'low',    section:'revenue',   title:'AOV growth of ₹180 vs last quarter',        body:'Average order value grew from ₹2,210 to ₹2,390 in 3 months. Bundle promotions are working — continue the push.',     metric:'AOV',              change:'+₹180' },
-    { id:14, type:'action',      priority:'low',    section:'customers', title:'74 customers not re-engaged in 90 days',    body:'74 customers who bought once have not returned in 90 days. A 10% off win-back email could recover 20+ orders.',       metric:'Lapsed Customers', change:'74' },
-    { id:15, type:'opportunity', priority:'high',   section:'revenue',   title:'Crep Dog Hoodie — launch restock campaign', body:'Hoodie sold out in 12 days after last restock. Pre-launch campaign with waitlist can generate ₹2L in day-1 revenue.',  metric:'Velocity',         change:'12-day sellout' },
+    // ── Orders & RTO ──────────────────────────────────────────────────────────
+    { id:1,  type:'warning',     priority:'high',   section:'orders',    title:'Assam, Bihar & AP = 40% of total RTO orders',      body:'Assam (18%), Bihar (13%) and Andhra Pradesh (9%) together account for 40% of all RTO. These are high-risk COD zones. Recommend enabling mandatory prepaid-only or delivery confirmation IVR for these states.',    metric:'RTO Concentration', change:'3 states · 40% RTO' },
+    { id:2,  type:'action',      priority:'high',   section:'orders',    title:'12 orders stuck in Ready-to-Ship for 4+ days',     body:'12 orders have been in "Ready to Ship" for over 4 days without dispatch. Vendors: Kanpur Textile House (4 orders), Indore Print Lab (5 orders), Nagpur Craft Co. (3 orders). Immediate follow-up required — penalty clock is running.',  metric:'Stuck Orders',      change:'4+ days' },
+    { id:3,  type:'warning',     priority:'high',   section:'orders',    title:'COD cancellation rate at 9.2% — above safe zone',  body:'9.2% of all COD orders are cancelled before dispatch. Leading reason: "customer unreachable" (54%), "changed mind" (31%). Address IVR confirmation before dispatch to halve this rate and recover ~₹42K/month.',          metric:'COD Cancellations', change:'9.2%' },
+    { id:4,  type:'trend',       priority:'medium', section:'orders',    title:'Avg dispatch time dropped from 3.8d → 2.1d',       body:'Average vendor dispatch time improved by 44% this month. Top contributors: Delhi Stitch House (1.2 day avg), Tiruppur Knits Co. (1.4 day avg). Maintain pressure on laggards — Kanpur Textile still at 4.8 days.',             metric:'Dispatch Speed',    change:'-44%' },
+
+    // ── Inventory & Ads Catalog ───────────────────────────────────────────────
+    { id:5,  type:'warning',     priority:'high',   section:'inventory', title:'CDC Cargo Pants live in ads — only XL left, 15 days', body:'CDC Cargo Pants has been running in your active Meta catalog for 15 days but only XL size remains in stock. You are spending ad budget driving traffic to a near-OOS product. Pause this SKU from the catalog immediately or restock within 48 hours.',  metric:'Catalog Waste',     change:'15 days · XL only' },
+    { id:6,  type:'opportunity', priority:'high',   section:'inventory', title:'CDC Varsity Jacket — 34 wishlists, 0 stock',         body:'CDC Varsity Jacket has 0 units available but 34 customers have it wishlisted. At ₹4,499 MRP, a 50-unit restock triggers ₹2.25L in addressable demand on day 1. Set up a pre-order or waitlist campaign now.',                               metric:'Restock Opportunity',change:'₹2.25L day-1' },
+    { id:7,  type:'opportunity', priority:'high',   section:'inventory', title:'CDC Cap — 3.1x ATC ratio, ideal gift bundle target', body:'CDC Cap shows a 3.1x Add-to-Cart ratio during evening hours (6 PM–10 PM). This is a gifting behaviour signal. Bundling Cap + Tee at ₹1,799 or running a "Gift a Crep Dog" campaign can unlock ₹40K–60K incremental monthly revenue.',    metric:'Gift Potential',    change:'3.1x ATC' },
+
+    // ── Pixel & Scalability ───────────────────────────────────────────────────
+    { id:8,  type:'opportunity', priority:'high',   section:'revenue',   title:'Crep Dog Jersey: 35% view-to-checkout — scale now', body:'Crep Dog Jersey is showing a 35% view-to-checkout conversion rate, which is 2.8x above platform average (12.4%). This is a strong signal of product-market fit. Increase ad spend on this SKU by 2x and test a reels-first creative approach.',  metric:'View→Checkout',     change:'35% · 2.8x avg' },
+    { id:9,  type:'opportunity', priority:'medium', section:'revenue',   title:'Crep Dog Hoodie — 12-day sellout, restock campaign', body:'Hoodie sold out in 12 days after last restock. Historical repeat purchase rate for this SKU is 24%. A pre-launch waitlist email to 187 past buyers + ₹10K Meta spend on interest retargeting can generate ₹2L+ in revenue within 24h of restock.',  metric:'Sellout Velocity',  change:'12-day sellout' },
+    { id:10, type:'trend',       priority:'medium', section:'revenue',   title:'Weekend orders 40% above weekday baseline',         body:'Saturday and Sunday consistently generate 40% more orders than weekdays. Your current ad scheduling runs flat 7-day. Shifting 30% of weekly budget to Fri 8PM–Sun 10PM could yield ₹18K–25K additional revenue per month at same spend.',           metric:'Weekend Lift',      change:'+40% on Sat–Sun' },
+
+    // ── Customers & Retention ─────────────────────────────────────────────────
+    { id:11, type:'action',      priority:'medium', section:'customers', title:'74 customers gone cold — win-back window closing',  body:'74 customers placed exactly one order 90+ days ago and have not returned. Their average first-order value was ₹2,610. A personalised "We miss you" WhatsApp with 10% off expires in 7 days can recover 18–22 orders (~₹47K) based on cohort benchmarks.',  metric:'Lapsed Buyers',     change:'74 customers · 90d' },
+    { id:12, type:'trend',       priority:'low',    section:'customers', title:'Repeat customer rate: 18% — strong for D2C',        body:'91 customers ordered twice or more. 18% repeat rate is above the Indian D2C apparel benchmark of 12%. Key retention driver: customers who bought CDC OG Tee reorder at 3x the rate. Leverage this as a gateway SKU in new customer campaigns.',       metric:'Repeat Rate',       change:'18% vs 12% benchmark' },
+
+    // ── Vendors & Finance ─────────────────────────────────────────────────────
+    { id:13, type:'warning',     priority:'medium', section:'vendors',   title:'3 vendors above 12% RTO — review scorecards',      body:'Kanpur Textile House (14.3%), Indore Print Lab (13.1%) and Nagpur Craft Co. (12.8%) breach the 12% RTO threshold. Combined they handle 187 orders/month. Issue formal performance warnings and reduce order allocation by 30% until the next review cycle.',  metric:'Vendor RTO',        change:'3 vendors · 12%+ RTO' },
+    { id:14, type:'action',      priority:'medium', section:'vendors',   title:'6 vendor settlements overdue beyond 21 days',       body:'Vendors: Surat Weave Works, Ahmedabad Apparel Co., Coimbatore Loom Works, Kanpur Textile House, Vadodara Stitch Co. and Kochi Coastal Wear are past the 21-day settlement SLA. Delayed payouts risk vendor disengagement and slower dispatches heading into peak season.',  metric:'Overdue Payouts',   change:'6 vendors · 21d+' },
+    { id:15, type:'trend',       priority:'low',    section:'revenue',   title:'Prepaid share grew from 22% → 30% this month',      body:'Prepaid order share rose 8 points driven by Instagram Reels campaigns targeting 18–24 male segment. Prepaid orders have 0% RTO vs 11.2% for COD. Every 1% shift to prepaid saves ~₹12K/month in RTO losses and improves settlement speed by 4 days.',   metric:'Prepaid Shift',     change:'+8 points' },
   ];
 }
 
@@ -513,6 +522,148 @@ function generateSupport() {
   ];
 }
 
+// ── Cross-tool operational findings (shown on dashboard Quick Findings panel) ──
+function generateFindings() {
+  return [
+    // WhatsApp Bot
+    {
+      id: 'wa-001',
+      tool: 'WhatsApp Bot',
+      toolIcon: '💬',
+      severity: 'critical',
+      category: 'customer_escalation',
+      title: 'Harsh (Order #2678) — 3 days unresolved exchange request',
+      body: 'Customer Harsh has messaged the bot 7 times over 3 days regarding an exchange for the CDC Cargo Pants (size M → L). Bot marked it resolved after first message but issue was never actioned. Customer is now asking for a refund. Requires manual intervention today.',
+      action: 'Open chat → Escalate to team',
+      timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'wa-002',
+      tool: 'WhatsApp Bot',
+      toolIcon: '💬',
+      severity: 'warning',
+      category: 'delivery_escalation',
+      title: '6 customers reporting "delivered but not received" in past 48h',
+      body: '6 orders marked delivered by courier (Delhivery, Ekart) but customers deny receipt. All 6 are from UP and Bihar — possible courier scan fraud zone. Bot is auto-closing these with a "contact courier" response. Needs manual follow-up and courier escalation raised.',
+      action: 'Review orders → Raise courier dispute',
+      timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'wa-003',
+      tool: 'WhatsApp Bot',
+      toolIcon: '💬',
+      severity: 'info',
+      category: 'pattern',
+      title: '"Size guide" is the #1 pre-purchase question (89 asks this week)',
+      body: '89 customers asked "what size should I pick?" before placing an order this week. Bot is falling back to a generic reply. Adding a size-recommendation flow with chest/height input could reduce size-related returns by an estimated 30% and improve CSAT from 3.6 → 4.2.',
+      action: 'Build size-quiz bot flow',
+      timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+    },
+    // RTO Intelligence
+    {
+      id: 'rto-001',
+      tool: 'RTO Intelligence',
+      toolIcon: '🔴',
+      severity: 'critical',
+      category: 'rto_pattern',
+      title: 'Assam, Bihar & AP — 40% of all RTO orders, 3 states',
+      body: 'Assam (18%), Bihar (13%), Andhra Pradesh (9%) are generating 40% of total RTO despite contributing only 14% of order volume. The RTO rate in these states is 31% vs 8.4% national average. All 3 are predominantly COD. Immediate action: add IVR confirmation before dispatch for these pincodes.',
+      action: 'Enable IVR for these states',
+      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'rto-002',
+      tool: 'RTO Intelligence',
+      toolIcon: '🔴',
+      severity: 'warning',
+      category: 'rto_pattern',
+      title: 'CDC Cargo Pants has 3.8x the average RTO rate',
+      body: 'CDC Cargo Pants (SKU: CDC-CP-001) has a 34% RTO rate vs 9% product average. Root cause analysis: 72% of RTOs cite "size not fitting" — returns after delivery. Recommend adding size advisory in post-order WA message specifically for this SKU to reduce returns.',
+      action: 'Add size advisory for SKU CDC-CP-001',
+      timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'rto-003',
+      tool: 'RTO Intelligence',
+      toolIcon: '🔴',
+      severity: 'info',
+      category: 'rto_trend',
+      title: 'Orders placed on Sunday have 1.9x higher RTO than Mon–Fri',
+      body: 'RTO rate on Sunday-placed orders is 16.8% vs 8.7% weekday average. Hypothesis: impulse purchases late night (11PM–2AM) show lower delivery intent. Consider adding a 2-hour COD hold for late-night Sunday orders to verify intent before processing.',
+      action: 'Review Sunday night order rules',
+      timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(),
+    },
+    // Inventory & Ads Catalog
+    {
+      id: 'inv-001',
+      tool: 'Inventory & Ads',
+      toolIcon: '🧥',
+      severity: 'critical',
+      category: 'catalog_waste',
+      title: 'CDC Cargo Pants live in Meta catalog — only XL left, 15 days wasted spend',
+      body: 'CDC Cargo Pants has been running in the active Meta product catalog for 15 days. Only XL size remains in stock (3 units). You are spending ₹840/day driving traffic to a near-stockout product. Remove from catalog immediately. Estimated wasted spend: ₹12,600. Restock M/L within 5 days to re-activate.',
+      action: 'Remove SKU from Meta catalog now',
+      timestamp: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'inv-002',
+      tool: 'Inventory & Ads',
+      toolIcon: '🧥',
+      severity: 'warning',
+      category: 'restock_opportunity',
+      title: 'CDC Varsity Jacket — 34 wishlists, 0 stock, losing ₹2L+ demand daily',
+      body: 'CDC Varsity Jacket has been out of stock for 9 days. 34 customers have it wishlisted. At ₹4,499 ASP with a typical 60% wishlist-to-purchase conversion, a 50-unit restock could generate ₹91K in immediate revenue. Set up a pre-order with 10-day delivery promise to capture demand now.',
+      action: 'Set up pre-order + notify waitlist',
+      timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'inv-003',
+      tool: 'Inventory & Ads',
+      toolIcon: '🧥',
+      severity: 'info',
+      category: 'bundle_opportunity',
+      title: 'CDC Cap ATC spikes 3.1x on evenings — ideal gift bundle product',
+      body: 'CDC Cap add-to-cart rate surges 3.1x between 6PM and 10PM, especially Saturday evenings. Purchase-alone rate is low (22%) but bundle purchase rate (Cap + Tee) is 61%. Suggests gifting behaviour. A "Gift a Crep Dog" bundle at ₹1,799 (Cap + CDC OG Tee) could unlock ₹40K–60K monthly.',
+      action: 'Create gift bundle in Shopify',
+      timestamp: new Date(Date.now() - 7 * 60 * 60 * 1000).toISOString(),
+    },
+    // Pixel Tracker
+    {
+      id: 'pix-001',
+      tool: 'Pixel Tracker',
+      toolIcon: '📊',
+      severity: 'critical',
+      category: 'scale_signal',
+      title: 'Crep Dog Jersey — 35% view-to-checkout, scale ad spend now',
+      body: 'Crep Dog Jersey (SKU: CDC-JY-003) has a 35% view-to-checkout conversion rate — 2.8x the store average of 12.4%. This is a strong product-market fit signal. Current daily ad spend: ₹600. Recommended: scale to ₹1,500/day, test Reels-first creatives with sizing CTA, and add to the hero catalog slot.',
+      action: 'Scale spend → Reels creative test',
+      timestamp: new Date(Date.now() - 1.5 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'pix-002',
+      tool: 'Pixel Tracker',
+      toolIcon: '📊',
+      severity: 'warning',
+      category: 'drop_off',
+      title: 'CDC Bomber Jacket — 71% cart-to-checkout drop-off, price objection',
+      body: 'CDC Bomber Jacket has the highest cart abandon rate in the catalog at 71% (store avg: 38%). Heatmap replay shows users exiting at the price reveal (₹5,999). A limited-time ₹200 off or 0% EMI option on this SKU could recover 25–30% of abandoned carts, estimated ₹28K/month.',
+      action: 'Add EMI option or ₹200 discount',
+      timestamp: new Date(Date.now() - 3.5 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: 'pix-003',
+      tool: 'Pixel Tracker',
+      toolIcon: '📊',
+      severity: 'info',
+      category: 'traffic_insight',
+      title: 'Instagram → 68% of all traffic, but only 29% conversion share',
+      body: 'Instagram drives 68% of sessions but only 29% of purchases. Facebook drives 12% of sessions but 41% of purchases — 3.4x more efficient per session. Consider shifting 15% of Instagram budget to Facebook retargeting, especially for the 25–34 male demographic where CDC performs strongest.',
+      action: 'Rebalance Meta budget split',
+      timestamp: new Date(Date.now() - 9 * 60 * 60 * 1000).toISOString(),
+    },
+  ];
+}
+
 // ── Seed ──────────────────────────────────────────────────────────────────────
 async function seed() {
   const uri = process.env.MONGODB_URI || process.env.MONGO_URI;
@@ -537,6 +688,7 @@ async function seed() {
     meta:       generateMeta(),
     settlements:generateSettlements(vendors),
     support:    generateSupport(),
+    findings:   generateFindings(),
     stats: {
       period_revenue: orders.reduce((s, o) => s + o.orderValue, 0),
       orders: orders.length,

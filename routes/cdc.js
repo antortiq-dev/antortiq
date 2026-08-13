@@ -193,4 +193,14 @@ router.get('/meta', async (req, res) => {
   }
 });
 
+// Quick findings — cross-tool operational alerts shown on dashboard
+router.get('/findings', async (req, res) => {
+  try {
+    const doc = await getCdcData();
+    res.json({ findings: doc ? doc.findings : [] });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 module.exports = router;

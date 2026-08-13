@@ -39,6 +39,9 @@ app.post('/api/demo-login', async (req, res) => {
 });
 
 connect().then(() => {
-  require('./scheduler');
+  try { require('./scheduler'); } catch(e) { console.warn('Scheduler failed to load:', e.message); }
   app.listen(PORT, () => console.log(`Antortiq web app running on port ${PORT}`));
-}).catch(err => { console.error('DB connection failed:', err); process.exit(1); });
+}).catch(err => {
+  console.warn('DB connection failed — starting without DB:', err.message);
+  app.listen(PORT, () => console.log(`Antortiq web app running on port ${PORT} (no DB)`));
+});

@@ -1004,6 +1004,11 @@
           return _fetch('/api/cdc/brain').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
         }
 
+        // Quick findings
+        if (urlStr.includes('/admin/findings')) {
+          return _fetch('/api/cdc/findings').then(function(r) { return r.json(); }).then(function(d) { return jsonResp(d); });
+        }
+
         // All other /admin/* calls — safe empty so UI doesn't crash
         return safeEmpty();
       }
@@ -3317,6 +3322,13 @@
     const [timings,   setTimings]   = useState(()=> dashCache?.current?.timings || null);
     const [tLoading,  setTLoading]  = useState(()=> !dashCache?.current?.timings);
     const [scorecard, setScorecard] = useState(()=> dashCache?.current?.scorecard || null);
+    const [findings, setFindings]   = useState(null);
+    const [findingsFilter, setFindingsFilter] = useState('all');
+
+    useEffect(()=>{
+      fetch(`${API}/admin/findings`,{headers:{Authorization:`Bearer ${token}`}})
+        .then(r=>r.json()).then(d=>setFindings(d.findings||[])).catch(()=>setFindings([]));
+    },[token]);
 
     useEffect(()=>{
       const key = aPeriod?.label || 'all';
@@ -3634,6 +3646,62 @@
                   </tbody>
                 </table>
               </div>
+            </div>
+          );
+        })()}
+
+        {/* ══ ROW LAST: Quick Findings ══ */}
+        {(()=>{
+          const SEVERITY_META = { critical:{label:'Critical',color:'#ef4444',bg:'rgba(239,68,68,0.08)',dot:'#ef4444'}, warning:{label:'Warning',color:'#f59e0b',bg:'rgba(245,158,11,0.08)',dot:'#f59e0b'}, info:{label:'Insight',color:'#60a5fa',bg:'rgba(96,165,250,0.08)',dot:'#60a5fa'} };
+          const TOOL_FILTERS = ['all','WhatsApp Bot','RTO Intelligence','Inventory & Ads','Pixel Tracker'];
+          const ff = findings ? (findingsFilter==='all' ? findings : findings.filter(f=>f.tool===findingsFilter)) : null;
+          const critCount = findings ? findings.filter(f=>f.severity==='critical').length : 0;
+          return (
+            <div style={{background:'var(--bg-card)',border:'1px solid var(--border)',borderRadius:10,padding:'18px 20px',marginBottom:10}}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:14,gap:8,flexWrap:'wrap'}}>
+                <div style={{display:'flex',alignItems:'center',gap:10}}>
+                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:'var(--text)'}}>⚡ QUICK FINDINGS</div>
+                  {critCount>0 && <div style={{background:'rgba(239,68,68,0.15)',color:'#ef4444',borderRadius:99,fontSize:9,fontWeight:700,padding:'2px 8px',letterSpacing:1}}>{critCount} CRITICAL</div>}
+                </div>
+                <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
+                  {TOOL_FILTERS.map(tf=>(
+                    <button key={tf} onClick={()=>setFindingsFilter(tf)} style={{background:findingsFilter===tf?'var(--indigo)':'var(--bg-hover)',color:findingsFilter===tf?'#fff':'var(--text-dim)',border:'1px solid var(--border)',borderRadius:6,fontSize:9,padding:'4px 10px',cursor:'pointer',letterSpacing:0.5,fontWeight:600,whiteSpace:'nowrap'}}>
+                      {tf==='all'?'ALL TOOLS':tf.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {!ff ? (
+                <div style={{textAlign:'center',color:'var(--text-muted)',fontSize:11,padding:'20px 0'}}>Loading findings…</div>
+              ) : ff.length===0 ? (
+                <div style={{textAlign:'center',color:'var(--text-muted)',fontSize:11,padding:'20px 0'}}>No findings for this filter.</div>
+              ) : (
+                <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(320px,1fr))',gap:8}}>
+                  {ff.map(f=>{
+                    const sm = SEVERITY_META[f.severity] || SEVERITY_META.info;
+                    const age = f.timestamp ? (()=>{
+                      const diff = Date.now()-new Date(f.timestamp).getTime();
+                      const h = Math.floor(diff/3600000);
+                      return h<1?'just now':h<24?`${h}h ago`:`${Math.floor(h/24)}d ago`;
+                    })() : '';
+                    return (
+                      <div key={f.id} style={{background:sm.bg,border:`1px solid ${sm.color}25`,borderLeft:`3px solid ${sm.color}`,borderRadius:8,padding:'12px 14px',display:'flex',flexDirection:'column',gap:6}}>
+                        <div style={{display:'flex',alignItems:'center',gap:6,justifyContent:'space-between'}}>
+                          <div style={{display:'flex',alignItems:'center',gap:6}}>
+                            <span style={{fontSize:13}}>{f.toolIcon}</span>
+                            <span style={{fontSize:8,letterSpacing:1.5,fontWeight:700,color:sm.color,textTransform:'uppercase'}}>{f.tool}</span>
+                            <span style={{fontSize:8,background:`${sm.color}20`,color:sm.color,borderRadius:99,padding:'1px 6px',fontWeight:700,textTransform:'uppercase'}}>{sm.label}</span>
+                          </div>
+                          <span style={{fontSize:9,color:'var(--text-muted)',flexShrink:0}}>{age}</span>
+                        </div>
+                        <div style={{fontSize:11,fontWeight:700,color:'var(--text)',lineHeight:1.35}}>{f.title}</div>
+                        <div style={{fontSize:10,color:'var(--text-dim)',lineHeight:1.5}}>{f.body}</div>
+                        {f.action && <div style={{fontSize:9,color:sm.color,fontWeight:700,letterSpacing:0.5,borderTop:`1px solid ${sm.color}20`,paddingTop:6,marginTop:2}}>→ {f.action}</div>}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           );
         })()}
@@ -13043,7 +13111,7 @@
       localStorage.setItem('admin_theme', theme);
     },[theme]);
 
-    const [brand, setBrand] = useState({ accent_color:'', logo_url:'', vendor_logo_url:'', icon_style:'emoji', font_style:'mono' });
+    const [brand, setBrand] = useState({ accent_color:'', logo_url:'', vendor_logo_url:'', icon_style:'emoji', font_style:'round' });
     const iconStyle = brand.icon_style || 'emoji';
     useEffect(()=>{
       fetch(`${API}/admin/branding`,{headers:{Authorization:`Bearer ${token}`}})
