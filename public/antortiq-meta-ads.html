@@ -88,6 +88,46 @@ canvas{width:100%;height:auto;display:block}
     </div>
   </div>
 
+  <!-- ── NEW UI MOCKUP SINGLES ── -->
+  <div class="section">
+    <div class="section-hd">
+      <span class="section-name">UI Showcase Posts</span>
+      <span class="section-meta">6 cards · real product screens</span>
+    </div>
+    <div class="grid-3">
+      <div class="cw"><canvas id="sp7" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp7','antortiq-dashboard')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp8" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp8','antortiq-order-confirm')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp9" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp9','antortiq-pixel')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp10" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp10','antortiq-exchange')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp11" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp11','antortiq-ai-agent')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp12" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp12','antortiq-brands')">↓ PNG</button></div></div>
+    </div>
+  </div>
+
+  <!-- ── NEW UI CAROUSELS ── -->
+  <div class="section">
+    <div class="section-hd">
+      <span class="section-name">UI Carousels</span>
+      <span class="section-meta">2 sets · product demo style</span>
+    </div>
+    <div class="carousel-group">
+      <div class="c-label" style="--dot:#fff"><span style="background:#fff"></span>Carousel 4 — Order Journey</div>
+      <div class="c-slides">
+        <div><div class="cw"><canvas id="c4s1" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c4s1','c4-slide1')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 1 / 3</div></div>
+        <div><div class="cw"><canvas id="c4s2" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c4s2','c4-slide2')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 2 / 3</div></div>
+        <div><div class="cw"><canvas id="c4s3" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c4s3','c4-slide3')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 3 / 3</div></div>
+      </div>
+    </div>
+    <div class="carousel-group">
+      <div class="c-label c2"><span></span>Carousel 5 — Feature UI Showcase</div>
+      <div class="c-slides">
+        <div><div class="cw"><canvas id="c5s1" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c5s1','c5-slide1')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 1 / 3</div></div>
+        <div><div class="cw"><canvas id="c5s2" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c5s2','c5-slide2')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 2 / 3</div></div>
+        <div><div class="cw"><canvas id="c5s3" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('c5s3','c5-slide3')">↓ PNG</button></div></div><div class="c-slide-num">SLIDE 3 / 3</div></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── CAROUSELS ── -->
   <div class="section">
     <div class="section-hd">
@@ -226,8 +266,8 @@ function hline(ctx, y, color, xl, xr){
   ctx.strokeStyle = color||C.border;
   ctx.lineWidth=1;
   ctx.beginPath();
-  ctx.moveTo(xl??0, y);
-  ctx.lineTo(xr??W, y);
+  ctx.moveTo(xl!==undefined?xl:0, y);
+  ctx.lineTo(xr!==undefined?xr:W, y);
   ctx.stroke();
 }
 
@@ -597,7 +637,7 @@ function drawSP5(cv){
   ctx.font = '600 34px system-ui,sans-serif';
   ctx.fillStyle = C.greenBr;
   ctx.textAlign = 'left';
-  ctx.fillText('Happy customers come back. Broken flows don't.', M, 1310);
+  ctx.fillText("Happy customers come back. Broken flows don't.", M, 1310);
 
   ctx.fillStyle = C.red; ctx.fillRect(0,H-8,W,8);
 }
@@ -1141,14 +1181,874 @@ function drawC3S3(cv){
 }
 
 // ─────────────────────────────────────────────
+//  UI MOCKUP HELPERS
+// ─────────────────────────────────────────────
+
+// draws a browser-style window chrome
+function browserWin(ctx, x, y, w, h, url, bg){
+  const cr = 16;
+  rr(ctx, x, y, w, h, cr, bg||'#1a1a1a');
+  // title bar
+  rr(ctx, x, y, w, 44, cr, '#111111');
+  // bottom corners override to make titlebar flat at bottom
+  ctx.fillStyle = '#111111';
+  ctx.fillRect(x, y+28, w, 16);
+  // dots
+  const dots = ['#E63946','#F59E0B','#22C55E'];
+  dots.forEach((d,i)=>{ ctx.beginPath(); ctx.arc(x+18+i*20,y+22,6,0,Math.PI*2); ctx.fillStyle=d; ctx.fill(); });
+  // url bar
+  rr(ctx, x+72, y+10, w-90, 24, 6, '#252525');
+  ctx.font = '500 14px system-ui,sans-serif';
+  ctx.fillStyle = '#666';
+  ctx.textAlign = 'left';
+  ctx.fillText(url||'antortiq.com', x+82, y+27);
+}
+
+// draws a mobile notification card
+function notifCard(ctx, x, y, w, h, bg){
+  rr(ctx, x, y, w, h, 20, bg||'#ffffff');
+  // subtle shadow simulation via border
+  rr(ctx, x, y, w, h, 20, null, 'rgba(0,0,0,0.08)', 1);
+}
+
+// metric pill
+function metricPill(ctx, x, y, val, label, valColor, bg){
+  rr(ctx, x, y, 220, 110, 16, bg||'#111');
+  ctx.font = 'italic 800 52px system-ui,sans-serif';
+  ctx.fillStyle = valColor||C.white;
+  ctx.textAlign = 'left';
+  ctx.fillText(val, x+18, y+66);
+  ctx.font = '500 22px system-ui,sans-serif';
+  ctx.fillStyle = C.muted;
+  ctx.fillText(label, x+18, y+92);
+}
+
+// timeline dots row
+function timeline(ctx, y, steps, activeIdx){
+  const total = steps.length;
+  const startX = M;
+  const endX = W - M;
+  const step = (endX - startX) / (total - 1);
+  // line
+  ctx.strokeStyle = '#222'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(startX, y); ctx.lineTo(endX, y); ctx.stroke();
+  // active line
+  ctx.strokeStyle = C.red; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(startX, y); ctx.lineTo(startX + step * activeIdx, y); ctx.stroke();
+  steps.forEach((s, i) => {
+    const cx2 = startX + step * i;
+    const active = i <= activeIdx;
+    ctx.beginPath(); ctx.arc(cx2, y, 16, 0, Math.PI * 2);
+    ctx.fillStyle = active ? C.red : '#1e1e1e'; ctx.fill();
+    ctx.strokeStyle = active ? C.red : '#333'; ctx.lineWidth = 2; ctx.stroke();
+    if(active){ ctx.fillStyle = '#fff'; ctx.font = '700 18px system-ui,sans-serif'; ctx.textAlign='center'; ctx.fillText('✓', cx2, y+6); }
+    ctx.font = '600 26px system-ui,sans-serif';
+    ctx.fillStyle = active ? C.text : C.muted;
+    ctx.textAlign = 'center';
+    ctx.fillText(s, cx2, y + 48);
+    ctx.font = '500 20px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.fillText('0'+(i+1), cx2, y + 74);
+  });
+}
+
+// draws an order card mockup
+function orderCard(ctx, x, y, w, h, status, ordNum, product, price, sub){
+  rr(ctx, x, y, w, h, 18, '#0d0d0d');
+  rr(ctx, x, y, w, h, 18, null, '#222', 1);
+  // status badge
+  const sBg = status==='DELIVERED' ? '#061209' : status==='CONFIRMED' ? '#060E1A' : '#160406';
+  const sClr = status==='DELIVERED' ? C.greenBr : status==='CONFIRMED' ? C.blue : C.red;
+  pill(ctx, status, x+w/2, y+46, sBg, sClr, 20);
+  // order num + price row
+  ctx.font = '700 28px system-ui,sans-serif'; ctx.fillStyle = C.muted; ctx.textAlign='left';
+  ctx.fillText('ORDER', x+28, y+106);
+  ctx.font = '800 32px system-ui,sans-serif'; ctx.fillStyle = C.text;
+  ctx.fillText(ordNum, x+28, y+144);
+  ctx.font = '800 44px system-ui,sans-serif'; ctx.fillStyle = C.white; ctx.textAlign='right';
+  ctx.fillText(price, x+w-28, y+144);
+  // divider
+  hline(ctx, y+165, '#1e1e1e', x+20, x+w-20);
+  // product
+  rr(ctx, x+20, y+182, w-40, 68, 10, '#151515');
+  ctx.font = '600 24px system-ui,sans-serif'; ctx.fillStyle = C.muted; ctx.textAlign='left';
+  ctx.fillText('1 ITEM', x+38, y+208);
+  ctx.font = '700 28px system-ui,sans-serif'; ctx.fillStyle = C.text;
+  ctx.fillText(product, x+38, y+236);
+  // sub text
+  ctx.font = '500 24px system-ui,sans-serif'; ctx.fillStyle='#444';
+  ctx.fillText(sub||'', x+28, y+278);
+}
+
+// ─────────────────────────────────────────────
+//  SP7 — CDC Dashboard "Stop flying blind"
+// ─────────────────────────────────────────────
+function drawSP7(cv){
+  const ctx = cv.getContext('2d');
+  // split background
+  ctx.fillStyle = '#F5F5F0'; ctx.fillRect(0,0,W,H/2+60);
+  ctx.fillStyle = C.bg; ctx.fillRect(0,H/2+60,W,H/2-60);
+  // red top bar
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+
+  // headline — top half, dark text on light
+  ctx.textAlign = 'left';
+  ctx.font = 'italic 900 110px system-ui,sans-serif';
+  ctx.fillStyle = '#0a0a0a';
+  ctx.fillText('STOP', M, 160);
+  ctx.fillText('FLYING', M, 278);
+  ctx.font = 'italic 900 110px system-ui,sans-serif';
+  ctx.fillStyle = C.red;
+  ctx.fillText('BLIND.', M, 396);
+
+  ctx.font = '500 36px system-ui,sans-serif';
+  ctx.fillStyle = '#555';
+  ctx.fillText('Your store generates data 24/7.', M, 468);
+  ctx.fillText("You shouldn't need a spreadsheet to read it.", M, 514);
+
+  // browser window mockup — dashboard
+  browserWin(ctx, M-20, 560, W-M*2+40, 660, 'app.antortiq.com/dashboard', '#0f0f0f');
+
+  // inside dashboard: scorecard row
+  const metrics = [
+    {v:'₹12L',l:'GMV This Month',c:C.greenBr,bg:'#061209'},
+    {v:'500+',l:'Orders Today',c:C.blue,bg:C.blueBg},
+    {v:'3.2%',l:'Return Rate',c:C.gold,bg:'#130D02'},
+    {v:'4.2×',l:'Meta ROAS',c:C.red,bg:C.redBg},
+  ];
+  const mw = (W-M*2)/2 - 18;
+  metrics.forEach((m,i)=>{
+    const mx = M-20 + 16 + (i%2)*(mw+14);
+    const my = 620 + Math.floor(i/2)*130;
+    rr(ctx, mx, my, mw, 110, 12, m.bg);
+    ctx.font = 'italic 800 48px system-ui,sans-serif';
+    ctx.fillStyle = m.c; ctx.textAlign='left';
+    ctx.fillText(m.v, mx+16, my+66);
+    ctx.font = '500 22px system-ui,sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(m.l, mx+16, my+92);
+  });
+
+  // bar chart mini
+  const bars2 = [0.4,0.55,0.5,0.72,0.65,0.88,1.0];
+  const bw3=62, bh3=120, bsy=980, bsx=M;
+  bars2.forEach((v,i)=>{
+    const bx3=bsx+i*(bw3+12);
+    const bfh=bh3*v;
+    rr(ctx,bx3,bsy+(bh3-bfh),bw3,bfh,6,i===6?C.greenBr:C.surface);
+  });
+  ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='left';
+  ctx.fillText('7-day GMV trend', M, 1126);
+
+  // bottom CTA
+  ctx.fillStyle = C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('See your store live  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  SP8 — Order Confirmation Email mockup
+// ─────────────────────────────────────────────
+function drawSP8(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+  logo(ctx, W/2, 96);
+  pill(ctx,'ORDER NOTIFICATIONS',W/2,196,C.redBg,C.red,24);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('Your brand', M, 328);
+  ctx.fillText('deserves', M, 440);
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('better', M, 552);
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle=C.dimmed;
+  ctx.fillText('than plain text.', M, 664);
+
+  hline(ctx, 710, C.border, M, W-M);
+
+  // order confirmation card mockup
+  const cx3=M, cy3=740, cw3=W-M*2, ch3=480;
+  rr(ctx, cx3, cy3, cw3, ch3, 22, '#0d0d0d');
+  rr(ctx, cx3, cy3, cw3, ch3, 22, null, '#272727', 1);
+
+  // brand header bar inside card
+  ctx.fillStyle = C.red; ctx.fillRect(cx3, cy3, cw3, 8);
+  ctx.font='800 32px system-ui,sans-serif'; ctx.fillStyle=C.white; ctx.textAlign='center';
+  ctx.fillText('YOURBRAND', W/2, cy3+64);
+  ctx.font='500 24px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('#2339', W/2, cy3+98);
+
+  hline(ctx, cy3+118, '#1e1e1e', cx3+30, cx3+cw3-30);
+
+  // tracking dots
+  const tsteps=['Confirmed','Ready','Transit','Delivered'];
+  const tx0=cx3+60, txEnd=cx3+cw3-60, tspW=(txEnd-tx0)/3, tY=cy3+170;
+  ctx.strokeStyle='#333'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(tx0,tY); ctx.lineTo(txEnd,tY); ctx.stroke();
+  ctx.strokeStyle=C.red; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(tx0,tY); ctx.lineTo(tx0+tspW*2,tY); ctx.stroke();
+  tsteps.forEach((s,i)=>{
+    const tx2=tx0+tspW*i;
+    ctx.beginPath(); ctx.arc(tx2,tY,12,0,Math.PI*2);
+    ctx.fillStyle=i<=2?C.red:'#222'; ctx.fill();
+    ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=i<=2?C.text:C.muted; ctx.textAlign='center';
+    ctx.fillText(s,tx2,tY+36);
+  });
+
+  // order detail rows
+  const items=[['FOURMEN — 001 CORE','Qty 1 · Size L'],['Oversized T-Shirt','Qty 2 · Black']];
+  items.forEach((it,i)=>{
+    const iy=cy3+238+i*96;
+    rr(ctx,cx3+30,iy,cw3-60,80,10,'#141414');
+    // color swatch
+    rr(ctx,cx3+46,iy+18,44,44,6,'#2a2a2a',null,0);
+    ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.textAlign='left';
+    ctx.fillText(it[0],cx3+106,iy+38);
+    ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+    ctx.fillText(it[1],cx3+106,iy+64);
+    ctx.font='700 28px system-ui,sans-serif'; ctx.fillStyle=C.white; ctx.textAlign='right';
+    ctx.fillText('₹1,486',cx3+cw3-46,iy+44);
+  });
+
+  // bottom of card — antortiq branding
+  hline(ctx, cy3+ch3-60, '#1e1e1e', cx3+30, cx3+cw3-30);
+  ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle='#444'; ctx.textAlign='left';
+  ctx.fillText('Powered by', cx3+30, cy3+ch3-26);
+  ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('Antortiq', cx3+140, cy3+ch3-26);
+
+  ctx.fillStyle=C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Book a demo  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  SP9 — Pixel Tracker "Know who buys before they do"
+// ─────────────────────────────────────────────
+function drawSP9(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#030810'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.blue; ctx.fillRect(0,0,W,8);
+  logo(ctx, W/2, 96);
+  pill(ctx,'PIXEL TRACKER',W/2,196,C.blueBg,C.blue,24);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 108px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('KNOW WHO', M, 330);
+  ctx.fillText("BUYS.", M, 448);
+  ctx.font='italic 900 96px system-ui,sans-serif'; ctx.fillStyle='#223355';
+  ctx.fillText('BEFORE THEY', M, 560);
+  ctx.fillText('CLICK BUY.', M, 668);
+
+  hline(ctx, 720, '#0e1a2e', M, W-M);
+
+  // pixel tracker dashboard mockup
+  browserWin(ctx, M-16, 740, W-M*2+32, 460, 'app.antortiq.com/pixel', '#030810');
+
+  // top products table inside browser
+  const rows=[
+    {prod:'Fourmen 001 Core',views:2840,adds:412,orders:187,rev:'₹2.8L'},
+    {prod:'Oversized Tee — Black',views:1920,adds:308,orders:143,rev:'₹1.4L'},
+    {prod:'Cargo Pants — Olive',views:1540,adds:219,orders:98,rev:'₹1.1L'},
+  ];
+  const cols=['PRODUCT','VIEWS','ADD TO CART','ORDERS','REVENUE'];
+  const colX=[M,380,540,700,860];
+  ctx.font='600 20px system-ui,sans-serif'; ctx.fillStyle='#334'; ctx.textAlign='left';
+  cols.forEach((c2,i)=>{ ctx.textAlign=i>0?'right':'left'; ctx.fillText(c2, colX[i], 810); });
+  hline(ctx,822,'#0e1a2e',M,W-M);
+  rows.forEach((r,ri)=>{
+    const ry=858+ri*88;
+    rr(ctx, M-16, ry-36, W-M*2+32, 80, 0, ri%2===0?'#040c18':'transparent');
+    ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.textAlign='left';
+    ctx.fillText(r.prod, M, ry);
+    const vals=[r.views,r.adds,r.orders,r.rev];
+    vals.forEach((v,vi)=>{
+      ctx.textAlign='right';
+      ctx.font= vi===3?'800 28px system-ui,sans-serif':'600 26px system-ui,sans-serif';
+      ctx.fillStyle= vi===3?C.greenBr:C.muted;
+      ctx.fillText(v, colX[vi+1], ry);
+    });
+    ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle='#1e2e3e'; ctx.textAlign='left';
+    ctx.fillText(r.prod.split(' ')[0]+' · '+['68%','71%','63%'][ri]+' conversion', M, ry+30);
+  });
+
+  ctx.fillStyle=C.blue; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Install your pixel  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  SP10 — Exchange/Return flow
+// ─────────────────────────────────────────────
+function drawSP10(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#040d08'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.green; ctx.fillRect(0,0,W,8);
+  logo(ctx, W/2, 96);
+  pill(ctx,'RETURNS & EXCHANGE',W/2,196,C.greenBg,C.greenBr,24);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 96px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('HANDLE', M, 320);
+  ctx.fillText('RETURNS', M, 422);
+  ctx.font='italic 900 96px system-ui,sans-serif'; ctx.fillStyle=C.greenBr;
+  ctx.fillText('IN 3 TAPS.', M, 524);
+  ctx.font='italic 800 72px system-ui,sans-serif'; ctx.fillStyle='#1a3a22';
+  ctx.fillText('NOT 3 DAYS.', M, 616);
+
+  hline(ctx, 658, '#0d2016', M, W-M);
+
+  // two screen mockups side by side
+  const sw=(W-M*2-24)/2;
+
+  // screen 1 — exchange request
+  browserWin(ctx, M-8, 680, sw, 520, '/track/2339', '#0a0a0a');
+  // exchange options inside
+  rr(ctx, M, 734, (sw-20)/2-4, 84, 14, '#0d1a10');
+  ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center';
+  ctx.fillText('Exchange', M+(sw-20)/4, 774);
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Swap size', M+(sw-20)/4, 800);
+  rr(ctx, M+(sw-20)/2+8, 734, (sw-20)/2-4, 84, 14, '#0d0d14');
+  ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle=C.blue;
+  ctx.fillText('Return', M+(sw-20)*3/4+4, 774);
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Refund', M+(sw-20)*3/4+4, 800);
+  // exchange form
+  ctx.textAlign='left';
+  ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Exchange Request', M+8, 844);
+  rr(ctx, M, 854, sw-16, 52, 8, '#111');
+  ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle=C.text;
+  ctx.fillText('FOURMEN — 001 CORE', M+12, 880);
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Size S · Qty 1', M+12, 900);
+  // size selector
+  rr(ctx, M, 916, sw-16, 48, 8, '#141414', C.greenBr, 1);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.text;
+  ctx.fillText('Size — M', M+12, 946);
+  // fee button
+  rr(ctx, M, 974, sw-16, 60, 30, '#0d1a10', C.greenBr, 1);
+  ctx.font='600 24px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center';
+  ctx.fillText('₹199 Processing Fee', M+sw/2-8, 1010);
+  rr(ctx, M, 1044, sw-16, 64, 30, C.green);
+  ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('Pay & Submit Exchange', M+sw/2-8, 1083);
+
+  // screen 2 — status confirmed
+  browserWin(ctx, M+sw+32, 680, sw, 520, '/track/2339/status', '#0a0a0a');
+  ctx.textAlign='center';
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle=C.greenBr;
+  ctx.fillText('EXCHANGE APPROVED', M+sw+32+sw/2, 752);
+  rr(ctx, M+sw+52, 770, sw-40, 80, 14, '#061209');
+  ctx.font='700 28px system-ui,sans-serif'; ctx.fillStyle=C.greenBr;
+  ctx.fillText('✓ Exchange confirmed', M+sw+32+sw/2, 816);
+  // step list
+  const xsteps=['Request Received','AI Reviewed','Approved','Pickup Scheduled'];
+  xsteps.forEach((xs,i)=>{
+    const xsy=878+i*80;
+    ctx.beginPath(); ctx.arc(M+sw+52, xsy, 14, 0, Math.PI*2);
+    ctx.fillStyle=i<3?C.green:'#222'; ctx.fill();
+    ctx.font=i<3?'700 24px system-ui,sans-serif':'500 24px system-ui,sans-serif';
+    ctx.fillStyle=i<3?C.text:C.muted; ctx.textAlign='left';
+    ctx.fillText(xs, M+sw+76, xsy+8);
+  });
+
+  ctx.fillStyle=C.green; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Automate returns  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  SP11 — AI Agent call transcript
+// ─────────────────────────────────────────────
+function drawSP11(cv){
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+  logo(ctx, W/2, 96);
+  pill(ctx,'AI SALES AGENT · LIVE CALL',W/2,196,C.redBg,C.red,24);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 90px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('YOUR AI', M, 316);
+  ctx.fillText('ANSWERS.', M, 416);
+  ctx.font='italic 900 90px system-ui,sans-serif'; ctx.fillStyle=C.dimmed;
+  ctx.fillText('YOU GROW.', M, 516);
+
+  hline(ctx, 560, C.border, M, W-M);
+
+  // call transcript mockup
+  const tw2=W-M*2, tx3=M, ty3=590;
+  rr(ctx, tx3-8, ty3-8, tw2+16, 640, 20, '#0a0a0a');
+  rr(ctx, tx3-8, ty3-8, tw2+16, 640, 20, null, '#1e1e1e', 1);
+
+  // call header
+  ctx.fillStyle='#141414'; ctx.fillRect(tx3-8, ty3-8, tw2+16, 64);
+  ctx.beginPath(); ctx.moveTo(tx3-8,ty3-8+64); ctx.lineTo(tx3-8+tw2+16,ty3-8+64); ctx.strokeStyle='#1e1e1e'; ctx.lineWidth=1; ctx.stroke();
+  // call status
+  ctx.beginPath(); ctx.arc(tx3+20, ty3+24, 8, 0, Math.PI*2); ctx.fillStyle=C.greenBr; ctx.fill();
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.textAlign='left';
+  ctx.fillText('Live Call · Antortiq Agent', tx3+40, ty3+30);
+  ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='right';
+  ctx.fillText('2:34', tx3+tw2-10, ty3+30);
+
+  // chat bubbles
+  const msgs=[
+    {who:'customer',text:'"Hi, is my order #2339 out for delivery?"',y:680},
+    {who:'agent',text:'"Yes! Order #2339 is in transit. Expected today by 7PM. Would you like me to send tracking updates to your WhatsApp?"',y:760},
+    {who:'customer',text:'"Yes please."',y:900},
+    {who:'agent',text:'"Done! You\'ll receive live updates. Anything else I can help you with?"',y:956},
+    {who:'customer',text:'"Can I exchange the size after delivery?"',y:1050},
+    {who:'agent',text:'"Absolutely — you have 7 days. I\'ll send the exchange link with your delivery confirmation."',y:1110},
+  ];
+  msgs.forEach(m=>{
+    const isAgent = m.who==='agent';
+    const bx4=isAgent ? tx3+10 : tx3+tw2-520;
+    const bw4 = 480;
+    const lines2=[];
+    // simple word wrap
+    const words=m.text.split(' '); let line2='';
+    words.forEach(w=>{ const test=line2+w+' '; if(ctx.measureText(test).width>bw4-32 && line2!==''){ lines2.push(line2.trim()); line2=w+' '; } else line2=test; });
+    if(line2.trim()) lines2.push(line2.trim());
+    const bh4=lines2.length*34+28;
+    rr(ctx, bx4, m.y, bw4, bh4, 14, isAgent?'#161a10':'#0f0f18');
+    rr(ctx, bx4, m.y, bw4, bh4, 14, null, isAgent?C.greenBr+'44':C.blue+'44', 1);
+    ctx.font='500 24px system-ui,sans-serif'; ctx.fillStyle=isAgent?C.greenBr:C.text; ctx.textAlign='left';
+    lines2.forEach((l2,li)=>ctx.fillText(l2, bx4+16, m.y+30+li*34));
+  });
+
+  // resolved badge
+  rr(ctx, M, 1240, W-M*2, 68, 34, '#061209');
+  ctx.font='700 28px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center';
+  ctx.fillText('✓  Call resolved automatically · 0 human involved', W/2, 1282);
+
+  ctx.fillStyle=C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Your AI is ready  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  SP12 — Social proof "60+ brands"
+// ─────────────────────────────────────────────
+function drawSP12(cv){
+  const ctx = cv.getContext('2d');
+  // gradient bg
+  const g12 = ctx.createRadialGradient(W/2, H*0.4, 100, W/2, H*0.4, 900);
+  g12.addColorStop(0,'#160406'); g12.addColorStop(1,'#000');
+  ctx.fillStyle=g12; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=C.red; ctx.fillRect(0,0,W,8);
+  logo(ctx, W/2, 96);
+
+  // big number
+  ctx.textAlign='center';
+  ctx.font='italic 900 280px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.globalAlpha=0.12; ctx.fillText('60+', W/2, 560); ctx.globalAlpha=1;
+  ctx.font='italic 900 200px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('60+', W/2, 530);
+
+  ctx.font='800 54px system-ui,sans-serif'; ctx.fillStyle=C.text;
+  ctx.fillText('D2C BRANDS', W/2, 620);
+  ctx.font='500 40px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('trust Antortiq to run their operations.', W/2, 676);
+
+  hline(ctx, 730, '#200508', M, W-M);
+
+  // brand type logos (text-based placeholder)
+  const brands=[
+    ['Fashion','D2C','7 brands'],['Beauty','D2C','12 brands'],
+    ['Footwear','D2C','9 brands'],['Jewellery','D2C','8 brands'],
+    ['Streetwear','D2C','14 brands'],['Accessories','D2C','10 brands'],
+  ];
+  const bCols=3, bRows=2, bW=(W-M*2-24)/bCols, bH=130;
+  brands.forEach((b,i)=>{
+    const bcx=M + (i%bCols)*( bW+12);
+    const bcy=760 + Math.floor(i/bCols)*(bH+14);
+    rr(ctx, bcx, bcy, bW, bH, 14, '#0d0405');
+    rr(ctx, bcx, bcy, bW, bH, 14, null, '#2a0608', 1);
+    ctx.font='700 28px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.textAlign='center';
+    ctx.fillText(b[0], bcx+bW/2, bcy+46);
+    ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+    ctx.fillText(b[1], bcx+bW/2, bcy+74);
+    ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle=C.red;
+    ctx.fillText(b[2], bcx+bW/2, bcy+102);
+  });
+
+  ctx.font='500 36px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='center';
+  ctx.fillText('Automate your store. Join them.', W/2, 1120);
+
+  hline(ctx, 1160, '#200508', M, W-M);
+
+  // stat row
+  const fstats=[['₹12L+','GMV/store/mo'],['85%','AI resolution'],['<60min','Go live']];
+  fstats.forEach((s,i)=>{
+    const sx2=M + i*(W-M*2)/3 + (W-M*2)/6;
+    ctx.font='italic 800 58px system-ui,sans-serif'; ctx.fillStyle=C.red; ctx.textAlign='center';
+    ctx.fillText(s[0], sx2, 1250);
+    ctx.font='500 26px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+    ctx.fillText(s[1], sx2, 1288);
+  });
+
+  ctx.fillStyle=C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Book your free demo  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  CAROUSEL 4 — Order Journey
+// ─────────────────────────────────────────────
+function drawC4S1(cv){ // hook slide
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+  slideNum(ctx,1,3);
+
+  // big timeline at top
+  timeline(ctx, 170, ['Placed','Confirmed','Shipped','Delivered'], 0);
+
+  hline(ctx, 260, C.border, M, W-M);
+
+  // headline
+  ctx.textAlign='left';
+  ctx.font='italic 900 120px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('YOUR', M, 420);
+  ctx.fillText('CUSTOMER', M, 548);
+  ctx.font='italic 900 120px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('IS WATCHING.', M, 676);
+
+  ctx.font='500 40px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('What are you telling them?', M, 740);
+
+  hline(ctx, 800, C.border, M, W-M);
+
+  // order card
+  orderCard(ctx, M, 840, W-M*2, 340, 'ORDER PLACED', '#2339', 'FOURMEN — 001 CORE', '₹1,486', 'Cash on Delivery · 2 items');
+
+  ctx.font='500 34px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='right';
+  ctx.fillText('Swipe to see the full journey →', W-M, 1236);
+
+  ctx.fillStyle=C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('antortiq.com  ·  Built for D2C brands', W/2, H-90+56);
+}
+
+function drawC4S2(cv){ // confirmed + shipped
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+  slideNum(ctx,2,3);
+
+  timeline(ctx, 170, ['Placed','Confirmed','Shipped','Delivered'], 2);
+  hline(ctx, 260, C.border, M, W-M);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 90px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('BRANDED.', M, 380);
+  ctx.fillText('AUTOMATED.', M, 478);
+  ctx.font='italic 900 90px system-ui,sans-serif'; ctx.fillStyle=C.dimmed;
+  ctx.fillText('ZERO EFFORT.', M, 576);
+
+  hline(ctx, 620, C.border, M, W-M);
+
+  // two smaller order cards side by side
+  const hw=(W-M*2-20)/2;
+  orderCard(ctx, M, 650, hw, 380, 'CONFIRMED', '#2339', 'FOURMEN 001', '₹1,486', 'Being prepared');
+  orderCard(ctx, M+hw+20, 650, hw, 380, 'SHIPPED', '#2339', 'FOURMEN 001', '₹1,486', 'Dispatched via Delhivery');
+
+  ctx.font='500 34px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='left';
+  ctx.fillText('Auto-triggered. On-brand. Every time.', M, 1080);
+
+  ctx.font='500 34px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='right';
+  ctx.fillText('Final slide →', W-M, 1236);
+
+  ctx.fillStyle=C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('antortiq.com  ·  Built for D2C brands', W/2, H-90+56);
+}
+
+function drawC4S3(cv){ // delivered + CTA
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#040d08'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.green; ctx.fillRect(0,0,W,8);
+  slideNum(ctx,3,3,C.greenBr);
+
+  timeline(ctx, 170, ['Placed','Confirmed','Shipped','Delivered'], 3);
+  hline(ctx, 260, '#0d2016', M, W-M);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('DELIVERED.', M, 380);
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle=C.greenBr;
+  ctx.fillText('DELIGHTED.', M, 486);
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle='#1a3a22';
+  ctx.fillText('REPEAT.', M, 592);
+
+  hline(ctx, 636, '#0d2016', M, W-M);
+
+  // delivered card
+  orderCard(ctx, M, 666, W-M*2, 300, 'DELIVERED', '#2339', 'FOURMEN — 001 CORE · L', '₹1,486', 'Delivered today at 6:42 PM');
+
+  // review request mockup
+  rr(ctx, M, 990, W-M*2, 160, 18, '#0a1a0c');
+  rr(ctx, M, 990, W-M*2, 160, 18, null, C.greenBr+'44', 1);
+  ctx.font='700 28px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center';
+  ctx.fillText('How was your order? ⭐⭐⭐⭐⭐', W/2, 1044);
+  ctx.font='500 24px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Tap to rate · Auto-sent by Antortiq', W/2, 1080);
+
+  ctx.font='500 34px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='left';
+  ctx.fillText('Happy customers come back.', M, 1200);
+  ctx.fillText('Antortiq makes sure they do.', M, 1244);
+
+  ctx.fillStyle=C.green; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Set it up today  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
+//  CAROUSEL 5 — Feature UI Showcase
+// ─────────────────────────────────────────────
+function drawC5S1(cv){ // CDC dashboard
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = C.bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.red; ctx.fillRect(0,0,W,8);
+  slideNum(ctx,1,3);
+  logo(ctx, W/2, 96);
+  pill(ctx,'FEATURE 01 — LIVE DASHBOARD',W/2,196,C.redBg,C.red,22);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 84px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('ONE SCREEN.', M, 318);
+  ctx.font='italic 900 84px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('EVERYTHING.', M, 410);
+
+  hline(ctx, 452, C.border, M, W-M);
+
+  // full dashboard mockup
+  browserWin(ctx, M-8, 470, W-M*2+16, 740, 'app.antortiq.com/cdc', '#0c0c0c');
+
+  // scorecard inside
+  const sm=[
+    {v:'₹12,00,000',l:'GMV This Month',c:C.greenBr,bg:'#061209',w:W-M*2},
+  ];
+  rr(ctx, M, 534, W-M*2, 100, 12, '#061209');
+  ctx.font='italic 800 56px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center';
+  ctx.fillText('₹12,00,000', W/2, 596);
+  ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('GMV This Month', W/2, 622);
+
+  // 4-col metrics
+  const sm2=[{v:'500+',l:'Orders',c:C.blue},{v:'3.2%',l:'Returns',c:C.gold},{v:'4.2×',l:'ROAS',c:C.red},{v:'98%',l:'Uptime',c:C.greenBr}];
+  const smw=(W-M*2-30)/4;
+  sm2.forEach((s2,i)=>{
+    const sx3=M+i*(smw+10);
+    rr(ctx, sx3, 650, smw, 90, 10, '#111');
+    ctx.font='italic 800 44px system-ui,sans-serif'; ctx.fillStyle=s2.c; ctx.textAlign='center';
+    ctx.fillText(s2.v, sx3+smw/2, 704);
+    ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+    ctx.fillText(s2.l, sx3+smw/2, 726);
+  });
+
+  // mini bar chart
+  const b5=[0.5,0.62,0.58,0.78,0.7,0.9,1.0];
+  const bww=70, bhh=110, bss=758;
+  b5.forEach((v,i)=>{
+    const bxx=M+i*(bww+14);
+    const bff=bhh*v;
+    rr(ctx, bxx, bss+(bhh-bff), bww, bff, 6, i===6?C.greenBr:'#1e1e1e');
+    if(i===6){ ctx.font='600 18px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center'; ctx.fillText('▲', bxx+bww/2, bss-8); }
+  });
+  ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='left';
+  ctx.fillText('7-day GMV trend · hitting new highs', M, 892);
+
+  // recent orders list
+  const ords=[{n:'#2341',p:'FOURMEN 001 CORE',v:'₹1,486'},{n:'#2340',p:'Oversized Tee · Black',v:'₹899'},{n:'#2339',p:'Cargo Pants · Olive',v:'₹1,299'}];
+  ords.forEach((o,i)=>{
+    const oy=922+i*58;
+    hline(ctx, oy, '#1a1a1a', M, W-M);
+    ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='left'; ctx.fillText(o.n, M, oy+36);
+    ctx.font='600 24px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.fillText(o.p, M+90, oy+36);
+    ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='right'; ctx.fillText(o.v, W-M, oy+36);
+  });
+
+  ctx.font='500 34px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='right';
+  ctx.fillText('Next: Exchange flow →', W-M, 1236);
+
+  ctx.fillStyle=C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('antortiq.com  ·  See it live', W/2, H-90+56);
+}
+
+function drawC5S2(cv){ // exchange UI
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#040d08'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.green; ctx.fillRect(0,0,W,8);
+  slideNum(ctx,2,3,C.greenBr);
+  logo(ctx, W/2, 96);
+  pill(ctx,'FEATURE 02 — SELF-SERVE RETURNS',W/2,196,C.greenBg,C.greenBr,22);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 80px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('PRE-DISPATCH', M, 316);
+  ctx.fillText('SELF-SERVE.', M, 404);
+  ctx.font='italic 900 80px system-ui,sans-serif'; ctx.fillStyle='#1a3a22';
+  ctx.fillText('FULLY AUTOMATED.', M, 492);
+
+  hline(ctx, 534, '#0d2016', M, W-M);
+
+  // two browser windows
+  const sw2=(W-M*2-20)/2;
+  browserWin(ctx, M-8, 554, sw2+8, 580, '/confirm-order', '#0a0a0a');
+  // order confirm inside
+  ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.textAlign='left';
+  ctx.fillText('#2339   ₹1,486.00', M, 624);
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('1 item', M, 648);
+  rr(ctx, M, 660, sw2-16, 60, 8, '#111');
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.text;
+  ctx.fillText('FOURMEN — 001 CORE', M+12, 682);
+  ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Size S · Qty 1', M+12, 704);
+  rr(ctx, M, 730, sw2-16, 80, 10, '#0d1a0d');
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle='#aaa';
+  ctx.fillText('Why we ask for confirmation fee:', M+12, 756);
+  ctx.font='600 20px system-ui,sans-serif'; ctx.fillStyle=C.text;
+  ctx.fillText('Confirms you really want this order.', M+12, 780);
+  rr(ctx, M, 820, sw2-16, 56, 28, '#0a0a0a', C.green, 1);
+  ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.textAlign='center';
+  ctx.fillText('AMOUNT ON DELIVERY: ₹1,387', M+sw2/2-8, 854);
+  rr(ctx, M, 886, sw2-16, 56, 28, '#0a0a0a');
+  ctx.fillText('Pay ₹99 & Confirm Order', M+sw2/2-8, 920);
+  rr(ctx, M, 952, sw2-16, 56, 28, C.green);
+  ctx.fillStyle='#fff';
+  ctx.fillText('Pay ₹1,337 & Go Prepaid', M+sw2/2-8, 986);
+  ctx.font='600 20px system-ui,sans-serif'; ctx.fillStyle=C.greenBr;
+  ctx.fillText('SAVE ₹149 →', M+sw2/2-8, 1030);
+
+  // exchange form window
+  browserWin(ctx, M+sw2+28, 554, sw2+8, 580, '/track/2339', '#0a0a0a');
+  const ex2=M+sw2+28;
+  rr(ctx, ex2, 614, (sw2-10)/2, 80, 12, '#0d1a10');
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center';
+  ctx.fillText('Exchange', ex2+sw2/4, 654);
+  ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Swap size', ex2+sw2/4, 676);
+  rr(ctx, ex2+(sw2)/2+4, 614, (sw2-10)/2-4, 80, 12, '#0d0d1a');
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle=C.blue;
+  ctx.fillText('Return', ex2+sw2*3/4, 654);
+  ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Refund', ex2+sw2*3/4, 676);
+  ctx.textAlign='left';
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Exchange Request', ex2, 720);
+  rr(ctx, ex2, 730, sw2, 52, 8, '#111');
+  ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle=C.text;
+  ctx.fillText('FOURMEN — 001 CORE', ex2+12, 758);
+  ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Size S · Qty 1', ex2+12, 778);
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+  ctx.fillText('Select exchange size/variant:', ex2, 810);
+  rr(ctx, ex2, 820, sw2, 46, 8, '#0f0f0f', C.greenBr, 1);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.text;
+  ctx.fillText('Size — M', ex2+12, 850);
+  rr(ctx, ex2, 876, sw2, 64, 32, '#0d1a10', C.greenBr, 1);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.greenBr; ctx.textAlign='center';
+  ctx.fillText('₹199 Processing Fee', ex2+sw2/2, 915);
+  rr(ctx, ex2, 950, sw2, 64, 32, C.green);
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('Pay ₹199 & Submit', ex2+sw2/2, 989);
+  ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='left';
+  ctx.fillText('🔑 Have an admin code?', ex2, 1030);
+
+  ctx.font='500 34px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='right';
+  ctx.fillText('Final slide →', W-M, 1236);
+
+  ctx.fillStyle=C.green; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('antortiq.com  ·  Self-serve returns', W/2, H-90+56);
+}
+
+function drawC5S3(cv){ // meta ads + pixel
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#030810'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = C.blue; ctx.fillRect(0,0,W,8);
+  slideNum(ctx,3,3,C.blue);
+  logo(ctx, W/2, 96);
+  pill(ctx,'FEATURE 03 — META ADS + PIXEL',W/2,196,C.blueBg,C.blue,22);
+
+  ctx.textAlign='left';
+  ctx.font='italic 900 80px system-ui,sans-serif'; ctx.fillStyle=C.white;
+  ctx.fillText('10 CAMPAIGNS.', M, 316);
+  ctx.fillText('1 DASHBOARD.', M, 404);
+  ctx.font='italic 900 80px system-ui,sans-serif'; ctx.fillStyle='#0f1e3a';
+  ctx.fillText('ZERO GUESSWORK.', M, 492);
+
+  hline(ctx, 534, '#0e1a2e', M, W-M);
+
+  // ads table mockup
+  browserWin(ctx, M-8, 554, W-M*2+16, 700, 'app.antortiq.com/meta-ads', '#030810');
+
+  const camps=[
+    {n:'Summer Collection',spend:'₹12,400',roas:'5.1×',ctr:'4.2%',reach:'84K',st:'Active'},
+    {n:'Fourmen 001 Core',spend:'₹8,200',roas:'4.8×',ctr:'3.9%',reach:'62K',st:'Active'},
+    {n:'Retargeting — Cart',spend:'₹5,600',roas:'6.2×',ctr:'5.1%',reach:'28K',st:'Active'},
+    {n:'New Arrivals',spend:'₹3,100',roas:'3.4×',ctr:'2.8%',reach:'44K',st:'Paused'},
+  ];
+  const cols2=['CAMPAIGN','SPEND','ROAS','CTR','REACH'];
+  const colXX=[M, 480, 620, 740, 858];
+  ctx.font='600 20px system-ui,sans-serif'; ctx.fillStyle='#2a3a5a'; ctx.textAlign='left';
+  cols2.forEach((c3,i)=>{ ctx.textAlign=i>0?'right':'left'; ctx.fillText(c3, colXX[i], 612); });
+  hline(ctx, 622, '#0e1a2e', M, W-M);
+  camps.forEach((c4,i)=>{
+    const cy4=648+i*76;
+    if(i%2===0){ rr(ctx,M-8,cy4-28,W-M*2+16,68,0,'#040c18'); }
+    ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle=C.text; ctx.textAlign='left';
+    ctx.fillText(c4.n, M, cy4);
+    const cv4=[c4.spend,c4.roas,c4.ctr,c4.reach];
+    cv4.forEach((v2,vi)=>{
+      ctx.textAlign='right';
+      ctx.font= vi===1?'800 26px system-ui,sans-serif':'600 24px system-ui,sans-serif';
+      ctx.fillStyle= vi===1?C.greenBr:vi===2?C.blue:C.muted;
+      ctx.fillText(v2, colXX[vi+1], cy4);
+    });
+    const stBg=c4.st==='Active'?'#061209':'#130D02';
+    const stC=c4.st==='Active'?C.greenBr:C.gold;
+    pill(ctx, c4.st, W-M-30, cy4+30, stBg, stC, 18);
+  });
+
+  // summary row
+  hline(ctx, 962, '#0e1a2e', M, W-M);
+  const tots=[{v:'₹29.3K',l:'Total Spend'},{v:'4.2×',l:'Avg ROAS'},{v:'218K',l:'Total Reach'}];
+  tots.forEach((t,i)=>{
+    const tx4=M+i*(W-M*2)/3+(W-M*2)/6;
+    ctx.font='italic 800 48px system-ui,sans-serif'; ctx.fillStyle=C.blue; ctx.textAlign='center';
+    ctx.fillText(t.v, tx4, 1022);
+    ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+    ctx.fillText(t.l, tx4, 1050);
+  });
+
+  ctx.font='500 36px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='center';
+  ctx.fillText('Age · gender · interest · platform — all live.', W/2, 1120);
+
+  ctx.fillStyle=C.red; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 34px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Start your free trial  →  antortiq.com', W/2, H-90+56);
+}
+
+// ─────────────────────────────────────────────
 //  DRAW ALL
 // ─────────────────────────────────────────────
 const cards = [
   ['sp1',drawSP1],['sp2',drawSP2],['sp3',drawSP3],
   ['sp4',drawSP4],['sp5',drawSP5],['sp6',drawSP6],
+  ['sp7',drawSP7],['sp8',drawSP8],['sp9',drawSP9],
+  ['sp10',drawSP10],['sp11',drawSP11],['sp12',drawSP12],
   ['c1s1',drawC1S1],['c1s2',drawC1S2],['c1s3',drawC1S3],
   ['c2s1',drawC2S1],['c2s2',drawC2S2],['c2s3',drawC2S3],
   ['c3s1',drawC3S1],['c3s2',drawC3S2],['c3s3',drawC3S3],
+  ['c4s1',drawC4S1],['c4s2',drawC4S2],['c4s3',drawC4S3],
+  ['c5s1',drawC5S1],['c5s2',drawC5S2],['c5s3',drawC5S3],
 ];
 
 function drawAll(){
