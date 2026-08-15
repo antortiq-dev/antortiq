@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2853097411723304');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2853097411723304&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 <meta charset="utf-8">
 <title>Antortiq — AI-Native Software & Automation Studio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -3317,6 +3321,30 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
     }, {threshold:0.4});
     journeyObs.observe(journey);
   })();
+</script>
+
+<script>
+// Meta Pixel — intent events
+(function(){
+  // Lead: fired when user clicks WhatsApp or email CTA (signals genuine intent)
+  document.querySelectorAll('a[href*="wa.me"], a[href*="mailto:"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      if(typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'contact_cta' });
+    });
+  });
+  // ViewContent: any "Book a Call / Start a Project" CTA scroll-into-view
+  var ctaSection = document.getElementById('contact');
+  if(ctaSection && typeof IntersectionObserver !== 'undefined'){
+    var fired = false;
+    var obs = new IntersectionObserver(function(entries){
+      if(!fired && entries[0].isIntersecting){
+        fired = true;
+        if(typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: 'contact_section' });
+      }
+    }, { threshold: 0.5 });
+    obs.observe(ctaSection);
+  }
+})();
 </script>
 
 </body>
