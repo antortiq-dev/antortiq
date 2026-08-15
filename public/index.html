@@ -134,6 +134,17 @@ table.mini td{padding:5px 4px; color:#444; border-bottom:1px solid #f3f3f3;}
 .svc-card p{font-size:14px; color:#9a9ba1; line-height:1.6;}
 .svc-card .tags{margin-top:16px; display:flex; gap:6px; flex-wrap:wrap;}
 .svc-card .tags span{font-size:10.5px; color:#888; border:1px solid #2a2a2a; padding:3px 9px; border-radius:99px;}
+.svc-card .svc-quote{
+  display:inline-flex; align-items:center; gap:7px;
+  margin-top:20px; padding:9px 18px; border-radius:99px;
+  font-family:var(--disp); font-weight:700; font-size:12.5px;
+  background:transparent; border:1px solid #2a2a2a; color:#aaa;
+  text-decoration:none; transition:border-color .2s, color .2s, background .2s;
+  letter-spacing:.2px;
+}
+.svc-card .svc-quote:hover{border-color:#25D366; color:#25D366; background:rgba(37,211,102,.06);}
+.svc-card .svc-quote svg{flex-shrink:0; transition:transform .2s;}
+.svc-card .svc-quote:hover svg{transform:scale(1.15);}
 @media (max-width:980px){.svc-grid{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:640px){.svc-grid{grid-template-columns:1fr;}}
 
@@ -2957,36 +2968,78 @@ footer{background:#0a0a0b; border-top:1px solid #1c1c1e; padding:60px 0 30px;}
         <h3>D2C &amp; Ecommerce Operations Management</h3>
         <p>End-to-end ops for brands shipping physical products — order tracking, returns/exchange flows, vendor fulfilment, RTO analytics and settlement, all under one console.</p>
         <div class="tags"><span>Order Tracking</span><span>Returns &amp; Exchange</span><span>Vendor Ops</span></div>
+        <a class="svc-quote"
+           href="https://wa.me/918209544626?text=Hi%20Antortiq!%20I%27m%20interested%20in%20your%20D2C%20%26%20Ecommerce%20Operations%20Management%20service.%20We%27re%20a%20D2C%20brand%20and%20want%20to%20know%20more%20about%20order%20tracking%2C%20returns%20%26%20exchange%20automation.%20Can%20we%20get%20a%20quote%3F"
+           target="_blank" rel="noopener"
+           onclick="if(typeof fbq==='function')fbq('track','Lead',{content_name:'svc_d2c_ops'})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Quote on WhatsApp
+        </a>
       </div>
       <div class="svc-card reveal tilt" style="--d:0.08s">
         <div class="ico">🎨</div>
         <h3>Web &amp; Product UI/UX</h3>
         <p>Interfaces that feel inevitable — research-led design systems, motion, and pixel-perfect builds for web apps, SaaS dashboards, and storefronts.</p>
         <div class="tags"><span>Figma</span><span>React</span><span>Design Systems</span></div>
+        <a class="svc-quote"
+           href="https://wa.me/918209544626?text=Hi%20Antortiq!%20I%27m%20interested%20in%20your%20Web%20%26%20Product%20UI%2FUX%20service.%20I%27d%20like%20a%20quote%20for%20designing%20%2F%20building%20a%20web%20app%20%2F%20dashboard%20%2F%20storefront.%20Can%20we%20chat%3F"
+           target="_blank" rel="noopener"
+           onclick="if(typeof fbq==='function')fbq('track','Lead',{content_name:'svc_web_uiux'})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Quote on WhatsApp
+        </a>
       </div>
       <div class="svc-card reveal tilt" style="--d:0.16s">
         <div class="ico">🧠</div>
         <h3>AI Agents &amp; Integrations</h3>
         <p>Custom AI ops bots, support agents, and document intelligence wired directly into your existing systems and data — not bolted-on chat widgets.</p>
         <div class="tags"><span>RAG</span><span>LLM APIs</span><span>Agentic Workflows</span></div>
+        <a class="svc-quote"
+           href="https://wa.me/918209544626?text=Hi%20Antortiq!%20I%27m%20interested%20in%20your%20AI%20Agents%20%26%20Integrations%20service.%20I%27d%20like%20to%20know%20more%20about%20building%20a%20custom%20AI%20agent%20%2F%20automation%20for%20my%20business.%20Can%20we%20get%20a%20quote%3F"
+           target="_blank" rel="noopener"
+           onclick="if(typeof fbq==='function')fbq('track','Lead',{content_name:'svc_ai_agents'})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Quote on WhatsApp
+        </a>
       </div>
       <div class="svc-card reveal tilt" style="--d:0.24s">
         <div class="ico">💬</div>
         <h3>WhatsApp &amp; Email Automation</h3>
         <p>Branded lifecycle messaging that fires itself — order placed to delivered, abandoned cart nudges, exchange updates, all on autopilot.</p>
         <div class="tags"><span>WhatsApp API</span><span>Lifecycle Email</span><span>Drip Flows</span></div>
+        <a class="svc-quote"
+           href="https://wa.me/918209544626?text=Hi%20Antortiq!%20I%27m%20interested%20in%20your%20WhatsApp%20%26%20Email%20Automation%20service.%20We%27d%20like%20to%20set%20up%20automated%20order%20notifications%20%2F%20lifecycle%20messages%20for%20our%20store.%20Can%20we%20get%20a%20quote%3F"
+           target="_blank" rel="noopener"
+           onclick="if(typeof fbq==='function')fbq('track','Lead',{content_name:'svc_wa_email_automation'})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Quote on WhatsApp
+        </a>
       </div>
       <div class="svc-card reveal tilt" style="--d:0.32s">
         <div class="ico">🗄️</div>
         <h3>Backend Portals &amp; Admin Systems</h3>
         <p>Multi-tenant dashboards, internal tools, and ops consoles built on rock-solid APIs — designed for the people who run your business daily.</p>
         <div class="tags"><span>Node.js</span><span>PostgreSQL</span><span>RBAC</span></div>
+        <a class="svc-quote"
+           href="https://wa.me/918209544626?text=Hi%20Antortiq!%20I%27m%20interested%20in%20your%20Backend%20Portals%20%26%20Admin%20Systems%20service.%20We%20need%20a%20custom%20dashboard%20%2F%20internal%20tool%20%2F%20admin%20panel%20built.%20Can%20we%20get%20a%20quote%3F"
+           target="_blank" rel="noopener"
+           onclick="if(typeof fbq==='function')fbq('track','Lead',{content_name:'svc_backend_portals'})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Quote on WhatsApp
+        </a>
       </div>
       <div class="svc-card reveal tilt" style="--d:0.4s">
         <div class="ico">☁️</div>
         <h3>Cloud Infrastructure &amp; DevOps</h3>
         <p>Scalable, secure cloud architecture with CI/CD, monitoring and cost optimisation baked in from day one — built to grow without rewrites.</p>
         <div class="tags"><span>AWS</span><span>Docker</span><span>CI/CD</span></div>
+        <a class="svc-quote"
+           href="https://wa.me/918209544626?text=Hi%20Antortiq!%20I%27m%20interested%20in%20your%20Cloud%20Infrastructure%20%26%20DevOps%20service.%20We%20want%20to%20set%20up%20%2F%20scale%20our%20cloud%20infra%20with%20CI%2FCD%20and%20monitoring.%20Can%20we%20get%20a%20quote%3F"
+           target="_blank" rel="noopener"
+           onclick="if(typeof fbq==='function')fbq('track','Lead',{content_name:'svc_cloud_devops'})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.467-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Quote on WhatsApp
+        </a>
       </div>
       <!-- WhatsApp CTA strip below service cards -->
       <div class="wa-strip reveal">
