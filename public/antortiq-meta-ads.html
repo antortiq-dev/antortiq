@@ -93,6 +93,22 @@ canvas{width:100%;height:auto;display:block}
     </div>
   </div>
 
+  <!-- ── TYPO + UI MIXED CREATIVES ── -->
+  <div class="section">
+    <div class="section-hd">
+      <span class="section-name">Typo × UI Creatives</span>
+      <span class="section-meta">6 cards · bold copy + product mockup mix</span>
+    </div>
+    <div class="grid-3">
+      <div class="cw"><canvas id="sp13" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp13','antortiq-boring-emails')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp14" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp14','antortiq-order-lost')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp15" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp15','antortiq-returns-margin')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp16" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp16','antortiq-cod-fake')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp17" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp17','antortiq-support-sleep')">↓ PNG</button></div></div>
+      <div class="cw"><canvas id="sp18" width="1080" height="1350"></canvas><div class="cw-over"><button class="dl-btn" onclick="dl('sp18','antortiq-roas-blind')">↓ PNG</button></div></div>
+    </div>
+  </div>
+
   <!-- ── NEW UI MOCKUP SINGLES ── -->
   <div class="section">
     <div class="section-hd">
@@ -2042,11 +2058,573 @@ function drawC5S3(cv){ // meta ads + pixel
 }
 
 // ─────────────────────────────────────────────
+//  TYPO × UI HELPERS
+// ─────────────────────────────────────────────
+
+// Simulated fashion-brand product photo card (gradient + overlaid text)
+function photoCard(ctx, x, y, w, h, status, statusClr, headline, sub, awb, courier, bottom, bottomClr){
+  const r = 20;
+  // card shadow
+  ctx.shadowColor='rgba(0,0,0,0.6)'; ctx.shadowBlur=40; ctx.shadowOffsetY=12;
+  rr(ctx, x, y, w, h, r, '#fff');
+  ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+
+  // "photo" area — gradient simulating fashion shoot
+  const photoH = h * 0.64;
+  ctx.save(); ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+photoH); ctx.lineTo(x,y+photoH); ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath(); ctx.clip();
+
+  // gradient that looks like a moody fashion photo
+  const pg = ctx.createLinearGradient(x, y, x+w, y+photoH);
+  pg.addColorStop(0,'#1a1a1a'); pg.addColorStop(0.4,'#2d2820'); pg.addColorStop(1,'#0a0a0a');
+  ctx.fillStyle=pg; ctx.fillRect(x, y, w, photoH);
+
+  // fabric texture lines
+  for(let i=0;i<8;i++){
+    ctx.strokeStyle=`rgba(255,255,255,${0.015+i*0.005})`; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x+w*0.2+i*30, y); ctx.lineTo(x+i*30, y+photoH); ctx.stroke();
+  }
+
+  // bottom photo gradient overlay
+  const ov = ctx.createLinearGradient(x, y+photoH*0.45, x, y+photoH);
+  ov.addColorStop(0,'rgba(0,0,0,0)'); ov.addColorStop(1,'rgba(0,0,0,0.92)');
+  ctx.fillStyle=ov; ctx.fillRect(x, y+photoH*0.45, w, photoH*0.55);
+
+  // status badge on photo
+  ctx.font='700 22px system-ui,sans-serif'; ctx.textAlign='left';
+  ctx.fillStyle=statusClr||'rgba(255,255,255,0.6)';
+  ctx.fillText((status||'').toUpperCase(), x+22, y+photoH*0.62);
+
+  // headline on photo
+  ctx.font='italic 900 52px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  const hlines = headline.split('\n');
+  hlines.forEach((l,i)=>ctx.fillText(l, x+22, y+photoH*0.72+i*58));
+
+  ctx.restore();
+
+  // white panel below photo
+  const panelY = y+photoH;
+  ctx.fillStyle='#fff'; ctx.fillRect(x, panelY, w, h-photoH);
+
+  // AWB / courier row
+  ctx.font='700 18px system-ui,sans-serif'; ctx.fillStyle='#999'; ctx.textAlign='left';
+  ctx.fillText('AWB', x+22, panelY+28);
+  ctx.font='700 18px system-ui,sans-serif'; ctx.fillStyle='#999'; ctx.textAlign='right';
+  ctx.fillText('COURIER', x+w-22, panelY+28);
+  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='left';
+  ctx.fillText(awb||'8012003045', x+22, panelY+58);
+  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='right';
+  ctx.fillText(courier||'Delhivery', x+w-22, panelY+58);
+
+  // sub line
+  if(sub){ ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle='#aaa'; ctx.textAlign='left'; ctx.fillText(sub, x+22, panelY+88); }
+
+  // bottom status bar
+  const barY = y+h-48;
+  ctx.fillStyle='#111'; ctx.fillRect(x, barY, w, 48);
+  // round bottom corners
+  ctx.save(); ctx.beginPath();
+  ctx.moveTo(x,barY); ctx.lineTo(x+w,barY); ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,barY); ctx.closePath();
+  ctx.fillStyle='#111'; ctx.fill(); ctx.restore();
+  ctx.font='800 24px system-ui,sans-serif'; ctx.fillStyle=bottomClr||'#fff'; ctx.textAlign='left';
+  ctx.fillText(bottom||'', x+22, y+h-18);
+}
+
+// bold italic headline, multi-line, auto-sized
+function bigType(ctx, lines, x, y, clr, size, leading){
+  ctx.font=`italic 900 ${size||120}px system-ui,sans-serif`;
+  ctx.fillStyle=clr||'#fff'; ctx.textAlign='left';
+  lines.forEach((l,i)=>ctx.fillText(l, x, y+i*(leading||size*1.05||126)));
+}
+
+// timeline row — small version for typo cards
+function tinyTimeline(ctx, y, steps, activeIdx){
+  const x0=72, x1=W-72, sp=(x1-x0)/(steps.length-1);
+  ctx.strokeStyle='#222'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(x1,y); ctx.stroke();
+  ctx.strokeStyle=C.red; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(x0+sp*activeIdx,y); ctx.stroke();
+  steps.forEach((s,i)=>{
+    const cx=x0+sp*i;
+    ctx.beginPath(); ctx.arc(cx,y,10,0,Math.PI*2);
+    ctx.fillStyle=i<=activeIdx?C.red:'#1a1a1a'; ctx.fill();
+    ctx.strokeStyle=i<=activeIdx?C.red:'#2a2a2a'; ctx.lineWidth=2; ctx.stroke();
+    ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=i<=activeIdx?'#fff':C.muted; ctx.textAlign='center';
+    ctx.fillText(s, cx, y+38);
+    ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle='#333';
+    ctx.fillText('0'+(i+1), cx, y+60);
+  });
+}
+
+// ─────────────────────────────────────────────
+//  SP13 — "STILL SENDING THOSE BORING EMAILS?"
+// ─────────────────────────────────────────────
+function drawSP13(cv){
+  const ctx=cv.getContext('2d');
+  ctx.fillStyle='#080808'; ctx.fillRect(0,0,W,H);
+
+  // top red headline
+  ctx.textAlign='left';
+  ctx.font='800 72px system-ui,sans-serif'; ctx.fillStyle='#aaa';
+  ctx.fillText('STILL SENDING THOSE', 72, 120);
+  ctx.font='italic 900 148px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('BORING', 72, 272);
+  ctx.fillText('EMAILS ?', 72, 420);
+
+  // timeline
+  tinyTimeline(ctx, 500, ['Placed','Confirmed','On Hold','Packed','Shipped','Out for Delivery','Missed'], 5);
+
+  // 3 email photo cards
+  const cw=(W-72*2-32)/3, ch=540;
+  const cards3=[
+    {status:'SHIPPED · ON THE MOVE',headline:'YOUR ORDER\nIS ON ITS WAY.',sub:'Track your order →',bottom:'Shipped',n:'05',clr:'#fff'},
+    {status:'OUT FOR DELIVERY · TODAY',headline:'ARRIVING\nTODAY.',sub:'Arriving today',bottom:'OUT for Delivery',n:'06',clr:'#fff'},
+    {status:'DELIVERY ATTEMPTED',headline:'WE MISSED\nYOU TODAY.',sub:'Re-delivery being arranged',bottom:'Missed You',n:'07',clr:'#f59e0b'},
+  ];
+  cards3.forEach((c,i)=>{
+    const cx=72+i*(cw+16), cy=580;
+    photoCard(ctx,cx,cy,cw,ch,c.status,i===2?'#f59e0b':'rgba(255,255,255,0.55)',c.headline,c.sub,'8012003045','Delhivery',c.bottom+`        ${c.n}`,i===2?'#f59e0b':'#fff');
+  });
+
+  // bottom tagline strip
+  ctx.fillStyle='#111'; ctx.fillRect(0,H-100,W,100);
+  ctx.font='700 30px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('NO MONTHLY SUBSCRIPTION  ', W/2-80, H-58);
+  ctx.font='900 30px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('ONE TIME', W/2+190, H-58);
+  ctx.font='700 30px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('  SETUP COST', W/2+400, H-58);
+
+  // re-draw full bottom strip as one line (canvas text doesn't concat colors, so fake it)
+  ctx.clearRect(0,H-100,W,100);
+  ctx.fillStyle='#111'; ctx.fillRect(0,H-100,W,100);
+  // measure and stitch manually
+  ctx.textAlign='left';
+  const t1='NO MONTHLY SUBSCRIPTION '; const t2='ONE TIME'; const t3=' SETUP COST';
+  ctx.font='700 32px system-ui,sans-serif';
+  const w1=ctx.measureText(t1).width;
+  ctx.font='900 32px system-ui,sans-serif';
+  const w2=ctx.measureText(t2).width;
+  ctx.font='700 32px system-ui,sans-serif';
+  const w3=ctx.measureText(t3).width;
+  const totalW=w1+w2+w3;
+  let tx=(W-totalW)/2;
+  ctx.fillStyle='#fff'; ctx.font='700 32px system-ui,sans-serif'; ctx.fillText(t1,tx,H-54); tx+=w1;
+  ctx.fillStyle=C.red; ctx.font='900 32px system-ui,sans-serif'; ctx.fillText(t2,tx,H-54); tx+=w2;
+  ctx.fillStyle='#fff'; ctx.font='700 32px system-ui,sans-serif'; ctx.fillText(t3,tx,H-54);
+
+  ctx.fillStyle='rgba(255,255,255,0.3)'; ctx.font='600 22px system-ui,sans-serif'; ctx.textAlign='center';
+  ctx.fillText('antortiq.com', W/2, H-24);
+}
+
+// ─────────────────────────────────────────────
+//  SP14 — "YOUR CUSTOMER HAS NO IDEA WHERE THEIR ORDER IS."
+// ─────────────────────────────────────────────
+function drawSP14(cv){
+  const ctx=cv.getContext('2d');
+  ctx.fillStyle='#080808'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=C.red; ctx.fillRect(0,0,W,8);
+
+  ctx.textAlign='left';
+  ctx.font='800 58px system-ui,sans-serif'; ctx.fillStyle='#888';
+  ctx.fillText('YOUR CUSTOMER HAS', 72, 110);
+  ctx.font='italic 900 136px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('NO IDEA', 72, 254);
+  ctx.font='italic 900 96px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('WHERE THEIR', 72, 360);
+  ctx.fillText('ORDER IS.', 72, 462);
+
+  // 2 big order status cards side by side
+  const cw2=(W-72*2-24)/2, ch2=600;
+  // Card 1 — In Transit
+  const c1x=72, c1y=510;
+  ctx.shadowColor='rgba(0,0,0,0.5)'; ctx.shadowBlur=30; ctx.shadowOffsetY=10;
+  rr(ctx,c1x,c1y,cw2,ch2,20,'#0a0a14'); ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+  ctx.fillStyle=C.blue; ctx.fillRect(c1x,c1y,cw2,6);
+  ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle='#3b82f6'; ctx.textAlign='left';
+  ctx.fillText('● IN TRANSIT', c1x+20, c1y+44);
+  ctx.font='800 32px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('#ORD-1847', c1x+20, c1y+86);
+  // courier info
+  rr(ctx,c1x+14,c1y+104,cw2-28,72,10,'#111');
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle='#666'; ctx.fillText('Courier', c1x+28,c1y+130);
+  ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.fillText('Delhivery · 1234567890',c1x+28,c1y+158);
+  // steps
+  const steps14=[['Order Confirmed','Aug 4 · 2:10 PM'],['Picked Up — Mumbai','Aug 5 · 9:04 AM · Now'],['In Transit — Delhi Hub',''],['Out for Delivery','Expected Aug 7']];
+  steps14.forEach((s,i)=>{
+    const sy=c1y+196+i*88;
+    ctx.beginPath(); ctx.arc(c1x+30,sy+14,10,0,Math.PI*2);
+    ctx.fillStyle=i<2?C.red:i===2?C.blue:'#1a1a1a'; ctx.fill();
+    if(i<3){ ctx.strokeStyle=i<2?C.red:'#222'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(c1x+30,sy+24); ctx.lineTo(c1x+30,sy+74); ctx.stroke(); }
+    ctx.font=i===2?'700 24px system-ui,sans-serif':'500 24px system-ui,sans-serif';
+    ctx.fillStyle=i<=2?'#ddd':'#444'; ctx.textAlign='left';
+    ctx.fillText(s[0], c1x+54, sy+20);
+    if(s[1]){ ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=i===1?C.red:'#555'; ctx.fillText(s[1],c1x+54,sy+46); }
+  });
+
+  // Card 2 — WA notification mockup
+  const c2x=72+cw2+24, c2y=510;
+  ctx.shadowColor='rgba(0,0,0,0.5)'; ctx.shadowBlur=30; ctx.shadowOffsetY=10;
+  rr(ctx,c2x,c2y,cw2,ch2,20,'#0a140a'); ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+  ctx.fillStyle='#25D366'; ctx.fillRect(c2x,c2y,cw2,6);
+  ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle='#25d366'; ctx.textAlign='left';
+  ctx.fillText('● WHATSAPP UPDATE', c2x+20, c2y+44);
+  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('Order #1847', c2x+20, c2y+84);
+  const msgs14=[
+    {t:'Your order is packed and picked up!',clr:'#25d366',time:'2:10 PM'},
+    {t:'Your order is now in transit to Delhi Hub.',clr:'#3b82f6',time:'9:04 AM'},
+    {t:'Out for delivery today! Arriving by 7PM.',clr:'#f59e0b',time:'8:30 AM'},
+  ];
+  msgs14.forEach((m,i)=>{
+    const my=c2y+116+i*148;
+    rr(ctx,c2x+14,my,cw2-28,122,12,'#0d1a0d');
+    ctx.beginPath(); ctx.arc(c2x+30,my+22,8,0,Math.PI*2); ctx.fillStyle=m.clr; ctx.fill();
+    ctx.font='700 20px system-ui,sans-serif'; ctx.fillStyle=m.clr; ctx.textAlign='left';
+    ctx.fillText('ANTORTIQ', c2x+46, my+28);
+    ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle='#ccc';
+    // word wrap
+    const words=m.t.split(' '); let line='', lines=[];
+    words.forEach(w=>{ const test=line+w+' '; if(ctx.measureText(test).width>cw2-60&&line){ lines.push(line.trim()); line=w+' '; }else line=test; });
+    if(line.trim()) lines.push(line.trim());
+    lines.forEach((l,li)=>ctx.fillText(l,c2x+26,my+58+li*28));
+    ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle='#444'; ctx.textAlign='right';
+    ctx.fillText(m.time, c2x+cw2-16, my+112);
+  });
+
+  // bottom strip
+  ctx.fillStyle='#111'; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 32px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('With Antortiq — they always know.', W/2, H-52);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('antortiq.com', W/2, H-22);
+}
+
+// ─────────────────────────────────────────────
+//  SP15 — "RETURNS EATING YOUR PROFIT?"
+// ─────────────────────────────────────────────
+function drawSP15(cv){
+  const ctx=cv.getContext('2d');
+  ctx.fillStyle='#080808'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=C.red; ctx.fillRect(0,0,W,8);
+
+  ctx.textAlign='left';
+  ctx.font='800 64px system-ui,sans-serif'; ctx.fillStyle='#555';
+  ctx.fillText('RETURNS ARE', 72, 110);
+  ctx.font='italic 900 160px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('EATING', 72, 278);
+  ctx.font='italic 900 140px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('YOUR', 72, 424);
+  ctx.font='italic 900 140px system-ui,sans-serif'; ctx.fillStyle='#444';
+  ctx.fillText('PROFIT.', 72, 566);
+
+  // stat pill row
+  const stats15=[{v:'23%',l:'Avg D2C return rate'},{v:'₹340',l:'Cost per return'},{v:'3 days',l:'Avg resolution'}];
+  const sw=(W-72*2-32)/3;
+  stats15.forEach((s,i)=>{
+    const sx=72+i*(sw+16), sy=610;
+    rr(ctx,sx,sy,sw,120,14,'#0d0404');
+    rr(ctx,sx,sy,sw,120,14,null,C.red+'33',1);
+    ctx.font='italic 800 52px system-ui,sans-serif'; ctx.fillStyle=C.red; ctx.textAlign='center';
+    ctx.fillText(s.v, sx+sw/2, sy+70);
+    ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+    ctx.fillText(s.l, sx+sw/2, sy+98);
+  });
+
+  // exchange flow card — wide
+  const ey=770, ew=W-144, eh=380;
+  ctx.shadowColor='rgba(0,0,0,0.4)'; ctx.shadowBlur=24; ctx.shadowOffsetY=8;
+  rr(ctx,72,ey,ew,eh,20,'#0a0a0a'); ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+  rr(ctx,72,ey,ew,eh,20,null,'#1e1e1e',1);
+  // header
+  ctx.fillStyle='#0d1a0d'; ctx.fillRect(72,ey,ew,56);
+  ctx.beginPath(); ctx.moveTo(72,ey+56); ctx.lineTo(72+ew,ey+56); ctx.strokeStyle='#1a3a1a'; ctx.lineWidth=1; ctx.stroke();
+  ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle='#25d366'; ctx.textAlign='left';
+  ctx.fillText('⟳  SELF-SERVE EXCHANGE', 100, ey+36);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.muted; ctx.textAlign='right';
+  ctx.fillText('No support ticket needed', 72+ew-24, ey+36);
+  // steps row
+  const xsteps15=['Customer selects item','Picks exchange size','Pays ₹199 fee','Auto-approved'];
+  const xsw=(ew-48)/(xsteps15.length);
+  xsteps15.forEach((s,i)=>{
+    const xx=72+24+i*xsw+xsw/2;
+    ctx.beginPath(); ctx.arc(xx,ey+110,24,0,Math.PI*2);
+    ctx.fillStyle=i===3?'#25d366':C.red; ctx.fill();
+    ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+    ctx.fillText(i+1, xx, ey+118);
+    if(i<3){ ctx.strokeStyle='#222'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(xx+24,ey+110); ctx.lineTo(xx+xsw-24,ey+110); ctx.stroke(); }
+    ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle=C.muted;
+    const words=s.split(' ');
+    if(words.length<=2){ ctx.fillText(s,xx,ey+152); }
+    else{ ctx.fillText(words.slice(0,2).join(' '),xx,ey+148); ctx.fillText(words.slice(2).join(' '),xx,ey+172); }
+  });
+  // before/after comparison
+  const cols15=[{l:'Before Antortiq',v1:'3-5 days',v2:'WhatsApp chaos',v3:'Manual approval',bg:'#160406',bc:C.red},{l:'With Antortiq',v1:'< 4 hours',v2:'Self-serve portal',v3:'AI auto-approved',bg:'#061209',bc:'#25d366'}];
+  cols15.forEach((c,i)=>{
+    const cx2=72+24+i*(ew/2-20), cy2=ey+198, cw3=ew/2-36;
+    rr(ctx,cx2,cy2,cw3,140,12,c.bg);
+    rr(ctx,cx2,cy2,cw3,140,12,null,c.bc+'44',1);
+    ctx.font='700 20px system-ui,sans-serif'; ctx.fillStyle=c.bc; ctx.textAlign='left';
+    ctx.fillText(c.l, cx2+16, cy2+28);
+    [c.v1,c.v2,c.v3].forEach((v,vi)=>{
+      ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=i===0?'#666':'#ccc';
+      ctx.fillText((i===0?'✕  ':'✓  ')+v, cx2+16, cy2+58+vi*28);
+    });
+  });
+
+  // bottom strip
+  ctx.fillStyle='#111'; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 32px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Cut returns. Keep customers.', W/2, H-52);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('antortiq.com  ·  Self-serve exchange & returns', W/2, H-22);
+}
+
+// ─────────────────────────────────────────────
+//  SP16 — "STOP LOSING ₹500 TO FAKE COD ORDERS"
+// ─────────────────────────────────────────────
+function drawSP16(cv){
+  const ctx=cv.getContext('2d');
+  ctx.fillStyle='#080808'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=C.red; ctx.fillRect(0,0,W,8);
+
+  ctx.textAlign='left';
+  ctx.font='800 64px system-ui,sans-serif'; ctx.fillStyle='#444';
+  ctx.fillText('STOP LOSING', 72, 110);
+  ctx.font='italic 900 180px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('₹500', 72, 300);
+  ctx.font='italic 900 108px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('TO FAKE COD', 72, 416);
+  ctx.font='italic 900 108px system-ui,sans-serif'; ctx.fillStyle='#333';
+  ctx.fillText('ORDERS.', 72, 528);
+
+  // COD confirm card — the real Antortiq screen
+  const cy16=578, cw16=W-144, ch16=480;
+  ctx.shadowColor='rgba(232,52,74,0.2)'; ctx.shadowBlur=40;
+  rr(ctx,72,cy16,cw16,ch16,22,'#fff'); ctx.shadowBlur=0;
+
+  // card header — order info
+  ctx.fillStyle='#f8f8f8'; ctx.fillRect(72,cy16,cw16,56);
+  ctx.beginPath(); ctx.moveTo(72,cy16+56); ctx.lineTo(72+cw16,cy16+56); ctx.strokeStyle='#eee'; ctx.lineWidth=1; ctx.stroke();
+  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='left';
+  ctx.fillText('#2904', 96, cy16+38);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle='#666'; ctx.textAlign='right';
+  ctx.fillText('CONFIRM ORDER', 72+cw16-24, cy16+38);
+
+  // item row
+  rr(ctx,92,cy16+70,cw16-40,70,10,'#fafafa');
+  rr(ctx,108,cy16+82,46,46,8,'#eee');
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='left';
+  ctx.fillText('Miami Gingham Shirt · Size M', 168, cy16+100);
+  ctx.font='600 20px system-ui,sans-serif'; ctx.fillStyle='#888';
+  ctx.fillText('RED GINGHAM  ·  Qty 1', 168, cy16+124);
+  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='right';
+  ctx.fillText('₹1,799', 72+cw16-24, cy16+104);
+
+  // price breakdown
+  const rows16=[['SUBTOTAL','₹1,799'],['DELIVERY','Free'],['CONFIRM FEE (Pay Now)','₹99'],['REMAINING ON COD','₹1,700']];
+  rows16.forEach((r,i)=>{
+    const ry=cy16+162+i*44;
+    ctx.font=i===3?'800 26px system-ui,sans-serif':'600 22px system-ui,sans-serif';
+    ctx.fillStyle=i===3?'#111':'#888'; ctx.textAlign='left';
+    ctx.fillText(r[0], 96, ry);
+    ctx.font=i===3?'900 32px system-ui,sans-serif':'700 24px system-ui,sans-serif';
+    ctx.fillStyle=i===3?C.red:i===2?'#111':'#111'; ctx.textAlign='right';
+    ctx.fillText(r[1], 72+cw16-24, ry);
+    if(i<3){ ctx.strokeStyle='#f0f0f0'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(92,ry+10); ctx.lineTo(72+cw16-16,ry+10); ctx.stroke(); }
+  });
+
+  // pay strip
+  rr(ctx,92,cy16+346,cw16-40,52,26,'#fef3cd');
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle='#b45309'; ctx.textAlign='center';
+  ctx.fillText('Pay ₹99 now · ₹1,700 on delivery', 72+cw16/2, cy16+378);
+
+  // two buttons
+  rr(ctx,92,cy16+408,cw16-40,52,26,'#111');
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Pay ₹99 & Confirm Order', 72+cw16/2, cy16+440);
+
+  // antortiq tag
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle='#bbb'; ctx.textAlign='left';
+  ctx.fillText('Powered by', 92, cy16+ch16-16);
+  ctx.font='700 20px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('Antortiq', 192, cy16+ch16-16);
+
+  // bottom strip
+  ctx.fillStyle='#111'; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 32px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Confirm before ship. Kill fake COD.', W/2, H-52);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('antortiq.com  ·  COD confirmation flow', W/2, H-22);
+}
+
+// ─────────────────────────────────────────────
+//  SP17 — "YOUR SUPPORT IS COSTING YOU CUSTOMERS"
+// ─────────────────────────────────────────────
+function drawSP17(cv){
+  const ctx=cv.getContext('2d');
+  ctx.fillStyle='#080808'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=C.red; ctx.fillRect(0,0,W,8);
+
+  ctx.textAlign='left';
+  ctx.font='800 56px system-ui,sans-serif'; ctx.fillStyle='#555';
+  ctx.fillText('YOUR SUPPORT IS', 72, 100);
+  ctx.font='italic 900 140px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('COSTING', 72, 244);
+  ctx.font='italic 900 120px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('YOU', 72, 370);
+  ctx.font='italic 900 120px system-ui,sans-serif'; ctx.fillStyle='#333';
+  ctx.fillText('CUSTOMERS.', 72, 492);
+
+  // WA AI chat window
+  const wy=530, ww=W-144, wh=560;
+  rr(ctx,72,wy,ww,wh,20,'#0f1a0f'); ctx.shadowBlur=0;
+  // WA header bar
+  ctx.fillStyle='#075e54'; ctx.fillRect(72,wy,ww,60);
+  ctx.beginPath(); ctx.arc(104,wy+30,18,0,Math.PI*2); ctx.fillStyle='#25d366'; ctx.fill();
+  ctx.font='700 26px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='left';
+  ctx.fillText('Antortiq AI Agent', 132, wy+26);
+  ctx.font='500 20px system-ui,sans-serif'; ctx.fillStyle='rgba(255,255,255,0.7)';
+  ctx.fillText('● Online · replies instantly', 132, wy+50);
+
+  // chat messages
+  const msgs17=[
+    {from:'customer',text:"Where is my order #2796?",time:'4:02 PM'},
+    {from:'agent',text:"Hi! Your order #2796 is currently Out for Delivery. Expected by 7PM today. I've also sent the live tracking link to your number. Anything else?",time:'4:02 PM'},
+    {from:'customer',text:"Can I exchange size after delivery?",time:'4:04 PM'},
+    {from:'agent',text:"Yes — you have 7 days. I've queued the exchange link for your delivery confirmation message. Zero effort on your end.",time:'4:04 PM'},
+  ];
+  let msgY=wy+80;
+  msgs17.forEach(m=>{
+    const isAgent=m.from==='agent';
+    const bw=ww*0.72;
+    const bx=isAgent?72+16:72+ww-bw-16;
+    ctx.font='500 22px system-ui,sans-serif';
+    const words=m.text.split(' '); let line='',lines=[];
+    words.forEach(w=>{ const test=line+w+' '; if(ctx.measureText(test).width>bw-32&&line){ lines.push(line.trim()); line=w+' '; }else line=test; });
+    if(line.trim()) lines.push(line.trim());
+    const bh=lines.length*32+36;
+    rr(ctx,bx,msgY,bw,bh,14,isAgent?'#1a2e1a':'#1a1a2a');
+    ctx.fillStyle=isAgent?'#ccc':'#eee'; ctx.textAlign='left';
+    lines.forEach((l,li)=>ctx.fillText(l,bx+16,msgY+30+li*32));
+    ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle='#444'; ctx.textAlign='right';
+    ctx.fillText(m.time,bx+bw-12,msgY+bh-10);
+    msgY+=bh+12;
+  });
+
+  // resolved badge
+  rr(ctx,92,wy+wh-58,ww-40,42,21,'#061209');
+  ctx.font='700 24px system-ui,sans-serif'; ctx.fillStyle='#25d366'; ctx.textAlign='center';
+  ctx.fillText('✓  Resolved in 2 minutes  ·  0 human agents involved', 72+ww/2, wy+wh-30);
+
+  // bottom strip
+  ctx.fillStyle='#111'; ctx.fillRect(0,H-90,W,90);
+  ctx.font='700 32px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Your AI is live in 60 minutes.', W/2, H-52);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('antortiq.com  ·  AI Support Agent', W/2, H-22);
+}
+
+// ─────────────────────────────────────────────
+//  SP18 — "YOU'RE PAYING FOR CLICKS. NOT CUSTOMERS."
+// ─────────────────────────────────────────────
+function drawSP18(cv){
+  const ctx=cv.getContext('2d');
+  ctx.fillStyle='#030810'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=C.blue; ctx.fillRect(0,0,W,8);
+
+  ctx.textAlign='left';
+  ctx.font='800 56px system-ui,sans-serif'; ctx.fillStyle='#2a3a5a';
+  ctx.fillText("YOU'RE PAYING FOR", 72, 100);
+  ctx.font='italic 900 148px system-ui,sans-serif'; ctx.fillStyle='#1a2a4a';
+  ctx.fillText('CLICKS.', 72, 258);
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle='#fff';
+  ctx.fillText('NOT', 72, 368);
+  ctx.font='italic 900 100px system-ui,sans-serif'; ctx.fillStyle=C.blue;
+  ctx.fillText('CUSTOMERS.', 72, 474);
+
+  // Meta Ads dashboard card
+  const dy=510, dw=W-144, dh=600;
+  ctx.shadowColor='rgba(59,130,246,0.15)'; ctx.shadowBlur=40;
+  rr(ctx,72,dy,dw,dh,20,'#fff'); ctx.shadowBlur=0;
+
+  // header
+  ctx.fillStyle='#f8faff'; ctx.fillRect(72,dy,dw,60);
+  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='left';
+  ctx.fillText('📊  Meta Ads Intelligence', 96, dy+40);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle='#888'; ctx.textAlign='right';
+  ctx.fillText('This Year', 72+dw-24, dy+40);
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(72,dy+60); ctx.lineTo(72+dw,dy+60); ctx.stroke();
+
+  // KPI row
+  const kpis18=[{l:'REVENUE',v:'₹28.1L',c:'#16a34a'},{l:'ROAS',v:'6.18×',c:'#16a34a'},{l:'SPEND',v:'₹4.6L',c:'#111'},{l:'PURCHASES',v:'1,402',c:'#111'},{l:'REACH',v:'2.9M',c:'#111'},{l:'FREQUENCY',v:'3.07',c:'#f59e0b'}];
+  const kw=(dw-2)/kpis18.length;
+  kpis18.forEach((k,i)=>{
+    const kx=72+i*kw;
+    if(i>0){ ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(kx,dy+62); ctx.lineTo(kx,dy+136); ctx.stroke(); }
+    ctx.font='600 16px system-ui,sans-serif'; ctx.fillStyle='#999'; ctx.textAlign='center';
+    ctx.fillText(k.l, kx+kw/2, dy+84);
+    ctx.font='800 30px system-ui,sans-serif'; ctx.fillStyle=k.c;
+    ctx.fillText(k.v, kx+kw/2, dy+120);
+  });
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(72,dy+136); ctx.lineTo(72+dw,dy+136); ctx.stroke();
+
+  // tab row
+  const tabs18=['🎯 Audience','🗺 Geographic','👥 Age × Gender','📱 Platform','📋 Campaigns'];
+  const tw18=(dw)/tabs18.length;
+  tabs18.forEach((t,i)=>{
+    ctx.font='600 18px system-ui,sans-serif'; ctx.fillStyle=i===0?'#e63946':'#888'; ctx.textAlign='center';
+    ctx.fillText(t, 72+i*tw18+tw18/2, dy+170);
+    if(i===0){ ctx.strokeStyle='#e63946'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(72+i*tw18+10,dy+180); ctx.lineTo(72+(i+1)*tw18-10,dy+180); ctx.stroke(); }
+  });
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(72,dy+184); ctx.lineTo(72+dw,dy+184); ctx.stroke();
+
+  // audience cards
+  const aud18=[
+    {grade:'GOLD',name:'Streetwear & Urban Fashion',roas:'7.84×',spend:'₹62K',purchases:'198',freq:'1.8',note:'Scale budget — low freq, high ROAS',bc:'#d97706'},
+    {grade:'SILVER',name:'Online Shopping Behaviour',roas:'7.21×',spend:'₹78K',purchases:'231',freq:'1.6',note:'Best CPP — expand lookalike',bc:'#6b7280'},
+    {grade:'BRONZE',name:'Fashion & Apparel Shoppers',roas:'6.14×',spend:'₹95K',purchases:'289',freq:'3.1',note:'Steady — watch frequency',bc:'#b45309'},
+  ];
+  aud18.forEach((a,i)=>{
+    const ax=72+8+i*(dw/3-4), ay=dy+196, aw=dw/3-16, ah=282;
+    rr(ctx,ax,ay,aw,ah,12,'#fff'); rr(ctx,ax,ay,aw,ah,12,null,a.bc+'66',2);
+    ctx.font='700 18px system-ui,sans-serif'; ctx.fillStyle=a.bc; ctx.textAlign='left';
+    ctx.fillText('🏅 '+a.grade, ax+14, ay+28);
+    ctx.font='700 22px system-ui,sans-serif'; ctx.fillStyle='#111';
+    const nwords=a.name.split(' ');
+    if(a.name.length>22){ ctx.fillText(nwords.slice(0,3).join(' '),ax+14,ay+54); ctx.fillText(nwords.slice(3).join(' '),ax+14,ay+78); }
+    else ctx.fillText(a.name,ax+14,ay+58);
+    const pairs18=[['ROAS',a.roas,'#16a34a'],['SPEND',a.spend,'#111'],['PURCHASES',a.purchases,'#111'],['FREQ',a.freq,parseFloat(a.freq)>3?'#f59e0b':'#111']];
+    pairs18.forEach((p,pi)=>{
+      const px=ax+14+(pi%2)*(aw/2-14), py=ay+106+Math.floor(pi/2)*52;
+      ctx.font='600 16px system-ui,sans-serif'; ctx.fillStyle='#999'; ctx.textAlign='left'; ctx.fillText(p[0],px,py);
+      ctx.font='800 26px system-ui,sans-serif'; ctx.fillStyle=p[2]; ctx.fillText(p[1],px,py+26);
+    });
+    ctx.font='500 18px system-ui,sans-serif'; ctx.fillStyle='#888';
+    ctx.fillText(a.note, ax+14, ay+ah-18);
+  });
+
+  // bottom strip
+  ctx.fillStyle='#030810'; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle='#0e1a2e'; ctx.fillRect(0,H-90,W,1);
+  ctx.font='700 32px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.fillText('Know which ad is actually converting.', W/2, H-52);
+  ctx.font='600 22px system-ui,sans-serif'; ctx.fillStyle=C.blue;
+  ctx.fillText('antortiq.com  ·  Meta Ads Intelligence', W/2, H-22);
+}
+
+// ─────────────────────────────────────────────
 //  DRAW ALL
 // ─────────────────────────────────────────────
 const cards = [
   ['sp1',drawSP1],['sp2',drawSP2],['sp3',drawSP3],
   ['sp4',drawSP4],['sp5',drawSP5],['sp6',drawSP6],
+  ['sp13',drawSP13],['sp14',drawSP14],['sp15',drawSP15],
+  ['sp16',drawSP16],['sp17',drawSP17],['sp18',drawSP18],
   ['sp7',drawSP7],['sp8',drawSP8],['sp9',drawSP9],
   ['sp10',drawSP10],['sp11',drawSP11],['sp12',drawSP12],
   ['c1s1',drawC1S1],['c1s2',drawC1S2],['c1s3',drawC1S3],
