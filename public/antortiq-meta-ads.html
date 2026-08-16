@@ -2062,76 +2062,102 @@ function drawC5S3(cv){ // meta ads + pixel
 // ─────────────────────────────────────────────
 
 // Simulated fashion-brand product photo card (gradient + overlaid text)
-function photoCard(ctx, x, y, w, h, status, statusClr, headline, sub, awb, courier, bottom, bottomClr){
-  const r = 20;
-  // card shadow
-  ctx.shadowColor='rgba(0,0,0,0.6)'; ctx.shadowBlur=40; ctx.shadowOffsetY=12;
-  rr(ctx, x, y, w, h, r, '#fff');
-  ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+function photoCard(ctx, x, y, w, h, status, statusClr, headline, sub, awb, courier, bottom, bottomNum, bottomClr){
+  const r=16, photoH=Math.round(h*0.62), panelH=h-photoH, barH=44;
 
-  // "photo" area — gradient simulating fashion shoot
-  const photoH = h * 0.64;
-  ctx.save(); ctx.beginPath();
+  // card shadow
+  ctx.shadowColor='rgba(0,0,0,0.55)'; ctx.shadowBlur=32; ctx.shadowOffsetY=10;
+  rr(ctx,x,y,w,h,r,'#fff'); ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+
+  // ── PHOTO AREA ── clipped to top rounded corners
+  ctx.save();
+  ctx.beginPath();
   ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
   ctx.lineTo(x+w,y+photoH); ctx.lineTo(x,y+photoH); ctx.lineTo(x,y+r);
   ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath(); ctx.clip();
 
-  // gradient that looks like a moody fashion photo
-  const pg = ctx.createLinearGradient(x, y, x+w, y+photoH);
-  pg.addColorStop(0,'#1a1a1a'); pg.addColorStop(0.4,'#2d2820'); pg.addColorStop(1,'#0a0a0a');
-  ctx.fillStyle=pg; ctx.fillRect(x, y, w, photoH);
+  // deep moody photo background — radial spotlight feel
+  const pg=ctx.createRadialGradient(x+w*0.4,y+photoH*0.3,0,x+w*0.4,y+photoH*0.3,w*0.9);
+  pg.addColorStop(0,'#2e2a24'); pg.addColorStop(0.5,'#1a1712'); pg.addColorStop(1,'#080806');
+  ctx.fillStyle=pg; ctx.fillRect(x,y,w,photoH);
 
-  // fabric texture lines
-  for(let i=0;i<8;i++){
-    ctx.strokeStyle=`rgba(255,255,255,${0.015+i*0.005})`; ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(x+w*0.2+i*30, y); ctx.lineTo(x+i*30, y+photoH); ctx.stroke();
+  // subtle diagonal grain lines
+  ctx.globalAlpha=0.06;
+  for(let i=0;i<14;i++){
+    ctx.strokeStyle='#fff'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x+i*(w/10),y); ctx.lineTo(x,y+i*(photoH/10)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x+w-i*(w/10),y); ctx.lineTo(x+w,y+i*(photoH/10)); ctx.stroke();
   }
+  ctx.globalAlpha=1;
 
-  // bottom photo gradient overlay
-  const ov = ctx.createLinearGradient(x, y+photoH*0.45, x, y+photoH);
-  ov.addColorStop(0,'rgba(0,0,0,0)'); ov.addColorStop(1,'rgba(0,0,0,0.92)');
-  ctx.fillStyle=ov; ctx.fillRect(x, y+photoH*0.45, w, photoH*0.55);
+  // vignette overlay
+  const vig=ctx.createRadialGradient(x+w/2,y+photoH/2,photoH*0.1,x+w/2,y+photoH/2,photoH*0.9);
+  vig.addColorStop(0,'rgba(0,0,0,0)'); vig.addColorStop(1,'rgba(0,0,0,0.55)');
+  ctx.fillStyle=vig; ctx.fillRect(x,y,w,photoH);
 
-  // status badge on photo
-  ctx.font='700 22px system-ui,sans-serif'; ctx.textAlign='left';
-  ctx.fillStyle=statusClr||'rgba(255,255,255,0.6)';
-  ctx.fillText((status||'').toUpperCase(), x+22, y+photoH*0.62);
+  // bottom fade-to-white (for text legibility)
+  const fade=ctx.createLinearGradient(x,y+photoH*0.42,x,y+photoH);
+  fade.addColorStop(0,'rgba(0,0,0,0)'); fade.addColorStop(1,'rgba(0,0,0,0.88)');
+  ctx.fillStyle=fade; ctx.fillRect(x,y+photoH*0.42,w,photoH*0.58);
 
-  // headline on photo
-  ctx.font='italic 900 52px system-ui,sans-serif'; ctx.fillStyle='#fff';
-  const hlines = headline.split('\n');
-  hlines.forEach((l,i)=>ctx.fillText(l, x+22, y+photoH*0.72+i*58));
+  // STATUS label — scale font to card width
+  const statusFs=Math.max(13,Math.min(16,w*0.048));
+  ctx.font=`700 ${statusFs}px system-ui,sans-serif`;
+  ctx.fillStyle=statusClr||'rgba(255,255,255,0.65)'; ctx.textAlign='left';
+  ctx.fillText((status||'').toUpperCase(), x+16, y+photoH*0.66);
+
+  // HEADLINE — auto-size so it always fits
+  const headLines=headline.split('\n');
+  let hfs=Math.min(38, Math.floor(w*0.115));
+  ctx.font=`italic 900 ${hfs}px system-ui,sans-serif`;
+  // shrink until longest line fits
+  while(hfs>18 && headLines.some(l=>ctx.measureText(l).width>w-28)){
+    hfs-=2; ctx.font=`italic 900 ${hfs}px system-ui,sans-serif`;
+  }
+  ctx.fillStyle='#fff'; ctx.textAlign='left';
+  headLines.forEach((l,i)=>ctx.fillText(l, x+16, y+photoH*0.77+i*(hfs*1.18)));
 
   ctx.restore();
 
-  // white panel below photo
-  const panelY = y+photoH;
-  ctx.fillStyle='#fff'; ctx.fillRect(x, panelY, w, h-photoH);
+  // ── WHITE PANEL ──
+  const panelY=y+photoH;
+  ctx.fillStyle='#fff'; ctx.fillRect(x,panelY,w,panelH);
 
-  // AWB / courier row
-  ctx.font='700 18px system-ui,sans-serif'; ctx.fillStyle='#999'; ctx.textAlign='left';
-  ctx.fillText('AWB', x+22, panelY+28);
-  ctx.font='700 18px system-ui,sans-serif'; ctx.fillStyle='#999'; ctx.textAlign='right';
-  ctx.fillText('COURIER', x+w-22, panelY+28);
-  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='left';
-  ctx.fillText(awb||'8012003045', x+22, panelY+58);
-  ctx.font='800 28px system-ui,sans-serif'; ctx.fillStyle='#111'; ctx.textAlign='right';
-  ctx.fillText(courier||'Delhivery', x+w-22, panelY+58);
+  // AWB + COURIER labels
+  const lfs=Math.max(11,Math.floor(w*0.042));
+  ctx.font=`600 ${lfs}px system-ui,sans-serif`; ctx.fillStyle='#aaa';
+  ctx.textAlign='left';  ctx.fillText('AWB',     x+14, panelY+lfs+6);
+  ctx.textAlign='right'; ctx.fillText('COURIER', x+w-14, panelY+lfs+6);
 
-  // sub line
-  if(sub){ ctx.font='500 22px system-ui,sans-serif'; ctx.fillStyle='#aaa'; ctx.textAlign='left'; ctx.fillText(sub, x+22, panelY+88); }
+  // AWB + COURIER values
+  const vfs=Math.max(14,Math.floor(w*0.054));
+  ctx.font=`800 ${vfs}px system-ui,sans-serif`; ctx.fillStyle='#111';
+  ctx.textAlign='left';  ctx.fillText(awb||'8012003045', x+14, panelY+lfs*2+vfs+2);
+  ctx.textAlign='right'; ctx.fillText(courier||'Delhivery', x+w-14, panelY+lfs*2+vfs+2);
 
-  // bottom status bar
-  const barY = y+h-48;
-  ctx.fillStyle='#111'; ctx.fillRect(x, barY, w, 48);
-  // round bottom corners
-  ctx.save(); ctx.beginPath();
+  // sub text
+  if(sub){
+    const sfs=Math.max(11,Math.floor(w*0.04));
+    ctx.font=`500 ${sfs}px system-ui,sans-serif`; ctx.fillStyle='#bbb'; ctx.textAlign='left';
+    ctx.fillText(sub, x+14, panelY+lfs*2+vfs+sfs+10);
+  }
+
+  // ── BOTTOM BAR ──
+  const barY=y+h-barH;
+  ctx.save();
+  ctx.beginPath();
   ctx.moveTo(x,barY); ctx.lineTo(x+w,barY); ctx.lineTo(x+w,y+h-r);
   ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h);
   ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,barY); ctx.closePath();
   ctx.fillStyle='#111'; ctx.fill(); ctx.restore();
-  ctx.font='800 24px system-ui,sans-serif'; ctx.fillStyle=bottomClr||'#fff'; ctx.textAlign='left';
-  ctx.fillText(bottom||'', x+22, y+h-18);
+
+  const bfs=Math.max(14,Math.floor(w*0.055));
+  ctx.font=`800 ${bfs}px system-ui,sans-serif`; ctx.textAlign='left';
+  ctx.fillStyle=bottomClr||'#fff'; ctx.fillText(bottom||'', x+14, barY+barH*0.68);
+  if(bottomNum){
+    ctx.fillStyle=bottomClr||'rgba(255,255,255,0.5)'; ctx.textAlign='right';
+    ctx.fillText(bottomNum, x+w-14, barY+barH*0.68);
+  }
 }
 
 // bold italic headline, multi-line, auto-sized
@@ -2167,58 +2193,66 @@ function drawSP13(cv){
   const ctx=cv.getContext('2d');
   ctx.fillStyle='#080808'; ctx.fillRect(0,0,W,H);
 
-  // top red headline
+  // ── HEADLINE BLOCK ── (compact so cards have room)
   ctx.textAlign='left';
-  ctx.font='800 72px system-ui,sans-serif'; ctx.fillStyle='#aaa';
-  ctx.fillText('STILL SENDING THOSE', 72, 120);
-  ctx.font='italic 900 148px system-ui,sans-serif'; ctx.fillStyle=C.red;
-  ctx.fillText('BORING', 72, 272);
-  ctx.fillText('EMAILS ?', 72, 420);
+  ctx.font='700 52px system-ui,sans-serif'; ctx.fillStyle='#666';
+  ctx.fillText('STILL SENDING THOSE', 72, 92);
+  ctx.font='italic 900 172px system-ui,sans-serif'; ctx.fillStyle=C.red;
+  ctx.fillText('BORING', 60, 260);
+  ctx.font='italic 900 126px system-ui,sans-serif';
+  ctx.fillText('EMAILS ?', 60, 388);
 
-  // timeline
-  tinyTimeline(ctx, 500, ['Placed','Confirmed','On Hold','Packed','Shipped','Out for Delivery','Missed'], 5);
-
-  // 3 email photo cards
-  const cw=(W-72*2-32)/3, ch=540;
-  const cards3=[
-    {status:'SHIPPED · ON THE MOVE',headline:'YOUR ORDER\nIS ON ITS WAY.',sub:'Track your order →',bottom:'Shipped',n:'05',clr:'#fff'},
-    {status:'OUT FOR DELIVERY · TODAY',headline:'ARRIVING\nTODAY.',sub:'Arriving today',bottom:'OUT for Delivery',n:'06',clr:'#fff'},
-    {status:'DELIVERY ATTEMPTED',headline:'WE MISSED\nYOU TODAY.',sub:'Re-delivery being arranged',bottom:'Missed You',n:'07',clr:'#f59e0b'},
-  ];
-  cards3.forEach((c,i)=>{
-    const cx=72+i*(cw+16), cy=580;
-    photoCard(ctx,cx,cy,cw,ch,c.status,i===2?'#f59e0b':'rgba(255,255,255,0.55)',c.headline,c.sub,'8012003045','Delhivery',c.bottom+`        ${c.n}`,i===2?'#f59e0b':'#fff');
+  // ── TIMELINE (tight) ──
+  const steps13=['Placed','Confirmed','Packed','Shipped','Out for Del.','Missed'];
+  const tx0=72, tx1=W-72, tsp=(tx1-tx0)/(steps13.length-1), ty=446;
+  ctx.strokeStyle='#1e1e1e'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(tx0,ty); ctx.lineTo(tx1,ty); ctx.stroke();
+  ctx.strokeStyle=C.red; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(tx0,ty); ctx.lineTo(tx0+tsp*4,ty); ctx.stroke();
+  steps13.forEach((s,i)=>{
+    const cx2=tx0+tsp*i;
+    ctx.beginPath(); ctx.arc(cx2,ty,9,0,Math.PI*2);
+    ctx.fillStyle=i<=4?C.red:'#1e1e1e'; ctx.fill();
+    ctx.font=`600 ${i===5?17:16}px system-ui,sans-serif`;
+    ctx.fillStyle=i<=4?'#fff':'#444'; ctx.textAlign='center';
+    ctx.fillText(s, cx2, ty+28);
+    ctx.font='500 14px system-ui,sans-serif'; ctx.fillStyle='#2a2a2a';
+    ctx.fillText('0'+(i+1), cx2, ty+46);
   });
 
-  // bottom tagline strip
-  ctx.fillStyle='#111'; ctx.fillRect(0,H-100,W,100);
-  ctx.font='700 30px system-ui,sans-serif'; ctx.fillStyle='#fff'; ctx.textAlign='center';
-  ctx.fillText('NO MONTHLY SUBSCRIPTION  ', W/2-80, H-58);
-  ctx.font='900 30px system-ui,sans-serif'; ctx.fillStyle=C.red;
-  ctx.fillText('ONE TIME', W/2+190, H-58);
-  ctx.font='700 30px system-ui,sans-serif'; ctx.fillStyle='#fff';
-  ctx.fillText('  SETUP COST', W/2+400, H-58);
+  // ── 3 PHOTO CARDS ──
+  const gap=18, M2=72;
+  const cw=Math.floor((W-M2*2-gap*2)/3), ch=560, cy13=506;
+  const c13=[
+    {status:'SHIPPED · ON THE MOVE', headline:'YOUR ORDER\nIS ON ITS WAY.', sub:'Track your order →', bottom:'Shipped', num:'05', clr:'#fff'},
+    {status:'OUT FOR DELIVERY · TODAY', headline:'ARRIVING\nTODAY.', sub:'Arriving today', bottom:'OUT for Delivery', num:'06', clr:'#fff'},
+    {status:'DELIVERY ATTEMPTED', headline:'WE MISSED\nYOU TODAY.', sub:'Re-delivery arranged', bottom:'Missed You', num:'07', clr:'#f59e0b'},
+  ];
+  c13.forEach((c,i)=>{
+    const cx3=M2+i*(cw+gap);
+    photoCard(ctx,cx3,cy13,cw,ch,c.status,i===2?'#f59e0b':'rgba(255,255,255,0.6)',c.headline,c.sub,'8012003045','Delhivery',c.bottom,c.num,i===2?'#f59e0b':'#fff');
+  });
 
-  // re-draw full bottom strip as one line (canvas text doesn't concat colors, so fake it)
-  ctx.clearRect(0,H-100,W,100);
-  ctx.fillStyle='#111'; ctx.fillRect(0,H-100,W,100);
-  // measure and stitch manually
+  // ── BOTTOM STRIP — multi-colour tagline ──
+  const stripY=H-90;
+  ctx.fillStyle='#0e0e0e'; ctx.fillRect(0,stripY,W,90);
+  ctx.strokeStyle='#1e1e1e'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(0,stripY); ctx.lineTo(W,stripY); ctx.stroke();
+
+  const t1='NO MONTHLY SUBSCRIPTION ', t2='ONE TIME', t3=' SETUP COST';
+  ctx.font='700 34px system-ui,sans-serif';
+  const tw1=ctx.measureText(t1).width;
+  ctx.font='900 34px system-ui,sans-serif';
+  const tw2=ctx.measureText(t2).width;
+  ctx.font='700 34px system-ui,sans-serif';
+  const tw3=ctx.measureText(t3).width;
+  let sx=(W-(tw1+tw2+tw3))/2;
   ctx.textAlign='left';
-  const t1='NO MONTHLY SUBSCRIPTION '; const t2='ONE TIME'; const t3=' SETUP COST';
-  ctx.font='700 32px system-ui,sans-serif';
-  const w1=ctx.measureText(t1).width;
-  ctx.font='900 32px system-ui,sans-serif';
-  const w2=ctx.measureText(t2).width;
-  ctx.font='700 32px system-ui,sans-serif';
-  const w3=ctx.measureText(t3).width;
-  const totalW=w1+w2+w3;
-  let tx=(W-totalW)/2;
-  ctx.fillStyle='#fff'; ctx.font='700 32px system-ui,sans-serif'; ctx.fillText(t1,tx,H-54); tx+=w1;
-  ctx.fillStyle=C.red; ctx.font='900 32px system-ui,sans-serif'; ctx.fillText(t2,tx,H-54); tx+=w2;
-  ctx.fillStyle='#fff'; ctx.font='700 32px system-ui,sans-serif'; ctx.fillText(t3,tx,H-54);
-
-  ctx.fillStyle='rgba(255,255,255,0.3)'; ctx.font='600 22px system-ui,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('antortiq.com', W/2, H-24);
+  ctx.fillStyle='#fff'; ctx.font='700 34px system-ui,sans-serif'; ctx.fillText(t1,sx,stripY+52); sx+=tw1;
+  ctx.fillStyle=C.red; ctx.font='900 34px system-ui,sans-serif'; ctx.fillText(t2,sx,stripY+52); sx+=tw2;
+  ctx.fillStyle='#fff'; ctx.font='700 34px system-ui,sans-serif'; ctx.fillText(t3,sx,stripY+52);
+  ctx.fillStyle='rgba(255,255,255,0.25)'; ctx.font='500 20px system-ui,sans-serif'; ctx.textAlign='center';
+  ctx.fillText('antortiq.com', W/2, stripY+76);
 }
 
 // ─────────────────────────────────────────────
