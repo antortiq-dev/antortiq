@@ -593,31 +593,42 @@ function buildProposal(doPrint) {
   const competitorAnnual = competitorTotal * 12;
   const savings = competitorAnnual - total;
 
-  const featureCardsHTML = sel.map(s => `
-    <div style="break-inside:avoid;background:#111114;border:1px solid #1e1e22;border-radius:20px;overflow:hidden;margin-bottom:24px">
-      <div style="border-bottom:1px solid #1a1a1e;padding:20px 24px 0">
-        ${mockupHTML(s)}
-      </div>
-      <div style="padding:20px 24px">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
-          <div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${s.accentColor};margin-bottom:4px">${s.tags[0]}</div>
-            <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:#fff;line-height:1.2">${s.name}</div>
+  // Two-column table layout — reliable across all print engines, no CSS grid
+  const featureCardsHTML = (function() {
+    const rows = [];
+    for (let i = 0; i < sel.length; i += 2) {
+      const a = sel[i], b = sel[i+1];
+      const cell = (s) => `
+        <td style="width:50%;vertical-align:top;padding:0 ${b && i % 2 === 0 ? '10px 0 0' : '0'}">
+          <div style="page-break-inside:avoid;break-inside:avoid;background:#111114;border:1px solid #1e1e22;border-radius:16px;overflow:hidden;margin-bottom:20px">
+            <div style="border-bottom:1px solid #1a1a1e;padding:16px 20px 0">
+              ${mockupHTML(s)}
+            </div>
+            <div style="padding:18px 20px">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
+                <div style="flex:1;padding-right:8px">
+                  <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${s.accentColor};margin-bottom:3px">${s.tags[0]}</div>
+                  <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:17px;color:#fff;line-height:1.2">${s.name}</div>
+                </div>
+                ${s.isFree
+                  ? `<div style="flex-shrink:0;background:#061209;border:1px solid #22c55e44;border-radius:99px;padding:4px 10px;font-size:9px;font-weight:800;letter-spacing:1px;color:#22c55e;white-space:nowrap">&#127873; FREE</div>`
+                  : `<div style="flex-shrink:0;text-align:right"><div style="font-family:'Sora',sans-serif;font-size:19px;font-weight:900;color:#e8344a">&#8377;${s.price.toLocaleString('en-IN')}</div><div style="font-size:9px;color:#555;margin-top:1px">one-time</div></div>`
+                }
+              </div>
+              <p style="font-size:12px;color:#6b7280;line-height:1.55;margin-bottom:10px">${s.desc}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">
+                ${s.tags.map(t => `<span style="font-size:9px;font-weight:600;color:#444;border:1px solid #1e1e22;padding:2px 7px;border-radius:99px">${t}</span>`).join('')}
+              </div>
+              <div style="border-top:1px solid #1a1a1e;padding-top:10px">
+                ${s.features.map(f => `<div style="display:flex;gap:7px;margin-bottom:5px;align-items:flex-start"><span style="color:${s.accentColor};font-weight:800;font-size:11px;margin-top:1px;flex-shrink:0">&#10003;</span><span style="font-size:11px;color:#9ca3af;line-height:1.45">${f}</span></div>`).join('')}
+              </div>
+            </div>
           </div>
-          ${s.isFree
-            ? `<div style="background:#061209;border:1px solid #22c55e44;border-radius:99px;padding:5px 12px;font-size:10px;font-weight:800;letter-spacing:1px;color:#22c55e;white-space:nowrap">&#127873; FREE ADD-ON</div>`
-            : `<div style="text-align:right"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:900;color:#e8344a">&#8377;${s.price.toLocaleString('en-IN')}</div><div style="font-size:10px;color:#555;margin-top:2px">one-time</div></div>`
-          }
-        </div>
-        <p style="font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:14px">${s.desc}</p>
-        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px">
-          ${s.tags.map(t => `<span style="font-size:10px;font-weight:600;color:#444;border:1px solid #1e1e22;padding:2px 9px;border-radius:99px">${t}</span>`).join('')}
-        </div>
-        <div style="border-top:1px solid #1a1a1e;padding-top:12px">
-          ${s.features.map(f => `<div style="display:flex;gap:8px;margin-bottom:6px;align-items:flex-start"><span style="color:${s.accentColor};font-weight:800;font-size:12px;margin-top:1px;flex-shrink:0">&#10003;</span><span style="font-size:12px;color:#9ca3af;line-height:1.5">${f}</span></div>`).join('')}
-        </div>
-      </div>
-    </div>`).join('');
+        </td>`;
+      rows.push(`<tr>${cell(a)}${b ? cell(b).replace('padding:0 10px 0 0','padding:0 0 0 10px') : '<td style="width:50%"></td>'}</tr>`);
+    }
+    return `<table style="width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed">${rows.join('')}</table>`;
+  })();
 
   const compRowsHTML = sel.map(s => `
     <tr style="border-bottom:1px solid #1e1e22">
@@ -682,9 +693,7 @@ body{font-family:'Inter',sans-serif;background:#080808;color:#e9e9ea;-webkit-pri
 
   ${form.customMsg ? `<div style="background:#0d0406;border-left:4px solid #e8344a;border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:28px;font-size:14px;color:#9ca3af;line-height:1.65">${form.customMsg}</div>` : ''}
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-    ${featureCardsHTML}
-  </div>
+  ${featureCardsHTML}
 </div>
 
 <!-- PRICING PAGE -->
@@ -694,21 +703,25 @@ body{font-family:'Inter',sans-serif;background:#080808;color:#e9e9ea;-webkit-pri
   <p style="font-size:14px;color:#6b7280;margin-bottom:32px">Traditional SaaS tools charge monthly &mdash; forever. We build it once, it runs forever.</p>
 
   <!-- Hero comparison -->
-  <div style="background:#0d0406;border:1px solid #2a1010;border-radius:20px;padding:36px 40px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
-    <div>
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:8px">Your One-Time Investment</div>
-      <div style="font-family:'Sora',sans-serif;font-size:64px;font-weight:900;color:#e8344a;line-height:1">&#8377;${total.toLocaleString('en-IN')}</div>
-      <div style="font-size:14px;color:#6b7280;margin-top:6px">Pay once. Own it forever. No renewals.</div>
-    </div>
-    <div style="background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:15px;padding:14px 24px;border-radius:99px;text-align:center;white-space:nowrap">
-      You save<br><span style="font-size:22px">&#8377;${savings.toLocaleString('en-IN')}</span><br><span style="font-size:11px;font-weight:600;opacity:.8">vs Year 1 competitor cost</span>
-    </div>
-    <div style="text-align:right">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:8px">Competitors (Year 1)</div>
-      <div style="font-family:'Sora',sans-serif;font-size:40px;font-weight:900;color:#3a3a42;text-decoration:line-through;line-height:1">&#8377;${competitorAnnual.toLocaleString('en-IN')}</div>
-      <div style="font-size:14px;color:#3a3a42;margin-top:6px">And it keeps going every year.</div>
-    </div>
-  </div>
+  <table style="width:100%;border-collapse:collapse;background:#0d0406;border:1px solid #2a1010;border-radius:20px;overflow:hidden;margin-bottom:24px">
+    <tr>
+      <td style="padding:32px 36px;vertical-align:middle;width:38%">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:8px">Your One-Time Investment</div>
+        <div style="font-family:'Sora',sans-serif;font-size:56px;font-weight:900;color:#e8344a;line-height:1">&#8377;${total.toLocaleString('en-IN')}</div>
+        <div style="font-size:13px;color:#6b7280;margin-top:6px">Pay once. Own it forever. No renewals.</div>
+      </td>
+      <td style="padding:24px;vertical-align:middle;text-align:center;width:24%">
+        <div style="display:inline-block;background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:14px;padding:14px 20px;border-radius:99px;line-height:1.4">
+          You save<br><span style="font-size:20px">&#8377;${savings.toLocaleString('en-IN')}</span><br><span style="font-size:10px;font-weight:600;opacity:.85">vs Year 1 competitor cost</span>
+        </div>
+      </td>
+      <td style="padding:32px 36px;vertical-align:middle;text-align:right;width:38%">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:8px">Competitors (Year 1)</div>
+        <div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:900;color:#3a3a42;text-decoration:line-through;line-height:1">&#8377;${competitorAnnual.toLocaleString('en-IN')}</div>
+        <div style="font-size:13px;color:#3a3a42;margin-top:6px">And it keeps going every year.</div>
+      </td>
+    </tr>
+  </table>
 
   <!-- Comparison table -->
   <table style="width:100%;border-collapse:collapse;background:#0d0d10;border:1px solid #1e1e22;border-radius:14px;overflow:hidden">
@@ -741,9 +754,14 @@ body{font-family:'Inter',sans-serif;background:#080808;color:#e9e9ea;-webkit-pri
       <span style="display:inline-block;background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:13px;padding:11px 24px;border-radius:99px">antortiq@gmail.com</span>
       <span style="display:inline-block;background:#25D366;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:13px;padding:11px 24px;border-radius:99px">WhatsApp: +91 9079060327</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:left">
-      ${['One-time payment — no recurring fees','Full source code and admin access','Proposal valid for ${form.validDays} days','Free bug fixes for 30 days post-launch','Dedicated onboarding call included','Custom branding to match your store'].map(t=>`<div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#555"><span style="color:#e8344a;font-weight:800;flex-shrink:0">&#10003;</span>${t}</div>`).join('')}
-    </div>
+    <table style="width:100%;border-collapse:collapse;text-align:left">
+      <tr>
+        ${['One-time payment — no recurring fees','Full source code and admin access','Proposal valid for ' + form.validDays + ' days'].map(t=>`<td style="padding:4px 8px;font-size:12px;color:#555;vertical-align:top;width:33%"><span style="color:#e8344a;font-weight:800;margin-right:5px">&#10003;</span>${t}</td>`).join('')}
+      </tr>
+      <tr>
+        ${['Free bug fixes for 30 days post-launch','Dedicated onboarding call included','Custom branding to match your store'].map(t=>`<td style="padding:4px 8px;font-size:12px;color:#555;vertical-align:top;width:33%"><span style="color:#e8344a;font-weight:800;margin-right:5px">&#10003;</span>${t}</td>`).join('')}
+      </tr>
+    </table>
   </div>
 </div>
 
