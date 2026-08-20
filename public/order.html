@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Your Order — Antortiq</title>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f5f5;--surface:#fff;--card:#fff;--border:#e8e8e8;--border-strong:#d0d0d0;
+  --text:#0f0f0f;--body:#555;--muted:#999;
+  --accent:#0f0f0f;--accent-light:#f0f0f0;--accent-border:#d0d0d0;--accent-dark:#000;
+  --amber:#f59e0b;--amber-light:#fffbeb;--amber-border:#fde68a;
+  --red:#ef4444;--red-light:#fef2f2;--red-border:#fecaca;
+  --green:#16a34a;--green-light:#f0fdf4;--green-border:#86efac;
+  --indigo:#6366f1;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;overscroll-behavior:none}
+
+/* ── LOOKUP ── */
+#lookup-screen{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;background:var(--surface)}
+.logo-text{font-size:11px;font-weight:900;letter-spacing:.28em;color:var(--accent);text-transform:uppercase;margin-bottom:44px}
+.lookup-title{font-size:25px;font-weight:800;letter-spacing:-.03em;text-align:center;line-height:1.2;margin-bottom:8px;color:var(--text)}
+.lookup-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:32px;line-height:1.65;max-width:280px}
+.lookup-form{width:100%;max-width:320px;display:flex;flex-direction:column;gap:10px}
+.inp{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;font-size:15px;color:var(--text);outline:none;transition:border-color .15s;-webkit-appearance:none}
+.inp::placeholder{color:#bbb}
+.inp:focus{border-color:var(--border-strong)}
+.btn-primary{width:100%;background:var(--text);color:#fff;border:none;border-radius:10px;padding:16px;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:opacity .15s;-webkit-tap-highlight-color:transparent}
+.btn-primary:active{opacity:.8}
+.btn-primary:disabled{opacity:.35;cursor:not-allowed}
+.err-msg{font-size:12px;color:var(--red);text-align:center;min-height:18px;letter-spacing:.01em}
+
+/* ── LOADING ── */
+#loading-screen{min-height:100svh;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:var(--surface)}
+.spinner{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--text);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-label{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+
+/* ── ORDER SCREEN ── */
+#order-screen{display:none;min-height:100svh;flex-direction:column;background:var(--bg)}
+
+/* CONFIRM VIEW */
+#confirm-view{flex:1;display:none;flex-direction:column;min-height:100svh;background:var(--bg)}
+.hero-img-wrap{position:relative;width:100%;height:56svh;min-height:240px;overflow:hidden;flex-shrink:0;background:var(--bg)}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.hero-placeholder{width:100%;height:100%;background:#efefef;display:flex;align-items:center;justify-content:center}
+.hero-fade{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,var(--bg) 0%,transparent 100%);pointer-events:none}
+.order-badge{background:rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.28);border-radius:100px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:.08em;white-space:nowrap;color:var(--text);text-transform:uppercase;transition:background .25s,border-color .25s,color .25s}
+.confirm-sheet{flex:1;padding:6px 20px 200px;display:flex;flex-direction:column;gap:20px}
+.product-name{font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--text)}
+.product-variant{font-size:11px;color:var(--muted);margin-top:5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase}
+.price-row{display:flex;align-items:baseline;gap:10px;margin-top:12px}
+.price-cod{font-size:29px;font-weight:800;letter-spacing:-.03em;color:var(--text)}
+.price-tag{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.summary-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid var(--border)}
+.summary-row:last-child{border-bottom:none}
+.summary-label{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.07em;text-transform:uppercase}
+.summary-val{font-size:13px;font-weight:700;color:var(--text)}
+.summary-val.green{color:var(--green)}
+.summary-val.muted{color:var(--muted)}
+.items-list{display:flex;flex-direction:column;gap:8px}
+.item-row{display:flex;gap:12px;align-items:center;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.item-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;background:var(--bg);flex-shrink:0;border:1px solid var(--border)}
+.item-info{flex:1;min-width:0}
+.item-title{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.item-meta{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.03em}
+.item-price{font-size:13px;font-weight:700;flex-shrink:0;color:var(--text)}
+.badges-row{display:flex;align-items:center;justify-content:center;gap:18px;padding:2px 0}
+.badge-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.01em}
+.badge-icon{display:flex;align-items:center;color:var(--accent)}
+.cta-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:linear-gradient(to top,var(--surface) 60%,rgba(255,255,255,0) 100%);padding:16px 20px calc(env(safe-area-inset-bottom,0px) + 18px);display:flex;flex-direction:column;gap:8px}
+.btn-confirm{width:100%;background:var(--text);color:#fff;border:none;border-radius:12px;padding:17px;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;transition:opacity .15s}
+.btn-confirm:active{opacity:.8}
+.btn-confirm:disabled{opacity:.35;cursor:not-allowed}
+.btn-prepaid{width:100%;background:var(--surface);color:var(--accent-dark);border:1.5px solid var(--accent-border);border-radius:12px;padding:14px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;transition:opacity .15s}
+.btn-prepaid:active{opacity:.75}
+.btn-prepaid:disabled{opacity:.35;cursor:not-allowed}
+.savings-pill{background:var(--accent-light);border:1px solid var(--accent-border);border-radius:100px;padding:2px 8px;font-size:10px;font-weight:700;color:var(--accent-dark);letter-spacing:.05em}
+.confirmed-banner{background:var(--green-light);border:1px solid var(--green-border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.confirmed-icon{display:flex;align-items:center;color:var(--green);flex-shrink:0}
+.confirmed-text{font-size:14px;font-weight:700;color:var(--text)}
+.confirmed-sub{font-size:12px;color:var(--body);margin-top:2px}
+.why-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;margin-top:10px;margin-bottom:4px}
+.why-title{font-size:12px;font-weight:700;color:var(--text);letter-spacing:.01em}
+.why-body{font-size:12px;color:var(--body);line-height:1.7}
+.why-body strong{color:var(--text);font-weight:700}
+.why-note{font-size:11px;color:var(--muted);line-height:1.65;padding-top:2px;border-top:1px solid var(--border)}
+.why-note strong{color:var(--body);font-weight:700}
+
+/* ── TRACK VIEW ── */
+#track-view{flex:1;display:none;flex-direction:column;padding:0 0 48px;background:var(--bg)}
+.track-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:20px 20px 16px;display:flex;align-items:flex-start;gap:12px;margin-top:54px}
+.track-order-num{font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--text)}
+.track-customer-name{font-size:12px;color:var(--muted);margin-top:3px;letter-spacing:.02em}
+.stage-pill{padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;border:1px solid}
+.stage-pill.confirmed{background:var(--accent-light);color:var(--accent-dark);border-color:var(--accent-border)}
+.stage-pill.transit{background:#eef3ff;color:#002eff;border-color:#99b3ff}
+.stage-pill.delivered{background:var(--green-light);color:var(--green);border-color:var(--green-border)}
+.stage-pill.rto{background:var(--red-light);color:var(--red);border-color:var(--red-border)}
+.stage-pill.new{background:var(--amber-light);color:var(--amber);border-color:var(--amber-border)}
+.stepper{padding:24px 20px 20px;background:var(--surface);border-bottom:1px solid var(--border)}
+.step-track{display:flex;align-items:flex-start}
+.step-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+.step-dot{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:2;transition:all .2s}
+.step-dot.done{background:var(--accent);color:#fff}
+.step-dot.done svg{stroke:#fff}
+.step-dot.active{background:var(--text);color:#fff;box-shadow:0 0 0 3px rgba(15,15,15,.1)}
+.step-dot.active svg{stroke:#fff}
+.step-dot.pending{background:var(--bg);border:1.5px solid var(--border)}
+.step-dot.pending svg{stroke:#ccc}
+.step-line{position:absolute;top:13px;left:50%;right:-50%;height:1.5px;z-index:0}
+.step-line.done{background:var(--accent)}
+.step-line.pending{background:var(--border)}
+.step-label{font-size:9px;font-weight:700;color:var(--muted);margin-top:7px;text-align:center;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;max-width:52px}
+.step-label.active{color:var(--text)}
+.step-item:last-child .step-line{display:none}
+.section-wrap{padding:0 16px}
+.section-title{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin:20px 0 8px}
+.status-card-base{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.eta-card{display:flex;align-items:center;gap:14px;padding:18px}
+.eta-icon{display:flex;align-items:center;flex-shrink:0}
+.eta-text{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.eta-sub{font-size:12px;color:var(--body);margin-top:3px}
+.waiting-card{padding:20px;display:flex;flex-direction:column;gap:10px}
+.waiting-icon{display:flex;align-items:center}
+.waiting-title{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.waiting-sub{font-size:13px;color:var(--body);line-height:1.65}
+.waiting-steps{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.w-step{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:500}
+.w-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0}
+.w-dot.done{background:var(--accent)}
+.scan-log{margin-top:10px;border-radius:12px;border:1px solid var(--border);background:var(--card);overflow:hidden}
+.scan-log-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.scan-log-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.scan-log-toggle{font-size:11px;color:var(--indigo);font-weight:600;display:flex;align-items:center;gap:4px}
+.scan-log-toggle svg{transition:transform .2s}
+.scan-log-toggle.open svg{transform:rotate(180deg)}
+.scan-log-body{padding:0 16px;transition:max-height .3s ease,opacity .2s;max-height:0;opacity:0;overflow:hidden}
+.scan-log-body.visible{max-height:2000px;opacity:1;padding-bottom:14px}
+.scan-events{display:flex;flex-direction:column;position:relative}
+.scan-events::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--border)}
+.scan-event{display:grid;grid-template-columns:14px 1fr;gap:10px;align-items:start;padding:9px 0}
+.scan-event:first-child{padding-top:4px}
+.scan-dot{width:13px;height:13px;border-radius:50%;border:2px solid var(--border);background:var(--card);flex-shrink:0;margin-top:2px;position:relative;z-index:1;transition:background .15s,border-color .15s}
+.scan-dot.latest{background:var(--indigo);border-color:var(--indigo)}
+.scan-dot.delivered{background:var(--green);border-color:var(--green)}
+.scan-status{font-size:12px;font-weight:600;color:var(--text);line-height:1.35}
+.scan-status.latest{color:var(--indigo)}
+.scan-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+.scan-time{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.scan-loc{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:2px}
+.scan-loc::before{content:'·'}
+.scan-collapsed-peek{padding:10px 16px 13px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.scan-peek-text{font-size:12px;color:var(--muted)}
+.delivered-card{background:var(--green-light);border:1px solid var(--green-border);border-radius:12px;padding:22px;text-align:center}
+.delivered-icon{display:flex;align-items:center;justify-content:center;color:var(--green);margin-bottom:10px}
+.delivered-title{font-size:16px;font-weight:800;color:var(--green);letter-spacing:-.01em}
+.delivered-sub{font-size:13px;color:var(--body);margin-top:6px;line-height:1.6}
+.rto-card{background:var(--red-light);border:1px solid var(--red-border);border-radius:12px;padding:22px;text-align:center}
+.rto-icon{display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:10px}
+.rto-title{font-size:16px;font-weight:800;color:var(--red);letter-spacing:-.01em}
+.rto-sub{font-size:13px;color:var(--body);margin-top:6px;line-height:1.6}
+.shipment-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.shipment-vendor{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg)}
+.vendor-name{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.courier-tag{font-size:10px;color:var(--muted);background:var(--surface);padding:3px 8px;border-radius:100px;font-weight:600;border:1px solid var(--border)}
+.awb-row{padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
+.awb-label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.awb-num{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.04em;color:var(--accent)}
+.track-link{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--accent-light);color:var(--accent-dark);text-decoration:none;padding:12px 14px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-top:1px solid var(--accent-border)}
+.track-link:active{opacity:.8}
+.rr-divider{height:1px;background:var(--border);margin:0}
+.rr-inner{padding:20px 0 4px}
+.rr-notice{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px 14px;font-size:13px;color:var(--body);line-height:1.65;margin-bottom:12px}
+.rr-notice strong{color:var(--text);font-weight:700}
+.rr-btns{display:flex;gap:8px}
+.btn-rr{flex:1;padding:13px 10px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.07em;border:1.5px solid;-webkit-tap-highlight-color:transparent;transition:opacity .15s;text-align:center;text-transform:uppercase;background:var(--card)}
+.btn-rr:active{opacity:.7}
+.btn-exchange{border-color:var(--accent-border);color:var(--accent-dark)}
+.btn-return{border-color:var(--border);color:var(--body)}
+.rr-card-track{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-top:12px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.rr-card-head2{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:14px}
+.rr-card-title{font-size:13px;font-weight:700;color:var(--text)}
+.rr-card-sub{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5}
+.rr-prog-row{display:flex;align-items:center;margin-bottom:10px}
+.rr-step-wrap{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.rr-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid;flex-shrink:0}
+.rr-dot-done{background:var(--accent-dark);border-color:var(--accent-dark)}
+.rr-dot-active{background:#fff;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,0,0,.12)}
+.rr-dot-pending{background:var(--bg);border-color:var(--border)}
+.rr-step-lbl{font-size:9px;color:var(--muted);margin-top:4px;text-align:center;white-space:nowrap}
+.rr-step-line{flex:1;height:1.5px;background:var(--border);margin:0 4px;margin-bottom:14px}
+.rr-track-row{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--border);margin-top:4px}
+.rr-track-link{color:var(--accent);font-weight:600;text-decoration:none}
+.rr-req-status{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;border:1px solid}
+.rr-req-status.pending{background:var(--amber-light);color:var(--amber);border-color:var(--amber-border)}
+.rr-req-status.approved{background:var(--green-light);color:var(--green);border-color:var(--green-border)}
+.rr-req-status.rejected{background:var(--red-light);color:var(--red);border-color:var(--red-border)}
+.help-row{margin-top:28px;padding:0 16px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;color:var(--muted)}
+.help-link{color:var(--body);font-weight:700;text-decoration:none}
+.track-hero-wrap{width:100%;height:240px;overflow:hidden;background:var(--bg);flex-shrink:0}
+.track-hero-img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.track-hero-ph{width:100%;height:100%;background:#efefef;display:flex;align-items:center;justify-content:center}
+.vc{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.vc-hero{width:100%;height:200px;object-fit:cover;object-position:top center;display:block}
+.vc-hero-ph{width:100%;height:160px;background:#efefef;display:flex;align-items:center;justify-content:center}
+.vc-body{padding:14px 16px 12px;border-bottom:1px solid var(--border)}
+.vc-vname{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.vc-item-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.35}
+.vc-item-meta{font-size:11px;color:var(--muted);margin-bottom:3px}
+.vc-stepper{padding:12px 14px;border-bottom:1px solid var(--border)}
+.vc-track{display:flex;align-items:flex-start}
+.vc-si{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+.vc-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:2}
+.vc-dot.done{background:var(--accent)}
+.vc-dot.done svg{stroke:#fff}
+.vc-dot.active{background:var(--text)}
+.vc-dot.active svg{stroke:#fff}
+.vc-dot.pending{background:var(--bg);border:1.5px solid var(--border)}
+.vc-dot.pending svg{stroke:#ccc}
+.vc-line{position:absolute;top:10px;left:50%;right:-50%;height:1px;z-index:0}
+.vc-line.done{background:var(--accent)}
+.vc-line.pending{background:var(--border)}
+.vc-lbl{font-size:8px;font-weight:700;color:var(--muted);margin-top:5px;text-align:center;letter-spacing:.05em;text-transform:uppercase;line-height:1.2;max-width:44px}
+.vc-lbl.active{color:var(--text)}
+.vc-si:last-child .vc-line{display:none}
+.vc-ship{padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.vc-awb-group{display:flex;flex-direction:column;gap:1px}
+.vc-awb-label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.vc-awb-num{font-size:12px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.vc-track-btn{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.vc-pending-row{padding:11px 14px;display:flex;align-items:center;justify-content:space-between}
+.pending-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-border)}
+
+/* success overlay */
+.success-overlay{position:fixed;inset:0;background:rgba(255,255,255,.97);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;opacity:0;pointer-events:none;transition:opacity .3s}
+.success-overlay.visible{opacity:1;pointer-events:all}
+.success-icon-wrap{width:68px;height:68px;border-radius:50%;background:var(--green-light);border:1.5px solid var(--green-border);display:flex;align-items:center;justify-content:center;color:var(--green);margin-bottom:18px;animation:pop .4s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+.success-title{font-size:22px;font-weight:800;letter-spacing:-.02em;text-align:center;color:var(--text)}
+.success-sub{font-size:13px;color:var(--body);text-align:center;margin-top:8px;line-height:1.65;max-width:260px}
+.success-btn{margin-top:24px;padding:14px 28px;background:var(--text);color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.07em;text-transform:uppercase}
+
+/* floating header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:54px;transition:background .25s,border-color .25s,backdrop-filter .25s}
+.site-header.solid{background:var(--surface);border-bottom:1px solid var(--border)}
+.site-header.clear{background:transparent;border-bottom:1px solid transparent}
+.header-logo-text{font-size:10px;font-weight:900;letter-spacing:.26em;color:var(--accent);text-transform:uppercase}
+.site-header.clear .header-logo-text{color:#fff}
+.menu-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,border-color .15s}
+.site-header.solid .menu-btn{background:var(--bg);border:1px solid var(--border);color:var(--body)}
+.site-header.clear .menu-btn{background:rgba(0,0,0,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff}
+.menu-btn:active{opacity:.7}
+
+/* sidebar */
+.sb-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s}
+.sb-overlay.open{opacity:1;pointer-events:all}
+.sb-panel{position:fixed;top:0;right:0;bottom:0;z-index:201;width:min(272px,84vw);background:var(--surface);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:-2px 0 28px rgba(0,0,0,.13)}
+.sb-panel.open{transform:translateX(0)}
+.sb-top{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border)}
+.sb-logo-text{font-size:10px;font-weight:900;letter-spacing:.26em;color:var(--accent);text-transform:uppercase}
+.sb-close{width:30px;height:30px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;color:var(--body)}
+.sb-close:active{opacity:.7}
+.sb-nav{padding:10px 8px;flex:1}
+.sb-link{display:flex;align-items:center;gap:13px;padding:14px 12px;border-radius:10px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;-webkit-tap-highlight-color:transparent}
+.sb-link:active{background:var(--bg)}
+.sb-link svg{flex-shrink:0;color:var(--muted)}
+.sb-divider{height:1px;background:var(--border);margin:4px 12px}
+.sb-footer{padding:16px 20px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);text-align:center;letter-spacing:.1em;text-transform:uppercase}
+
+/* lookup tabs */
+.lookup-tabs{display:flex;background:var(--bg);border:1.5px solid var(--border);border-radius:11px;padding:3px;width:100%;max-width:320px;margin-bottom:24px}
+.tab-btn{flex:1;padding:9px 8px;border-radius:8px;border:none;background:transparent;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;letter-spacing:.04em;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.tab-btn.active{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tab-btn:active{opacity:.8}
+.order-pick-list{width:100%;max-width:320px;display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.order-pick-item{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .15s}
+.order-pick-item:active{border-color:var(--border-strong)}
+.order-pick-name{font-size:14px;font-weight:700;color:var(--text)}
+.order-pick-date{font-size:11px;color:var(--muted);margin-top:2px}
+.order-pick-chevron{color:var(--muted)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="site-header solid" id="site-header" style="display:none">
+  <span class="header-logo-text" id="header-logo-text">Antortiq</span>
+  <div class="order-badge hidden" id="order-badge"></div>
+  <button class="menu-btn" id="menu-btn" onclick="openSidebar()" aria-label="Menu">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+  </button>
+</header>
+
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
+<div class="sb-panel" id="sb-panel">
+  <div class="sb-top">
+    <span class="sb-logo-text">Antortiq</span>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Close">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="sb-nav">
+    <a class="sb-link" href="/returns" id="sb-returns-link" onclick="sbReturnClick(event)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+      Return / Exchange
+    </a>
+    <div class="sb-divider"></div>
+    <a class="sb-link" href="https://antortiq.com" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      antortiq.com
+    </a>
+    <div class="sb-divider"></div>
+    <a class="sb-link" href="https://wa.me/919079060327" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Contact Support
+    </a>
+  </nav>
+  <div class="sb-footer">Antortiq &copy; 2025</div>
+</div>
+
+<!-- LOOKUP -->
+<div id="lookup-screen">
+  <div class="logo-text">Antortiq</div>
+  <h1 class="lookup-title">Track your order</h1>
+  <p class="lookup-sub">Enter your order number or find it via email / phone</p>
+  <div class="lookup-tabs">
+    <button class="tab-btn active" id="tab-ordernum" onclick="switchTab('ordernum')">Order number</button>
+    <button class="tab-btn" id="tab-contact" onclick="switchTab('contact')">Email / Phone</button>
+  </div>
+  <form class="lookup-form" id="lookup-form" style="display:flex">
+    <input class="inp" id="inp-order" type="text" inputmode="numeric" placeholder="Order number (e.g. 1042)" autocomplete="off" autocorrect="off">
+    <input class="inp" id="inp-contact" type="text" inputmode="email" placeholder="Email or phone" autocomplete="off" autocorrect="off">
+    <button class="btn-primary" type="submit" id="lookup-btn">Track Order</button>
+    <div class="err-msg" id="lookup-err"></div>
+  </form>
+  <div id="contact-form-wrap" style="display:none;width:100%;max-width:320px;flex-direction:column;gap:10px">
+    <input class="inp" id="inp-contact-only" type="text" inputmode="email" placeholder="Email or 10-digit phone" autocomplete="off" autocorrect="off">
+    <button class="btn-primary" id="contact-lookup-btn" onclick="doContactLookup()">Find My Orders</button>
+    <div class="err-msg" id="contact-err"></div>
+    <div class="order-pick-list hidden" id="order-pick-list"></div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="loading-screen" style="display:none;min-height:100svh;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:var(--surface)">
+  <div class="spinner"></div>
+  <span class="loading-label">Looking up order</span>
+</div>
+
+<!-- ORDER SCREEN -->
+<div id="order-screen" style="display:none;min-height:100svh;flex-direction:column">
+
+  <!-- CONFIRM VIEW -->
+  <div id="confirm-view" style="display:none;flex-direction:column;min-height:100svh">
+    <div class="hero-img-wrap">
+      <div class="hero-placeholder" id="hero-placeholder">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width=".8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <img id="hero-img" class="hero-img hidden" alt="Product">
+      <div class="hero-fade"></div>
+    </div>
+    <div class="confirm-sheet">
+      <div class="confirmed-banner hidden" id="confirmed-banner">
+        <div class="confirmed-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="7 13 10 16 17 9"/></svg>
+        </div>
+        <div>
+          <div class="confirmed-text">Order confirmed</div>
+          <div class="confirmed-sub">Your advance payment was received. We'll dispatch shortly.</div>
+        </div>
+      </div>
+      <div id="product-info">
+        <div class="product-name" id="product-name">—</div>
+        <div class="product-variant" id="product-variant"></div>
+        <div class="price-row">
+          <div class="price-cod" id="price-cod">—</div>
+          <div class="price-tag">COD at delivery</div>
+        </div>
+      </div>
+      <div id="items-list" class="items-list hidden"></div>
+      <div class="summary-card" id="summary-card">
+        <div class="summary-row">
+          <span class="summary-label">Order total</span>
+          <span class="summary-val" id="sum-total">—</span>
+        </div>
+        <div class="summary-row hidden" id="sum-confirm-row">
+          <span class="summary-label">Advance now</span>
+          <span class="summary-val green">₹99 · deducted at door</span>
+        </div>
+        <div class="summary-row hidden" id="sum-cod-row">
+          <span class="summary-label">Balance at delivery</span>
+          <span class="summary-val" id="sum-cod">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Payment</span>
+          <span class="summary-val muted" id="sum-payment">Cash on Delivery</span>
+        </div>
+      </div>
+      <div class="why-box">
+        <div class="why-title">Why a small confirmation amount?</div>
+        <div class="why-body">COD orders sometimes get rejected at the door — return shipping costs both sides. A tiny advance tells us <strong>you really want this order</strong>, so we pack and dispatch it right away.</div>
+        <div class="why-note">This ₹99 is <strong>not an extra charge</strong> — it's part of your order total and gets deducted from what you pay on delivery.</div>
+        <div class="badges-row" style="margin-top:6px">
+          <div class="badge-item">
+            <span class="badge-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span>
+            <span>Easy returns &amp; exchange</span>
+          </div>
+          <div class="badge-item">
+            <span class="badge-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span>Secure payment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cta-bar" id="cta-bar">
+      <button class="btn-confirm" id="btn-confirm" onclick="pay('confirm')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Pay ₹99 &amp; Confirm Order
+      </button>
+      <button class="btn-prepaid" id="btn-prepaid" onclick="pay('prepaid')">
+        Pay in full &amp; save <span class="savings-pill" id="savings-pill">₹—</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- TRACK VIEW -->
+  <div id="track-view" style="display:none;flex-direction:column;padding-bottom:40px">
+    <div class="track-topbar">
+      <div>
+        <div class="track-order-num" id="track-order-num">—</div>
+        <div class="track-customer-name" id="track-customer">—</div>
+      </div>
+      <div style="margin-left:auto;padding-top:2px">
+        <div class="stage-pill" id="stage-pill">—</div>
+      </div>
+    </div>
+    <div class="track-hero-wrap hidden" id="track-hero-wrap">
+      <div class="track-hero-ph" id="track-hero-ph">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width=".8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <img id="track-hero-img" class="track-hero-img hidden" alt="Product">
+    </div>
+    <div class="stepper hidden" id="stepper"></div>
+    <div class="section-wrap">
+      <div id="vendor-cards" class="hidden" style="margin-top:16px"></div>
+      <div id="status-card" style="margin-top:16px"></div>
+      <div id="delay-banner" style="display:none;margin:10px 0;padding:10px 14px;border-radius:10px;background:#fffbeb;border:1px solid #fcd34d;gap:10px;align-items:flex-start"></div>
+      <div id="scan-log-wrap"></div>
+      <div id="shipment-wrap" class="hidden">
+        <div class="section-title">Shipment</div>
+        <div id="shipment-cards"></div>
+      </div>
+      <div id="rr-section" class="hidden">
+        <div class="rr-divider" style="margin:24px 0 0"></div>
+        <div class="rr-inner">
+          <div class="rr-notice"><strong>Have an issue with this order?</strong><br>You can request a return or exchange within the eligible window.</div>
+          <div class="rr-btns">
+            <button class="btn-rr btn-exchange" onclick="goRR('exchange')">Exchange</button>
+            <button class="btn-rr btn-return" onclick="goRR('return')">Return</button>
+          </div>
+          <div id="rr-existing-list"></div>
+        </div>
+      </div>
+    </div>
+    <div class="help-row">
+      Need help?&nbsp;<a class="help-link" href="https://wa.me/919079060327">Chat on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- Success overlay -->
+<div class="success-overlay" id="success-overlay">
+  <div class="success-icon-wrap">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <div class="success-title">Order Confirmed!</div>
+  <div class="success-sub" id="success-sub">Your advance of ₹99 has been received. We'll dispatch your order shortly.</div>
+  <button class="success-btn" onclick="showTrack()">Track Your Order</button>
+</div>
+
+<script>
+const API = '';
+let orderData = null;
+let lastContact = 'na';
+let paying = false;
+let confirmPageOpenedAt = null;
+
+const IC = {
+  check:`<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  pkg:  `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>`,
+  truck:`<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect width="7" height="7" x="14" y="11" rx="1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`,
+  nav:  `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>`,
+  star: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`,
+};
+const BIG = {
+  checkCircle:`<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="7 13 10 16 17 9"/></svg>`,
+  clock:      `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  pkg:        `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>`,
+  truck:      `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect width="7" height="7" x="14" y="11" rx="1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`,
+  nav:        `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>`,
+  pause:      `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>`,
+  rto:        `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>`,
+  xCircle:    `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>`,
+  extLink:    `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
+};
+
+const params = new URLSearchParams(location.search);
+const urlOrder = params.get('order') || '';
+const urlContact = params.get('contact') || '';
+if (urlOrder) {
+  document.getElementById('inp-order').value = urlOrder.replace('#','');
+  if (urlContact) document.getElementById('inp-contact').value = urlContact;
+  window.addEventListener('DOMContentLoaded', () => { setTimeout(doLookup, 50); });
+}
+document.getElementById('lookup-form').addEventListener('submit', e => { e.preventDefault(); doLookup(); });
+
+function showScreen(id) {
+  ['lookup-screen','loading-screen','order-screen'].forEach(s => {
+    document.getElementById(s).style.display = s === id ? 'flex' : 'none';
+  });
+  if (id !== 'order-screen') setHeader('hidden');
+}
+
+async function doLookup() {
+  const q = document.getElementById('inp-order').value.trim().replace('#','');
+  const rawContact = document.getElementById('inp-contact').value.trim().toLowerCase();
+  const contact = rawContact || 'na';
+  if (!q) { document.getElementById('lookup-err').textContent = 'Please enter your order number.'; return; }
+  if (!rawContact || (rawContact !== 'na' && rawContact.length < 3)) { document.getElementById('lookup-err').textContent = 'Please enter your email or phone.'; return; }
+  document.getElementById('lookup-err').textContent = '';
+  document.getElementById('lookup-btn').disabled = true;
+  showScreen('loading-screen');
+  try {
+    const r = await fetch(`${API}/order/lookup?q=${encodeURIComponent(q)}&contact=${encodeURIComponent(contact)}`);
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Order not found');
+    orderData = d; lastContact = rawContact || 'na';
+    renderOrder(d);
+  } catch(e) {
+    showScreen('lookup-screen');
+    document.getElementById('lookup-err').textContent = e.message;
+    document.getElementById('lookup-btn').disabled = false;
+  }
+}
+
+function renderOrder(d) {
+  const stage = d.stage || 'new';
+  const DISPATCHED = ['ready','pickup','transit','ofd','delivered','rto','cancelled'];
+  const notConfirmed = !d.already_confirmed && !d.is_prepaid && !DISPATCHED.includes(stage);
+  showScreen('order-screen');
+  document.getElementById('order-screen').style.flexDirection = 'column';
+  notConfirmed ? renderConfirm(d) : renderTrack(d);
+}
+
+function renderConfirm(d) {
+  setHeader('clear');
+  document.getElementById('confirm-view').style.display = 'flex';
+  document.getElementById('track-view').style.display = 'none';
+  const badgeEl = document.getElementById('order-badge');
+  badgeEl.textContent = `ORDER ${d.order_name} · COD ₹${fmt(d.total)}`;
+  badgeEl.classList.remove('hidden');
+  const firstImg = d.items?.find(i => i.image_url)?.image_url;
+  if (firstImg) {
+    const img = document.getElementById('hero-img');
+    img.src = firstImg; img.classList.remove('hidden');
+    document.getElementById('hero-placeholder').classList.add('hidden');
+  }
+  const total = parseFloat(d.total || 0);
+  const codAfter = total - 99;
+  const multi = d.items?.length > 1;
+  if (multi) {
+    document.getElementById('product-info').classList.add('hidden');
+    const list = document.getElementById('items-list');
+    list.classList.remove('hidden');
+    list.innerHTML = d.items.map(it => `
+      <div class="item-row">
+        ${it.image_url ? `<img class="item-thumb" src="${esc(it.image_url)}" alt="">` : `<div class="item-thumb"></div>`}
+        <div class="item-info">
+          <div class="item-title">${esc(it.title)}</div>
+          <div class="item-meta">${esc(it.variant_title||'')}${it.quantity>1?` · ×${it.quantity}`:''}</div>
+        </div>
+        <div class="item-price">₹${fmt(parseFloat(it.price)*it.quantity)}</div>
+      </div>`).join('');
+  } else if (d.items?.length === 1) {
+    const it = d.items[0];
+    document.getElementById('product-name').textContent = it.title;
+    document.getElementById('product-variant').textContent = it.variant_title || '';
+    document.getElementById('price-cod').textContent = `₹${fmt(codAfter)}`;
+  }
+  document.getElementById('sum-total').textContent = `₹${fmt(total)}`;
+  document.getElementById('sum-confirm-row').classList.remove('hidden');
+  document.getElementById('sum-cod-row').classList.remove('hidden');
+  document.getElementById('sum-cod').textContent = `₹${fmt(codAfter)}`;
+  const savings = d.prepaid_savings || 0;
+  document.getElementById('savings-pill').textContent = `Save ₹${savings}`;
+  if (d.prepaid_amount_due <= 0) document.getElementById('btn-prepaid').classList.add('hidden');
+  if (d.already_confirmed) {
+    document.getElementById('confirmed-banner').classList.remove('hidden');
+    document.getElementById('cta-bar').classList.add('hidden');
+    document.getElementById('product-info').classList.add('hidden');
+    document.getElementById('sum-confirm-row').classList.add('hidden');
+    document.getElementById('price-cod').textContent = '';
+  } else {
+    confirmPageOpenedAt = Date.now();
+  }
+}
+
+function getDisplayStage(d) {
+  const ORD = ['new','hold','confirmed','partial','ready','pickup','transit','ofd','delivered'];
+  const metaIdx = ORD.indexOf(d.stage || 'new');
+  if (metaIdx < 0) return d.stage || 'new';
+  let best = metaIdx;
+  for (const vs of (d.vendor_shipments || [])) { const vi = ORD.indexOf(vs.stage); if (vi > best) best = vi; }
+  return ORD[best] || d.stage || 'new';
+}
+
+function buildStepper(stage, mini = false) {
+  const STEPS = [
+    {key:'confirmed',label:'Confirmed', icon:IC.check},
+    {key:'ready',    label:'Dispatched',icon:IC.pkg},
+    {key:'transit',  label:'Transit',   icon:IC.truck},
+    {key:'ofd',      label:'Delivery',  icon:IC.nav},
+    {key:'delivered',label:'Delivered', icon:IC.star},
+  ];
+  const ORD = ['new','hold','confirmed','partial','ready','pickup','transit','ofd','delivered'];
+  const idx = ORD.indexOf(stage);
+  const p = mini ? 'vc' : 'step';
+  return `<div class="${mini?'vc-track':'step-track'}">`+STEPS.map(s => {
+    const si = ORD.indexOf(s.key);
+    const done = idx >= si && idx > 0 && ORD[idx] !== s.key;
+    const active = ORD[idx] === s.key || (s.key==='confirmed' && ['confirmed','partial'].includes(stage));
+    const cls = done?'done':active?'active':'pending';
+    return `<div class="${p}-${mini?'si':'item'}">
+      <div style="position:relative;width:100%">
+        <div class="${p}-line ${done?'done':'pending'}"></div>
+        <div style="display:flex;justify-content:center">
+          <div class="${p}-dot ${cls}">${done?IC.check:s.icon}</div>
+        </div>
+      </div>
+      <div class="${p}-${mini?'lbl':'label'} ${active?'active':''}">${s.label}</div>
+    </div>`;
+  }).join('')+`</div>`;
+}
+
+function buildScanLogHtml(history, stage, logId) {
+  const SCAN_STAGES = ['transit','pickup','ofd','delivered'];
+  if (!SCAN_STAGES.includes(stage) || !history || !history.length) return '';
+  const events = [...history].reverse();
+  const total = events.length;
+  const INITIAL_SHOW = 2;
+  const chevron = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+  function fmtDateTime(ev) {
+    if (ev.date || ev.time) return [ev.date,ev.time].filter(Boolean).join(' ');
+    const raw = ev.raw||{};
+    return [raw.ActionDate||raw.ScanDate||raw.Date||'',raw.ActionTime||raw.ScanTime||raw.Time||''].filter(Boolean).join(' ');
+  }
+  function fmtLocation(ev) {
+    const raw = ev.raw||{};
+    return ev.location||raw.City||raw.Location||raw.ScanCity||raw.Hub||'';
+  }
+  function eventHtml(ev, idx) {
+    const isLatest = idx===0;
+    const isDel = stage==='delivered'&&isLatest;
+    const dt = fmtDateTime(ev); const loc = fmtLocation(ev);
+    return `<div class="scan-event">
+      <div class="scan-dot ${isDel?'delivered':isLatest?'latest':''}"></div>
+      <div class="scan-content">
+        <div class="scan-status ${isLatest?'latest':''}">${esc(ev.desc||'')}</div>
+        <div class="scan-meta">
+          ${dt?`<span class="scan-time">${esc(dt)}</span>`:''}
+          ${loc?`<span class="scan-loc">${esc(loc)}</span>`:''}
+        </div>
+      </div>
+    </div>`;
+  }
+  const vis = events.slice(0,INITIAL_SHOW), hid = events.slice(INITIAL_SHOW);
+  return `<div class="scan-log" id="${logId}">
+    <div class="scan-log-header" onclick="toggleScanLog('${logId}')">
+      <span class="scan-log-title">Shipment Updates</span>
+      <span class="scan-log-toggle" id="${logId}-toggle">${total>INITIAL_SHOW?`See all ${total} scans ${chevron}`:chevron}</span>
+    </div>
+    <div class="scan-log-body visible" id="${logId}-body">
+      <div class="scan-events">${vis.map((ev,i)=>eventHtml(ev,i)).join('')}</div>
+      ${hid.length?`<div id="${logId}-more" style="display:none"><div class="scan-events">${hid.map((ev,i)=>eventHtml(ev,i+INITIAL_SHOW)).join('')}</div></div>`:''}
+    </div>
+    ${hid.length?`<div class="scan-collapsed-peek" id="${logId}-peek" onclick="expandScanLog('${logId}')">
+      <span class="scan-peek-text">+${hid.length} more scan${hid.length>1?'s':''}</span>
+      <span class="scan-log-toggle">${chevron}</span>
+    </div>`:''}
+  </div>`;
+}
+
+function renderScanLog(history,stage) {
+  const wrap = document.getElementById('scan-log-wrap'); if(!wrap)return;
+  wrap.innerHTML = buildScanLogHtml(history,stage,'scan-log-'+Date.now());
+}
+function toggleScanLog(id) {
+  const body = document.getElementById(id+'-body'); const toggle = document.getElementById(id+'-toggle'); if(!body)return;
+  const open = body.classList.contains('visible');
+  body.classList.toggle('visible',!open);
+  if(toggle)toggle.classList.toggle('open',!open);
+}
+function expandScanLog(id) {
+  const more = document.getElementById(id+'-more'); const peek = document.getElementById(id+'-peek'); const toggle = document.getElementById(id+'-toggle');
+  if(more)more.style.display=''; if(peek)peek.style.display='none';
+  if(toggle){toggle.textContent='';toggle.innerHTML='Show less <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>';}
+}
+
+function statusCardHtml(stage, d) {
+  if (stage==='delivered') {
+    const dateStr = d.delivery_status_updated_at ? new Date(d.delivery_status_updated_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
+    return `<div class="delivered-card"><div class="delivered-icon">${BIG.checkCircle}</div><div class="delivered-title">Delivered</div><div class="delivered-sub">${dateStr?`Delivered on ${dateStr}.`:'Your order has been delivered.'} We hope you love it!</div></div>`;
+  }
+  if (['rto','cancelled'].includes(stage)) {
+    return `<div class="rto-card"><div class="rto-icon">${stage==='rto'?BIG.rto:BIG.xCircle}</div><div class="rto-title">${stage==='rto'?'Order Returned':'Order Cancelled'}</div><div class="rto-sub">${stage==='rto'?'This order was returned. If you were charged, a refund will be processed within 3–5 business days.':'This order has been cancelled. Contact our support team for any questions.'}</div></div>`;
+  }
+  if (['transit','pickup','ofd','ready'].includes(stage)) {
+    const ofd = stage==='ofd';
+    return `<div class="status-card-base eta-card"><div class="eta-icon" style="color:${ofd?'var(--green)':'var(--amber)'}">${ofd?BIG.nav:BIG.truck}</div><div><div class="eta-text">${ofd?'Out for delivery':'On its way to you'}</div><div class="eta-sub">${ofd?'Arriving today':'Expected in 2–5 business days'}</div></div></div>`;
+  }
+  const SL = {
+    confirmed:{icon:BIG.pkg,  color:'var(--amber)',title:'Preparing your order',sub:'Your order is being processed. Tracking details will appear once dispatched — usually within 1–2 days.'},
+    partial:  {icon:BIG.pkg,  color:'var(--amber)',title:'Partially processing', sub:'Some items are being prepared. Full dispatch coming soon.'},
+    new:      {icon:BIG.clock,color:'var(--amber)',title:'Order pending',         sub:'Your order is awaiting confirmation. This usually takes a few hours.'},
+    hold:     {icon:BIG.pause,color:'var(--muted)',title:'Order on hold',         sub:'Your order is temporarily on hold. Our team will update you shortly.'},
+  };
+  const sl = SL[stage]||SL.new;
+  return `<div class="status-card-base waiting-card">
+    <div class="waiting-icon" style="color:${sl.color}">${sl.icon}</div>
+    <div class="waiting-title">${sl.title}</div>
+    <div class="waiting-sub">${sl.sub}</div>
+    <div class="waiting-steps">
+      <div class="w-step"><div class="w-dot done"></div>Order confirmed</div>
+      <div class="w-step"><div class="w-dot ${['ready','pickup','transit','ofd','delivered'].includes(stage)?'done':''}"></div>Dispatched</div>
+      <div class="w-step"><div class="w-dot"></div>Out for delivery</div>
+    </div>
+  </div>`;
+}
+
+function renderTrack(d) {
+  setHeader('solid');
+  document.getElementById('track-view').style.display = 'flex';
+  document.getElementById('confirm-view').style.display = 'none';
+  const displayStage = getDisplayStage(d);
+  const isMulti = (d.vendor_shipments||[]).length > 1;
+  document.getElementById('track-order-num').textContent = d.order_name;
+  document.getElementById('track-customer').textContent = d.customer_name || '';
+  const pill = document.getElementById('stage-pill');
+  const stageLabels = {new:'Pending',hold:'On Hold',confirmed:'Confirmed',partial:'Processing',ready:'Ready to Ship',pickup:'Picked Up',transit:'In Transit',ofd:'Out for Delivery',delivered:'Delivered',rto:'Returned',cancelled:'Cancelled'};
+  pill.textContent = stageLabels[displayStage]||displayStage;
+  const pillClass = ['delivered','ready','pickup','transit','ofd'].includes(displayStage)?(displayStage==='delivered'?'delivered':'transit'):['confirmed','partial'].includes(displayStage)?'confirmed':['rto','cancelled'].includes(displayStage)?'rto':'new';
+  pill.className = `stage-pill ${pillClass}`;
+
+  if (isMulti) {
+    document.getElementById('track-hero-wrap').classList.add('hidden');
+    document.getElementById('stepper').classList.add('hidden');
+    document.getElementById('status-card').innerHTML='';
+    document.getElementById('scan-log-wrap').innerHTML='';
+    document.getElementById('shipment-wrap').classList.add('hidden');
+    document.getElementById('vendor-cards').classList.remove('hidden');
+    const imgByTitle = {};
+    for (const it of (d.items||[])) { if(it.image_url) imgByTitle[it.title]=it.image_url; }
+    document.getElementById('vendor-cards').innerHTML = (d.vendor_shipments||[]).map(vs => {
+      const vsStage = vs.stage||'new';
+      const heroImg = (vs.items||[]).reduce((f,i)=>f||imgByTitle[i.title]||null,null);
+      const heroHtml = heroImg?`<img class="vc-hero" src="${esc(heroImg)}" alt="">`:`<div class="vc-hero-ph"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>`;
+      const itemsHtml = (vs.items||[]).map(i=>`<div class="vc-item-title">${esc(i.title)}</div>${i.variant_title||i.qty>1?`<div class="vc-item-meta">${[i.variant_title?esc(i.variant_title):'',i.qty>1?`×${i.qty}`:''].filter(Boolean).join(' · ')}</div>`:''}`).join('');
+      const shipHtml = vs.awb?`<div class="vc-ship"><div class="vc-awb-group"><div class="vc-awb-label">${esc(vs.courier||'AWB')}</div><div class="vc-awb-num">${esc(vs.awb)}</div></div>${vs.tracking_url?`<a class="vc-track-btn" href="${vs.tracking_url}" target="_blank" rel="noopener">Track ${BIG.extLink}</a>`:''}</div>`:`<div class="vc-pending-row"><span class="vendor-name">${esc(vs.vendor_name)}</span><span class="pending-badge">Pending dispatch</span></div>`;
+      const scanLogId = `scan-${vs.vendor_name.replace(/\s+/g,'-')}`;
+      return `<div class="vc">${heroHtml}<div class="vc-body"><div class="vc-vname">${esc(vs.vendor_name)}</div>${itemsHtml}</div><div class="vc-stepper">${buildStepper(vsStage,true)}</div>${shipHtml}${buildScanLogHtml(vs.tracking_history||[],vsStage,scanLogId)}</div>`;
+    }).join('');
+    const anyDelivered = (d.vendor_shipments||[]).some(vs=>vs.stage==='delivered')||displayStage==='delivered';
+    if (anyDelivered) { document.getElementById('rr-section').classList.remove('hidden'); renderRR(d); }
+  } else {
+    document.getElementById('vendor-cards').classList.add('hidden');
+    const firstImg = (d.items||[]).find(i=>i.image_url)?.image_url;
+    const heroWrap = document.getElementById('track-hero-wrap');
+    const heroImg = document.getElementById('track-hero-img');
+    const heroPh = document.getElementById('track-hero-ph');
+    heroWrap.classList.remove('hidden');
+    if (firstImg) { heroImg.src=firstImg; heroImg.classList.remove('hidden'); heroPh.classList.add('hidden'); }
+    const stepperEl = document.getElementById('stepper');
+    stepperEl.classList.remove('hidden');
+    stepperEl.innerHTML = buildStepper(displayStage,false);
+    document.getElementById('status-card').innerHTML = statusCardHtml(displayStage,d);
+    const delayEl = document.getElementById('delay-banner');
+    const sdr = (d.vendor_shipments||[])[0]?.delay_remark;
+    const skipDelay = ['transit','ofd','delivered','rto','cancelled'];
+    if (delayEl&&sdr&&!skipDelay.includes(displayStage)) {
+      const etaStr = sdr.eta_date?` — Expected dispatch by ${new Date(sdr.eta_date+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'})}` : '';
+      delayEl.innerHTML=`<span style="font-size:15px;line-height:1">⏳</span><div><div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:2px">Slightly Delayed${esc(etaStr)}</div><div style="font-size:12px;color:#78350f;line-height:1.5">${esc(sdr.reason)}</div></div>`;
+      delayEl.style.display='flex';
+    } else if(delayEl){delayEl.style.display='none';}
+    renderScanLog(d.tracking_history||[],displayStage);
+    const allS = d.vendor_shipments||[];
+    if (allS.length) {
+      document.getElementById('shipment-wrap').classList.remove('hidden');
+      document.getElementById('shipment-cards').innerHTML = allS.map(s=>s.awb?`<div class="shipment-card"><div class="shipment-vendor"><span class="vendor-name">${esc(s.vendor_name)}</span>${s.courier?`<span class="courier-tag">${esc(s.courier)}</span>`:''}</div><div class="awb-row"><span class="awb-label">AWB</span><span class="awb-num">${esc(s.awb)}</span></div>${s.tracking_url?`<a class="track-link" href="${s.tracking_url}" target="_blank" rel="noopener">Track Shipment ${BIG.extLink}</a>`:''}</div>`:`<div class="shipment-card"><div class="shipment-vendor"><span class="vendor-name">${esc(s.vendor_name)}</span><span class="pending-badge">Pending dispatch</span></div></div>`).join('');
+    }
+    if (displayStage==='delivered') { document.getElementById('rr-section').classList.remove('hidden'); renderRR(d); }
+  }
+}
+
+function renderRR(d) {
+  const existing = d.return_requests||[]; if(!existing.length)return;
+  const statusChip={pending:'pending',approved:'approved',rejected:'rejected',completed:'approved',cancelled:'rejected'};
+  const statusLabel={pending:'Pending',approved:'Approved',rejected:'Rejected',completed:'Completed',cancelled:'Cancelled'};
+  document.getElementById('rr-existing-list').innerHTML = existing.map(r => {
+    const sMap={pending:0,approved:1,completed:2,rejected:-1,cancelled:-1};
+    const sIdx=sMap[r.status]??0;
+    const thirdLabel=r.type==='exchange'?'Replacement sent':'Refund processed';
+    const steps=['Submitted','Approved',thirdLabel];
+    const dots=steps.map((lbl,i)=>{
+      const active=r.status==='rejected'||r.status==='cancelled'?i===0:i<=sIdx;
+      const cls=active?(i===sIdx&&sIdx<2?'rr-dot-active':'rr-dot-done'):'rr-dot-pending';
+      return `<div class="rr-step-wrap"><div class="rr-dot ${cls}"></div><div class="rr-step-lbl">${lbl}</div></div>`;
+    }).join('<div class="rr-step-line"></div>');
+    const trackLink=r.forward_shipment?.tracking_url||r.reverse_shipment?.tracking_url||'';
+    const awb=r.forward_shipment?.awb||r.reverse_shipment?.awb||'';
+    const date=new Date(r.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+    return `<div class="rr-card-track"><div class="rr-card-head2"><div><div class="rr-card-title">${r.type==='exchange'?'Exchange':'Return'} Request</div><div class="rr-card-sub">${date}${r.reason?' · '+r.reason:''}</div></div><span class="rr-req-status ${statusChip[r.status]||'pending'}">${statusLabel[r.status]||r.status}</span></div><div class="rr-prog-row">${dots}</div>${awb?`<div class="rr-track-row">${IC.truck}&nbsp;<span>AWB: ${awb}</span>${trackLink?`&nbsp;<a href="${trackLink}" target="_blank" class="rr-track-link">Track →</a>`:''}</div>`:''}</div>`;
+  }).join('');
+}
+
+function showTrack() {
+  document.getElementById('success-overlay').classList.remove('visible');
+  if (orderData) renderTrack(orderData);
+}
+
+async function pay(mode) {
+  if (paying||!orderData) return;
+  paying=true;
+  const btn=mode==='confirm'?document.getElementById('btn-confirm'):document.getElementById('btn-prepaid');
+  btn.disabled=true;
+  try {
+    const r=await fetch(`${API}/track/confirm-razorpay-order`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({shopify_order_id:orderData.shopify_order_id,order_name:orderData.order_name,customer_name:orderData.customer_name,mode})});
+    const rz=await r.json();
+    if(!r.ok){alert(rz.error||'Payment error');paying=false;btn.disabled=false;return;}
+    const rzp=new Razorpay({
+      key:rz.key,order_id:rz.order_id,amount:Math.round(rz.amount*100),currency:'INR',
+      name:'Antortiq',description:mode==='prepaid'?'Full prepaid payment':'Order confirmation fee',
+      theme:{color:'#0f0f0f'},
+      handler:async(resp)=>{
+        try {
+          const vr=await fetch(`${API}/track/confirm-payment-verify`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({shopify_order_id:orderData.shopify_order_id,mode,...resp})});
+          const vd=await vr.json();
+          if(!vr.ok){alert(vd.error||'Verification failed');return;}
+          orderData.already_confirmed=true;
+          if(mode==='prepaid')document.getElementById('success-sub').innerHTML=`You've paid in full. Your order is confirmed and will be dispatched shortly.`;
+          document.getElementById('success-overlay').classList.add('visible');
+        } catch(e){alert('Payment verified but could not update. Please contact support.');}
+        finally{paying=false;btn.disabled=false;}
+      },
+      modal:{ondismiss:()=>{paying=false;btn.disabled=false;}},
+    });
+    rzp.open();
+  } catch(e){alert(e.message);paying=false;btn.disabled=false;}
+}
+
+function goRR(type) {
+  if (!orderData) return;
+  const o=encodeURIComponent(orderData.order_name.replace(/^#/,''));
+  const c=encodeURIComponent(lastContact||'na');
+  location.href=`/returns?o=${o}&contact=${c}&action=${type}`;
+}
+function sbReturnClick(e) {
+  if (orderData) {
+    e.preventDefault();
+    const num=(orderData.order_name||'').replace('#','');
+    const contact=document.getElementById('inp-contact')?.value?.trim()||'na';
+    location.href=`/returns?o=${encodeURIComponent(num)}&contact=${encodeURIComponent(contact)}`;
+  }
+}
+function fmt(n){return Number(n).toLocaleString('en-IN',{maximumFractionDigits:0})}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+let _headerMode='hidden';
+function setHeader(mode) {
+  const h=document.getElementById('site-header');
+  _headerMode=mode;
+  if(mode==='hidden'){h.style.display='none';return;}
+  h.style.display='flex';
+  h.className='site-header '+(mode==='clear'?'clear':'solid');
+  if(mode!=='clear'){h.style.background='';h.style.backdropFilter='';h.style.webkitBackdropFilter='';h.style.borderBottomColor='';}
+}
+window.addEventListener('scroll',()=>{
+  if(_headerMode!=='clear')return;
+  const h=document.getElementById('site-header');
+  const t=Math.min((window.scrollY||0)/120,1);
+  h.style.background=`rgba(255,255,255,${t*.92})`;
+  h.style.backdropFilter=`blur(${t*18}px)`;
+  h.style.webkitBackdropFilter=`blur(${t*18}px)`;
+  h.style.borderBottomColor=`rgba(0,0,0,${t*.08})`;
+  const mb=document.getElementById('menu-btn');
+  if(mb){mb.style.background=t>.5?`rgba(245,245,245,${t})`:`rgba(0,0,0,${.22*(1-t)})`;mb.style.borderColor=`rgba(0,0,0,${t*.12})`;mb.style.color=t>.4?'var(--body)':'#fff';}
+  const lt=document.getElementById('header-logo-text');
+  if(lt) lt.style.color=t>.4?'var(--accent)':'#fff';
+  const ob=document.getElementById('order-badge');
+  if(ob){ob.style.background=`rgba(255,255,255,${.15+t*.7})`;ob.style.borderColor=`rgba(0,0,0,${t*.1})`;}
+},{passive:true});
+
+function openSidebar(){document.getElementById('sb-overlay').classList.add('open');document.getElementById('sb-panel').classList.add('open');document.body.style.overflow='hidden'}
+function closeSidebar(){document.getElementById('sb-overlay').classList.remove('open');document.getElementById('sb-panel').classList.remove('open');document.body.style.overflow=''}
+function switchTab(mode){
+  document.getElementById('tab-ordernum').classList.toggle('active',mode==='ordernum');
+  document.getElementById('tab-contact').classList.toggle('active',mode==='contact');
+  document.getElementById('lookup-form').style.display=mode==='ordernum'?'flex':'none';
+  const cw=document.getElementById('contact-form-wrap');cw.style.display=mode==='contact'?'flex':'none';
+  document.getElementById('lookup-err').textContent='';document.getElementById('contact-err').textContent='';
+  document.getElementById('order-pick-list').classList.add('hidden');document.getElementById('order-pick-list').innerHTML='';
+}
+async function doContactLookup(){
+  const contact=document.getElementById('inp-contact-only').value.trim();
+  const errEl=document.getElementById('contact-err');const pickEl=document.getElementById('order-pick-list');const btn=document.getElementById('contact-lookup-btn');
+  if(!contact){errEl.textContent='Please enter your email or phone number.';return;}
+  errEl.textContent='';pickEl.classList.add('hidden');pickEl.innerHTML='';btn.disabled=true;btn.textContent='Searching…';
+  try {
+    const r=await fetch(`${API}/order/lookup-by-contact?contact=${encodeURIComponent(contact)}`);
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error||'Not found');
+    pickEl.classList.remove('hidden');
+    pickEl.innerHTML=d.orders.map(o=>{
+      const dt=new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      const num=(o.order_name||'').replace('#','');
+      return `<div class="order-pick-item" onclick="pickOrder('${num}','${contact}')">
+        <div><div class="order-pick-name">${esc(o.order_name)}</div><div class="order-pick-date">${dt}</div></div>
+        <div class="order-pick-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>`;
+    }).join('');
+  } catch(e){errEl.textContent=e.message;}
+  finally{btn.disabled=false;btn.textContent='Find My Orders';}
+}
+function pickOrder(num,contact){document.getElementById('inp-order').value=num;document.getElementById('inp-contact').value=contact;switchTab('ordernum');doLookup();}
+</script>
+</body>
+</html>
