@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proposal Builder — Antortiq</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#e8344a;--bg:#080808;--surface:#111114;--card:#18181c;--border:#222228;--text:#e9e9ea;--muted:#6b6f76;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--disp:'Sora',sans-serif;--sans:'Inter',sans-serif}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 36px;border-bottom:1px solid var(--border);background:rgba(8,8,8,.92);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--disp);font-weight:800;font-size:18px;letter-spacing:-.5px}
+.nav-logo span{color:var(--red)}
+.nav-tag{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:99px}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+.page{padding:48px 0 120px}
+.page-head{margin-bottom:40px}
+.page-head h1{font-family:var(--disp);font-size:32px;font-weight:800;color:#fff;margin-bottom:6px}
+.page-head p{color:var(--muted);font-size:15px}
+
+/* ── SECTIONS ── */
+.section{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px}
+.section-title{font-family:var(--disp);font-weight:700;font-size:17px;color:#fff;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.section-title .dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0}
+
+/* ── CLIENT FORM ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+.form-group input,.form-group textarea,.form-group select{background:#0d0d10;border:1px solid var(--border);border-radius:10px;color:#fff;font-family:var(--sans);font-size:14px;padding:12px 14px;outline:none;transition:border-color .2s;width:100%}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--red)}
+.form-group textarea{resize:vertical;min-height:80px}
+
+/* ── SERVICE CARDS ── */
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.svc-item{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:border-color .2s,background .2s;position:relative;user-select:none}
+.svc-item:hover{border-color:#333}
+.svc-item.selected{border-color:var(--red);background:#110608}
+.svc-item.free-selected{border-color:var(--green);background:#06110a}
+.svc-check{width:22px;height:22px;border:2px solid #333;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:12px}
+.svc-item.selected .svc-check{background:var(--red);border-color:var(--red);color:#fff}
+.svc-item.free-selected .svc-check{background:var(--green);border-color:var(--green);color:#fff}
+.svc-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.svc-ico{font-size:28px;flex-shrink:0;margin-top:2px}
+.svc-name{font-family:var(--disp);font-weight:700;font-size:15px;color:#fff;line-height:1.3}
+.svc-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px}
+.svc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.svc-tags span{font-size:10px;font-weight:600;color:#555;border:1px solid #222;padding:2px 8px;border-radius:99px;letter-spacing:.3px}
+
+/* price + free row */
+.svc-pricing{display:flex;align-items:center;gap:10px;margin-top:2px}
+.price-input-wrap{display:flex;align-items:center;gap:6px;background:#0d0d10;border:1px solid var(--border);border-radius:8px;padding:8px 12px;flex:1;transition:border-color .2s}
+.price-input-wrap:focus-within{border-color:var(--red)}
+.price-input-wrap .rupee{color:var(--muted);font-weight:700;font-size:15px}
+.price-input-wrap input{background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:15px;width:100%;font-family:var(--sans)}
+.free-toggle{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:#0d0d10;transition:all .2s}
+.free-toggle input{display:none}
+.free-toggle.active{border-color:var(--green);color:var(--green);background:#061209}
+.svc-item:not(.selected):not(.free-selected) .svc-pricing{opacity:.35;pointer-events:none}
+
+/* ── COMPARISON DEFAULTS ── */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.comp-col{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.comp-col.ours{border-color:var(--red)+'33';background:#0d0406}
+.comp-col label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+.comp-col .big-val{font-family:var(--disp);font-size:28px;font-weight:800;color:#fff}
+.comp-col.ours .big-val{color:var(--red)}
+
+/* ── VALIDITY & NOTES ── */
+.inline-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ── ACTIONS ── */
+.actions-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,8,.96);border-top:1px solid var(--border);backdrop-filter:blur(14px);padding:18px 36px;display:flex;align-items:center;justify-content:space-between;z-index:200}
+.actions-bar .summary{font-size:14px;color:var(--muted)}
+.actions-bar .summary strong{color:#fff;font-size:18px;font-family:var(--disp)}
+.actions-bar .summary .free-count{color:var(--green);font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:14px;padding:13px 26px;border-radius:99px;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(135deg,var(--red),#c0192a);color:#fff;box-shadow:0 8px 28px rgba(232,52,74,.35)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:720px){
+  .services-grid,.form-grid,.comp-grid,.inline-grid{grid-template-columns:1fr}
+  .wrap{padding:0 18px}
+  .actions-bar{padding:14px 18px;flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Antorti<span>q</span></a>
+  <span class="nav-tag">Proposal Builder</span>
+</nav>
+
+<div class="wrap page">
+  <div class="page-head">
+    <h1>Create Client Proposal</h1>
+    <p>Select features, set pricing, and generate a branded PDF proposal in seconds.</p>
+  </div>
+
+  <!-- ── CLIENT DETAILS ── -->
+  <div class="section">
+    <div class="section-title"><span class="dot"></span>Client Details</div>
+    <div class="form-grid">
+      <div class="form-group"><label>Client / Brand Name *</label><input id="clientName" type="text" placeholder="e.g. Harah Exclusif"></div>
+      <div class="form-group"><label>Contact Person</label><input id="contactPerson" type="text" placeholder="e.g. Harsh Vijay"></div>
+      <div class="form-group"><label>Email</label><input id="clientEmail" type="email" placeholder="harsh@harahexclusif.com"></div>
+      <div class="form-group"><label>WhatsApp / Phone</label><input id="clientPhone" type="text" placeholder="+91 9XXXXXXXXX"></div>
+      <div class="form-group"><label>Brand Website</label><input id="clientWebsite" type="text" placeholder="harahexclusif.com"></div>
+      <div class="form-group"><label>Industry / Category</label><input id="clientIndustry" type="text" placeholder="e.g. D2C Streetwear, Jewellery, Beauty"></div>
+      <div class="form-group full"><label>Proposal Context / Notes (internal, won't appear in PDF)</label><textarea id="proposalNotes" placeholder="What they need, pain points, conversation context..."></textarea></div>
+    </div>
+  </div>
+
+  <!-- ── SERVICES ── -->
+  <div class="section">
+    <div class="section-title"><span class="dot"></span>Select Features & Set Pricing</div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+
+  <!-- ── PRICING COMPARISON ── -->
+  <div class="section">
+    <div class="section-title"><span class="dot"></span>Competitor Monthly Pricing (for comparison)</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px">These appear in the proposal to show how much brands typically pay monthly for similar tools — contrasted with your one-time fee.</p>
+    <div class="comp-grid" id="compGrid"></div>
+  </div>
+
+  <!-- ── VALIDITY & SETTINGS ── -->
+  <div class="section">
+    <div class="section-title"><span class="dot"></span>Proposal Settings</div>
+    <div class="inline-grid">
+      <div class="form-group"><label>Valid For (days)</label><input id="validDays" type="number" value="7" min="1" max="90"></div>
+      <div class="form-group"><label>Prepared By</label><input id="preparedBy" type="text" value="Antortiq Team" placeholder="Your name"></div>
+      <div class="form-group"><label>Setup Timeline</label><input id="timeline" type="text" value="Go live within 60 minutes" placeholder="e.g. 3-5 business days"></div>
+      <div class="form-group"><label>Support Included</label><input id="support" type="text" value="Dedicated WhatsApp support + onboarding call"></div>
+      <div class="form-group full"><label>Custom Message for Client (appears at top of proposal)</label><textarea id="customMsg" placeholder="Hi [Brand], based on our conversation here's a tailored proposal for your store..."></textarea></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BOTTOM BAR ── -->
+<div class="actions-bar">
+  <div class="summary">
+    <span id="summaryText">Select services to see total</span>
+  </div>
+  <div style="display:flex;gap:12px">
+    <button class="btn btn-ghost" onclick="previewProposal()">👁 Preview</button>
+    <button class="btn btn-primary" onclick="generatePDF()">⬇ Download PDF</button>
+  </div>
+</div>
+
+<script>
+const SERVICES = [
+  {
+    id:'smart_track',
+    ico:'📦',
+    name:'Smart Track & Order Confirmation',
+    desc:'Branded COD confirmation flow + live order tracking page. Customers confirm orders, pay the confirmation fee, and track every step — from packed to delivered — with your branding.',
+    tags:['COD Confirmation','Live Tracking','WhatsApp Updates','Reduce RTOs'],
+    competitor:'Shiprocket / Delhivery dashboard',
+    competitorMonthly:2999,
+    defaultPrice:9999,
+    features:[
+      'Branded order confirmation page (pay ₹99 to confirm COD)',
+      'Fake order filter — unconfirmed orders auto-cancelled',
+      'Real-time tracking page on your domain',
+      'WhatsApp notification at each status change',
+      'RTO analytics — which pincodes fail most',
+    ]
+  },
+  {
+    id:'returns_exchange',
+    ico:'🔄',
+    name:'Returns & Exchange Automation',
+    desc:'Self-serve exchange and return portal. Customer selects item, picks new size, pays ₹199 processing fee — AI auto-approves. Zero support tickets, zero manual work.',
+    tags:['Self-serve Exchange','AI Auto-approve','₹199 Processing Fee','Zero Tickets'],
+    competitor:'Clickpost / Returnprime',
+    competitorMonthly:3499,
+    defaultPrice:12999,
+    features:[
+      'Customer self-serve exchange portal',
+      'AI-powered auto-approval for eligible exchanges',
+      '₹199 processing fee collection (your revenue)',
+      'Admin override with promo code',
+      'Exchange status updates via WhatsApp',
+      'Return analytics — which items come back most',
+    ]
+  },
+  {
+    id:'auto_contact',
+    ico:'👥',
+    name:'Auto Contact Sync',
+    desc:'Every order automatically saved as a contact with full order history, purchase value, and tags. Build your customer database without lifting a finger.',
+    tags:['Auto CRM','Order History','Customer Tags','Repeat Purchase'],
+    competitor:'Klaviyo / Freshdesk',
+    competitorMonthly:4999,
+    defaultPrice:7999,
+    features:[
+      'Every order auto-saved as a tagged contact',
+      'Full order history per customer',
+      'Lifetime value tracking',
+      'Segment by purchase frequency, value, category',
+      'WhatsApp-ready contact list export',
+    ]
+  },
+  {
+    id:'order_management',
+    ico:'🖥',
+    name:'Order Management Panel (CDC)',
+    desc:'Your store\'s command centre — real-time GMV, orders, RTO rate, top products, and settlement tracker. One screen to run your entire operation.',
+    tags:['Live Dashboard','GMV Tracking','Settlement','RTO Analytics'],
+    competitor:'Unicommerce / Vinculum',
+    competitorMonthly:5999,
+    defaultPrice:14999,
+    features:[
+      'Real-time GMV, orders, return rate dashboard',
+      'Product performance — views, add-to-cart, orders',
+      'Settlement tracker per courier',
+      'RTO analytics by SKU and pincode',
+      'Multi-channel order view',
+      'CSV export for accounting',
+    ]
+  },
+  {
+    id:'pixel_tracker',
+    ico:'📡',
+    name:'Pixel Tracker',
+    desc:'Track every product view, add-to-cart, and purchase event on your Shopify store. Feed accurate data to Meta Ads and retarget the right customers.',
+    tags:['Meta Pixel','Event Tracking','Retargeting','ROAS Boost'],
+    competitor:'Triple Whale / Northbeam',
+    competitorMonthly:8999,
+    defaultPrice:9999,
+    features:[
+      'Meta Pixel integration with purchase events',
+      'Product-level view, cart, and purchase tracking',
+      'Audience builder for retargeting',
+      'Campaign ROAS attribution',
+      'Live event feed dashboard',
+    ]
+  },
+  {
+    id:'wa_email',
+    ico:'💬',
+    name:'WhatsApp & Email Automation',
+    desc:'Fully branded lifecycle messages — order placed to delivered, abandoned cart, exchange updates — all fired automatically with your brand identity, not a generic courier template.',
+    tags:['Lifecycle Email','WhatsApp API','Abandoned Cart','Brand Voice'],
+    competitor:'Interakt / Wati / Klaviyo',
+    competitorMonthly:3999,
+    defaultPrice:11999,
+    features:[
+      '10+ pre-built lifecycle email templates (your brand)',
+      'WhatsApp order updates at every stage',
+      'Abandoned cart recovery sequence',
+      'Post-delivery review request',
+      'Exchange and return status messages',
+    ]
+  },
+  {
+    id:'ai_agent',
+    ico:'🤖',
+    name:'AI Support Agent',
+    desc:'AI answers order tracking, exchange eligibility, and payment queries 24/7. Escalates to you only when genuinely needed. Resolves 85%+ without human intervention.',
+    tags:['24/7 AI','Auto-resolve','WhatsApp Bot','Zero Tickets'],
+    competitor:'Gorgias / Freshdesk AI',
+    competitorMonthly:6999,
+    defaultPrice:15999,
+    features:[
+      'AI resolves tracking, exchange, payment queries',
+      '85%+ resolution rate without human involvement',
+      'Escalates with context when human needed',
+      'Trained on your product catalogue',
+      'WhatsApp + website chat',
+      'Sentiment detection — flags angry customers',
+    ]
+  },
+  {
+    id:'meta_ads',
+    ico:'📊',
+    name:'Meta Ads Intelligence Dashboard',
+    desc:'ROAS, CPP, audience performance, and campaign breakdown — all live from your Meta account. Know exactly which ad is making money and which is burning it.',
+    tags:['ROAS Live','Audience Insights','Campaign Breakdown','Scale Signals'],
+    competitor:'Triple Whale / MadgicX',
+    competitorMonthly:9999,
+    defaultPrice:12999,
+    features:[
+      'Live ROAS by campaign, adset, and audience',
+      'Age × gender × interest × platform breakdown',
+      'GOLD / SILVER / BRONZE audience classification',
+      'Frequency alerts — pause before saturation',
+      'CPP and spend efficiency scores',
+      'Scale signal — which audiences to double on',
+    ]
+  },
+];
+
+// Competitor monthly benchmarks (editable in the UI)
+let compPrices = {};
+SERVICES.forEach(s=>{ compPrices[s.id]=s.competitorMonthly; });
+
+// Build service cards
+const grid=document.getElementById('servicesGrid');
+SERVICES.forEach(s=>{
+  const el=document.createElement('div');
+  el.className='svc-item';
+  el.dataset.id=s.id;
+  el.innerHTML=`
+    <div class="svc-header">
+      <div class="svc-ico">${s.ico}</div>
+      <div style="flex:1">
+        <div class="svc-name">${s.name}</div>
+      </div>
+      <div class="svc-check" data-check="${s.id}">✓</div>
+    </div>
+    <div class="svc-desc">${s.desc}</div>
+    <div class="svc-tags">${s.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+    <div class="svc-pricing">
+      <div class="price-input-wrap">
+        <span class="rupee">₹</span>
+        <input type="number" class="price-field" data-id="${s.id}" value="${s.defaultPrice}" min="0" placeholder="0" onclick="e=>e.stopPropagation()">
+      </div>
+      <label class="free-toggle" data-free="${s.id}" onclick="event.stopPropagation();toggleFree('${s.id}',this)">
+        <input type="checkbox" id="free_${s.id}">
+        🎁 Free Add-on
+      </label>
+    </div>`;
+  el.addEventListener('click', ()=>toggleService(s.id, el));
+  // stop price input from toggling card
+  el.querySelector('.price-field').addEventListener('click', e=>e.stopPropagation());
+  el.querySelector('.price-field').addEventListener('change', updateSummary);
+  grid.appendChild(el);
+});
+
+// Build competitor comparison grid
+const compGrid=document.getElementById('compGrid');
+SERVICES.forEach(s=>{
+  const el=document.createElement('div');
+  el.className='comp-col';
+  el.dataset.compfor=s.id;
+  el.style.display='none';
+  el.innerHTML=`
+    <label>${s.ico} ${s.name}</label>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">${s.competitor}</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="price-input-wrap" style="flex:1">
+        <span class="rupee">₹</span>
+        <input type="number" class="comp-field" data-id="${s.id}" value="${s.competitorMonthly}" min="0">
+      </div>
+      <span style="font-size:12px;color:var(--muted);white-space:nowrap">/ month</span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px">= ₹<span class="comp-annual">${(s.competitorMonthly*12).toLocaleString('en-IN')}</span> / year</div>`;
+  el.querySelector('.comp-field').addEventListener('input', function(){
+    el.querySelector('.comp-annual').textContent=(+this.value*12).toLocaleString('en-IN');
+    compPrices[s.id]=+this.value;
+  });
+  compGrid.appendChild(el);
+});
+
+function toggleService(id, el){
+  const isSel=el.classList.contains('selected');
+  const isFree=el.classList.contains('free-selected');
+  if(isSel||isFree){
+    el.classList.remove('selected','free-selected');
+    document.querySelector(`[data-free="${id}"]`).classList.remove('active');
+    document.getElementById(`free_${id}`).checked=false;
+  } else {
+    el.classList.add('selected');
+  }
+  // show/hide comp price
+  const comp=document.querySelector(`[data-compfor="${id}"]`);
+  if(comp) comp.style.display=(el.classList.contains('selected')||el.classList.contains('free-selected'))?'block':'none';
+  updateSummary();
+}
+
+function toggleFree(id, label){
+  const el=document.querySelector(`[data-id="${id}"].svc-item`);
+  const cb=document.getElementById(`free_${id}`);
+  cb.checked=!cb.checked;
+  if(cb.checked){
+    el.classList.remove('selected'); el.classList.add('free-selected');
+    label.classList.add('active');
+  } else {
+    el.classList.remove('free-selected'); el.classList.add('selected');
+    label.classList.remove('active');
+  }
+  updateSummary();
+}
+
+function getSelected(){
+  return SERVICES.filter(s=>{
+    const el=document.querySelector(`[data-id="${s.id}"].svc-item`);
+    return el&&(el.classList.contains('selected')||el.classList.contains('free-selected'));
+  }).map(s=>{
+    const el=document.querySelector(`[data-id="${s.id}"].svc-item`);
+    const isFree=el.classList.contains('free-selected');
+    const price=isFree?0:+(document.querySelector(`.price-field[data-id="${s.id}"]`).value||0);
+    return {...s, isFree, price, compMonthly:compPrices[s.id]||s.competitorMonthly};
+  });
+}
+
+function updateSummary(){
+  const sel=getSelected();
+  const total=sel.reduce((a,s)=>a+(s.isFree?0:s.price),0);
+  const freeCount=sel.filter(s=>s.isFree).length;
+  const paidCount=sel.filter(s=>!s.isFree).length;
+  const el=document.getElementById('summaryText');
+  if(!sel.length){ el.innerHTML='Select services to see total'; return; }
+  el.innerHTML=`<strong>₹${total.toLocaleString('en-IN')}</strong> &nbsp;·&nbsp; ${paidCount} service${paidCount!==1?'s':''} paid${freeCount?` <span class="free-count">+ ${freeCount} free add-on${freeCount>1?'s':''}</span>`:''}`;
+}
+
+function getFormData(){
+  return {
+    clientName:document.getElementById('clientName').value||'[Client Name]',
+    contactPerson:document.getElementById('contactPerson').value,
+    email:document.getElementById('clientEmail').value,
+    phone:document.getElementById('clientPhone').value,
+    website:document.getElementById('clientWebsite').value,
+    industry:document.getElementById('clientIndustry').value,
+    preparedBy:document.getElementById('preparedBy').value||'Antortiq Team',
+    validDays:document.getElementById('validDays').value||7,
+    timeline:document.getElementById('timeline').value,
+    support:document.getElementById('support').value,
+    customMsg:document.getElementById('customMsg').value,
+    date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'}),
+  };
+}
+
+function buildProposalHTML(forPrint){
+  const sel=getSelected();
+  const form=getFormData();
+  const total=sel.reduce((a,s)=>a+(s.isFree?0:s.price),0);
+  const competitorTotal=sel.reduce((a,s)=>a+s.compMonthly,0);
+  const competitorAnnual=competitorTotal*12;
+  const savings=competitorAnnual-total;
+
+  const serviceCardsHTML=sel.map(s=>`
+  <div class="feat-card ${s.isFree?'free':''}">
+    <div class="feat-card-top">
+      <div class="feat-ico">${s.ico}</div>
+      ${s.isFree?'<div class="free-badge">🎁 FREE ADD-ON</div>':''}
+    </div>
+    <div class="feat-name">${s.name}</div>
+    <div class="feat-desc">${s.desc}</div>
+    <ul class="feat-list">
+      ${s.features.map(f=>`<li>${f}</li>`).join('')}
+    </ul>
+    <div class="feat-price-row">
+      ${s.isFree
+        ? '<div class="feat-price free-price">Included Free</div>'
+        : `<div class="feat-price">₹${s.price.toLocaleString('en-IN')} <span>one-time</span></div>`
+      }
+    </div>
+  </div>`).join('');
+
+  const compRows=sel.map(s=>`
+    <tr>
+      <td>${s.ico} ${s.name}</td>
+      <td>${s.competitor}</td>
+      <td class="num">₹${s.compMonthly.toLocaleString('en-IN')}/mo</td>
+      <td class="num">₹${(s.compMonthly*12).toLocaleString('en-IN')}/yr</td>
+      <td class="our-price ${s.isFree?'free-td':''}">${s.isFree?'FREE':('₹'+s.price.toLocaleString('en-IN'))}</td>
+    </tr>`).join('');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proposal — ${form.clientName} × Antortiq</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{margin:0;size:A4}
+.page-break{page-break-before:always}
+
+/* ── COVER ── */
+.cover{background:#080808;min-height:100vh;display:flex;flex-direction:column;padding:0;position:relative;overflow:hidden}
+.cover-accent{position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#e8344a,#ff6b6b)}
+.cover-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 72px}
+.cover-logo{font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:#fff;letter-spacing:-.5px;margin-bottom:80px}
+.cover-logo span{color:#e8344a}
+.cover-tag{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#e8344a;margin-bottom:24px}
+.cover-title{font-family:'Sora',sans-serif;font-weight:900;font-size:62px;line-height:1.05;color:#fff;margin-bottom:28px}
+.cover-title span{color:#e8344a}
+.cover-sub{font-size:18px;color:#6b7280;line-height:1.6;max-width:540px;margin-bottom:60px}
+.cover-meta{display:flex;flex-direction:column;gap:10px}
+.cover-meta-row{display:flex;gap:12px;align-items:center;font-size:14px}
+.cover-meta-row .lbl{color:#444;width:120px;font-weight:600}
+.cover-meta-row .val{color:#e9e9ea}
+.cover-footer{padding:36px 72px;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center}
+.cover-footer .left{font-size:13px;color:#444}
+.cover-footer .right{font-size:13px;color:#444}
+.cover-bg-text{position:absolute;bottom:-40px;right:-20px;font-family:'Sora',sans-serif;font-weight:900;font-size:240px;color:rgba(232,52,74,0.04);line-height:1;pointer-events:none;user-select:none}
+
+/* ── BODY PAGES ── */
+.body-page{padding:64px 64px;background:#fff;min-height:100vh}
+.body-page+.body-page{border-top:2px solid #f0f0f0}
+.section-label{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#e8344a;margin-bottom:12px}
+.section-h{font-family:'Sora',sans-serif;font-weight:800;font-size:28px;color:#111;margin-bottom:6px}
+.section-sub{font-size:14px;color:#6b7280;margin-bottom:36px;line-height:1.5}
+.divider{height:1px;background:#f0f0f0;margin:40px 0}
+
+/* custom message */
+.custom-msg{background:#fdf8f8;border-left:4px solid #e8344a;border-radius:0 10px 10px 0;padding:20px 24px;margin-bottom:36px;font-size:15px;color:#333;line-height:1.65}
+
+/* ── FEATURE CARDS ── */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
+.feat-card{border:1px solid #e5e7eb;border-radius:16px;padding:24px;position:relative;break-inside:avoid}
+.feat-card.free{border-color:#d1fae5;background:#f0fdf4}
+.feat-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.feat-ico{font-size:32px}
+.free-badge{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#16a34a;background:#dcfce7;padding:4px 10px;border-radius:99px;border:1px solid #bbf7d0}
+.feat-name{font-family:'Sora',sans-serif;font-weight:800;font-size:17px;color:#111;margin-bottom:8px;line-height:1.3}
+.feat-desc{font-size:13px;color:#6b7280;line-height:1.55;margin-bottom:14px}
+.feat-list{margin:0 0 16px 16px;display:flex;flex-direction:column;gap:4px}
+.feat-list li{font-size:12px;color:#555;line-height:1.5}
+.feat-price-row{border-top:1px solid #f0f0f0;padding-top:14px}
+.feat-price{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:#e8344a}
+.feat-price span{font-size:13px;font-weight:500;color:#9ca3af;margin-left:4px}
+.feat-price.free-price{color:#16a34a}
+
+/* ── PRICING TABLE ── */
+.pricing-hero{background:#080808;border-radius:20px;padding:36px 40px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;break-inside:avoid}
+.pricing-hero-left .lbl{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:6px}
+.pricing-hero-left .big{font-family:'Sora',sans-serif;font-size:56px;font-weight:900;color:#e8344a;line-height:1}
+.pricing-hero-left .sub{font-size:14px;color:#9ca3af;margin-top:6px}
+.pricing-hero-right{text-align:right}
+.pricing-hero-right .lbl{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:6px}
+.pricing-hero-right .big{font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#374151;text-decoration:line-through;line-height:1}
+.pricing-hero-right .sub{font-size:13px;color:#6b7280;margin-top:4px}
+.savings-pill{background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:14px;padding:10px 20px;border-radius:99px;white-space:nowrap}
+
+.price-table{width:100%;border-collapse:collapse;font-size:13px;break-inside:avoid}
+.price-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;padding:10px 14px;border-bottom:2px solid #f0f0f0}
+.price-table td{padding:12px 14px;border-bottom:1px solid #f5f5f5;vertical-align:middle}
+.price-table tr:last-child td{border-bottom:none}
+.price-table .num{text-align:right;font-weight:600;color:#6b7280}
+.price-table .our-price{text-align:right;font-weight:800;font-size:15px;color:#e8344a}
+.price-table .free-td{color:#16a34a}
+.price-table tfoot td{font-weight:800;font-size:14px;background:#fafafa;padding:14px}
+.price-table tfoot .num{color:#6b7280}
+.price-table tfoot .our-price{color:#e8344a;font-size:18px}
+
+/* ── TERMS / CTA ── */
+.cta-box{background:#fdf8f8;border:1px solid #fce4e8;border-radius:16px;padding:32px;text-align:center;margin-top:32px;break-inside:avoid}
+.cta-box h3{font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:#111;margin-bottom:8px}
+.cta-box p{font-size:14px;color:#6b7280;margin-bottom:20px}
+.cta-btn{display:inline-block;background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;padding:12px 28px;border-radius:99px;margin-right:12px}
+.cta-wa{display:inline-block;background:#25D366;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;padding:12px 28px;border-radius:99px}
+.terms-list{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left}
+.terms-list li{font-size:12px;color:#6b7280;list-style:none;display:flex;align-items:flex-start;gap:8px}
+.terms-list li::before{content:'✓';color:#e8344a;font-weight:800;flex-shrink:0}
+
+/* ── PRINT ── */
+@media print{
+  .no-print{display:none!important}
+  body{background:#fff}
+  .cover{min-height:100vh}
+  .body-page{min-height:auto}
+  .page-break{page-break-before:always}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ COVER PAGE ══ -->
+<div class="cover">
+  <div class="cover-accent"></div>
+  <div class="cover-body">
+    <div class="cover-logo">Antorti<span>q</span></div>
+    <div class="cover-tag">Project Proposal</div>
+    <h1 class="cover-title">Built for<br><span>${form.clientName}.</span></h1>
+    <p class="cover-sub">A tailored automation stack to run your store operations end-to-end — without the monthly subscriptions, the manual work, or the support chaos.</p>
+    <div class="cover-meta">
+      ${form.contactPerson?`<div class="cover-meta-row"><span class="lbl">Prepared for</span><span class="val">${form.contactPerson}${form.clientName?' · '+form.clientName:''}</span></div>`:''}
+      ${form.email?`<div class="cover-meta-row"><span class="lbl">Email</span><span class="val">${form.email}</span></div>`:''}
+      ${form.website?`<div class="cover-meta-row"><span class="lbl">Website</span><span class="val">${form.website}</span></div>`:''}
+      <div class="cover-meta-row"><span class="lbl">Prepared by</span><span class="val">${form.preparedBy}</span></div>
+      <div class="cover-meta-row"><span class="lbl">Date</span><span class="val">${form.date}</span></div>
+      <div class="cover-meta-row"><span class="lbl">Valid for</span><span class="val">${form.validDays} days</span></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <div class="left">antortiq.com &nbsp;·&nbsp; wa.me/919079060327</div>
+    <div class="right">Confidential — prepared exclusively for ${form.clientName}</div>
+  </div>
+  <div class="cover-bg-text">A</div>
+</div>
+
+<!-- ══ FEATURES PAGE ══ -->
+<div class="body-page page-break">
+  <div class="section-label">What You Get</div>
+  <h2 class="section-h">Your Custom Feature Stack</h2>
+  <p class="section-sub">${sel.length} feature${sel.length!==1?'s':''} selected — ${sel.filter(s=>s.isFree).length} included free. Here's exactly what each one does for your store.</p>
+
+  ${form.customMsg?`<div class="custom-msg">${form.customMsg}</div>`:''}
+
+  <div class="feat-grid">
+    ${serviceCardsHTML}
+  </div>
+</div>
+
+<!-- ══ PRICING PAGE ══ -->
+<div class="body-page page-break">
+  <div class="section-label">Investment</div>
+  <h2 class="section-h">Why One-Time Always Wins</h2>
+  <p class="section-sub">Traditional SaaS tools charge monthly — forever. We build it once, it runs forever. Here's what you'd pay elsewhere vs what you pay us.</p>
+
+  <div class="pricing-hero">
+    <div class="pricing-hero-left">
+      <div class="lbl">Your One-Time Investment</div>
+      <div class="big">₹${total.toLocaleString('en-IN')}</div>
+      <div class="sub">Pay once. Own it forever. No renewals.</div>
+    </div>
+    <div class="savings-pill">You save ₹${savings.toLocaleString('en-IN')}<br><span style="font-size:11px;font-weight:600;opacity:.8">vs year-1 competitor cost</span></div>
+    <div class="pricing-hero-right">
+      <div class="lbl">Competitors (Year 1)</div>
+      <div class="big">₹${competitorAnnual.toLocaleString('en-IN')}</div>
+      <div class="sub">And it keeps going every year.</div>
+    </div>
+  </div>
+
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Comparable Tool</th>
+        <th class="num" style="text-align:right">Monthly</th>
+        <th class="num" style="text-align:right">Annual</th>
+        <th class="num" style="text-align:right">Antortiq</th>
+      </tr>
+    </thead>
+    <tbody>${compRows}</tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2"><strong>TOTAL</strong></td>
+        <td class="num">₹${competitorTotal.toLocaleString('en-IN')}/mo</td>
+        <td class="num">₹${competitorAnnual.toLocaleString('en-IN')}/yr</td>
+        <td class="our-price">₹${total.toLocaleString('en-IN')}</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="divider"></div>
+
+  <div class="cta-box">
+    <h3>Ready to go live?</h3>
+    <p>${form.timeline} · ${form.support}</p>
+    <a class="cta-btn" href="mailto:antortiq@gmail.com">antortiq@gmail.com</a>
+    <a class="cta-wa" href="https://wa.me/919079060327">WhatsApp Us</a>
+    <ul class="terms-list">
+      <li>One-time payment, no recurring fees</li>
+      <li>Full source code and admin access</li>
+      <li>Proposal valid for ${form.validDays} days from ${form.date}</li>
+      <li>Free bug fixes for 30 days post-launch</li>
+      <li>Onboarding call included</li>
+      <li>Custom branding to match your store</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>`;
+}
+
+function previewProposal(){
+  const sel=getSelected();
+  if(!sel.length){ alert('Please select at least one service.'); return; }
+  const win=window.open('','_blank');
+  win.document.write(buildProposalHTML(false));
+  win.document.close();
+}
+
+function generatePDF(){
+  const sel=getSelected();
+  if(!sel.length){ alert('Please select at least one service.'); return; }
+  const win=window.open('','_blank');
+  win.document.write(buildProposalHTML(true));
+  win.document.close();
+  win.addEventListener('load',()=>{ setTimeout(()=>win.print(),800); });
+}
+</script>
+</body>
+</html>
