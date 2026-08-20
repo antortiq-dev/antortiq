@@ -65,6 +65,12 @@ input[type=color]{height:40px;padding:4px 6px;cursor:pointer;border-radius:9px}
   <h2>Connect a Shopify Brand</h2>
   <p class="sub">Add a brand's Shopify credentials — webhooks are registered automatically.</p>
 
+  <!-- ADMIN KEY — always visible at top -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+    <input id="adminKey" type="password" placeholder="Admin key (antortiq-admin-2025)" style="flex:1;max-width:320px;border:1.5px solid #e8e8e8;border-radius:9px;padding:11px 13px;font-size:13px;outline:none;background:#fafafa" autocomplete="off">
+    <span style="font-size:11px;color:#aaa">Required for all actions below</span>
+  </div>
+
   <!-- STEP 0: TOKEN FETCH (for newer Shopify custom apps that show client_id + secret) -->
   <div class="card">
     <h3>Step 1 — Get Access Token from Client ID + Secret</h3>
@@ -141,7 +147,6 @@ input[type=color]{height:40px;padding:4px 6px;cursor:pointer;border-radius:9px}
     </div>
     <div class="divider"></div>
     <div class="btn-row">
-      <input id="adminKey" type="password" placeholder="Admin key" style="width:180px;border:1.5px solid #e8e8e8;border-radius:9px;padding:11px 13px;font-size:13px;outline:none;background:#fafafa" autocomplete="off">
       <button class="btn btn-primary" onclick="addBrand()" id="addBtn">Connect Brand + Register Webhooks</button>
       <span class="status" id="addStatus"></span>
     </div>
