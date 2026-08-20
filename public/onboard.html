@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Onboarding — Antortiq</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#f5f5f5;color:#0f0f0f;-webkit-font-smoothing:antialiased}
+.topbar{background:#0f0f0f;color:#fff;padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.topbar-title{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+.topbar-sub{font-size:11px;color:#888;letter-spacing:.08em;text-transform:uppercase}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 80px}
+h2{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.sub{font-size:13px;color:#777;margin-bottom:28px}
+.card{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:28px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.card h3{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:#888;letter-spacing:.07em;text-transform:uppercase}
+.field input{border:1.5px solid #e8e8e8;border-radius:9px;padding:11px 13px;font-size:14px;color:#0f0f0f;outline:none;transition:border-color .15s;background:#fafafa}
+.field input:focus{border-color:#0f0f0f;background:#fff}
+.field input::placeholder{color:#ccc}
+.field small{font-size:11px;color:#aaa;line-height:1.5}
+.btn-row{display:flex;gap:10px;margin-top:6px;align-items:center}
+.btn{padding:13px 22px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:none;letter-spacing:.04em;transition:opacity .15s}
+.btn:active{opacity:.8}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-primary{background:#0f0f0f;color:#fff}
+.btn-ghost{background:#f0f0f0;color:#555}
+.status{font-size:12px;color:#888;padding:4px 0}
+.result-box{background:#0f0f0f;color:#d4d4d4;border-radius:10px;padding:16px;font-size:12px;font-family:monospace;line-height:1.7;white-space:pre-wrap;word-break:break-all;margin-top:14px;display:none}
+.result-box.ok{border-left:3px solid #22c55e}
+.result-box.err{border-left:3px solid #ef4444}
+.divider{height:1px;background:#f0f0f0;margin:24px 0}
+
+/* brands list */
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:0}
+.brand-card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.04);display:flex;flex-direction:column;gap:8px}
+.brand-name{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.brand-domain{font-size:11px;color:#999}
+.brand-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:.05em;text-transform:uppercase;border:1px solid}
+.badge.green{background:#f0fdf4;color:#16a34a;border-color:#86efac}
+.badge.red{background:#fef2f2;color:#ef4444;border-color:#fecaca}
+.badge.amber{background:#fffbeb;color:#f59e0b;border-color:#fde68a}
+.brand-actions{display:flex;gap:8px;margin-top:4px}
+.btn-sm{padding:7px 12px;font-size:11px;border-radius:7px;font-weight:700;cursor:pointer;border:1.5px solid;background:#fff;transition:opacity .15s;letter-spacing:.04em}
+.btn-sm:active{opacity:.7}
+.btn-sm.blue{color:#002eff;border-color:#99b3ff}
+.btn-sm.red{color:#ef4444;border-color:#fecaca}
+.empty-state{color:#aaa;font-size:13px;padding:20px 0}
+input[type=color]{height:40px;padding:4px 6px;cursor:pointer;border-radius:9px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-title">Antortiq</span>
+  <span class="topbar-sub">Brand Onboarding</span>
+</div>
+
+<div class="wrap">
+  <h2>Connect a Shopify Brand</h2>
+  <p class="sub">Add a brand's Shopify credentials — webhooks are registered automatically.</p>
+
+  <!-- ADD BRAND FORM -->
+  <div class="card">
+    <h3>Brand Details</h3>
+    <div class="grid">
+      <div class="field">
+        <label>Shop ID (slug)</label>
+        <input id="shopId" placeholder="e.g. ctrl-store" autocomplete="off">
+        <small>Unique internal ID, lowercase-hyphen. Used in URLs.</small>
+      </div>
+      <div class="field">
+        <label>Brand Name</label>
+        <input id="name" placeholder="e.g. CTRL" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Shopify Domain</label>
+        <input id="shopDomain" placeholder="ctrl-store.myshopify.com" autocomplete="off">
+        <small>Their myshopify.com domain, no https://</small>
+      </div>
+      <div class="field">
+        <label>Access Token</label>
+        <input id="accessToken" type="password" placeholder="shpat_..." autocomplete="off">
+        <small>Private app Admin API token from their Shopify</small>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <h3>Payment & Support</h3>
+    <div class="grid">
+      <div class="field">
+        <label>Razorpay Key ID</label>
+        <input id="razorpayKey" placeholder="rzp_live_..." autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Razorpay Secret</label>
+        <input id="razorpaySecret" type="password" placeholder="secret" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>WhatsApp Support Number</label>
+        <input id="waNumber" placeholder="919876543210" autocomplete="off">
+        <small>Country code + number, no + or spaces</small>
+      </div>
+      <div class="field">
+        <label>Brand Accent Color</label>
+        <input id="accentColor" type="color" value="#0f0f0f">
+      </div>
+      <div class="field" style="grid-column:span 2">
+        <label>Logo URL</label>
+        <input id="logoUrl" placeholder="https://cdn.shopify.com/... or leave blank" autocomplete="off">
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="btn-row">
+      <input id="adminKey" type="password" placeholder="Admin key" style="width:180px;border:1.5px solid #e8e8e8;border-radius:9px;padding:11px 13px;font-size:13px;outline:none;background:#fafafa" autocomplete="off">
+      <button class="btn btn-primary" onclick="addBrand()" id="addBtn">Connect Brand + Register Webhooks</button>
+      <span class="status" id="addStatus"></span>
+    </div>
+    <div class="result-box" id="addResult"></div>
+  </div>
+
+  <!-- BRANDS LIST -->
+  <div class="card">
+    <h3 style="margin-bottom:0">Connected Brands</h3>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;margin-top:14px">
+      <span class="status" id="listStatus"></span>
+      <button class="btn btn-ghost" onclick="loadBrands()" style="padding:8px 14px;font-size:12px">Refresh</button>
+    </div>
+    <div class="brands-grid" id="brandsList">
+      <p class="empty-state">Loading…</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '/api/brands';
+
+function key() { return document.getElementById('adminKey').value.trim(); }
+
+async function addBrand() {
+  const btn = document.getElementById('addBtn');
+  const statusEl = document.getElementById('addStatus');
+  const resultEl = document.getElementById('addResult');
+  const payload = {
+    shopId:        document.getElementById('shopId').value.trim().toLowerCase().replace(/\s+/g,'-'),
+    name:          document.getElementById('name').value.trim(),
+    shopDomain:    document.getElementById('shopDomain').value.trim().replace(/https?:\/\//,'').replace(/\//,''),
+    accessToken:   document.getElementById('accessToken').value.trim(),
+    razorpayKey:   document.getElementById('razorpayKey').value.trim(),
+    razorpaySecret:document.getElementById('razorpaySecret').value.trim(),
+    waNumber:      document.getElementById('waNumber').value.trim(),
+    accentColor:   document.getElementById('accentColor').value,
+    logoUrl:       document.getElementById('logoUrl').value.trim(),
+  };
+  if (!payload.shopId || !payload.name || !payload.shopDomain || !payload.accessToken) {
+    statusEl.textContent = '⚠ shopId, name, domain and token are required';
+    statusEl.style.color = '#ef4444';
+    return;
+  }
+  btn.disabled = true;
+  statusEl.textContent = 'Connecting…';
+  statusEl.style.color = '#888';
+  resultEl.style.display = 'none';
+  try {
+    const r = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': key() },
+      body: JSON.stringify(payload),
+    });
+    const d = await r.json();
+    resultEl.style.display = 'block';
+    if (r.ok) {
+      resultEl.className = 'result-box ok';
+      const wh = d.webhooks || [];
+      const ok = wh.filter(w => w.ok).length;
+      statusEl.textContent = `✅ Connected! Webhooks: ${ok}/${wh.length} registered`;
+      statusEl.style.color = '#16a34a';
+      resultEl.textContent = JSON.stringify(d, null, 2);
+      loadBrands();
+    } else {
+      resultEl.className = 'result-box err';
+      statusEl.textContent = `❌ ${d.error}`;
+      statusEl.style.color = '#ef4444';
+      resultEl.textContent = JSON.stringify(d, null, 2);
+    }
+  } catch (e) {
+    statusEl.textContent = `❌ ${e.message}`;
+    statusEl.style.color = '#ef4444';
+  } finally { btn.disabled = false; }
+}
+
+async function loadBrands() {
+  const listEl = document.getElementById('brandsList');
+  const statusEl = document.getElementById('listStatus');
+  statusEl.textContent = 'Loading…';
+  try {
+    const r = await fetch(API, { headers: { 'x-admin-key': key() } });
+    if (!r.ok) { listEl.innerHTML = `<p class="empty-state">Auth failed — enter admin key above</p>`; statusEl.textContent=''; return; }
+    const brands = await r.json();
+    statusEl.textContent = `${brands.length} brand${brands.length !== 1 ? 's' : ''}`;
+    if (!brands.length) { listEl.innerHTML = `<p class="empty-state">No brands connected yet.</p>`; return; }
+    listEl.innerHTML = brands.map(b => `
+      <div class="brand-card">
+        <div class="brand-name">${esc(b.name)}</div>
+        <div class="brand-domain">${esc(b.shopDomain)}</div>
+        <div class="brand-badges">
+          <span class="badge ${b.active ? 'green' : 'red'}">${b.active ? 'Active' : 'Inactive'}</span>
+          <span class="badge ${b.webhooksRegistered ? 'green' : 'amber'}">${b.webhooksRegistered ? 'Webhooks OK' : 'Webhooks pending'}</span>
+          ${b.razorpayKey ? '<span class="badge green">Razorpay</span>' : '<span class="badge amber">No Razorpay</span>'}
+        </div>
+        <div class="brand-actions">
+          <button class="btn-sm blue" onclick="reregisterWebhooks('${b.shopId}')">Re-register webhooks</button>
+          <button class="btn-sm red" onclick="deleteBrand('${b.shopId}','${esc(b.name)}')">Remove</button>
+        </div>
+      </div>`).join('');
+  } catch (e) { listEl.innerHTML = `<p class="empty-state">Error: ${e.message}</p>`; statusEl.textContent=''; }
+}
+
+async function reregisterWebhooks(shopId) {
+  if (!confirm(`Re-register webhooks for ${shopId}?`)) return;
+  try {
+    const r = await fetch(`${API}/${shopId}/webhooks`, { method: 'POST', headers: { 'x-admin-key': key() } });
+    const d = await r.json();
+    const ok = (d.results || []).filter(w => w.ok).length;
+    alert(`Webhooks: ${ok}/${(d.results||[]).length} registered\n\n${JSON.stringify(d.results, null, 2)}`);
+    loadBrands();
+  } catch (e) { alert(e.message); }
+}
+
+async function deleteBrand(shopId, name) {
+  if (!confirm(`Remove brand "${name}" (${shopId})? This cannot be undone.`)) return;
+  try {
+    const r = await fetch(`${API}/${shopId}`, { method: 'DELETE', headers: { 'x-admin-key': key() } });
+    const d = await r.json();
+    if (d.ok) loadBrands();
+    else alert(d.error);
+  } catch (e) { alert(e.message); }
+}
+
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// Auto-load if key is in URL (e.g. /onboard.html?key=antortiq-admin-2025)
+const urlKey = new URLSearchParams(location.search).get('key');
+if (urlKey) {
+  document.getElementById('adminKey').value = urlKey;
+  loadBrands();
+}
+</script>
+</body>
+</html>
