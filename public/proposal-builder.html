@@ -593,41 +593,56 @@ function buildProposal(doPrint) {
   const competitorAnnual = competitorTotal * 12;
   const savings = competitorAnnual - total;
 
-  // Two-column table layout — reliable across all print engines, no CSS grid
+  // Layout: 3-panel mockups (confirm_flow, track_exchange) → full width row
+  //         all other services → paired 2-per-row
+  const FULL_WIDTH_TYPES = ['confirm_flow','track_exchange'];
+
+  const cardInner = (s, fullWidth) => `
+    <div style="page-break-inside:avoid;break-inside:avoid;background:#111114;border:1px solid #1e1e22;border-radius:16px;overflow:hidden;margin-bottom:20px">
+      <div style="border-bottom:1px solid #1a1a1e;padding:16px 20px 0">
+        ${mockupHTML(s)}
+      </div>
+      <div style="padding:18px 20px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
+          <div style="flex:1;padding-right:8px">
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${s.accentColor};margin-bottom:3px">${s.tags[0]}</div>
+            <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:${fullWidth?'20px':'17px'};color:#fff;line-height:1.2">${s.name}</div>
+          </div>
+          ${s.isFree
+            ? `<div style="flex-shrink:0;background:#061209;border:1px solid #22c55e44;border-radius:99px;padding:4px 10px;font-size:9px;font-weight:800;letter-spacing:1px;color:#22c55e;white-space:nowrap">&#127873; FREE ADD-ON</div>`
+            : `<div style="flex-shrink:0;text-align:right"><div style="font-family:'Sora',sans-serif;font-size:${fullWidth?'22px':'19px'};font-weight:900;color:#e8344a">&#8377;${s.price.toLocaleString('en-IN')}</div><div style="font-size:9px;color:#555;margin-top:1px">one-time</div></div>`
+          }
+        </div>
+        <p style="font-size:12px;color:#6b7280;line-height:1.55;margin-bottom:10px">${s.desc}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">
+          ${s.tags.map(t => `<span style="font-size:9px;font-weight:600;color:#444;border:1px solid #1e1e22;padding:2px 7px;border-radius:99px">${t}</span>`).join('')}
+        </div>
+        <div style="border-top:1px solid #1a1a1e;padding-top:10px;${fullWidth?'display:grid;grid-template-columns:1fr 1fr;gap:0 20px':''}">
+          ${s.features.map(f => `<div style="display:flex;gap:7px;margin-bottom:5px;align-items:flex-start"><span style="color:${s.accentColor};font-weight:800;font-size:11px;margin-top:1px;flex-shrink:0">&#10003;</span><span style="font-size:11px;color:#9ca3af;line-height:1.45">${f}</span></div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+
   const featureCardsHTML = (function() {
     const rows = [];
-    for (let i = 0; i < sel.length; i += 2) {
-      const a = sel[i], b = sel[i+1];
-      const cell = (s) => `
-        <td style="width:50%;vertical-align:top;padding:0 ${b && i % 2 === 0 ? '10px 0 0' : '0'}">
-          <div style="page-break-inside:avoid;break-inside:avoid;background:#111114;border:1px solid #1e1e22;border-radius:16px;overflow:hidden;margin-bottom:20px">
-            <div style="border-bottom:1px solid #1a1a1e;padding:16px 20px 0">
-              ${mockupHTML(s)}
-            </div>
-            <div style="padding:18px 20px">
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
-                <div style="flex:1;padding-right:8px">
-                  <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${s.accentColor};margin-bottom:3px">${s.tags[0]}</div>
-                  <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:17px;color:#fff;line-height:1.2">${s.name}</div>
-                </div>
-                ${s.isFree
-                  ? `<div style="flex-shrink:0;background:#061209;border:1px solid #22c55e44;border-radius:99px;padding:4px 10px;font-size:9px;font-weight:800;letter-spacing:1px;color:#22c55e;white-space:nowrap">&#127873; FREE</div>`
-                  : `<div style="flex-shrink:0;text-align:right"><div style="font-family:'Sora',sans-serif;font-size:19px;font-weight:900;color:#e8344a">&#8377;${s.price.toLocaleString('en-IN')}</div><div style="font-size:9px;color:#555;margin-top:1px">one-time</div></div>`
-                }
-              </div>
-              <p style="font-size:12px;color:#6b7280;line-height:1.55;margin-bottom:10px">${s.desc}</p>
-              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">
-                ${s.tags.map(t => `<span style="font-size:9px;font-weight:600;color:#444;border:1px solid #1e1e22;padding:2px 7px;border-radius:99px">${t}</span>`).join('')}
-              </div>
-              <div style="border-top:1px solid #1a1a1e;padding-top:10px">
-                ${s.features.map(f => `<div style="display:flex;gap:7px;margin-bottom:5px;align-items:flex-start"><span style="color:${s.accentColor};font-weight:800;font-size:11px;margin-top:1px;flex-shrink:0">&#10003;</span><span style="font-size:11px;color:#9ca3af;line-height:1.45">${f}</span></div>`).join('')}
-              </div>
-            </div>
-          </div>
-        </td>`;
-      rows.push(`<tr>${cell(a)}${b ? cell(b).replace('padding:0 10px 0 0','padding:0 0 0 10px') : '<td style="width:50%"></td>'}</tr>`);
+    const narrow = sel.filter(s => !FULL_WIDTH_TYPES.includes(s.mockupType));
+    const wide   = sel.filter(s =>  FULL_WIDTH_TYPES.includes(s.mockupType));
+
+    // Full-width cards first
+    wide.forEach(s => {
+      rows.push(`<tr><td colspan="2" style="padding:0">${cardInner(s, true)}</td></tr>`);
+    });
+
+    // Narrow cards paired 2-per-row
+    for (let i = 0; i < narrow.length; i += 2) {
+      const a = narrow[i], b = narrow[i+1];
+      rows.push(`<tr>
+        <td style="width:50%;vertical-align:top;padding-right:10px">${cardInner(a, false)}</td>
+        <td style="width:50%;vertical-align:top;padding-left:10px">${b ? cardInner(b, false) : ''}</td>
+      </tr>`);
     }
-    return `<table style="width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed">${rows.join('')}</table>`;
+
+    return `<table style="width:100%;border-collapse:collapse;table-layout:fixed">${rows.join('')}</table>`;
   })();
 
   const compRowsHTML = sel.map(s => `
