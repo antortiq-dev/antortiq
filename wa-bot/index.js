@@ -153,6 +153,20 @@ async function handleMessage(sock, msg) {
   await sock.sendMessage(jid, { text: reply }, { quoted: msg });
   console.log(`  🤖 replied (${reply.length}c)`);
 
+  const wantsCall = /\b(call|talk|speak|connect|human|real person|call me|hop on|get on a call|schedule a call|want to call|wanna call)\b/i.test(text);
+  if (wantsCall && !state.callRequested) {
+    state.callRequested = true;
+    const phone = jid.replace('@s.whatsapp.net', '').replace('@c.us', '');
+    await sendAdminAlert(sock, jid, '📞 Customer asked for a call / real human');
+    upsertLead(state).catch(() => {});
+    const adminNum = (process.env.ADMIN_WA_NUMBER || '918209544626').replace(/\D/g, '');
+    await new Promise(r => setTimeout(r, 1200));
+    await sock.sendMessage(jid, {
+      text: `Sure! You can directly reach our founder here 👇\n\n📞 *+${adminNum}*\n\nOr click: wa.me/${adminNum}\n\nThey'll get back to you quickly. Is there a good time that works for you?`,
+    });
+    return;
+  }
+
   if (memory.shouldEscalate(jid, text)) {
     memory.markEscalated(jid);
     const reason = memory.isUrgent(text) ? 'Urgency keywords detected' : `Lead score ${state.leadScore}`;
