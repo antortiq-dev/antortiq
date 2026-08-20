@@ -7,40 +7,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--red:#e8344a;--bg:#080808;--surface:#111114;--card:#18181c;--border:#222228;--text:#e9e9ea;--muted:#6b6f76;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--disp:'Sora',sans-serif;--sans:'Inter',sans-serif}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh}
-a{color:inherit;text-decoration:none}
-
-/* ── NAV ── */
+:root{--red:#e8344a;--bg:#080808;--surface:#111114;--card:#18181c;--border:#222228;--text:#e9e9ea;--muted:#6b6f76;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 36px;border-bottom:1px solid var(--border);background:rgba(8,8,8,.92);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
-.nav-logo{font-family:var(--disp);font-weight:800;font-size:18px;letter-spacing:-.5px}
+.nav-logo{font-family:'Sora',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.5px}
 .nav-logo span{color:var(--red)}
 .nav-tag{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:99px}
-
-/* ── LAYOUT ── */
 .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
 .page{padding:48px 0 120px}
 .page-head{margin-bottom:40px}
-.page-head h1{font-family:var(--disp);font-size:32px;font-weight:800;color:#fff;margin-bottom:6px}
+.page-head h1{font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#fff;margin-bottom:6px}
 .page-head p{color:var(--muted);font-size:15px}
-
-/* ── SECTIONS ── */
 .section{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px}
-.section-title{font-family:var(--disp);font-weight:700;font-size:17px;color:#fff;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.section-title{font-family:'Sora',sans-serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .section-title .dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0}
-
-/* ── CLIENT FORM ── */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-group{display:flex;flex-direction:column;gap:6px}
 .form-group.full{grid-column:1/-1}
 .form-group label{font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
-.form-group input,.form-group textarea,.form-group select{background:#0d0d10;border:1px solid var(--border);border-radius:10px;color:#fff;font-family:var(--sans);font-size:14px;padding:12px 14px;outline:none;transition:border-color .2s;width:100%}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--red)}
+.form-group input,.form-group textarea{background:#0d0d10;border:1px solid var(--border);border-radius:10px;color:#fff;font-family:'Inter',sans-serif;font-size:14px;padding:12px 14px;outline:none;transition:border-color .2s;width:100%}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--red)}
 .form-group textarea{resize:vertical;min-height:80px}
-
-/* ── SERVICE CARDS ── */
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.svc-item{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:border-color .2s,background .2s;position:relative;user-select:none}
+.svc-item{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:border-color .2s,background .2s;user-select:none}
 .svc-item:hover{border-color:#333}
 .svc-item.selected{border-color:var(--red);background:#110608}
 .svc-item.free-selected{border-color:var(--green);background:#06110a}
@@ -49,54 +38,35 @@ a{color:inherit;text-decoration:none}
 .svc-item.free-selected .svc-check{background:var(--green);border-color:var(--green);color:#fff}
 .svc-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
 .svc-ico{font-size:28px;flex-shrink:0;margin-top:2px}
-.svc-name{font-family:var(--disp);font-weight:700;font-size:15px;color:#fff;line-height:1.3}
+.svc-name{font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#fff;line-height:1.3}
 .svc-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px}
 .svc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.svc-tags span{font-size:10px;font-weight:600;color:#555;border:1px solid #222;padding:2px 8px;border-radius:99px;letter-spacing:.3px}
-
-/* price + free row */
+.svc-tags span{font-size:10px;font-weight:600;color:#555;border:1px solid #222;padding:2px 8px;border-radius:99px}
 .svc-pricing{display:flex;align-items:center;gap:10px;margin-top:2px}
 .price-input-wrap{display:flex;align-items:center;gap:6px;background:#0d0d10;border:1px solid var(--border);border-radius:8px;padding:8px 12px;flex:1;transition:border-color .2s}
 .price-input-wrap:focus-within{border-color:var(--red)}
 .price-input-wrap .rupee{color:var(--muted);font-weight:700;font-size:15px}
-.price-input-wrap input{background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:15px;width:100%;font-family:var(--sans)}
+.price-input-wrap input{background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:15px;width:100%;font-family:'Inter',sans-serif}
 .free-toggle{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:#0d0d10;transition:all .2s}
-.free-toggle input{display:none}
 .free-toggle.active{border-color:var(--green);color:var(--green);background:#061209}
 .svc-item:not(.selected):not(.free-selected) .svc-pricing{opacity:.35;pointer-events:none}
-
-/* ── COMPARISON DEFAULTS ── */
 .comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.comp-col{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
-.comp-col.ours{border-color:var(--red)+'33';background:#0d0406}
+.comp-col{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;display:none}
 .comp-col label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
-.comp-col .big-val{font-family:var(--disp);font-size:28px;font-weight:800;color:#fff}
-.comp-col.ours .big-val{color:var(--red)}
-
-/* ── VALIDITY & NOTES ── */
 .inline-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-
-/* ── ACTIONS ── */
 .actions-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,8,.96);border-top:1px solid var(--border);backdrop-filter:blur(14px);padding:18px 36px;display:flex;align-items:center;justify-content:space-between;z-index:200}
 .actions-bar .summary{font-size:14px;color:var(--muted)}
-.actions-bar .summary strong{color:#fff;font-size:18px;font-family:var(--disp)}
-.actions-bar .summary .free-count{color:var(--green);font-size:13px}
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:14px;padding:13px 26px;border-radius:99px;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s}
+.actions-bar .summary strong{color:#fff;font-size:18px;font-family:'Sora',sans-serif}
+.free-count{color:var(--green);font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;padding:13px 26px;border-radius:99px;cursor:pointer;border:none;transition:transform .2s}
 .btn:hover{transform:translateY(-2px)}
-.btn-primary{background:linear-gradient(135deg,var(--red),#c0192a);color:#fff;box-shadow:0 8px 28px rgba(232,52,74,.35)}
+.btn-primary{background:linear-gradient(135deg,#e8344a,#c0192a);color:#fff;box-shadow:0 8px 28px rgba(232,52,74,.35)}
 .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
 .btn-ghost:hover{border-color:var(--red);color:var(--red)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:720px){
-  .services-grid,.form-grid,.comp-grid,.inline-grid{grid-template-columns:1fr}
-  .wrap{padding:0 18px}
-  .actions-bar{padding:14px 18px;flex-direction:column;gap:12px}
-}
+@media(max-width:720px){.services-grid,.form-grid,.comp-grid,.inline-grid{grid-template-columns:1fr}.wrap{padding:0 18px}.actions-bar{padding:14px 18px;flex-direction:column;gap:12px}}
 </style>
 </head>
 <body>
-
 <nav class="nav">
   <a class="nav-logo" href="/">Antorti<span>q</span></a>
   <span class="nav-tag">Proposal Builder</span>
@@ -108,563 +78,583 @@ a{color:inherit;text-decoration:none}
     <p>Select features, set pricing, and generate a branded PDF proposal in seconds.</p>
   </div>
 
-  <!-- ── CLIENT DETAILS ── -->
   <div class="section">
     <div class="section-title"><span class="dot"></span>Client Details</div>
     <div class="form-grid">
       <div class="form-group"><label>Client / Brand Name *</label><input id="clientName" type="text" placeholder="e.g. Harah Exclusif"></div>
       <div class="form-group"><label>Contact Person</label><input id="contactPerson" type="text" placeholder="e.g. Harsh Vijay"></div>
-      <div class="form-group"><label>Email</label><input id="clientEmail" type="email" placeholder="harsh@harahexclusif.com"></div>
+      <div class="form-group"><label>Email</label><input id="clientEmail" type="email" placeholder="harsh@brand.com"></div>
       <div class="form-group"><label>WhatsApp / Phone</label><input id="clientPhone" type="text" placeholder="+91 9XXXXXXXXX"></div>
-      <div class="form-group"><label>Brand Website</label><input id="clientWebsite" type="text" placeholder="harahexclusif.com"></div>
-      <div class="form-group"><label>Industry / Category</label><input id="clientIndustry" type="text" placeholder="e.g. D2C Streetwear, Jewellery, Beauty"></div>
-      <div class="form-group full"><label>Proposal Context / Notes (internal, won't appear in PDF)</label><textarea id="proposalNotes" placeholder="What they need, pain points, conversation context..."></textarea></div>
+      <div class="form-group"><label>Brand Website</label><input id="clientWebsite" type="text" placeholder="brand.com"></div>
+      <div class="form-group"><label>Industry / Category</label><input id="clientIndustry" type="text" placeholder="e.g. D2C Streetwear, Jewellery"></div>
+      <div class="form-group full"><label>Internal Notes (not shown in PDF)</label><textarea id="proposalNotes" placeholder="Pain points, conversation context..."></textarea></div>
     </div>
   </div>
 
-  <!-- ── SERVICES ── -->
   <div class="section">
     <div class="section-title"><span class="dot"></span>Select Features & Set Pricing</div>
     <div class="services-grid" id="servicesGrid"></div>
   </div>
 
-  <!-- ── PRICING COMPARISON ── -->
   <div class="section">
     <div class="section-title"><span class="dot"></span>Competitor Monthly Pricing (for comparison)</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:20px">These appear in the proposal to show how much brands typically pay monthly for similar tools — contrasted with your one-time fee.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px">Shown in the proposal as crossed-out competitor cost vs your one-time fee.</p>
     <div class="comp-grid" id="compGrid"></div>
+    <p id="compEmpty" style="font-size:13px;color:var(--muted)">Select services above to set competitor pricing.</p>
   </div>
 
-  <!-- ── VALIDITY & SETTINGS ── -->
   <div class="section">
     <div class="section-title"><span class="dot"></span>Proposal Settings</div>
     <div class="inline-grid">
       <div class="form-group"><label>Valid For (days)</label><input id="validDays" type="number" value="7" min="1" max="90"></div>
-      <div class="form-group"><label>Prepared By</label><input id="preparedBy" type="text" value="Antortiq Team" placeholder="Your name"></div>
-      <div class="form-group"><label>Setup Timeline</label><input id="timeline" type="text" value="Go live within 60 minutes" placeholder="e.g. 3-5 business days"></div>
+      <div class="form-group"><label>Prepared By</label><input id="preparedBy" type="text" value="Antortiq Team"></div>
+      <div class="form-group"><label>Setup Timeline</label><input id="timeline" type="text" value="Go live within 60 minutes"></div>
       <div class="form-group"><label>Support Included</label><input id="support" type="text" value="Dedicated WhatsApp support + onboarding call"></div>
-      <div class="form-group full"><label>Custom Message for Client (appears at top of proposal)</label><textarea id="customMsg" placeholder="Hi [Brand], based on our conversation here's a tailored proposal for your store..."></textarea></div>
+      <div class="form-group full"><label>Custom Opening Message (shown at top of proposal)</label><textarea id="customMsg" placeholder="Hi [Brand], based on our conversation here's a tailored proposal..."></textarea></div>
     </div>
   </div>
 </div>
 
-<!-- ── BOTTOM BAR ── -->
 <div class="actions-bar">
-  <div class="summary">
-    <span id="summaryText">Select services to see total</span>
-  </div>
+  <div class="summary"><span id="summaryText">Select services to see total</span></div>
   <div style="display:flex;gap:12px">
-    <button class="btn btn-ghost" onclick="previewProposal()">👁 Preview</button>
-    <button class="btn btn-primary" onclick="generatePDF()">⬇ Download PDF</button>
+    <button class="btn btn-ghost" onclick="generate(false)">&#128065; Preview</button>
+    <button class="btn btn-primary" onclick="generate(true)">&#11015; Download PDF</button>
   </div>
 </div>
 
 <script>
 const SERVICES = [
   {
-    id:'smart_track',
-    ico:'📦',
-    name:'Smart Track & Order Confirmation',
-    desc:'Branded COD confirmation flow + live order tracking page. Customers confirm orders, pay the confirmation fee, and track every step — from packed to delivered — with your branding.',
-    tags:['COD Confirmation','Live Tracking','WhatsApp Updates','Reduce RTOs'],
-    competitor:'Shiprocket / Delhivery dashboard',
-    competitorMonthly:2999,
-    defaultPrice:9999,
-    features:[
-      'Branded order confirmation page (pay ₹99 to confirm COD)',
-      'Fake order filter — unconfirmed orders auto-cancelled',
-      'Real-time tracking page on your domain',
-      'WhatsApp notification at each status change',
-      'RTO analytics — which pincodes fail most',
-    ]
+    id:'smart_track', ico:'📦', name:'Smart Track & Order Confirmation',
+    desc:'Branded COD confirmation flow + live order tracking page. Customers confirm orders, pay a small confirmation fee, and track every step — packed to delivered — with your identity, not a courier template.',
+    tags:['COD Confirmation','Live Tracking','WhatsApp Updates','RTO Reduction'],
+    competitor:'Shiprocket / Delhivery dashboard', competitorMonthly:2999, defaultPrice:9999,
+    accentColor:'#3b82f6', accentDim:'#0d1f3c',
+    features:['Branded order confirmation page','Fake order filter — unconfirmed auto-cancelled','Real-time tracking on your domain','WhatsApp alert at every status change','RTO analytics by pincode and SKU'],
+    mockupType:'track'
   },
   {
-    id:'returns_exchange',
-    ico:'🔄',
-    name:'Returns & Exchange Automation',
-    desc:'Self-serve exchange and return portal. Customer selects item, picks new size, pays ₹199 processing fee — AI auto-approves. Zero support tickets, zero manual work.',
+    id:'returns_exchange', ico:'🔄', name:'Returns & Exchange Automation',
+    desc:'Self-serve exchange portal. Customer selects item, picks new size, pays ₹199 processing fee — AI auto-approves. Zero support tickets, zero manual work for your team.',
     tags:['Self-serve Exchange','AI Auto-approve','₹199 Processing Fee','Zero Tickets'],
-    competitor:'Clickpost / Returnprime',
-    competitorMonthly:3499,
-    defaultPrice:12999,
-    features:[
-      'Customer self-serve exchange portal',
-      'AI-powered auto-approval for eligible exchanges',
-      '₹199 processing fee collection (your revenue)',
-      'Admin override with promo code',
-      'Exchange status updates via WhatsApp',
-      'Return analytics — which items come back most',
-    ]
+    competitor:'Clickpost / Returnprime', competitorMonthly:3499, defaultPrice:12999,
+    accentColor:'#f59e0b', accentDim:'#2a1f05',
+    features:['Customer self-serve exchange portal','AI-powered auto-approval','₹199 processing fee (your revenue)','Admin override with promo code','Exchange status via WhatsApp'],
+    mockupType:'exchange'
   },
   {
-    id:'auto_contact',
-    ico:'👥',
-    name:'Auto Contact Sync',
-    desc:'Every order automatically saved as a contact with full order history, purchase value, and tags. Build your customer database without lifting a finger.',
-    tags:['Auto CRM','Order History','Customer Tags','Repeat Purchase'],
-    competitor:'Klaviyo / Freshdesk',
-    competitorMonthly:4999,
-    defaultPrice:7999,
-    features:[
-      'Every order auto-saved as a tagged contact',
-      'Full order history per customer',
-      'Lifetime value tracking',
-      'Segment by purchase frequency, value, category',
-      'WhatsApp-ready contact list export',
-    ]
+    id:'auto_contact', ico:'👥', name:'Auto Contact Sync',
+    desc:'Every order automatically saved as a contact with name, order ID, and purchase value — labelled on your business phone. The moment they call, you already know who they are.',
+    tags:['Auto CRM','Order History','Caller ID Magic','Repeat Purchase'],
+    competitor:'Klaviyo / Freshdesk', competitorMonthly:4999, defaultPrice:7999,
+    accentColor:'#22c55e', accentDim:'#061209',
+    features:['Every order auto-saved as a tagged contact','Full order history per customer','Lifetime value tracking','Caller ID — know who\'s calling before you pick up','WhatsApp-ready contact list export'],
+    mockupType:'contact'
   },
   {
-    id:'order_management',
-    ico:'🖥',
-    name:'Order Management Panel (CDC)',
+    id:'order_management', ico:'🖥', name:'Order Management Panel (CDC)',
     desc:'Your store\'s command centre — real-time GMV, orders, RTO rate, top products, and settlement tracker. One screen to run your entire operation.',
     tags:['Live Dashboard','GMV Tracking','Settlement','RTO Analytics'],
-    competitor:'Unicommerce / Vinculum',
-    competitorMonthly:5999,
-    defaultPrice:14999,
-    features:[
-      'Real-time GMV, orders, return rate dashboard',
-      'Product performance — views, add-to-cart, orders',
-      'Settlement tracker per courier',
-      'RTO analytics by SKU and pincode',
-      'Multi-channel order view',
-      'CSV export for accounting',
-    ]
+    competitor:'Unicommerce / Vinculum', competitorMonthly:5999, defaultPrice:14999,
+    accentColor:'#e8344a', accentDim:'#1a0406',
+    features:['Real-time GMV, orders, return rate','Product performance metrics','Settlement tracker per courier','RTO analytics by SKU and pincode','CSV export for accounting'],
+    mockupType:'dashboard'
   },
   {
-    id:'pixel_tracker',
-    ico:'📡',
-    name:'Pixel Tracker',
-    desc:'Track every product view, add-to-cart, and purchase event on your Shopify store. Feed accurate data to Meta Ads and retarget the right customers.',
+    id:'pixel_tracker', ico:'📡', name:'Pixel Tracker',
+    desc:'Track every product view, add-to-cart, and purchase on your Shopify store. Feed accurate data to Meta Ads and retarget exactly the right customers at the right moment.',
     tags:['Meta Pixel','Event Tracking','Retargeting','ROAS Boost'],
-    competitor:'Triple Whale / Northbeam',
-    competitorMonthly:8999,
-    defaultPrice:9999,
-    features:[
-      'Meta Pixel integration with purchase events',
-      'Product-level view, cart, and purchase tracking',
-      'Audience builder for retargeting',
-      'Campaign ROAS attribution',
-      'Live event feed dashboard',
-    ]
+    competitor:'Triple Whale / Northbeam', competitorMonthly:8999, defaultPrice:9999,
+    accentColor:'#a855f7', accentDim:'#170d26',
+    features:['Meta Pixel with purchase events','Product-level view, cart, purchase tracking','Audience builder for retargeting','Campaign ROAS attribution','Live event feed dashboard'],
+    mockupType:'pixel'
   },
   {
-    id:'wa_email',
-    ico:'💬',
-    name:'WhatsApp & Email Automation',
-    desc:'Fully branded lifecycle messages — order placed to delivered, abandoned cart, exchange updates — all fired automatically with your brand identity, not a generic courier template.',
+    id:'wa_email', ico:'💬', name:'WhatsApp & Email Automation',
+    desc:'Fully branded lifecycle messages — order placed to delivered, abandoned cart, exchange updates — fired automatically with your brand identity, not a generic courier template.',
     tags:['Lifecycle Email','WhatsApp API','Abandoned Cart','Brand Voice'],
-    competitor:'Interakt / Wati / Klaviyo',
-    competitorMonthly:3999,
-    defaultPrice:11999,
-    features:[
-      '10+ pre-built lifecycle email templates (your brand)',
-      'WhatsApp order updates at every stage',
-      'Abandoned cart recovery sequence',
-      'Post-delivery review request',
-      'Exchange and return status messages',
-    ]
+    competitor:'Interakt / Wati / Klaviyo', competitorMonthly:3999, defaultPrice:11999,
+    accentColor:'#25d366', accentDim:'#061209',
+    features:['10+ pre-built lifecycle email templates','WhatsApp order updates at every stage','Abandoned cart recovery sequence','Post-delivery review request','Exchange and return status messages'],
+    mockupType:'messaging'
   },
   {
-    id:'ai_agent',
-    ico:'🤖',
-    name:'AI Support Agent',
-    desc:'AI answers order tracking, exchange eligibility, and payment queries 24/7. Escalates to you only when genuinely needed. Resolves 85%+ without human intervention.',
-    tags:['24/7 AI','Auto-resolve','WhatsApp Bot','Zero Tickets'],
-    competitor:'Gorgias / Freshdesk AI',
-    competitorMonthly:6999,
-    defaultPrice:15999,
-    features:[
-      'AI resolves tracking, exchange, payment queries',
-      '85%+ resolution rate without human involvement',
-      'Escalates with context when human needed',
-      'Trained on your product catalogue',
-      'WhatsApp + website chat',
-      'Sentiment detection — flags angry customers',
-    ]
+    id:'ai_agent', ico:'🤖', name:'AI Support Agent',
+    desc:'AI answers order tracking, exchange eligibility, and payment queries 24/7. Escalates to you only when genuinely needed — with full context. Resolves 85%+ without human intervention.',
+    tags:['24/7 AI','Auto-resolve','WhatsApp Bot','Sentiment Detection'],
+    competitor:'Gorgias / Freshdesk AI', competitorMonthly:6999, defaultPrice:15999,
+    accentColor:'#06b6d4', accentDim:'#041820',
+    features:['AI resolves tracking, exchange, payment queries','85%+ resolution rate without human involvement','Escalates with context when human needed','Trained on your product catalogue','Sentiment detection — flags angry customers first'],
+    mockupType:'ai'
   },
   {
-    id:'meta_ads',
-    ico:'📊',
-    name:'Meta Ads Intelligence Dashboard',
+    id:'meta_ads', ico:'📊', name:'Meta Ads Intelligence Dashboard',
     desc:'ROAS, CPP, audience performance, and campaign breakdown — all live from your Meta account. Know exactly which ad is making money and which is burning it.',
     tags:['ROAS Live','Audience Insights','Campaign Breakdown','Scale Signals'],
-    competitor:'Triple Whale / MadgicX',
-    competitorMonthly:9999,
-    defaultPrice:12999,
-    features:[
-      'Live ROAS by campaign, adset, and audience',
-      'Age × gender × interest × platform breakdown',
-      'GOLD / SILVER / BRONZE audience classification',
-      'Frequency alerts — pause before saturation',
-      'CPP and spend efficiency scores',
-      'Scale signal — which audiences to double on',
-    ]
+    competitor:'Triple Whale / MadgicX', competitorMonthly:9999, defaultPrice:12999,
+    accentColor:'#f97316', accentDim:'#201005',
+    features:['Live ROAS by campaign, adset, and audience','Age × gender × interest × platform breakdown','GOLD / SILVER / BRONZE audience classification','Frequency alerts before saturation','Scale signal — which audiences to double'],
+    mockupType:'ads'
   },
 ];
 
-// Competitor monthly benchmarks (editable in the UI)
 let compPrices = {};
-SERVICES.forEach(s=>{ compPrices[s.id]=s.competitorMonthly; });
+SERVICES.forEach(s => { compPrices[s.id] = s.competitorMonthly; });
 
-// Build service cards
-const grid=document.getElementById('servicesGrid');
-SERVICES.forEach(s=>{
-  const el=document.createElement('div');
-  el.className='svc-item';
-  el.dataset.id=s.id;
-  el.innerHTML=`
+// ── Build service selector cards ──
+const grid = document.getElementById('servicesGrid');
+SERVICES.forEach(s => {
+  const el = document.createElement('div');
+  el.className = 'svc-item';
+  el.dataset.id = s.id;
+  el.innerHTML = `
     <div class="svc-header">
       <div class="svc-ico">${s.ico}</div>
-      <div style="flex:1">
-        <div class="svc-name">${s.name}</div>
-      </div>
-      <div class="svc-check" data-check="${s.id}">✓</div>
+      <div style="flex:1"><div class="svc-name">${s.name}</div></div>
+      <div class="svc-check" data-check="${s.id}">&#10003;</div>
     </div>
     <div class="svc-desc">${s.desc}</div>
-    <div class="svc-tags">${s.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+    <div class="svc-tags">${s.tags.map(t => `<span>${t}</span>`).join('')}</div>
     <div class="svc-pricing">
       <div class="price-input-wrap">
-        <span class="rupee">₹</span>
-        <input type="number" class="price-field" data-id="${s.id}" value="${s.defaultPrice}" min="0" placeholder="0" onclick="e=>e.stopPropagation()">
+        <span class="rupee">&#8377;</span>
+        <input type="number" class="price-field" data-id="${s.id}" value="${s.defaultPrice}" min="0">
       </div>
-      <label class="free-toggle" data-free="${s.id}" onclick="event.stopPropagation();toggleFree('${s.id}',this)">
-        <input type="checkbox" id="free_${s.id}">
-        🎁 Free Add-on
+      <label class="free-toggle" data-free="${s.id}">
+        <input type="checkbox" id="free_${s.id}" style="display:none">
+        &#127873; Free Add-on
       </label>
     </div>`;
-  el.addEventListener('click', ()=>toggleService(s.id, el));
-  // stop price input from toggling card
-  el.querySelector('.price-field').addEventListener('click', e=>e.stopPropagation());
+  el.addEventListener('click', () => toggleService(s.id, el));
+  el.querySelector('.price-field').addEventListener('click', e => e.stopPropagation());
   el.querySelector('.price-field').addEventListener('change', updateSummary);
+  el.querySelector('.free-toggle').addEventListener('click', e => { e.stopPropagation(); toggleFree(s.id, el.querySelector('.free-toggle')); });
   grid.appendChild(el);
 });
 
-// Build competitor comparison grid
-const compGrid=document.getElementById('compGrid');
-SERVICES.forEach(s=>{
-  const el=document.createElement('div');
-  el.className='comp-col';
-  el.dataset.compfor=s.id;
-  el.style.display='none';
-  el.innerHTML=`
+// ── Build competitor price inputs ──
+const compGrid = document.getElementById('compGrid');
+SERVICES.forEach(s => {
+  const el = document.createElement('div');
+  el.className = 'comp-col';
+  el.dataset.compfor = s.id;
+  el.innerHTML = `
     <label>${s.ico} ${s.name}</label>
     <div style="font-size:12px;color:var(--muted);margin-bottom:10px">${s.competitor}</div>
     <div style="display:flex;align-items:center;gap:8px">
       <div class="price-input-wrap" style="flex:1">
-        <span class="rupee">₹</span>
+        <span class="rupee">&#8377;</span>
         <input type="number" class="comp-field" data-id="${s.id}" value="${s.competitorMonthly}" min="0">
       </div>
       <span style="font-size:12px;color:var(--muted);white-space:nowrap">/ month</span>
     </div>
-    <div style="font-size:11px;color:var(--muted);margin-top:6px">= ₹<span class="comp-annual">${(s.competitorMonthly*12).toLocaleString('en-IN')}</span> / year</div>`;
-  el.querySelector('.comp-field').addEventListener('input', function(){
-    el.querySelector('.comp-annual').textContent=(+this.value*12).toLocaleString('en-IN');
-    compPrices[s.id]=+this.value;
+    <div style="font-size:11px;color:var(--muted);margin-top:6px">= &#8377;<span class="comp-annual">${(s.competitorMonthly*12).toLocaleString('en-IN')}</span> / year</div>`;
+  el.querySelector('.comp-field').addEventListener('input', function() {
+    el.querySelector('.comp-annual').textContent = (+this.value * 12).toLocaleString('en-IN');
+    compPrices[s.id] = +this.value;
   });
   compGrid.appendChild(el);
 });
 
-function toggleService(id, el){
-  const isSel=el.classList.contains('selected');
-  const isFree=el.classList.contains('free-selected');
-  if(isSel||isFree){
-    el.classList.remove('selected','free-selected');
-    document.querySelector(`[data-free="${id}"]`).classList.remove('active');
-    document.getElementById(`free_${id}`).checked=false;
+function toggleService(id, el) {
+  const isSel = el.classList.contains('selected');
+  const isFree = el.classList.contains('free-selected');
+  if (isSel || isFree) {
+    el.classList.remove('selected', 'free-selected');
+    const ft = el.querySelector('.free-toggle');
+    ft.classList.remove('active');
+    document.getElementById('free_' + id).checked = false;
   } else {
     el.classList.add('selected');
   }
-  // show/hide comp price
-  const comp=document.querySelector(`[data-compfor="${id}"]`);
-  if(comp) comp.style.display=(el.classList.contains('selected')||el.classList.contains('free-selected'))?'block':'none';
+  refreshCompGrid();
   updateSummary();
 }
 
-function toggleFree(id, label){
-  const el=document.querySelector(`[data-id="${id}"].svc-item`);
-  const cb=document.getElementById(`free_${id}`);
-  cb.checked=!cb.checked;
-  if(cb.checked){
-    el.classList.remove('selected'); el.classList.add('free-selected');
+function toggleFree(id, label) {
+  const el = document.querySelector(`[data-id="${id}"].svc-item`);
+  const cb = document.getElementById('free_' + id);
+  if (!el.classList.contains('selected') && !el.classList.contains('free-selected')) {
+    el.classList.add('free-selected');
+    cb.checked = true;
     label.classList.add('active');
   } else {
-    el.classList.remove('free-selected'); el.classList.add('selected');
-    label.classList.remove('active');
+    cb.checked = !cb.checked;
+    if (cb.checked) {
+      el.classList.remove('selected'); el.classList.add('free-selected');
+      label.classList.add('active');
+    } else {
+      el.classList.remove('free-selected'); el.classList.add('selected');
+      label.classList.remove('active');
+    }
   }
+  refreshCompGrid();
   updateSummary();
 }
 
-function getSelected(){
-  return SERVICES.filter(s=>{
-    const el=document.querySelector(`[data-id="${s.id}"].svc-item`);
-    return el&&(el.classList.contains('selected')||el.classList.contains('free-selected'));
-  }).map(s=>{
-    const el=document.querySelector(`[data-id="${s.id}"].svc-item`);
-    const isFree=el.classList.contains('free-selected');
-    const price=isFree?0:+(document.querySelector(`.price-field[data-id="${s.id}"]`).value||0);
-    return {...s, isFree, price, compMonthly:compPrices[s.id]||s.competitorMonthly};
+function refreshCompGrid() {
+  let any = false;
+  SERVICES.forEach(s => {
+    const el = document.querySelector(`[data-id="${s.id}"].svc-item`);
+    const comp = document.querySelector(`[data-compfor="${s.id}"]`);
+    const show = el && (el.classList.contains('selected') || el.classList.contains('free-selected'));
+    if (comp) comp.style.display = show ? 'block' : 'none';
+    if (show) any = true;
+  });
+  document.getElementById('compEmpty').style.display = any ? 'none' : 'block';
+}
+
+function getSelected() {
+  return SERVICES.filter(s => {
+    const el = document.querySelector(`[data-id="${s.id}"].svc-item`);
+    return el && (el.classList.contains('selected') || el.classList.contains('free-selected'));
+  }).map(s => {
+    const el = document.querySelector(`[data-id="${s.id}"].svc-item`);
+    const isFree = el.classList.contains('free-selected');
+    const price = isFree ? 0 : +(document.querySelector(`.price-field[data-id="${s.id}"]`).value || 0);
+    return { ...s, isFree, price, compMonthly: compPrices[s.id] || s.competitorMonthly };
   });
 }
 
-function updateSummary(){
-  const sel=getSelected();
-  const total=sel.reduce((a,s)=>a+(s.isFree?0:s.price),0);
-  const freeCount=sel.filter(s=>s.isFree).length;
-  const paidCount=sel.filter(s=>!s.isFree).length;
-  const el=document.getElementById('summaryText');
-  if(!sel.length){ el.innerHTML='Select services to see total'; return; }
-  el.innerHTML=`<strong>₹${total.toLocaleString('en-IN')}</strong> &nbsp;·&nbsp; ${paidCount} service${paidCount!==1?'s':''} paid${freeCount?` <span class="free-count">+ ${freeCount} free add-on${freeCount>1?'s':''}</span>`:''}`;
+function updateSummary() {
+  const sel = getSelected();
+  const total = sel.reduce((a, s) => a + (s.isFree ? 0 : s.price), 0);
+  const freeCount = sel.filter(s => s.isFree).length;
+  const paidCount = sel.filter(s => !s.isFree).length;
+  const el = document.getElementById('summaryText');
+  if (!sel.length) { el.innerHTML = 'Select services to see total'; return; }
+  el.innerHTML = `<strong>&#8377;${total.toLocaleString('en-IN')}</strong> &nbsp;&middot;&nbsp; ${paidCount} service${paidCount !== 1 ? 's' : ''} paid${freeCount ? ` <span class="free-count">+ ${freeCount} free add-on${freeCount > 1 ? 's' : ''}</span>` : ''}`;
 }
 
-function getFormData(){
+function getForm() {
   return {
-    clientName:document.getElementById('clientName').value||'[Client Name]',
-    contactPerson:document.getElementById('contactPerson').value,
-    email:document.getElementById('clientEmail').value,
-    phone:document.getElementById('clientPhone').value,
-    website:document.getElementById('clientWebsite').value,
-    industry:document.getElementById('clientIndustry').value,
-    preparedBy:document.getElementById('preparedBy').value||'Antortiq Team',
-    validDays:document.getElementById('validDays').value||7,
-    timeline:document.getElementById('timeline').value,
-    support:document.getElementById('support').value,
-    customMsg:document.getElementById('customMsg').value,
-    date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'}),
+    clientName: document.getElementById('clientName').value || '[Client Name]',
+    contactPerson: document.getElementById('contactPerson').value,
+    email: document.getElementById('clientEmail').value,
+    phone: document.getElementById('clientPhone').value,
+    website: document.getElementById('clientWebsite').value,
+    preparedBy: document.getElementById('preparedBy').value || 'Antortiq Team',
+    validDays: document.getElementById('validDays').value || 7,
+    timeline: document.getElementById('timeline').value,
+    support: document.getElementById('support').value,
+    customMsg: document.getElementById('customMsg').value,
+    date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
   };
 }
 
-function buildProposalHTML(forPrint){
-  const sel=getSelected();
-  const form=getFormData();
-  const total=sel.reduce((a,s)=>a+(s.isFree?0:s.price),0);
-  const competitorTotal=sel.reduce((a,s)=>a+s.compMonthly,0);
-  const competitorAnnual=competitorTotal*12;
-  const savings=competitorAnnual-total;
+// ── Per-service mockup SVG HTML ──
+function mockupHTML(s) {
+  const c = s.accentColor;
+  const d = s.accentDim;
+  const t = s.mockupType;
 
-  const serviceCardsHTML=sel.map(s=>`
-  <div class="feat-card ${s.isFree?'free':''}">
-    <div class="feat-card-top">
-      <div class="feat-ico">${s.ico}</div>
-      ${s.isFree?'<div class="free-badge">🎁 FREE ADD-ON</div>':''}
-    </div>
-    <div class="feat-name">${s.name}</div>
-    <div class="feat-desc">${s.desc}</div>
-    <ul class="feat-list">
-      ${s.features.map(f=>`<li>${f}</li>`).join('')}
-    </ul>
-    <div class="feat-price-row">
-      ${s.isFree
-        ? '<div class="feat-price free-price">Included Free</div>'
-        : `<div class="feat-price">₹${s.price.toLocaleString('en-IN')} <span>one-time</span></div>`
-      }
-    </div>
-  </div>`).join('');
+  if (t === 'track') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:16px;height:180px;overflow:hidden;position:relative">
+      <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,${c}18,transparent 70%);border-radius:50%"></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:8px">LIVE TRACKING</div>
+      <div style="display:flex;gap:6px;margin-bottom:12px">
+        ${['WA','CONFIRM','IN TRANSIT','DELIVERED'].map((l,i)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1"><div style="width:20px;height:20px;border-radius:50%;background:${i<3?c:'#1a1a1a'};border:2px solid ${i<3?c:'#333'};display:flex;align-items:center;justify-content:center;font-size:8px;color:${i<3?'#fff':'#555'};font-weight:800">${i+1}</div><div style="font-size:7px;color:${i<3?c:'#444'};font-weight:600;text-align:center">${l}</div></div>`).join('<div style="flex:1;height:2px;background:linear-gradient(90deg,'+c+',#222);margin-top:9px;border-radius:2px"></div>')}
+      </div>
+      <div style="background:#111;border-radius:8px;padding:10px;border:1px solid #1e1e1e">
+        <div style="font-size:8px;color:#555;margin-bottom:4px">ORDER #2904 &middot; Rahul Sharma</div>
+        <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:2px">Miami Gingham Shirt &middot; M</div>
+        <div style="font-size:9px;color:${c}">&#9679; In Transit &mdash; Delhi Hub &middot; ETA Tomorrow</div>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:6px">
+        <div style="flex:1;background:#0d1f3c;border:1px solid ${c}33;border-radius:6px;padding:6px;text-align:center;font-size:8px;font-weight:700;color:${c}">Track Live</div>
+        <div style="flex:1;background:#111;border:1px solid #222;border-radius:6px;padding:6px;text-align:center;font-size:8px;font-weight:600;color:#555">Edit Address</div>
+      </div>
+    </div>`;
 
-  const compRows=sel.map(s=>`
-    <tr>
-      <td>${s.ico} ${s.name}</td>
-      <td>${s.competitor}</td>
-      <td class="num">₹${s.compMonthly.toLocaleString('en-IN')}/mo</td>
-      <td class="num">₹${(s.compMonthly*12).toLocaleString('en-IN')}/yr</td>
-      <td class="our-price ${s.isFree?'free-td':''}">${s.isFree?'FREE':('₹'+s.price.toLocaleString('en-IN'))}</td>
+  if (t === 'exchange') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:16px;height:180px;overflow:hidden;position:relative">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:8px">EXCHANGE REQUEST</div>
+      <div style="background:#111;border-radius:8px;padding:10px;border:1px solid #1e1e1e;margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:#fff">ORDER #1847</div>
+          <div style="font-size:8px;background:${d};color:${c};padding:2px 8px;border-radius:99px;font-weight:700">AI APPROVED</div>
+        </div>
+        <div style="font-size:9px;color:#555;margin-bottom:6px">Outlaw Flannel &middot; Size M &rarr; Size L</div>
+        <div style="display:flex;gap:4px">
+          ${['XS','S','M','L','XL'].map(sz=>`<div style="padding:3px 7px;border-radius:4px;background:${sz==='L'?c:'#1a1a1a'};border:1px solid ${sz==='L'?c:'#2a2a2a'};font-size:8px;font-weight:700;color:${sz==='L'?'#000':'#555'}">${sz}</div>`).join('')}
+        </div>
+      </div>
+      <div style="background:${d};border:1px solid ${c}33;border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px">
+        <div style="font-size:18px">&#127881;</div>
+        <div>
+          <div style="font-size:9px;font-weight:700;color:${c}">Exchange Raised &mdash; EX-1847</div>
+          <div style="font-size:8px;color:#555;margin-top:1px">Pickup scheduled &middot; Ships same day &middot; 0 human minutes</div>
+        </div>
+      </div>
+    </div>`;
+
+  if (t === 'contact') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:16px;height:180px;overflow:hidden">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:10px">AUTO CONTACT SYNC</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="background:#0d1a0a;border:1px solid ${c}33;border-radius:8px;padding:8px;display:flex;align-items:center;gap:10px">
+          <div style="width:32px;height:32px;border-radius:50%;background:${c};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#000">H</div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:700;color:#fff">Harsh &middot; #2807</div>
+            <div style="font-size:8px;color:${c}">&#10003; Contact auto-saved</div>
+          </div>
+          <div style="background:${c};border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px">&#128222;</div>
+        </div>
+        <div style="background:#0d0d0d;border:1px solid #1a1a1a;border-radius:8px;padding:8px;opacity:.5">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:28px;height:28px;border-radius:50%;background:#111;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;font-size:11px;color:#555">?</div>
+            <div><div style="font-size:9px;font-weight:600;color:#444">Unknown Number</div><div style="font-size:8px;color:#333">+91 98765 43210</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:14px">
+        <div style="text-align:center"><div style="font-size:16px;font-weight:800;color:${c}">0s</div><div style="font-size:7px;color:#555;margin-top:1px">Identify caller</div></div>
+        <div style="text-align:center"><div style="font-size:16px;font-weight:800;color:${c}">&#x2193;62%</div><div style="font-size:7px;color:#555;margin-top:1px">Call handle time</div></div>
+        <div style="text-align:center"><div style="font-size:16px;font-weight:800;color:${c}">Auto</div><div style="font-size:7px;color:#555;margin-top:1px">Every order</div></div>
+      </div>
+    </div>`;
+
+  if (t === 'dashboard') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:16px;height:180px;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c}">COMMAND DASHBOARD</div>
+        <div style="font-size:8px;color:#333">TODAY</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+        ${[['GMV','&#8377;2.4L',c],['Orders','184',c],['RTO Rate','11.2%','#f59e0b'],['Returns','7','#555']].map(([l,v,col])=>`<div style="background:#111;border:1px solid #1a1a1a;border-radius:6px;padding:6px"><div style="font-size:7px;color:#444;margin-bottom:2px">${l}</div><div style="font-size:14px;font-weight:800;color:${col}">${v}</div></div>`).join('')}
+      </div>
+      <div style="background:#111;border-radius:6px;padding:6px;border:1px solid #1a1a1a">
+        <div style="font-size:7px;color:#444;margin-bottom:4px">TOP PRODUCTS</div>
+        ${[['Outlaw Flannel M','&#8377;48,200','34'],['Miami Gingham','&#8377;31,800','22']].map(([n,r,u])=>`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px"><div style="font-size:8px;color:#888">${n}</div><div style="font-size:8px;font-weight:700;color:${c}">${r}</div></div>`).join('')}
+      </div>
+    </div>`;
+
+  if (t === 'pixel') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:16px;height:180px;overflow:hidden">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:10px">LIVE PIXEL EVENTS</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:8px">
+        ${[['Purchase','&#8377;1,799','Miami Gingham Shirt'],['AddToCart','&#8377;2,299','Outlaw Flannel'],['ViewContent','—','Raw Edge Denim'],['InitiateCheckout','&#8377;899','Mesh Layer Tee']].map(([ev,val,prod],i)=>`
+          <div style="display:flex;align-items:center;gap:8px;background:#111;border-radius:5px;padding:5px 8px;border-left:2px solid ${i===0?c:i===1?'#f59e0b':'#333'}">
+            <div style="font-size:7px;font-weight:700;color:${i===0?c:i===1?'#f59e0b':'#444'};width:90px">${ev}</div>
+            <div style="flex:1;font-size:7px;color:#666;overflow:hidden;white-space:nowrap">${prod}</div>
+            <div style="font-size:7px;font-weight:700;color:#666">${val}</div>
+          </div>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px">
+        <div style="flex:1;background:${d};border:1px solid ${c}33;border-radius:6px;padding:6px;text-align:center"><div style="font-size:12px;font-weight:800;color:${c}">3.2x</div><div style="font-size:7px;color:#555">ROAS</div></div>
+        <div style="flex:1;background:#111;border:1px solid #1a1a1a;border-radius:6px;padding:6px;text-align:center"><div style="font-size:12px;font-weight:800;color:#fff">847</div><div style="font-size:7px;color:#555">Events today</div></div>
+      </div>
+    </div>`;
+
+  if (t === 'messaging') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:12px;height:180px;overflow:hidden">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:8px">WHATSAPP AUTOMATION</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        ${[
+          {from:false,msg:'hey where is my order #2847',time:'2:14 PM'},
+          {from:true,msg:'Hey Priya! 👋 Order #2847 — In Transit, Delhi Hub. ETA tomorrow by 8 PM. Track: antortiq.com/t/2847',time:'2:14 PM'},
+          {from:false,msg:'ok thanks',time:'2:15 PM'},
+          {from:true,msg:'Anytime! 😊 Reply if you need anything.',time:'2:15 PM'},
+        ].map(m=>`<div style="display:flex;justify-content:${m.from?'flex-end':'flex-start'}"><div style="max-width:85%;background:${m.from?c:'#1a1a1a'};border-radius:${m.from?'10px 10px 2px 10px':'10px 10px 10px 2px'};padding:5px 8px"><div style="font-size:8px;color:${m.from?'rgba(0,0,0,.9)':'#bbb'};line-height:1.4">${m.msg}</div><div style="font-size:7px;color:${m.from?'rgba(0,0,0,.5)':'#444'};text-align:right;margin-top:1px">${m.time}</div></div></div>`).join('')}
+      </div>
+      <div style="margin-top:6px;background:#0d1a0a;border:1px solid ${c}33;border-radius:6px;padding:4px 8px;font-size:8px;font-weight:700;color:${c}">&#10003; Resolved automatically &mdash; 0 human minutes</div>
+    </div>`;
+
+  if (t === 'ai') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:12px;height:180px;overflow:hidden">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:8px">AI SUPPORT AGENT</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        ${[
+          {from:false,msg:'i got size M but i need L, can i exchange?'},
+          {from:true,msg:'Of course! Order #2831 is eligible. Size L is in stock ✓ Exchange EX-2831 raised — pickup in 24 hrs.'},
+        ].map(m=>`<div style="display:flex;justify-content:${m.from?'flex-end':'flex-start'}"><div style="max-width:88%;background:${m.from?c:'#1a1a1a'};border-radius:${m.from?'10px 10px 2px 10px':'10px 10px 10px 2px'};padding:5px 8px"><div style="font-size:8px;color:${m.from?'rgba(0,0,0,.9)':'#bbb'};line-height:1.4">${m.msg}</div></div></div>`).join('')}
+      </div>
+      <div style="margin-top:6px;background:#041820;border:1px solid ${c}33;border-radius:6px;padding:4px 8px;font-size:8px;font-weight:700;color:${c}">&#10003; Resolved automatically &mdash; 0 human minutes</div>
+      <div style="margin-top:8px;display:flex;gap:8px">
+        ${[['85%','Auto-resolve'],['0','Tickets created'],['24/7','Always on']].map(([v,l])=>`<div style="flex:1;text-align:center"><div style="font-size:13px;font-weight:800;color:${c}">${v}</div><div style="font-size:7px;color:#444;margin-top:1px">${l}</div></div>`).join('')}
+      </div>
+    </div>`;
+
+  if (t === 'ads') return `
+    <div style="background:#0a0a0f;border-radius:12px;padding:14px;height:180px;overflow:hidden">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:8px">META ADS DASHBOARD</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:8px">
+        ${[['ROAS','4.1x',c],['CPP','&#8377;312','#fff'],['Spend','&#8377;14K','#555']].map(([l,v,col])=>`<div style="background:#111;border:1px solid #1a1a1a;border-radius:6px;padding:6px;text-align:center"><div style="font-size:14px;font-weight:800;color:${col}">${v}</div><div style="font-size:7px;color:#444;margin-top:1px">${l}</div></div>`).join('')}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        ${[['Lookalike 18-24F Mumbai','2.8x','GOLD',c],['Retargeting ATC 7d','5.1x','GOLD',c],['Interest: Fashion','1.4x','SILVER','#9ca3af'],['Cold Broad 25-34M','0.9x','CUT','#e8344a']].map(([n,r,badge,col])=>`
+          <div style="display:flex;align-items:center;gap:6px;background:#111;border-radius:4px;padding:4px 7px">
+            <div style="flex:1;font-size:7px;color:#777;overflow:hidden;white-space:nowrap">${n}</div>
+            <div style="font-size:8px;font-weight:800;color:${col}">${r}</div>
+            <div style="font-size:7px;font-weight:700;color:${col};background:${col}18;padding:1px 5px;border-radius:3px">${badge}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+
+  return `<div style="height:180px;background:#0a0a0f;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px">${s.ico}</div>`;
+}
+
+// ── Generate proposal HTML string ──
+function buildProposal(doPrint) {
+  const sel = getSelected();
+  const form = getForm();
+  const total = sel.reduce((a, s) => a + (s.isFree ? 0 : s.price), 0);
+  const competitorTotal = sel.reduce((a, s) => a + s.compMonthly, 0);
+  const competitorAnnual = competitorTotal * 12;
+  const savings = competitorAnnual - total;
+
+  const featureCardsHTML = sel.map(s => `
+    <div style="break-inside:avoid;background:#111114;border:1px solid #1e1e22;border-radius:20px;overflow:hidden;margin-bottom:24px">
+      <div style="border-bottom:1px solid #1a1a1e;padding:20px 24px 0">
+        ${mockupHTML(s)}
+      </div>
+      <div style="padding:20px 24px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${s.accentColor};margin-bottom:4px">${s.tags[0]}</div>
+            <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:#fff;line-height:1.2">${s.name}</div>
+          </div>
+          ${s.isFree
+            ? `<div style="background:#061209;border:1px solid #22c55e44;border-radius:99px;padding:5px 12px;font-size:10px;font-weight:800;letter-spacing:1px;color:#22c55e;white-space:nowrap">&#127873; FREE ADD-ON</div>`
+            : `<div style="text-align:right"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:900;color:#e8344a">&#8377;${s.price.toLocaleString('en-IN')}</div><div style="font-size:10px;color:#555;margin-top:2px">one-time</div></div>`
+          }
+        </div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:14px">${s.desc}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px">
+          ${s.tags.map(t => `<span style="font-size:10px;font-weight:600;color:#444;border:1px solid #1e1e22;padding:2px 9px;border-radius:99px">${t}</span>`).join('')}
+        </div>
+        <div style="border-top:1px solid #1a1a1e;padding-top:12px">
+          ${s.features.map(f => `<div style="display:flex;gap:8px;margin-bottom:6px;align-items:flex-start"><span style="color:${s.accentColor};font-weight:800;font-size:12px;margin-top:1px;flex-shrink:0">&#10003;</span><span style="font-size:12px;color:#9ca3af;line-height:1.5">${f}</span></div>`).join('')}
+        </div>
+      </div>
+    </div>`).join('');
+
+  const compRowsHTML = sel.map(s => `
+    <tr style="border-bottom:1px solid #1e1e22">
+      <td style="padding:12px 14px;font-size:13px;color:#e9e9ea">${s.ico} ${s.name}</td>
+      <td style="padding:12px 14px;font-size:12px;color:#555">${s.competitor}</td>
+      <td style="padding:12px 14px;text-align:right;font-size:13px;font-weight:600;color:#555">&#8377;${s.compMonthly.toLocaleString('en-IN')}/mo</td>
+      <td style="padding:12px 14px;text-align:right;font-size:13px;font-weight:600;color:#555;text-decoration:line-through">&#8377;${(s.compMonthly*12).toLocaleString('en-IN')}/yr</td>
+      <td style="padding:12px 14px;text-align:right;font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:${s.isFree?'#22c55e':'#e8344a'}">${s.isFree ? 'FREE' : '&#8377;' + s.price.toLocaleString('en-IN')}</td>
     </tr>`).join('');
+
+  const printScript = doPrint ? `<script>window.addEventListener('load',function(){setTimeout(function(){window.print();},900);});<\/script>` : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Proposal — ${form.clientName} × Antortiq</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+${printScript}
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#fff;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:'Inter',sans-serif;background:#080808;color:#e9e9ea;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 @page{margin:0;size:A4}
-.page-break{page-break-before:always}
-
-/* ── COVER ── */
-.cover{background:#080808;min-height:100vh;display:flex;flex-direction:column;padding:0;position:relative;overflow:hidden}
-.cover-accent{position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#e8344a,#ff6b6b)}
-.cover-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 72px}
-.cover-logo{font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:#fff;letter-spacing:-.5px;margin-bottom:80px}
-.cover-logo span{color:#e8344a}
-.cover-tag{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#e8344a;margin-bottom:24px}
-.cover-title{font-family:'Sora',sans-serif;font-weight:900;font-size:62px;line-height:1.05;color:#fff;margin-bottom:28px}
-.cover-title span{color:#e8344a}
-.cover-sub{font-size:18px;color:#6b7280;line-height:1.6;max-width:540px;margin-bottom:60px}
-.cover-meta{display:flex;flex-direction:column;gap:10px}
-.cover-meta-row{display:flex;gap:12px;align-items:center;font-size:14px}
-.cover-meta-row .lbl{color:#444;width:120px;font-weight:600}
-.cover-meta-row .val{color:#e9e9ea}
-.cover-footer{padding:36px 72px;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center}
-.cover-footer .left{font-size:13px;color:#444}
-.cover-footer .right{font-size:13px;color:#444}
-.cover-bg-text{position:absolute;bottom:-40px;right:-20px;font-family:'Sora',sans-serif;font-weight:900;font-size:240px;color:rgba(232,52,74,0.04);line-height:1;pointer-events:none;user-select:none}
-
-/* ── BODY PAGES ── */
-.body-page{padding:64px 64px;background:#fff;min-height:100vh}
-.body-page+.body-page{border-top:2px solid #f0f0f0}
-.section-label{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#e8344a;margin-bottom:12px}
-.section-h{font-family:'Sora',sans-serif;font-weight:800;font-size:28px;color:#111;margin-bottom:6px}
-.section-sub{font-size:14px;color:#6b7280;margin-bottom:36px;line-height:1.5}
-.divider{height:1px;background:#f0f0f0;margin:40px 0}
-
-/* custom message */
-.custom-msg{background:#fdf8f8;border-left:4px solid #e8344a;border-radius:0 10px 10px 0;padding:20px 24px;margin-bottom:36px;font-size:15px;color:#333;line-height:1.65}
-
-/* ── FEATURE CARDS ── */
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
-.feat-card{border:1px solid #e5e7eb;border-radius:16px;padding:24px;position:relative;break-inside:avoid}
-.feat-card.free{border-color:#d1fae5;background:#f0fdf4}
-.feat-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
-.feat-ico{font-size:32px}
-.free-badge{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#16a34a;background:#dcfce7;padding:4px 10px;border-radius:99px;border:1px solid #bbf7d0}
-.feat-name{font-family:'Sora',sans-serif;font-weight:800;font-size:17px;color:#111;margin-bottom:8px;line-height:1.3}
-.feat-desc{font-size:13px;color:#6b7280;line-height:1.55;margin-bottom:14px}
-.feat-list{margin:0 0 16px 16px;display:flex;flex-direction:column;gap:4px}
-.feat-list li{font-size:12px;color:#555;line-height:1.5}
-.feat-price-row{border-top:1px solid #f0f0f0;padding-top:14px}
-.feat-price{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:#e8344a}
-.feat-price span{font-size:13px;font-weight:500;color:#9ca3af;margin-left:4px}
-.feat-price.free-price{color:#16a34a}
-
-/* ── PRICING TABLE ── */
-.pricing-hero{background:#080808;border-radius:20px;padding:36px 40px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;break-inside:avoid}
-.pricing-hero-left .lbl{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:6px}
-.pricing-hero-left .big{font-family:'Sora',sans-serif;font-size:56px;font-weight:900;color:#e8344a;line-height:1}
-.pricing-hero-left .sub{font-size:14px;color:#9ca3af;margin-top:6px}
-.pricing-hero-right{text-align:right}
-.pricing-hero-right .lbl{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:6px}
-.pricing-hero-right .big{font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#374151;text-decoration:line-through;line-height:1}
-.pricing-hero-right .sub{font-size:13px;color:#6b7280;margin-top:4px}
-.savings-pill{background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:14px;padding:10px 20px;border-radius:99px;white-space:nowrap}
-
-.price-table{width:100%;border-collapse:collapse;font-size:13px;break-inside:avoid}
-.price-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;padding:10px 14px;border-bottom:2px solid #f0f0f0}
-.price-table td{padding:12px 14px;border-bottom:1px solid #f5f5f5;vertical-align:middle}
-.price-table tr:last-child td{border-bottom:none}
-.price-table .num{text-align:right;font-weight:600;color:#6b7280}
-.price-table .our-price{text-align:right;font-weight:800;font-size:15px;color:#e8344a}
-.price-table .free-td{color:#16a34a}
-.price-table tfoot td{font-weight:800;font-size:14px;background:#fafafa;padding:14px}
-.price-table tfoot .num{color:#6b7280}
-.price-table tfoot .our-price{color:#e8344a;font-size:18px}
-
-/* ── TERMS / CTA ── */
-.cta-box{background:#fdf8f8;border:1px solid #fce4e8;border-radius:16px;padding:32px;text-align:center;margin-top:32px;break-inside:avoid}
-.cta-box h3{font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:#111;margin-bottom:8px}
-.cta-box p{font-size:14px;color:#6b7280;margin-bottom:20px}
-.cta-btn{display:inline-block;background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;padding:12px 28px;border-radius:99px;margin-right:12px}
-.cta-wa{display:inline-block;background:#25D366;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;padding:12px 28px;border-radius:99px}
-.terms-list{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left}
-.terms-list li{font-size:12px;color:#6b7280;list-style:none;display:flex;align-items:flex-start;gap:8px}
-.terms-list li::before{content:'✓';color:#e8344a;font-weight:800;flex-shrink:0}
-
-/* ── PRINT ── */
-@media print{
-  .no-print{display:none!important}
-  body{background:#fff}
-  .cover{min-height:100vh}
-  .body-page{min-height:auto}
-  .page-break{page-break-before:always}
-}
+.page-break{page-break-before:always;padding-top:0}
+@media print{body{background:#080808}.cover{min-height:100vh}}
 </style>
 </head>
 <body>
 
-<!-- ══ COVER PAGE ══ -->
-<div class="cover">
-  <div class="cover-accent"></div>
-  <div class="cover-body">
-    <div class="cover-logo">Antorti<span>q</span></div>
-    <div class="cover-tag">Project Proposal</div>
-    <h1 class="cover-title">Built for<br><span>${form.clientName}.</span></h1>
-    <p class="cover-sub">A tailored automation stack to run your store operations end-to-end — without the monthly subscriptions, the manual work, or the support chaos.</p>
-    <div class="cover-meta">
-      ${form.contactPerson?`<div class="cover-meta-row"><span class="lbl">Prepared for</span><span class="val">${form.contactPerson}${form.clientName?' · '+form.clientName:''}</span></div>`:''}
-      ${form.email?`<div class="cover-meta-row"><span class="lbl">Email</span><span class="val">${form.email}</span></div>`:''}
-      ${form.website?`<div class="cover-meta-row"><span class="lbl">Website</span><span class="val">${form.website}</span></div>`:''}
-      <div class="cover-meta-row"><span class="lbl">Prepared by</span><span class="val">${form.preparedBy}</span></div>
-      <div class="cover-meta-row"><span class="lbl">Date</span><span class="val">${form.date}</span></div>
-      <div class="cover-meta-row"><span class="lbl">Valid for</span><span class="val">${form.validDays} days</span></div>
+<!-- COVER -->
+<div class="cover" style="background:#080808;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden">
+  <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#e8344a,#ff6b6b,#e8344a)"></div>
+  <div style="position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,52,74,.12),transparent 65%);border-radius:50%"></div>
+  <div style="position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,.06),transparent 65%);border-radius:50%"></div>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 72px">
+    <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:#fff;letter-spacing:-.5px;margin-bottom:80px">Antorti<span style="color:#e8344a">q</span></div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#e8344a;margin-bottom:20px">Project Proposal</div>
+    <h1 style="font-family:'Sora',sans-serif;font-weight:900;font-size:72px;line-height:1;color:#fff;margin-bottom:24px">Built for<br><span style="color:#e8344a">${form.clientName}.</span></h1>
+    <p style="font-size:17px;color:#6b7280;line-height:1.65;max-width:520px;margin-bottom:60px">A tailored automation stack to run your store operations end-to-end &mdash; without the monthly subscriptions, the manual work, or the support chaos.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      ${form.contactPerson ? `<div style="display:flex;gap:16px;font-size:14px"><span style="color:#3a3a42;width:130px">Prepared for</span><span style="color:#e9e9ea">${form.contactPerson}${form.clientName ? ' &middot; ' + form.clientName : ''}</span></div>` : ''}
+      ${form.email ? `<div style="display:flex;gap:16px;font-size:14px"><span style="color:#3a3a42;width:130px">Email</span><span style="color:#e9e9ea">${form.email}</span></div>` : ''}
+      ${form.phone ? `<div style="display:flex;gap:16px;font-size:14px"><span style="color:#3a3a42;width:130px">Phone</span><span style="color:#e9e9ea">${form.phone}</span></div>` : ''}
+      <div style="display:flex;gap:16px;font-size:14px"><span style="color:#3a3a42;width:130px">Prepared by</span><span style="color:#e9e9ea">${form.preparedBy}</span></div>
+      <div style="display:flex;gap:16px;font-size:14px"><span style="color:#3a3a42;width:130px">Date</span><span style="color:#e9e9ea">${form.date}</span></div>
+      <div style="display:flex;gap:16px;font-size:14px"><span style="color:#3a3a42;width:130px">Valid for</span><span style="color:#e9e9ea">${form.validDays} days</span></div>
     </div>
   </div>
-  <div class="cover-footer">
-    <div class="left">antortiq.com &nbsp;·&nbsp; wa.me/919079060327</div>
-    <div class="right">Confidential — prepared exclusively for ${form.clientName}</div>
+  <div style="padding:28px 72px;border-top:1px solid #111;display:flex;justify-content:space-between;align-items:center">
+    <div style="font-size:13px;color:#2a2a2a">antortiq.com &nbsp;&middot;&nbsp; wa.me/919079060327</div>
+    <div style="font-size:13px;color:#2a2a2a">Confidential &mdash; prepared exclusively for ${form.clientName}</div>
   </div>
-  <div class="cover-bg-text">A</div>
+  <div style="position:absolute;bottom:-60px;right:-30px;font-family:'Sora',sans-serif;font-weight:900;font-size:320px;color:rgba(232,52,74,.03);line-height:1;pointer-events:none;user-select:none">A</div>
 </div>
 
-<!-- ══ FEATURES PAGE ══ -->
-<div class="body-page page-break">
-  <div class="section-label">What You Get</div>
-  <h2 class="section-h">Your Custom Feature Stack</h2>
-  <p class="section-sub">${sel.length} feature${sel.length!==1?'s':''} selected — ${sel.filter(s=>s.isFree).length} included free. Here's exactly what each one does for your store.</p>
+<!-- FEATURES PAGE -->
+<div style="background:#080808;padding:64px;min-height:100vh" class="page-break">
+  <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#e8344a;margin-bottom:10px">What You Get</div>
+  <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:32px;color:#fff;margin-bottom:6px">Your Custom Feature Stack</h2>
+  <p style="font-size:14px;color:#6b7280;margin-bottom:32px">${sel.length} feature${sel.length!==1?'s':''} selected &mdash; ${sel.filter(s=>s.isFree).length} included free. Here's exactly what each one does for your store.</p>
 
-  ${form.customMsg?`<div class="custom-msg">${form.customMsg}</div>`:''}
+  ${form.customMsg ? `<div style="background:#0d0406;border-left:4px solid #e8344a;border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:28px;font-size:14px;color:#9ca3af;line-height:1.65">${form.customMsg}</div>` : ''}
 
-  <div class="feat-grid">
-    ${serviceCardsHTML}
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    ${featureCardsHTML}
   </div>
 </div>
 
-<!-- ══ PRICING PAGE ══ -->
-<div class="body-page page-break">
-  <div class="section-label">Investment</div>
-  <h2 class="section-h">Why One-Time Always Wins</h2>
-  <p class="section-sub">Traditional SaaS tools charge monthly — forever. We build it once, it runs forever. Here's what you'd pay elsewhere vs what you pay us.</p>
+<!-- PRICING PAGE -->
+<div style="background:#080808;padding:64px;min-height:100vh" class="page-break">
+  <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#e8344a;margin-bottom:10px">Investment</div>
+  <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:32px;color:#fff;margin-bottom:6px">Why One-Time Always Wins</h2>
+  <p style="font-size:14px;color:#6b7280;margin-bottom:32px">Traditional SaaS tools charge monthly &mdash; forever. We build it once, it runs forever.</p>
 
-  <div class="pricing-hero">
-    <div class="pricing-hero-left">
-      <div class="lbl">Your One-Time Investment</div>
-      <div class="big">₹${total.toLocaleString('en-IN')}</div>
-      <div class="sub">Pay once. Own it forever. No renewals.</div>
+  <!-- Hero comparison -->
+  <div style="background:#0d0406;border:1px solid #2a1010;border-radius:20px;padding:36px 40px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:8px">Your One-Time Investment</div>
+      <div style="font-family:'Sora',sans-serif;font-size:64px;font-weight:900;color:#e8344a;line-height:1">&#8377;${total.toLocaleString('en-IN')}</div>
+      <div style="font-size:14px;color:#6b7280;margin-top:6px">Pay once. Own it forever. No renewals.</div>
     </div>
-    <div class="savings-pill">You save ₹${savings.toLocaleString('en-IN')}<br><span style="font-size:11px;font-weight:600;opacity:.8">vs year-1 competitor cost</span></div>
-    <div class="pricing-hero-right">
-      <div class="lbl">Competitors (Year 1)</div>
-      <div class="big">₹${competitorAnnual.toLocaleString('en-IN')}</div>
-      <div class="sub">And it keeps going every year.</div>
+    <div style="background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:15px;padding:14px 24px;border-radius:99px;text-align:center;white-space:nowrap">
+      You save<br><span style="font-size:22px">&#8377;${savings.toLocaleString('en-IN')}</span><br><span style="font-size:11px;font-weight:600;opacity:.8">vs Year 1 competitor cost</span>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:8px">Competitors (Year 1)</div>
+      <div style="font-family:'Sora',sans-serif;font-size:40px;font-weight:900;color:#3a3a42;text-decoration:line-through;line-height:1">&#8377;${competitorAnnual.toLocaleString('en-IN')}</div>
+      <div style="font-size:14px;color:#3a3a42;margin-top:6px">And it keeps going every year.</div>
     </div>
   </div>
 
-  <table class="price-table">
+  <!-- Comparison table -->
+  <table style="width:100%;border-collapse:collapse;background:#0d0d10;border:1px solid #1e1e22;border-radius:14px;overflow:hidden">
     <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Comparable Tool</th>
-        <th class="num" style="text-align:right">Monthly</th>
-        <th class="num" style="text-align:right">Annual</th>
-        <th class="num" style="text-align:right">Antortiq</th>
+      <tr style="border-bottom:1px solid #1e1e22">
+        <th style="padding:12px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555">Feature</th>
+        <th style="padding:12px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555">Comparable Tool</th>
+        <th style="padding:12px 14px;text-align:right;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555">Monthly</th>
+        <th style="padding:12px 14px;text-align:right;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555">Annual</th>
+        <th style="padding:12px 14px;text-align:right;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#e8344a">Antortiq</th>
       </tr>
     </thead>
-    <tbody>${compRows}</tbody>
+    <tbody>${compRowsHTML}</tbody>
     <tfoot>
-      <tr>
-        <td colspan="2"><strong>TOTAL</strong></td>
-        <td class="num">₹${competitorTotal.toLocaleString('en-IN')}/mo</td>
-        <td class="num">₹${competitorAnnual.toLocaleString('en-IN')}/yr</td>
-        <td class="our-price">₹${total.toLocaleString('en-IN')}</td>
+      <tr style="background:#111;border-top:2px solid #1e1e22">
+        <td colspan="2" style="padding:14px;font-family:'Sora',sans-serif;font-weight:800;font-size:14px;color:#fff">TOTAL</td>
+        <td style="padding:14px;text-align:right;font-size:13px;color:#555">&#8377;${competitorTotal.toLocaleString('en-IN')}/mo</td>
+        <td style="padding:14px;text-align:right;font-size:13px;color:#555;text-decoration:line-through">&#8377;${competitorAnnual.toLocaleString('en-IN')}/yr</td>
+        <td style="padding:14px;text-align:right;font-family:'Sora',sans-serif;font-size:20px;font-weight:900;color:#e8344a">&#8377;${total.toLocaleString('en-IN')}</td>
       </tr>
     </tfoot>
   </table>
 
-  <div class="divider"></div>
-
-  <div class="cta-box">
-    <h3>Ready to go live?</h3>
-    <p>${form.timeline} · ${form.support}</p>
-    <a class="cta-btn" href="mailto:antortiq@gmail.com">antortiq@gmail.com</a>
-    <a class="cta-wa" href="https://wa.me/919079060327">WhatsApp Us</a>
-    <ul class="terms-list">
-      <li>One-time payment, no recurring fees</li>
-      <li>Full source code and admin access</li>
-      <li>Proposal valid for ${form.validDays} days from ${form.date}</li>
-      <li>Free bug fixes for 30 days post-launch</li>
-      <li>Onboarding call included</li>
-      <li>Custom branding to match your store</li>
-    </ul>
+  <!-- CTA -->
+  <div style="background:#0d0406;border:1px solid #2a1010;border-radius:20px;padding:36px;text-align:center;margin-top:24px">
+    <h3 style="font-family:'Sora',sans-serif;font-weight:800;font-size:24px;color:#fff;margin-bottom:8px">Ready to go live?</h3>
+    <p style="font-size:14px;color:#6b7280;margin-bottom:6px">${form.timeline}</p>
+    <p style="font-size:14px;color:#6b7280;margin-bottom:24px">${form.support}</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px">
+      <span style="display:inline-block;background:#e8344a;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:13px;padding:11px 24px;border-radius:99px">antortiq@gmail.com</span>
+      <span style="display:inline-block;background:#25D366;color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:13px;padding:11px 24px;border-radius:99px">WhatsApp: +91 9079060327</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:left">
+      ${['One-time payment — no recurring fees','Full source code and admin access','Proposal valid for ${form.validDays} days','Free bug fixes for 30 days post-launch','Dedicated onboarding call included','Custom branding to match your store'].map(t=>`<div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#555"><span style="color:#e8344a;font-weight:800;flex-shrink:0">&#10003;</span>${t}</div>`).join('')}
+    </div>
   </div>
 </div>
 
@@ -672,21 +662,13 @@ body{font-family:'Inter',sans-serif;background:#fff;color:#111;-webkit-print-col
 </html>`;
 }
 
-function previewProposal(){
-  const sel=getSelected();
-  if(!sel.length){ alert('Please select at least one service.'); return; }
-  const win=window.open('','_blank');
-  win.document.write(buildProposalHTML(false));
-  win.document.close();
-}
-
-function generatePDF(){
-  const sel=getSelected();
-  if(!sel.length){ alert('Please select at least one service.'); return; }
-  const win=window.open('','_blank');
-  win.document.write(buildProposalHTML(true));
-  win.document.close();
-  win.addEventListener('load',()=>{ setTimeout(()=>win.print(),800); });
+function generate(doPrint) {
+  const sel = getSelected();
+  if (!sel.length) { alert('Please select at least one service.'); return; }
+  const html = buildProposal(doPrint);
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  window.open(url, '_blank');
 }
 </script>
 </body>
