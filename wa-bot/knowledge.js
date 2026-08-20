@@ -124,7 +124,7 @@ Comparable: Triple Whale ₹8,999/month, MadgicX ₹6,000+/month
 → Let's look at what you're paying monthly. If you're on Interakt (₹4k) + Returnprime (₹3.5k) + any tracking tool (₹3k), that's ₹10,500/month = ₹1.26 lakh/year. We charge ₹20-30k once. You break even in month 3 and save ₹1 lakh+ every year after.
 
 "We can build this ourselves"
-→ You could. A good dev would take 3-4 weeks and charge ₹40-60k. We've already built it 8+ times so our timeline is 60 minutes to 3 days and our price is lower because we reuse tested code.
+→ You could. A good dev would take 3-4 weeks and charge ₹40-60k. We've already built it 8+ times so our timeline is 3 days and our price is lower because we reuse tested code.
 
 "Does it work with Shopify?"
 → Yes. All our tools are Shopify-native. We install via webhook, no app store needed, no monthly Shopify app fee.
@@ -133,7 +133,7 @@ Comparable: Triple Whale ₹8,999/month, MadgicX ₹6,000+/month
 → Free bug fixes for 30 days post-launch. After that, we charge only for new features or major changes. The core system is stable and battle-tested.
 
 "How long does setup take?"
-→ Order Confirmation/Track: 60 minutes. Returns portal: 1 day. Full stack: 3-5 days.
+→ Every feature: 3 days. Full stack (all features together): 5-7 days.
 
 "Do you support platforms other than Shopify?"
 → Primarily Shopify right now. WooCommerce is possible but takes longer. If you're on something else, tell us and we'll assess.
