@@ -7,6 +7,7 @@ const leadsRoute = require('./routes/leads');
 const trackRoute = require('./routes/track');
 const crmRoute = require('./routes/crm');
 const cdcRoute = require('./routes/cdc');
+const wabotRoute = require('./routes/wabot');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.use('/api/leads', leadsRoute);
 app.use('/api/track', trackRoute);
 app.use('/api/crm', crmRoute);
 app.use('/api/cdc', cdcRoute);
+app.use('/', wabotRoute);
 
 app.get('/healthz', (req, res) => res.json({ status: 'ok' }));
 
@@ -40,8 +42,13 @@ app.post('/api/demo-login', async (req, res) => {
 
 connect().then(() => {
   try { require('./scheduler'); } catch(e) { console.warn('Scheduler failed to load:', e.message); }
-  app.listen(PORT, () => console.log(`Antortiq web app running on port ${PORT}`));
+  // Start WA bot after DB is ready (needs MongoDB auth state)
+  try {
+    const { startBot } = require('./wa-bot/index');
+    startBot().catch(e => console.warn('[wa-bot] Start error:', e.message));
+  } catch(e) { console.warn('[wa-bot] Failed to load:', e.message); }
+  app.listen(PORT, () => console.log(`Antortiq running on port ${PORT}`));
 }).catch(err => {
   console.warn('DB connection failed — starting without DB:', err.message);
-  app.listen(PORT, () => console.log(`Antortiq web app running on port ${PORT} (no DB)`));
+  app.listen(PORT, () => console.log(`Antortiq running on port ${PORT} (no DB)`));
 });
