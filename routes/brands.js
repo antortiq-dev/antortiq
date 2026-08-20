@@ -12,6 +12,29 @@ function auth(req, res, next) {
   next();
 }
 
+// POST /api/brands/fetch-token — exchange client_id + client_secret for shpat_ access token
+router.post('/fetch-token', auth, async (req, res) => {
+  try {
+    const { shopDomain, clientId, clientSecret } = req.body;
+    if (!shopDomain || !clientId || !clientSecret) {
+      return res.status(400).json({ error: 'shopDomain, clientId, clientSecret required' });
+    }
+    const domain = shopDomain.replace(/https?:\/\//,'').replace(/\//,'').trim();
+
+    // Shopify custom app token exchange
+    const r = await fetch(`https://${domain}/admin/oauth/access_token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ client_id: clientId, client_secret: clientSecret, grant_type: 'client_credentials' }),
+    });
+    const d = await r.json();
+    if (!r.ok || !d.access_token) {
+      return res.status(400).json({ error: d.error_description || d.error || 'Token exchange failed', raw: d });
+    }
+    res.json({ access_token: d.access_token, scope: d.scope });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 // GET /api/brands — list all brands
 router.get('/', auth, async (req, res) => {
   try {

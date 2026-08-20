@@ -65,6 +65,31 @@ input[type=color]{height:40px;padding:4px 6px;cursor:pointer;border-radius:9px}
   <h2>Connect a Shopify Brand</h2>
   <p class="sub">Add a brand's Shopify credentials — webhooks are registered automatically.</p>
 
+  <!-- STEP 0: TOKEN FETCH (for newer Shopify custom apps that show client_id + secret) -->
+  <div class="card">
+    <h3>Step 1 — Get Access Token from Client ID + Secret</h3>
+    <p style="font-size:12px;color:#888;margin-bottom:16px;line-height:1.6">Newer Shopify custom apps show <strong>Client ID</strong> and <strong>Client Secret</strong> instead of a direct token. Paste them here to fetch the permanent access token, then it auto-fills below.</p>
+    <div class="grid">
+      <div class="field">
+        <label>Shopify Domain</label>
+        <input id="ft-domain" placeholder="sicos24.myshopify.com" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Client ID</label>
+        <input id="ft-clientId" placeholder="2ef405c3c72dac8e21e278d76a2856f3" autocomplete="off">
+      </div>
+      <div class="field" style="grid-column:span 2">
+        <label>Client Secret</label>
+        <input id="ft-clientSecret" type="password" placeholder="shpss_..." autocomplete="off">
+      </div>
+    </div>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn btn-ghost" onclick="fetchToken()" id="ftBtn">Fetch Access Token →</button>
+      <span class="status" id="ftStatus"></span>
+    </div>
+    <div class="result-box" id="ftResult"></div>
+  </div>
+
   <!-- ADD BRAND FORM -->
   <div class="card">
     <h3>Brand Details</h3>
@@ -138,6 +163,41 @@ input[type=color]{height:40px;padding:4px 6px;cursor:pointer;border-radius:9px}
 
 <script>
 const API = '/api/brands';
+
+async function fetchToken() {
+  const btn = document.getElementById('ftBtn');
+  const statusEl = document.getElementById('ftStatus');
+  const resultEl = document.getElementById('ftResult');
+  const domain = document.getElementById('ft-domain').value.trim().replace(/https?:\/\//,'').replace(/\//,'');
+  const clientId = document.getElementById('ft-clientId').value.trim();
+  const clientSecret = document.getElementById('ft-clientSecret').value.trim();
+  if (!domain || !clientId || !clientSecret) { statusEl.textContent = '⚠ All three fields required'; statusEl.style.color='#ef4444'; return; }
+  btn.disabled = true; statusEl.textContent = 'Fetching…'; statusEl.style.color='#888'; resultEl.style.display='none';
+  try {
+    const r = await fetch(`${API}/fetch-token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': key() },
+      body: JSON.stringify({ shopDomain: domain, clientId, clientSecret }),
+    });
+    const d = await r.json();
+    resultEl.style.display = 'block';
+    if (r.ok && d.access_token) {
+      resultEl.className = 'result-box ok';
+      resultEl.textContent = `✅ Token fetched!\n\naccess_token: ${d.access_token}\nscope: ${d.scope || 'n/a'}`;
+      statusEl.textContent = '✅ Token auto-filled below ↓';
+      statusEl.style.color = '#16a34a';
+      // Auto-fill the main form
+      document.getElementById('shopDomain').value = domain;
+      document.getElementById('accessToken').value = d.access_token;
+    } else {
+      resultEl.className = 'result-box err';
+      resultEl.textContent = JSON.stringify(d, null, 2);
+      statusEl.textContent = `❌ ${d.error || 'Failed'}`;
+      statusEl.style.color = '#ef4444';
+    }
+  } catch (e) { statusEl.textContent = `❌ ${e.message}`; statusEl.style.color='#ef4444'; }
+  finally { btn.disabled = false; }
+}
 
 function key() { return document.getElementById('adminKey').value.trim(); }
 
