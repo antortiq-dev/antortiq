@@ -1,5 +1,8 @@
 FROM node:20-alpine
 
+# git + python3 needed by Baileys and some native deps
+RUN apk add --no-cache git python3 make g++
+
 WORKDIR /app
 
 COPY package*.json ./
