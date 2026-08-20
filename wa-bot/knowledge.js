@@ -9,7 +9,7 @@ Founded by a small team obsessed with D2C ops. We've built for fashion, streetwe
 === PRICING MODEL ===
 Every product is a ONE-TIME setup fee. No monthly charges. No per-message billing. No seat fees.
 After setup: the brand owns the code, the system runs on their infra forever.
-Typical one-time range: ₹4,999 – ₹19,999 per feature depending on complexity.
+Typical one-time range: ₹3,999 – ₹24,999 per feature depending on complexity.
 Full stack (all features): ₹49,999 – ₹79,999 one-time.
 We also do combo discounts when multiple features are taken together.
 
