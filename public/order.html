@@ -490,6 +490,39 @@ let orderData = null;
 let lastContact = 'na';
 let paying = false;
 let confirmPageOpenedAt = null;
+let brandConfig = { hasRazorpay: false, name: 'Antortiq', accentColor: '#0f0f0f', shopId: '' };
+
+// Load brand config from ?shop= param
+(async () => {
+  const shop = new URLSearchParams(location.search).get('shop');
+  if (!shop) return;
+  try {
+    const r = await fetch(`/order/brand-config?shop=${encodeURIComponent(shop)}`);
+    if (!r.ok) return;
+    const cfg = await r.json();
+    brandConfig = cfg;
+    // Apply branding
+    document.title = `Your Order — ${cfg.name}`;
+    document.querySelectorAll('.logo-text,.header-logo-text,.sb-logo-text').forEach(el => el.textContent = cfg.name);
+    document.querySelectorAll('.sb-footer').forEach(el => el.textContent = `${cfg.name} © 2025`);
+    if (cfg.accentColor && cfg.accentColor !== '#0f0f0f') {
+      document.documentElement.style.setProperty('--accent', cfg.accentColor);
+      document.documentElement.style.setProperty('--accent-dark', cfg.accentColor);
+    }
+    if (cfg.waNumber) {
+      document.querySelectorAll('a[href*="919079060327"]').forEach(el => { el.href = `https://wa.me/${cfg.waNumber}`; });
+    }
+    // Adapt confirm button if no Razorpay
+    if (!cfg.hasRazorpay) {
+      const btn = document.getElementById('btn-confirm');
+      if (btn) {
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="7 13 10 16 17 9"/></svg> Confirm My Order`;
+        btn.setAttribute('onclick', "confirmWithoutPayment()");
+      }
+      document.getElementById('btn-prepaid')?.classList.add('hidden');
+    }
+  } catch (_) {}
+})();
 
 const IC = {
   check:`<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
@@ -831,6 +864,30 @@ function renderRR(d) {
 function showTrack() {
   document.getElementById('success-overlay').classList.remove('visible');
   if (orderData) renderTrack(orderData);
+}
+
+async function confirmWithoutPayment() {
+  if (paying || !orderData) return;
+  paying = true;
+  const btn = document.getElementById('btn-confirm');
+  btn.disabled = true;
+  try {
+    const r = await fetch(`${API}/order/confirm`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        shopId: brandConfig.shopId,
+        shopifyOrderId: orderData.shopify_order_id,
+        orderName: orderData.order_name,
+      }),
+    });
+    const d = await r.json();
+    if (!r.ok) { alert(d.error || 'Could not confirm order'); return; }
+    orderData.already_confirmed = true;
+    document.getElementById('success-sub').textContent = 'Your order is confirmed! We\'ll pack and dispatch it shortly.';
+    document.getElementById('success-overlay').classList.add('visible');
+  } catch (e) { alert(e.message); }
+  finally { paying = false; btn.disabled = false; }
 }
 
 async function pay(mode) {

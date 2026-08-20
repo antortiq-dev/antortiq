@@ -10,6 +10,7 @@ const cdcRoute = require('./routes/cdc');
 const wabotRoute = require('./routes/wabot');
 const brandsRoute = require('./routes/brands');
 const webhooksRoute = require('./routes/webhooks');
+const orderRoute = require('./routes/order');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/brands', brandsRoute);
 app.use('/webhooks', webhooksRoute);
+app.use('/order', orderRoute);
 app.use('/api/contact', contactRoute);
 app.use('/api/leads', leadsRoute);
 app.use('/api/track', trackRoute);
