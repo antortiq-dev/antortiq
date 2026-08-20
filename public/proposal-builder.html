@@ -126,22 +126,22 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 <script>
 const SERVICES = [
   {
-    id:'smart_track', ico:'📦', name:'Smart Track & Order Confirmation',
-    desc:'Branded COD confirmation flow + live order tracking page. Customers confirm orders, pay a small confirmation fee, and track every step — packed to delivered — with your identity, not a courier template.',
-    tags:['COD Confirmation','Live Tracking','WhatsApp Updates','RTO Reduction'],
+    id:'smart_track', ico:'📦', name:'Order Confirmation & WhatsApp Updates',
+    desc:'COD confirmation bot + branded tracking page + automated WhatsApp updates at every stage. Customers confirm via WhatsApp, pay ₹99, and receive updates from dispatch to delivery — all under your brand.',
+    tags:['COD Confirmation','WA Order Bot','Shipping Updates','RTO Reduction'],
     competitor:'Shiprocket / Delhivery dashboard', competitorMonthly:2999, defaultPrice:9999,
     accentColor:'#3b82f6', accentDim:'#0d1f3c',
-    features:['Branded order confirmation page','Fake order filter — unconfirmed auto-cancelled','Real-time tracking on your domain','WhatsApp alert at every status change','RTO analytics by pincode and SKU'],
-    mockupType:'track'
+    features:['WhatsApp bot sends order confirmation request instantly','Customer confirms or cancels via WA — no app needed','Branded COD confirm page with ₹99 intent fee','WhatsApp update at Confirmed → Shipped → OFD → Delivered','Fake order filter — unconfirmed orders auto-cancelled','RTO analytics by pincode and SKU'],
+    mockupType:'confirm_flow'
   },
   {
-    id:'returns_exchange', ico:'🔄', name:'Returns & Exchange Automation',
-    desc:'Self-serve exchange portal. Customer selects item, picks new size, pays ₹199 processing fee — AI auto-approves. Zero support tickets, zero manual work for your team.',
-    tags:['Self-serve Exchange','AI Auto-approve','₹199 Processing Fee','Zero Tickets'],
+    id:'returns_exchange', ico:'🔄', name:'Live Track + Returns & Exchange',
+    desc:'Three screens your customer and your team see. Customer-facing live tracking page with timeline. Self-serve exchange portal — pick size, pay fee, done. Admin backend auto-log handling pickup, payment, and forward order — zero manual steps.',
+    tags:['Live Tracking Page','Self-serve Exchange','Admin Backend','Zero Tickets'],
     competitor:'Clickpost / Returnprime', competitorMonthly:3499, defaultPrice:12999,
     accentColor:'#f59e0b', accentDim:'#2a1f05',
-    features:['Customer self-serve exchange portal','AI-powered auto-approval','₹199 processing fee (your revenue)','Admin override with promo code','Exchange status via WhatsApp'],
-    mockupType:'exchange'
+    features:['Customer-facing live track page with courier timeline','Real-time status: Confirmed → Picked Up → In Transit → OFD','Self-serve exchange — select size, pay ₹199, auto-approved','Admin backend: exchange log, payment captured, pickup generated','Forward order auto-created when return received','Zero support tickets for tracking or exchange queries'],
+    mockupType:'track_exchange'
   },
   {
     id:'auto_contact', ico:'👥', name:'Auto Contact Sync',
@@ -349,43 +349,132 @@ function mockupHTML(s) {
   const d = s.accentDim;
   const t = s.mockupType;
 
-  if (t === 'track') return `
-    <div style="background:#0a0a0f;border-radius:12px;padding:16px;height:180px;overflow:hidden;position:relative">
-      <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,${c}18,transparent 70%);border-radius:50%"></div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:8px">LIVE TRACKING</div>
-      <div style="display:flex;gap:6px;margin-bottom:12px">
-        ${['WA','CONFIRM','IN TRANSIT','DELIVERED'].map((l,i)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1"><div style="width:20px;height:20px;border-radius:50%;background:${i<3?c:'#1a1a1a'};border:2px solid ${i<3?c:'#333'};display:flex;align-items:center;justify-content:center;font-size:8px;color:${i<3?'#fff':'#555'};font-weight:800">${i+1}</div><div style="font-size:7px;color:${i<3?c:'#444'};font-weight:600;text-align:center">${l}</div></div>`).join('<div style="flex:1;height:2px;background:linear-gradient(90deg,'+c+',#222);margin-top:9px;border-radius:2px"></div>')}
+  if (t === 'confirm_flow') return `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;background:#0a0a0f;border-radius:12px;padding:14px">
+
+      <!-- Card 1: WhatsApp Bot -->
+      <div style="background:#0d1a10;border:1px solid #1a3020;border-radius:10px;padding:10px;overflow:hidden">
+        <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;color:#25d366;margin-bottom:8px">WHATSAPP BOT</div>
+        <div style="background:#1a2e1e;border-radius:6px;padding:7px;margin-bottom:5px">
+          <div style="font-size:7px;font-weight:700;color:#fff;margin-bottom:3px">&#9632; ANTORTIQ &#9632;</div>
+          <div style="font-size:6.5px;color:#888;line-height:1.5">ORDER : #2904<br>ITEM : Miami Gingham M x1<br>TOTAL : &#8377;1,799<br>SHIP : Andheri West, Mumbai</div>
+          <div style="font-size:6px;color:#555;text-align:right;margin-top:4px">8:58 pm &#10003;&#10003;</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:5px">
+          <div style="background:#1a3020;border:1px solid #25d36644;border-radius:5px;padding:4px;text-align:center;font-size:7px;font-weight:700;color:#25d366">&#9989; Confirm</div>
+          <div style="background:#2a1010;border:1px solid #e8344a44;border-radius:5px;padding:4px;text-align:center;font-size:7px;font-weight:700;color:#e8344a">&#10060; Cancel</div>
+        </div>
+        <div style="background:#1a2e1e;border-radius:5px;padding:5px;border:1px solid #25d36633">
+          <div style="font-size:6.5px;color:#25d366;font-weight:700">&#9989; Confirm Order</div>
+          <div style="font-size:6px;color:#555;margin-top:1px">8:41 pm &#10003;&#10003;</div>
+        </div>
       </div>
-      <div style="background:#111;border-radius:8px;padding:10px;border:1px solid #1e1e1e">
-        <div style="font-size:8px;color:#555;margin-bottom:4px">ORDER #2904 &middot; Rahul Sharma</div>
-        <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:2px">Miami Gingham Shirt &middot; M</div>
-        <div style="font-size:9px;color:${c}">&#9679; In Transit &mdash; Delhi Hub &middot; ETA Tomorrow</div>
+
+      <!-- Card 2: COD Confirm Page -->
+      <div style="background:#fff;border-radius:10px;padding:10px;overflow:hidden">
+        <div style="font-size:8px;font-weight:800;color:#111;margin-bottom:1px">Miami Gingham Shirt</div>
+        <div style="font-size:6.5px;color:#888;margin-bottom:6px">SIZE M &middot; RED GINGHAM</div>
+        <div style="display:flex;gap:4px;margin-bottom:6px">
+          <div style="font-size:13px;font-weight:900;color:#111">&#8377;1,799</div>
+          <div style="font-size:6.5px;border:1px solid #ddd;border-radius:3px;padding:1px 4px;color:#888;height:fit-content;margin-top:3px">COD</div>
+        </div>
+        <div style="font-size:7px;color:#555;margin-bottom:2px;display:flex;justify-content:space-between"><span>SUBTOTAL</span><span>&#8377;1,799</span></div>
+        <div style="font-size:7px;margin-bottom:2px;display:flex;justify-content:space-between"><span style="color:#555">DELIVERY</span><span style="color:#25d366;font-weight:700">Free</span></div>
+        <div style="font-size:7px;margin-bottom:4px;display:flex;justify-content:space-between"><span style="color:#555">CONFIRM FEE</span><span style="color:${c};font-weight:700">&#8377;99</span></div>
+        <div style="background:#fff8ee;border-radius:5px;padding:5px;font-size:6.5px;color:#c77c00;text-align:center;margin-bottom:5px;font-weight:600">Pay &#8377;99 now &middot; &#8377;1,700 on delivery</div>
+        <div style="background:#111;border-radius:5px;padding:5px;text-align:center;font-size:7px;font-weight:700;color:#fff">Pay &#8377;99 &amp; Confirm Order</div>
       </div>
-      <div style="margin-top:8px;display:flex;gap:6px">
-        <div style="flex:1;background:#0d1f3c;border:1px solid ${c}33;border-radius:6px;padding:6px;text-align:center;font-size:8px;font-weight:700;color:${c}">Track Live</div>
-        <div style="flex:1;background:#111;border:1px solid #222;border-radius:6px;padding:6px;text-align:center;font-size:8px;font-weight:600;color:#555">Edit Address</div>
+
+      <!-- Card 3: WhatsApp Updates -->
+      <div style="background:#0d1a10;border:1px solid #1a3020;border-radius:10px;padding:10px;overflow:hidden">
+        <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;color:#25d366;margin-bottom:8px">ORDER UPDATES</div>
+        ${[
+          {icon:'📦',label:'Shipped',msg:'Your order #2904 has been picked up by Delhivery.',time:'Aug 4, 2:15 PM'},
+          {icon:'🚚',label:'In Transit',msg:'In Transit — Delhi Hub. ETA Aug 7.',time:'Aug 5, 9:04 AM'},
+          {icon:'🛵',label:'Out for Delivery',msg:'Out for delivery! Expected by 8 PM today.',time:'Aug 7, 10:22 AM'},
+        ].map(u=>`
+          <div style="background:#111f14;border:1px solid #1e3020;border-radius:6px;padding:6px;margin-bottom:5px">
+            <div style="font-size:8px;margin-bottom:2px">${u.icon} <span style="font-weight:700;color:#25d366;font-size:7px">${u.label}</span></div>
+            <div style="font-size:6.5px;color:#888;line-height:1.4">${u.msg}</div>
+            <div style="font-size:6px;color:#444;text-align:right;margin-top:2px">${u.time}</div>
+          </div>`).join('')}
       </div>
     </div>`;
 
-  if (t === 'exchange') return `
-    <div style="background:#0a0a0f;border-radius:12px;padding:16px;height:180px;overflow:hidden;position:relative">
-      <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:${c};margin-bottom:8px">EXCHANGE REQUEST</div>
-      <div style="background:#111;border-radius:8px;padding:10px;border:1px solid #1e1e1e;margin-bottom:8px">
+  if (t === 'track_exchange') return `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;background:#0a0a0f;border-radius:12px;padding:14px">
+
+      <!-- Card 1: Customer Track Page -->
+      <div style="background:#fff;border-radius:10px;padding:10px;overflow:hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-          <div style="font-size:10px;font-weight:700;color:#fff">ORDER #1847</div>
-          <div style="font-size:8px;background:${d};color:${c};padding:2px 8px;border-radius:99px;font-weight:700">AI APPROVED</div>
+          <div style="font-size:7px;font-weight:800;color:#e8344a;letter-spacing:1px">ANTORTIQ</div>
+          <div style="font-size:6px;color:#888">Order #1847</div>
         </div>
-        <div style="font-size:9px;color:#555;margin-bottom:6px">Outlaw Flannel &middot; Size M &rarr; Size L</div>
-        <div style="display:flex;gap:4px">
-          ${['XS','S','M','L','XL'].map(sz=>`<div style="padding:3px 7px;border-radius:4px;background:${sz==='L'?c:'#1a1a1a'};border:1px solid ${sz==='L'?c:'#2a2a2a'};font-size:8px;font-weight:700;color:${sz==='L'?'#000':'#555'}">${sz}</div>`).join('')}
+        <div style="background:#fff8e6;border:1px solid #f59e0b44;border-radius:5px;padding:3px 7px;font-size:6.5px;font-weight:700;color:#b45309;margin-bottom:8px;display:inline-block">&#9679; In Transit</div>
+        <div style="position:relative;padding-left:14px">
+          ${[
+            {label:'Order Confirmed',time:'Aug 4 · 2:10 PM',done:true},
+            {label:'Picked Up — Mumbai',time:'Aug 4 · 2:15 PM',done:true},
+            {label:'In Transit — Delhi Hub',time:'Aug 5 · 9:04 AM · Now',done:true,active:true},
+            {label:'Out for Delivery',time:'Expected Aug 7',done:false},
+          ].map((step,i)=>`
+            <div style="position:relative;margin-bottom:${i<3?'7px':'0'}">
+              <div style="position:absolute;left:-14px;top:1px;width:8px;height:8px;border-radius:50%;background:${step.active?'#e8344a':step.done?'#e8344a':'#ddd'};border:1.5px solid ${step.active?'#e8344a':step.done?'#e8344a':'#ddd'}"></div>
+              ${i<3?`<div style="position:absolute;left:-11px;top:9px;width:2px;height:calc(100% + 4px);background:${step.done?'#e8344a':'#ddd'}"></div>`:''}
+              <div style="font-size:7px;font-weight:${step.active?'800':'600'};color:${step.active?'#e8344a':step.done?'#111':'#bbb'}">${step.label}</div>
+              <div style="font-size:6px;color:#aaa">${step.time}</div>
+            </div>`).join('')}
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px">
+          <div style="border:1px solid #ddd;border-radius:5px;padding:4px;text-align:center;font-size:7px;font-weight:700;color:#111">Track Live</div>
+          <div style="background:#111;border-radius:5px;padding:4px;text-align:center;font-size:7px;font-weight:700;color:#fff">&#128172; Support</div>
         </div>
       </div>
-      <div style="background:${d};border:1px solid ${c}33;border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px">
-        <div style="font-size:18px">&#127881;</div>
-        <div>
-          <div style="font-size:9px;font-weight:700;color:${c}">Exchange Raised &mdash; EX-1847</div>
-          <div style="font-size:8px;color:#555;margin-top:1px">Pickup scheduled &middot; Ships same day &middot; 0 human minutes</div>
+
+      <!-- Card 2: Customer Exchange Page -->
+      <div style="background:#fff;border-radius:10px;padding:10px;overflow:hidden">
+        <div style="font-size:6.5px;color:#888;margin-bottom:2px">&larr; Order #1847</div>
+        <div style="font-size:10px;font-weight:800;color:#111;margin-bottom:1px">Exchange Item</div>
+        <div style="font-size:6.5px;color:#888;margin-bottom:8px">Select new size. We'll arrange pickup.</div>
+        <div style="background:#f5f5f5;border-radius:6px;padding:7px;margin-bottom:6px">
+          <div style="font-size:7px;font-weight:700;color:#111;margin-bottom:1px">Miami Gingham Shirt</div>
+          <div style="display:inline-block;background:#111;border-radius:3px;padding:1px 5px;font-size:6px;font-weight:700;color:#fff;margin-bottom:2px">SIZE M</div>
+          <div style="font-size:6px;color:#888">AWB 1234567890</div>
         </div>
+        <div style="font-size:6.5px;font-weight:700;color:#888;letter-spacing:1px;margin-bottom:4px">SELECT NEW SIZE</div>
+        <div style="display:flex;gap:3px;margin-bottom:6px">
+          ${['XS','S','M','L','XL'].map(sz=>`<div style="padding:3px 6px;border-radius:4px;background:${sz==='L'?'#111':'#fff'};border:1px solid ${sz==='L'?'#111':'#ddd'};font-size:7px;font-weight:700;color:${sz==='L'?'#fff':'#555'}">${sz}</div>`).join('')}
+        </div>
+        <div style="background:#fff8ee;border:1px solid #f59e0b44;border-radius:5px;padding:5px;display:flex;justify-content:space-between;margin-bottom:5px">
+          <div style="font-size:6.5px;font-weight:700;color:#b45309">Exchange Processing Fee</div>
+          <div style="font-size:7px;font-weight:800;color:#e8344a">&#8377;99</div>
+        </div>
+        <div style="background:#111;border-radius:5px;padding:5px;text-align:center;font-size:7px;font-weight:700;color:#fff;letter-spacing:.5px">SUBMIT EXCHANGE REQUEST</div>
+      </div>
+
+      <!-- Card 3: Admin Backend Log -->
+      <div style="background:#fff;border-radius:10px;padding:10px;overflow:hidden">
+        <div style="font-size:8px;font-weight:800;color:#111;margin-bottom:0">#ORD-1847</div>
+        <div style="font-size:6px;color:#888;margin-bottom:8px">Mumbai Threads Co. &middot; Aug 3</div>
+        <div style="font-size:7px;font-weight:700;color:#888;letter-spacing:1px;margin-bottom:6px">AUTOMATION LOG</div>
+        ${[
+          {title:'Exchange Request Received',color:'#22c55e',detail:'M → L &middot; WhatsApp Bot &middot; &#8377;199 fee'},
+          {title:'Payment Captured — &#8377;199',color:'#22c55e',detail:'Razorpay &middot; Status: &#10003; Captured'},
+          {title:'Reverse Pickup Generated',color:'#22c55e',detail:'Delhivery &middot; Aug 7 10AM–1PM slot'},
+          {title:'Forward Order Created',color:'#22c55e',detail:'#ORD-1891 (Size L) &middot; Label sent'},
+        ].map((step,i)=>`
+          <div style="display:flex;gap:6px;margin-bottom:${i<3?'6px':'0'};position:relative">
+            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+              <div style="width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid ${step.color};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <div style="width:5px;height:5px;border-radius:50%;background:${step.color}"></div>
+              </div>
+              ${i<3?`<div style="width:1.5px;height:14px;background:#e5e7eb;margin-top:1px"></div>`:''}
+            </div>
+            <div style="padding-bottom:${i<3?'0':'0'}">
+              <div style="font-size:7px;font-weight:700;color:#111">${step.title}</div>
+              <div style="font-size:6px;color:#888;margin-top:1px">${step.detail}</div>
+            </div>
+          </div>`).join('')}
       </div>
     </div>`;
 
