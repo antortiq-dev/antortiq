@@ -18,7 +18,7 @@ function buildAlertMessage(jid, triggerReason) {
   const phone = jid.replace('@s.whatsapp.net', '').replace('@c.us', '');
   const elapsed = Math.round((Date.now() - state.firstContactAt.getTime()) / 60000);
 
-  return `${heat} — Antortiq Bot Alert
+  return `${heat} — Antortiq Alert
 ━━━━━━━━━━━━━━━━━━━━━
 👤 *Name:* ${state.name || 'Unknown'}
 📱 *Number:* +${phone}
@@ -60,7 +60,7 @@ async function sendDailyDigest(sock, activeLeads) {
     const engaged = activeLeads.filter(l => l.stage === 'engaged');
 
     const lines = [
-      `📊 *Antortiq Bot — Lead Digest*`,
+      `📊 *Antortiq — Lead Digest*`,
       `━━━━━━━━━━━━━━━━━━━━━`,
       `🔥 Hot/Escalated: ${hot.length}`,
       ...hot.map(l => `  • ${l.name || 'Unknown'} (+${l.jid.slice(0,10)}…) — score ${l.leadScore}`),
