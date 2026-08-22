@@ -15,7 +15,7 @@ function buildAlertMessage(jid, triggerReason) {
   const heat = score >= 80 ? '🔥🔥 VERY HOT' : score >= 60 ? '🔥 HOT LEAD' : '⚡ URGENT';
   const breakdown = state.scoreBreakdown.map(b => `• ${b.label} (+${b.points})`).join('\n');
   const summary = getConversationSummary(jid);
-  const phone = jid.replace('@s.whatsapp.net', '').replace('@c.us', '');
+  const phone = jid.replace(/@s\.whatsapp\.net|@c\.us|@lid/g, '');
   const elapsed = Math.round((Date.now() - state.firstContactAt.getTime()) / 60000);
 
   return `${heat} — Antortiq Alert
@@ -63,7 +63,7 @@ async function sendDailyDigest(sock, activeLeads) {
       `📊 *Antortiq — Lead Digest*`,
       `━━━━━━━━━━━━━━━━━━━━━`,
       `🔥 Hot/Escalated: ${hot.length}`,
-      ...hot.map(l => `  • ${l.name || 'Unknown'} (+${l.jid.slice(0,10)}…) — score ${l.leadScore}`),
+      ...hot.map(l => `  • ${l.name || 'Unknown'} (+${l.jid.replace(/@s\.whatsapp\.net|@c\.us|@lid/g,'').slice(0,12)}…) — score ${l.leadScore}`),
       ``,
       `⚡ Qualified: ${qualified.length}`,
       ...qualified.map(l => `  • ${l.name || 'Unknown'} — score ${l.leadScore}`),

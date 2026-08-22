@@ -176,7 +176,7 @@ async function handleMessage(sock, msg) {
   const wantsCall = /\b(call|talk|speak|connect|human|real person|call me|hop on|get on a call|schedule a call|want to call|wanna call)\b/i.test(text);
   if (wantsCall && !state.callRequested) {
     state.callRequested = true;
-    const phone = jid.replace('@s.whatsapp.net', '').replace('@c.us', '');
+    const phone = jid.replace(/@s\.whatsapp\.net|@c\.us|@lid/g, '');
     await sendAdminAlert(sock, jid, '📞 Customer asked to speak to someone');
     upsertLead(state).catch(() => {});
     const adminNum = (process.env.ADMIN_WA_NUMBER || '918209544626').replace(/\D/g, '');
@@ -228,7 +228,7 @@ async function handleAdminCommand(sock, adminJid, text) {
       `💬 Engaged: ${active.filter(l => l.stage === 'engaged').length}`,
       `⏸ Admin handling: ${paused}`,
       ``,
-      ...hot.map(l => `🔥 ${l.name || 'Unknown'} +${l.jid.replace('@s.whatsapp.net','')} — score ${l.leadScore}`),
+      ...hot.map(l => `🔥 ${l.name || 'Unknown'} +${l.jid.replace(/@s\.whatsapp\.net|@c\.us|@lid/g,'')} — score ${l.leadScore}`),
     ];
     await sock.sendMessage(adminJid, { text: lines.join('\n') });
   } else if (cmd === '!help') {
