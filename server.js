@@ -11,6 +11,7 @@ const wabotRoute = require('./routes/wabot');
 const brandsRoute = require('./routes/brands');
 const webhooksRoute = require('./routes/webhooks');
 const orderRoute = require('./routes/order');
+const mailerRoute = require('./routes/mailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/brands', brandsRoute);
+app.use('/api/mail', mailerRoute);
 app.use('/webhooks', webhooksRoute);
 app.use('/order', orderRoute);
 app.use('/api/contact', contactRoute);

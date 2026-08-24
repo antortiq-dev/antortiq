@@ -10,6 +10,7 @@ const { getReply } = require('./ai');
 const memory = require('./memory');
 const { upsertLead } = require('./leads');
 const { sendAdminAlert, sendDailyDigest } = require('./escalation');
+const { sendPitchEmail } = require('../lib/mailer');
 
 const logger = pino({ level: 'silent' });
 
@@ -202,6 +203,23 @@ async function handleMessage(sock, msg) {
 async function handleAdminCommand(sock, adminJid, text) {
   const cmd = text.trim().toLowerCase();
 
+  // !pitch email@x.com — send pitch email to a brand
+  if (cmd.startsWith('!pitch')) {
+    const email = text.trim().slice(6).trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      await sock.sendMessage(adminJid, { text: `Send: *!pitch brand@example.com*` });
+      return;
+    }
+    try {
+      await sock.sendMessage(adminJid, { text: `⏳ Sending pitch email to *${email}*…` });
+      await sendPitchEmail(email);
+      await sock.sendMessage(adminJid, { text: `✅ Pitch email sent to *${email}*` });
+    } catch (e) {
+      await sock.sendMessage(adminJid, { text: `❌ Failed: ${e.message}` });
+    }
+    return;
+  }
+
   // !resume +919876543210 — hand back a chat to Riya
   if (cmd.startsWith('!resume')) {
     const num = cmd.replace('!resume','').trim().replace(/\D/g,'');
@@ -233,7 +251,7 @@ async function handleAdminCommand(sock, adminJid, text) {
     await sock.sendMessage(adminJid, { text: lines.join('\n') });
   } else if (cmd === '!help') {
     await sock.sendMessage(adminJid, {
-      text: `*Commands*\n!status — lead summary\n!resume 91XXXXXXXXXX — hand chat back to Riya\n!help — this message`,
+      text: `*Commands*\n!status — lead summary\n!pitch email@brand.com — send pitch email\n!resume 91XXXXXXXXXX — hand chat back to Riya\n!help — this message`,
     });
   }
 }
