@@ -53,30 +53,17 @@ async function sendOrderConfirmation(sock, order, brand) {
     `SHIP TO :  ${city}${state ? ', ' + state : ''}`;
 
   const msg = {
-    listMessage: {
-      title: 'Order Confirmation Required',
-      text: bodyText,
-      footerText: brand.name || 'Your Store',
-      buttonText: 'Select Option',
-      listType: 1,
-      sections: [
-        {
-          title: 'Choose an action',
-          rows: [
-            {
-              title: '✅  Yes, Confirm Order',
-              description: 'Your order will be dispatched within 24–48 hrs',
-              rowId: `confirm_yes_${order.id}`,
-            },
-            {
-              title: '❌  No, Cancel Order',
-              description: 'Your order will be cancelled',
-              rowId: `confirm_no_${order.id}`,
-            },
-          ],
-        },
-      ],
-    },
+    text:
+      `🛍️ *Order Confirmation Required*\n\n` +
+      `■ ${brandName} ■\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `ORDER   :  #${order.order_number}\n` +
+      `ITEMS   :  ${items}\n` +
+      `TOTAL   :  ${total}\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `SHIP TO :  ${city}${state ? ', ' + state : ''}\n\n` +
+      `Reply *Y* to confirm ✅\n` +
+      `Reply *N* to cancel ❌`,
   };
 
   try {
@@ -99,34 +86,36 @@ async function sendOrderConfirmation(sock, order, brand) {
 }
 
 /**
- * Call this from handleMessage when a listResponseMessage arrives.
- * Returns true if the message was handled as a confirmation response.
+ * Call this from handleMessage when a text reply arrives.
+ * Checks if the jid has a pending confirmation and the reply is Y/N.
+ * Returns true if handled.
  */
-async function handleConfirmationResponse(sock, msg) {
-  const rowId = msg.message?.listResponseMessage?.singleSelectReply?.selectedRowId || '';
-  if (!rowId) return false;
+async function handleConfirmationResponse(sock, jid, text) {
+  const reply = text.trim().toLowerCase();
+  if (reply !== 'y' && reply !== 'n') return false;
 
-  const isYes = rowId.startsWith('confirm_yes_');
-  const isNo  = rowId.startsWith('confirm_no_');
-  if (!isYes && !isNo) return false;
+  // Find the pending confirmation for this jid
+  let orderId = null;
+  for (const [id, p] of pendingConfirmations.entries()) {
+    if (p.jid === jid) { orderId = id; break; }
+  }
+  if (!orderId) return false;
 
-  const orderId = rowId.replace('confirm_yes_', '').replace('confirm_no_', '');
   const pending = pendingConfirmations.get(orderId);
-  const jid = msg.key.remoteJid;
 
-  if (isYes) {
+  if (reply === 'y') {
     await sock.sendMessage(jid, {
-      text: `🎉 Order *#${pending?.orderNumber || ''}* confirmed!\n\nIt will be dispatched within *24–48 hrs*. You'll receive a tracking link here once shipped. 📦`,
+      text: `🎉 Order *#${pending.orderNumber}* confirmed!\n\nWill be dispatched within *24–48 hrs*. You'll get a tracking link here once shipped. 📦`,
     });
-    console.log(`[order-confirm] Customer confirmed order #${pending?.orderNumber}`);
+    console.log(`[order-confirm] Confirmed order #${pending.orderNumber}`);
   } else {
     await sock.sendMessage(jid, {
-      text: `Your order *#${pending?.orderNumber || ''}* has been cancelled. If this was a mistake, please place a new order or contact us. 🙏`,
+      text: `Your order *#${pending.orderNumber}* has been cancelled. If this was a mistake, place a new order or contact us. 🙏`,
     });
-    console.log(`[order-confirm] Customer cancelled order #${pending?.orderNumber}`);
+    console.log(`[order-confirm] Cancelled order #${pending.orderNumber}`);
   }
 
-  if (pending) pendingConfirmations.delete(orderId);
+  pendingConfirmations.delete(orderId);
   return true;
 }
 
