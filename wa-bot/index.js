@@ -154,6 +154,37 @@ async function handleMessage(sock, msg) {
   if (recentReplies.get(jid) > now - 2000) return;
   recentReplies.set(jid, now);
 
+  // ── Global dev commands (work from any number) ─────────────────
+  if (text.toLowerCase().startsWith('!testconfirm')) {
+    const num = text.trim().slice(12).trim().replace(/\D/g, '');
+    if (!num) { await sock.sendMessage(jid, { text: 'Send: !testconfirm 916375668971' }); return; }
+    const testJid = `${num}@s.whatsapp.net`;
+    await sock.sendMessage(testJid, {
+      listMessage: {
+        title: 'Order Confirmation Required',
+        text: '■ CROSCROW ■\nCONFIRM YOUR ORDER\n' +
+              '────────────────────────\n' +
+              'ORDER  :  ##3106\n' +
+              'ITEMS  :  MIAMI - CORE 002 - S × 1,\n' +
+              'TOTAL  :  ₹1835.00\n' +
+              '────────────────────────\n' +
+              'SHIP TO : raisinghnagar, GANGANAGAR',
+        footerText: 'Antortiq',
+        buttonText: 'Select Option',
+        listType: 1,
+        sections: [{
+          title: 'Choose an action',
+          rows: [
+            { title: '✅  Yes, Confirm Order', description: 'Dispatched within 24–48 hrs', rowId: 'confirm_yes_test001' },
+            { title: '❌  No, Cancel Order',   description: 'Your order will be cancelled', rowId: 'confirm_no_test001' },
+          ],
+        }],
+      },
+    });
+    await sock.sendMessage(jid, { text: `✅ Test sent to +${num}` });
+    return;
+  }
+
   // ── Admin commands ─────────────────────────────────────────────
   if (jid === ADMIN_JID) { await handleAdminCommand(sock, jid, text); return; }
 
