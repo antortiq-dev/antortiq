@@ -84,4 +84,52 @@ router.post('/fulfillments-update', async (req, res) => {
   } catch (e) { console.error('[webhook] fulfillments-update error:', e.message); }
 });
 
+// ── WhatsApp Cloud API webhooks ────────────────────────────────────────────
+
+// GET /webhooks/whatsapp — Meta verification challenge
+router.get('/whatsapp', (req, res) => {
+  const mode  = req.query['hub.mode'];
+  const token = req.query['hub.verify_token'];
+  const challenge = req.query['hub.challenge'];
+  if (mode === 'subscribe' && token === process.env.WA_VERIFY_TOKEN) {
+    console.log('[wa-cloud] Webhook verified');
+    return res.status(200).send(challenge);
+  }
+  res.sendStatus(403);
+});
+
+// POST /webhooks/whatsapp — incoming messages & status updates
+router.post('/whatsapp', (req, res) => {
+  res.sendStatus(200); // ack immediately
+  try {
+    const body = getBody(req);
+    const entry = body.entry?.[0];
+    const changes = entry?.changes?.[0];
+    const value = changes?.value;
+    if (!value) return;
+
+    // Incoming message
+    const messages = value.messages || [];
+    for (const m of messages) {
+      const from = m.from; // phone number string e.g. "919876543210"
+      const type = m.type;
+      let text = '';
+      if (type === 'text') text = m.text?.body || '';
+      else if (type === 'interactive') {
+        // list reply or button reply
+        text = m.interactive?.list_reply?.id ||
+               m.interactive?.button_reply?.id || '';
+      }
+      console.log(`[wa-cloud] msg from ${from}: ${text.slice(0, 80)}`);
+      // TODO: route to handleConfirmationResponse / AI reply
+    }
+
+    // Status updates (sent/delivered/read/failed)
+    const statuses = value.statuses || [];
+    for (const s of statuses) {
+      console.log(`[wa-cloud] status ${s.status} for msg ${s.id} to ${s.recipient_id}`);
+    }
+  } catch (e) { console.error('[wa-cloud] webhook error:', e.message); }
+});
+
 module.exports = router;
