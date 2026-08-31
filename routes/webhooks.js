@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Brand = require('../models/Brand');
 const { sendOrderConfirmation } = require('../wa-bot/order-confirm');
+const { botState } = require('../wa-bot/index');
 
 // Raw body needed for HMAC verification (future)
 router.use(express.raw({ type: 'application/json' }));
@@ -29,7 +30,7 @@ router.post('/orders-create', async (req, res) => {
     console.log(`[webhook] orders/create — ${brand.name} — #${order.order_number} — ${order.financial_status}`);
 
     // Send interactive WA confirmation with Yes/No buttons
-    await sendOrderConfirmation(order, brand);
+    await sendOrderConfirmation(botState.sock, order, brand);
     // TODO: save order to local DB
   } catch (e) { console.error('[webhook] orders-create error:', e.message); }
 });

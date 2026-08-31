@@ -1,21 +1,18 @@
 // Sends interactive WA order confirmation with Yes / No list buttons
 // and handles the customer's response
 
-const { botState } = require('./index');
-
-// Map of orderId -> { jid, brand, orderNumber, financial_status }
-// Kept in memory — survives for the session; fine for same-day confirmations
+// Map of orderId -> { jid, brand, orderNumber }
 const pendingConfirmations = new Map();
 
 /**
  * Send the interactive confirmation listMessage to a customer.
- * @param {object} order   - Shopify order object
- * @param {object} brand   - Brand model doc
+ * @param {object} sock  - Baileys socket (passed in to avoid circular dep)
+ * @param {object} order - Shopify order object
+ * @param {object} brand - Brand model doc
  */
-async function sendOrderConfirmation(order, brand) {
-  const sock = botState.sock;
-  if (!sock || botState.status !== 'connected') {
-    console.log('[order-confirm] WA not connected — skipping confirmation');
+async function sendOrderConfirmation(sock, order, brand) {
+  if (!sock) {
+    console.log('[order-confirm] No sock passed — skipping confirmation');
     return;
   }
 
