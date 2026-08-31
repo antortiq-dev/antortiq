@@ -1,0 +1,1241 @@
+<title>Antortiq Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Bebas+Neue&display=swap">
+
+<style>
+:root {
+  --black: #0a0a0b;
+  --card: #141416;
+  --border: #232327;
+  --border2: #1c1c1e;
+  --red: #e8344a;
+  --red-deep: #7a0f0f;
+  --text: #f0f0f2;
+  --muted: #9a9ba1;
+  --muted2: #6b6c70;
+  --disp: 'Syne', sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── HEADER ── */
+.email-header {
+  padding: 28px 0 28px;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 52px;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--disp);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.logo span { color: var(--red); }
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #1f9d62;
+  border: 1px solid #1a3a1a;
+  border-radius: 99px;
+  padding: 4px 12px;
+  letter-spacing: 0.05em;
+}
+.live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #1f9d62;
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(31,157,98,.6); }
+  70%  { box-shadow: 0 0 0 6px rgba(31,157,98,0); }
+  100% { box-shadow: 0 0 0 0 rgba(31,157,98,0); }
+}
+
+/* ── HERO ── */
+.hero {
+  margin-bottom: 52px;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 18px;
+  display: block;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', var(--disp), sans-serif;
+  font-weight: 400;
+  font-size: clamp(52px, 9vw, 80px);
+  line-height: 0.96;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-wrap: balance;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.hero h1 .hl {
+  background: linear-gradient(90deg, var(--red), #ff8a5b, var(--red));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 4s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+.hero p {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* stat strip */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.stat {
+  background: var(--card);
+  padding: 20px 16px 18px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Bebas Neue', 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--red);
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+.stat-lbl {
+  font-size: 10.5px;
+  color: var(--muted2);
+  margin-top: 6px;
+  display: block;
+  line-height: 1.4;
+}
+
+/* ── SECTION LABEL ── */
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+/* ── PRODUCT CARD (matches .cc-card from site) ── */
+.cc-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 18px;
+  transition: border-color .25s, transform .25s;
+}
+.cc-card:hover { border-color: var(--red); transform: translateY(-4px); }
+
+.cc-card-label {
+  padding: 18px 22px 14px;
+}
+.cc-card-label .tag {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 700;
+  font-family: var(--mono);
+}
+.cc-card-label h4 {
+  font-family: var(--disp);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 4px;
+}
+.cc-card-label p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* browser chrome (matches .cc-browser from site) */
+.cc-browser {
+  margin: 0 18px 20px;
+  border: 1px solid #2a2a2e;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.cc-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 11px;
+  background: #1c1c1f;
+  border-bottom: 1px solid #2a2a2e;
+}
+.cc-browser-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: #3a3a3e; }
+.cc-browser-bar .url {
+  flex: 1;
+  background: #0e0e10;
+  border-radius: 5px;
+  padding: 4px 11px;
+  font-size: 9px;
+  color: #666;
+  font-family: var(--mono);
+  margin-left: 6px;
+}
+
+/* ── WA SCENARIO CARDS ── */
+.wa-scenarios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 14px;
+  background: #111;
+}
+.wa-scenario {
+  background: #1a1f2e;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.wa-sc-head {
+  background: #128C7E;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.wa-sc-avatar {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.wa-sc-name { font-size: 10px; font-weight: 700; color: #fff; line-height: 1.2; }
+.wa-sc-sub  { font-size: 8px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 3px; }
+.wa-sc-dot  { width: 5px; height: 5px; border-radius: 50%; background: #25D366; }
+.wa-sc-escalated { background: var(--red); font-size: 8px; font-weight: 800; color: #fff; padding: 2px 6px; border-radius: 3px; margin-left: auto; }
+
+.wa-sc-body {
+  padding: 10px 9px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.wa-msg {
+  border-radius: 0 7px 7px 7px;
+  padding: 6px 8px;
+  font-size: 9px;
+  line-height: 1.4;
+  color: #e1ddd8;
+  max-width: 90%;
+}
+.wa-msg.in  { background: #202c33; }
+.wa-msg.out { background: #005c4b; border-radius: 7px 0 7px 7px; margin-left: auto; }
+.wa-msg b   { color: #25D366; }
+.wa-msg .ts { font-size: 7.5px; color: #667085; margin-top: 2px; text-align: right; }
+.wa-msg .ts .tick { color: #53bdeb; }
+
+/* COD confirm card (phone style) */
+.wa-cod-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 4px 0;
+}
+.wa-cod-header {
+  text-align: center;
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0a0a0a;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+.wa-cod-product {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+.wa-cod-img {
+  width: 28px; height: 28px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #f9a8a8, #e8344a);
+  flex-shrink: 0;
+}
+.wa-cod-lines { font-size: 7.5px; color: #333; line-height: 1.55; }
+.wa-cod-lines b { color: #0a0a0a; }
+.wa-cod-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.wa-cod-btn {
+  text-align: center;
+  padding: 5px 4px;
+  border-radius: 5px;
+  font-size: 8.5px;
+  font-weight: 700;
+}
+.wa-cod-btn.confirm { background: #e8f5e9; color: #1f9d62; border: 1px solid #a5d6a7; }
+.wa-cod-btn.cancel  { background: #fce4e4; color: #c62828; border: 1px solid #ef9a9a; }
+
+.wa-resolved {
+  font-size: 8px;
+  color: #25D366;
+  text-align: center;
+  padding: 6px 8px;
+  border-top: 1px solid #2a3440;
+  margin-top: auto;
+}
+
+/* urgent alert box */
+.wa-alert-box {
+  background: #1a0a0a;
+  border: 1px solid #7a1a1a;
+  border-radius: 7px;
+  padding: 7px 8px;
+  margin: 4px 0;
+}
+.wa-alert-title {
+  font-size: 8px;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.wa-alert-line {
+  font-size: 8px;
+  color: #e1ddd8;
+  line-height: 1.55;
+  margin-bottom: 2px;
+}
+.wa-alert-line span { color: var(--red); font-weight: 600; }
+.wa-alert-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 7px; }
+.wa-alert-btn { text-align: center; padding: 5px; border-radius: 5px; font-size: 8px; font-weight: 700; }
+.wa-alert-btn.resolve { background: var(--red); color: #fff; }
+.wa-alert-btn.view    { background: #2a2a2e; color: #ccc; }
+
+/* ── 3-PHONE MOCKUP STRIP ── */
+.phone-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 16px 14px;
+  background: #0a0a0b;
+}
+.phone-frame {
+  background: #111;
+  border: 2px solid #2a2a2e;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.phone-notch {
+  background: #111;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-notch-bar {
+  width: 30px; height: 4px;
+  background: #2a2a2e;
+  border-radius: 99px;
+}
+.phone-screen {
+  background: #fff;
+  flex: 1;
+  padding: 9px 9px 10px;
+  font-family: var(--body);
+}
+
+/* Screen 1 — Track */
+.tr-order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.tr-order-num { font-size: 11px; font-weight: 800; color: #0a0a0a; }
+.tr-badge-transit {
+  font-size: 7px; font-weight: 700;
+  background: #e8f0fe; color: #3b5bdb;
+  border: 1px solid #c2d3fb;
+  padding: 2px 7px; border-radius: 99px;
+  letter-spacing: 0.04em;
+}
+.tr-name { font-size: 8px; color: #999; margin-bottom: 9px; }
+.tr-product-img {
+  width: 100%; height: 55px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 9px;
+}
+.tr-stepper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.tr-step { flex: 1; text-align: center; position: relative; }
+.tr-step .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  margin: 0 auto 3px; position: relative; z-index: 2;
+}
+.tr-step .dot.done   { background: #3b5bdb; }
+.tr-step .dot.active { background: #3b5bdb; box-shadow: 0 0 0 3px rgba(59,91,219,.2); }
+.tr-step .dot.todo   { background: #e0e0e0; }
+.tr-step .ln { position: absolute; top: 4px; left: 0; right: 0; height: 2px; z-index:1; }
+.tr-step:first-child .ln { left: 50%; }
+.tr-step:last-child .ln  { right: 50%; }
+.tr-step .ln.done { background: #3b5bdb; }
+.tr-step .ln.todo { background: #e0e0e0; }
+.tr-step .lb { font-size: 6.5px; color: #aaa; font-weight: 600; line-height: 1.3; }
+.tr-step .lb.act { color: #3b5bdb; font-weight: 700; }
+.tr-eta-row {
+  display: flex; align-items: center; gap: 6px;
+  background: #f8f8f8; border-radius: 7px; padding: 6px 8px;
+  margin-bottom: 6px;
+}
+.tr-eta-icon { font-size: 12px; }
+.tr-eta-label { font-size: 8.5px; font-weight: 700; color: #0a0a0a; }
+.tr-eta-sub   { font-size: 7.5px; color: #999; }
+.tr-shipment-title {
+  font-size: 7px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #aaa; margin-bottom: 4px;
+}
+.tr-scan-row { display: flex; align-items: center; gap: 5px; }
+.tr-scan-dot { width: 6px; height: 6px; border-radius: 50%; background: #3b5bdb; flex-shrink: 0; }
+.tr-scan-label { font-size: 7.5px; font-weight: 700; color: #3b5bdb; }
+.tr-scan-loc   { font-size: 7px; color: #aaa; }
+
+/* Screen 2 — Return/Exchange selection */
+.rx-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 9px;
+}
+.rx-brand { font-size: 11px; font-weight: 900; letter-spacing: -0.01em; color: #0a0a0a; }
+.rx-menu  { font-size: 14px; color: #aaa; line-height: 1; }
+.rx-order-card {
+  display: flex; align-items: center; gap: 7px;
+  border: 1px solid #e8e9ec; border-radius: 8px; padding: 7px 8px;
+  margin-bottom: 9px;
+}
+.rx-order-img { width: 22px; height: 22px; border-radius: 4px; background: #111; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.rx-order-info { flex: 1; }
+.rx-order-name { font-size: 8.5px; font-weight: 800; color: #0a0a0a; }
+.rx-order-sub  { font-size: 7.5px; color: #999; }
+.rx-delivered-badge {
+  font-size: 7px; font-weight: 700; color: #1f9d62;
+  background: #e8f5ee; border: 1px solid #b7e5cf;
+  padding: 2px 6px; border-radius: 4px;
+}
+.rx-section-title {
+  font-size: 7.5px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: #aaa; margin-bottom: 6px;
+}
+.rx-options { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+.rx-option {
+  border: 1px solid #e8e9ec; border-radius: 8px; padding: 8px 7px;
+}
+.rx-option-icon { font-size: 13px; margin-bottom: 3px; }
+.rx-option-title { font-size: 9px; font-weight: 700; color: #0a0a0a; }
+.rx-option-desc  { font-size: 7.5px; color: #999; line-height: 1.3; margin-bottom: 5px; }
+.rx-fee-badge {
+  display: inline-block;
+  font-size: 7px; font-weight: 800;
+  background: #fff4f4; color: var(--red);
+  border: 1px solid #f5c0c0;
+  padding: 2px 6px; border-radius: 4px;
+}
+.rx-policy { font-size: 7.5px; color: #999; line-height: 1.45; }
+.rx-policy a { color: #3b5bdb; }
+
+/* Screen 3 — Review & Submit */
+.sub-back { font-size: 8.5px; color: #555; margin-bottom: 6px; }
+.sub-title { font-size: 12px; font-weight: 800; color: #0a0a0a; margin-bottom: 2px; }
+.sub-sub   { font-size: 8px; color: #aaa; margin-bottom: 9px; }
+.sub-row {
+  display: flex; justify-content: space-between;
+  padding: 5px 0; border-bottom: 1px solid #f3f3f3;
+  font-size: 8px;
+}
+.sub-row:last-of-type { border: none; }
+.sub-row .k { color: #999; text-transform: uppercase; letter-spacing: 0.06em; font-size: 7px; font-weight: 700; }
+.sub-row .v { color: #0a0a0a; font-weight: 700; }
+.sub-row .v.red { color: var(--red); }
+.sub-note {
+  background: #fffbf0; border: 1px solid #f5dfa0;
+  border-radius: 6px; padding: 7px 8px;
+  font-size: 7.5px; color: #856404; line-height: 1.45;
+  margin: 8px 0;
+}
+.sub-btn {
+  background: #0a0a0a; color: #fff;
+  text-align: center; padding: 9px;
+  border-radius: 7px; font-size: 9px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+
+/* flow strip below phone */
+.phone-flow-strip {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; padding: 12px 14px 14px;
+  background: #0a0a0b;
+}
+.pf-chip {
+  font-size: 8.5px; font-weight: 700;
+  border: 1px solid #2a2a2e; color: #cfcfd2;
+  padding: 4px 10px; border-radius: 99px;
+}
+.pf-arrow { color: #444; font-size: 10px; }
+.pf-none {
+  font-family: var(--mono);
+  font-size: 9px; letter-spacing: 0.12em;
+  color: var(--red); text-transform: uppercase;
+  padding-top: 2px;
+}
+
+/* ── PANEL MOCKUP (light dashboard) ── */
+.panel-page {
+  background: #f7f8fa;
+  display: flex;
+  font-family: var(--body);
+  min-height: 260px;
+}
+.panel-sidebar {
+  width: 110px;
+  background: #fff;
+  border-right: 1px solid #e8e9ec;
+  padding: 10px 0;
+  flex-shrink: 0;
+}
+.panel-logo {
+  font-family: var(--disp);
+  font-weight: 800;
+  font-size: 11px;
+  color: #0a0a0a;
+  padding: 2px 12px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 8px;
+}
+.panel-logo span { color: var(--red); }
+.panel-section-label {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
+  padding: 4px 12px 3px;
+}
+.panel-nav {
+  font-size: 8.5px;
+  color: #555;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: default;
+  border-radius: 0;
+}
+.panel-nav.active {
+  background: #f3f3f3;
+  color: #0a0a0a;
+  font-weight: 700;
+  border-left: 2px solid #0a0a0a;
+}
+.panel-nav .ni { font-size: 9px; }
+
+.panel-main {
+  flex: 1;
+  padding: 10px 11px;
+  overflow: hidden;
+}
+
+/* KPI row */
+.panel-kpi-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.pkpi {
+  background: #fff;
+  border: 1px solid #e8e9ec;
+  border-radius: 7px;
+  padding: 7px 8px;
+}
+.pkpi.green { background: #f0faf5; border-color: #b7e5cf; }
+.pkpi.red2  { background: #fff4f4; border-color: #f5b8b8; }
+.pkpi.warn  { background: #fffbf0; border-color: #f5dfa0; }
+.pkpi-label {
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 3px;
+}
+.pkpi-label.green { color: #1f9d62; }
+.pkpi-label.red2  { color: var(--red); }
+.pkpi-num {
+  font-family: 'Bebas Neue', var(--disp), sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  color: #0a0a0a;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.pkpi-num.green { color: #1f9d62; }
+.pkpi-num.red2  { color: var(--red); }
+.pkpi-sub { font-size: 7px; color: #aaa; margin-top: 2px; }
+.pkpi-warn-text {
+  font-size: 7.5px;
+  color: #b45309;
+  line-height: 1.45;
+}
+.pkpi-warn-text b { display: block; margin-bottom: 2px; font-size: 8px; }
+
+/* tabs */
+.panel-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e8e9ec;
+  margin-bottom: 7px;
+  overflow: hidden;
+}
+.ptab {
+  font-size: 7.5px;
+  font-weight: 600;
+  color: #999;
+  padding: 5px 7px;
+  white-space: nowrap;
+  cursor: default;
+  border-bottom: 2px solid transparent;
+}
+.ptab.active { color: #0a0a0a; border-bottom-color: #0a0a0a; font-weight: 700; }
+
+/* table */
+.panel-table { width: 100%; border-collapse: collapse; }
+.panel-table th {
+  font-size: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #bbb;
+  padding: 3px 5px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 700;
+}
+.panel-table td {
+  font-size: 8.5px;
+  color: #333;
+  padding: 5px 5px;
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+.panel-table tr:last-child td { border: none; }
+.td-order { font-weight: 800; color: #0a0a0a; font-size: 9px; }
+.td-avatar {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #e8e9ec;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  font-weight: 700;
+  color: #555;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.td-stage {
+  font-size: 7.5px;
+  font-weight: 700;
+  color: #6b3cf0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.td-stage::before { content: '●'; font-size: 6px; }
+.td-awb { font-size: 7px; color: #aaa; font-family: var(--mono); }
+.td-delivery { font-size: 7.5px; color: #1f9d62; font-weight: 600; }
+.pill-s {
+  font-size: 7px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--mono);
+}
+.pill-cod      { background: #0a0a0a; color: #fff; }
+.pill-prepaid  { background: #1f9d62; color: #fff; }
+.pill-confirmed { background: rgba(31,157,98,.12); color: #1f9d62; }
+.pill-transit   { background: rgba(99,102,241,.12); color: #a78bfa; }
+.pill-live      { background: rgba(31,157,98,.12); color: #1f9d62; }
+
+/* card feature tags */
+.card-tags {
+  padding: 0 22px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag-chip {
+  font-size: 10.5px;
+  color: #888;
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  border-radius: 99px;
+}
+
+/* ── CTA ── */
+.cta-block {
+  background: linear-gradient(135deg, var(--red-deep), var(--red));
+  border-radius: var(--radius);
+  padding: 44px 36px;
+  text-align: center;
+  margin: 8px 0 0;
+}
+.cta-block h2 {
+  font-family: var(--disp);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.025em;
+  color: #fff;
+  text-wrap: balance;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.cta-block p {
+  font-size: 14px;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 26px;
+}
+.cta-btn {
+  display: inline-block;
+  background: #0a0a0b;
+  color: #fff;
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px 32px;
+  border-radius: 99px;
+  text-decoration: none;
+  margin-bottom: 14px;
+}
+.cta-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(255,255,255,.5);
+  letter-spacing: 0.05em;
+}
+
+/* ── FOOTER ── */
+.email-footer {
+  padding: 36px 0 48px;
+  border-top: 1px solid var(--border2);
+  margin-top: 44px;
+}
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-logo { font-family: var(--disp); font-weight: 800; font-size: 15px; color: var(--muted2); }
+.footer-logo span { color: var(--red); }
+.footer-copy { font-size: 11.5px; color: var(--muted2); margin-top: 5px; }
+.footer-links { font-size: 12px; color: var(--muted2); display: flex; gap: 18px; margin-top: 4px; }
+.footer-links a { color: var(--muted2); text-decoration: none; }
+.footer-links a:hover { color: var(--text); }
+</style>
+
+<div class="email-header">
+  <div class="wrap">
+    <div class="header-inner">
+      <div class="logo">Antorti<span>q</span></div>
+      <div class="live-badge"><div class="live-dot"></div>Systems Live</div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Built for D2C · India · 2025</span>
+    <h1>Stop losing orders<br>to a <span class="hl">broken post-purchase.</span></h1>
+    <p>
+      We plug directly into your Shopify store and handle everything after the order —
+      WhatsApp confirmations, live tracking, returns, and an ops panel built for your team.
+      3-day setup. One-time cost. No subscriptions.
+    </p>
+    <div class="stat-strip">
+      <div class="stat">
+        <span class="stat-num">38%</span>
+        <span class="stat-lbl">COD orders never confirmed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4.2×</span>
+        <span class="stat-lbl">RTO reduction seen</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3 days</span>
+        <span class="stat-lbl">to go fully live</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Product Suite — What You Get</div>
+
+  <!-- CARD 1: WA Order Confirmation -->
+  <div class="cc-card">
+    <div class="cc-card-label">
+      <div class="tag">WhatsApp Automation</div>
+      <h4>Order Confirmation & Updates</h4>
+      <p>Automated COD confirmation, shipping alerts, and delivery nudges — straight to your customer's WhatsApp the moment each stage changes.</p>
+    </div>
+    <div class="cc-browser">
+      <div class="cc-browser-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="url">Antortiq Support · WhatsApp</div>
+      </div>
+      <div class="wa-scenarios">
+
+        <!-- Card 1: COD Confirmation (from phone mockup) -->
+        <div class="wa-scenario">
+          <div class="wa-sc-head">
+            <div class="wa-sc-avatar">👤</div>
+            <div>
+              <div class="wa-sc-name">Rahul Sharma · #1847</div>
+              <div class="wa-sc-sub"><div class="wa-sc-dot"></div>Customer · Online</div>
+            </div>
+          </div>
+          <div class="wa-sc-body">
+            <div class="wa-msg out">
+              <div class="wa-cod-card">
+                <div class="wa-cod-header">■ ANTORTIQ ■<br>ORDER CONFIRMATION REQUIRED</div>
+                <div class="wa-cod-product">
+                  <div class="wa-cod-img"></div>
+                  <div class="wa-cod-lines">
+                    ORDER : <b>#2904</b><br>
+                    ITEM&nbsp; : Miami Gingham · M × 1<br>
+                    TOTAL : <b>₹1,799.00</b><br>
+                    SHIP&nbsp; : 12 Andheri West, Mumbai
+                  </div>
+                </div>
+                <div class="wa-cod-btns">
+                  <div class="wa-cod-btn confirm">✅ Confirm</div>
+                  <div class="wa-cod-btn cancel">❌ Cancel</div>
+                </div>
+              </div>
+              <div class="ts">8:58 pm <span class="tick">✓✓</span></div>
+            </div>
+            <div class="wa-msg in">
+              ✅ Confirm Order
+              <div class="ts">8:41 pm <span class="tick">✓✓</span></div>
+            </div>
+            <div class="wa-msg out">
+              🎉 Your order <b>#2904</b> is confirmed!<br><br>
+              It'll be dispatched within <b>24–48 hrs</b>. You'll receive your tracking link here as soon as it ships. 📦
+              <div class="ts">8:41 pm <span class="tick">✓✓</span></div>
+            </div>
+          </div>
+          <div class="wa-resolved">✓ Order confirmed — 0 human minutes</div>
+        </div>
+
+        <!-- Card 2: Order Tracking Query -->
+        <div class="wa-scenario">
+          <div class="wa-sc-head">
+            <div class="wa-sc-avatar">👤</div>
+            <div>
+              <div class="wa-sc-name">Antortiq Support</div>
+              <div class="wa-sc-sub"><div class="wa-sc-dot"></div>Online · AI-powered</div>
+            </div>
+          </div>
+          <div class="wa-sc-body">
+            <div class="wa-msg in">hey where is my order #2847 i ordered 3 days ago<div class="ts">2:14 PM</div></div>
+            <div class="wa-msg out">
+              Hey Priya! 👋 Found your order.<br><br>
+              <b>Order #2847</b> — OUTLAW FLANNEL M<br>
+              🚚 In Transit with Delhivery<br>
+              📍 Last scan: Pune hub<br>
+              🕐 ETA: Tomorrow by 8 PM<br><br>
+              Track live → delhivery.com/track/14422814
+              <div class="ts">2:14 PM <span class="tick">✓✓</span></div>
+            </div>
+            <div class="wa-msg in">ok thanks<div class="ts">2:15 PM</div></div>
+            <div class="wa-msg out">You're welcome! 😊 Reply anytime if you need help.<div class="ts">2:15 PM <span class="tick">✓✓</span></div></div>
+          </div>
+          <div class="wa-resolved">✓ Resolved automatically — 0 human minutes</div>
+        </div>
+
+        <!-- Card 3: Exchange + Escalation -->
+        <div class="wa-scenario">
+          <div class="wa-sc-head">
+            <div class="wa-sc-avatar">😤</div>
+            <div>
+              <div class="wa-sc-name">Antortiq Support</div>
+              <div class="wa-sc-sub"><div class="wa-sc-dot"></div>Online · AI-powered</div>
+            </div>
+            <div class="wa-sc-escalated">ESCALATED</div>
+          </div>
+          <div class="wa-sc-body">
+            <div class="wa-msg in">this is absolute garbage, i want my full money back NOW i have been waiting 8 days<div class="ts">4:07 PM</div></div>
+            <div class="wa-msg out">
+              Hi, I completely understand your frustration and I'm really sorry for the experience. Let me pull up your order right now.<br><br>
+              <b>Order 2796</b> — 8 days, no delivery. That's not okay.<br><br>
+              I'm flagging this to our team immediately for a priority resolution. You'll hear back within 30 minutes.
+              <div class="ts">4:07 PM <span class="tick">✓✓</span></div>
+            </div>
+            <div class="wa-alert-box">
+              <div class="wa-alert-title">⚡ Urgent — Admin Alert</div>
+              <div class="wa-alert-line"><b>Harsh — #2796</b> is demanding a refund.</div>
+              <div class="wa-alert-line">🕐 Waiting 8 days · Delivery failed twice</div>
+              <div class="wa-alert-line">Sentiment: <span>Angry / High Risk</span></div>
+              <div class="wa-alert-line">Your <span>response needed in 30 min</span></div>
+              <div class="wa-alert-btns">
+                <div class="wa-alert-btn resolve">⚡ Resolve Now</div>
+                <div class="wa-alert-btn view">View Order</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="card-tags">
+      <span class="tag-chip">COD confirm flow</span>
+      <span class="tag-chip">Shipping alerts</span>
+      <span class="tag-chip">OFD ping</span>
+      <span class="tag-chip">Delivered confirmation</span>
+      <span class="tag-chip">Shopify webhook powered</span>
+    </div>
+  </div>
+
+  <!-- CARD 2: Track, R&E Page -->
+  <div class="cc-card">
+    <div class="cc-card-label">
+      <div class="tag">Customer-Facing Page</div>
+      <h4>Track, Return & Exchange Page</h4>
+      <p>A single branded page that switches screens by order stage. Track if shipped. Confirm if pending. Return or exchange if delivered — sidebar always visible.</p>
+    </div>
+    <div style="margin: 0 18px 0;">
+      <div class="phone-strip">
+
+        <!-- Phone 1: Tracking -->
+        <div class="phone-frame">
+          <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+          <div class="phone-screen">
+            <div class="tr-order-row">
+              <div class="tr-order-num">#2918</div>
+              <div class="tr-badge-transit">IN TRANSIT</div>
+            </div>
+            <div class="tr-name">Namra Patel</div>
+            <div class="tr-product-img">👕</div>
+            <div class="tr-stepper">
+              <div class="tr-step">
+                <div class="ln done"></div><div class="dot done"></div>
+                <div class="lb">CONFIRMED</div>
+              </div>
+              <div class="tr-step">
+                <div class="ln done"></div><div class="dot done"></div>
+                <div class="lb">DISPATCHED</div>
+              </div>
+              <div class="tr-step">
+                <div class="ln done"></div><div class="dot active"></div>
+                <div class="lb act">TRANSIT</div>
+              </div>
+              <div class="tr-step">
+                <div class="ln todo"></div><div class="dot todo"></div>
+                <div class="lb">DELIVERY</div>
+              </div>
+              <div class="tr-step">
+                <div class="ln todo"></div><div class="dot todo"></div>
+                <div class="lb">DELIVERED</div>
+              </div>
+            </div>
+            <div class="tr-eta-row">
+              <div class="tr-eta-icon">📦</div>
+              <div>
+                <div class="tr-eta-label">On its way to you</div>
+                <div class="tr-eta-sub">Expected in 2–6 business days</div>
+              </div>
+            </div>
+            <div class="tr-shipment-title">Shipment Updates</div>
+            <div class="tr-scan-row">
+              <div class="tr-scan-dot"></div>
+              <div>
+                <div class="tr-scan-label">IN_TRANSIT</div>
+                <div class="tr-scan-loc">18-Aug-2026 10:10 AM · Chandigarh</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone 2: Return / Exchange selection -->
+        <div class="phone-frame">
+          <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+          <div class="phone-screen">
+            <div class="rx-top">
+              <div class="rx-brand">CROSCROW</div>
+              <div class="rx-menu">≡</div>
+            </div>
+            <div class="rx-order-card">
+              <div class="rx-order-img">👕</div>
+              <div class="rx-order-info">
+                <div class="rx-order-name">SICOS NYC – 001 CORE</div>
+                <div class="rx-order-sub">#2892 · ₹1,535 · COD</div>
+              </div>
+              <div class="rx-delivered-badge">DELIVERED</div>
+            </div>
+            <div class="rx-section-title">Start a New Request</div>
+            <div class="rx-options">
+              <div class="rx-option">
+                <div class="rx-option-icon">↩</div>
+                <div class="rx-option-title">Return</div>
+                <div class="rx-option-desc">Get a refund for items you don't want</div>
+                <div class="rx-fee-badge">₹199 FEE</div>
+              </div>
+              <div class="rx-option">
+                <div class="rx-option-icon">⇅</div>
+                <div class="rx-option-title">Exchange</div>
+                <div class="rx-option-desc">Swap for a different size or colour</div>
+                <div class="rx-fee-badge">₹199 FEE</div>
+              </div>
+            </div>
+            <div class="rx-policy">Policy: Returns & exchanges accepted within 7 days of delivery. Items must be unused and in original packaging. <a href="#">Questions? Chat with us.</a></div>
+          </div>
+        </div>
+
+        <!-- Phone 3: Review & Submit -->
+        <div class="phone-frame">
+          <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+          <div class="phone-screen">
+            <div class="rx-top" style="margin-bottom:4px;">
+              <div class="rx-brand">CROSCROW</div>
+              <div class="rx-menu">≡</div>
+            </div>
+            <div class="sub-back">← Back</div>
+            <div class="sub-title">Review & Submit</div>
+            <div class="sub-sub">Double-check before sending</div>
+            <div class="sub-row"><span class="k">Order</span><span class="v">#2918</span></div>
+            <div class="sub-row"><span class="k">Type</span><span class="v">Exchange</span></div>
+            <div class="sub-row"><span class="k">SICOS NYC – 001 CORE</span><span class="v">S → L</span></div>
+            <div class="sub-row"><span class="k">Reason</span><span class="v">Want a different size</span></div>
+            <div class="sub-row"><span class="k">Processing Fee</span><span class="v red">₹199</span></div>
+            <div class="sub-note">A ₹199 processing fee covers return pickup & restocking. It's collected via Razorpay before we process your request.</div>
+            <div class="sub-btn">💳 PAY ₹199 & SUBMIT</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="phone-flow-strip">
+        <div class="pf-chip">TRACKED</div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-chip">REQUESTED</div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-chip">FEE PAID</div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-chip">PICKUP BOOKED</div>
+        <div style="width:1px; background:#2a2a2e; height:14px; margin:0 8px;"></div>
+        <div class="pf-none">Your involvement: none</div>
+      </div>
+    </div>
+    <div class="card-tags">
+      <span class="tag-chip">Stage-adaptive UI</span>
+      <span class="tag-chip">Returns sidebar always visible</span>
+      <span class="tag-chip">Brand colored</span>
+      <span class="tag-chip">No login needed</span>
+      <span class="tag-chip">Live Shopify data</span>
+    </div>
+  </div>
+
+  <!-- CARD 3: Order Panel -->
+  <div class="cc-card">
+    <div class="cc-card-label">
+      <div class="tag">Ops Dashboard</div>
+      <h4>Full Order Management Panel</h4>
+      <p>Live overview of all orders across connected brands — confirmation rates, lead activity, courier stages, and admin alerts. Built for your ops team.</p>
+    </div>
+    <div class="cc-browser">
+      <div class="cc-browser-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="url">antortiq.onrender.com/admin</div>
+      </div>
+      <div class="panel-page">
+        <!-- Sidebar -->
+        <div class="panel-sidebar">
+          <div class="panel-logo">Antorti<span>q</span>.</div>
+          <div class="panel-section-label">Store</div>
+          <div class="panel-nav"><span class="ni">●</span> Dashboard</div>
+          <div class="panel-nav active"><span class="ni">📦</span> My Orders</div>
+          <div class="panel-nav"><span class="ni">🛍</span> My Products</div>
+          <div class="panel-nav"><span class="ni">🚚</span> Shipping</div>
+          <div class="panel-nav"><span class="ni">↩</span> Returns</div>
+          <div class="panel-nav"><span class="ni">💬</span> Support Chats</div>
+          <div class="panel-section-label" style="margin-top:6px;">Finance</div>
+          <div class="panel-nav"><span class="ni">📊</span> Reports</div>
+          <div class="panel-nav"><span class="ni">💰</span> Settlements</div>
+          <div class="panel-nav"><span class="ni">🔗</span> Shopify Sync</div>
+        </div>
+
+        <!-- Main -->
+        <div class="panel-main">
+          <!-- KPI Row -->
+          <div class="panel-kpi-row">
+            <div class="pkpi">
+              <div class="pkpi-label">Dispatch Rate · 30 days</div>
+              <div class="pkpi-num">81%</div>
+              <div class="pkpi-sub">108/133 orders dispatched</div>
+            </div>
+            <div class="pkpi green">
+              <div class="pkpi-label green">✓ Revenue Dispatched</div>
+              <div class="pkpi-num green">₹1,77,648</div>
+              <div class="pkpi-sub">108 orders shipped</div>
+            </div>
+            <div class="pkpi red2">
+              <div class="pkpi-label red2">🚨 Revenue Stuck</div>
+              <div class="pkpi-num red2">₹44,594</div>
+              <div class="pkpi-sub">25 orders waiting</div>
+            </div>
+            <div class="pkpi warn">
+              <div class="pkpi-warn-text"><b>Almost there!</b>25 orders confirmed but not yet shipped — don't let them go cold.</div>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="panel-tabs">
+            <div class="ptab">All (169)</div>
+            <div class="ptab">New (10)</div>
+            <div class="ptab">Confirmed (25)</div>
+            <div class="ptab active">Pickup Pending (24)</div>
+            <div class="ptab">In Transit (10)</div>
+            <div class="ptab">Delivered (41)</div>
+            <div class="ptab">RTO (17)</div>
+          </div>
+
+          <!-- Table -->
+          <table class="panel-table">
+            <tr>
+              <th>#</th><th>Order</th><th>Customer</th><th>Products</th><th>Stage</th><th>Payment</th><th>Revenue</th>
+            </tr>
+            <tr>
+              <td style="color:#aaa;">1</td>
+              <td class="td-order">#2868</td>
+              <td><span class="td-avatar">DP</span>Dhola pahat</td>
+              <td style="font-size:7.5px;">SICOS NYC – 001 CORE M</td>
+              <td><div class="td-stage">PICKUP</div><div class="td-awb">Delhivery 14422814...</div></td>
+              <td><span class="pill-s pill-cod">COD</span></td>
+              <td style="font-weight:700;">₹1,486</td>
+            </tr>
+            <tr>
+              <td style="color:#aaa;">2</td>
+              <td class="td-order">#2864</td>
+              <td><span class="td-avatar">KL</span>Karan Lakhani</td>
+              <td style="font-size:7.5px;">SICOS NYC – 001 CORE S</td>
+              <td><div class="td-stage">PICKUP</div><div class="td-awb">Delhivery 14422814...</div></td>
+              <td><span class="pill-s pill-prepaid">PREPAID</span></td>
+              <td style="font-weight:700;">₹1,486</td>
+            </tr>
+            <tr>
+              <td style="color:#aaa;">3</td>
+              <td class="td-order">#2857</td>
+              <td><span class="td-avatar">RS</span>Rahul Sharma</td>
+              <td style="font-size:7.5px;">OUTLAW FLANNEL OVERSHIRT M</td>
+              <td><div class="td-stage">PICKUP</div><div class="td-awb">Delhivery 14422819...</div></td>
+              <td><span class="pill-s pill-prepaid">PREPAID</span></td>
+              <td style="font-weight:700;">₹2,772</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-tags">
+      <span class="tag-chip">Multi-brand support</span>
+      <span class="tag-chip">Live Shopify sync</span>
+      <span class="tag-chip">WA lead tracking</span>
+      <span class="tag-chip">Admin alerts</span>
+      <span class="tag-chip">One server, all brands</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Get your store live in 3 days — not 3 months.</h2>
+    <p>One-time setup. No subscriptions. No per-order fees. Just results.</p>
+    <a class="cta-btn" href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20Antortiq%20for%20my%20Shopify%20store">
+      Book a Free Demo on WhatsApp →
+    </a>
+    <div class="cta-note">Typical range: ₹3,999 – ₹24,999 · One-time · 3-day delivery</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="email-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Antorti<span>q</span></div>
+        <div class="footer-copy">© 2025 Antortiq · Built for Indian D2C brands</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">Unsubscribe</a>
+        <a href="#">View in browser</a>
+      </div>
+    </div>
+  </div>
+</div>

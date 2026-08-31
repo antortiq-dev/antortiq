@@ -11,6 +11,7 @@ const memory = require('./memory');
 const { upsertLead } = require('./leads');
 const { sendAdminAlert, sendDailyDigest } = require('./escalation');
 const { sendPitchEmail } = require('../lib/mailer');
+const { handleConfirmationResponse } = require('./order-confirm');
 
 const logger = pino({ level: 'silent' });
 
@@ -125,10 +126,17 @@ async function handleMessage(sock, msg) {
   const jid = msg.key.remoteJid;
   if (!jid || jid.endsWith('@g.us')) return;
 
+  // Handle interactive list response (order confirmation Yes/No)
+  if (msg.message?.listResponseMessage) {
+    const handled = await handleConfirmationResponse(sock, msg);
+    if (handled) return;
+  }
+
   const text = (
     msg.message?.conversation ||
     msg.message?.extendedTextMessage?.text ||
-    msg.message?.buttonsResponseMessage?.selectedDisplayText || ''
+    msg.message?.buttonsResponseMessage?.selectedDisplayText ||
+    msg.message?.listResponseMessage?.title || ''
   ).trim();
   if (!text) return;
 
@@ -202,6 +210,40 @@ async function handleMessage(sock, msg) {
 
 async function handleAdminCommand(sock, adminJid, text) {
   const cmd = text.trim().toLowerCase();
+
+  // !testconfirm 91XXXXXXXXXX — send a test order confirmation list message
+  if (cmd.startsWith('!testconfirm')) {
+    const num = text.trim().slice(12).trim().replace(/\D/g, '');
+    if (!num) {
+      await sock.sendMessage(adminJid, { text: 'Send: *!testconfirm 916375668971*' });
+      return;
+    }
+    const testJid = `${num}@s.whatsapp.net`;
+    await sock.sendMessage(testJid, {
+      listMessage: {
+        title: 'Order Confirmation Required',
+        text: '■ CROSCROW ■\nCONFIRM YOUR ORDER\n' +
+              '────────────────────────\n' +
+              'ORDER  :  ##3106\n' +
+              'ITEMS  :  MIAMI - CORE 002 - S × 1,\n' +
+              'TOTAL  :  ₹1835.00\n' +
+              '────────────────────────\n' +
+              'SHIP TO : raisinghnagar, GANGANAGAR',
+        footerText: 'Antortiq',
+        buttonText: 'Select Option',
+        listType: 1,
+        sections: [{
+          title: 'Choose an action',
+          rows: [
+            { title: '✅  Yes, Confirm Order', description: 'Your order will be dispatched within 24–48 hrs', rowId: 'confirm_yes_test001' },
+            { title: '❌  No, Cancel Order',   description: 'Your order will be cancelled', rowId: 'confirm_no_test001' },
+          ],
+        }],
+      },
+    });
+    await sock.sendMessage(adminJid, { text: `✅ Test confirmation sent to +${num}` });
+    return;
+  }
 
   // !pitch email@x.com — send pitch email to a brand
   if (cmd.startsWith('!pitch')) {
