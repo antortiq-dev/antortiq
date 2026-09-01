@@ -162,8 +162,8 @@ async function handleMessage(sock, msg) {
       try {
         await sendDemoEmails(toEmail);
         await sock.sendMessage(jid, {
-          text: `Sent to *${toEmail}* — 3 emails in your inbox:\n\n` +
-                `— Order Shipped\n— Out for Delivery\n— Return/Exchange (vendor view)\n\n` +
+          text: `✅ Sent to *${toEmail}* — 3 emails in your inbox:\n\n` +
+                `📦 Order Shipped\n🚚 Out for Delivery\n🔄 Return/Exchange (vendor view)\n\n` +
                 `That's the full automated flow. Zero manual work.\n\n` +
                 `Want this live on your store? → wa.me/918209544626`,
         });
@@ -264,13 +264,13 @@ async function handleMessage(sock, msg) {
 
     if (isWaContext) {
       // Send WA templates directly
-      await sock.sendMessage(jid, { text: `Here's what your customers receive —` });
+      await sock.sendMessage(jid, { text: `Here's what your customers receive on WhatsApp 👇` });
       for (const m of [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]) {
         await new Promise(r => setTimeout(r, 1400));
         await sock.sendMessage(jid, { text: m });
       }
       await new Promise(r => setTimeout(r, 1500));
-      await sock.sendMessage(jid, { text: `Fully automated. Fires the moment your courier updates.\n\nWant this on your store? → wa.me/918209544626` });
+      await sock.sendMessage(jid, { text: `Fully automated 🚀 Fires the moment your courier updates.\n\nWant this on your store? → wa.me/918209544626` });
     } else if (isEmailContext) {
       pendingEmailCapture.set(jid, 'awaiting_email');
       setTimeout(() => pendingEmailCapture.delete(jid), 10 * 60 * 1000);
@@ -288,7 +288,7 @@ async function handleMessage(sock, msg) {
     if (!state.freebieTeased) {
       await new Promise(r => setTimeout(r, 2000));
       await sock.sendMessage(jid, {
-        text: `One more thing — anyone who takes 2 services gets a free add-on from us.\nAsk me what it is.`,
+        text: `One more thing — anyone who takes 2 services gets a free add-on 🎁\nAsk me what it is.`,
       });
       state.freebieTeased = true;
     }
@@ -333,8 +333,8 @@ async function handleMessage(sock, msg) {
   if (isEmailQuery)     state.servicesMentioned.add('email');
 
   const FREEBIE_CAPTION =
-    `*Auto Contact Saver — Free Add-on*\n\n` +
-    `Every order auto-saves the customer's number on your phone as *Harsh #2076*.\n\n` +
+    `🎁 *Auto Contact Saver — Free Add-on*\n\n` +
+    `Every order auto-saves the customer's number on your phone as *Harsh #2076* 📲\n\n` +
     `Next time they call — you already know it's Harsh, order #2076. You pick up and say "Hey Harsh" instead of "hello, who is this?"\n\n` +
     `Small detail. Looks very professional. Free with any 2 services.\n\n` +
     `wa.me/918209544626`;
@@ -367,7 +367,7 @@ async function handleMessage(sock, msg) {
     const svc = [...state.servicesMentioned][0];
     const svcLabel = { wa: 'WhatsApp automation', track: 'tracking + returns page', dashboard: 'dashboard', email: 'email system' }[svc] || 'this';
     await sock.sendMessage(jid, {
-      text: `Also — if you go for *${svcLabel}* and any one other service, you get a free add-on from us.\n\nAsk me what it is.`,
+      text: `Also — if you go for *${svcLabel}* + any one other, you get a free add-on 🎁\n\nAsk me what it is.`,
     });
   }
 
