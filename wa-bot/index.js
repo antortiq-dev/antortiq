@@ -12,6 +12,7 @@ const { upsertLead } = require('./leads');
 const { sendAdminAlert, sendDailyDigest } = require('./escalation');
 const { sendPitchEmail } = require('../lib/mailer');
 const { handleConfirmationResponse } = require('./order-confirm');
+const { getDemoMessages } = require('./demos');
 
 const logger = pino({ level: 'silent' });
 
@@ -201,10 +202,43 @@ async function handleMessage(sock, msg) {
   console.log(`[wa-bot] 📩 ${pushName || jid.slice(0,12)}: ${text.slice(0,80)}`);
 
   const state = memory.getOrCreate(jid, pushName);
+  // Init extra flags if missing
+  if (!state.freebieTeased)   state.freebieTeased = false;
+  if (!state.demoSent)        state.demoSent = false;
+  if (!state.servicesMentioned) state.servicesMentioned = new Set();
+
   memory.addMessage(jid, 'user', text);
   const scored = memory.scoreMessage(jid, text);
   if (scored > 0) console.log(`  ↑ score ${state.leadScore} (+${scored})`);
   upsertLead(state).catch(() => {});
+
+  // ── Demo request detection ─────────────────────────────────────
+  const isDemoRequest = /\b(demo|test message|show me|sample|example|send me one|try it|how does it look|what does it look|can you show)\b/i.test(text);
+  if (isDemoRequest) {
+    const msgs = getDemoMessages(text);
+    await sock.sendPresenceUpdate('composing', jid);
+    await new Promise(r => setTimeout(r, 800));
+    await sock.sendPresenceUpdate('paused', jid);
+    await sock.sendMessage(jid, { text: '👇 Here\'s exactly what your customers will receive —' });
+    for (const m of msgs) {
+      await new Promise(r => setTimeout(r, 1200));
+      await sock.sendMessage(jid, { text: m });
+    }
+    await new Promise(r => setTimeout(r, 1500));
+    await sock.sendMessage(jid, {
+      text: `That's fully automated — triggers the moment our system gets the update from your courier 🚀\n\nWant this live on your store? → wa.me/918209544626`,
+    });
+    state.demoSent = true;
+    // Tease freebie after demo if not yet teased
+    if (!state.freebieTeased) {
+      await new Promise(r => setTimeout(r, 2000));
+      await sock.sendMessage(jid, {
+        text: `Oh — and anyone who signs up gets a free add-on 👀\nIt's something that'll completely change how you handle customer calls. Ask me what it is 😄`,
+      });
+      state.freebieTeased = true;
+    }
+    return;
+  }
 
   await sock.sendPresenceUpdate('composing', jid);
   const reply = await getReply(state.messages, text);
@@ -219,9 +253,15 @@ async function handleMessage(sock, msg) {
   const isTrackQuery     = /track|tracking|return|exchange|order page|customer page|post.?purchase/i.test(text);
   const isDashboardQuery = /dashboard|analytics|admin panel|crm|reports?|insights?|orders? panel/i.test(text);
   const isEmailQuery     = /email|pitch email|email marketing|mail|newsletter/i.test(text);
-  const isFreebieQuery   = /free|freebie|free.?add.?on|bonus|what.?s free|gift|extra|surprise/i.test(text);
+  const isFreebieQuery   = /free|freebie|free.?add.?on|bonus|what.?s free|gift|extra|surprise|what is it|tell me/i.test(text);
 
-  if (isFreebieQuery) {
+  // Track which services this customer has shown interest in
+  if (isWaQuery)        state.servicesMentioned.add('wa');
+  if (isTrackQuery)     state.servicesMentioned.add('track');
+  if (isDashboardQuery) state.servicesMentioned.add('dashboard');
+  if (isEmailQuery)     state.servicesMentioned.add('email');
+
+  if (isFreebieQuery && state.freebieTeased) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/v4Y4Nnrz/antortiq-ads-5.png' }, caption: reply });
   } else if (isWaQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/1cFVTXJ/2.png' }, caption: reply });
@@ -235,6 +275,15 @@ async function handleMessage(sock, msg) {
     await sock.sendMessage(jid, { text: reply }, { quoted: msg });
   }
   console.log(`  ↩ replied (${reply.length}c)`);
+
+  // ── Smart freebie tease (once per customer, after 2nd service interest) ──
+  if (!state.freebieTeased && state.servicesMentioned.size >= 2) {
+    state.freebieTeased = true;
+    await new Promise(r => setTimeout(r, 2500));
+    await sock.sendMessage(jid, {
+      text: `Oh and one more thing — anyone who takes 2 services gets a free add-on from us 👀\nIt's something that'll change how you handle customer calls forever. Ask me what it is 😄`,
+    });
+  }
 
   const wantsCall = /\b(call|talk|speak|connect|human|real person|call me|hop on|get on a call|schedule a call|want to call|wanna call)\b/i.test(text);
   if (wantsCall && !state.callRequested) {
