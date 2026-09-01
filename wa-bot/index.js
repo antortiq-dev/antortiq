@@ -13,27 +13,7 @@ const { sendAdminAlert, sendDailyDigest } = require('./escalation');
 const { sendPitchEmail } = require('../lib/mailer');
 const { handleConfirmationResponse } = require('./order-confirm');
 const { getDemoMessages } = require('./demos');
-const { emailShipped, emailOfd, emailReturnVendor } = require('../lib/demo-emails');
-const nodemailer = require('nodemailer');
-
-function getMailTransport() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-  });
-}
-
-async function sendDemoEmails(toEmail) {
-  const transport = getMailTransport();
-  const from = `"Antortiq" <${process.env.SMTP_USER}>`;
-  const templates = [emailShipped(), emailOfd(), emailReturnVendor()];
-  for (const t of templates) {
-    await transport.sendMail({ from, to: toEmail, subject: t.subject, html: t.html });
-    await new Promise(r => setTimeout(r, 800));
-  }
-}
+const { sendDemoEmails } = require('../lib/demo-emails');
 
 // Per-JID pending email capture: jid → 'awaiting_email'
 const pendingEmailCapture = new Map();
