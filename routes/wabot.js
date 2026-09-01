@@ -63,6 +63,33 @@ router.get('/wa-qr', (req, res) => {
     <meta http-equiv="refresh" content="5">`));
 });
 
+// GET /wa-reset?pw=... — wipe MongoDB auth and restart bot (forces fresh QR)
+router.get('/wa-reset', async (req, res) => {
+  const QR_PASSWORD = process.env.WA_QR_PASSWORD || 'antortiq2024';
+  if (req.query.pw !== QR_PASSWORD) return res.status(403).send('Forbidden');
+
+  try {
+    const mongoose = require('mongoose');
+    await mongoose.connection.collection('wabotauths').deleteMany({});
+    console.log('[wa-reset] Auth cleared — restarting bot');
+
+    const { startBot, botState } = require('../wa-bot/index');
+    if (botState.sock) {
+      try { botState.sock.end(); } catch {}
+      botState.sock = null;
+    }
+    setTimeout(() => startBot(), 1000);
+
+    return res.send(page('Resetting...', `
+      <div style="color:#f59e0b;font-size:36px;margin-bottom:12px">🔄</div>
+      <div style="color:#fff;font-weight:700">Auth cleared. Bot restarting...</div>
+      <div style="color:#6b7280;font-size:13px;margin-top:8px">QR will appear in ~10 seconds</div>
+      <meta http-equiv="refresh" content="8;url=/wa-qr?pw=${QR_PASSWORD}">`));
+  } catch (e) {
+    return res.send(page('Error', `<div style="color:#ef4444">${e.message}</div>`));
+  }
+});
+
 function page(title, body) {
   return `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Antortiq Bot — ${title}</title>
