@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const { Resend } = require('resend');
+const nodemailer = require('nodemailer');
 const { sendPitchEmail } = require('../lib/mailer');
 
-function getResend() {
-  return new Resend(process.env.RESEND_API_KEY);
+function getTransport() {
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    secure: false,
+    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+  });
 }
 
 const ADMIN_KEY = process.env.ADMIN_API_KEY || 'antortiq-admin-2025';
@@ -37,16 +42,15 @@ router.post('/proposal', auth, async (req, res) => {
   }
   if (!html) return res.status(400).json({ error: 'Proposal HTML missing' });
   try {
-    const resend = getResend();
-    const { data, error } = await resend.emails.send({
-      from: 'Antortiq <onboarding@resend.dev>',
+    const transport = getTransport();
+    const info = await transport.sendMail({
+      from: `"Antortiq" <${process.env.SMTP_USER}>`,
       to,
       subject: `Your Antortiq Proposal${clientName ? ' — ' + clientName : ''}`,
       html,
       text: `Hi${clientName ? ' ' + clientName : ''},\n\nPlease find your custom Antortiq proposal below.\n\nIf you have any questions, reply to this email or WhatsApp us at wa.me/918209544626\n\n— Antortiq Team`,
     });
-    if (error) throw new Error(error.message);
-    console.log(`[mailer] Proposal sent to ${to} — ${data.id}`);
+    console.log(`[mailer] Proposal sent to ${to} — ${info.messageId}`);
     res.json({ ok: true, sent_to: to });
   } catch (e) {
     console.error('[mailer proposal]', e.message);
