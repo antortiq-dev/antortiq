@@ -214,11 +214,18 @@ async function handleMessage(sock, msg) {
   await new Promise(r => setTimeout(r, delay));
   await sock.sendPresenceUpdate('paused', jid);
 
-  // If message is about WhatsApp — send screenshot first, then reply
-  const isWaQuery = /whatsapp|whats app|wa bot|wa integration|wp bot|wp integration/i.test(text);
+  // Send relevant screenshot based on query topic
+  const isWaQuery     = /whatsapp|whats app|wa bot|wa integration|wp bot|wp integration/i.test(text);
+  const isTrackQuery  = /track|tracking|return|exchange|order page|customer page|post.?purchase/i.test(text);
+
   if (isWaQuery) {
     await sock.sendMessage(jid, {
       image: { url: 'https://i.ibb.co/1cFVTXJ/2.png' },
+      caption: reply,
+    });
+  } else if (isTrackQuery) {
+    await sock.sendMessage(jid, {
+      image: { url: 'https://i.ibb.co/6c3pynwN/antortiq-ads-2.png' },
       caption: reply,
     });
   } else {
