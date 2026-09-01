@@ -168,7 +168,7 @@ async function handleMessage(sock, msg) {
                 `Want this live on your store? → wa.me/918209544626`,
         });
       } catch (e) {
-        console.error('[demo-email] send error:', e.message);
+        console.error('[demo-email] send error:', e.message, e.stack);
         await sock.sendMessage(jid, { text: `Couldn't send to that address — try once more?` });
       }
       return;
