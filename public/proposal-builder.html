@@ -119,6 +119,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   <div class="summary"><span id="summaryText">Select services to see total</span></div>
   <div style="display:flex;gap:12px">
     <button class="btn btn-ghost" onclick="generate(false)">&#128065; Preview</button>
+    <button class="btn btn-ghost" id="sendBtn" onclick="sendProposal()">&#9993; Send to Client</button>
     <button class="btn btn-primary" onclick="generate(true)">&#11015; Download PDF</button>
   </div>
 </div>
@@ -806,6 +807,45 @@ function generate(doPrint) {
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   window.open(url, '_blank');
+}
+
+async function sendProposal() {
+  const sel = getSelected();
+  if (!sel.length) { alert('Select at least one service before sending.'); return; }
+  const to = document.getElementById('clientEmail').value.trim();
+  if (!to || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) {
+    alert('Add a client email address in the Client Details section first.'); return;
+  }
+  const clientName = document.getElementById('clientName').value.trim();
+  const html = buildProposal(false);
+  const btn = document.getElementById('sendBtn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/mail/proposal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-admin-key': 'antortiq-admin-2025',
+      },
+      body: JSON.stringify({ to, clientName, html }),
+    });
+    const data = await res.json();
+    if (data.ok) {
+      btn.textContent = '✓ Sent!';
+      btn.style.borderColor = 'var(--green)';
+      btn.style.color = 'var(--green)';
+      setTimeout(() => { btn.textContent = '✉ Send to Client'; btn.disabled = false; btn.style.borderColor = ''; btn.style.color = ''; }, 4000);
+    } else {
+      alert('Send failed: ' + (data.error || 'Unknown error'));
+      btn.textContent = '✉ Send to Client';
+      btn.disabled = false;
+    }
+  } catch (e) {
+    alert('Network error — check connection');
+    btn.textContent = '✉ Send to Client';
+    btn.disabled = false;
+  }
 }
 </script>
 </body>
