@@ -13,6 +13,30 @@ const { sendAdminAlert, sendDailyDigest } = require('./escalation');
 const { sendPitchEmail } = require('../lib/mailer');
 const { handleConfirmationResponse } = require('./order-confirm');
 const { getDemoMessages } = require('./demos');
+const { emailShipped, emailOfd, emailReturnVendor } = require('../lib/demo-emails');
+const nodemailer = require('nodemailer');
+
+function getMailTransport() {
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '587'),
+    secure: process.env.SMTP_SECURE === 'true',
+    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+  });
+}
+
+async function sendDemoEmails(toEmail) {
+  const transport = getMailTransport();
+  const from = `"Antortiq" <${process.env.SMTP_USER}>`;
+  const templates = [emailShipped(), emailOfd(), emailReturnVendor()];
+  for (const t of templates) {
+    await transport.sendMail({ from, to: toEmail, subject: t.subject, html: t.html });
+    await new Promise(r => setTimeout(r, 800));
+  }
+}
+
+// Per-JID pending email capture: jid → 'awaiting_email'
+const pendingEmailCapture = new Map();
 
 const logger = pino({ level: 'silent' });
 
@@ -148,6 +172,34 @@ async function handleMessage(sock, msg) {
   if (recentReplies.get(jid) > now - 2000) return;
   recentReplies.set(jid, now);
 
+  // ── Pending demo email capture ─────────────────────────────────
+  if (pendingEmailCapture.get(jid) === 'awaiting_email') {
+    const emailMatch = text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/);
+    if (emailMatch) {
+      pendingEmailCapture.delete(jid);
+      const toEmail = emailMatch[0];
+      await sock.sendMessage(jid, { text: `🚀 Sending 3 demo emails to *${toEmail}* right now...` });
+      try {
+        await sendDemoEmails(toEmail);
+        await sock.sendMessage(jid, {
+          text: `✅ Done! Check *${toEmail}* — you should have 3 emails:\n\n` +
+                `1️⃣ Order Shipped — tracking + AWB\n` +
+                `2️⃣ Out for Delivery — COD reminder\n` +
+                `3️⃣ Return/Exchange request (vendor view)\n\n` +
+                `That's exactly what your customers + team gets — automated, no manual work 🔥\n\n` +
+                `Want to see this live on your store? → wa.me/918209544626`,
+        });
+      } catch (e) {
+        console.error('[demo-email] send error:', e.message);
+        await sock.sendMessage(jid, { text: `❌ Couldn't send — email address might be wrong. Try again?` });
+      }
+      return;
+    } else {
+      await sock.sendMessage(jid, { text: `That doesn't look like an email. Send me your email id — like *yourname@gmail.com*` });
+      return;
+    }
+  }
+
   // ── Global dev commands (work from any number) ─────────────────
   if (text.toLowerCase().startsWith('!testconfirm')) {
     const num = text.trim().slice(12).trim().replace(/\D/g, '');
@@ -211,6 +263,21 @@ async function handleMessage(sock, msg) {
   const scored = memory.scoreMessage(jid, text);
   if (scored > 0) console.log(`  ↑ score ${state.leadScore} (+${scored})`);
   upsertLead(state).catch(() => {});
+
+  // ── Email demo request ─────────────────────────────────────────
+  const isEmailDemoRequest = /demo.{0,20}email|email.{0,20}demo|test.{0,20}email|email.{0,20}sample|send.{0,20}email|show.{0,20}email/i.test(text);
+  if (isEmailDemoRequest && !pendingEmailCapture.has(jid)) {
+    pendingEmailCapture.set(jid, 'awaiting_email');
+    setTimeout(() => pendingEmailCapture.delete(jid), 10 * 60 * 1000); // 10min timeout
+    await sock.sendMessage(jid, {
+      text: `Sure! I'll shoot you 3 live demo emails right now 📧\n\n` +
+            `— Order Shipped (with tracking + AWB)\n` +
+            `— Out for Delivery (COD reminder)\n` +
+            `— Return/Exchange request (vendor view)\n\n` +
+            `*Drop your email ID* and they'll land in your inbox in seconds 👇`,
+    });
+    return;
+  }
 
   // ── Demo request detection ─────────────────────────────────────
   const isDemoRequest = /\b(demo|test message|show me|sample|example|send me one|try it|how does it look|what does it look|can you show)\b/i.test(text);
