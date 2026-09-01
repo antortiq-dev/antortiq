@@ -282,25 +282,30 @@ async function handleMessage(sock, msg) {
   // ── Demo request detection ─────────────────────────────────────
   const isDemoRequest = /\b(demo|test message|show me|sample|example|send me one|try it|how does it look|what does it look|can you show)\b/i.test(text);
   if (isDemoRequest) {
-    const msgs = getDemoMessages(text);
+    // If context is WA — send order confirm + tracking sequence
+    const isWaContext = /whatsapp|wa|whats app/i.test(text) || state.servicesMentioned.has('wa');
+    const { ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD, RETURN_EXCHANGE } = require('./demos');
+    const msgs = isWaContext
+      ? [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]
+      : getDemoMessages(text);
+
     await sock.sendPresenceUpdate('composing', jid);
     await new Promise(r => setTimeout(r, 800));
     await sock.sendPresenceUpdate('paused', jid);
-    await sock.sendMessage(jid, { text: '👇 Here\'s exactly what your customers will receive —' });
+    await sock.sendMessage(jid, { text: '👇 Here\'s exactly what your customers receive —' });
     for (const m of msgs) {
-      await new Promise(r => setTimeout(r, 1200));
+      await new Promise(r => setTimeout(r, 1400));
       await sock.sendMessage(jid, { text: m });
     }
     await new Promise(r => setTimeout(r, 1500));
     await sock.sendMessage(jid, {
-      text: `That's fully automated — triggers the moment our system gets the update from your courier 🚀\n\nWant this live on your store? → wa.me/918209544626`,
+      text: `Fully automated — fires the moment your courier updates 🚀\n\nWant this live on your store? → wa.me/918209544626`,
     });
     state.demoSent = true;
-    // Tease freebie after demo if not yet teased
     if (!state.freebieTeased) {
       await new Promise(r => setTimeout(r, 2000));
       await sock.sendMessage(jid, {
-        text: `Oh — and anyone who signs up gets a free add-on 👀\nIt's something that'll completely change how you handle customer calls. Ask me what it is 😄`,
+        text: `Oh — and anyone who signs up gets a free add-on 👀\nIt'll change how you handle customer calls forever. Ask me what it is 😄`,
       });
       state.freebieTeased = true;
     }
@@ -339,20 +344,8 @@ async function handleMessage(sock, msg) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/v4Y4Nnrz/antortiq-ads-5.png' }, caption: FREEBIE_CAPTION });
   } else if (isWaQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/1cFVTXJ/2.png' }, caption: reply });
-    // Send WA demo message so they can feel it live
-    await new Promise(r => setTimeout(r, 1500));
-    await sock.sendMessage(jid, { text: `Here's a sample of what your customers receive 👇` });
-    await new Promise(r => setTimeout(r, 800));
-    const { ORDER_CONFIRM } = require('./demos');
-    await sock.sendMessage(jid, { text: ORDER_CONFIRM });
   } else if (isTrackQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/6c3pynwN/antortiq-ads-2.png' }, caption: reply });
-    // Send tracking demo so they feel the experience
-    await new Promise(r => setTimeout(r, 1500));
-    await sock.sendMessage(jid, { text: `And here's what a tracking update looks like 👇` });
-    await new Promise(r => setTimeout(r, 800));
-    const { TRACK_SHIPPED } = require('./demos');
-    await sock.sendMessage(jid, { text: TRACK_SHIPPED });
   } else if (isDashboardQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/wNTY2BqT/antortiq-ads-3.png' }, caption: reply });
   } else if (isEmailQuery) {
