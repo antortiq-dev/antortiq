@@ -282,25 +282,35 @@ async function handleMessage(sock, msg) {
   // ── Demo request detection ─────────────────────────────────────
   const isDemoRequest = /\b(demo|test message|show me|sample|example|send me one|try it|how does it look|what does it look|can you show)\b/i.test(text);
   if (isDemoRequest) {
-    // If context is WA — send order confirm + tracking sequence
-    const isWaContext = /whatsapp|wa|whats app/i.test(text) || state.servicesMentioned.has('wa');
-    const { ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD, RETURN_EXCHANGE } = require('./demos');
-    const msgs = isWaContext
-      ? [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]
-      : getDemoMessages(text);
+    const isWaContext    = /whatsapp|wa\b|whats app/i.test(text) || state.servicesMentioned.has('wa');
+    const isEmailContext = /email|mail/i.test(text) || state.servicesMentioned.has('email');
+    const { ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD } = require('./demos');
 
-    await sock.sendPresenceUpdate('composing', jid);
-    await new Promise(r => setTimeout(r, 800));
-    await sock.sendPresenceUpdate('paused', jid);
-    await sock.sendMessage(jid, { text: '👇 Here\'s exactly what your customers receive —' });
-    for (const m of msgs) {
-      await new Promise(r => setTimeout(r, 1400));
-      await sock.sendMessage(jid, { text: m });
+    if (isWaContext) {
+      // Send WA templates directly
+      await sock.sendMessage(jid, { text: '👇 Here\'s exactly what your customers receive on WhatsApp —' });
+      for (const m of [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]) {
+        await new Promise(r => setTimeout(r, 1400));
+        await sock.sendMessage(jid, { text: m });
+      }
+      await new Promise(r => setTimeout(r, 1500));
+      await sock.sendMessage(jid, { text: `Fully automated — fires the moment your courier updates 🚀\n\nWant this live on your store? → wa.me/918209544626` });
+    } else if (isEmailContext) {
+      // Trigger email capture flow
+      pendingEmailCapture.set(jid, 'awaiting_email');
+      setTimeout(() => pendingEmailCapture.delete(jid), 10 * 60 * 1000);
+      await sock.sendMessage(jid, {
+        text: `Sure! Dropping 3 live demo emails to your inbox 📧\n\nJust send me your *email ID* 👇`,
+      });
+      return;
+    } else {
+      // No context — ask which service
+      await sock.sendMessage(jid, {
+        text: `Sure, I can shoot you a live demo right now! 🚀\n\nWhich would you like?\n\n📱 *WhatsApp* — order confirm, tracking updates, OFD\n📧 *Email* — shipped, out for delivery, return request\n🎯 *Both* — full experience\n\nJust reply with one 👇`,
+      });
+      return;
     }
-    await new Promise(r => setTimeout(r, 1500));
-    await sock.sendMessage(jid, {
-      text: `Fully automated — fires the moment your courier updates 🚀\n\nWant this live on your store? → wa.me/918209544626`,
-    });
+
     state.demoSent = true;
     if (!state.freebieTeased) {
       await new Promise(r => setTimeout(r, 2000));
@@ -309,6 +319,22 @@ async function handleMessage(sock, msg) {
       });
       state.freebieTeased = true;
     }
+    return;
+  }
+
+  // ── "both" / "whatsapp" / "email" reply after demo prompt ──────
+  if (/\bboth\b/i.test(text) && state.demoSent === false) {
+    const { ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD } = require('./demos');
+    await sock.sendMessage(jid, { text: '📱 *WhatsApp demos* — sending now 👇' });
+    for (const m of [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]) {
+      await new Promise(r => setTimeout(r, 1400));
+      await sock.sendMessage(jid, { text: m });
+    }
+    await new Promise(r => setTimeout(r, 1000));
+    pendingEmailCapture.set(jid, 'awaiting_email');
+    setTimeout(() => pendingEmailCapture.delete(jid), 10 * 60 * 1000);
+    await sock.sendMessage(jid, { text: `📧 Now drop your *email ID* and I'll shoot the email demos there 👇` });
+    state.demoSent = true;
     return;
   }
 
@@ -344,6 +370,12 @@ async function handleMessage(sock, msg) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/v4Y4Nnrz/antortiq-ads-5.png' }, caption: FREEBIE_CAPTION });
   } else if (isWaQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/1cFVTXJ/2.png' }, caption: reply });
+    // Directly send WA demo templates — no need to ask for demo
+    const { ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD } = require('./demos');
+    for (const m of [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]) {
+      await new Promise(r => setTimeout(r, 1400));
+      await sock.sendMessage(jid, { text: m });
+    }
   } else if (isTrackQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/6c3pynwN/antortiq-ads-2.png' }, caption: reply });
   } else if (isDashboardQuery) {
