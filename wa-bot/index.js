@@ -158,24 +158,22 @@ async function handleMessage(sock, msg) {
     if (emailMatch) {
       pendingEmailCapture.delete(jid);
       const toEmail = emailMatch[0];
-      await sock.sendMessage(jid, { text: `🚀 Sending 3 demo emails to *${toEmail}* right now...` });
+      await sock.sendMessage(jid, { text: `Sending now — check ${toEmail} in a moment.` });
       try {
         await sendDemoEmails(toEmail);
         await sock.sendMessage(jid, {
-          text: `✅ Done! Check *${toEmail}* — you should have 3 emails:\n\n` +
-                `1️⃣ Order Shipped — tracking + AWB\n` +
-                `2️⃣ Out for Delivery — COD reminder\n` +
-                `3️⃣ Return/Exchange request (vendor view)\n\n` +
-                `That's exactly what your customers + team gets — automated, no manual work 🔥\n\n` +
-                `Want to see this live on your store? → wa.me/918209544626`,
+          text: `Sent to *${toEmail}* — 3 emails in your inbox:\n\n` +
+                `— Order Shipped\n— Out for Delivery\n— Return/Exchange (vendor view)\n\n` +
+                `That's the full automated flow. Zero manual work.\n\n` +
+                `Want this live on your store? → wa.me/918209544626`,
         });
       } catch (e) {
         console.error('[demo-email] send error:', e.message);
-        await sock.sendMessage(jid, { text: `❌ Couldn't send — email address might be wrong. Try again?` });
+        await sock.sendMessage(jid, { text: `Couldn't send to that address — try once more?` });
       }
       return;
     } else {
-      await sock.sendMessage(jid, { text: `That doesn't look like an email. Send me your email id — like *yourname@gmail.com*` });
+      await sock.sendMessage(jid, { text: `Doesn't look like a valid email. Try — *yourname@gmail.com*` });
       return;
     }
   }
@@ -250,11 +248,9 @@ async function handleMessage(sock, msg) {
     pendingEmailCapture.set(jid, 'awaiting_email');
     setTimeout(() => pendingEmailCapture.delete(jid), 10 * 60 * 1000); // 10min timeout
     await sock.sendMessage(jid, {
-      text: `Sure! I'll shoot you 3 live demo emails right now 📧\n\n` +
-            `— Order Shipped (with tracking + AWB)\n` +
-            `— Out for Delivery (COD reminder)\n` +
-            `— Return/Exchange request (vendor view)\n\n` +
-            `*Drop your email ID* and they'll land in your inbox in seconds 👇`,
+      text: `Sure — sending 3 live email demos directly to your inbox.\n\n` +
+            `— Order Shipped\n— Out for Delivery\n— Return/Exchange (vendor)\n\n` +
+            `Drop your email ID and they'll be there in seconds.`,
     });
     return;
   }
@@ -268,25 +264,22 @@ async function handleMessage(sock, msg) {
 
     if (isWaContext) {
       // Send WA templates directly
-      await sock.sendMessage(jid, { text: '👇 Here\'s exactly what your customers receive on WhatsApp —' });
+      await sock.sendMessage(jid, { text: `Here's what your customers receive —` });
       for (const m of [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]) {
         await new Promise(r => setTimeout(r, 1400));
         await sock.sendMessage(jid, { text: m });
       }
       await new Promise(r => setTimeout(r, 1500));
-      await sock.sendMessage(jid, { text: `Fully automated — fires the moment your courier updates 🚀\n\nWant this live on your store? → wa.me/918209544626` });
+      await sock.sendMessage(jid, { text: `Fully automated. Fires the moment your courier updates.\n\nWant this on your store? → wa.me/918209544626` });
     } else if (isEmailContext) {
-      // Trigger email capture flow
       pendingEmailCapture.set(jid, 'awaiting_email');
       setTimeout(() => pendingEmailCapture.delete(jid), 10 * 60 * 1000);
-      await sock.sendMessage(jid, {
-        text: `Sure! Dropping 3 live demo emails to your inbox 📧\n\nJust send me your *email ID* 👇`,
-      });
+      await sock.sendMessage(jid, { text: `Drop your email ID — sending 3 live demos straight to your inbox.` });
       return;
     } else {
       // No context — ask which service
       await sock.sendMessage(jid, {
-        text: `Sure, I can shoot you a live demo right now! 🚀\n\nWhich would you like?\n\n📱 *WhatsApp* — order confirm, tracking updates, OFD\n📧 *Email* — shipped, out for delivery, return request\n🎯 *Both* — full experience\n\nJust reply with one 👇`,
+        text: `Which would you like to see?\n\n*WhatsApp* — order confirm, tracking, OFD\n*Email* — shipped, out for delivery, return request\n*Both*\n\nJust reply with one.`,
       });
       return;
     }
@@ -295,7 +288,7 @@ async function handleMessage(sock, msg) {
     if (!state.freebieTeased) {
       await new Promise(r => setTimeout(r, 2000));
       await sock.sendMessage(jid, {
-        text: `Oh — and anyone who signs up gets a free add-on 👀\nIt'll change how you handle customer calls forever. Ask me what it is 😄`,
+        text: `One more thing — anyone who takes 2 services gets a free add-on from us.\nAsk me what it is.`,
       });
       state.freebieTeased = true;
     }
@@ -305,7 +298,7 @@ async function handleMessage(sock, msg) {
   // ── "both" / "whatsapp" / "email" reply after demo prompt ──────
   if (/\bboth\b/i.test(text) && state.demoSent === false) {
     const { ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD } = require('./demos');
-    await sock.sendMessage(jid, { text: '📱 *WhatsApp demos* — sending now 👇' });
+    await sock.sendMessage(jid, { text: `WhatsApp — here's what your customers get:` });
     for (const m of [ORDER_CONFIRM, TRACK_SHIPPED, TRACK_OFD]) {
       await new Promise(r => setTimeout(r, 1400));
       await sock.sendMessage(jid, { text: m });
@@ -313,7 +306,7 @@ async function handleMessage(sock, msg) {
     await new Promise(r => setTimeout(r, 1000));
     pendingEmailCapture.set(jid, 'awaiting_email');
     setTimeout(() => pendingEmailCapture.delete(jid), 10 * 60 * 1000);
-    await sock.sendMessage(jid, { text: `📧 Now drop your *email ID* and I'll shoot the email demos there 👇` });
+    await sock.sendMessage(jid, { text: `Now drop your email ID — sending the email demos too.` });
     state.demoSent = true;
     return;
   }
@@ -340,11 +333,11 @@ async function handleMessage(sock, msg) {
   if (isEmailQuery)     state.servicesMentioned.add('email');
 
   const FREEBIE_CAPTION =
-    `🎁 *Free Add-on: Auto Contact Saver*\n\n` +
-    `Every time someone places an order, their number gets auto-saved on your phone as *Harsh #2076* 📲\n\n` +
-    `Next time they call — you already know it's Harsh, order #2076. You pick up and say _"Hey Harsh, how can I help?"_ instead of _"hello who is this?"_\n\n` +
-    `Small feature. Big impression. And it's completely free when you take any 2 services 🙌\n\n` +
-    `Ready to get started? → wa.me/918209544626`;
+    `*Auto Contact Saver — Free Add-on*\n\n` +
+    `Every order auto-saves the customer's number on your phone as *Harsh #2076*.\n\n` +
+    `Next time they call — you already know it's Harsh, order #2076. You pick up and say "Hey Harsh" instead of "hello, who is this?"\n\n` +
+    `Small detail. Looks very professional. Free with any 2 services.\n\n` +
+    `wa.me/918209544626`;
 
   if (isFreebieQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/v4Y4Nnrz/antortiq-ads-5.png' }, caption: FREEBIE_CAPTION });
@@ -374,7 +367,7 @@ async function handleMessage(sock, msg) {
     const svc = [...state.servicesMentioned][0];
     const svcLabel = { wa: 'WhatsApp automation', track: 'tracking + returns page', dashboard: 'dashboard', email: 'email system' }[svc] || 'this';
     await sock.sendMessage(jid, {
-      text: `Oh — crazy thing btw 👀\n\nIf you go for *${svcLabel}* + any 1 other service, you get a *free add-on* from us.\n\nAsk me what it is 😄`,
+      text: `Also — if you go for *${svcLabel}* and any one other service, you get a free add-on from us.\n\nAsk me what it is.`,
     });
   }
 
@@ -387,7 +380,7 @@ async function handleMessage(sock, msg) {
     const adminNum = (process.env.ADMIN_WA_NUMBER || '918209544626').replace(/\D/g, '');
     await new Promise(r => setTimeout(r, 1200));
     await sock.sendMessage(jid, {
-      text: `Sure! You can directly reach our founder here 👇\n\n📞 *+${adminNum}*\n\nOr click: wa.me/${adminNum}\n\nThey'll get back to you quickly. Is there a good time that works for you?`,
+      text: `Sure — reach our founder directly:\n\n*+${adminNum}*\nwa.me/${adminNum}\n\nThey'll get back to you quickly.`,
     });
     return;
   }
@@ -399,7 +392,7 @@ async function handleMessage(sock, msg) {
     upsertLead(state).catch(() => {});
     await new Promise(r => setTimeout(r, 1500));
     await sock.sendMessage(jid, {
-      text: "I've shared your details with our team — someone will reach out to you shortly! 👍",
+      text: "Passed your details to the team — someone will reach out shortly.",
     });
   }
 }
