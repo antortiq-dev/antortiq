@@ -261,12 +261,31 @@ async function handleMessage(sock, msg) {
   if (isDashboardQuery) state.servicesMentioned.add('dashboard');
   if (isEmailQuery)     state.servicesMentioned.add('email');
 
-  if (isFreebieQuery && state.freebieTeased) {
-    await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/v4Y4Nnrz/antortiq-ads-5.png' }, caption: reply });
+  const FREEBIE_CAPTION =
+    `🎁 *Free Add-on: Auto Contact Saver*\n\n` +
+    `Every time someone places an order, their number gets auto-saved on your phone as *Harsh #2076* 📲\n\n` +
+    `Next time they call — you already know it's Harsh, order #2076. You pick up and say _"Hey Harsh, how can I help?"_ instead of _"hello who is this?"_\n\n` +
+    `Small feature. Big impression. And it's completely free when you take any 2 services 🙌\n\n` +
+    `Ready to get started? → wa.me/918209544626`;
+
+  if (isFreebieQuery) {
+    await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/v4Y4Nnrz/antortiq-ads-5.png' }, caption: FREEBIE_CAPTION });
   } else if (isWaQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/1cFVTXJ/2.png' }, caption: reply });
+    // Send WA demo message so they can feel it live
+    await new Promise(r => setTimeout(r, 1500));
+    await sock.sendMessage(jid, { text: `Here's a sample of what your customers receive 👇` });
+    await new Promise(r => setTimeout(r, 800));
+    const { ORDER_CONFIRM } = require('./demos');
+    await sock.sendMessage(jid, { text: ORDER_CONFIRM });
   } else if (isTrackQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/6c3pynwN/antortiq-ads-2.png' }, caption: reply });
+    // Send tracking demo so they feel the experience
+    await new Promise(r => setTimeout(r, 1500));
+    await sock.sendMessage(jid, { text: `And here's what a tracking update looks like 👇` });
+    await new Promise(r => setTimeout(r, 800));
+    const { TRACK_SHIPPED } = require('./demos');
+    await sock.sendMessage(jid, { text: TRACK_SHIPPED });
   } else if (isDashboardQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/wNTY2BqT/antortiq-ads-3.png' }, caption: reply });
   } else if (isEmailQuery) {
@@ -276,12 +295,14 @@ async function handleMessage(sock, msg) {
   }
   console.log(`  ↩ replied (${reply.length}c)`);
 
-  // ── Smart freebie tease (once per customer, after 2nd service interest) ──
-  if (!state.freebieTeased && state.servicesMentioned.size >= 2) {
+  // ── Smart freebie tease — fires after first service interest (once per customer) ──
+  if (!state.freebieTeased && state.servicesMentioned.size >= 1 && !isFreebieQuery) {
     state.freebieTeased = true;
     await new Promise(r => setTimeout(r, 2500));
+    const svc = [...state.servicesMentioned][0];
+    const svcLabel = { wa: 'WhatsApp automation', track: 'tracking + returns page', dashboard: 'dashboard', email: 'email system' }[svc] || 'this';
     await sock.sendMessage(jid, {
-      text: `Oh and one more thing — anyone who takes 2 services gets a free add-on from us 👀\nIt's something that'll change how you handle customer calls forever. Ask me what it is 😄`,
+      text: `Oh — crazy thing btw 👀\n\nIf you go for *${svcLabel}* + any 1 other service, you get a *free add-on* from us.\n\nAsk me what it is 😄`,
     });
   }
 
