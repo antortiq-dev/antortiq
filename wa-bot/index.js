@@ -219,8 +219,11 @@ async function handleMessage(sock, msg) {
   const isTrackQuery     = /track|tracking|return|exchange|order page|customer page|post.?purchase/i.test(text);
   const isDashboardQuery = /dashboard|analytics|admin panel|crm|reports?|insights?|orders? panel/i.test(text);
   const isEmailQuery     = /email|pitch email|email marketing|mail|newsletter/i.test(text);
+  const isFreebieQuery   = /free|freebie|free.?add.?on|bonus|what.?s free|gift|extra|surprise/i.test(text);
 
-  if (isWaQuery) {
+  if (isFreebieQuery) {
+    await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/v4Y4Nnrz/antortiq-ads-5.png' }, caption: reply });
+  } else if (isWaQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/1cFVTXJ/2.png' }, caption: reply });
   } else if (isTrackQuery) {
     await sock.sendMessage(jid, { image: { url: 'https://i.ibb.co/6c3pynwN/antortiq-ads-2.png' }, caption: reply });
