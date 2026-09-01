@@ -169,6 +169,21 @@ async function handleMessage(sock, msg) {
     return;
   }
 
+  // ── Global: !sendimg <url> <phone> — send image to a number ──────
+  if (text.toLowerCase().startsWith('!sendimg')) {
+    const parts = text.trim().split(/\s+/);
+    const imgUrl = parts[1] || '';
+    const num = (parts[2] || '').replace(/\D/g, '');
+    if (!imgUrl || !num) {
+      await sock.sendMessage(jid, { text: 'Usage: !sendimg <image-url> <phone-with-country-code>' });
+      return;
+    }
+    const targetJid = `${num}@s.whatsapp.net`;
+    await sock.sendMessage(targetJid, { image: { url: imgUrl }, caption: '' });
+    await sock.sendMessage(jid, { text: `✅ Image sent to +${num}` });
+    return;
+  }
+
   // ── Admin commands ─────────────────────────────────────────────
   if (jid === ADMIN_JID) { await handleAdminCommand(sock, jid, text); return; }
 
