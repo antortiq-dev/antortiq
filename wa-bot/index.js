@@ -213,7 +213,17 @@ async function handleMessage(sock, msg) {
   const delay = Math.min(800 + reply.length * 8, 2500);
   await new Promise(r => setTimeout(r, delay));
   await sock.sendPresenceUpdate('paused', jid);
-  await sock.sendMessage(jid, { text: reply }, { quoted: msg });
+
+  // If message is about WhatsApp — send screenshot first, then reply
+  const isWaQuery = /whatsapp|whats app|wa bot|wa integration|wp bot|wp integration/i.test(text);
+  if (isWaQuery) {
+    await sock.sendMessage(jid, {
+      image: { url: 'https://i.ibb.co/1cFVTXJ/2.png' },
+      caption: reply,
+    });
+  } else {
+    await sock.sendMessage(jid, { text: reply }, { quoted: msg });
+  }
   console.log(`  ↩ replied (${reply.length}c)`);
 
   const wantsCall = /\b(call|talk|speak|connect|human|real person|call me|hop on|get on a call|schedule a call|want to call|wanna call)\b/i.test(text);
