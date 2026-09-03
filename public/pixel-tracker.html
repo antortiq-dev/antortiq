@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pixel Tracker — Antortiq</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f5f7;--bg-card:#ffffff;--bg-card2:#f8f8fb;--bg-hover:#f0f0f4;
+  --border:#e5e5ea;--border-hi:#d1d1d6;
+  --text:#1c1c1e;--text-muted:#8e8e93;--text-dim:#3a3a3c;
+  --red:#e8344a;--green:#10b981;--yellow:#f59e0b;
+  --indigo:#6366f1;--cyan:#22d3ee;--purple:#a855f7;--orange:#f97316;
+  --shadow:0 1px 4px rgba(0,0,0,.06);--shadow-md:0 4px 16px rgba(0,0,0,.08);
+  --radius:10px;--radius-sm:7px;
+  --font-family:'Inter',system-ui,sans-serif;
+}
+html,body{height:100%;font-family:var(--font-family);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px}
+
+/* ── LAYOUT ── */
+#app{display:flex;height:100vh;overflow:hidden}
+#sidebar{width:220px;flex-shrink:0;background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column}
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+#topbar{height:56px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0;gap:12px}
+#content{flex:1;overflow-y:auto;padding:24px}
+
+/* ── SIDEBAR ── */
+.sb-logo{padding:16px 14px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.sb-logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#e8344a,#c02040);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:13px;font-weight:900;color:#fff;flex-shrink:0}
+.sb-logo-name{font-family:'Sora',sans-serif;font-weight:800;font-size:14px;color:var(--text)}
+.sb-logo-name span{color:var(--red)}
+.sb-nav{padding:10px 8px;flex:1}
+.sb-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;color:var(--text-muted);transition:all .12s;margin-bottom:2px;user-select:none}
+.sb-item:hover{background:var(--bg-hover);color:var(--text)}
+.sb-item.active{background:#e8344a14;color:var(--red);font-weight:700}
+.sb-item .ico{font-size:14px;width:20px;text-align:center;flex-shrink:0}
+.sb-footer{padding:12px 14px;border-top:1px solid var(--border);font-size:10px;color:var(--text-muted);line-height:1.5}
+.sb-store-badge{background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin:8px}
+.sb-store-name{font-weight:700;color:var(--text);font-size:12px}
+.sb-store-code{color:var(--text-muted);font-size:10px;margin-top:2px;font-family:monospace}
+
+/* ── LOGIN ── */
+#login-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:200}
+.login-box{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:40px 36px;width:360px;box-shadow:0 8px 32px rgba(0,0,0,.10);text-align:center}
+.login-logo{font-family:'Sora',sans-serif;font-weight:900;font-size:22px;color:var(--text);margin-bottom:6px}
+.login-logo span{color:var(--red)}
+.login-sub{font-size:13px;color:var(--text-muted);margin-bottom:28px;line-height:1.5}
+.login-field{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;color:var(--text);outline:none;transition:border-color .12s;margin-bottom:10px;background:var(--bg-card2)}
+.login-field:focus{border-color:var(--red)}
+.login-btn{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:opacity .12s;margin-top:4px}
+.login-btn:hover{opacity:.88}
+.login-err{font-size:12px;color:var(--red);margin-top:10px;min-height:18px}
+
+/* ── TOPBAR ── */
+.tb-title{font-family:'Sora',sans-serif;font-weight:800;font-size:16px;color:var(--text)}
+.tb-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+.tb-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:livepulse 2s infinite;flex-shrink:0}
+@keyframes livepulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── PERIOD PICKER ── */
+.period-wrap{position:relative}
+.period-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;color:var(--text);cursor:pointer;transition:border-color .12s;white-space:nowrap;font-family:inherit}
+.period-btn:hover{border-color:var(--border-hi)}
+.period-dd{position:absolute;right:0;top:calc(100% + 6px);background:var(--bg-card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:100;min-width:160px;overflow:hidden;display:none}
+.period-dd.open{display:block}
+.period-opt{padding:9px 14px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text);transition:background .08s;white-space:nowrap}
+.period-opt:hover{background:var(--bg-hover)}
+.period-opt.active{background:#e8344a10;color:var(--red);font-weight:700}
+
+/* ── STAT CARDS ── exactly matching Jarvis .sc-* pattern ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:10px}
+.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden;transition:border-color .15s}
+.stat-card:hover{border-color:var(--border-hi)}
+.stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.sc-indigo::after{background:var(--indigo)}.sc-yellow::after{background:var(--yellow)}.sc-cyan::after{background:var(--cyan)}.sc-green::after{background:var(--green)}
+.stat-icon{position:absolute;top:12px;right:12px;font-size:16px;opacity:.2}
+.stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;font-weight:600}
+.stat-val{font-size:28px;font-weight:800;line-height:1;margin-bottom:4px}
+.sc-indigo .stat-val{color:var(--indigo)}.sc-yellow .stat-val{color:var(--yellow)}.sc-cyan .stat-val{color:var(--cyan)}.sc-green .stat-val{color:var(--green)}
+.stat-sub{font-size:11px;color:var(--text-muted)}
+
+/* ── FUNNEL RATES ── */
+.funnel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:24px}
+.funnel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.funnel-label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.funnel-val{font-size:22px;font-weight:800}
+
+/* ── SECTION PANELS ── */
+.section-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:20px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.section-title{font-size:13px;font-weight:700;color:var(--text)}
+.section-sub{font-size:10px;color:var(--text-muted);margin-top:2px}
+.ctrl-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* ── CONTROLS ── */
+select{font-size:12px;font-family:inherit;background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:6px 10px;cursor:pointer;outline:none;transition:border-color .12s}
+select:hover{border-color:var(--border-hi)}
+.tab-row{display:flex;gap:4px;flex-wrap:wrap}
+.tab-btn{font-size:11px;font-weight:600;padding:5px 11px;border-radius:7px;cursor:pointer;font-family:inherit;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all .12s}
+.tab-btn:hover{border-color:var(--border-hi);color:var(--text)}
+.tab-btn[data-active="indigo"]{border-color:var(--indigo);background:#6366f118;color:var(--indigo)}
+.tab-btn[data-active="yellow"]{border-color:var(--yellow);background:#f59e0b18;color:var(--yellow)}
+.tab-btn[data-active="cyan"]{border-color:var(--cyan);background:#22d3ee18;color:var(--cyan)}
+.tab-btn[data-active="green"]{border-color:var(--green);background:#10b98118;color:var(--green)}
+
+/* ── PRODUCT CARDS ── */
+.products-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px}
+.product-card{flex-shrink:0;width:130px;background:var(--bg-hover);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.product-img-wrap{width:100%;height:100px;background:var(--bg-card2);position:relative;overflow:hidden}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover}
+.product-rank-badge{position:absolute;top:5px;left:5px;font-size:9px;font-weight:800;background:rgba(0,0,0,.6);color:#fff;padding:1px 6px;border-radius:99px}
+.product-info{padding:7px 9px}
+.product-name{font-size:11px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.product-count{font-size:13px;font-weight:800;margin-top:2px}
+
+/* ── LEADERBOARD ── */
+.lb-row{display:flex;align-items:center;gap:10px;padding:9px 10px;background:var(--bg-hover);border-radius:8px;margin-bottom:6px}
+.lb-rank{font-size:11px;font-weight:800;color:var(--text-muted);width:22px;flex-shrink:0;text-align:center}
+.lb-img{width:36px;height:36px;border-radius:6px;object-fit:cover;flex-shrink:0;background:var(--bg-card2)}
+.lb-img-ph{width:36px;height:36px;border-radius:6px;background:var(--bg-card2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted)}
+.lb-info{flex:1;min-width:0}
+.lb-name{font-size:12px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-meta{font-size:10px;color:var(--text-muted);margin-top:2px}
+.lb-rate{font-size:16px;font-weight:800;color:var(--green);flex-shrink:0}
+
+/* ── LIVE LOG ── */
+.log-row{display:flex;align-items:center;gap:9px;padding:8px 4px;border-bottom:1px solid var(--border)}
+.log-row:last-child{border-bottom:none}
+.log-icon{font-size:13px;flex-shrink:0}
+.log-text{font-size:12px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.log-time{font-size:10px;color:var(--text-muted);flex-shrink:0}
+
+/* ── SNIPPET ── */
+.snippet-wrap{background:#1c1c1e;border-radius:10px;padding:14px 16px;overflow-x:auto;margin-top:8px}
+.snippet-wrap pre{color:#e5e5ea;font-size:11px;font-family:'Menlo','Courier New',monospace;line-height:1.65;white-space:pre-wrap;word-break:break-all}
+.copy-btn{font-size:11px;font-weight:600;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;font-family:inherit;color:var(--text);transition:all .12s}
+.copy-btn:hover{background:var(--bg-hover)}
+
+/* ── SHIMMER ── */
+.skel{background:linear-gradient(90deg,var(--bg-hover) 25%,var(--bg-card2) 50%,var(--bg-hover) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:6px;display:inline-block}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.empty-msg{font-size:12px;color:var(--text-muted);padding:12px 4px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:800px){
+  #sidebar{display:none}
+  #content{padding:16px}
+  .stats-grid,.funnel-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .stats-grid,.funnel-grid{grid-template-columns:1fr 1fr}
+  .tab-row{gap:3px}
+  .tab-btn{font-size:10px;padding:4px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Antor<span>tiq</span></div>
+    <div class="login-sub">Pixel Tracker Dashboard<br><span style="font-size:11px;color:var(--text-muted)">Storefront analytics for D2C brands</span></div>
+    <input class="login-field" type="password" id="login-key" placeholder="Admin key" autocomplete="current-password">
+    <input class="login-field" type="text" id="login-store" placeholder="Store code (optional — blank for all)" autocomplete="off">
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+    <div class="login-err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" style="display:none">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-mark">A</div>
+      <div class="sb-logo-name">Antor<span>tiq</span></div>
+    </div>
+    <div class="sb-store-badge" id="sb-store-badge" style="display:none">
+      <div class="sb-store-name" id="sb-store-name">All Brands</div>
+      <div class="sb-store-code" id="sb-store-code"></div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-item active"><span class="ico">🎯</span> Pixel Tracker</div>
+      <div class="sb-item" style="opacity:.4;pointer-events:none"><span class="ico">📦</span> Orders</div>
+      <div class="sb-item" style="opacity:.4;pointer-events:none"><span class="ico">💬</span> WhatsApp Bot</div>
+      <div class="sb-item" style="opacity:.4;pointer-events:none"><span class="ico">📊</span> Meta Ads</div>
+      <div class="sb-item" style="opacity:.4;pointer-events:none"><span class="ico">🔄</span> Returns</div>
+    </div>
+    <div class="sb-footer">Antortiq · Pixel Tracker v1.0<br>Plug &amp; play install for any Shopify brand</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main">
+    <!-- TOPBAR -->
+    <div id="topbar">
+      <div>
+        <div class="tb-title">🎯 Pixel Tracker</div>
+        <div class="tb-sub">Storefront product performance — views, add-to-cart, checkout, purchases</div>
+      </div>
+      <div class="tb-right">
+        <div style="display:flex;align-items:center;gap:5px">
+          <div class="live-dot"></div>
+          <span style="font-size:11px;font-weight:600;color:var(--green)">Live</span>
+        </div>
+        <div class="period-wrap" id="period-wrap">
+          <button class="period-btn" id="period-btn" onclick="togglePeriod()">
+            🗓 <span id="period-label">Last 7 Days</span> ▾
+          </button>
+          <div class="period-dd" id="period-dd"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="content">
+
+      <!-- KPI STAT CARDS -->
+      <div class="stats-grid">
+        <div class="stat-card sc-indigo">
+          <span class="stat-icon">👁</span>
+          <div class="stat-label">Views</div>
+          <div class="stat-val" id="kv-views"><span class="skel" style="width:80px;height:28px"></span></div>
+          <div class="stat-sub" id="ks-views"></div>
+        </div>
+        <div class="stat-card sc-yellow">
+          <span class="stat-icon">🛒</span>
+          <div class="stat-label">Add to Cart</div>
+          <div class="stat-val" id="kv-atc"><span class="skel" style="width:60px;height:28px"></span></div>
+          <div class="stat-sub" id="ks-atc"></div>
+        </div>
+        <div class="stat-card sc-cyan">
+          <span class="stat-icon">💳</span>
+          <div class="stat-label">Checkout</div>
+          <div class="stat-val" id="kv-chk"><span class="skel" style="width:60px;height:28px"></span></div>
+          <div class="stat-sub" id="ks-chk"></div>
+        </div>
+        <div class="stat-card sc-green">
+          <span class="stat-icon">✅</span>
+          <div class="stat-label">Purchases</div>
+          <div class="stat-val" id="kv-pur"><span class="skel" style="width:60px;height:28px"></span></div>
+          <div class="stat-sub" id="ks-pur"></div>
+        </div>
+      </div>
+
+      <!-- FUNNEL RATE CARDS -->
+      <div class="funnel-grid" id="funnel-grid" style="display:none">
+        <div class="funnel-card">
+          <div class="funnel-label">View → ATC</div>
+          <div class="funnel-val" id="fr-vta" style="color:var(--yellow)">—</div>
+        </div>
+        <div class="funnel-card">
+          <div class="funnel-label">ATC → Checkout</div>
+          <div class="funnel-val" id="fr-atc" style="color:var(--cyan)">—</div>
+        </div>
+        <div class="funnel-card">
+          <div class="funnel-label">Checkout → Purchase</div>
+          <div class="funnel-val" id="fr-ctp" style="color:var(--green)">—</div>
+        </div>
+        <div class="funnel-card">
+          <div class="funnel-label">View → Purchase (Overall)</div>
+          <div class="funnel-val" id="fr-vtp" style="color:var(--purple)">—</div>
+        </div>
+      </div>
+
+      <!-- TOP PRODUCTS -->
+      <div class="section-panel">
+        <div class="section-head">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="section-title">Top Products</div>
+            <select id="top-limit" onchange="loadTopProducts()">
+              <option value="10">Top 10</option>
+              <option value="20">Top 20</option>
+              <option value="30" selected>Top 30</option>
+              <option value="50">Top 50</option>
+              <option value="100">Top 100</option>
+            </select>
+          </div>
+          <div class="tab-row">
+            <button class="tab-btn" data-ev="ViewContent" data-color="indigo" data-active="indigo" onclick="setMetric(this)">👁 Views</button>
+            <button class="tab-btn" data-ev="AddToCart" data-color="yellow" onclick="setMetric(this)">🛒 Add to Cart</button>
+            <button class="tab-btn" data-ev="InitiateCheckout" data-color="cyan" onclick="setMetric(this)">💳 Checkout</button>
+            <button class="tab-btn" data-ev="Purchase" data-color="green" onclick="setMetric(this)">✅ Purchases</button>
+          </div>
+        </div>
+        <div class="products-row" id="products-row">
+          <div class="empty-msg">Loading…</div>
+        </div>
+      </div>
+
+      <!-- CONVERSION LEADERBOARD -->
+      <div class="section-panel">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Conversion Leaderboard</div>
+            <div class="section-sub" id="lb-sub">Ranked by your selected rate · min 50 views to qualify</div>
+          </div>
+          <div class="ctrl-row">
+            <select id="lb-min" onchange="loadLeaderboard()">
+              <option value="10">Min 10 views</option>
+              <option value="50" selected>Min 50 views</option>
+              <option value="100">Min 100 views</option>
+              <option value="500">Min 500 views</option>
+              <option value="1000">Min 1000 views</option>
+            </select>
+            <select id="lb-limit" onchange="loadLeaderboard()">
+              <option value="20" selected>Top 20</option>
+              <option value="30">Top 30</option>
+              <option value="50">Top 50</option>
+              <option value="100">Top 100</option>
+            </select>
+            <select id="lb-sort" onchange="loadLeaderboard()">
+              <option value="viewToAtcRate">View → ATC</option>
+              <option value="viewToCheckoutRate">View → Checkout</option>
+              <option value="atcToCheckoutRate">ATC → Checkout</option>
+              <option value="checkoutToPurchaseRate">Checkout → Purchase</option>
+              <option value="viewToPurchaseRate">View → Purchase (overall)</option>
+            </select>
+          </div>
+        </div>
+        <div id="lb-body"><div class="empty-msg">Loading…</div></div>
+      </div>
+
+      <!-- LIVE ACTIVITY LOG -->
+      <div class="section-panel">
+        <div class="section-head">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="live-dot"></div>
+            <div class="section-title">Live Activity</div>
+            <span style="font-size:10px;color:var(--text-muted)">updates every 6s</span>
+          </div>
+        </div>
+        <div id="log-body" style="max-height:320px;overflow-y:auto">
+          <div class="empty-msg">Loading…</div>
+        </div>
+      </div>
+
+      <!-- INSTALL SNIPPET -->
+      <div class="section-panel">
+        <div class="section-head">
+          <div>
+            <div class="section-title">📋 Install Pixel Script</div>
+            <div class="section-sub">Paste into Shopify Admin → Settings → Customer events → Add custom pixel</div>
+          </div>
+          <button class="copy-btn" onclick="copySnippet()">Copy</button>
+        </div>
+        <div class="snippet-wrap">
+          <pre id="snippet-code"></pre>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────
+let ADMIN_KEY = '', STORE_CODE = '';
+let currentMetric = 'ViewContent';
+let nowMs = Date.now();
+let cachedLogs = [];
+let logInterval = null;
+
+setInterval(() => { nowMs = Date.now(); renderLogs(); }, 15000);
+
+// ── Date helpers ───────────────────────────────────────────────────────────
+const today = () => new Date().toISOString().slice(0,10);
+const daysAgo = n => { const d = new Date(); d.setDate(d.getDate()-n); return d.toISOString().slice(0,10); };
+const monthStart = () => { const d = new Date(); d.setDate(1); return d.toISOString().slice(0,10); };
+
+const PRESETS = [
+  { label:'Today',        from:today(),      to:today() },
+  { label:'Yesterday',    from:daysAgo(1),   to:daysAgo(1) },
+  { label:'Last 7 Days',  from:daysAgo(6),   to:today() },
+  { label:'Last 30 Days', from:daysAgo(29),  to:today() },
+  { label:'Last 90 Days', from:daysAgo(89),  to:today() },
+  { label:'This Month',   from:monthStart(), to:today() },
+  { label:'All Time',     from:'2020-01-01', to:today() },
+];
+let period = PRESETS[2]; // Last 7 Days
+
+const EVENT_META = {
+  ViewContent:      { label:'Views',      icon:'👁',  color:'#6366f1', colorKey:'indigo' },
+  AddToCart:        { label:'Add to Cart',icon:'🛒',  color:'#f59e0b', colorKey:'yellow' },
+  InitiateCheckout: { label:'Checkout',   icon:'💳', color:'#22d3ee', colorKey:'cyan'   },
+  Purchase:         { label:'Purchases',  icon:'✅',  color:'#10b981', colorKey:'green'  },
+};
+
+// ── LOGIN ──────────────────────────────────────────────────────────────────
+async function doLogin() {
+  const k = document.getElementById('login-key').value.trim();
+  const s = document.getElementById('login-store').value.trim();
+  if (!k) { showErr('Enter your admin key'); return; }
+  ADMIN_KEY = k; STORE_CODE = s;
+  try {
+    const d = await apiFetch(`/api/pixel/summary?${qs()}`);
+    if (d.error) { showErr('Invalid admin key'); ADMIN_KEY = ''; return; }
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    if (STORE_CODE) {
+      const badge = document.getElementById('sb-store-badge');
+      badge.style.display = 'block';
+      document.getElementById('sb-store-name').textContent = STORE_CODE;
+      document.getElementById('sb-store-code').textContent = 'store: ' + STORE_CODE;
+    }
+    buildPeriodDD();
+    buildSnippet();
+    renderSummary(d);
+    loadAll();
+    startLiveLog();
+  } catch { showErr('Connection error — check server'); ADMIN_KEY = ''; }
+}
+function showErr(msg) { document.getElementById('login-err').textContent = msg; }
+document.getElementById('login-key').addEventListener('keydown', e => e.key==='Enter' && doLogin());
+document.getElementById('login-store').addEventListener('keydown', e => e.key==='Enter' && doLogin());
+
+// ── API ────────────────────────────────────────────────────────────────────
+async function apiFetch(path) {
+  const r = await fetch(path, { headers: { 'x-admin-key': ADMIN_KEY } });
+  if (r.status === 401) return { error: 'Unauthorized' };
+  return r.json();
+}
+function qs() {
+  let s = `from=${period.from}&to=${period.to}`;
+  if (STORE_CODE) s += `&storeCode=${encodeURIComponent(STORE_CODE)}`;
+  return s;
+}
+
+// ── PERIOD PICKER ──────────────────────────────────────────────────────────
+function buildPeriodDD() {
+  document.getElementById('period-dd').innerHTML = PRESETS.map((p,i) =>
+    `<div class="period-opt${p.label===period.label?' active':''}" onclick="selectPeriod(${i})">${p.label}</div>`
+  ).join('');
+}
+function togglePeriod() {
+  document.getElementById('period-dd').classList.toggle('open');
+}
+function selectPeriod(i) {
+  period = PRESETS[i];
+  document.getElementById('period-label').textContent = period.label;
+  document.getElementById('period-dd').classList.remove('open');
+  buildPeriodDD();
+  loadAll();
+}
+document.addEventListener('click', e => {
+  if (!document.getElementById('period-wrap').contains(e.target))
+    document.getElementById('period-dd').classList.remove('open');
+});
+
+// ── LOAD ALL ───────────────────────────────────────────────────────────────
+function loadAll() { loadSummary(); loadTopProducts(); loadLeaderboard(); }
+
+// ── SUMMARY ────────────────────────────────────────────────────────────────
+function loadSummary() {
+  // show shimmer
+  ['kv-views','kv-atc','kv-chk','kv-pur'].forEach(id => {
+    document.getElementById(id).innerHTML = '<span class="skel" style="width:70px;height:28px;display:inline-block"></span>';
+  });
+  document.getElementById('funnel-grid').style.display = 'none';
+  apiFetch(`/api/pixel/summary?${qs()}`).then(renderSummary).catch(() => {});
+}
+function renderSummary(d) {
+  if (!d || d.error) return;
+  setText('kv-views', fmt(d.views||0));
+  setText('kv-atc',   fmt(d.atc||0));
+  setText('kv-chk',   fmt(d.checkout||0));
+  setText('kv-pur',   fmt(d.purchases||0));
+  setText('ks-views',  period.label);
+  setText('ks-atc',    period.label);
+  setText('ks-chk',    period.label);
+  setText('ks-pur',    d.purchaseValue ? '₹' + Math.round(d.purchaseValue).toLocaleString('en-IN') : period.label);
+  setText('fr-vta', pct(d.viewToAtcRate));
+  setText('fr-atc', pct(d.atcToCheckoutRate));
+  setText('fr-ctp', pct(d.checkoutToPurchaseRate));
+  setText('fr-vtp', pct(d.viewToPurchaseRate));
+  document.getElementById('funnel-grid').style.display = 'grid';
+}
+
+// ── TOP PRODUCTS ───────────────────────────────────────────────────────────
+function loadTopProducts() {
+  const limit = document.getElementById('top-limit').value;
+  document.getElementById('products-row').innerHTML = '<div class="empty-msg">Loading…</div>';
+  apiFetch(`/api/pixel/top-products?metric=${currentMetric}&limit=${limit}&${qs()}`).then(d => {
+    const prods = d.products || [];
+    if (!prods.length) {
+      document.getElementById('products-row').innerHTML = '<div class="empty-msg">No data for this period yet.</div>';
+      return;
+    }
+    const m = EVENT_META[currentMetric];
+    document.getElementById('products-row').innerHTML = prods.map((p,i) => `
+      <div class="product-card">
+        <div class="product-img-wrap">
+          ${p.productImage
+            ? `<img src="${x(p.productImage)}" loading="lazy" onerror="this.style.display='none'">`
+            : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--border-hi)">🛍</div>`}
+          <div class="product-rank-badge">#${i+1}</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name" title="${x(p.productName)}">${x(p.productName)}</div>
+          <div class="product-count" style="color:${m.color}">${fmt(p.count)} ${m.label.toLowerCase()}</div>
+        </div>
+      </div>`).join('');
+  }).catch(() => {});
+}
+
+function setMetric(btn) {
+  currentMetric = btn.dataset.ev;
+  const col = btn.dataset.color;
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    delete b.dataset.active;
+    if (b === btn) b.dataset.active = col;
+  });
+  loadTopProducts();
+}
+
+// ── LEADERBOARD ────────────────────────────────────────────────────────────
+function loadLeaderboard() {
+  const minViews = document.getElementById('lb-min').value;
+  const limit    = document.getElementById('lb-limit').value;
+  const sortBy   = document.getElementById('lb-sort').value;
+  document.getElementById('lb-sub').textContent = `Ranked by your selected rate · min ${minViews} views to qualify`;
+  document.getElementById('lb-body').innerHTML = '<div class="empty-msg">Loading…</div>';
+  apiFetch(`/api/pixel/leaderboard?sortBy=${sortBy}&limit=${limit}&minViews=${minViews}&${qs()}`).then(d => {
+    const rows = d.products || [];
+    if (!rows.length) {
+      document.getElementById('lb-body').innerHTML = '<div class="empty-msg">No products with enough views in this period yet.</div>';
+      return;
+    }
+    document.getElementById('lb-body').innerHTML = rows.map((p,i) => `
+      <div class="lb-row">
+        <div class="lb-rank">#${i+1}</div>
+        ${p.productImage
+          ? `<img class="lb-img" src="${x(p.productImage)}" onerror="this.style.display='none'">`
+          : `<div class="lb-img-ph">🛍</div>`}
+        <div class="lb-info">
+          <div class="lb-name" title="${x(p.productName)}">${x(p.productName)}</div>
+          <div class="lb-meta">${fmt(p.views)} views · ${fmt(p.atc)} ATC · ${fmt(p.checkout)} checkout · ${fmt(p.purchases)} purchased</div>
+        </div>
+        <div class="lb-rate">${pct(p[sortBy]||0)}</div>
+      </div>`).join('');
+  }).catch(() => {});
+}
+
+// ── LIVE LOG ───────────────────────────────────────────────────────────────
+function startLiveLog() {
+  fetchLogs();
+  logInterval = setInterval(fetchLogs, 6000);
+}
+function fetchLogs() {
+  let url = `/api/pixel/recent?limit=50`;
+  if (STORE_CODE) url += `&storeCode=${encodeURIComponent(STORE_CODE)}`;
+  apiFetch(url).then(d => { cachedLogs = d.logs || []; renderLogs(); }).catch(() => {});
+}
+function renderLogs() {
+  if (!cachedLogs.length) return;
+  document.getElementById('log-body').innerHTML = cachedLogs.map((l,i) => {
+    const m = EVENT_META[l.eventName] || { label:l.eventName, icon:'●', color:'var(--text-muted)' };
+    return `<div class="log-row">
+      <div class="log-icon">${m.icon}</div>
+      <div class="log-text"><strong>${x(l.productName||'')}</strong> <span style="color:${m.color};font-weight:600">${m.label}</span>${l.brandName?' · '+x(l.brandName):''}</div>
+      <div class="log-time">${elapsed(l.created_at)}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── SNIPPET ────────────────────────────────────────────────────────────────
+function buildSnippet() {
+  const sc = STORE_CODE || 'YOUR_STORE_CODE';
+  document.getElementById('snippet-code').textContent =
+`// ── Antortiq Pixel Tracker ──────────────────────────────────
+// Paste into: Shopify Admin → Settings → Customer events → Add custom pixel
+const SERVER_URL = 'https://antortiq.onrender.com';
+const STORE_CODE  = '${sc}';   // your unique brand code
+const BRAND_NAME  = 'Your Brand'; // your display name
+
+function send(eventName, { productName, productImage, value, currency }) {
+  fetch(SERVER_URL + '/api/pixel/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ storeCode:STORE_CODE, brandName:BRAND_NAME,
+      eventName, productName:productName||'N/A', productImage:productImage||'',
+      value:value!=null?value:null, currency:currency||'',
+      timestamp:new Date().toISOString() }),
+  }).catch(()=>{});
+}
+
+analytics.subscribe('product_viewed', e => {
+  const v = e.data?.productVariant;
+  send('ViewContent',{ productName:v?.product?.title, productImage:v?.image?.src,
+    value:v?.price?.amount, currency:v?.price?.currencyCode });
+});
+analytics.subscribe('product_added_to_cart', e => {
+  const line = e.data?.cartLine;
+  send('AddToCart',{ productName:line?.merchandise?.product?.title,
+    productImage:line?.merchandise?.image?.src,
+    value:line?.cost?.totalAmount?.amount, currency:line?.cost?.totalAmount?.currencyCode });
+});
+analytics.subscribe('checkout_started', e => {
+  const co = e.data?.checkout, cur = co?.totalPrice?.currencyCode;
+  (co?.lineItems||[]).forEach(item => send('InitiateCheckout',{
+    productName:item?.title, productImage:item?.variant?.image?.src,
+    value:(item?.variant?.price?.amount||0)*(item?.quantity||1), currency:cur }));
+});
+analytics.subscribe('checkout_completed', e => {
+  const co = e.data?.checkout, cur = co?.totalPrice?.currencyCode;
+  (co?.lineItems||[]).forEach(item => send('Purchase',{
+    productName:item?.title, productImage:item?.variant?.image?.src,
+    value:(item?.variant?.price?.amount||0)*(item?.quantity||1), currency:cur }));
+});`;
+}
+function copySnippet() {
+  navigator.clipboard.writeText(document.getElementById('snippet-code').textContent);
+  const b = document.querySelector('.copy-btn'); b.textContent = 'Copied ✓';
+  setTimeout(() => b.textContent = 'Copy', 2000);
+}
+
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function fmt(n) { return Number(n||0).toLocaleString('en-IN'); }
+function pct(v) { return (v||0).toFixed(1) + '%'; }
+function setText(id, v) { const el = document.getElementById(id); if(el) el.textContent = v; }
+function x(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function elapsed(iso) {
+  const secs = Math.floor((nowMs - new Date(iso).getTime()) / 1000);
+  if (secs < 60) return secs + 's ago';
+  const mins = Math.floor(secs/60);
+  if (mins < 60) return mins + 'm ago';
+  const hrs = Math.floor(mins/60);
+  if (hrs < 24) return hrs + 'h ago';
+  return new Date(iso).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+}
+</script>
+</body>
+</html>
