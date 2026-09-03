@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Confidential Proposal — Antortiq</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#e8344a;--bg:#060608;--surface:#0e0e12;--card:#14141a;--border:#1e1e26;--text:#e9e9ea;--muted:#5a5a68;--green:#22c55e}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
+
+/* ── SEAL SCREEN ── */
+#seal{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;transition:opacity .8s ease,transform .8s ease}
+#seal.hidden{opacity:0;transform:scale(1.04);pointer-events:none}
+.seal-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,52,74,.10),transparent 65%);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.1);opacity:1}}
+.seal-stamp{position:relative;width:160px;height:160px;margin-bottom:40px;cursor:pointer;transition:transform .3s}
+.seal-stamp:hover{transform:scale(1.05)}
+.seal-ring{width:160px;height:160px;border-radius:50%;border:3px solid rgba(232,52,74,.4);display:flex;align-items:center;justify-content:center;animation:spin 12s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.seal-ring-text{position:absolute;width:160px;height:160px;border-radius:50%}
+.seal-center{position:absolute;width:100px;height:100px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 0 40px rgba(232,52,74,.5)}
+.seal-center svg{width:36px;height:36px;fill:#fff}
+.seal-label{font-size:8px;font-weight:800;letter-spacing:2px;color:#fff;margin-top:2px;text-transform:uppercase}
+.seal-circle-text{font-size:7.5px;font-weight:700;letter-spacing:3.5px;fill:rgba(232,52,74,.7);text-transform:uppercase}
+.seal-title{font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.seal-name{font-family:'Sora',sans-serif;font-size:36px;font-weight:900;color:#fff;margin-bottom:8px;text-align:center}
+.seal-sub{font-size:14px;color:var(--muted);margin-bottom:48px;text-align:center;max-width:400px;line-height:1.6}
+.seal-btn{background:var(--red);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;padding:16px 40px;border-radius:99px;border:none;cursor:pointer;letter-spacing:.5px;box-shadow:0 8px 32px rgba(232,52,74,.4);transition:transform .2s,box-shadow .2s}
+.seal-btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,52,74,.5)}
+.seal-meta{margin-top:28px;display:flex;gap:24px}
+.seal-meta-item{text-align:center}
+.seal-meta-item .val{font-family:'Sora',sans-serif;font-size:16px;font-weight:800;color:#fff}
+.seal-meta-item .lbl{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:1px;text-transform:uppercase}
+.expires-badge{margin-top:20px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.expires-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── PROPOSAL CONTENT ── */
+#proposal{opacity:0;overflow-y:auto;height:100vh;transition:opacity .8s ease .2s}
+#proposal.visible{opacity:1}
+.prop-nav{position:sticky;top:0;background:rgba(6,6,8,.95);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.prop-logo{font-family:'Sora',sans-serif;font-weight:800;font-size:16px;color:#fff;letter-spacing:-.3px}
+.prop-logo span{color:var(--red)}
+.prop-badge{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:99px}
+.prop-body{max-width:960px;margin:0 auto;padding:64px 40px 120px}
+
+/* Cover section */
+.cover-section{margin-bottom:64px;padding-bottom:64px;border-bottom:1px solid var(--border)}
+.cover-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.cover-title{font-family:'Sora',sans-serif;font-size:52px;font-weight:900;line-height:1.05;color:#fff;margin-bottom:20px}
+.cover-title span{color:var(--red)}
+.cover-msg{font-size:15px;color:var(--muted);line-height:1.7;max-width:600px;margin-bottom:36px;background:var(--surface);border-left:3px solid var(--red);padding:18px 22px;border-radius:0 12px 12px 0}
+.cover-meta{display:flex;flex-wrap:wrap;gap:24px}
+.cover-meta-item{display:flex;flex-direction:column;gap:3px}
+.cover-meta-item .lbl{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.cover-meta-item .val{font-size:14px;color:#fff}
+
+/* Services */
+.section-head{margin-bottom:32px}
+.section-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.section-title{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#fff}
+.services-list{display:flex;flex-direction:column;gap:16px;margin-bottom:56px}
+.svc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;align-items:flex-start;gap:20px;transition:border-color .2s}
+.svc-card:hover{border-color:#2e2e3a}
+.svc-ico{font-size:32px;flex-shrink:0;margin-top:2px}
+.svc-body{flex:1}
+.svc-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.svc-name{font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:6px}
+.svc-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.svc-features{display:flex;flex-direction:column;gap:4px}
+.svc-feature{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#7a7a8a}
+.svc-feature::before{content:'✓';color:var(--red);font-weight:800;flex-shrink:0;margin-top:1px}
+.svc-price-wrap{flex-shrink:0;text-align:right}
+.svc-price{font-family:'Sora',sans-serif;font-size:24px;font-weight:900;color:var(--red)}
+.svc-price.free{color:var(--green);font-size:18px}
+.svc-price-label{font-size:10px;color:var(--muted);margin-top:2px}
+.free-pill{display:inline-block;background:#061209;border:1px solid rgba(34,197,94,.3);border-radius:99px;padding:4px 12px;font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px}
+
+/* Pricing table */
+.pricing-block{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:56px}
+.pricing-hero{padding:36px 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;border-bottom:1px solid var(--border)}
+.pricing-you{}
+.pricing-you .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.pricing-you .amount{font-family:'Sora',sans-serif;font-size:52px;font-weight:900;color:var(--red);line-height:1}
+.pricing-you .sub{font-size:12px;color:var(--muted);margin-top:6px}
+.pricing-vs{background:var(--red);border-radius:99px;padding:14px 20px;text-align:center}
+.pricing-vs .save-lbl{font-size:9px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:1px;text-transform:uppercase}
+.pricing-vs .save-amt{font-family:'Sora',sans-serif;font-size:20px;font-weight:900;color:#fff}
+.pricing-vs .save-sub{font-size:9px;color:rgba(255,255,255,.6);margin-top:2px}
+.pricing-them{text-align:right}
+.pricing-them .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.pricing-them .amount{font-family:'Sora',sans-serif;font-size:32px;font-weight:900;color:#2a2a38;text-decoration:line-through;line-height:1}
+.pricing-them .sub{font-size:12px;color:#2a2a38;margin-top:6px}
+.pricing-rows{padding:0}
+.pricing-row{display:grid;grid-template-columns:1fr 1fr 120px 140px;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);font-size:13px}
+.pricing-row:last-child{border-bottom:none}
+.pricing-row .name{color:var(--text);font-weight:500}
+.pricing-row .comp{color:var(--muted);font-size:11px}
+.pricing-row .comp-price{color:var(--muted);text-align:right;text-decoration:line-through}
+.pricing-row .our-price{font-family:'Sora',sans-serif;font-weight:800;font-size:15px;text-align:right;color:var(--red)}
+.pricing-row .our-price.free-price{color:var(--green)}
+.pricing-total{display:grid;grid-template-columns:1fr 1fr 120px 140px;align-items:center;padding:16px 24px;background:#0a0a0e;border-top:2px solid var(--border)}
+.pricing-total .total-label{font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:#fff;grid-column:1/3}
+.pricing-total .total-comp{color:#1e1e28;text-align:right;font-size:13px;text-decoration:line-through}
+.pricing-total .total-our{font-family:'Sora',sans-serif;font-size:22px;font-weight:900;color:var(--red);text-align:right}
+
+/* CTA */
+.cta-block{background:linear-gradient(135deg,#0d0406,#06080f);border:1px solid #2a1010;border-radius:20px;padding:48px 40px;text-align:center;margin-bottom:40px}
+.cta-title{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#fff;margin-bottom:10px}
+.cta-sub{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:32px}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:13px;padding:14px 28px;border-radius:99px;text-decoration:none;transition:transform .2s}
+.cta-btn:hover{transform:translateY(-2px)}
+.cta-btn-red{background:var(--red);color:#fff;box-shadow:0 8px 28px rgba(232,52,74,.35)}
+.cta-btn-wa{background:#25D366;color:#fff;box-shadow:0 8px 28px rgba(37,211,102,.25)}
+.cta-guarantees{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.cta-guarantee{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.cta-guarantee::before{content:'✓';color:var(--red);font-weight:800}
+
+/* Footer */
+.prop-footer{text-align:center;padding:32px;border-top:1px solid var(--border);font-size:12px;color:#2a2a38}
+
+/* States */
+#error-state,#expired-state{display:none;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center}
+#error-state h2,#expired-state h2{font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:#fff}
+#error-state p,#expired-state p{color:var(--muted);font-size:14px}
+
+@media(max-width:680px){
+  .cover-title{font-size:32px}
+  .pricing-hero{grid-template-columns:1fr;text-align:center}
+  .pricing-them{text-align:center}
+  .pricing-row,.pricing-total{grid-template-columns:1fr 1fr;gap:4px}
+  .pricing-row .comp,.pricing-row .comp-price{display:none}
+  .prop-body{padding:32px 20px 80px}
+  .seal-name{font-size:26px}
+  .seal-stamp{width:120px;height:120px}.seal-ring{width:120px;height:120px}.seal-center{width:76px;height:76px}
+}
+</style>
+</head>
+<body>
+
+<!-- SEAL SCREEN -->
+<div id="seal">
+  <div class="seal-glow"></div>
+
+  <div class="seal-title">Confidential Document</div>
+
+  <div class="seal-stamp" onclick="openProposal()">
+    <svg class="seal-ring-text" viewBox="0 0 160 160">
+      <defs>
+        <path id="circle-path" d="M 80,80 m -58,0 a 58,58 0 1,1 116,0 a 58,58 0 1,1 -116,0"/>
+      </defs>
+      <text>
+        <textPath href="#circle-path" class="seal-circle-text">ANTORTIQ · PRIVATE & CONFIDENTIAL · ANTORTIQ · </textPath>
+      </text>
+    </svg>
+    <div class="seal-ring"></div>
+    <div class="seal-center">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/>
+      </svg>
+      <span class="seal-label">Secured</span>
+    </div>
+  </div>
+
+  <div class="seal-name" id="seal-client-name">Loading...</div>
+  <div class="seal-sub" id="seal-sub">This proposal was prepared exclusively for you by the Antortiq team.</div>
+
+  <button class="seal-btn" onclick="openProposal()">Open Proposal →</button>
+
+  <div class="seal-meta" id="seal-meta" style="display:none">
+    <div class="seal-meta-item">
+      <div class="val" id="meta-services">—</div>
+      <div class="lbl">Services</div>
+    </div>
+    <div class="seal-meta-item">
+      <div class="val" id="meta-total">—</div>
+      <div class="lbl">Investment</div>
+    </div>
+    <div class="seal-meta-item">
+      <div class="val" id="meta-valid">—</div>
+      <div class="lbl">Valid for</div>
+    </div>
+  </div>
+
+  <div class="expires-badge" id="expires-badge" style="display:none">
+    <div class="expires-dot"></div>
+    <span id="expires-text"></span>
+  </div>
+</div>
+
+<!-- PROPOSAL CONTENT -->
+<div id="proposal">
+  <nav class="prop-nav">
+    <div class="prop-logo">Antorti<span>q</span></div>
+    <div class="prop-badge" id="nav-badge">Confidential Proposal</div>
+  </nav>
+
+  <div class="prop-body" id="prop-body">
+    <!-- Injected by JS -->
+  </div>
+
+  <div class="prop-footer" id="prop-footer">
+    antortiq.com &nbsp;·&nbsp; team@antortiq.com &nbsp;·&nbsp; wa.me/919079060327<br>
+    <span id="footer-conf"></span>
+  </div>
+</div>
+
+<!-- Error states -->
+<div id="error-state" style="display:flex">
+  <h2>Proposal not found</h2>
+  <p>This link may be invalid or has been removed.</p>
+</div>
+<div id="expired-state">
+  <h2>Proposal expired</h2>
+  <p>This proposal is no longer valid. Contact us for a fresh one.</p>
+  <a href="https://wa.me/919079060327" style="color:var(--red);font-size:14px;margin-top:8px">WhatsApp us →</a>
+</div>
+
+<script>
+const slug = location.pathname.split('/p/')[1];
+let proposalData = null;
+
+async function init() {
+  if (!slug) { showError(); return; }
+  try {
+    const res = await fetch(`/api/proposals/${slug}`);
+    if (res.status === 410) { showExpired(); return; }
+    if (!res.ok) { showError(); return; }
+    const { proposal } = await res.json();
+    proposalData = proposal;
+    populateSeal(proposal);
+    document.getElementById('error-state').style.display = 'none';
+  } catch (e) { showError(); }
+}
+
+function populateSeal(p) {
+  const name = p.clientName || p.contactPerson || 'You';
+  document.title = `Proposal for ${name} — Antortiq`;
+  document.getElementById('seal-client-name').textContent = `Built for ${name}.`;
+  document.getElementById('seal-sub').textContent =
+    `This confidential proposal was prepared exclusively for ${name} by the Antortiq team.`;
+
+  const paidSvcs = (p.services || []).filter(s => !s.isFree);
+  const freeSvcs = (p.services || []).filter(s => s.isFree);
+  document.getElementById('meta-services').textContent = `${paidSvcs.length}${freeSvcs.length ? ' + ' + freeSvcs.length + ' free' : ''}`;
+  document.getElementById('meta-total').textContent = `₹${(p.totalPrice || 0).toLocaleString('en-IN')}`;
+
+  const days = p.validDays || 7;
+  const created = new Date(p.createdAt);
+  const expires = new Date(p.expiresAt || created.getTime() + days * 86400000);
+  const daysLeft = Math.max(0, Math.ceil((expires - Date.now()) / 86400000));
+  document.getElementById('meta-valid').textContent = `${daysLeft}d left`;
+  document.getElementById('seal-meta').style.display = 'flex';
+
+  document.getElementById('expires-badge').style.display = 'flex';
+  document.getElementById('expires-text').textContent =
+    daysLeft > 1 ? `Offer valid for ${daysLeft} more days` : daysLeft === 1 ? 'Expires tomorrow' : 'Expires today';
+
+  buildProposal(p);
+}
+
+function openProposal() {
+  const seal = document.getElementById('seal');
+  const prop = document.getElementById('proposal');
+  seal.classList.add('hidden');
+  prop.classList.add('visible');
+}
+
+function buildProposal(p) {
+  const name = p.clientName || p.contactPerson || 'You';
+  const paidSvcs = (p.services || []).filter(s => !s.isFree);
+  const freeSvcs = (p.services || []).filter(s => s.isFree);
+  const total = p.totalPrice || 0;
+  const compMonthly = (p.services || []).reduce((a,s) => a + (s.compMonthly || 0), 0);
+  const compAnnual = compMonthly * 12;
+  const savings = compAnnual - total;
+
+  const date = new Date(p.createdAt).toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+  const days = p.validDays || 7;
+  const expires = new Date(new Date(p.createdAt).getTime() + days * 86400000)
+    .toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+
+  document.getElementById('nav-badge').textContent = `Prepared for ${name}`;
+  document.getElementById('footer-conf').textContent = `Confidential — prepared exclusively for ${name} · ${date}`;
+
+  const svcsHTML = (p.services || []).map(s => `
+    <div class="svc-card">
+      <div class="svc-ico">${s.ico || '📦'}</div>
+      <div class="svc-body">
+        <div class="svc-tag" style="color:${s.accentColor || '#e8344a'}">${(s.tags||[''])[0]}</div>
+        <div class="svc-name">${s.name}</div>
+        <div class="svc-desc">${s.desc}</div>
+        <div class="svc-features">
+          ${(s.features||[]).map(f=>`<div class="svc-feature">${f}</div>`).join('')}
+        </div>
+      </div>
+      <div class="svc-price-wrap">
+        ${s.isFree
+          ? `<div class="free-pill">🎁 FREE ADD-ON</div><div class="svc-price-label" style="margin-top:8px;text-align:center">Included</div>`
+          : `<div class="svc-price">₹${(s.price||0).toLocaleString('en-IN')}</div><div class="svc-price-label">one-time</div>`}
+      </div>
+    </div>`).join('');
+
+  const compRowsHTML = (p.services || []).map(s => `
+    <div class="pricing-row">
+      <div class="name">${s.ico||''} ${s.name}</div>
+      <div class="comp">${s.competitor||''}</div>
+      <div class="comp-price">₹${(s.compMonthly||0).toLocaleString('en-IN')}/mo</div>
+      <div class="our-price ${s.isFree?'free-price':''}">${s.isFree ? 'FREE' : '₹'+(s.price||0).toLocaleString('en-IN')}</div>
+    </div>`).join('');
+
+  document.getElementById('prop-body').innerHTML = `
+    <div class="cover-section">
+      <div class="cover-eyebrow">Confidential Project Proposal</div>
+      <h1 class="cover-title">Built for<br><span>${name}.</span></h1>
+      ${p.customMsg ? `<div class="cover-msg">${p.customMsg}</div>` : ''}
+      <div class="cover-meta">
+        ${p.contactPerson ? `<div class="cover-meta-item"><div class="lbl">Prepared for</div><div class="val">${p.contactPerson}${p.clientName ? ' · ' + p.clientName : ''}</div></div>` : ''}
+        ${p.email ? `<div class="cover-meta-item"><div class="lbl">Email</div><div class="val">${p.email}</div></div>` : ''}
+        ${p.phone ? `<div class="cover-meta-item"><div class="lbl">Phone</div><div class="val">${p.phone}</div></div>` : ''}
+        <div class="cover-meta-item"><div class="lbl">Prepared by</div><div class="val">${p.preparedBy||'Antortiq Team'}</div></div>
+        <div class="cover-meta-item"><div class="lbl">Date</div><div class="val">${date}</div></div>
+        <div class="cover-meta-item"><div class="lbl">Valid until</div><div class="val">${expires}</div></div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <div class="section-eyebrow">What You Get</div>
+      <div class="section-title">Your Feature Stack</div>
+    </div>
+    <div class="services-list">${svcsHTML}</div>
+
+    <div class="section-head">
+      <div class="section-eyebrow">Investment</div>
+      <div class="section-title">Why One-Time Always Wins</div>
+    </div>
+    <div class="pricing-block">
+      <div class="pricing-hero">
+        <div class="pricing-you">
+          <div class="lbl">Your One-Time Investment</div>
+          <div class="amount">₹${total.toLocaleString('en-IN')}</div>
+          <div class="sub">Pay once. Own it forever.</div>
+        </div>
+        <div class="pricing-vs">
+          <div class="save-lbl">You save</div>
+          <div class="save-amt">₹${savings.toLocaleString('en-IN')}</div>
+          <div class="save-sub">vs Year 1 with competitors</div>
+        </div>
+        <div class="pricing-them">
+          <div class="lbl">Competitors (Year 1)</div>
+          <div class="amount">₹${compAnnual.toLocaleString('en-IN')}</div>
+          <div class="sub">And it keeps going every year.</div>
+        </div>
+      </div>
+      <div class="pricing-rows">${compRowsHTML}</div>
+      <div class="pricing-total">
+        <div class="total-label">Total</div>
+        <div class="total-comp">₹${compAnnual.toLocaleString('en-IN')}/yr</div>
+        <div class="total-our">₹${total.toLocaleString('en-IN')}</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-title">Ready to go live?</div>
+      <div class="cta-sub">${p.timeline||'Go live within 3 days'} &nbsp;·&nbsp; ${p.support||'Dedicated onboarding call included'}</div>
+      <div class="cta-btns">
+        <a href="mailto:team@antortiq.com" class="cta-btn cta-btn-red">✉ Reply via Email</a>
+        <a href="https://wa.me/919079060327" class="cta-btn cta-btn-wa">💬 WhatsApp Us</a>
+      </div>
+      <div class="cta-guarantees">
+        <div class="cta-guarantee">One-time payment — no recurring fees</div>
+        <div class="cta-guarantee">Full source code & admin access</div>
+        <div class="cta-guarantee">Free bug fixes for 30 days post-launch</div>
+        <div class="cta-guarantee">Proposal valid for ${days} days</div>
+      </div>
+    </div>`;
+}
+
+function showError() {
+  document.getElementById('seal').style.display = 'none';
+  document.getElementById('error-state').style.display = 'flex';
+}
+function showExpired() {
+  document.getElementById('seal').style.display = 'none';
+  document.getElementById('expired-state').style.display = 'flex';
+}
+
+init();
+</script>
+</body>
+</html>

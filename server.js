@@ -12,6 +12,7 @@ const brandsRoute = require('./routes/brands');
 const webhooksRoute = require('./routes/webhooks');
 const orderRoute = require('./routes/order');
 const mailerRoute = require('./routes/mailer');
+const proposalsRoute = require('./routes/proposals');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/brands', brandsRoute);
 app.use('/api/mail', mailerRoute);
+app.use('/api/proposals', proposalsRoute);
+
+// Client-facing proposal page
+app.get('/p/:slug', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'proposal-view.html'));
+});
 app.use('/webhooks', webhooksRoute);
 app.use('/order', orderRoute);
 app.use('/api/contact', contactRoute);

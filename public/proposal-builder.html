@@ -119,6 +119,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   <div class="summary"><span id="summaryText">Select services to see total</span></div>
   <div style="display:flex;gap:12px">
     <button class="btn btn-ghost" onclick="generate(false)">&#128065; Preview</button>
+    <button class="btn btn-ghost" id="linkBtn" onclick="generateLink()">&#128279; Get Client Link</button>
     <button class="btn btn-ghost" id="sendBtn" onclick="sendProposal()">&#9993; Send to Client</button>
     <button class="btn btn-primary" onclick="generate(true)">&#11015; Download PDF</button>
   </div>
@@ -807,6 +808,49 @@ function generate(doPrint) {
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   window.open(url, '_blank');
+}
+
+async function generateLink() {
+  const sel = getSelected();
+  if (!sel.length) { alert('Select at least one service first.'); return; }
+  const form = getForm();
+  const btn = document.getElementById('linkBtn');
+  btn.textContent = 'Saving…';
+  btn.disabled = true;
+  try {
+    const payload = {
+      ...form,
+      services: sel.map(s => ({
+        id: s.id, ico: s.ico, name: s.name, desc: s.desc, tags: s.tags,
+        features: s.features, accentColor: s.accentColor,
+        competitor: s.competitor, compMonthly: s.compMonthly,
+        price: s.price, isFree: s.isFree,
+      })),
+      totalPrice: sel.reduce((a, s) => a + (s.isFree ? 0 : s.price), 0),
+    };
+    const res = await fetch('/api/proposals', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': 'antortiq-admin-2025' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (data.url) {
+      await navigator.clipboard.writeText(data.url).catch(() => {});
+      btn.textContent = '✓ Link Copied!';
+      btn.style.borderColor = 'var(--green)';
+      btn.style.color = 'var(--green)';
+      window.open(data.url, '_blank');
+      setTimeout(() => { btn.textContent = '🔗 Get Client Link'; btn.disabled = false; btn.style.borderColor = ''; btn.style.color = ''; }, 5000);
+    } else {
+      alert('Error: ' + (data.error || 'Unknown'));
+      btn.textContent = '🔗 Get Client Link';
+      btn.disabled = false;
+    }
+  } catch (e) {
+    alert('Network error');
+    btn.textContent = '🔗 Get Client Link';
+    btn.disabled = false;
+  }
 }
 
 async function sendProposal() {
