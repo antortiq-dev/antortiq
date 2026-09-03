@@ -6,8 +6,23 @@
 
 <title>ANTORTIQ — Pitch Deck</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
+  /* Fullscreen button */
+  #fs-btn{
+    position:fixed;bottom:18px;right:18px;z-index:9999;
+    background:rgba(232,52,74,.9);color:#fff;
+    border:none;border-radius:10px;padding:10px 16px;
+    font-size:13px;font-weight:700;letter-spacing:.3px;
+    cursor:pointer;display:flex;align-items:center;gap:7px;
+    backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(232,52,74,.4);
+    transition:opacity .3s;
+  }
+  #fs-btn.hidden{opacity:0;pointer-events:none;}
+  #fs-btn svg{width:16px;height:16px;flex-shrink:0;}
+  :fullscreen #fs-btn,:-webkit-full-screen #fs-btn{display:none;}
   #rotate-prompt{
     display:none;
     position:fixed;inset:0;z-index:99999;
@@ -2926,6 +2941,43 @@ document.addEventListener('touchend',e=>{
     el.src=src;el.style.cssText="width:100%;height:100%;object-fit:cover;display:block;";
   });
 })();
+</script>
+
+<!-- Fullscreen button -->
+<button id="fs-btn" onclick="goFS()" title="Open fullscreen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+    <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+  </svg>
+  Fullscreen
+</button>
+<script>
+function goFS(){
+  var el=document.documentElement;
+  var req=el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen;
+  if(req) req.call(el);
+  // iOS Safari doesn't support Fullscreen API — fallback: hide the button and show tip
+  else{
+    document.getElementById('fs-btn').innerHTML='📱 Add to Home Screen for fullscreen';
+    document.getElementById('fs-btn').style.fontSize='11px';
+    setTimeout(function(){document.getElementById('fs-btn').classList.add('hidden');},4000);
+  }
+}
+// Hide button when already in fullscreen
+document.addEventListener('fullscreenchange',function(){
+  var btn=document.getElementById('fs-btn');
+  if(document.fullscreenElement) btn.classList.add('hidden');
+  else btn.classList.remove('hidden');
+});
+document.addEventListener('webkitfullscreenchange',function(){
+  var btn=document.getElementById('fs-btn');
+  if(document.webkitFullscreenElement) btn.classList.add('hidden');
+  else btn.classList.remove('hidden');
+});
+// Only show on mobile
+if(!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){
+  document.getElementById('fs-btn').style.display='none';
+}
 </script>
 
 <script>if(typeof fbq==="function")fbq("track","ViewContent",{content_name:"pitch_deck"});</script>
