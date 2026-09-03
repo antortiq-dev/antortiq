@@ -445,8 +445,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
     #050E0C;
 }
 #s5 .slide-inner{
-  padding:44px 60px;
-  display:grid;grid-template-columns:1fr 380px;gap:50px;align-items:start;
+  padding:40px 60px;
+  display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start;
 }
 #s5 .wa-left{}
 #s5 .wa-kicker{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--wa);margin-bottom:16px;}
@@ -466,47 +466,34 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 .wa-feat .wf-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .wa-feat .wf-text{font-size:12px;font-weight:500;}
 
-/* WA Chat mockup */
-#s5 .wa-chat{
-  border-radius:20px;overflow:hidden;
-  box-shadow:0 32px 80px rgba(0,0,0,.6);
-  background:#ECE5DD;display:flex;flex-direction:column;
-  height:480px;
-}
-.wa-chat-header{
-  background:var(--wa-dark);padding:14px 16px;
-  display:flex;align-items:center;gap:12px;
-}
-.wa-chat-header .wa-avatar{
-  width:36px;height:36px;border-radius:50%;background:var(--wa);
-  display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;
-}
-.wa-chat-header .wa-name{color:#fff;font-size:14px;font-weight:700;}
-.wa-chat-header .wa-status{color:rgba(255,255,255,.7);font-size:11px;}
-.wa-msgs{flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;overflow:hidden;background:#ECE5DD;}
-.wa-msg{
-  max-width:80%;padding:8px 12px;border-radius:10px;
-  font-size:12px;line-height:1.5;color:#303030;position:relative;
-}
-.wa-msg.recv{background:#fff;border-radius:0 10px 10px 10px;align-self:flex-start;}
-.wa-msg.sent{background:#DCF8C6;border-radius:10px 0 10px 10px;align-self:flex-end;}
-.wa-msg .wm-time{font-size:9px;color:#999;text-align:right;margin-top:3px;}
-.wa-msg.recv::before{
-  content:'';position:absolute;top:0;left:-7px;
-  border:7px solid transparent;border-top:0;border-right-color:#fff;border-top-color:#fff;
-}
-.wa-input-bar{
-  padding:10px 12px;background:#F0F0F0;border-top:1px solid #ddd;
-  display:flex;align-items:center;gap:8px;
-}
-.wa-input-bar .wi-field{
-  flex:1;background:#fff;border-radius:999px;
-  padding:8px 14px;font-size:12px;color:#999;
-}
-.wa-input-bar .wi-send{
-  width:34px;height:34px;border-radius:50%;background:var(--wa-dark);
-  display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;
-}
+/* WA Chat mockup grid */
+#s5 .wa-chat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.wac{background:#111317;border-radius:16px;overflow:hidden;border:1px solid #222;font-family:'Inter',sans-serif;}
+.wac-bar{background:#075e54;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.wac-av{width:30px;height:30px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.wac-name{font-size:11px;font-weight:700;color:#fff;}
+.wac-status{font-size:8.5px;color:rgba(255,255,255,.6);}
+.wac-body{padding:10px;display:flex;flex-direction:column;gap:6px;background:#0b141a;}
+.wm{max-width:85%;padding:6px 10px;border-radius:10px;font-size:10.5px;line-height:1.45;position:relative;}
+.wm.r{background:#1f2c34;color:#e9edef;border-radius:10px 10px 10px 2px;align-self:flex-start;}
+.wm.s{background:#005c4b;color:#e9edef;border-radius:10px 10px 2px 10px;align-self:flex-end;}
+.wm .t{font-size:8px;color:rgba(233,237,239,.45);float:right;margin-left:6px;margin-top:2px;}
+.wm strong{color:#fff;}
+.wac-tag{align-self:center;background:#1f2c34;border:1px solid #2a3942;border-radius:99px;font-size:8.5px;color:#8696a0;padding:2px 9px;margin:1px 0;}
+.wac-ok{background:#005c4b22;border:1px solid #25d36622;border-radius:7px;padding:5px 9px;margin:3px 0;display:flex;align-items:center;gap:5px;font-size:9.5px;color:#25d366;}
+/* escalated card */
+.wac-esc{background:#1a0a0a;border:2px solid #e8344a22;}
+.wac-esc .wac-bar{background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
+.esc-badge{background:#e8344a;color:#fff;font-size:8px;font-weight:800;padding:2px 7px;border-radius:99px;}
+.wac-alert{background:#0f0505;border-top:1px solid #2a1010;padding:9px 11px;}
+.wac-alert-head{display:flex;align-items:center;gap:5px;margin-bottom:6px;}
+.wac-alert-head .ab{background:#e8344a;color:#fff;font-size:7.5px;font-weight:800;padding:2px 7px;border-radius:3px;}
+.wac-alert-msg{background:#1a0808;border:1px solid #3a1010;border-radius:8px;padding:8px 10px;font-size:10px;color:#fca5a5;line-height:1.5;}
+.wac-alert-msg strong{color:#ef4444;}
+.wac-alert-btns{display:flex;gap:5px;margin-top:6px;}
+.wac-alert-btn{flex:1;padding:5px;border-radius:7px;font-size:9.5px;font-weight:700;text-align:center;}
+.wac-alert-btn.red{background:#e8344a;color:#fff;}
+.wac-alert-btn.dk{background:#1f1f1f;color:#9ca3af;border:1px solid #2a2a2a;}
 
 /* ═══════════════════════════════════════
    SLIDE 6 — SETTLEMENT ENGINE
@@ -2065,40 +2052,59 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
         <div class="wa-feat"><div class="wf-dot" style="background:var(--wa);"></div><div class="wf-text">Bot error monitoring + self-improvement insights</div></div>
       </div>
     </div>
-    <div>
-      <div class="wa-chat">
-        <div class="wa-chat-header">
-          <div class="wa-avatar">🤖</div>
-          <div><div class="wa-name">ANTORTIQ Support</div><div class="wa-status">online</div></div>
+    <div class="wa-chat-grid">
+
+      <!-- Chat 1: Tracking resolved -->
+      <div class="wac">
+        <div class="wac-bar">
+          <div class="wac-av">📦</div>
+          <div><div class="wac-name">Antortiq Support</div><div class="wac-status">🟢 Online · AI-powered</div></div>
         </div>
-        <div class="wa-msgs">
-          <div class="wa-msg recv">
-            Hey! Your order #1847 has been confirmed ✅<br>
-            Expected delivery: <b>Aug 7–8</b><br>
-            <div class="wm-time">10:32 AM</div>
-          </div>
-          <div class="wa-msg sent">
-            When will it ship?<div class="wm-time">10:34 AM ✓✓</div>
-          </div>
-          <div class="wa-msg recv">
-            Great news! Your order has been dispatched 🚀<br>
-            Courier: <b>Delhivery</b><br>
-            AWB: <b>1234567890</b><br>
-            Track: antortiq.com/track/1847<div class="wm-time">10:35 AM</div>
-          </div>
-          <div class="wa-msg sent">
-            I want to exchange for size L<div class="wm-time">10:41 AM ✓✓</div>
-          </div>
-          <div class="wa-msg recv">
-            Sure! I've raised an exchange request for size L 📦<br>
-            Your team will confirm within 2 hrs.<div class="wm-time">10:41 AM</div>
-          </div>
-        </div>
-        <div class="wa-input-bar">
-          <div class="wi-field">Type a message...</div>
-          <div class="wi-send">➤</div>
+        <div class="wac-body">
+          <div class="wac-tag">Today, 2:14 PM</div>
+          <div class="wm r">hey where is my order #2847<div class="t">2:14</div></div>
+          <div class="wm s">Hey Priya! 👋 Found it.<br><br><strong>Order #2847</strong> — OUTLAW FLANNEL M<br>🚚 In Transit · Delhivery<br>📍 Last: Pune hub<br>⏱ ETA: Tomorrow by 8 PM<div class="t">2:14 ✓✓</div></div>
+          <div class="wm r">ok thanks<div class="t">2:15</div></div>
+          <div class="wm s">Anytime! 😊 Reply if you need help.<div class="t">2:15 ✓✓</div></div>
+          <div class="wac-ok">✓ Resolved automatically — 0 human minutes</div>
         </div>
       </div>
+
+      <!-- Chat 2: Exchange resolved -->
+      <div class="wac">
+        <div class="wac-bar">
+          <div class="wac-av">🔄</div>
+          <div><div class="wac-name">Antortiq Support</div><div class="wac-status">🟢 Online · AI-powered</div></div>
+        </div>
+        <div class="wac-body">
+          <div class="wac-tag">Today, 11:32 AM</div>
+          <div class="wm r">i got size M but i need L, can i exchange?<div class="t">11:32</div></div>
+          <div class="wm s">Of course, Aryan! 📦<br><br><strong>Order #2831</strong> — eligible ✓<br>Size L in stock ✓<br><br>Exchange <strong>EX-2831</strong> raised. Pickup in 24 hrs.<div class="t">11:32 ✓✓</div></div>
+          <div class="wm r">yes please do that<div class="t">11:33</div></div>
+          <div class="wm s">Done! 🎉 Pickup SMS from Delhivery on its way.<div class="t">11:33 ✓✓</div></div>
+          <div class="wac-ok">✓ Resolved automatically — 0 human minutes</div>
+        </div>
+      </div>
+
+      <!-- Chat 3: Angry escalation — spans full width -->
+      <div class="wac wac-esc" style="grid-column:1/-1;">
+        <div class="wac-bar">
+          <div class="wac-av" style="background:#ef4444;">😤</div>
+          <div style="flex:1;"><div class="wac-name">Antortiq Support</div><div class="wac-status" style="color:rgba(255,255,255,.5);">🟢 Online · AI-powered</div></div>
+          <div class="esc-badge">ESCALATED</div>
+        </div>
+        <div class="wac-body" style="min-height:unset;">
+          <div class="wac-tag">Today, 4:07 PM</div>
+          <div class="wm r">this is absolute garbage, i want my full money back NOW i have been waiting 8 days<div class="t">4:07</div></div>
+          <div class="wm s">Hi, I completely understand your frustration — I'm sorry. <strong>Order #2796</strong>, 8 days with no delivery. That's not okay.<br>Flagging this to our team now. You'll hear back in 30 min.<div class="t">4:07 ✓✓</div></div>
+        </div>
+        <div class="wac-alert">
+          <div class="wac-alert-head"><span style="font-size:14px;">🚨</span><span class="ab">URGENT — ADMIN ALERT</span><span style="font-size:8.5px;color:#6b7280;margin-left:auto;">4:07 PM</span></div>
+          <div class="wac-alert-msg"><strong>Harsh — #2796</strong> demanding refund.<br>⏳ 8 days · Delivery failed twice · 💬 Sentiment: <strong>Angry / High Risk</strong><br>Bot de-escalated — <strong>your response needed in 30 min</strong> or chargeback risk rises.</div>
+          <div class="wac-alert-btns"><div class="wac-alert-btn red">⚡ Resolve Now</div><div class="wac-alert-btn dk">View Order</div></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
