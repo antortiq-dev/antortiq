@@ -8,6 +8,49 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
+  #rotate-prompt{
+    display:none;
+    position:fixed;inset:0;z-index:99999;
+    background:#08080D;
+    flex-direction:column;align-items:center;justify-content:center;gap:24px;
+    text-align:center;padding:32px;
+  }
+  @media (max-width:768px) and (orientation:portrait){
+    #rotate-prompt{display:flex;}
+  }
+  .rp-phone{
+    width:48px;height:80px;border:3px solid #e8344a;border-radius:10px;position:relative;
+    animation:tiltPhone 1.8s ease-in-out infinite;
+  }
+  .rp-phone::before{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:12px;height:3px;background:#e8344a;border-radius:99px;opacity:.5;}
+  .rp-phone::after{content:'';position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:8px;height:8px;border:2px solid #e8344a;border-radius:50%;opacity:.5;}
+  @keyframes tiltPhone{
+    0%{transform:rotate(0deg);}
+    40%{transform:rotate(90deg);}
+    60%{transform:rotate(90deg);}
+    100%{transform:rotate(0deg);}
+  }
+  .rp-arrow{
+    display:flex;align-items:center;gap:8px;
+    font-size:28px;
+    animation:arrowFade 1.8s ease-in-out infinite;
+  }
+  @keyframes arrowFade{
+    0%,100%{opacity:.3;}
+    40%,60%{opacity:1;}
+  }
+  .rp-title{font-family:'Inter',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:-.5px;}
+  .rp-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;max-width:260px;}
+  .rp-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(232,52,74,.15);border:1px solid rgba(232,52,74,.35);border-radius:99px;padding:6px 16px;font-size:11px;font-weight:700;color:#e8344a;letter-spacing:.5px;}
+</style>
+<div id="rotate-prompt">
+  <div class="rp-badge">ANTORTIQ · PITCH DECK</div>
+  <div class="rp-phone"></div>
+  <div class="rp-arrow">↺</div>
+  <div class="rp-title">Tilt your phone</div>
+  <div class="rp-sub">This deck is designed for landscape view.<br>Rotate your device for the full experience.</div>
+</div>
+<style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --ink:#08080D;
