@@ -12,31 +12,63 @@ html,body{height:100%;overflow:hidden}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
 
 /* ── SEAL SCREEN ── */
-#seal{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;transition:opacity .8s ease,transform .8s ease}
-#seal.hidden{opacity:0;transform:scale(1.04);pointer-events:none}
-.seal-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,52,74,.10),transparent 65%);animation:pulse 3s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.1);opacity:1}}
-.seal-stamp{position:relative;width:160px;height:160px;margin-bottom:40px;cursor:pointer;transition:transform .3s}
-.seal-stamp:hover{transform:scale(1.05)}
-.seal-ring{width:160px;height:160px;border-radius:50%;border:3px solid rgba(232,52,74,.4);display:flex;align-items:center;justify-content:center;animation:spin 12s linear infinite}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.seal-ring-text{position:absolute;width:160px;height:160px;border-radius:50%}
-.seal-center{position:absolute;width:100px;height:100px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 0 40px rgba(232,52,74,.5)}
-.seal-center svg{width:36px;height:36px;fill:#fff}
-.seal-label{font-size:8px;font-weight:800;letter-spacing:2px;color:#fff;margin-top:2px;text-transform:uppercase}
-.seal-circle-text{font-size:7.5px;font-weight:700;letter-spacing:3.5px;fill:rgba(232,52,74,.7);text-transform:uppercase}
-.seal-title{font-family:'Sora',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.seal-name{font-family:'Sora',sans-serif;font-size:36px;font-weight:900;color:#fff;margin-bottom:8px;text-align:center}
-.seal-sub{font-size:14px;color:var(--muted);margin-bottom:48px;text-align:center;max-width:400px;line-height:1.6}
-.seal-btn{background:var(--red);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;padding:16px 40px;border-radius:99px;border:none;cursor:pointer;letter-spacing:.5px;box-shadow:0 8px 32px rgba(232,52,74,.4);transition:transform .2s,box-shadow .2s}
-.seal-btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,52,74,.5)}
-.seal-meta{margin-top:28px;display:flex;gap:24px}
-.seal-meta-item{text-align:center}
-.seal-meta-item .val{font-family:'Sora',sans-serif;font-size:16px;font-weight:800;color:#fff}
-.seal-meta-item .lbl{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:1px;text-transform:uppercase}
-.expires-badge{margin-top:20px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
-.expires-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite}
+#seal{position:fixed;inset:0;background:#1a120a;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;transition:opacity .9s ease,transform .9s ease;overflow:hidden}
+#seal.hidden{opacity:0;transform:scale(1.06) translateY(-20px);pointer-events:none}
+/* desk surface texture */
+#seal::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,.012) 40px,rgba(255,255,255,.012) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,.012) 40px,rgba(255,255,255,.012) 41px);pointer-events:none}
+.desk-glow{position:absolute;width:700px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(180,120,40,.12),transparent 70%);pointer-events:none}
+
+/* 3-D folder */
+.folder-scene{perspective:1400px;cursor:pointer;user-select:none}
+.folder-scene:hover .folder-cover{transform:rotateX(-6deg) rotateY(3deg) translateY(-8px);box-shadow:0 60px 120px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.04)}
+.folder-wrap{position:relative;width:320px;height:390px}
+
+/* back of folder (lighter, slightly taller) */
+.folder-back{position:absolute;bottom:0;left:6px;right:-6px;height:400px;background:linear-gradient(160deg,#c8893a,#a0682a);border-radius:4px 18px 4px 4px;box-shadow:6px 8px 40px rgba(0,0,0,.5);transform:rotateX(2deg)}
+.folder-back::after{content:'';position:absolute;top:0;right:0;width:44px;height:54px;background:linear-gradient(135deg,#e8a048 40%,#c07830);border-radius:0 18px 0 0}
+
+/* tab on back */
+.folder-tab{position:absolute;top:-22px;right:28px;width:60px;height:24px;background:linear-gradient(135deg,#e8340a,#c02000);border-radius:6px 6px 0 0;box-shadow:0 -2px 8px rgba(0,0,0,.3)}
+
+/* main cover */
+.folder-cover{position:absolute;bottom:0;left:0;right:0;height:390px;background:linear-gradient(160deg,#d9944a 0%,#c07830 40%,#a85e20 100%);border-radius:4px 16px 4px 4px;box-shadow:0 40px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15);transform:rotateX(0deg) rotateY(0deg) translateY(0);transition:transform .4s cubic-bezier(.25,.8,.25,1),box-shadow .4s ease;transform-origin:bottom center}
+/* paper texture on cover */
+.folder-cover::before{content:'';position:absolute;inset:0;border-radius:4px 16px 4px 4px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");opacity:.4;pointer-events:none}
+/* edge shadow lines */
+.folder-cover::after{content:'';position:absolute;left:0;top:0;bottom:0;width:8px;border-radius:4px 0 0 4px;background:linear-gradient(90deg,rgba(0,0,0,.25),transparent)}
+
+/* paper clip */
+.f-clip{position:absolute;top:-18px;left:50px;width:18px;height:56px;z-index:10}
+.f-clip svg{width:18px;height:56px;filter:drop-shadow(1px 2px 3px rgba(0,0,0,.4))}
+
+/* label window */
+.f-label-win{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);width:178px;background:rgba(245,230,200,.18);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:14px 16px;backdrop-filter:blur(2px)}
+.f-label-prepared{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,220,150,.55);margin-bottom:6px}
+.f-label-name{font-family:'Sora',sans-serif;font-size:15px;font-weight:900;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.4);line-height:1.2;word-break:break-word}
+.f-label-co{font-size:10px;color:rgba(255,220,150,.7);margin-top:4px;font-weight:500}
+
+/* CONFIDENTIAL stamp */
+.f-stamp{position:absolute;top:68px;left:50%;transform:translateX(-50%) rotate(-8deg);border:3px solid rgba(200,40,20,.75);border-radius:4px;padding:6px 14px;white-space:nowrap}
+.f-stamp-text{font-family:'Sora',sans-serif;font-size:13px;font-weight:900;letter-spacing:4px;text-transform:uppercase;color:rgba(210,40,20,.85);text-shadow:0 0 8px rgba(210,40,20,.3)}
+
+/* antortiq logo on folder */
+.f-logo{position:absolute;top:30px;left:50%;transform:translateX(-50%);font-family:'Sora',sans-serif;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,210,120,.5);white-space:nowrap}
+
+/* open hint */
+.folder-hint{margin-top:32px;font-size:12px;color:rgba(180,130,60,.6);letter-spacing:2px;text-transform:uppercase;animation:fhint 2s ease-in-out infinite}
+@keyframes fhint{0%,100%{opacity:.5;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+
+/* meta strip below folder */
+.f-meta{display:flex;gap:32px;margin-top:20px;opacity:0;transition:opacity .6s ease .3s}
+.f-meta.show{opacity:1}
+.f-meta-item{text-align:center}
+.f-meta-item .fmv{font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:rgba(255,210,120,.9)}
+.f-meta-item .fml{font-size:9px;color:rgba(180,130,60,.55);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+
+.expires-badge{margin-top:14px;font-size:11px;color:rgba(180,130,60,.55);display:flex;align-items:center;gap:6px}
+.expires-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.1);opacity:1}}
 
 /* ── PROPOSAL CONTENT ── */
 #proposal{opacity:0;overflow-y:auto;height:100vh;transition:opacity .8s ease .2s}
@@ -194,8 +226,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
   .pricing-row .comp,.pricing-row .comp-price{display:none}
   .prop-body{padding:32px 20px 80px}
   .showcase-grid{grid-template-columns:1fr}
-  .seal-name{font-size:26px}
-  .seal-stamp{width:120px;height:120px}.seal-ring{width:120px;height:120px}.seal-center{width:76px;height:76px}
+  .folder-wrap{width:260px;height:320px}.folder-back{height:330px}
+  .f-label-win{width:148px;bottom:80px}.f-label-name{font-size:13px}
 }
 </style>
 </head>
@@ -203,46 +235,44 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
 
 <!-- SEAL SCREEN -->
 <div id="seal">
-  <div class="seal-glow"></div>
+  <div class="desk-glow"></div>
 
-  <div class="seal-title">Confidential Document</div>
-
-  <div class="seal-stamp" onclick="openProposal()">
-    <svg class="seal-ring-text" viewBox="0 0 160 160">
-      <defs>
-        <path id="circle-path" d="M 80,80 m -58,0 a 58,58 0 1,1 116,0 a 58,58 0 1,1 -116,0"/>
-      </defs>
-      <text>
-        <textPath href="#circle-path" class="seal-circle-text">ANTORTIQ · PRIVATE & CONFIDENTIAL · ANTORTIQ · </textPath>
-      </text>
-    </svg>
-    <div class="seal-ring"></div>
-    <div class="seal-center">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/>
-      </svg>
-      <span class="seal-label">Secured</span>
+  <!-- 3D Folder -->
+  <div class="folder-scene" onclick="openProposal()">
+    <div class="folder-wrap">
+      <!-- back panel -->
+      <div class="folder-back"></div>
+      <!-- orange tab -->
+      <div class="folder-tab"></div>
+      <!-- front cover -->
+      <div class="folder-cover">
+        <!-- paper clip -->
+        <div class="f-clip">
+          <svg viewBox="0 0 18 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 2C5.686 2 3 4.686 3 8v32c0 5.523 4.477 10 10 10s10-4.477 10-10V10" stroke="#c8a060" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M9 2C6.791 2 5 3.791 5 6v33c0 4.418 3.582 8 8 8s8-3.582 8-8V8" stroke="#e8c080" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6"/>
+          </svg>
+        </div>
+        <!-- Antortiq logo -->
+        <div class="f-logo">Antortiq</div>
+        <!-- CONFIDENTIAL stamp -->
+        <div class="f-stamp"><div class="f-stamp-text">Confidential</div></div>
+        <!-- label window -->
+        <div class="f-label-win">
+          <div class="f-label-prepared">Prepared for</div>
+          <div class="f-label-name" id="seal-client-name">—</div>
+          <div class="f-label-co" id="seal-client-co"></div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="seal-name" id="seal-client-name">Loading...</div>
-  <div class="seal-sub" id="seal-sub">This proposal was prepared exclusively for you by the Antortiq team.</div>
+  <div class="folder-hint">↑ Tap to open</div>
 
-  <button class="seal-btn" onclick="openProposal()">Open Proposal →</button>
-
-  <div class="seal-meta" id="seal-meta" style="display:none">
-    <div class="seal-meta-item">
-      <div class="val" id="meta-services">—</div>
-      <div class="lbl">Services</div>
-    </div>
-    <div class="seal-meta-item">
-      <div class="val" id="meta-total">—</div>
-      <div class="lbl">Investment</div>
-    </div>
-    <div class="seal-meta-item">
-      <div class="val" id="meta-valid">—</div>
-      <div class="lbl">Valid for</div>
-    </div>
+  <div class="f-meta" id="seal-meta">
+    <div class="f-meta-item"><div class="fmv" id="meta-services">—</div><div class="fml">Services</div></div>
+    <div class="f-meta-item"><div class="fmv" id="meta-total">—</div><div class="fml">Investment</div></div>
+    <div class="f-meta-item"><div class="fmv" id="meta-valid">—</div><div class="fml">Valid</div></div>
   </div>
 
   <div class="expires-badge" id="expires-badge" style="display:none">
@@ -297,11 +327,12 @@ async function init() {
 }
 
 function populateSeal(p) {
-  const name = p.clientName || p.contactPerson || 'You';
+  const name = p.contactPerson || p.clientName || 'You';
+  const co = p.clientName && p.contactPerson ? p.clientName : '';
   document.title = `Proposal for ${name} — Antortiq`;
-  document.getElementById('seal-client-name').textContent = `Built for ${name}.`;
-  document.getElementById('seal-sub').textContent =
-    `This confidential proposal was prepared exclusively for ${name} by the Antortiq team.`;
+  document.getElementById('seal-client-name').textContent = name;
+  const coEl = document.getElementById('seal-client-co');
+  if (coEl) coEl.textContent = co;
 
   const paidSvcs = (p.services || []).filter(s => !s.isFree);
   const freeSvcs = (p.services || []).filter(s => s.isFree);
@@ -313,7 +344,7 @@ function populateSeal(p) {
   const expires = new Date(p.expiresAt || created.getTime() + days * 86400000);
   const daysLeft = Math.max(0, Math.ceil((expires - Date.now()) / 86400000));
   document.getElementById('meta-valid').textContent = `${daysLeft}d left`;
-  document.getElementById('seal-meta').style.display = 'flex';
+  document.getElementById('seal-meta').classList.add('show');
 
   document.getElementById('expires-badge').style.display = 'flex';
   document.getElementById('expires-text').textContent =
@@ -325,8 +356,16 @@ function populateSeal(p) {
 function openProposal() {
   const seal = document.getElementById('seal');
   const prop = document.getElementById('proposal');
-  seal.classList.add('hidden');
-  prop.classList.add('visible');
+  const cover = seal.querySelector('.folder-cover');
+  if (cover) {
+    cover.style.transition = 'transform .55s cubic-bezier(.4,0,.2,1)';
+    cover.style.transformOrigin = 'bottom center';
+    cover.style.transform = 'rotateX(-160deg) translateY(-20px)';
+  }
+  setTimeout(() => {
+    seal.classList.add('hidden');
+    prop.classList.add('visible');
+  }, 420);
 }
 
 function buildProposal(p) {
