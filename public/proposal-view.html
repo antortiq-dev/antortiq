@@ -120,6 +120,64 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
 .cta-guarantee{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .cta-guarantee::before{content:'✓';color:var(--red);font-weight:800}
 
+/* Product showcase */
+.showcase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:56px}
+.showcase-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:border-color .2s}
+.showcase-card:hover{border-color:#2e2e3a}
+.showcase-header{padding:20px 20px 16px;display:flex;align-items:center;gap:12px}
+.showcase-ico{font-size:26px}
+.showcase-title{font-family:'Sora',sans-serif;font-weight:800;font-size:14px;color:#fff;line-height:1.3}
+.showcase-tag{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.showcase-demo{background:#0a0a0e;border-top:1px solid var(--border);padding:16px;min-height:180px}
+/* WA phone mock */
+.sp-phone{background:#111317;border-radius:14px;overflow:hidden;font-family:'Inter',sans-serif;max-width:260px;margin:0 auto}
+.sp-bar{background:#075e54;padding:8px 12px;display:flex;align-items:center;gap:8px}
+.sp-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.sp-info .sp-name{font-size:11px;font-weight:700;color:#fff}
+.sp-info .sp-status{font-size:8px;color:rgba(255,255,255,.55)}
+.sp-msgs{padding:10px;display:flex;flex-direction:column;gap:6px;background:#0b141a}
+.sp-msg{max-width:80%;padding:6px 9px;border-radius:8px;font-size:10px;line-height:1.4}
+.sp-msg.bot{background:#1f2c34;color:#e2e8f0;border-bottom-left-radius:2px}
+.sp-msg.user{background:#005c4b;color:#e2e8f0;border-bottom-right-radius:2px;align-self:flex-end}
+.sp-msg .sp-time{font-size:8px;color:rgba(255,255,255,.4);margin-top:3px;text-align:right}
+/* Dashboard mock */
+.sp-dash{background:#0e0e12;border-radius:12px;padding:12px;font-family:'Inter',sans-serif}
+.sp-kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.sp-kpi{background:#14141a;border-radius:8px;padding:8px;text-align:center}
+.sp-kpi-val{font-family:'Sora',sans-serif;font-size:14px;font-weight:800;color:#fff}
+.sp-kpi-lbl{font-size:8px;color:#5a5a68;margin-top:2px}
+.sp-kpi-badge{font-size:8px;font-weight:700;padding:2px 5px;border-radius:99px;margin-top:3px;display:inline-block}
+.sp-bar-chart{background:#14141a;border-radius:8px;padding:8px}
+.sp-bar-label{font-size:8px;color:#5a5a68;margin-bottom:5px}
+.sp-bar-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.sp-bar-name{font-size:8px;color:#9ca3af;width:60px;flex-shrink:0}
+.sp-bar-fill{height:8px;border-radius:99px;transition:width .4s}
+.sp-bar-num{font-size:8px;color:#9ca3af}
+/* Track mock */
+.sp-track{background:#0e0e12;border-radius:12px;padding:12px;font-family:'Inter',sans-serif}
+.sp-track-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sp-track-order{font-size:10px;font-weight:700;color:#fff}
+.sp-track-badge{font-size:8px;font-weight:700;background:#22c55e22;color:#22c55e;padding:2px 7px;border-radius:99px}
+.sp-timeline{display:flex;flex-direction:column;gap:0}
+.sp-step{display:flex;align-items:flex-start;gap:8px}
+.sp-step-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.sp-step-line{width:1px;height:18px;background:#1e1e26;margin-left:4.5px}
+.sp-step-text{font-size:9px;color:#9ca3af;line-height:1.4}
+.sp-step.done .sp-step-text{color:#e2e8f0}
+/* Pixel mock */
+.sp-pixel{background:#0e0e12;border-radius:12px;padding:12px;font-family:'Inter',sans-serif}
+.sp-pixel-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #1e1e26;font-size:9px}
+.sp-pixel-event{color:#9ca3af}
+.sp-pixel-val{font-weight:700;color:#a855f7}
+.sp-pixel-fire{font-size:8px;color:#22c55e}
+/* CRM mock */
+.sp-crm{background:#0e0e12;border-radius:12px;padding:12px;font-family:'Inter',sans-serif}
+.sp-crm-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #1e1e26}
+.sp-crm-avatar{width:24px;height:24px;border-radius:50%;background:#1e1e26;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.sp-crm-name{font-size:10px;font-weight:600;color:#fff;flex:1}
+.sp-crm-tag{font-size:8px;padding:2px 6px;border-radius:99px;font-weight:700}
+.sp-crm-orders{font-size:9px;color:#5a5a68}
+
 /* Footer */
 .prop-footer{text-align:center;padding:32px;border-top:1px solid var(--border);font-size:12px;color:#2a2a38}
 
@@ -135,6 +193,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
   .pricing-row,.pricing-total{grid-template-columns:1fr 1fr;gap:4px}
   .pricing-row .comp,.pricing-row .comp-price{display:none}
   .prop-body{padding:32px 20px 80px}
+  .showcase-grid{grid-template-columns:1fr}
   .seal-name{font-size:26px}
   .seal-stamp{width:120px;height:120px}.seal-ring{width:120px;height:120px}.seal-center{width:76px;height:76px}
 }
@@ -305,6 +364,42 @@ function buildProposal(p) {
       </div>
     </div>`).join('');
 
+  // Demo card HTML per product id
+  function demoCard(s) {
+    const id = s.id || '';
+    const accent = s.accentColor || '#e8344a';
+    let demo = '';
+
+    if (id === 'smart_track') {
+      demo = `<div class="sp-phone"><div class="sp-bar"><div class="sp-avatar" style="background:#25d366">📦</div><div class="sp-info"><div class="sp-name">Order Updates</div><div class="sp-status">Antortiq Bot • online</div></div></div><div class="sp-msgs"><div class="sp-msg bot">🎉 Your order #ANT2847 has been confirmed!<br>Expected delivery: <b>2–3 days</b><div class="sp-time">10:02 AM ✓✓</div></div><div class="sp-msg user">When will it ship?<div class="sp-time">10:03 AM ✓✓</div></div><div class="sp-msg bot">📦 Great news! Your order has been dispatched via Delhivery.<br>Track: <b>bit.ly/trk2847</b><div class="sp-time">10:03 AM ✓✓</div></div><div class="sp-msg bot">🚚 Out for delivery! Expected by 6 PM today.<div class="sp-time">2:15 PM ✓✓</div></div></div></div>`;
+    } else if (id === 'returns_exchange') {
+      demo = `<div class="sp-track"><div class="sp-track-header"><div class="sp-track-order">#ANT2847 — Kurta Set M</div><div class="sp-track-badge">In Transit</div></div><div class="sp-timeline"><div class="sp-step done"><div><div class="sp-step-dot" style="background:#22c55e"></div><div class="sp-step-line"></div></div><div class="sp-step-text"><b>Order Confirmed</b> · Sep 1, 10:02 AM</div></div><div class="sp-step done"><div><div class="sp-step-dot" style="background:#22c55e"></div><div class="sp-step-line"></div></div><div class="sp-step-text"><b>Picked Up</b> by Delhivery · Sep 2, 9:15 AM</div></div><div class="sp-step done"><div><div class="sp-step-dot" style="background:#3b82f6"></div><div class="sp-step-line"></div></div><div class="sp-step-text"><b>In Transit</b> — Mumbai Hub · Sep 3, 4:30 AM</div></div><div class="sp-step"><div><div class="sp-step-dot" style="background:#1e1e26;border:1px solid #3a3a4a"></div><div class="sp-step-line" style="background:transparent"></div></div><div class="sp-step-text" style="color:#3a3a4a">Out for Delivery · Pending</div></div></div><div style="margin-top:10px;background:#1a0d06;border-radius:8px;padding:8px;font-size:9px;color:#f59e0b;font-weight:600">🔄 Wrong size? <span style="text-decoration:underline;cursor:pointer">Request Exchange →</span></div></div>`;
+    } else if (id === 'order_management') {
+      demo = `<div class="sp-dash"><div class="sp-kpi-row"><div class="sp-kpi"><div class="sp-kpi-val" style="color:#e8344a">₹12.0L</div><div class="sp-kpi-lbl">Revenue</div><div class="sp-kpi-badge" style="background:#e8344a22;color:#e8344a">↑ 18%</div></div><div class="sp-kpi"><div class="sp-kpi-val">324</div><div class="sp-kpi-lbl">Orders</div><div class="sp-kpi-badge" style="background:#22c55e22;color:#22c55e">↑ 12%</div></div><div class="sp-kpi"><div class="sp-kpi-val" style="color:#f59e0b">8.2%</div><div class="sp-kpi-lbl">RTO Rate</div><div class="sp-kpi-badge" style="background:#f59e0b22;color:#f59e0b">↓ 3%</div></div></div><div class="sp-bar-chart"><div class="sp-bar-label">Top Products Today</div><div class="sp-bar-row"><div class="sp-bar-name">Kurta Set</div><div class="sp-bar-fill" style="width:80%;background:#e8344a"></div><div class="sp-bar-num">48</div></div><div class="sp-bar-row"><div class="sp-bar-name">Palazzo</div><div class="sp-bar-fill" style="width:55%;background:#3b82f6"></div><div class="sp-bar-num">33</div></div><div class="sp-bar-row"><div class="sp-bar-name">Dupatta</div><div class="sp-bar-fill" style="width:35%;background:#22c55e"></div><div class="sp-bar-num">21</div></div></div></div>`;
+    } else if (id === 'ai_agent') {
+      demo = `<div class="sp-phone"><div class="sp-bar" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a"><div class="sp-avatar" style="background:#06b6d4">🤖</div><div class="sp-info"><div class="sp-name">AI Support Agent</div><div class="sp-status">Powered by Antortiq AI</div></div></div><div class="sp-msgs"><div class="sp-msg user">Where is my order? It's been 4 days<div class="sp-time">11:42 AM ✓✓</div></div><div class="sp-msg bot">Hi! Order #ANT3021 is <b>Out for Delivery</b> — arriving today by 7 PM 🚚<br>Courier: Xpressbees · AWB: XB99201<div class="sp-time">11:42 AM ✓✓</div></div><div class="sp-msg user">I want to exchange size<div class="sp-time">11:43 AM ✓✓</div></div><div class="sp-msg bot">Sure! Which size do you need? Exchange is free within 7 days of delivery 🔄<div class="sp-time">11:43 AM ✓✓</div></div></div></div>`;
+    } else if (id === 'wa_email') {
+      demo = `<div class="sp-phone"><div class="sp-bar"><div class="sp-avatar" style="background:#25d366">💬</div><div class="sp-info"><div class="sp-name">Abandoned Cart Recovery</div><div class="sp-status">Antortiq Bot</div></div></div><div class="sp-msgs"><div class="sp-msg bot">Hey! 👋 You left something behind.<br><b>Floral Kurta Set (M)</b> is still waiting in your cart 🛒<div class="sp-time">3:10 PM ✓✓</div></div><div class="sp-msg bot">We're holding it for you — but stock is limited!<br>Complete your order: <b>bit.ly/cart8821</b><div class="sp-time">3:10 PM ✓✓</div></div><div class="sp-msg user">okay placing now<div class="sp-time">3:12 PM ✓✓</div></div><div class="sp-msg bot">🎉 Order placed! You'll get updates here. Thank you! 💖<div class="sp-time">3:14 PM ✓✓</div></div></div></div>`;
+    } else if (id === 'auto_contact') {
+      demo = `<div class="sp-crm"><div style="font-size:9px;color:#5a5a68;margin-bottom:8px;font-weight:700;letter-spacing:1px">AUTO-SYNCED CONTACTS</div><div class="sp-crm-row"><div class="sp-crm-avatar">👩</div><div><div class="sp-crm-name">Priya Sharma</div><div class="sp-crm-orders">3 orders · ₹4,200 LTV</div></div><div class="sp-crm-tag" style="background:#22c55e22;color:#22c55e">Loyal</div></div><div class="sp-crm-row"><div class="sp-crm-avatar">👨</div><div><div class="sp-crm-name">Rahul Meena</div><div class="sp-crm-orders">1 order · ₹1,099 LTV</div></div><div class="sp-crm-tag" style="background:#3b82f622;color:#3b82f6">New</div></div><div class="sp-crm-row"><div class="sp-crm-avatar">👩</div><div><div class="sp-crm-name">Sneha Patel</div><div class="sp-crm-orders">7 orders · ₹11,800 LTV</div></div><div class="sp-crm-tag" style="background:#f59e0b22;color:#f59e0b">VIP</div></div><div style="margin-top:8px;font-size:9px;color:#22c55e;font-weight:600">✓ 128 contacts synced from last 30 days</div></div>`;
+    } else if (id === 'pixel_tracker') {
+      demo = `<div class="sp-pixel"><div style="font-size:9px;color:#5a5a68;margin-bottom:8px;font-weight:700;letter-spacing:1px">LIVE PIXEL EVENTS</div><div class="sp-pixel-row"><div class="sp-pixel-event">ViewContent</div><div class="sp-pixel-fire">● firing</div><div class="sp-pixel-val" style="color:#a855f7">1,204/day</div></div><div class="sp-pixel-row"><div class="sp-pixel-event">AddToCart</div><div class="sp-pixel-fire">● firing</div><div class="sp-pixel-val" style="color:#3b82f6">387/day</div></div><div class="sp-pixel-row"><div class="sp-pixel-event">InitiateCheckout</div><div class="sp-pixel-fire">● firing</div><div class="sp-pixel-val" style="color:#f59e0b">198/day</div></div><div class="sp-pixel-row"><div class="sp-pixel-event">Purchase</div><div class="sp-pixel-fire">● firing</div><div class="sp-pixel-val" style="color:#22c55e">84/day</div></div><div style="margin-top:8px;font-size:9px;color:#a855f7;font-weight:600">ROAS: 4.2x &nbsp;·&nbsp; CPP: ₹312 &nbsp;·&nbsp; Reach: 48K</div></div>`;
+    } else if (id === 'meta_ads') {
+      demo = `<div class="sp-dash"><div class="sp-kpi-row"><div class="sp-kpi"><div class="sp-kpi-val" style="color:#f97316">4.2x</div><div class="sp-kpi-lbl">ROAS</div><div class="sp-kpi-badge" style="background:#f97316;color:#fff">↑ Live</div></div><div class="sp-kpi"><div class="sp-kpi-val">₹312</div><div class="sp-kpi-lbl">CPP</div><div class="sp-kpi-badge" style="background:#22c55e22;color:#22c55e">↓ 18%</div></div><div class="sp-kpi"><div class="sp-kpi-val">48K</div><div class="sp-kpi-lbl">Reach</div><div class="sp-kpi-badge" style="background:#3b82f622;color:#3b82f6">↑ 31%</div></div></div><div class="sp-bar-chart"><div class="sp-bar-label">Campaign Performance</div><div class="sp-bar-row"><div class="sp-bar-name">Retargeting</div><div class="sp-bar-fill" style="width:90%;background:#f97316"></div><div class="sp-bar-num">6.1x</div></div><div class="sp-bar-row"><div class="sp-bar-name">Lookalike</div><div class="sp-bar-fill" style="width:60%;background:#a855f7"></div><div class="sp-bar-num">3.8x</div></div><div class="sp-bar-row"><div class="sp-bar-name">Cold Traffic</div><div class="sp-bar-fill" style="width:35%;background:#3b82f6"></div><div class="sp-bar-num">2.2x</div></div></div></div>`;
+    } else {
+      // Generic fallback
+      demo = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:140px;gap:8px"><div style="font-size:40px">${s.ico||'📦'}</div><div style="font-size:11px;color:#5a5a68;text-align:center">${s.name}</div></div>`;
+    }
+    return `<div class="showcase-card">
+      <div class="showcase-header">
+        <div class="showcase-ico">${s.ico||'📦'}</div>
+        <div><div class="showcase-title">${s.name}</div><div class="showcase-tag" style="color:${accent}">${(s.tags||[''])[0]}</div></div>
+      </div>
+      <div class="showcase-demo">${demo}</div>
+    </div>`;
+  }
+  const showcaseHTML = (p.services || []).map(demoCard).join('');
+
   const compRowsHTML = (p.services || []).map(s => `
     <div class="pricing-row">
       <div class="name">${s.ico||''} ${s.name}</div>
@@ -333,6 +428,12 @@ function buildProposal(p) {
       <div class="section-title">Your Feature Stack</div>
     </div>
     <div class="services-list">${svcsHTML}</div>
+
+    <div class="section-head">
+      <div class="section-eyebrow">Live Previews</div>
+      <div class="section-title">See It in Action</div>
+    </div>
+    <div class="showcase-grid">${showcaseHTML}</div>
 
     <div class="section-head">
       <div class="section-eyebrow">Investment</div>
