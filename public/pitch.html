@@ -170,6 +170,31 @@
 #s10 .rx-ship-row .v { color: #111; }
 html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--text);}
 
+/* ── Mobile scale wrapper ── */
+#deck-scaler{
+  position:absolute;inset:0;
+  transform-origin:top left;
+  /* JS sets transform:scale() dynamically */
+}
+@media(max-width:768px){
+  /* Shrink nav arrows on mobile */
+  .nav-arr{width:36px;height:36px;font-size:14px;}
+  #navL{left:4px;}
+  #navR{right:4px;}
+  #counter{top:10px;right:10px;font-size:9px;}
+  #dots{bottom:12px;gap:5px;}
+  .dot{width:5px;height:5px;}
+  .dot.on{width:14px;}
+  /* Swipe hint */
+  #swipe-hint{
+    position:fixed;bottom:36px;left:50%;transform:translateX(-50%);
+    font-size:10px;color:rgba(255,255,255,.3);letter-spacing:1px;
+    pointer-events:none;z-index:200;
+    animation:fadeHint 3s ease forwards;
+  }
+  @keyframes fadeHint{0%{opacity:1}70%{opacity:.3}100%{opacity:0}}
+}
+
 /* ── Deck container ── */
 #deck{position:relative;width:100%;height:100%;}
 .slide{
@@ -1041,6 +1066,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
 </style>
 
 <div id="deck">
+<div id="deck-scaler">
 <!-- ── SLIDE 1: HERO ── -->
 <div class="slide active" id="s1">
   <div class="slide-bg"></div>
@@ -2730,6 +2756,7 @@ function maiTab(id) {
   </div>
 </div>
 
+</div><!-- /deck-scaler -->
 </div><!-- /deck -->
 
 <!-- Nav -->
@@ -2737,6 +2764,7 @@ function maiTab(id) {
 <div id="navR" class="nav-arr">&#8250;</div>
 <div id="dots"></div>
 <div id="counter"></div>
+<div id="swipe-hint">← SWIPE →</div>
 
 <script>
 const slides = document.querySelectorAll('.slide');
@@ -2796,12 +2824,40 @@ document.addEventListener('keydown',e=>{
   if(e.key==='0') goTo(9);
 });
 
+// ── Mobile deck scaler — zoom-to-fit all slides on small screens ──
+(function(){
+  var DESIGN_W = 1280, DESIGN_H = 720; // reference desktop size
+  var scaler = document.getElementById('deck-scaler');
+  function scaleDeck(){
+    var vw = window.innerWidth, vh = window.innerHeight;
+    if(vw >= 900){ // desktop — no scaling
+      scaler.style.transform = '';
+      scaler.style.width = '';
+      scaler.style.height = '';
+      return;
+    }
+    var s = Math.min(vw / DESIGN_W, vh / DESIGN_H);
+    scaler.style.transformOrigin = 'top left';
+    scaler.style.transform = 'scale(' + s + ')';
+    scaler.style.width = DESIGN_W + 'px';
+    scaler.style.height = DESIGN_H + 'px';
+    // Center horizontally & vertically
+    scaler.style.position = 'absolute';
+    scaler.style.left = ((vw - DESIGN_W * s) / 2) + 'px';
+    scaler.style.top  = ((vh - DESIGN_H * s) / 2) + 'px';
+  }
+  scaleDeck();
+  window.addEventListener('resize', scaleDeck);
+  window.addEventListener('orientationchange', function(){ setTimeout(scaleDeck, 200); });
+})();
+
 // touch swipe
-let tsx=0;
-document.addEventListener('touchstart',e=>tsx=e.touches[0].clientX,{passive:true});
+let tsx=0, tsy=0;
+document.addEventListener('touchstart',e=>{tsx=e.touches[0].clientX;tsy=e.touches[0].clientY;},{passive:true});
 document.addEventListener('touchend',e=>{
   const dx=tsx-e.changedTouches[0].clientX;
-  if(Math.abs(dx)>50){ dx>0?goTo(cur+1):goTo(cur-1,'prev'); }
+  const dy=tsy-e.changedTouches[0].clientY;
+  if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){ dx>0?goTo(cur+1):goTo(cur-1,'prev'); }
 },{passive:true});
 
 
