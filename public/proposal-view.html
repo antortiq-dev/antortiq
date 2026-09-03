@@ -95,6 +95,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
 .section-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
 .section-title{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#fff}
 .services-list{display:flex;flex-direction:column;gap:16px;margin-bottom:56px}
+/* Mobile card elements hidden on desktop */
+.svc-card-top,.svc-card-body,.svc-ico-wrap,.svc-name-mob,.svc-price-mob,.svc-features-chips,.svc-chip{display:none}
+/* Desktop card */
 .svc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;align-items:flex-start;gap:20px;transition:border-color .2s}
 .svc-card:hover{border-color:#2e2e3a}
 .svc-ico{font-size:32px;flex-shrink:0;margin-top:2px}
@@ -170,6 +173,24 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
   .prop-body{padding:32px 20px 80px}
   .folder-wrap{width:260px;height:320px}.folder-back{height:330px}
   .f-label-win{width:148px;bottom:80px}.f-label-name{font-size:13px}
+
+  /* ── Mobile service card redesign ── */
+  .svc-card{padding:0;flex-direction:column;gap:0;overflow:hidden;border-radius:20px}
+  /* Show mobile elements */
+  .svc-card-top{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 12px;background:linear-gradient(120deg,var(--svc-accent-dim,#1a0406),var(--surface) 75%);border-bottom:1px solid var(--border)}
+  .svc-card-top-left{display:flex;align-items:center;gap:12px;min-width:0}
+  .svc-ico-wrap{width:44px;height:44px;border-radius:12px;background:var(--svc-accent-dim,#1a0406);border:1px solid var(--svc-accent,var(--red));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .svc-tag{display:block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;color:var(--svc-accent,var(--red))}
+  .svc-name-mob{display:block;font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:#fff;line-height:1.2}
+  .svc-price-mob{display:block;text-align:right;flex-shrink:0;margin-left:8px}
+  .svc-price-mob .amt{font-family:'Sora',sans-serif;font-size:20px;font-weight:900;color:var(--svc-accent,var(--red));line-height:1;white-space:nowrap}
+  .svc-price-mob .lbl{font-size:9px;color:var(--muted);margin-top:2px}
+  .svc-card-body{display:block;padding:14px 16px 16px}
+  .svc-features-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .svc-chip{display:flex;font-size:11px;font-weight:600;color:#c8c8d8;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:99px;padding:5px 11px;align-items:center;gap:5px}
+  .svc-chip::before{content:'✓';color:var(--svc-accent,var(--red));font-weight:900;font-size:10px;flex-shrink:0}
+  /* Hide desktop elements */
+  .svc-card>.svc-ico,.svc-card>.svc-body,.svc-card>.svc-price-wrap{display:none}
 }
 </style>
 </head>
@@ -327,23 +348,47 @@ function buildProposal(p) {
   document.getElementById('nav-badge').textContent = `Prepared for ${name}`;
   document.getElementById('footer-conf').textContent = `Confidential — prepared exclusively for ${name} · ${date}`;
 
-  const svcsHTML = (p.services || []).map(s => `
-    <div class="svc-card">
+  const svcsHTML = (p.services || []).map(s => {
+    const acc = s.accentColor || '#e8344a';
+    const dim = s.accentDim   || '#1a0406';
+    const tag = (s.tags||[''])[0];
+    const priceBlock = s.isFree
+      ? `<div class="free-pill">🎁 FREE ADD-ON</div><div class="svc-price-label" style="margin-top:8px;text-align:center">Included</div>`
+      : `<div class="svc-price">₹${(s.price||0).toLocaleString('en-IN')}</div><div class="svc-price-label">one-time</div>`;
+    const priceMob = s.isFree
+      ? `<div class="svc-price-mob"><div class="amt" style="color:var(--green);font-size:13px">FREE</div><div class="lbl">add-on</div></div>`
+      : `<div class="svc-price-mob"><div class="amt">₹${(s.price||0).toLocaleString('en-IN')}</div><div class="lbl">one-time</div></div>`;
+    const chips = (s.features||[]).map(f=>`<div class="svc-chip">${f}</div>`).join('');
+    return `<div class="svc-card" style="--svc-accent:${acc};--svc-accent-dim:${dim}">
+      <!-- Mobile header strip -->
+      <div class="svc-card-top">
+        <div class="svc-card-top-left">
+          <div class="svc-ico-wrap mob-ico">${s.ico || '📦'}</div>
+          <div>
+            <div class="svc-tag">${tag}</div>
+            <div class="svc-name-mob">${s.name}</div>
+          </div>
+        </div>
+        ${priceMob}
+      </div>
+      <!-- Mobile body -->
+      <div class="svc-card-body">
+        <div class="svc-desc">${s.desc}</div>
+        <div class="svc-features-chips">${chips}</div>
+      </div>
+      <!-- Desktop layout (hidden on mobile via CSS) -->
       <div class="svc-ico">${s.ico || '📦'}</div>
       <div class="svc-body">
-        <div class="svc-tag" style="color:${s.accentColor || '#e8344a'}">${(s.tags||[''])[0]}</div>
+        <div class="svc-tag" style="color:${acc}">${tag}</div>
         <div class="svc-name">${s.name}</div>
         <div class="svc-desc">${s.desc}</div>
         <div class="svc-features">
           ${(s.features||[]).map(f=>`<div class="svc-feature">${f}</div>`).join('')}
         </div>
       </div>
-      <div class="svc-price-wrap">
-        ${s.isFree
-          ? `<div class="free-pill">🎁 FREE ADD-ON</div><div class="svc-price-label" style="margin-top:8px;text-align:center">Included</div>`
-          : `<div class="svc-price">₹${(s.price||0).toLocaleString('en-IN')}</div><div class="svc-price-label">one-time</div>`}
-      </div>
-    </div>`).join('');
+      <div class="svc-price-wrap">${priceBlock}</div>
+    </div>`;
+  }).join('');
 
   const compRowsHTML = (p.services || []).map(s => `
     <div class="pricing-row">
