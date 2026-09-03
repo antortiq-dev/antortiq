@@ -1544,60 +1544,36 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
   <div class="grid-tex"></div>
 
   <style>
-    #s2 .slide-inner{padding:32px 44px 28px;display:flex;flex-direction:column;gap:14px;height:100%;box-sizing:border-box;}
-    #s2 .cd-header{display:flex;align-items:flex-end;justify-content:space-between;}
-    #s2 .cd-title-kicker{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
-    #s2 .cd-title{font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1;}
-    #s2 .cd-live{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);font-weight:700;}
     #s2 .cd-live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite;}
-    /* Stats row */
-    #s2 .cd-stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
-    #s2 .cd-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;}
-    #s2 .cd-stat.dispatch{border-color:rgba(255,255,255,.1);}
-    #s2 .cd-stat.revenue-ok{border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.06);}
-    #s2 .cd-stat.revenue-stuck{border-color:rgba(232,52,74,.3);background:rgba(232,52,74,.06);}
-    #s2 .cd-stat.alert-box{border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05);}
-    #s2 .cd-stat-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
-    #s2 .cd-stat.dispatch .cd-stat-label{color:var(--muted);}
-    #s2 .cd-stat.revenue-ok .cd-stat-label{color:var(--green);}
-    #s2 .cd-stat.revenue-stuck .cd-stat-label{color:var(--red);}
-    #s2 .cd-stat.alert-box .cd-stat-label{color:var(--amber);}
-    #s2 .cd-stat-val{font-size:26px;font-weight:900;letter-spacing:-1px;line-height:1.1;font-family:'Inter',sans-serif;}
-    #s2 .cd-stat.dispatch .cd-stat-val{color:var(--text);}
-    #s2 .cd-stat.revenue-ok .cd-stat-val{color:var(--green);}
-    #s2 .cd-stat.revenue-stuck .cd-stat-val{color:var(--red);}
-    #s2 .cd-stat.alert-box .cd-stat-val{font-size:13px;font-weight:700;color:var(--amber);line-height:1.5;}
-    #s2 .cd-stat-sub{font-size:10px;color:var(--muted);margin-top:2px;}
-    #s2 .dispatch-bar{height:4px;background:var(--border2);border-radius:99px;margin-top:8px;overflow:hidden;}
-    #s2 .dispatch-fill{height:100%;background:var(--green);border-radius:99px;width:81%;}
-    /* Tab nav */
-    #s2 .cd-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+    /* Orders table */
+    #s2 .cd-wrap{margin-top:16px;border-radius:12px;border:1px solid var(--border);background:var(--card);overflow:hidden;}
+    #s2 .cd-bar{background:var(--card2);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+    #s2 .cd-bar-live{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--green);font-weight:700;}
+    #s2 .cd-tabs{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;}
     #s2 .cd-tabs::-webkit-scrollbar{display:none;}
-    #s2 .cd-tab{flex-shrink:0;padding:5px 12px;border-radius:7px;font-size:10.5px;font-weight:600;cursor:pointer;border:1px solid transparent;color:var(--muted);transition:all .15s;}
+    #s2 .cd-tab{flex-shrink:0;padding:4px 10px;border-radius:6px;font-size:9.5px;font-weight:600;cursor:pointer;border:1px solid transparent;color:var(--muted);transition:all .15s;}
     #s2 .cd-tab:hover{color:var(--text);background:rgba(255,255,255,.05);}
-    #s2 .cd-tab.active{background:rgba(255,255,255,.1);border-color:var(--border2);color:var(--text);}
+    #s2 .cd-tab.active{background:rgba(255,255,255,.08);border-color:var(--border2);color:var(--text);}
     #s2 .cd-tab.active.t-pickup{border-color:rgba(139,92,246,.4);color:#a78bfa;background:rgba(139,92,246,.1);}
     #s2 .cd-tab.active.t-new{border-color:rgba(6,182,212,.4);color:#22d3ee;background:rgba(6,182,212,.1);}
     #s2 .cd-tab.active.t-ship{border-color:rgba(16,185,129,.4);color:#34d399;background:rgba(16,185,129,.1);}
     #s2 .cd-tab.active.t-transit{border-color:rgba(245,158,11,.4);color:#fbbf24;background:rgba(245,158,11,.1);}
     #s2 .cd-tab.active.t-ofd{border-color:rgba(59,130,246,.4);color:#60a5fa;background:rgba(59,130,246,.1);}
     #s2 .cd-tab.active.t-rto{border-color:rgba(232,52,74,.4);color:#f87171;background:rgba(232,52,74,.1);}
-    /* Table */
-    #s2 .cd-table-wrap{flex:1;overflow:hidden;border-radius:12px;border:1px solid var(--border);background:var(--card);display:flex;flex-direction:column;}
-    #s2 .cd-thead{display:grid;grid-template-columns:28px 72px 130px 60px 1fr 130px 110px 80px 76px 60px;gap:0;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--card2);}
-    #s2 .cd-th{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
-    #s2 .cd-tbody{overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent;}
-    #s2 .cd-tbody::-webkit-scrollbar{width:4px;}
+    #s2 .cd-thead{display:grid;grid-template-columns:24px 68px 120px 54px 1fr 120px 100px 74px 70px 52px;padding:6px 12px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);}
+    #s2 .cd-th{font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+    #s2 .cd-tbody{overflow-y:auto;max-height:148px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent;}
+    #s2 .cd-tbody::-webkit-scrollbar{width:3px;}
     #s2 .cd-tbody::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
-    #s2 .cd-row{display:grid;grid-template-columns:28px 72px 130px 60px 1fr 130px 110px 80px 76px 60px;gap:0;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .12s;align-items:center;}
+    #s2 .cd-row{display:grid;grid-template-columns:24px 68px 120px 54px 1fr 120px 100px 74px 70px 52px;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .12s;align-items:center;}
     #s2 .cd-row:hover{background:rgba(255,255,255,.03);}
-    #s2 .cd-cell{font-size:10.5px;color:var(--text);}
-    #s2 .cd-cell.num-col{color:var(--muted);font-size:9.5px;}
-    #s2 .cd-order{font-weight:800;font-size:11px;}
-    #s2 .cd-cust{display:flex;align-items:center;gap:6px;}
-    #s2 .cd-av{width:22px;height:22px;border-radius:50%;background:var(--card2);border:1px solid var(--border);font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--muted);}
-    #s2 .cd-name{font-size:10.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    #s2 .cd-stage-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:99px;font-size:9px;font-weight:700;}
+    #s2 .cd-cell{font-size:10px;color:var(--text);}
+    #s2 .cd-cell.nm{color:var(--muted);font-size:9px;}
+    #s2 .cd-order{font-weight:800;font-size:10.5px;}
+    #s2 .cd-cust{display:flex;align-items:center;gap:5px;}
+    #s2 .cd-av{width:20px;height:20px;border-radius:50%;background:var(--card2);border:1px solid var(--border);font-size:7.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--muted);}
+    #s2 .cd-name{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    #s2 .cd-sp{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:99px;font-size:8.5px;font-weight:700;}
     #s2 .sp-pickup{background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.3);}
     #s2 .sp-new{background:rgba(6,182,212,.12);color:#22d3ee;border:1px solid rgba(6,182,212,.25);}
     #s2 .sp-ship{background:rgba(16,185,129,.12);color:#34d399;border:1px solid rgba(16,185,129,.25);}
@@ -1605,178 +1581,274 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);font-fami
     #s2 .sp-ofd{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25);}
     #s2 .sp-delivered{background:rgba(16,185,129,.12);color:#34d399;border:1px solid rgba(16,185,129,.25);}
     #s2 .sp-rto{background:rgba(232,52,74,.12);color:#f87171;border:1px solid rgba(232,52,74,.25);}
-    #s2 .sp-hold{background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.25);}
-    #s2 .cd-del-pill{display:inline-block;padding:2px 8px;border-radius:5px;font-size:9px;font-weight:700;}
+    #s2 .cd-dp{display:inline-block;padding:2px 6px;border-radius:4px;font-size:8.5px;font-weight:700;}
     #s2 .dp-pickup{background:rgba(16,185,129,.15);color:#34d399;}
     #s2 .dp-transit{background:rgba(245,158,11,.15);color:#fbbf24;}
     #s2 .dp-ofd{background:rgba(59,130,246,.15);color:#60a5fa;}
     #s2 .dp-delivered{background:rgba(16,185,129,.15);color:#34d399;}
     #s2 .dp-rto{background:rgba(232,52,74,.15);color:#f87171;}
-    #s2 .cd-pay-pill{display:inline-block;padding:2px 7px;border-radius:4px;font-size:8.5px;font-weight:800;letter-spacing:.3px;}
+    #s2 .dp-pending{background:rgba(255,255,255,.06);color:var(--muted);}
+    #s2 .cd-pp{display:inline-block;padding:2px 6px;border-radius:3px;font-size:8px;font-weight:800;letter-spacing:.3px;}
     #s2 .pp-cod{background:#1a1a1a;color:#e5e7eb;border:1px solid #333;}
     #s2 .pp-prepaid{background:#14532d;color:#4ade80;}
-    #s2 .cd-track{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    #s2 .cd-track{font-size:8px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
   </style>
 
   <div class="slide-inner">
-    <div class="cd-header">
+    <div class="slide-header">
       <div>
-        <div class="cd-title-kicker">FEATURE — 01</div>
-        <div class="cd-title">Command Dashboard</div>
+        <div class="slide-title">FEATURE — 01</div>
+        <h2>Command Dashboard</h2>
       </div>
-      <div class="cd-live"><div class="cd-live-dot"></div>LIVE · Last sync 12s ago</div>
+      <span class="badge badge-accent">REAL-TIME</span>
     </div>
-
-    <!-- Stats row matching screenshot -->
-    <div class="cd-stats">
-      <div class="cd-stat dispatch">
-        <div class="cd-stat-label">Your Dispatch Rate · Last 30 Days</div>
-        <div class="cd-stat-val">81%</div>
-        <div class="cd-stat-sub">108 / 133 orders confirmed dispatched</div>
-        <div class="dispatch-bar"><div class="dispatch-fill"></div></div>
+    <div class="kpi-row">
+      <div class="kpi a">
+        <div class="label">Total Orders</div>
+        <div class="val num">237</div>
+        <div class="delta up">↑ 18% vs last month</div>
       </div>
-      <div class="cd-stat revenue-ok">
-        <div class="cd-stat-label">✓ Revenue Dispatched</div>
-        <div class="cd-stat-val">₹1,77,648</div>
-        <div class="cd-stat-sub">108 orders shipped</div>
+      <div class="kpi g">
+        <div class="label">Delivered</div>
+        <div class="val num">189</div>
+        <div class="delta up">↑ 89% delivery rate</div>
       </div>
-      <div class="cd-stat revenue-stuck">
-        <div class="cd-stat-label">🚚 Revenue Stuck</div>
-        <div class="cd-stat-val">₹44,594</div>
-        <div class="cd-stat-sub">25 orders waiting</div>
+      <div class="kpi am">
+        <div class="label">In Transit</div>
+        <div class="val num">31</div>
+        <div class="delta" style="color:#888;">Active shipments</div>
       </div>
-      <div class="cd-stat alert-box">
-        <div class="cd-stat-label">Almost there!</div>
-        <div class="cd-stat-val">25 orders confirmed but not yet shipped — don't let them go cold.<br><br>You're sitting on <span style="color:#f87171;font-weight:800;">₹44,594 in potential profit</span> — every hour it stays unshipped, you're leaving money on the table.</div>
+      <div class="kpi r">
+        <div class="label">RTO / Returns</div>
+        <div class="val num">17</div>
+        <div class="delta dn">↓ 7.2% RTO rate</div>
       </div>
     </div>
-
-    <!-- Tab navigation -->
-    <div class="cd-tabs" id="cdTabs">
-      <div class="cd-tab active" data-tab="pickup" onclick="cdSwitch(this,'pickup')">Pickup Pending (24)</div>
-      <div class="cd-tab t-new" data-tab="new" onclick="cdSwitch(this,'new')">New (10)</div>
-      <div class="cd-tab t-ship" data-tab="ship" onclick="cdSwitch(this,'ship')">Ready to Ship (16)</div>
-      <div class="cd-tab t-transit" data-tab="transit" onclick="cdSwitch(this,'transit')">In Transit (10)</div>
-      <div class="cd-tab t-ofd" data-tab="ofd" onclick="cdSwitch(this,'ofd')">Out for Delivery (8)</div>
-      <div class="cd-tab" data-tab="delivered" onclick="cdSwitch(this,'delivered')">Delivered (41)</div>
-      <div class="cd-tab t-rto" data-tab="rto" onclick="cdSwitch(this,'rto')">RTO (17)</div>
-      <div class="cd-tab" data-tab="all" onclick="cdSwitch(this,'all')">All (169)</div>
+    <div class="dash-mid">
+      <div class="panel">
+        <div class="panel-title">Order Pipeline Funnel</div>
+        <div class="funnel-row">
+          <div class="funnel-step">
+            <div class="fs-label">Total</div>
+            <div class="fs-val num" style="color:var(--accent2);">237</div>
+            <div class="fs-pct" style="color:var(--accent2);">100%</div>
+            <div class="fs-bar" style="background:var(--accent);"></div>
+          </div>
+          <div class="funnel-step">
+            <div class="fs-label">Confirmed</div>
+            <div class="fs-val num" style="color:var(--green);">218</div>
+            <div class="fs-pct" style="color:var(--green);">92%</div>
+            <div class="fs-bar" style="background:var(--green);"></div>
+          </div>
+          <div class="funnel-step">
+            <div class="fs-label">Dispatched</div>
+            <div class="fs-val num" style="color:#06B6D4;">201</div>
+            <div class="fs-pct" style="color:#06B6D4;">85%</div>
+            <div class="fs-bar" style="background:#06B6D4;"></div>
+          </div>
+          <div class="funnel-step">
+            <div class="fs-label">Delivered</div>
+            <div class="fs-val num" style="color:var(--green);">189</div>
+            <div class="fs-pct" style="color:var(--green);">80%</div>
+            <div class="fs-bar" style="background:var(--green);"></div>
+          </div>
+          <div class="funnel-step">
+            <div class="fs-label">RTO</div>
+            <div class="fs-val num" style="color:var(--red);">17</div>
+            <div class="fs-pct" style="color:var(--red);">7.2%</div>
+            <div class="fs-bar" style="background:var(--red);"></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Avg Stage Time</div>
+        <div class="stage-grid">
+          <div class="stage-item">
+            <div class="stage-icon" style="background:rgba(232,52,74,.15);">⏱</div>
+            <div class="stage-info"><div class="name">Confirm</div><div class="hrs">2.4 hrs avg</div></div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-icon" style="background:rgba(16,185,129,.15);">🚚</div>
+            <div class="stage-info"><div class="name">Dispatch</div><div class="hrs">18.2 hrs avg</div></div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-icon" style="background:rgba(6,182,212,.15);">📍</div>
+            <div class="stage-info"><div class="name">Transit</div><div class="hrs">3.1 days avg</div></div>
+          </div>
+          <div class="stage-item">
+            <div class="stage-icon" style="background:rgba(245,158,11,.15);">✅</div>
+            <div class="stage-info"><div class="name">Delivery</div><div class="hrs">4.8 days total</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+      <div class="panel" style="display:flex;align-items:center;gap:14px;">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="28" fill="none" stroke="var(--border)" stroke-width="7"/>
+          <circle cx="35" cy="35" r="28" fill="none" stroke="var(--green)" stroke-width="7"
+            stroke-dasharray="157 176" stroke-linecap="round" transform="rotate(-90 35 35)"/>
+          <text x="35" y="40" text-anchor="middle" fill="#111" font-size="14" font-weight="900" font-family="Arial Black">89%</text>
+        </svg>
+        <div><div class="panel-title" style="margin-bottom:4px;">Delivery Rate</div><div style="font-size:12px;color:#666;">189 of 237 orders<br>delivered successfully</div></div>
+      </div>
+      <div class="panel" style="display:flex;align-items:center;gap:14px;">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="28" fill="none" stroke="var(--border)" stroke-width="7"/>
+          <circle cx="35" cy="35" r="28" fill="none" stroke="var(--accent)" stroke-width="7"
+            stroke-dasharray="120 176" stroke-linecap="round" transform="rotate(-90 35 35)"/>
+          <text x="35" y="40" text-anchor="middle" fill="#111" font-size="14" font-weight="900" font-family="Arial Black">68%</text>
+        </svg>
+        <div><div class="panel-title" style="margin-bottom:4px;">Prepaid Mix</div><div style="font-size:12px;color:#666;">161 prepaid orders<br>lower RTO risk</div></div>
+      </div>
+      <div class="panel" style="display:flex;align-items:center;gap:14px;">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="28" fill="none" stroke="var(--border)" stroke-width="7"/>
+          <circle cx="35" cy="35" r="28" fill="none" stroke="var(--amber)" stroke-width="7"
+            stroke-dasharray="96 176" stroke-linecap="round" transform="rotate(-90 35 35)"/>
+          <text x="35" y="40" text-anchor="middle" fill="#111" font-size="14" font-weight="900" font-family="Arial Black">55%</text>
+        </svg>
+        <div><div class="panel-title" style="margin-bottom:4px;">WA Engagement</div><div style="font-size:12px;color:#666;">Customers opening<br>tracking messages</div></div>
+      </div>
     </div>
 
-    <!-- Order table -->
-    <div class="cd-table-wrap">
+    <!-- AI Smart Insights Bar -->
+    <div class="ai-insights-bar">
+      <div class="aib-header">
+        <span class="aib-label">⚡ JARVIS Findings</span>
+        <span class="aib-live">● LIVE</span>
+      </div>
+      <div class="aib-cards">
+        <div class="aib-card aib-red">
+          <div class="aib-icon">💬</div>
+          <div class="aib-body">
+            <div class="aib-tag">WhatsApp · Unresolved</div>
+            <div class="aib-msg">Harsh — Order <strong>#2678</strong> texting about exchange for 3 days straight. Zero resolution. Customer patience thinning fast.</div>
+          </div>
+          <div class="aib-action">Resolve →</div>
+        </div>
+        <div class="aib-card aib-amber">
+          <div class="aib-icon">📦</div>
+          <div class="aib-body">
+            <div class="aib-tag">RTO Intelligence · Zones</div>
+            <div class="aib-msg"><strong>Assam, Bihar &amp; AP</strong> driving 40% of total RTOs. High-risk COD pockets — consider prepaid-only or OTP delivery.</div>
+          </div>
+          <div class="aib-action">View Map →</div>
+        </div>
+        <div class="aib-card aib-purple">
+          <div class="aib-icon">👕</div>
+          <div class="aib-body">
+            <div class="aib-tag">Catalog Waste · Ad Spend</div>
+            <div class="aib-msg"><strong>BA Checkmate Shirt</strong> in live ads for 15 days — only XL left. Burning budget on a size nobody's buying.</div>
+          </div>
+          <div class="aib-action">Pause Ad →</div>
+        </div>
+        <div class="aib-card aib-green">
+          <div class="aib-icon">🚀</div>
+          <div class="aib-body">
+            <div class="aib-tag">Conversion Signal · Scale</div>
+            <div class="aib-msg"><strong>MIAMI Shirt</strong> view-to-checkout at 35% — well above category avg. Strong scaling candidate. Increase ad budget now.</div>
+          </div>
+          <div class="aib-action">Scale →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Orders Table -->
+    <div class="cd-wrap">
+      <div class="cd-bar">
+        <div class="cd-tabs" id="cdTabs">
+          <div class="cd-tab active t-pickup" onclick="cdSwitch(this,'pickup')">Pickup Pending (24)</div>
+          <div class="cd-tab t-new" onclick="cdSwitch(this,'new')">New (10)</div>
+          <div class="cd-tab t-ship" onclick="cdSwitch(this,'ship')">Ready to Ship (16)</div>
+          <div class="cd-tab t-transit" onclick="cdSwitch(this,'transit')">In Transit (10)</div>
+          <div class="cd-tab t-ofd" onclick="cdSwitch(this,'ofd')">Out for Delivery (8)</div>
+          <div class="cd-tab" onclick="cdSwitch(this,'delivered')">Delivered (41)</div>
+          <div class="cd-tab t-rto" onclick="cdSwitch(this,'rto')">RTO (17)</div>
+          <div class="cd-tab" onclick="cdSwitch(this,'all')">All (169)</div>
+        </div>
+        <div class="cd-bar-live"><div class="cd-live-dot"></div>LIVE</div>
+      </div>
       <div class="cd-thead">
-        <div class="cd-th">#</div>
-        <div class="cd-th">ORDER</div>
-        <div class="cd-th">CUSTOMER</div>
-        <div class="cd-th">ITEMS</div>
-        <div class="cd-th">PRODUCTS</div>
-        <div class="cd-th">STAGE / TRACKING</div>
-        <div class="cd-th">DELIVERY</div>
-        <div class="cd-th">PAYMENT</div>
-        <div class="cd-th">REVENUE</div>
-        <div class="cd-th">SHIP</div>
+        <div class="cd-th">#</div><div class="cd-th">ORDER</div><div class="cd-th">CUSTOMER</div>
+        <div class="cd-th">ITEMS</div><div class="cd-th">PRODUCTS</div><div class="cd-th">STAGE / TRACKING</div>
+        <div class="cd-th">DELIVERY</div><div class="cd-th">PAYMENT</div><div class="cd-th">REVENUE</div><div class="cd-th">SHIP</div>
       </div>
-      <div class="cd-tbody" id="cdTbody"></div>
+      <div class="cd-tbody" id="cdTbody2"></div>
     </div>
   </div>
 
   <script>
   (function(){
-    var data = {
+    var data={
       pickup:[
         {n:1,ord:'#2868',cust:'Dhola Pahat',init:'DP',items:1,prod:'SICOS NYC – 001 CORE M',stage:'PICKUP',track:'Delhivery 14422814...',del:'Ready Pickup',pay:'COD',rev:'₹1,486',ship:'₹49'},
         {n:2,ord:'#2864',cust:'Karan Lakhani',init:'KL',items:1,prod:'SICOS NYC – 001 CORE S',stage:'PICKUP',track:'Delhivery 14422814...',del:'Ready Pickup',pay:'PREPAID',rev:'₹1,486',ship:'—'},
         {n:3,ord:'#2860',cust:'Payal Bhutani',init:'PB',items:1,prod:'MADE WEEKEND – 001 CORE L',stage:'PICKUP',track:'Delhivery 14422814...',del:'Ready Pickup',pay:'COD',rev:'₹1,386',ship:'₹49'},
         {n:4,ord:'#2857',cust:'Rahul Sharma',init:'RS',items:2,prod:'OUTLAW FLANNEL OVERSHIRT M',stage:'PICKUP',track:'Delhivery 14422819...',del:'Ready Pickup',pay:'PREPAID',rev:'₹2,772',ship:'—'},
         {n:5,ord:'#2854',cust:'Arjun Kumar',init:'AK',items:1,prod:'FOURMEN – 001 CORE XL',stage:'PICKUP',track:'Delhivery 14422821...',del:'Ready Pickup',pay:'COD',rev:'₹1,586',ship:'₹49'},
-        {n:6,ord:'#2851',cust:'Meera Joshi',init:'MJ',items:1,prod:'OUTLAW FLANNEL OVERSHIRT L',stage:'PICKUP',track:'Delhivery 14422832...',del:'Ready Pickup',pay:'COD',rev:'₹1,386',ship:'₹49'},
-        {n:7,ord:'#2848',cust:'Vikram Nair',init:'VN',items:2,prod:'SICOS NYC – 001 CORE XL',stage:'PICKUP',track:'Delhivery 14422845...',del:'Ready Pickup',pay:'PREPAID',rev:'₹2,972',ship:'—'},
-        {n:8,ord:'#2843',cust:'Sneha Pillai',init:'SP',items:1,prod:'MADE WEEKEND – 001 CORE M',stage:'PICKUP',track:'Delhivery 14422851...',del:'Ready Pickup',pay:'COD',rev:'₹1,386',ship:'₹49'},
       ],
       new:[
         {n:1,ord:'#2876',cust:'Ankit Verma',init:'AV',items:1,prod:'MIAMI GINGHAM SHIRT M',stage:'NEW',track:'Awaiting confirm',del:'Pending',pay:'COD',rev:'₹1,299',ship:'₹49'},
         {n:2,ord:'#2875',cust:'Priya Kapoor',init:'PK',items:2,prod:'FOURMEN – 001 CORE M + L',stage:'NEW',track:'Awaiting confirm',del:'Pending',pay:'PREPAID',rev:'₹3,172',ship:'—'},
         {n:3,ord:'#2873',cust:'Rohan Mehta',init:'RM',items:1,prod:'SICOS NYC – 001 CORE M',stage:'NEW',track:'Awaiting confirm',del:'Pending',pay:'COD',rev:'₹1,486',ship:'₹49'},
-        {n:4,ord:'#2871',cust:'Divya Singh',init:'DS',items:1,prod:'OUTLAW FLANNEL OVERSHIRT S',stage:'NEW',track:'Awaiting confirm',del:'Pending',pay:'PREPAID',rev:'₹1,386',ship:'—'},
-        {n:5,ord:'#2870',cust:'Kabir Khan',init:'KK',items:3,prod:'MADE WEEKEND – 001 CORE',stage:'NEW',track:'Awaiting confirm',del:'Pending',pay:'COD',rev:'₹4,158',ship:'₹49'},
       ],
       ship:[
         {n:1,ord:'#2866',cust:'Neha Agarwal',init:'NA',items:1,prod:'MIAMI GINGHAM SHIRT L',stage:'SHIP',track:'Label created',del:'Ready Pickup',pay:'PREPAID',rev:'₹1,299',ship:'—'},
         {n:2,ord:'#2863',cust:'Aditya Rao',init:'AR',items:1,prod:'FOURMEN – 001 CORE M',stage:'SHIP',track:'Label created',del:'Ready Pickup',pay:'COD',rev:'₹1,586',ship:'₹49'},
         {n:3,ord:'#2859',cust:'Sunita Patel',init:'SP',items:2,prod:'SICOS NYC – 001 CORE L',stage:'SHIP',track:'Label created',del:'Ready Pickup',pay:'PREPAID',rev:'₹2,972',ship:'—'},
-        {n:4,ord:'#2855',cust:'Manish Tiwari',init:'MT',items:1,prod:'OUTLAW FLANNEL OVERSHIRT M',stage:'SHIP',track:'Label created',del:'Ready Pickup',pay:'COD',rev:'₹1,386',ship:'₹49'},
-        {n:5,ord:'#2849',cust:'Ritu Sharma',init:'RS',items:1,prod:'MADE WEEKEND – 001 CORE XL',stage:'SHIP',track:'Label created',del:'Ready Pickup',pay:'PREPAID',rev:'₹1,386',ship:'—'},
       ],
       transit:[
         {n:1,ord:'#2840',cust:'Gaurav Jain',init:'GJ',items:1,prod:'MIAMI GINGHAM SHIRT M',stage:'TRANSIT',track:'Delhivery 1442278...',del:'In Transit',pay:'COD',rev:'₹1,299',ship:'₹49'},
         {n:2,ord:'#2836',cust:'Nidhi Bose',init:'NB',items:2,prod:'FOURMEN – 001 CORE S',stage:'TRANSIT',track:'Delhivery 1442261...',del:'In Transit',pay:'PREPAID',rev:'₹3,172',ship:'—'},
         {n:3,ord:'#2831',cust:'Rohit Malhotra',init:'RM',items:1,prod:'SICOS NYC – 001 CORE XL',stage:'TRANSIT',track:'Shiprocket 4421936...',del:'In Transit',pay:'COD',rev:'₹1,486',ship:'₹49'},
-        {n:4,ord:'#2828',cust:'Kavya Reddy',init:'KR',items:1,prod:'OUTLAW FLANNEL L',stage:'TRANSIT',track:'Delhivery 1442244...',del:'In Transit',pay:'PREPAID',rev:'₹1,386',ship:'—'},
       ],
       ofd:[
         {n:1,ord:'#2820',cust:'Sanjay Gupta',init:'SG',items:1,prod:'MADE WEEKEND – 001 CORE M',stage:'OFD',track:'Ecom Express 44218...',del:'Out for Delivery',pay:'COD',rev:'₹1,386',ship:'₹49'},
         {n:2,ord:'#2817',cust:'Pooja Nair',init:'PN',items:1,prod:'MIAMI GINGHAM SHIRT S',stage:'OFD',track:'Delhivery 1442199...',del:'Out for Delivery',pay:'PREPAID',rev:'₹1,299',ship:'—'},
-        {n:3,ord:'#2814',cust:'Amit Kumar',init:'AK',items:2,prod:'SICOS NYC – 001 CORE M',stage:'OFD',track:'Delhivery 1442187...',del:'Out for Delivery',pay:'COD',rev:'₹2,972',ship:'₹49'},
       ],
       delivered:[
         {n:1,ord:'#2800',cust:'Harsha Iyer',init:'HI',items:1,prod:'OUTLAW FLANNEL OVERSHIRT M',stage:'DELIVERED',track:'Delivered · Aug 28',del:'Delivered',pay:'PREPAID',rev:'₹1,386',ship:'—'},
         {n:2,ord:'#2797',cust:'Deepak Verma',init:'DV',items:1,prod:'FOURMEN – 001 CORE L',stage:'DELIVERED',track:'Delivered · Aug 27',del:'Delivered',pay:'COD',rev:'₹1,586',ship:'₹49'},
         {n:3,ord:'#2793',cust:'Anjali Shah',init:'AS',items:2,prod:'MADE WEEKEND – 001 CORE S',stage:'DELIVERED',track:'Delivered · Aug 27',del:'Delivered',pay:'PREPAID',rev:'₹2,772',ship:'—'},
-        {n:4,ord:'#2789',cust:'Vivek Pillai',init:'VP',items:1,prod:'MIAMI GINGHAM SHIRT L',stage:'DELIVERED',track:'Delivered · Aug 26',del:'Delivered',pay:'COD',rev:'₹1,299',ship:'₹49'},
-        {n:5,ord:'#2784',cust:'Tanvi Desai',init:'TD',items:1,prod:'SICOS NYC – 001 CORE M',stage:'DELIVERED',track:'Delivered · Aug 25',del:'Delivered',pay:'PREPAID',rev:'₹1,486',ship:'—'},
       ],
       rto:[
         {n:1,ord:'#2761',cust:'Sachin More',init:'SM',items:1,prod:'OUTLAW FLANNEL L',stage:'RTO',track:'RTO initiated · Aug 24',del:'RTO',pay:'COD',rev:'₹1,386',ship:'₹49'},
         {n:2,ord:'#2754',cust:'Rekha Singh',init:'RS',items:2,prod:'SICOS NYC – 001 CORE XL',stage:'RTO',track:'RTO initiated · Aug 23',del:'RTO',pay:'COD',rev:'₹2,972',ship:'₹49'},
-        {n:3,ord:'#2748',cust:'Manoj Dubey',init:'MD',items:1,prod:'MIAMI GINGHAM SHIRT M',stage:'RTO',track:'RTO initiated · Aug 22',del:'RTO',pay:'COD',rev:'₹1,299',ship:'₹49'},
       ],
       all:[]
     };
-    // build "all" from all tabs
     var all=[];
-    ['pickup','new','ship','transit','ofd','delivered','rto'].forEach(function(k){data[k].forEach(function(r,i){all.push(Object.assign({},r,{n:all.length+1}));});});
+    ['pickup','new','ship','transit','ofd','delivered','rto'].forEach(function(k){data[k].forEach(function(r){all.push(Object.assign({},r,{n:all.length+1}));});});
     data.all=all;
-
-    var stageClass={PICKUP:'sp-pickup',NEW:'sp-new',SHIP:'sp-ship',TRANSIT:'sp-transit',OFD:'sp-ofd',DELIVERED:'sp-delivered',RTO:'sp-rto'};
-    var stageLabel={PICKUP:'● PICKUP',NEW:'● NEW',SHIP:'● READY',TRANSIT:'● TRANSIT',OFD:'● OFD',DELIVERED:'✓ DELIVERED',RTO:'↩ RTO'};
-    var delClass={PICKUP:'dp-pickup','Ready Pickup':'dp-pickup','In Transit':'dp-transit','Out for Delivery':'dp-ofd','Delivered':'dp-delivered','RTO':'dp-rto','Pending':'dp-transit'};
-
+    var sc={PICKUP:'sp-pickup',NEW:'sp-new',SHIP:'sp-ship',TRANSIT:'sp-transit',OFD:'sp-ofd',DELIVERED:'sp-delivered',RTO:'sp-rto'};
+    var sl={PICKUP:'● PICKUP',NEW:'● NEW',SHIP:'● READY',TRANSIT:'● TRANSIT',OFD:'● OFD',DELIVERED:'✓ DONE',RTO:'↩ RTO'};
+    var dc={'Ready Pickup':'dp-pickup','In Transit':'dp-transit','Out for Delivery':'dp-ofd','Delivered':'dp-delivered','RTO':'dp-rto','Pending':'dp-pending'};
     function render(tab){
-      var rows=data[tab]||[];
-      var html='';
+      var rows=data[tab]||[],html='';
       rows.forEach(function(r){
-        var sc=stageClass[r.stage]||'sp-new';
-        var sl=stageLabel[r.stage]||r.stage;
-        var dc=delClass[r.del]||'dp-transit';
-        var pc=r.pay==='COD'?'pp-cod':'pp-prepaid';
+        var s=sc[r.stage]||'sp-new',l=sl[r.stage]||r.stage,d=dc[r.del]||'dp-pending',p=r.pay==='COD'?'pp-cod':'pp-prepaid';
         html+='<div class="cd-row">'+
-          '<div class="cd-cell num-col">'+r.n+'</div>'+
+          '<div class="cd-cell nm">'+r.n+'</div>'+
           '<div class="cd-cell cd-order">'+r.ord+'</div>'+
           '<div class="cd-cell cd-cust"><div class="cd-av">'+r.init+'</div><div class="cd-name">'+r.cust+'</div></div>'+
-          '<div class="cd-cell" style="color:var(--muted);font-size:10px;">'+r.items+(r.items>1?' items':' item')+'</div>'+
-          '<div class="cd-cell" style="font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.prod+'</div>'+
-          '<div class="cd-cell"><span class="cd-stage-pill '+sc+'">'+sl+'</span><div class="cd-track" style="margin-top:3px;">'+r.track+'</div></div>'+
-          '<div class="cd-cell"><span class="cd-del-pill '+dc+'">'+r.del+'</span></div>'+
-          '<div class="cd-cell"><span class="cd-pay-pill '+pc+'">'+r.pay+'</span></div>'+
-          '<div class="cd-cell" style="font-weight:700;font-size:10.5px;">'+r.rev+'</div>'+
-          '<div class="cd-cell" style="color:var(--muted);font-size:10px;">'+r.ship+'</div>'+
+          '<div class="cd-cell nm">'+r.items+(r.items>1?' itm':' itm')+'</div>'+
+          '<div class="cd-cell" style="font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.prod+'</div>'+
+          '<div class="cd-cell"><span class="cd-sp '+s+'">'+l+'</span><div class="cd-track">'+r.track+'</div></div>'+
+          '<div class="cd-cell"><span class="cd-dp '+d+'">'+r.del+'</span></div>'+
+          '<div class="cd-cell"><span class="cd-pp '+p+'">'+r.pay+'</span></div>'+
+          '<div class="cd-cell" style="font-weight:700;font-size:10px;">'+r.rev+'</div>'+
+          '<div class="cd-cell nm">'+r.ship+'</div>'+
         '</div>';
       });
-      document.getElementById('cdTbody').innerHTML=html;
+      document.getElementById('cdTbody2').innerHTML=html;
     }
-
+    var colorMap={new:'t-new',ship:'t-ship',transit:'t-transit',ofd:'t-ofd',rto:'t-rto',pickup:'t-pickup'};
     window.cdSwitch=function(el,tab){
-      document.querySelectorAll('#cdTabs .cd-tab').forEach(function(t){
-        t.classList.remove('active');
-      });
+      document.querySelectorAll('#cdTabs .cd-tab').forEach(function(t){t.className='cd-tab'+(colorMap[tab]?' '+colorMap[tab]:'');});
       el.classList.add('active');
-      // apply color class
-      var map={new:'t-new',ship:'t-ship',transit:'t-transit',ofd:'t-ofd',rto:'t-rto',pickup:'t-pickup'};
-      if(map[tab]) el.classList.add(map[tab]);
       render(tab);
     };
-
     render('pickup');
   })();
   </script>
