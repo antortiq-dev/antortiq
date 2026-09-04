@@ -612,8 +612,8 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
           <div class="dash-section" style="margin-bottom:0">
             <div class="dash-section-hdr">
               <div>
-                <div class="dash-section-title">🎯 Audience Quality Breakdown</div>
-                <div class="dash-section-meta">Meta pixel audience segmented by purchase intent signals</div>
+                <div class="dash-section-title">🛡️ Order Risk Breakdown</div>
+                <div class="dash-section-meta">GoKwik risk tags on orders — Low / Medium / Control / High Risk</div>
               </div>
             </div>
             <div class="aud-grid" id="aud-grid"></div>
@@ -1545,14 +1545,14 @@ function renderStateGrid() {
 
 function renderAudienceGrid() {
   const TIERS = [
-    { tier:'HIGH INTENT', pct:28, c:'#10b981', bg:'rgba(16,185,129,.08)', bdr:'rgba(16,185,129,.25)',
-      desc:'Clicked ad → viewed product → added to cart. Strong purchase signal.', pills:['Add to Cart','Checkout Started','Repeat Visitor'] },
-    { tier:'MEDIUM', pct:34, c:'#60a5fa', bg:'rgba(96,165,250,.08)', bdr:'rgba(96,165,250,.25)',
-      desc:'Engaged with content, longer session time. Needs 1 more touchpoint.', pills:['Blog Reader','Video 75%','Wishlist'] },
-    { tier:'CONTROL', pct:24, c:'#a78bfa', bg:'rgba(139,92,246,.08)', bdr:'rgba(139,92,246,.25)',
-      desc:'Cold traffic, first touch. Normal browse without strong signals.', pills:['New Visitor','Single Page','Bounce Risk'] },
+    { tier:'LOW RISK', pct:31, c:'#10b981', bg:'rgba(16,185,129,.08)', bdr:'rgba(16,185,129,.25)',
+      desc:'Verified buyer history, successful past deliveries, good pin code. COD can be enabled freely.', pills:['Previous Delivery ✓','Good Pin Code','Repeat Buyer','Prepaid History'] },
+    { tier:'MEDIUM RISK', pct:38, c:'#f59e0b', bg:'rgba(245,158,11,.08)', bdr:'rgba(245,158,11,.25)',
+      desc:'Some risk signals present — new address, first order, or unverified pin. Phone verification recommended before dispatch.', pills:['First Order','New Address','Unverified Pin','No History'] },
+    { tier:'CONTROL', pct:17, c:'#a78bfa', bg:'rgba(139,92,246,.08)', bdr:'rgba(139,92,246,.25)',
+      desc:'Neutral baseline segment used for A/B testing COD interventions. Not suppressed — helps measure impact of risk rules.', pills:['A/B Baseline','No Intervention','Benchmark Group'] },
     { tier:'HIGH RISK', pct:14, c:'#f87171', bg:'rgba(239,68,68,.08)', bdr:'rgba(239,68,68,.25)',
-      desc:'Quick exits, COD drop-offs, or RTO-history pin codes. Suppress or restrict COD.', pills:['RTO History','COD Reject','Fraud Flag'] },
+      desc:'RTO-prone pin codes, past COD rejection, or fraud flag. Suppress COD or force prepaid to protect revenue.', pills:['RTO History','COD Bounce','Fraud Flag','Blacklist Pin'] },
   ];
   document.getElementById('aud-grid').innerHTML = TIERS.map(t => `
     <div class="aud-card" style="background:${t.bg};border-color:${t.bdr}">
