@@ -506,11 +506,19 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         </div>
 
         <!-- Daily Revenue Chart -->
-        <div class="card" style="margin-bottom:16px">
-          <div class="card-header">
-            <div><div class="card-title">📊 Daily Orders & Revenue</div><div class="card-sub" id="chart-sub"></div></div>
+        <div class="card" style="margin-bottom:16px;padding:0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:14px 18px 0;flex-wrap:wrap;gap:8px">
+            <div>
+              <div class="card-title" style="margin-bottom:2px">📊 Revenue Intelligence — Daily Breakdown</div>
+              <div class="card-sub" id="chart-sub"></div>
+            </div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center" id="chart-legend"></div>
           </div>
-          <div class="chart-wrap"><div class="bar-chart" id="bar-chart"><div class="loading-msg">Loading chart…</div></div></div>
+          <div style="padding:10px 18px 16px;position:relative">
+            <div id="chart-tooltip" style="display:none;position:fixed;background:var(--bg-card2);border:1px solid var(--border-hi);border-radius:10px;padding:10px 13px;pointer-events:none;z-index:9999;min-width:180px;box-shadow:0 8px 32px rgba(0,0,0,.4)"></div>
+            <canvas id="rev-canvas" style="width:100%;display:block;cursor:crosshair"></canvas>
+            <div id="chart-insights" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"></div>
+          </div>
         </div>
 
         <!-- Big 3-col breakdown -->
@@ -771,6 +779,8 @@ let currentPage   = 1;
 let orderTotal    = 0;
 let vendorList    = [];
 let searchTimer   = null;
+let lastDailyData = [];
+window.addEventListener('resize', () => { if (lastDailyData.length) renderChart(lastDailyData); });
 
 const PERIODS = [
   { label: 'Today',        from: today(),        to: today() },
@@ -918,7 +928,8 @@ async function loadDashboard() {
     document.getElementById('sc-drate-sub').textContent  = `${fs.dispatched||0}/${fs.active||0} dispatched`;
 
     // Bar chart
-    renderChart(dailyData.daily || []);
+    lastDailyData = dailyData.daily || [];
+    renderChart(lastDailyData);
 
     // Big cards
     renderBigCards(fs, allTime, period);
@@ -930,19 +941,259 @@ async function loadDashboard() {
 }
 
 function renderChart(daily) {
-  const wrap = document.getElementById('bar-chart');
-  if(!daily.length){ wrap.innerHTML='<div class="loading-msg">No data for period</div>'; return; }
-  const maxR = Math.max(...daily.map(d=>d.revenue), 1);
-  const BAR_H = 70;
-  document.getElementById('chart-sub').textContent = `${daily.length} days — max ₹${Math.round(maxR).toLocaleString()} / day`;
-  wrap.innerHTML = daily.map(d => {
-    const h = Math.max(4, Math.round((d.revenue/maxR)*BAR_H));
-    const lbl = d.date.slice(5); // MM-DD
-    return `<div class="bar-day" title="${d.date}\nOrders: ${d.orders}\nRevenue: ${fmtCur(d.revenue)}">
-      <div class="bar-fill" style="height:${h}px"></div>
-      <div class="bar-lbl">${lbl}</div>
-    </div>`;
-  }).join('');
+  const canvas = document.getElementById('rev-canvas');
+  const tooltip = document.getElementById('chart-tooltip');
+  if (!canvas) return;
+  if (!daily.length) { canvas.style.display='none'; document.getElementById('chart-sub').textContent='No data for period'; return; }
+
+  // ── Compute metrics ──────────────────────────────────────────────────────────
+  const maxRev  = Math.max(...daily.map(d=>d.revenue), 1);
+  const maxOrd  = Math.max(...daily.map(d=>d.orders),  1);
+  const totalRev = daily.reduce((s,d)=>s+d.revenue,0);
+  const totalOrd = daily.reduce((s,d)=>s+d.orders,0);
+  const avgRev   = totalRev / daily.length;
+
+  // Moving average (7-day)
+  const ma7 = daily.map((_,i) => {
+    const slice = daily.slice(Math.max(0,i-3), Math.min(daily.length,i+4));
+    return slice.reduce((s,d)=>s+d.revenue,0) / slice.length;
+  });
+
+  // Weekend detection
+  const isWeekend = d => { const day = new Date(d.date+'T00:00:00').getDay(); return day===0||day===6; };
+
+  // Peak day
+  const peakIdx = daily.reduce((pi,d,i)=>d.revenue>daily[pi].revenue?i:pi, 0);
+
+  // WoW change (last 7 vs prior 7)
+  const last7  = daily.slice(-7).reduce((s,d)=>s+d.revenue,0);
+  const prior7 = daily.slice(-14,-7).reduce((s,d)=>s+d.revenue,0);
+  const wowPct = prior7>0 ? Math.round((last7-prior7)/prior7*100) : 0;
+
+  // ── Canvas sizing ────────────────────────────────────────────────────────────
+  const PAD = { top:20, right:60, bottom:38, left:64 };
+  const W = canvas.offsetWidth || 900;
+  const H = 200;
+  canvas.width  = W * devicePixelRatio;
+  canvas.height = H * devicePixelRatio;
+  canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top  - PAD.bottom;
+  const n     = daily.length;
+  const bw    = Math.max(4, Math.floor(plotW / n) - 2); // bar width
+  const step  = plotW / n;
+  const xOf   = i => PAD.left + i * step + step/2;
+
+  // ── Dark mode aware colors ───────────────────────────────────────────────────
+  const isDark  = document.body.getAttribute('data-theme') !== 'light' &&
+                  (document.body.getAttribute('data-theme') === 'dark' || window.matchMedia('(prefers-color-scheme:dark)').matches);
+  const gridCol   = isDark ? 'rgba(255,255,255,.06)' : 'rgba(0,0,0,.06)';
+  const axisCol   = isDark ? 'rgba(255,255,255,.25)' : 'rgba(0,0,0,.25)';
+  const labelCol  = isDark ? 'rgba(255,255,255,.45)' : 'rgba(0,0,0,.45)';
+  const peakCol   = '#f59e0b';
+  const maColor   = isDark ? 'rgba(251,191,36,.7)' : 'rgba(180,130,0,.7)';
+
+  // ── Grid lines & Y-axis labels ───────────────────────────────────────────────
+  ctx.font = `600 9px -apple-system,sans-serif`;
+  ctx.textAlign = 'right';
+  ctx.fillStyle = labelCol;
+  const yTicks = 4;
+  for (let t=0; t<=yTicks; t++) {
+    const y = PAD.top + plotH - (t/yTicks)*plotH;
+    const val = (t/yTicks)*maxRev;
+    ctx.strokeStyle = gridCol;
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left+plotW, y); ctx.stroke();
+    ctx.fillText('₹'+(val>=1000?(val/1000).toFixed(0)+'k':Math.round(val)), PAD.left-6, y+3);
+  }
+
+  // Right axis — orders
+  ctx.textAlign = 'left';
+  ctx.fillStyle = 'rgba(96,165,250,.6)';
+  for (let t=0; t<=yTicks; t++) {
+    const y   = PAD.top + plotH - (t/yTicks)*plotH;
+    const val = Math.round((t/yTicks)*maxOrd);
+    ctx.fillText(val, PAD.left+plotW+6, y+3);
+  }
+
+  // ── Weekend shading ──────────────────────────────────────────────────────────
+  daily.forEach((d,i) => {
+    if (!isWeekend(d)) return;
+    ctx.fillStyle = isDark ? 'rgba(255,255,255,.025)' : 'rgba(0,0,0,.025)';
+    ctx.beginPath();
+    ctx.roundRect(xOf(i)-step/2, PAD.top, step, plotH, 2);
+    ctx.fill();
+  });
+
+  // ── Revenue bars (gradient) ──────────────────────────────────────────────────
+  daily.forEach((d,i) => {
+    const x  = xOf(i) - bw/2;
+    const bh = Math.max(3, (d.revenue/maxRev)*plotH);
+    const y  = PAD.top + plotH - bh;
+
+    // Color based on performance vs average
+    let c1, c2;
+    if (d.revenue >= avgRev*1.3)      { c1='#10b981'; c2='rgba(16,185,129,.1)'; }  // great
+    else if (d.revenue >= avgRev*0.8) { c1='#6366f1'; c2='rgba(99,102,241,.05)'; } // normal
+    else                               { c1='#ef4444'; c2='rgba(239,68,68,.05)'; }   // below avg
+
+    const grad = ctx.createLinearGradient(0, y, 0, PAD.top+plotH);
+    grad.addColorStop(0, c1+'cc');
+    grad.addColorStop(1, c2);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.roundRect(x, y, bw, bh, [3,3,0,0]);
+    ctx.fill();
+
+    // Today marker
+    if (i === n-1) {
+      ctx.strokeStyle = '#60a5fa';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([2,2]);
+      ctx.beginPath(); ctx.moveTo(xOf(i), PAD.top); ctx.lineTo(xOf(i), PAD.top+plotH); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  });
+
+  // ── Peak annotation ──────────────────────────────────────────────────────────
+  {
+    const px = xOf(peakIdx);
+    const py = PAD.top + plotH - (daily[peakIdx].revenue/maxRev)*plotH - 6;
+    ctx.fillStyle = peakCol;
+    ctx.beginPath(); ctx.arc(px, py, 4, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = peakCol;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3,2]);
+    ctx.beginPath(); ctx.moveTo(px, py-4); ctx.lineTo(px, PAD.top); ctx.stroke();
+    ctx.setLineDash([]);
+    const label = '⭐ ' + fmtCur(daily[peakIdx].revenue);
+    ctx.font = 'bold 9px -apple-system,sans-serif';
+    ctx.textAlign = px > W-100 ? 'right' : 'left';
+    ctx.fillStyle = peakCol;
+    ctx.fillText(label, px > W-100 ? px-6 : px+6, PAD.top+10);
+  }
+
+  // ── 7-day moving average line ────────────────────────────────────────────────
+  ctx.strokeStyle = maColor;
+  ctx.lineWidth   = 2;
+  ctx.lineJoin    = 'round';
+  ctx.setLineDash([4,3]);
+  ctx.beginPath();
+  ma7.forEach((v,i) => {
+    const x = xOf(i);
+    const y = PAD.top + plotH - (v/maxRev)*plotH;
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // ── Orders bezier line ───────────────────────────────────────────────────────
+  ctx.strokeStyle = 'rgba(96,165,250,.8)';
+  ctx.lineWidth   = 1.8;
+  ctx.lineJoin    = 'round';
+  ctx.beginPath();
+  daily.forEach((d,i) => {
+    const x = xOf(i);
+    const y = PAD.top + plotH - (d.orders/maxOrd)*plotH;
+    if (i===0) { ctx.moveTo(x,y); return; }
+    const px = xOf(i-1);
+    const py = PAD.top + plotH - (daily[i-1].orders/maxOrd)*plotH;
+    const cpx = (px+x)/2;
+    ctx.bezierCurveTo(cpx,py,cpx,y,x,y);
+  });
+  ctx.stroke();
+
+  // Orders dots
+  daily.forEach((d,i) => {
+    const x = xOf(i);
+    const y = PAD.top + plotH - (d.orders/maxOrd)*plotH;
+    ctx.fillStyle = '#60a5fa';
+    ctx.beginPath(); ctx.arc(x,y,2,0,Math.PI*2); ctx.fill();
+  });
+
+  // ── X-axis labels ────────────────────────────────────────────────────────────
+  ctx.textAlign = 'center';
+  ctx.fillStyle = labelCol;
+  ctx.font = '600 8px -apple-system,sans-serif';
+  const step2 = Math.ceil(n/18); // show max ~18 labels
+  daily.forEach((d,i) => {
+    if (i%step2 !== 0 && i!==n-1) return;
+    const x = xOf(i);
+    const lbl = d.date.slice(5);
+    const isWe = isWeekend(d);
+    ctx.fillStyle = isWe ? (isDark?'rgba(251,191,36,.6)':'rgba(180,130,0,.6)') : labelCol;
+    ctx.fillText(lbl, x, PAD.top+plotH+16);
+  });
+
+  // ── Chart subtitle ───────────────────────────────────────────────────────────
+  document.getElementById('chart-sub').innerHTML =
+    `<span>${n} days · max ${fmtCur(maxRev)}/day · avg ${fmtCur(Math.round(avgRev))}/day</span>` +
+    (n>=14 ? ` &nbsp;·&nbsp; <span style="color:${wowPct>=0?'#10b981':'#f87171'};font-weight:700">${wowPct>=0?'▲':'▼'} ${Math.abs(wowPct)}% WoW</span>` : '');
+
+  // ── Legend ───────────────────────────────────────────────────────────────────
+  document.getElementById('chart-legend').innerHTML = [
+    ['#10b981','Above avg day'],
+    ['#6366f1','Normal day'],
+    ['#ef4444','Below avg day'],
+    ['rgba(96,165,250,.8)','Orders (right axis)'],
+    [maColor,'7-day MA'],
+  ].map(([c,l])=>`<div style="display:flex;align-items:center;gap:5px;font-size:9px;font-weight:600;color:var(--text-muted)">
+    <div style="width:10px;height:10px;border-radius:2px;background:${c};flex-shrink:0"></div>${l}</div>`).join('');
+
+  // ── AI Insights strip ────────────────────────────────────────────────────────
+  const insights = [];
+  if (wowPct > 15)  insights.push({ c:'#10b981', t:`▲ ${wowPct}% WoW revenue growth — momentum building` });
+  if (wowPct < -10) insights.push({ c:'#f87171', t:`▼ Revenue down ${Math.abs(wowPct)}% vs last week — investigate` });
+  const weRevAvg  = daily.filter(d=>isWeekend(d)).reduce((s,d,_,a)=>s+d.revenue/a.length,0);
+  const wdRevAvg  = daily.filter(d=>!isWeekend(d)).reduce((s,d,_,a)=>s+d.revenue/a.length,0);
+  if (weRevAvg > wdRevAvg*1.2) insights.push({ c:'#a78bfa', t:`Weekends outperform weekdays by ${Math.round((weRevAvg/wdRevAvg-1)*100)}% — run weekend flash sales` });
+  if (weRevAvg < wdRevAvg*0.8) insights.push({ c:'#f59e0b', t:`Weekdays drive more revenue — B2B/working-hour audience, optimize ad schedule` });
+  const last3avg = daily.slice(-3).reduce((s,d)=>s+d.revenue,0)/3;
+  if (last3avg > avgRev*1.2) insights.push({ c:'#10b981', t:'Last 3 days averaging above trend — maintain current campaign spend' });
+  if (last3avg < avgRev*0.7) insights.push({ c:'#f87171', t:'Last 3 days below average — check ad fatigue or inventory gaps' });
+  document.getElementById('chart-insights').innerHTML = insights.map(ins=>
+    `<div style="font-size:10px;font-weight:600;color:${ins.c};background:${ins.c}12;border:1px solid ${ins.c}30;border-radius:6px;padding:4px 10px">${ins.t}</div>`
+  ).join('');
+
+  // ── Hover tooltip ────────────────────────────────────────────────────────────
+  canvas._chartDaily = daily;
+  canvas._chartStep  = step;
+  canvas._chartPAD   = PAD;
+  canvas._chartPlotH = plotH;
+  canvas._chartMaxR  = maxRev;
+  canvas._chartMaxO  = maxOrd;
+  canvas._chartAvgR  = avgRev;
+  canvas._chartIsWe  = isWeekend;
+  canvas._chartN     = n;
+
+  canvas.onmousemove = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx   = e.clientX - rect.left;
+    const i    = Math.min(n-1, Math.max(0, Math.floor((mx - PAD.left) / step)));
+    const d    = daily[i];
+    if (!d) { tooltip.style.display='none'; return; }
+    const diffPct = Math.round((d.revenue - avgRev) / avgRev * 100);
+    const diffTxt = diffPct >= 0 ? `<span style="color:#10b981">+${diffPct}% vs avg</span>` : `<span style="color:#f87171">${diffPct}% vs avg</span>`;
+    tooltip.innerHTML = `
+      <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:7px;padding-bottom:6px;border-bottom:1px solid var(--border)">${d.date}${isWeekend(d)?' <span style="color:#f59e0b;font-size:9px">WEEKEND</span>':''}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <div><div style="font-size:8px;font-weight:700;color:var(--text-muted);letter-spacing:.4px">REVENUE</div><div style="font-size:15px;font-weight:800;color:#6366f1">${fmtCur(d.revenue)}</div><div style="font-size:9px;margin-top:1px">${diffTxt}</div></div>
+        <div><div style="font-size:8px;font-weight:700;color:var(--text-muted);letter-spacing:.4px">ORDERS</div><div style="font-size:15px;font-weight:800;color:#60a5fa">${d.orders}</div><div style="font-size:9px;color:var(--text-muted)">confirmed: ${d.confirmed||'—'}</div></div>
+      </div>
+      <div style="margin-top:7px;padding-top:6px;border-top:1px solid var(--border)">
+        <div style="font-size:8px;font-weight:700;color:var(--text-muted);margin-bottom:3px">REVENUE PACE</div>
+        <div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="height:100%;width:${Math.min(100,Math.round(d.revenue/maxRev*100))}%;background:${d.revenue>=avgRev*1.3?'#10b981':d.revenue>=avgRev*.8?'#6366f1':'#ef4444'};border-radius:2px"></div></div>
+      </div>`;
+    tooltip.style.display = 'block';
+    const tx = e.clientX + 14;
+    const ty = e.clientY - 20;
+    tooltip.style.left = (tx + 200 > window.innerWidth ? e.clientX - 210 : tx) + 'px';
+    tooltip.style.top  = ty + 'px';
+  };
+  canvas.onmouseleave = () => { tooltip.style.display='none'; };
 }
 
 function renderBigCards(fs, allTime, period) {
