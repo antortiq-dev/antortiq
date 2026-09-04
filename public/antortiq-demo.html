@@ -295,6 +295,35 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 /* ── VENDOR CHIP ── */
 .vendor-chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.5px;background:var(--red-dim);color:var(--red)}
 
+/* ── RETURNS PAGE ── */
+.rx-kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.rx-kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px 15px;position:relative;overflow:hidden}
+.rx-kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0}
+.rx-kpi-lbl{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.rx-kpi-val{font-size:26px;font-weight:900;line-height:1}
+.rx-kpi-sub{font-size:10px;color:var(--text-muted);margin-top:4px}
+.rx-filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.rx-tab{font-size:11px;font-weight:700;padding:6px 13px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;font-family:var(--font);transition:all .12s;white-space:nowrap}
+.rx-tab:hover{border-color:var(--border-hi);color:var(--text)}
+.rx-tab.active{border-color:#6366f1;background:rgba(99,102,241,.1);color:#a5b4fc}
+.rx-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden;transition:border-color .15s}
+.rx-card:hover{border-color:var(--border-hi)}
+.rx-card-hdr{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer}
+.rx-card-body{border-top:1px solid var(--border);padding:14px 16px;display:none}
+.rx-card.expanded .rx-card-body{display:block}
+.rx-status{font-size:9px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:99px}
+.rx-type-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px}
+.rx-log-row{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border)}
+.rx-log-row:last-child{border-bottom:none}
+.rx-log-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.rx-log-body{flex:1}
+.rx-log-title{font-size:12px;font-weight:600;color:var(--text)}
+.rx-log-meta{font-size:10px;color:var(--text-muted);margin-top:2px}
+.rx-log-time{font-size:10px;color:var(--text-muted);flex-shrink:0;white-space:nowrap}
+.rx-auto-badge{display:inline-flex;align-items:center;gap:4px;font-size:8px;font-weight:700;background:rgba(99,102,241,.1);color:#a78bfa;border:1px solid rgba(99,102,241,.2);border-radius:99px;padding:2px 7px;margin-bottom:8px}
+.rx-approve-btn{font-size:11px;font-weight:700;padding:7px 16px;border-radius:8px;border:1px solid;cursor:pointer;font-family:var(--font);transition:all .12s}
+.rx-img{width:60px;height:60px;border-radius:8px;object-fit:cover;background:var(--bg-card2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px}
+
 /* ── ORDER DRAWER ── */
 .od-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:8000;opacity:0;transition:opacity .22s;pointer-events:none}
 .od-overlay.open{opacity:1;pointer-events:all}
@@ -480,7 +509,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <button class="ni active" data-view="dashboard" onclick="switchView(this)"><span class="ico">◈</span> Dashboard</button>
       <button class="ni" data-view="orders" onclick="switchView(this)"><span class="ico">📦</span> Orders</button>
       <button class="ni locked"><span class="ico">💬</span> WhatsApp Bot <span class="ni-soon">Soon</span></button>
-      <button class="ni locked"><span class="ico">↩</span> Returns <span class="ni-soon">Soon</span></button>
+      <button class="ni" data-view="returns" onclick="switchView(this)"><span class="ico">↩</span> Returns & Exchange</button>
 
       <div class="ns">Analytics</div>
       <button class="ni" data-view="pixel" onclick="switchView(this)"><span class="ico">🎯</span> Pixel Tracker</button>
@@ -811,6 +840,22 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 
       </div><!-- /view-pixel -->
 
+      <!-- RETURNS & EXCHANGE VIEW -->
+      <div id="view-returns" class="view">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+          <div>
+            <div style="font-size:18px;font-weight:900;color:var(--text)">↩ Returns & Exchange</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Automated return & exchange management · AI handles 94% of requests without manual intervention</div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <div class="rx-auto-badge" style="font-size:10px;padding:4px 11px">🤖 AI AUTO-PILOT ON</div>
+          </div>
+        </div>
+        <div class="rx-kpi-grid" id="rx-kpi-grid"></div>
+        <div class="rx-filter-row" id="rx-filter-row"></div>
+        <div id="rx-list"></div>
+      </div><!-- /view-returns -->
+
     </div><!-- /page -->
   </div><!-- /content -->
 </div><!-- /app-shell -->
@@ -921,10 +966,11 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
-  if(view==='orders') loadOrders(currentPage);
-  if(view==='pixel')  initPixel();
+  if(view==='orders')  loadOrders(currentPage);
+  if(view==='pixel')   initPixel();
+  if(view==='returns') initReturns();
 }
 
 // ── Vendors ───────────────────────────────────────────────────────────────────
@@ -1997,6 +2043,270 @@ function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'
 
 // Init ann bar on page load (called after login)
 function initAnnBar() { buildAnnBar(); }
+
+// ── RETURNS & EXCHANGE PAGE ───────────────────────────────────────────────────
+const RX_DATA = [
+  {
+    id:'RX-2041', order:'#2041', type:'exchange', customer:'Rahul Sharma', phone:'9876543210',
+    product:'Box-Fit Hoodie', variant:'Black / L', newVariant:'Black / XL', reason:'Size too small',
+    amount:1499, vendor:'SICOS', status:'approval_required', days:2, imgEmoji:'🧥',
+    logs:[
+      { icon:'📥', title:'Return request received', meta:'Customer submitted via WhatsApp bot · Policy check initiated', time:'2d ago', auto:true },
+      { icon:'🤖', title:'AI policy check — PASSED', meta:'Within 7-day window · Tags: unworn · Exchange eligible', time:'2d ago', auto:true },
+      { icon:'📱', title:'WhatsApp confirmation sent to customer', meta:'"Your exchange for Black/XL is approved. Pickup scheduled."', time:'2d ago', auto:true },
+      { icon:'⏳', title:'Awaiting brand approval — size XL low stock (3 units)', meta:'AI flagged: only 3 units of Black/XL remain — manual confirmation required', time:'1d ago', auto:false },
+    ]
+  },
+  {
+    id:'RX-1995', order:'#1995', type:'exchange', customer:'Pooja Joshi', phone:'8321098765',
+    product:'Oversized Acid Wash Tee', variant:'White / M', newVariant:'White / L', reason:'Wrong size sent by brand',
+    amount:1999, vendor:'DRIP STUDIOS', status:'exchange_dispatched', days:4, imgEmoji:'👕',
+    logs:[
+      { icon:'📥', title:'Return request received — wrong item dispatched', meta:'Customer sent photo proof on WhatsApp', time:'4d ago', auto:true },
+      { icon:'🤖', title:'AI verified — brand fault confirmed from dispatch records', meta:'Auto-approved without customer returning item', time:'4d ago', auto:true },
+      { icon:'📦', title:'Replacement order created in Shopify', meta:'New order #2187 · White/L · Shopify order auto-generated', time:'3d ago', auto:true },
+      { icon:'🚚', title:'Replacement dispatched — Delhivery', meta:'AWB: DL8823771900 · Expected delivery: 2 days', time:'2d ago', auto:true },
+      { icon:'📱', title:'Customer notified on WhatsApp with tracking link', meta:'"Your replacement is on the way! Track: bit.ly/trk-2187"', time:'2d ago', auto:true },
+      { icon:'✅', title:'Exchange completed — customer confirmed delivery', meta:'Rating: ⭐⭐⭐⭐⭐ "Quick resolution, great service!"', time:'1d ago', auto:false },
+    ]
+  },
+  {
+    id:'RX-1874', order:'#1874', type:'refund', customer:'Amit Singh', phone:'9988776655',
+    product:'Cargo Utility Shorts', variant:'Olive / M', newVariant:null, reason:'Product defect — stitching issue',
+    amount:899, vendor:'FLYJONE', status:'quality_check', days:5, imgEmoji:'🩳',
+    logs:[
+      { icon:'📥', title:'Refund request received with photo evidence', meta:'Customer shared 3 photos of stitching defect', time:'5d ago', auto:true },
+      { icon:'🤖', title:'AI damage assessment — defect confirmed', meta:'Image analysis: manufacturing defect, not customer damage', time:'5d ago', auto:true },
+      { icon:'📦', title:'Return pickup scheduled — Shadowfax', meta:'AWB: SF7712039011 · Pickup from customer address', time:'4d ago', auto:true },
+      { icon:'🏭', title:'Item received at Antortiq warehouse — Gurugram', meta:'Received by: Quality Team · Scan timestamp: 10:32 AM', time:'2d ago', auto:true },
+      { icon:'🔍', title:'Quality check in progress', meta:'Physical inspection underway — estimated 24 hrs for report', time:'Today', auto:false },
+    ]
+  },
+  {
+    id:'RX-2118', order:'#2118', type:'exchange', customer:'Priya Verma', phone:'9123456789',
+    product:'Y2K Track Pants', variant:'Navy / XL', newVariant:'Navy / L', reason:'Too large — want smaller size',
+    amount:1199, vendor:'2WENT6EX', status:'left_facility', days:3, imgEmoji:'👖',
+    logs:[
+      { icon:'📥', title:'Exchange request via WhatsApp bot', meta:'Customer: "I ordered XL but L fits better, can I exchange?"', time:'3d ago', auto:true },
+      { icon:'🤖', title:'AI approved — within policy, size available', meta:'L size: 12 units in stock · Auto-approved in 4 seconds', time:'3d ago', auto:true },
+      { icon:'🚚', title:'Return pickup created — Xpressbees', meta:'AWB: XB9901234567 · Customer informed to pack item', time:'3d ago', auto:true },
+      { icon:'📦', title:'Return item left customer facility', meta:'Courier scan: pickup confirmed at customer address', time:'2d ago', auto:true },
+      { icon:'⏳', title:'In transit to Antortiq warehouse', meta:'Expected arrival: tomorrow · Navy/L exchange held in inventory', time:'1d ago', auto:true },
+    ]
+  },
+  {
+    id:'RX-1762', order:'#1762', type:'store_credit', customer:'Karan Malhotra', phone:'9001234567',
+    product:'Graphic Print Tee', variant:'Black / S', newVariant:null, reason:'Changed mind — no longer needed',
+    amount:699, vendor:'DRIP STUDIOS', status:'store_credit_issued', days:6, imgEmoji:'👕',
+    logs:[
+      { icon:'📥', title:'Return request — "Changed mind"', meta:'7th day of purchase window — borderline case', time:'6d ago', auto:true },
+      { icon:'🤖', title:'AI decision: store credit (not full refund) — policy day 7', meta:'Return window policy: day 1-5 full refund, day 6-7 store credit', time:'6d ago', auto:true },
+      { icon:'📦', title:'Return pickup completed — Ekart', meta:'AWB: EK5567890123 · Item picked up successfully', time:'5d ago', auto:true },
+      { icon:'🏭', title:'Item received — quality check passed', meta:'Condition: good, unworn · Refund type confirmed: store credit', time:'3d ago', auto:true },
+      { icon:'💳', title:'Store credit ₹699 issued to customer account', meta:'Credit code: STORE699KM · Valid for 6 months · WhatsApp sent', time:'2d ago', auto:true },
+      { icon:'✅', title:'Case closed', meta:'Customer acknowledged store credit on WhatsApp', time:'1d ago', auto:false },
+    ]
+  },
+  {
+    id:'RX-2203', order:'#2203', type:'refund', customer:'Divya Shah', phone:'8109876543',
+    product:'Washed Baggy Jeans', variant:'Charcoal / M', newVariant:null, reason:'Received damaged package',
+    amount:1799, vendor:'Odd Affair', status:'pending', days:1, imgEmoji:'👖',
+    logs:[
+      { icon:'📥', title:'Refund request submitted — damaged package', meta:'Customer sent unboxing video as evidence', time:'6h ago', auto:true },
+      { icon:'🤖', title:'AI reviewing video evidence', meta:'Damage assessment in progress — typically takes 2-3 hrs', time:'4h ago', auto:true },
+    ]
+  },
+  {
+    id:'RX-1987', order:'#1987', type:'exchange', customer:'Rohit Patel', phone:'9654321098',
+    product:'Drop-Shoulder Bomber', variant:'Beige / L', newVariant:'Beige / XL', reason:'Size up needed',
+    amount:2499, vendor:'AHEGAS', status:'completed', days:9, imgEmoji:'🧥',
+    logs:[
+      { icon:'📥', title:'Exchange request received', meta:'Customer via WhatsApp: wants XL instead of L', time:'9d ago', auto:true },
+      { icon:'🤖', title:'Auto-approved — XL in stock (8 units)', meta:'Exchange confirmed in 3 seconds', time:'9d ago', auto:true },
+      { icon:'🚚', title:'Return pickup — Shadowfax · Replacement dispatched same day', meta:'Return AWB: SF8812039011 · New AWB: SF9901234567', time:'8d ago', auto:true },
+      { icon:'🏭', title:'Original returned, quality check passed', meta:'Item condition: good · Restocked to inventory', time:'6d ago', auto:true },
+      { icon:'📦', title:'Exchange delivered to customer', meta:'Delivered: Beige/XL · Customer signed', time:'5d ago', auto:true },
+      { icon:'✅', title:'Exchange fully completed', meta:'NPS survey sent · Customer rated 5/5', time:'5d ago', auto:false },
+    ]
+  },
+  {
+    id:'RX-2055', order:'#2055', type:'refund', customer:'Sneha Gupta', phone:'8765432109',
+    product:'Patchwork Denim Jacket', variant:'Black / M', newVariant:null, reason:'Not as described — colour different',
+    amount:2999, vendor:'DRIP STUDIOS', status:'in_process', days:3, imgEmoji:'🧥',
+    logs:[
+      { icon:'📥', title:'Refund request — "colour looks different in person"', meta:'Customer attached product photos vs website photos', time:'3d ago', auto:true },
+      { icon:'🤖', title:'AI flagged: subjective claim — escalated for review', meta:'Color accuracy disputes require brand review per policy', time:'3d ago', auto:true },
+      { icon:'📋', title:'Brand review requested — DRIP STUDIOS team notified', meta:'Review SLA: 48 hrs · Brand responded: partial refund offered', time:'2d ago', auto:false },
+      { icon:'🤝', title:'Negotiation in progress — ₹500 partial refund proposed', meta:'Customer counter-offered: ₹1000 partial refund', time:'1d ago', auto:false },
+    ]
+  },
+];
+
+const RX_STATUS_META = {
+  pending:            { label:'Pending',             c:'#94a3b8', bg:'rgba(148,163,184,.1)', bdr:'rgba(148,163,184,.25)' },
+  approval_required:  { label:'Approval Required',   c:'#f59e0b', bg:'rgba(245,158,11,.1)',  bdr:'rgba(245,158,11,.3)'  },
+  quality_check:      { label:'Quality Check',        c:'#60a5fa', bg:'rgba(96,165,250,.1)',  bdr:'rgba(96,165,250,.25)' },
+  left_facility:      { label:'Left Facility',        c:'#a78bfa', bg:'rgba(139,92,246,.1)',  bdr:'rgba(139,92,246,.25)' },
+  in_process:         { label:'In Process',           c:'#fb923c', bg:'rgba(251,146,60,.1)',  bdr:'rgba(251,146,60,.25)' },
+  exchange_dispatched:{ label:'Exchange Dispatched',  c:'#6366f1', bg:'rgba(99,102,241,.1)',  bdr:'rgba(99,102,241,.25)' },
+  store_credit_issued:{ label:'Store Credit Issued',  c:'#10b981', bg:'rgba(16,185,129,.1)',  bdr:'rgba(16,185,129,.25)' },
+  completed:          { label:'Completed ✓',          c:'#10b981', bg:'rgba(16,185,129,.08)', bdr:'rgba(16,185,129,.2)'  },
+};
+
+const RX_TYPE_META = {
+  exchange:     { label:'EXCHANGE', c:'#6366f1', bg:'rgba(99,102,241,.12)'  },
+  refund:       { label:'REFUND',   c:'#f87171', bg:'rgba(239,68,68,.1)'    },
+  store_credit: { label:'CREDIT',   c:'#10b981', bg:'rgba(16,185,129,.12)'  },
+};
+
+let rxFilter = 'all';
+let rxInitialized = false;
+
+function initReturns() {
+  if (rxInitialized) return;
+  rxInitialized = true;
+  renderRxKpis();
+  renderRxFilters();
+  renderRxList();
+}
+
+function renderRxKpis() {
+  const kpis = [
+    { lbl:'Total Requests', val:'8', sub:'Last 30 days', c:'#6366f1', icon:'↩' },
+    { lbl:'Auto-Resolved', val:'94%', sub:'No manual touch', c:'#10b981', icon:'🤖' },
+    { lbl:'Avg Resolution', val:'2.4d', sub:'Industry: 7d', c:'#60a5fa', icon:'⚡' },
+    { lbl:'Exchange Rate', val:'62%', sub:'vs 38% refund', c:'#a78bfa', icon:'🔄' },
+    { lbl:'Store Credits', val:'₹699', sub:'Active credits', c:'#f59e0b', icon:'💳' },
+    { lbl:'Revenue Saved', val:'₹7.2K', sub:'vs full refunds', c:'#10b981', icon:'💰' },
+  ];
+  document.getElementById('rx-kpi-grid').innerHTML = kpis.map(k => `
+    <div class="rx-kpi" style="border-top:3px solid ${k.c}20">
+      <div class="rx-kpi-lbl">${k.icon} ${k.lbl}</div>
+      <div class="rx-kpi-val" style="color:${k.c}">${k.val}</div>
+      <div class="rx-kpi-sub">${k.sub}</div>
+    </div>`).join('');
+}
+
+function renderRxFilters() {
+  const filters = [
+    { id:'all', label:'All ('+RX_DATA.length+')' },
+    { id:'approval_required', label:'⚠ Needs Approval' },
+    { id:'pending', label:'⏳ Pending' },
+    { id:'in_process', label:'🔄 In Process' },
+    { id:'quality_check', label:'🔍 Quality Check' },
+    { id:'left_facility', label:'🚚 Left Facility' },
+    { id:'exchange_dispatched', label:'📦 Exchange Out' },
+    { id:'store_credit_issued', label:'💳 Credit Issued' },
+    { id:'completed', label:'✅ Completed' },
+  ];
+  document.getElementById('rx-filter-row').innerHTML = filters.map(f =>
+    `<button class="rx-tab${f.id===rxFilter?' active':''}" onclick="rxSetFilter('${f.id}',this)">${f.label}</button>`
+  ).join('');
+}
+
+function rxSetFilter(id, btn) {
+  rxFilter = id;
+  document.querySelectorAll('.rx-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRxList();
+}
+
+function renderRxList() {
+  const filtered = rxFilter==='all' ? RX_DATA : RX_DATA.filter(r=>r.status===rxFilter);
+  const el = document.getElementById('rx-list');
+  if (!filtered.length) { el.innerHTML='<div class="loading-msg">No requests in this filter</div>'; return; }
+
+  // Approval required first
+  const sorted = [...filtered].sort((a,b)=>(a.status==='approval_required'?-1:b.status==='approval_required'?1:0));
+
+  el.innerHTML = sorted.map(r => {
+    const sm = RX_STATUS_META[r.status] || RX_STATUS_META.pending;
+    const tm = RX_TYPE_META[r.type]    || RX_TYPE_META.refund;
+    const autoCount = r.logs.filter(l=>l.auto).length;
+    const needsApproval = r.status === 'approval_required';
+
+    return `<div class="rx-card${needsApproval?' ':''}" id="rxcard-${r.id}" style="${needsApproval?'border-color:'+sm.bdr+';':''}">
+      <div class="rx-card-hdr" onclick="rxToggle('${r.id}')">
+        <div class="rx-img">${r.imgEmoji}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px">
+            <div style="font-size:14px;font-weight:800;color:var(--text)">${r.id}</div>
+            <div style="font-size:10px;color:var(--text-muted)">· ${r.order}</div>
+            <span class="rx-status" style="background:${sm.bg};color:${sm.c};border:1px solid ${sm.bdr}">${sm.label}</span>
+            <span class="rx-type-badge" style="background:${tm.bg};color:${tm.c}">${tm.label}</span>
+            ${needsApproval?'<span style="font-size:9px;font-weight:800;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:2px 7px;animation:blink 1.5s infinite">⚠ ACTION NEEDED</span>':''}
+          </div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.product} <span style="color:var(--text-muted)">· ${r.variant}${r.newVariant?' → '+r.newVariant:''}</span></div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:2px">${r.customer} · "${r.reason}"</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:16px;font-weight:900;color:var(--text)">${fmtCur(r.amount)}</div>
+          <div style="font-size:9px;color:var(--text-muted)">${r.days}d ago</div>
+          <div style="font-size:9px;color:#a78bfa;margin-top:3px">🤖 ${autoCount} auto-tasks</div>
+        </div>
+        <div style="font-size:16px;color:var(--text-muted);margin-left:8px;transition:transform .2s" id="rxchev-${r.id}">›</div>
+      </div>
+
+      <div class="rx-card-body" id="rxbody-${r.id}">
+        <div style="display:grid;grid-template-columns:1fr auto;gap:16px;flex-wrap:wrap">
+          <div>
+            <div class="rx-auto-badge">🤖 AUTOMATION LOG — ${autoCount} of ${r.logs.length} tasks handled by AI</div>
+            <div>${r.logs.map(log=>`
+              <div class="rx-log-row">
+                <div class="rx-log-icon">${log.icon}</div>
+                <div class="rx-log-body">
+                  <div class="rx-log-title">${log.title}${log.auto?` <span style="font-size:8px;background:rgba(99,102,241,.15);color:#a78bfa;border-radius:3px;padding:1px 5px;font-weight:700">AUTO</span>`:' <span style="font-size:8px;background:rgba(245,158,11,.15);color:#fbbf24;border-radius:3px;padding:1px 5px;font-weight:700">MANUAL</span>'}</div>
+                  <div class="rx-log-meta">${log.meta}</div>
+                </div>
+                <div class="rx-log-time">${log.time}</div>
+              </div>`).join('')}
+            </div>
+          </div>
+          <div style="min-width:200px;max-width:240px">
+            ${needsApproval ? `
+            <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:14px">
+              <div style="font-size:11px;font-weight:800;color:#f59e0b;margin-bottom:8px">⚠ APPROVAL REQUIRED</div>
+              <div style="font-size:11px;color:var(--text);margin-bottom:12px">${r.logs[r.logs.length-1].meta}</div>
+              <button class="rx-approve-btn" style="width:100%;background:#10b981;border-color:#10b981;color:#fff;margin-bottom:7px" onclick="rxApprove('${r.id}','approved')">✅ Approve Exchange</button>
+              <button class="rx-approve-btn" style="width:100%;background:transparent;border-color:rgba(239,68,68,.4);color:#f87171" onclick="rxApprove('${r.id}','rejected')">✕ Reject — Offer Store Credit</button>
+            </div>` : ''}
+            <div style="margin-top:${needsApproval?'10px':'0'};background:var(--bg-hover);border-radius:8px;padding:12px;border:1px solid var(--border)">
+              <div style="font-size:9px;font-weight:800;color:var(--text-muted);letter-spacing:.4px;margin-bottom:8px">ORDER DETAILS</div>
+              ${[['Customer',r.customer],['Phone',r.phone],['Order',r.order],['Product',r.product],['Variant',r.variant],['Brand',r.vendor],['Amount',fmtCur(r.amount)]].map(([l,v])=>`
+              <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid var(--border)">
+                <span style="color:var(--text-muted)">${l}</span>
+                <span style="color:var(--text);font-weight:600">${v}</span>
+              </div>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function rxToggle(id) {
+  const card = document.getElementById('rxcard-'+id);
+  const chev = document.getElementById('rxchev-'+id);
+  card.classList.toggle('expanded');
+  chev.style.transform = card.classList.contains('expanded') ? 'rotate(90deg)' : '';
+}
+
+function rxApprove(id, action) {
+  const card = document.getElementById('rxcard-'+id);
+  const rx   = RX_DATA.find(r=>r.id===id);
+  if (!rx) return;
+  if (action==='approved') {
+    rx.status = 'exchange_dispatched';
+    rx.logs.push({ icon:'✅', title:'Brand approved exchange — AI dispatching replacement', meta:'Replacement order auto-created · AWB being generated…', time:'Just now', auto:true });
+    alert('✅ Exchange Approved!\n\nAI is now:\n1. Creating replacement order in Shopify\n2. Generating return pickup AWB\n3. Sending WhatsApp confirmation to customer\n\n(Demo mode)');
+  } else {
+    rx.status = 'store_credit_issued';
+    rx.logs.push({ icon:'💳', title:'Exchange rejected — store credit issued instead', meta:'Store credit ₹'+rx.amount+' issued automatically · Customer notified', time:'Just now', auto:true });
+    alert('Store credit issued automatically!\n\nCredit of '+fmtCur(rx.amount)+' sent to customer.\n(Demo mode)');
+  }
+  renderRxList();
+}
 
 // ── ORDER DRAWER ──────────────────────────────────────────────────────────────
 const FAKE_ADDRESSES = [
