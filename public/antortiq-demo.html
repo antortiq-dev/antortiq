@@ -105,6 +105,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .ann-tag-urgent{background:#ef4444;color:#fff;animation:blink .9s step-end infinite}
 .ann-tag-vendor{background:var(--green);color:#052e16}
 .ann-tag-info{background:#334155;color:#cbd5e1}
+.ann-tag-stock{background:#7c3aed;color:#fff}
+.ann-tag-trending{background:#0e7490;color:#fff}
+.ann-tag-payment{background:#b45309;color:#fff}
+.ann-tag-return{background:#be123c;color:#fff}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
 .ann-nav{display:flex;align-items:center;gap:5px;flex-shrink:0}
 .ann-nav-btn{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#f1c6cb;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .15s}
@@ -1056,16 +1060,21 @@ function toggleThemeDD() {
 
 // ── ANNOUNCEMENT BAR ──────────────────────────────────────────────────────────
 const ANN_ITEMS = [
-  { tag:'URGENT',  tagClass:'ann-tag-urgent',  text:'#1674 — Prepaid ₹1,299 stuck 5 days — customer raised 3 complaints, needs immediate action' },
-  { tag:'ORDER',   tagClass:'ann-tag-order',   text:'#1065 Rahul — angry customer, 4 WhatsApp support tickets in 48 hrs — escalate now' },
-  { tag:'VENDOR',  tagClass:'ann-tag-vendor',  text:'DRIP STUDIOS — 31 confirmed orders sitting 4+ days with zero dispatch update' },
-  { tag:'ADMIN',   tagClass:'ann-tag-admin',   text:'FLYJONE dispatch rate dropped to 34% this week — down from 78% last month' },
-  { tag:'ORDER',   tagClass:'ann-tag-order',   text:'#1821 — RTO marked by courier but AWB tracking shows delivered — investigate immediately' },
-  { tag:'ADMIN',   tagClass:'ann-tag-admin',   text:'COD advance collection gap — 17 orders shipped with ₹0 advance, ₹1,683 exposure' },
-  { tag:'VENDOR',  tagClass:'ann-tag-vendor',  text:'SICOS — 8 orders in "Ready" stage for 6+ days, vendor not responding to dispatch requests' },
-  { tag:'URGENT',  tagClass:'ann-tag-urgent',  text:'#1589 Priya Verma — prepaid return requested, courier picked up but credit not issued in 9 days' },
-  { tag:'ADMIN',   tagClass:'ann-tag-admin',   text:'RTO rate spiked to 28% this week across all brands — review courier partner performance' },
-  { tag:'ORDER',   tagClass:'ann-tag-order',   text:'#1742 — OFD since yesterday 9 AM, customer calling every 2 hrs, delivery partner unreachable' },
+  { tag:'URGENT',   tagClass:'ann-tag-urgent',  text:'#1674 — Prepaid ₹1,299 stuck 5 days — customer messaged 3 times, no update from courier — act now' },
+  { tag:'STOCK',    tagClass:'ann-tag-stock',    text:'Oversized Acid Wash Tee (S, M) — only 4 units left, 23 orders in pipeline — restock or pause listing' },
+  { tag:'TRENDING', tagClass:'ann-tag-trending', text:'Cargo Utility Shorts getting 340 views today — highest traffic product this week, consider a flash deal' },
+  { tag:'PAYMENT',  tagClass:'ann-tag-payment',  text:'Manufacturer invoice ₹84,500 due in 2 days — COD remittance pending from last week covers 60%' },
+  { tag:'ORDER',    tagClass:'ann-tag-order',    text:'#1065 Rahul — angry customer, 4 WhatsApp support tickets in 48 hrs — escalate before it goes public' },
+  { tag:'STOCK',    tagClass:'ann-tag-stock',    text:'Box-Fit Hoodie (Black, L/XL) — zero inventory, 11 prepaid orders confirmed — supplier ETA unknown' },
+  { tag:'RETURN',   tagClass:'ann-tag-return',   text:'#1589 Priya — prepaid return picked up 9 days ago, credit still not issued — customer threatening chargeback' },
+  { tag:'TRENDING', tagClass:'ann-tag-trending', text:'Drop-Shoulder Bomber added to 89 carts this week — ATC → Checkout rate 61%, push a coupon to convert' },
+  { tag:'PAYMENT',  tagClass:'ann-tag-payment',  text:'COD remittance ₹38,200 from Delhivery pending 8 days — follow up before next dispatch cycle' },
+  { tag:'STOCK',    tagClass:'ann-tag-stock',    text:'Washed Baggy Jeans restocked 3 days ago — already 70% sold, trending — double next production run' },
+  { tag:'ORDER',    tagClass:'ann-tag-order',    text:'#1821 — RTO marked by courier but customer confirms received — potential courier fraud, open dispute' },
+  { tag:'URGENT',   tagClass:'ann-tag-urgent',   text:'RTO rate hit 31% this month — top 3 products account for 68% of returns, review sizing or packaging' },
+  { tag:'PAYMENT',  tagClass:'ann-tag-payment',  text:'GST filing due in 6 days — ₹1,12,400 taxable revenue this quarter, share invoices with CA' },
+  { tag:'TRENDING', tagClass:'ann-tag-trending', text:'Graphic Print Tee rank jumped from #12 → #3 in views this week — likely going viral on Instagram' },
+  { tag:'STOCK',    tagClass:'ann-tag-stock',    text:'French Terry Shorts — supplier confirmed 10-day delay, 34 pending orders at risk — notify customers?' },
 ];
 
 let annOffset = 0;
