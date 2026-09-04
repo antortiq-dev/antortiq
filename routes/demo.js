@@ -51,19 +51,24 @@ router.get('/summary', auth, async (req, res) => {
 
     const revDispatched    = DISPATCHED_STAGES.reduce((s, k) => s + (sc[k]?.revenue || 0), 0);
     const revPending       = (sc.confirmed?.revenue || 0) + (sc.partial?.revenue || 0);
-    const revNotConfirmed  = (sc.new?.revenue || 0) + (sc.hold?.revenue || 0);
-    const revCancelled     = sc.cancelled?.revenue || 0;
+    const NOT_CONFIRMED_STAGES = ['new','hold','cancelled'];
+    const notConfirmed    = NOT_CONFIRMED_STAGES.reduce((s, k) => s + (sc[k]?.count  || 0), 0);
+    const revNotConfirmed = NOT_CONFIRMED_STAGES.reduce((s, k) => s + (sc[k]?.revenue || 0), 0);
+    const revCancelled    = sc.cancelled?.revenue || 0;
+    const grandTotal      = active + notConfirmed;
+    const confirmedPct    = grandTotal > 0 ? Math.round(active / grandTotal * 100) : 0;
 
-    const dispatchRate = active > 0 ? Math.round(dispatched / active * 100) : 0;
-    const deliveryRate = dispatched > 0 ? Math.round(delivered / dispatched * 100) : 0;
-    const rtoRate      = dispatched > 0 ? Math.round(rto / dispatched * 100) : 0;
+    const dispatchRate = active > 0     ? Math.round(dispatched / active    * 100) : 0;
+    const deliveryRate = dispatched > 0 ? Math.round(delivered  / dispatched* 100) : 0;
+    const rtoRate      = dispatched > 0 ? Math.round(rto        / dispatched* 100) : 0;
 
     res.json({
       period: { orders: rev.orders, revenue: rev.total },
       allTime: { orders: allT.orders, revenue: allT.total },
       stageCounts: Object.fromEntries(Object.entries(sc).map(([k, v]) => [k, v.count])),
       fulfillStats: {
-        total: totalOrds, active, dispatched, delivered, rto, cancelled, newOrds,
+        total: totalOrds, active, notConfirmed, grandTotal, confirmedPct,
+        dispatched, delivered, rto, cancelled, newOrds,
         dispatchRate, deliveryRate, rtoRate,
         revDispatched, revPending, revNotConfirmed, revCancelled,
         stageMap: Object.fromEntries(Object.entries(sc).map(([k, v]) => [k, v.count])),

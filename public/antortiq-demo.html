@@ -753,43 +753,156 @@ function renderChart(daily) {
 
 function renderBigCards(fs, allTime, period) {
   const wrap = document.getElementById('big-grid');
-  const dispPct  = fs.dispatchRate || 0;
-  const delivPct = fs.deliveryRate || 0;
-  const rtoPct   = fs.rtoRate || 0;
-  const cPct = pct => pct>=80?'#10b981':pct>=50?'#f59e0b':'#ef4444';
-  const cBg  = pct => pct>=80?'rgba(16,185,129,.08)':pct>=50?'rgba(245,158,11,.08)':'rgba(239,68,68,.08)';
-  const cBdr = pct => pct>=80?'rgba(16,185,129,.3)':pct>=50?'rgba(245,158,11,.3)':'rgba(239,68,68,.3)';
+  const dispPct  = fs.dispatchRate  || 0;
+  const delivPct = fs.deliveryRate  || 0;
+  const rtoPct   = fs.rtoRate       || 0;
+  const confPct  = fs.confirmedPct  || 0;
 
-  const Card = ({icon,label,pct,num,den,sub,revRows}) => `
-    <div style="background:${cBg(pct)};border:1px solid ${cBdr(pct)};border-radius:8px;padding:14px 16px">
-      <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">${icon} ${label}</div>
-      <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:6px">
-        <span style="font-size:36px;font-weight:900;color:${cPct(pct)};line-height:1">${pct}%</span>
-        <span style="font-size:10px;color:var(--text-muted);margin-bottom:4px">${num}/${den}</span>
+  const cPct  = p => p>=80?'#10b981':p>=50?'#f59e0b':'#ef4444';
+  const cBg   = p => p>=80?'rgba(16,185,129,.08)':p>=50?'rgba(245,158,11,.08)':'rgba(239,68,68,.08)';
+  const cBdr  = p => p>=80?'rgba(16,185,129,.3)':p>=50?'rgba(245,158,11,.3)':'rgba(239,68,68,.3)';
+  const miniBox = (c,lbl,val,isNum) => `
+    <div style="background:${c}18;border:1px solid ${c}30;border-radius:6px;padding:7px 10px">
+      <div style="font-size:9px;font-weight:700;color:${c};letter-spacing:0.3px;margin-bottom:3px">${lbl}</div>
+      <div style="font-size:13px;font-weight:800;color:${c}">${isNum?val:fmtCur(val)}</div>
+    </div>`;
+
+  // ── CARD 1: Confirmed vs Not Confirmed ──────────────────────────────────────
+  const sm = fs.stageMap || {};
+  const confirmedStages = [
+    {key:'delivered',label:'Delivered',     c:'#10b981',icon:'✅'},
+    {key:'rto',      label:'RTO',           c:'#f87171',icon:'↩'},
+    {key:'transit',  label:'In Transit',    c:'#60a5fa',icon:'🚚'},
+    {key:'pickup',   label:'Pickup Pending',c:'#f59e0b',icon:'⌛'},
+    {key:'ready',    label:'Ready to Ship', c:'#a78bfa',icon:'📦'},
+    {key:'confirmed',label:'Confirmed',     c:'#34d399',icon:'✓'},
+    {key:'partial',  label:'Partial',       c:'#fbbf24',icon:'₹'},
+  ];
+  const notConfirmedStages = [
+    {key:'new',      label:'New/Unconfirmed',c:'#94a3b8',icon:'◉'},
+    {key:'hold',     label:'On Hold',        c:'#fb923c',icon:'⏸'},
+    {key:'cancelled',label:'Cancelled',      c:'#ef4444',icon:'✕'},
+  ];
+  const stageRowHtml = (stages, den) => stages.filter(s=>(sm[s.key]||0)>0).map(s => {
+    const cnt = sm[s.key]||0;
+    const p   = den>0 ? Math.round(cnt/den*100) : 0;
+    return `<div style="padding:4px 0;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:6px">
+        <span style="font-size:10px;color:var(--text-dim);min-width:124px">${s.icon} ${s.label}</span>
+        <div style="flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden">
+          <div style="height:100%;width:${p}%;background:${s.c};border-radius:2px"></div>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:${s.c};min-width:22px;text-align:right">${cnt}</span>
+        <span style="font-size:10px;color:var(--text-muted);min-width:28px;text-align:right">${p}%</span>
       </div>
-      <div class="prog"><div class="prog-fill" style="width:${pct}%;background:${cPct(pct)}"></div></div>
-      <div style="font-size:10px;color:var(--text-muted);margin-top:4px">${sub}</div>
-      ${revRows||''}
-    </div>
-  `;
+    </div>`;
+  }).join('');
 
-  const revRowHtml = (rows) => `<div class="mini-rev-row">${rows.map(([c,lbl,val])=>`
-    <div class="mini-rev" style="background:${c}18;border:1px solid ${c}30">
-      <div class="mini-rev-lbl" style="color:${c}">${lbl}</div>
-      <div class="mini-rev-val" style="color:${c}">${fmtCur(val)}</div>
-    </div>`).join('')}</div>`;
+  const card1 = `
+    <div style="background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.25);border-radius:8px;padding:14px 16px">
+      <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">📋 Order Confirmation Breakdown</div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span style="font-size:36px;font-weight:900;color:#6366f1;line-height:1">${confPct}%</span>
+          <span style="font-size:10px;color:var(--text-muted)">${fs.active||0} confirmed / ${fs.grandTotal||0} total</span>
+        </div>
+        <div style="display:flex;gap:12px">
+          <div style="text-align:right"><div style="font-size:9px;color:var(--text-muted)">Confirmed</div><div style="font-size:18px;font-weight:800;color:#34d399">${fs.active||0}</div></div>
+          <div style="text-align:right"><div style="font-size:9px;color:var(--text-muted)">Not Confirmed</div><div style="font-size:18px;font-weight:800;color:#94a3b8">${fs.notConfirmed||0}</div></div>
+        </div>
+      </div>
+      <div class="prog" style="margin-bottom:10px"><div class="prog-fill" style="width:${confPct}%;background:#6366f1"></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:10px">
+        ${miniBox('#34d399','Confirmed Rev',(fs.revDispatched||0)+(fs.revPending||0),false)}
+        ${miniBox('#94a3b8','Not Confirmed',fmtCur(fs.revNotConfirmed||0),true)}
+        ${miniBox('#ef4444','Cancelled Rev',fs.revCancelled||0,false)}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <div style="font-size:9px;font-weight:700;color:#34d399;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px">✓ Confirmed (${fs.active||0})</div>
+          ${stageRowHtml(confirmedStages, fs.active||1)}
+        </div>
+        <div>
+          <div style="font-size:9px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px">○ Not Confirmed (${fs.notConfirmed||0})</div>
+          ${stageRowHtml(notConfirmedStages, fs.notConfirmed||1)}
+        </div>
+      </div>
+    </div>`;
 
-  wrap.innerHTML = [
-    Card({ icon:'📦', label:'Dispatch Rate', pct:dispPct, num:fs.dispatched, den:fs.active,
-      sub:`${fs.active||0} confirmed active orders`,
-      revRows: revRowHtml([['#10b981','Dispatched Rev',fs.revDispatched],['#ef4444','Pending Rev',fs.revPending]]) }),
-    Card({ icon:'✅', label:'Delivery Rate', pct:delivPct, num:fs.delivered, den:fs.dispatched,
-      sub:`of ${fs.dispatched||0} dispatched orders`,
-      revRows: revRowHtml([['#10b981','Delivered Rev',fs.revDispatched],['#f87171','RTO Count',fs.rto]]) }),
-    Card({ icon:'↩', label:'RTO Rate', pct:rtoPct, num:fs.rto, den:fs.dispatched,
-      sub:'Lower is better — target < 15%',
-      revRows: revRowHtml([['#f87171','Revenue at Risk',fs.revDispatched*rtoPct/100],['#10b981','Safe Rev',fs.revDispatched*(1-rtoPct/100)]]) }),
-  ].join('');
+  // ── CARD 2: Dispatch Rate ───────────────────────────────────────────────────
+  const card2 = `
+    <div style="background:${cBg(dispPct)};border:1px solid ${cBdr(dispPct)};border-radius:8px;padding:14px 16px">
+      <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">📦 Dispatch Rate</div>
+      <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:6px">
+        <span style="font-size:36px;font-weight:900;color:${cPct(dispPct)};line-height:1">${dispPct}%</span>
+        <span style="font-size:10px;color:var(--text-muted);margin-bottom:4px">${fs.dispatched||0}/${fs.active||0}</span>
+      </div>
+      <div class="prog" style="margin-bottom:6px"><div class="prog-fill" style="width:${dispPct}%;background:${cPct(dispPct)}"></div></div>
+      <div style="font-size:10px;color:var(--text-muted);margin-bottom:10px">${fs.active||0} confirmed active orders</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        ${miniBox('#10b981','Dispatched Rev',fs.revDispatched||0,false)}
+        ${miniBox('#ef4444','Pending Rev',fs.revPending||0,false)}
+      </div>
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px">Dispatched Stage Breakdown</div>
+        ${[{key:'delivered',label:'Delivered',c:'#10b981',icon:'✅'},{key:'rto',label:'RTO',c:'#f87171',icon:'↩'},{key:'transit',label:'In Transit',c:'#60a5fa',icon:'🚚'},{key:'pickup',label:'Pickup',c:'#f59e0b',icon:'⌛'},{key:'ready',label:'Ready',c:'#a78bfa',icon:'📦'}]
+          .filter(s=>(sm[s.key]||0)>0).map(s => {
+            const cnt = sm[s.key]||0;
+            const p   = (fs.dispatched||0)>0 ? Math.round(cnt/fs.dispatched*100) : 0;
+            return `<div style="display:flex;align-items:center;gap:6px;padding:3px 0">
+              <span style="font-size:10px;color:var(--text-dim);min-width:90px">${s.icon} ${s.label}</span>
+              <div style="flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:${p}%;background:${s.c}"></div>
+              </div>
+              <span style="font-size:10px;font-weight:700;color:${s.c};min-width:22px;text-align:right">${cnt}</span>
+            </div>`;
+          }).join('')}
+      </div>
+    </div>`;
+
+  // ── CARD 3: Delivery + RTO merged ──────────────────────────────────────────
+  const rtoC      = rtoPct < 15 ? '#10b981' : rtoPct < 25 ? '#f59e0b' : '#ef4444';
+  const rtoCBg    = rtoPct < 15 ? 'rgba(16,185,129,.08)' : rtoPct < 25 ? 'rgba(245,158,11,.08)' : 'rgba(239,68,68,.08)';
+  const rtoCBdr   = rtoPct < 15 ? 'rgba(16,185,129,.25)' : rtoPct < 25 ? 'rgba(245,158,11,.25)' : 'rgba(239,68,68,.25)';
+  const revAtRisk = Math.round((fs.revDispatched||0) * rtoPct / 100);
+  const revSafe   = Math.round((fs.revDispatched||0) * (1 - rtoPct/100));
+  const card3 = `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+      <!-- Delivery Rate section -->
+      <div style="background:${cBg(delivPct)};border:1px solid ${cBdr(delivPct)};border-radius:6px;padding:12px 14px">
+        <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">✅ Delivery Rate</div>
+        <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:5px">
+          <span style="font-size:30px;font-weight:900;color:${cPct(delivPct)};line-height:1">${delivPct}%</span>
+          <span style="font-size:10px;color:var(--text-muted);margin-bottom:3px">${fs.delivered||0}/${fs.dispatched||0} dispatched</span>
+        </div>
+        <div class="prog" style="margin-bottom:6px"><div class="prog-fill" style="width:${delivPct}%;background:${cPct(delivPct)}"></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:2px">
+          ${miniBox('#10b981','Delivered',fs.delivered||0,true)}
+          ${miniBox('#94a3b8','Still Dispatched',(fs.dispatched||0)-(fs.delivered||0)-(fs.rto||0),true)}
+        </div>
+      </div>
+      <!-- RTO Rate section -->
+      <div style="background:${rtoCBg};border:1px solid ${rtoCBdr};border-radius:6px;padding:12px 14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+          <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted)">↩ RTO Rate</div>
+          <div style="font-size:9px;color:${rtoC};font-weight:700">${rtoPct<15?'✓ On Target':'⚠ Above Target'}</div>
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:5px">
+          <span style="font-size:30px;font-weight:900;color:${rtoC};line-height:1">${rtoPct}%</span>
+          <span style="font-size:10px;color:var(--text-muted);margin-bottom:3px">${fs.rto||0}/${fs.dispatched||0} · target &lt;15%</span>
+        </div>
+        <div class="prog" style="margin-bottom:8px">
+          <div class="prog-fill" style="width:${Math.min(rtoPct,100)}%;background:${rtoC}"></div>
+          <div style="position:relative;margin-top:-4px;left:15%;width:1px;height:8px;background:rgba(255,255,255,.4);display:inline-block;vertical-align:top"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+          ${miniBox('#f87171','Revenue at Risk',revAtRisk,false)}
+          ${miniBox('#10b981','Safe Revenue',revSafe,false)}
+        </div>
+      </div>
+    </div>`;
+
+  wrap.innerHTML = card1 + card2 + card3;
 }
 
 // ── Orders ────────────────────────────────────────────────────────────────────
