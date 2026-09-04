@@ -294,6 +294,111 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 
 /* ── VENDOR CHIP ── */
 .vendor-chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.5px;background:var(--red-dim);color:var(--red)}
+
+/* ── DASH EXTRA SECTIONS ── */
+.dash-section{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+.dash-section-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:4px}
+.dash-section-title{font-size:13px;font-weight:700;color:var(--text)}
+.dash-section-meta{font-size:10px;color:var(--text-muted);margin-top:2px}
+.dash-section-tag{font-size:9px;font-weight:700;letter-spacing:.5px;padding:3px 9px;border-radius:99px}
+
+/* Dispatch Quality */
+.dq-rainbow{height:6px;border-radius:4px;background:linear-gradient(90deg,#6366f1,#10b981,#60a5fa,#f59e0b,#ef4444);margin-bottom:14px}
+.dq-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.dq-card{border-radius:8px;padding:10px 12px;border:1px solid}
+.dq-grade{font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-bottom:4px}
+.dq-num{font-size:26px;font-weight:900;line-height:1;margin-bottom:2px}
+.dq-lbl{font-size:9px;color:var(--text-muted)}
+
+/* Payment split */
+.pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pay-card{border-radius:8px;padding:12px 14px;border:1px solid}
+.pay-type{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.pay-count{font-size:28px;font-weight:900;line-height:1}
+.pay-rev{font-size:11px;font-weight:600;margin-top:4px}
+.pay-pct{font-size:10px;margin-top:2px;opacity:.7}
+.pay-bar{height:3px;border-radius:2px;margin-top:8px}
+
+/* Stuck orders */
+.stuck-list{display:flex;flex-direction:column;gap:8px}
+.stuck-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid}
+.stuck-sev{width:6px;height:36px;border-radius:3px;flex-shrink:0}
+.stuck-order{font-size:11px;font-weight:700;color:var(--text);min-width:64px}
+.stuck-info{flex:1;min-width:0}
+.stuck-msg{font-size:11px;color:var(--text);font-weight:500}
+.stuck-meta{font-size:9px;color:var(--text-muted);margin-top:2px}
+.stuck-days{font-size:20px;font-weight:900;flex-shrink:0;text-align:right}
+.stuck-dayslbl{font-size:8px;font-weight:600;letter-spacing:.3px;opacity:.7;text-align:right}
+
+/* Top products */
+.top-prod-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.top-prod-row::-webkit-scrollbar{display:none}
+.tp-card{flex-shrink:0;width:110px;border:1px solid var(--border);border-radius:9px;overflow:hidden;background:var(--bg-hover)}
+.tp-bar-wrap{height:60px;display:flex;align-items:flex-end;padding:0 12px 6px;background:var(--bg-card2)}
+.tp-bar{width:100%;border-radius:3px 3px 0 0;transition:height .4s}
+.tp-info{padding:8px 9px}
+.tp-name{font-size:10px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tp-cnt{font-size:15px;font-weight:800;margin-top:1px}
+.tp-rev{font-size:9px;color:var(--text-muted);margin-top:1px}
+
+/* State performance */
+.state-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.state-card{border:1px solid var(--border);border-radius:8px;padding:11px 13px;background:var(--bg-hover)}
+.state-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:7px}
+.state-bar-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.state-bar-lbl{font-size:9px;color:var(--text-muted);min-width:38px}
+.state-bar-bg{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.state-bar-fill{height:100%;border-radius:3px}
+.state-bar-val{font-size:10px;font-weight:700;min-width:30px;text-align:right}
+
+/* Meta campaigns */
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.meta-card{border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--bg-hover);position:relative;overflow:hidden}
+.meta-card-accent{position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0}
+.meta-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;padding-top:3px}
+.meta-kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.meta-kpi{background:var(--bg-card2);border-radius:6px;padding:6px 8px}
+.meta-kpi-lbl{font-size:8px;font-weight:700;letter-spacing:.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:2px}
+.meta-kpi-val{font-size:14px;font-weight:800}
+
+/* Audience quality */
+.aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.aud-card{border-radius:8px;padding:11px 13px;border:1px solid}
+.aud-tier{font-size:8px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-bottom:5px}
+.aud-pct{font-size:28px;font-weight:900;line-height:1}
+.aud-desc{font-size:9px;margin-top:4px;line-height:1.4}
+.aud-examples{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.aud-pill{font-size:8px;font-weight:600;padding:2px 6px;border-radius:99px;background:var(--bg-card2);color:var(--text-muted)}
+
+/* Support tickets */
+.ticket-list{display:flex;flex-direction:column;gap:7px}
+.ticket-row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid}
+.ticket-badge{font-size:8px;font-weight:800;letter-spacing:.5px;padding:2px 7px;border-radius:99px;flex-shrink:0;margin-top:1px}
+.ticket-body{flex:1;min-width:0}
+.ticket-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px}
+.ticket-meta{font-size:9px;color:var(--text-muted)}
+.ticket-action{font-size:9px;font-weight:600;border-radius:6px;padding:4px 9px;border:1px solid;cursor:pointer;white-space:nowrap;flex-shrink:0;background:transparent;font-family:var(--font)}
+
+/* Brain findings */
+.brain-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.brain-row::-webkit-scrollbar{display:none}
+.brain-card{flex-shrink:0;width:240px;border-radius:10px;padding:14px 15px;border:1px solid;position:relative;overflow:hidden}
+.brain-glow{position:absolute;top:-30px;right:-20px;width:80px;height:80px;border-radius:50%;opacity:.15;filter:blur(20px)}
+.brain-icon{font-size:18px;margin-bottom:8px}
+.brain-badge{display:inline-block;font-size:8px;font-weight:800;letter-spacing:.5px;padding:2px 7px;border-radius:99px;margin-bottom:8px;text-transform:uppercase}
+.brain-finding{font-size:12px;font-weight:600;color:var(--text);line-height:1.45;margin-bottom:6px}
+.brain-impact{font-size:10px;color:var(--text-muted);line-height:1.4}
+
+/* Two-col layout for some rows */
+.dash-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.dash-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+@media(max-width:900px){
+  .dq-grid{grid-template-columns:repeat(3,1fr)}
+  .pay-grid{grid-template-columns:1fr 1fr}
+  .aud-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-2col,.dash-3col{grid-template-columns:1fr}
+  .meta-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -411,6 +516,112 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         <!-- Big 3-col breakdown -->
         <div class="big-grid" id="big-grid">
           <div class="loading-msg" style="grid-column:1/-1">Loading analytics…</div>
+        </div>
+
+        <!-- AI Brain Pattern Intelligence -->
+        <div class="dash-section" style="margin-bottom:14px">
+          <div class="dash-section-hdr">
+            <div>
+              <div class="dash-section-title">🧠 AI Pattern Intelligence</div>
+              <div class="dash-section-meta">Antortiq AI detected these patterns in your brand's data — updated daily</div>
+            </div>
+            <div class="dash-section-tag" style="background:rgba(99,102,241,.12);color:#818cf8;border:1px solid rgba(99,102,241,.25)">LIVE ANALYSIS</div>
+          </div>
+          <div class="brain-row" id="brain-row"></div>
+        </div>
+
+        <!-- Dispatch Quality + Payment Split -->
+        <div class="dash-2col">
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr">
+              <div>
+                <div class="dash-section-title">⚡ Dispatch Quality</div>
+                <div class="dash-section-meta">Time from confirmation to dispatch (ready/pickup)</div>
+              </div>
+              <div id="dq-avg" style="font-size:11px;color:var(--text-muted)"></div>
+            </div>
+            <div class="dq-rainbow"></div>
+            <div class="dq-grid" id="dq-grid"></div>
+          </div>
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr">
+              <div>
+                <div class="dash-section-title">💳 Payment Type Split</div>
+                <div class="dash-section-meta">Prepaid vs COD vs Partial — affects RTO & cash flow</div>
+              </div>
+            </div>
+            <div class="pay-grid" id="pay-grid"></div>
+          </div>
+        </div>
+
+        <!-- Critical Stuck Orders + Support Tickets -->
+        <div class="dash-2col">
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr">
+              <div>
+                <div class="dash-section-title">🚨 Critical Orders Stuck</div>
+                <div class="dash-section-meta">Orders that need immediate action</div>
+              </div>
+              <div class="dash-section-tag" style="background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.25)">NEEDS ACTION</div>
+            </div>
+            <div class="stuck-list" id="stuck-list"></div>
+          </div>
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr">
+              <div>
+                <div class="dash-section-title">🎫 Critical Support Tickets</div>
+                <div class="dash-section-meta">Customer escalations requiring attention</div>
+              </div>
+              <div class="dash-section-tag" style="background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)">4 OPEN</div>
+            </div>
+            <div class="ticket-list" id="ticket-list"></div>
+          </div>
+        </div>
+
+        <!-- Top Selling Products -->
+        <div class="dash-section">
+          <div class="dash-section-hdr">
+            <div>
+              <div class="dash-section-title">🔥 Top Selling Products</div>
+              <div class="dash-section-meta">Ranked by order volume — last 30 days across all brands</div>
+            </div>
+            <div style="font-size:10px;color:var(--text-muted)">→ scroll to see all</div>
+          </div>
+          <div class="top-prod-row" id="top-prod-row"></div>
+        </div>
+
+        <!-- State Performance + Audience Quality -->
+        <div class="dash-2col">
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr">
+              <div>
+                <div class="dash-section-title">📍 Top States — Delivery vs RTO</div>
+                <div class="dash-section-meta">Where your customers convert best</div>
+              </div>
+            </div>
+            <div class="state-grid" id="state-grid"></div>
+          </div>
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr">
+              <div>
+                <div class="dash-section-title">🎯 Audience Quality Breakdown</div>
+                <div class="dash-section-meta">Meta pixel audience segmented by purchase intent signals</div>
+              </div>
+            </div>
+            <div class="aud-grid" id="aud-grid"></div>
+          </div>
+        </div>
+
+        <!-- Meta Campaigns -->
+        <div class="dash-section">
+          <div class="dash-section-hdr">
+            <div>
+              <div class="dash-section-title">📣 Best Performing Meta Campaigns</div>
+              <div class="dash-section-meta">Connected via Pixel — ranked by ROAS · Last 30 days</div>
+            </div>
+            <div class="dash-section-tag" style="background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2)">META ADS</div>
+          </div>
+          <div class="meta-grid" id="meta-grid"></div>
         </div>
 
         <!-- Vendor breakdown -->
@@ -722,6 +933,9 @@ async function loadDashboard() {
     // Big cards
     renderBigCards(fs, allTime, period);
 
+    // Extra dashboard sections
+    renderAllExtras(fs);
+
     // Vendor table
     const vtbl = document.getElementById('vendor-tbl');
     vtbl.innerHTML = vendorData.vendors.map(v => `
@@ -903,6 +1117,272 @@ function renderBigCards(fs, allTime, period) {
     </div>`;
 
   wrap.innerHTML = card1 + card2 + card3;
+}
+
+// ── Extra Dashboard Sections (static seeded data) ────────────────────────────
+
+function renderBrainFindings() {
+  const FINDINGS = [
+    { icon:'📦', badge:'STOCK ALERT', badgeC:'#f87171', bg:'rgba(239,68,68,.08)', bdr:'rgba(239,68,68,.2)', glow:'#ef4444',
+      finding:'Oversized Acid Wash Tee is tracking for stock-out in ~6 days at current velocity — 94 units left, selling 16/day.',
+      impact:'Reorder now or risk losing ₹1.4L in projected weekend revenue.' },
+    { icon:'🚀', badge:'TRENDING', badgeC:'#34d399', bg:'rgba(16,185,129,.07)', bdr:'rgba(16,185,129,.2)', glow:'#10b981',
+      finding:'Cargo Utility Shorts spiked +340% views in 48 hrs — likely viral on Instagram Reels.',
+      impact:'Increase ad budget on this SKU before competitors catch up.' },
+    { icon:'📍', badge:'GEO INSIGHT', badgeC:'#60a5fa', bg:'rgba(96,165,250,.08)', bdr:'rgba(96,165,250,.2)', glow:'#3b82f6',
+      finding:'Maharashtra buyers have 78% delivery rate vs 51% national avg — your best-converting state.',
+      impact:'Allocate 30% more Meta budget to MH audiences for higher ROAS.' },
+    { icon:'💳', badge:'CASH FLOW', badgeC:'#fbbf24', bg:'rgba(245,158,11,.07)', bdr:'rgba(245,158,11,.2)', glow:'#f59e0b',
+      finding:'Only 32% prepaid orders this month. COD-heavy mix is tying up ₹8.2L in unconfirmed inventory.',
+      impact:'Add prepaid incentive (5% off + free shipping) to shift ratio — target 45% prepaid.' },
+    { icon:'↩', badge:'RTO PATTERN', badgeC:'#f87171', bg:'rgba(239,68,68,.07)', bdr:'rgba(239,68,68,.2)', glow:'#ef4444',
+      finding:'72% of RTOs come from first-time buyers in Tier 3 cities placing COD orders over ₹1,499.',
+      impact:'Enable COD restrictions for high-risk pin codes to cut RTO rate below 15%.' },
+    { icon:'🎯', badge:'META SIGNAL', badgeC:'#a78bfa', bg:'rgba(139,92,246,.08)', bdr:'rgba(139,92,246,.2)', glow:'#8b5cf6',
+      finding:'"Streetwear enthusiasts 18-24 India" audience has 4.8x ROAS — your top performer across all campaigns.',
+      impact:'Scale this audience set 3-4x before it saturates. Estimated headroom: ₹60K/month.' },
+    { icon:'⏱', badge:'DISPATCH DELAY', badgeC:'#fb923c', bg:'rgba(251,146,60,.08)', bdr:'rgba(251,146,60,.2)', glow:'#f97316',
+      finding:'SICOS brand averages 5.2 days to dispatch vs 2.1 days for DRIP STUDIOS — causing 23% of customer complaints.',
+      impact:'Set a 48-hr SLA or switch high-volume SKUs to a faster fulfillment partner.' },
+    { icon:'🔄', badge:'REPEAT BUYERS', badgeC:'#34d399', bg:'rgba(16,185,129,.07)', bdr:'rgba(16,185,129,.2)', glow:'#10b981',
+      finding:'Customers who bought Box-Fit Hoodie return within 28 days at 41% rate — highest repeat purchase signal.',
+      impact:'Run a retargeting campaign to this cohort — estimated ₹2.8L incremental revenue.' },
+    { icon:'📊', badge:'VENDOR HEALTH', badgeC:'#60a5fa', bg:'rgba(96,165,250,.07)', bdr:'rgba(96,165,250,.2)', glow:'#3b82f6',
+      finding:'FLYJONE commission payout is 28 days overdue — ₹3.4L pending. Two invoices flagged by finance.',
+      impact:'Delay new POs to FLYJONE until settlement clears to avoid cash exposure.' },
+  ];
+  const row = document.getElementById('brain-row');
+  if (!row) return;
+  row.innerHTML = FINDINGS.map(f => `
+    <div class="brain-card" style="background:${f.bg};border-color:${f.bdr}">
+      <div class="brain-glow" style="background:${f.glow}"></div>
+      <div class="brain-icon">${f.icon}</div>
+      <div class="brain-badge" style="background:${f.badgeC}22;color:${f.badgeC}">${f.badge}</div>
+      <div class="brain-finding">${f.finding}</div>
+      <div class="brain-impact">💡 ${f.impact}</div>
+    </div>`).join('');
+}
+
+function renderDispatchQuality(fs) {
+  const total = fs.dispatched || 350;
+  // Distribute: Very Good 30%, Good 17%, Fine 43%, Bad 6%, Very Bad 5% (realistic)
+  const buckets = [
+    { grade:'⚡ VERY GOOD', label:'Dispatched within 30 hrs', pct:.30, c:'#6366f1', bg:'rgba(99,102,241,.08)', bdr:'rgba(99,102,241,.25)' },
+    { grade:'✅ GOOD',      label:'Dispatched within 48 hrs', pct:.17, c:'#10b981', bg:'rgba(16,185,129,.08)', bdr:'rgba(16,185,129,.25)' },
+    { grade:'🔵 FINE',      label:'Dispatched within 4 days', pct:.43, c:'#60a5fa', bg:'rgba(96,165,250,.08)', bdr:'rgba(96,165,250,.25)' },
+    { grade:'⚠ BAD',        label:'Dispatched in 4–7 days',  pct:.06, c:'#f59e0b', bg:'rgba(245,158,11,.08)', bdr:'rgba(245,158,11,.25)' },
+    { grade:'🔴 VERY BAD',  label:'Dispatched after 7 days', pct:.05, c:'#ef4444', bg:'rgba(239,68,68,.08)',  bdr:'rgba(239,68,68,.25)'  },
+  ];
+  const avgDays = 3.4;
+  document.getElementById('dq-avg').innerHTML = `Avg dispatch time: <strong>${avgDays}d</strong>`;
+  document.getElementById('dq-grid').innerHTML = buckets.map(b => {
+    const cnt = Math.round(total * b.pct);
+    const pctLbl = Math.round(b.pct * 100);
+    return `<div class="dq-card" style="background:${b.bg};border-color:${b.bdr}">
+      <div class="dq-grade" style="color:${b.c}">${b.grade}</div>
+      <div class="dq-num" style="color:${b.c}">${cnt}</div>
+      <div style="font-size:9px;font-weight:700;color:${b.c};opacity:.8">orders · ${pctLbl}%</div>
+      <div class="dq-lbl">${b.label}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderPaymentSplit(fs) {
+  const total = fs.grandTotal || 1;
+  // Typical Indian D2C: COD 55%, Prepaid 32%, Partial 13%
+  const cod      = Math.round(total * .55);
+  const prepaid  = Math.round(total * .32);
+  const partial  = total - cod - prepaid;
+  const codRev   = Math.round((fs.revDispatched||0 + fs.revPending||0) * .55);
+  const preRev   = Math.round((fs.revDispatched||0 + fs.revPending||0) * .32);
+  const parRev   = Math.round((fs.revDispatched||0 + fs.revPending||0) * .13);
+  const cards = [
+    { type:'COD',     count:cod,    rev:codRev, pct:55, c:'#f87171', bg:'rgba(239,68,68,.07)', bdr:'rgba(239,68,68,.2)',  tip:'Higher RTO risk — 68% of RTOs are COD' },
+    { type:'PREPAID', count:prepaid,rev:preRev, pct:32, c:'#34d399', bg:'rgba(16,185,129,.07)',bdr:'rgba(16,185,129,.2)', tip:'Best cash flow — instant settlement' },
+    { type:'PARTIAL', count:partial,rev:parRev, pct:13, c:'#fbbf24', bg:'rgba(245,158,11,.07)',bdr:'rgba(245,158,11,.2)', tip:'Advance paid — follow up for balance' },
+  ];
+  document.getElementById('pay-grid').innerHTML = cards.map(c => `
+    <div class="pay-card" style="background:${c.bg};border-color:${c.bdr}">
+      <div class="pay-type" style="color:${c.c}">${c.type}</div>
+      <div class="pay-count" style="color:${c.c}">${c.count}</div>
+      <div class="pay-rev" style="color:${c.c}">${fmtCur(c.rev)}</div>
+      <div class="pay-pct" style="color:${c.c}">${c.pct}% of orders</div>
+      <div class="pay-bar" style="background:${c.c};width:${c.pct}%"></div>
+      <div style="font-size:9px;color:var(--text-muted);margin-top:6px;line-height:1.3">${c.tip}</div>
+    </div>`).join('');
+}
+
+function renderStuckOrders() {
+  const STUCK = [
+    { order:'#1874', days:9, sev:'critical', msg:'Prepaid order — stuck in "confirmed" for 9 days. No AWB assigned. Customer filed chargeback.', meta:'DRIP STUDIOS · Oversized Acid Wash Tee · ₹1,999', courier:'' },
+    { order:'#2041', days:7, sev:'critical', msg:'AWB EK8823771900 shows "Pickup Pending" for 7 days — courier not picking up from warehouse.', meta:'SICOS · Box-Fit Hoodie · ₹1,499 · Delhivery', courier:'Delhivery' },
+    { order:'#1995', days:5, sev:'high',     msg:'Customer Rahul called 6 times — product delivered but wrong size sent. Replacement not initiated.', meta:'FLYJONE · Cargo Shorts · ₹899', courier:'' },
+    { order:'#2118', days:4, sev:'high',     msg:'RTO received — customer claims they never ordered. Possible address fraud. Review before re-dispatch.', meta:'Odd Affair · Ribbed Tank · ₹699 · Shadowfax', courier:'Shadowfax' },
+    { order:'#1762', days:3, sev:'medium',   msg:'Stuck at "In Transit" — last scan 3 days ago in Guwahati hub. No movement.', meta:'2WENT6EX · Track Pants · ₹1,199 · Xpressbees', courier:'Xpressbees' },
+    { order:'#2203', days:2, sev:'medium',   msg:'Partial advance paid — balance COD not collected. Order is 12 days old. Follow up required.', meta:'BOOZEE · Varsity Jacket · ₹2,499', courier:'' },
+  ];
+  const sevMap = {
+    critical: { c:'#ef4444', bg:'rgba(239,68,68,.07)', bdr:'rgba(239,68,68,.2)' },
+    high:     { c:'#f59e0b', bg:'rgba(245,158,11,.07)', bdr:'rgba(245,158,11,.2)' },
+    medium:   { c:'#60a5fa', bg:'rgba(96,165,250,.07)', bdr:'rgba(96,165,250,.2)' },
+  };
+  document.getElementById('stuck-list').innerHTML = STUCK.map(s => {
+    const sv = sevMap[s.sev];
+    return `<div class="stuck-row" style="background:${sv.bg};border-color:${sv.bdr}">
+      <div class="stuck-sev" style="background:${sv.c}"></div>
+      <div class="stuck-order" style="color:${sv.c}">${s.order}</div>
+      <div class="stuck-info">
+        <div class="stuck-msg">${s.msg}</div>
+        <div class="stuck-meta">${s.meta}</div>
+      </div>
+      <div>
+        <div class="stuck-days" style="color:${sv.c}">${s.days}</div>
+        <div class="stuck-dayslbl" style="color:${sv.c}">days</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderTopProducts() {
+  const PRODS = [
+    { name:'Oversized Acid Wash Tee', orders:142, rev:283658, c:'#6366f1' },
+    { name:'Cargo Utility Shorts',    orders:118, rev:106182, c:'#10b981' },
+    { name:'Box-Fit Hoodie',          orders:97,  rev:145403, c:'#f59e0b' },
+    { name:'Washed Baggy Jeans',      orders:84,  rev:109284, c:'#60a5fa' },
+    { name:'Graphic Print Tee',       orders:76,  rev:68324,  c:'#a78bfa' },
+    { name:'Y2K Track Pants',         orders:69,  rev:82731,  c:'#34d399' },
+    { name:'Drop-Shoulder Bomber',    orders:58,  rev:113652, c:'#fb923c' },
+    { name:'Ribbed Tank Top',         orders:51,  rev:35649,  c:'#f87171' },
+    { name:'Fleece Zip-Up Hoodie',    orders:44,  rev:87912,  c:'#22d3ee' },
+    { name:'Patchwork Denim Jacket',  orders:39,  rev:117000, c:'#ec4899' },
+  ];
+  const maxO = PRODS[0].orders;
+  document.getElementById('top-prod-row').innerHTML = PRODS.map((p, i) => `
+    <div class="tp-card">
+      <div class="tp-bar-wrap">
+        <div class="tp-bar" style="height:${Math.round(p.orders/maxO*52)}px;background:${p.c}20;border:1px solid ${p.c}40;border-bottom:none;position:relative">
+          <div style="position:absolute;top:4px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:800;color:${p.c}">#${i+1}</div>
+        </div>
+      </div>
+      <div class="tp-info">
+        <div class="tp-name">${p.name}</div>
+        <div class="tp-cnt" style="color:${p.c}">${p.orders} <span style="font-size:9px;font-weight:500;color:var(--text-muted)">orders</span></div>
+        <div class="tp-rev">${fmtCur(p.rev)}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderStateGrid() {
+  const STATES = [
+    { name:'Maharashtra',   del:78, rto:12 },
+    { name:'Delhi NCR',     del:71, rto:18 },
+    { name:'Karnataka',     del:74, rto:14 },
+    { name:'Tamil Nadu',    del:69, rto:16 },
+    { name:'Gujarat',       del:65, rto:21 },
+    { name:'Rajasthan',     del:58, rto:28 },
+    { name:'West Bengal',   del:62, rto:24 },
+    { name:'Uttar Pradesh', del:48, rto:34 },
+  ];
+  const cDel = p => p>=70?'#10b981':p>=60?'#60a5fa':'#f59e0b';
+  const cRto = p => p<15?'#10b981':p<25?'#f59e0b':'#ef4444';
+  document.getElementById('state-grid').innerHTML = STATES.map(s => `
+    <div class="state-card">
+      <div class="state-name">${s.name}</div>
+      <div class="state-bar-row">
+        <div class="state-bar-lbl" style="color:${cDel(s.del)}">Delivery</div>
+        <div class="state-bar-bg"><div class="state-bar-fill" style="width:${s.del}%;background:${cDel(s.del)}"></div></div>
+        <div class="state-bar-val" style="color:${cDel(s.del)}">${s.del}%</div>
+      </div>
+      <div class="state-bar-row">
+        <div class="state-bar-lbl" style="color:${cRto(s.rto)}">RTO</div>
+        <div class="state-bar-bg"><div class="state-bar-fill" style="width:${s.rto}%;background:${cRto(s.rto)}"></div></div>
+        <div class="state-bar-val" style="color:${cRto(s.rto)}">${s.rto}%</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderAudienceGrid() {
+  const TIERS = [
+    { tier:'HIGH INTENT', pct:28, c:'#10b981', bg:'rgba(16,185,129,.08)', bdr:'rgba(16,185,129,.25)',
+      desc:'Clicked ad → viewed product → added to cart. Strong purchase signal.', pills:['Add to Cart','Checkout Started','Repeat Visitor'] },
+    { tier:'MEDIUM', pct:34, c:'#60a5fa', bg:'rgba(96,165,250,.08)', bdr:'rgba(96,165,250,.25)',
+      desc:'Engaged with content, longer session time. Needs 1 more touchpoint.', pills:['Blog Reader','Video 75%','Wishlist'] },
+    { tier:'CONTROL', pct:24, c:'#a78bfa', bg:'rgba(139,92,246,.08)', bdr:'rgba(139,92,246,.25)',
+      desc:'Cold traffic, first touch. Normal browse without strong signals.', pills:['New Visitor','Single Page','Bounce Risk'] },
+    { tier:'HIGH RISK', pct:14, c:'#f87171', bg:'rgba(239,68,68,.08)', bdr:'rgba(239,68,68,.25)',
+      desc:'Quick exits, COD drop-offs, or RTO-history pin codes. Suppress or restrict COD.', pills:['RTO History','COD Reject','Fraud Flag'] },
+  ];
+  document.getElementById('aud-grid').innerHTML = TIERS.map(t => `
+    <div class="aud-card" style="background:${t.bg};border-color:${t.bdr}">
+      <div class="aud-tier" style="color:${t.c}">${t.tier}</div>
+      <div class="aud-pct" style="color:${t.c}">${t.pct}%</div>
+      <div class="prog" style="margin:6px 0"><div class="prog-fill" style="width:${t.pct}%;background:${t.c}"></div></div>
+      <div class="aud-desc" style="color:var(--text-muted)">${t.desc}</div>
+      <div class="aud-examples">${t.pills.map(p=>`<span class="aud-pill">${p}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function renderMetaCampaigns() {
+  const CAMPS = [
+    { name:'DRIP STUDIOS — Streetwear Drop SS25', spend:48200, roas:4.8, ctr:3.2, orders:214, c:'#6366f1' },
+    { name:'BOX-FIT HOODIE — Retargeting',         spend:18600, roas:6.1, ctr:4.7, orders:89,  c:'#10b981' },
+    { name:'SICOS — Lookalike 3% India',            spend:32400, roas:3.4, ctr:2.1, orders:134, c:'#f59e0b' },
+    { name:'FLYJONE — Cold Audience 18-25',         spend:24800, roas:2.9, ctr:1.8, orders:91,  c:'#60a5fa' },
+    { name:'Cargo Shorts — UGC Video Ads',          spend:14200, roas:5.3, ctr:5.1, orders:73,  c:'#a78bfa' },
+  ];
+  document.getElementById('meta-grid').innerHTML = CAMPS.map(c => `
+    <div class="meta-card">
+      <div class="meta-card-accent" style="background:linear-gradient(90deg,${c.c},${c.c}88)"></div>
+      <div class="meta-name">${c.name}</div>
+      <div class="meta-kpi-row">
+        <div class="meta-kpi">
+          <div class="meta-kpi-lbl">ROAS</div>
+          <div class="meta-kpi-val" style="color:${c.roas>=4?'#10b981':c.roas>=3?'#f59e0b':'#f87171'}">${c.roas}x</div>
+        </div>
+        <div class="meta-kpi">
+          <div class="meta-kpi-lbl">Spend</div>
+          <div class="meta-kpi-val" style="color:var(--text)">${fmtCur(c.spend)}</div>
+        </div>
+        <div class="meta-kpi">
+          <div class="meta-kpi-lbl">CTR</div>
+          <div class="meta-kpi-val" style="color:${c.ctr>=4?'#10b981':c.ctr>=2?'#60a5fa':'#94a3b8'}">${c.ctr}%</div>
+        </div>
+        <div class="meta-kpi">
+          <div class="meta-kpi-lbl">Orders</div>
+          <div class="meta-kpi-val" style="color:${c.c}">${c.orders}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderSupportTickets() {
+  const TICKETS = [
+    { sev:'URGENT', title:'Rahul Sharma — angry escalation, 6 WA messages', meta:'Order #2041 · 7 days open · SICOS', c:'#ef4444', bg:'rgba(239,68,68,.07)', bdr:'rgba(239,68,68,.2)', action:'Resolve' },
+    { sev:'HIGH',   title:'Wrong product delivered — customer threatening social media post', meta:'Order #1995 · 4 days open · FLYJONE', c:'#f59e0b', bg:'rgba(245,158,11,.07)', bdr:'rgba(245,158,11,.2)', action:'Replace' },
+    { sev:'HIGH',   title:'Chargeback initiated — prepaid order never dispatched', meta:'Order #1874 · 9 days open · DRIP STUDIOS', c:'#f59e0b', bg:'rgba(245,158,11,.07)', bdr:'rgba(245,158,11,.2)', action:'Review' },
+    { sev:'MEDIUM', title:'Delivery partner says delivered — customer denies receiving', meta:'Order #2198 · 2 days open · Odd Affair', c:'#60a5fa', bg:'rgba(96,165,250,.07)', bdr:'rgba(96,165,250,.2)', action:'Investigate' },
+  ];
+  document.getElementById('ticket-list').innerHTML = TICKETS.map(t => `
+    <div class="ticket-row" style="background:${t.bg};border-color:${t.bdr}">
+      <span class="ticket-badge" style="background:${t.c}22;color:${t.c}">${t.sev}</span>
+      <div class="ticket-body">
+        <div class="ticket-title">${t.title}</div>
+        <div class="ticket-meta">${t.meta}</div>
+      </div>
+      <button class="ticket-action" style="color:${t.c};border-color:${t.bdr}">${t.action} →</button>
+    </div>`).join('');
+}
+
+function renderAllExtras(fs) {
+  renderBrainFindings();
+  renderDispatchQuality(fs);
+  renderPaymentSplit(fs);
+  renderStuckOrders();
+  renderTopProducts();
+  renderStateGrid();
+  renderAudienceGrid();
+  renderMetaCampaigns();
+  renderSupportTickets();
 }
 
 // ── Orders ────────────────────────────────────────────────────────────────────
