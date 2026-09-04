@@ -175,6 +175,53 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 .mini-rev-lbl{font-size:9px;font-weight:600;letter-spacing:.5px;margin-bottom:2px}
 .mini-rev-val{font-size:13px;font-weight:800}
 
+/* ── PIXEL TRACKER ── */
+.px-stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:12px}
+.px-sc-indigo::after{background:var(--indigo)}.px-sc-yellow::after{background:var(--yellow)}.px-sc-cyan::after{background:var(--cyan)}.px-sc-green::after{background:var(--green)}
+.px-sc-indigo .stat-val{color:var(--indigo)}.px-sc-yellow .stat-val{color:var(--yellow)}.px-sc-cyan .stat-val{color:var(--cyan)}.px-sc-green .stat-val{color:var(--green)}
+.funnel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.funnel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.funnel-label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.funnel-val{font-size:22px;font-weight:800}
+.section-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:20px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.section-title{font-size:13px;font-weight:700;color:var(--text)}
+.section-sub{font-size:10px;color:var(--text-muted);margin-top:2px}
+.ctrl-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.px-select{font-size:12px;font-family:var(--font);background:var(--bg-hover);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:6px 10px;cursor:pointer;outline:none}
+.tab-row{display:flex;gap:4px;flex-wrap:wrap}
+.tab-btn{font-size:11px;font-weight:600;padding:5px 11px;border-radius:7px;cursor:pointer;font-family:var(--font);border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all .12s}
+.tab-btn:hover{border-color:var(--border-hi);color:var(--text)}
+.tab-btn[data-active="indigo"]{border-color:var(--indigo);background:#6366f118;color:var(--indigo)}
+.tab-btn[data-active="yellow"]{border-color:var(--yellow);background:#f59e0b18;color:var(--yellow)}
+.tab-btn[data-active="cyan"]{border-color:var(--cyan);background:#22d3ee18;color:var(--cyan)}
+.tab-btn[data-active="green"]{border-color:var(--green);background:#10b98118;color:var(--green)}
+.products-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px}
+.product-card{flex-shrink:0;width:130px;background:var(--bg-hover);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.product-img-wrap{width:100%;height:100px;background:var(--bg-card2);position:relative;overflow:hidden}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover}
+.product-rank-badge{position:absolute;top:5px;left:5px;font-size:9px;font-weight:800;background:rgba(0,0,0,.6);color:#fff;padding:1px 6px;border-radius:99px}
+.product-info{padding:7px 9px}
+.product-name{font-size:11px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.product-count{font-size:13px;font-weight:800;margin-top:2px}
+.lb-row{display:flex;align-items:center;gap:10px;padding:9px 10px;background:var(--bg-hover);border-radius:8px;margin-bottom:6px}
+.lb-rank{font-size:11px;font-weight:800;color:var(--text-muted);width:22px;flex-shrink:0;text-align:center}
+.lb-img{width:36px;height:36px;border-radius:6px;object-fit:cover;flex-shrink:0;background:var(--bg-card2)}
+.lb-img-ph{width:36px;height:36px;border-radius:6px;background:var(--bg-card2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted)}
+.lb-info{flex:1;min-width:0}
+.lb-name{font-size:12px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-meta{font-size:10px;color:var(--text-muted);margin-top:2px}
+.lb-rate{font-size:16px;font-weight:800;color:var(--green);flex-shrink:0}
+.log-row{display:flex;align-items:center;gap:9px;padding:8px 4px;border-bottom:1px solid var(--border)}
+.log-row:last-child{border-bottom:none}
+.log-icon{font-size:13px;flex-shrink:0}
+.log-text{font-size:12px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.log-time{font-size:10px;color:var(--text-muted);flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:livepulse 2s infinite;flex-shrink:0}
+@keyframes livepulse{0%,100%{opacity:1}50%{opacity:.4}}
+.skel{background:linear-gradient(90deg,var(--bg-hover) 25%,var(--bg-card2) 50%,var(--bg-hover) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:6px;display:inline-block}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .big-grid{grid-template-columns:1fr}
@@ -228,10 +275,10 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <button class="ni locked"><span class="ico">↩</span> Returns <span class="ni-soon">Soon</span></button>
 
       <div class="ns">Analytics</div>
+      <button class="ni" data-view="pixel" onclick="switchView(this)"><span class="ico">🎯</span> Pixel Tracker</button>
       <button class="ni locked"><span class="ico">📈</span> P/L Report <span class="ni-soon">Soon</span></button>
       <button class="ni locked"><span class="ico">🛒</span> Abandon Carts <span class="ni-soon">Soon</span></button>
       <button class="ni locked"><span class="ico">🔗</span> Shopify Sync <span class="ni-soon">Soon</span></button>
-      <button class="ni locked"><span class="ico">🎯</span> Pixel Tracker <span class="ni-soon">Soon</span></button>
 
       <div class="ns">Settings</div>
       <button class="ni locked"><span class="ico">👤</span> Staff Accounts <span class="ni-soon">Soon</span></button>
@@ -332,6 +379,103 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
           </div>
         </div>
       </div>
+
+      <!-- PIXEL TRACKER VIEW -->
+      <div id="view-pixel" class="view">
+
+        <!-- Period picker row -->
+        <div style="display:flex;align-items:center;justify-content:flex-end;margin-bottom:16px;gap:10px">
+          <div style="display:flex;align-items:center;gap:6px">
+            <div class="live-dot"></div>
+            <span style="font-size:11px;font-weight:600;color:var(--green)">Live</span>
+          </div>
+          <div class="period-wrap" style="position:relative">
+            <button class="period-btn" id="px-period-btn" onclick="togglePxPeriod()">🗓 <span id="px-period-label">Last 7 Days</span> ▾</button>
+            <div class="period-dd" id="px-period-dd"></div>
+          </div>
+        </div>
+
+        <!-- KPI Stat Cards -->
+        <div class="px-stats-grid">
+          <div class="stat-card px-sc-indigo"><div class="stat-icon">👁</div><div class="stat-label">Views</div><div class="stat-val" id="px-views"><span class="skel" style="width:70px;height:26px;display:inline-block"></span></div><div class="stat-sub" id="px-views-sub"></div></div>
+          <div class="stat-card px-sc-yellow"><div class="stat-icon">🛒</div><div class="stat-label">Add to Cart</div><div class="stat-val" id="px-atc"><span class="skel" style="width:60px;height:26px;display:inline-block"></span></div><div class="stat-sub" id="px-atc-sub"></div></div>
+          <div class="stat-card px-sc-cyan"><div class="stat-icon">💳</div><div class="stat-label">Checkout</div><div class="stat-val" id="px-chk"><span class="skel" style="width:60px;height:26px;display:inline-block"></span></div><div class="stat-sub" id="px-chk-sub"></div></div>
+          <div class="stat-card px-sc-green"><div class="stat-icon">✅</div><div class="stat-label">Purchases</div><div class="stat-val" id="px-pur"><span class="skel" style="width:60px;height:26px;display:inline-block"></span></div><div class="stat-sub" id="px-pur-sub"></div></div>
+        </div>
+
+        <!-- Funnel Rates -->
+        <div class="funnel-grid" id="px-funnel-grid" style="display:none">
+          <div class="funnel-card"><div class="funnel-label">View → ATC</div><div class="funnel-val" id="px-fr-vta" style="color:var(--yellow)">—</div></div>
+          <div class="funnel-card"><div class="funnel-label">ATC → Checkout</div><div class="funnel-val" id="px-fr-atc" style="color:var(--cyan)">—</div></div>
+          <div class="funnel-card"><div class="funnel-label">Checkout → Purchase</div><div class="funnel-val" id="px-fr-ctp" style="color:var(--green)">—</div></div>
+          <div class="funnel-card"><div class="funnel-label">View → Purchase (Overall)</div><div class="funnel-val" id="px-fr-vtp" style="color:var(--purple)">—</div></div>
+        </div>
+
+        <!-- Top Products -->
+        <div class="section-panel">
+          <div class="section-head">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="section-title">Top Products</div>
+              <select class="px-select" id="px-top-limit" onchange="pxLoadTopProducts()">
+                <option value="10">Top 10</option>
+                <option value="20">Top 20</option>
+                <option value="30" selected>Top 30</option>
+                <option value="50">Top 50</option>
+              </select>
+            </div>
+            <div class="tab-row">
+              <button class="tab-btn" data-ev="ViewContent" data-color="indigo" data-active="indigo" onclick="pxSetMetric(this)">👁 Views</button>
+              <button class="tab-btn" data-ev="AddToCart" data-color="yellow" onclick="pxSetMetric(this)">🛒 Add to Cart</button>
+              <button class="tab-btn" data-ev="InitiateCheckout" data-color="cyan" onclick="pxSetMetric(this)">💳 Checkout</button>
+              <button class="tab-btn" data-ev="Purchase" data-color="green" onclick="pxSetMetric(this)">✅ Purchases</button>
+            </div>
+          </div>
+          <div class="products-row" id="px-products-row"><div class="loading-msg">Loading…</div></div>
+        </div>
+
+        <!-- Conversion Leaderboard -->
+        <div class="section-panel">
+          <div class="section-head">
+            <div>
+              <div class="section-title">Conversion Leaderboard</div>
+              <div class="section-sub" id="px-lb-sub">Ranked by selected rate</div>
+            </div>
+            <div class="ctrl-row">
+              <select class="px-select" id="px-lb-min" onchange="pxLoadLeaderboard()">
+                <option value="10">Min 10 views</option>
+                <option value="50" selected>Min 50 views</option>
+                <option value="100">Min 100 views</option>
+                <option value="500">Min 500 views</option>
+              </select>
+              <select class="px-select" id="px-lb-limit" onchange="pxLoadLeaderboard()">
+                <option value="20" selected>Top 20</option>
+                <option value="30">Top 30</option>
+                <option value="50">Top 50</option>
+              </select>
+              <select class="px-select" id="px-lb-sort" onchange="pxLoadLeaderboard()">
+                <option value="viewToAtcRate">View → ATC</option>
+                <option value="atcToCheckoutRate">ATC → Checkout</option>
+                <option value="checkoutToPurchaseRate">Checkout → Purchase</option>
+                <option value="viewToPurchaseRate">View → Purchase</option>
+              </select>
+            </div>
+          </div>
+          <div id="px-lb-body"><div class="loading-msg">Loading…</div></div>
+        </div>
+
+        <!-- Live Activity Log -->
+        <div class="section-panel">
+          <div class="section-head">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div class="live-dot"></div>
+              <div class="section-title">Live Activity</div>
+              <span style="font-size:10px;color:var(--text-muted)">updates every 6s</span>
+            </div>
+          </div>
+          <div id="px-log-body" style="max-height:320px;overflow-y:auto"><div class="loading-msg">Loading…</div></div>
+        </div>
+
+      </div><!-- /view-pixel -->
 
     </div><!-- /page -->
   </div><!-- /content -->
@@ -440,8 +584,10 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  document.getElementById('tb-title').textContent = view.toUpperCase();
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER' };
+  document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders') loadOrders(currentPage);
+  if(view==='pixel')  initPixel();
 }
 
 // ── Vendors ───────────────────────────────────────────────────────────────────
@@ -622,6 +768,185 @@ async function loadOrders(page = 1) {
       </tr>
     `).join('');
   } catch(e) { tbl.innerHTML = `<tr><td colspan="9" class="loading-msg">Error: ${e.message}</td></tr>`; }
+}
+
+// ── PIXEL TRACKER ─────────────────────────────────────────────────────────────
+let pxPeriod    = { label:'Last 7 Days', from:daysAgo(6), to:today() };
+let pxMetric    = 'ViewContent';
+let pxNowMs     = Date.now();
+let pxLogs      = [];
+let pxLogTimer  = null;
+let pxLoaded    = false;
+
+const PX_PRESETS = [
+  { label:'Today',        from:today(),       to:today() },
+  { label:'Yesterday',    from:daysAgo(1),    to:daysAgo(1) },
+  { label:'Last 7 Days',  from:daysAgo(6),    to:today() },
+  { label:'Last 30 Days', from:daysAgo(29),   to:today() },
+  { label:'Last 90 Days', from:daysAgo(89),   to:today() },
+  { label:'All Time',     from:'2020-01-01',  to:today() },
+];
+
+const PX_EVENT_META = {
+  ViewContent:      { label:'Views',       icon:'👁',  color:'#6366f1' },
+  AddToCart:        { label:'Add to Cart', icon:'🛒',  color:'#f59e0b' },
+  InitiateCheckout: { label:'Checkout',    icon:'💳',  color:'#22d3ee' },
+  Purchase:         { label:'Purchases',   icon:'✅',  color:'#10b981' },
+};
+
+setInterval(() => { pxNowMs = Date.now(); pxRenderLogs(); }, 15000);
+
+function buildPxPeriodDD() {
+  const dd = document.getElementById('px-period-dd');
+  dd.innerHTML = PX_PRESETS.map((p,i) =>
+    `<div class="period-opt${p.label===pxPeriod.label?' active':''}" onclick="pxSelectPeriod(${i})">${p.label}</div>`
+  ).join('');
+}
+function togglePxPeriod() {
+  const dd = document.getElementById('px-period-dd');
+  dd.classList.toggle('open');
+  if(dd.classList.contains('open')) {
+    const close = e => {
+      if(!dd.contains(e.target) && !document.getElementById('px-period-btn').contains(e.target)) {
+        dd.classList.remove('open'); document.removeEventListener('click', close);
+      }
+    };
+    setTimeout(() => document.addEventListener('click', close), 0);
+  }
+}
+function pxSelectPeriod(i) {
+  pxPeriod = PX_PRESETS[i];
+  document.getElementById('px-period-label').textContent = pxPeriod.label;
+  document.getElementById('px-period-dd').classList.remove('open');
+  buildPxPeriodDD();
+  pxLoadAll();
+}
+
+function pxQs(extra={}) {
+  const p = { from:pxPeriod.from, to:pxPeriod.to, ...extra };
+  return '?' + Object.entries(p).map(([k,v])=>`${k}=${encodeURIComponent(v)}`).join('&');
+}
+
+async function initPixel() {
+  if(pxLoaded) return;
+  pxLoaded = true;
+  buildPxPeriodDD();
+  pxLoadAll();
+  pxStartLiveLog();
+}
+
+function pxLoadAll() { pxLoadSummary(); pxLoadTopProducts(); pxLoadLeaderboard(); }
+
+async function pxLoadSummary() {
+  ['px-views','px-atc','px-chk','px-pur'].forEach(id => {
+    document.getElementById(id).innerHTML = '<span class="skel" style="width:70px;height:26px;display:inline-block"></span>';
+  });
+  document.getElementById('px-funnel-grid').style.display = 'none';
+  try {
+    const d = await apiFetch('/api/demo/pixel/summary' + pxQs());
+    const fmt = n => Number(n||0).toLocaleString('en-IN');
+    const pct = v => (v||0).toFixed(1)+'%';
+    document.getElementById('px-views').textContent = fmt(d.views);
+    document.getElementById('px-atc').textContent   = fmt(d.atc);
+    document.getElementById('px-chk').textContent   = fmt(d.checkout);
+    document.getElementById('px-pur').textContent   = fmt(d.purchases);
+    document.getElementById('px-views-sub').textContent = pxPeriod.label;
+    document.getElementById('px-atc-sub').textContent   = pxPeriod.label;
+    document.getElementById('px-chk-sub').textContent   = pxPeriod.label;
+    document.getElementById('px-pur-sub').textContent   = d.purchaseValue ? '₹'+Math.round(d.purchaseValue).toLocaleString('en-IN') : pxPeriod.label;
+    document.getElementById('px-fr-vta').textContent = pct(d.viewToAtcRate);
+    document.getElementById('px-fr-atc').textContent = pct(d.atcToCheckoutRate);
+    document.getElementById('px-fr-ctp').textContent = pct(d.checkoutToPurchaseRate);
+    document.getElementById('px-fr-vtp').textContent = pct(d.viewToPurchaseRate);
+    document.getElementById('px-funnel-grid').style.display = 'grid';
+  } catch(e) { console.warn('px summary:', e); }
+}
+
+async function pxLoadTopProducts() {
+  const limit = document.getElementById('px-top-limit').value;
+  document.getElementById('px-products-row').innerHTML = '<div class="loading-msg">Loading…</div>';
+  try {
+    const d = await apiFetch(`/api/demo/pixel/top-products?metric=${pxMetric}&limit=${limit}&from=${pxPeriod.from}&to=${pxPeriod.to}`);
+    const prods = d.products || [];
+    const m = PX_EVENT_META[pxMetric];
+    if(!prods.length) { document.getElementById('px-products-row').innerHTML='<div class="loading-msg">No product data yet.</div>'; return; }
+    document.getElementById('px-products-row').innerHTML = prods.map((p,i) => {
+      const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      return `<div class="product-card">
+        <div class="product-img-wrap">
+          ${p.productImage?`<img src="${esc(p.productImage)}" loading="lazy" onerror="this.style.display='none'">`:
+            `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--border-hi)">🛍</div>`}
+          <div class="product-rank-badge">#${i+1}</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name" title="${esc(p.productName)}">${esc(p.productName)}</div>
+          <div class="product-count" style="color:${m.color}">${Number(p.count||0).toLocaleString('en-IN')} ${m.label.toLowerCase()}</div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) { document.getElementById('px-products-row').innerHTML='<div class="loading-msg">Error loading</div>'; }
+}
+
+function pxSetMetric(btn) {
+  pxMetric = btn.dataset.ev;
+  const col = btn.dataset.color;
+  btn.closest('.tab-row').querySelectorAll('.tab-btn').forEach(b => { delete b.dataset.active; });
+  btn.dataset.active = col;
+  pxLoadTopProducts();
+}
+
+async function pxLoadLeaderboard() {
+  const minViews = document.getElementById('px-lb-min').value;
+  const limit    = document.getElementById('px-lb-limit').value;
+  const sortBy   = document.getElementById('px-lb-sort').value;
+  document.getElementById('px-lb-sub').textContent = `Ranked by selected rate · min ${minViews} views`;
+  document.getElementById('px-lb-body').innerHTML = '<div class="loading-msg">Loading…</div>';
+  try {
+    const d = await apiFetch(`/api/demo/pixel/leaderboard?sortBy=${sortBy}&limit=${limit}&minViews=${minViews}&from=${pxPeriod.from}&to=${pxPeriod.to}`);
+    const rows = d.products || [];
+    if(!rows.length) { document.getElementById('px-lb-body').innerHTML='<div class="loading-msg">No qualifying products yet.</div>'; return; }
+    const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const pct = v => (v||0).toFixed(1)+'%';
+    document.getElementById('px-lb-body').innerHTML = rows.map((p,i) => `
+      <div class="lb-row">
+        <div class="lb-rank">#${i+1}</div>
+        ${p.productImage?`<img class="lb-img" src="${esc(p.productImage)}" onerror="this.style.display='none'">`:
+          `<div class="lb-img-ph">🛍</div>`}
+        <div class="lb-info">
+          <div class="lb-name">${esc(p.productName)}</div>
+          <div class="lb-meta">${Number(p.views||0).toLocaleString()} views · ${Number(p.atc||0).toLocaleString()} ATC · ${Number(p.checkout||0).toLocaleString()} checkout · ${Number(p.purchases||0).toLocaleString()} purchased</div>
+        </div>
+        <div class="lb-rate">${pct(p[sortBy]||0)}</div>
+      </div>`).join('');
+  } catch(e) { document.getElementById('px-lb-body').innerHTML='<div class="loading-msg">Error loading</div>'; }
+}
+
+function pxStartLiveLog() { pxFetchLogs(); pxLogTimer = setInterval(pxFetchLogs, 6000); }
+async function pxFetchLogs() {
+  try {
+    const d = await apiFetch('/api/demo/pixel/recent?limit=50');
+    pxLogs = d.logs || [];
+    pxRenderLogs();
+  } catch(e) {}
+}
+function pxRenderLogs() {
+  if(!pxLogs.length) return;
+  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const elapsed = iso => {
+    const secs = Math.floor((pxNowMs - new Date(iso).getTime())/1000);
+    if(secs < 60) return secs+'s ago';
+    const mins = Math.floor(secs/60); if(mins<60) return mins+'m ago';
+    const hrs = Math.floor(mins/60); if(hrs<24) return hrs+'h ago';
+    return new Date(iso).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+  };
+  document.getElementById('px-log-body').innerHTML = pxLogs.map(l => {
+    const m = PX_EVENT_META[l.eventName] || { label:l.eventName, icon:'●', color:'var(--text-muted)' };
+    return `<div class="log-row">
+      <div class="log-icon">${m.icon}</div>
+      <div class="log-text"><strong>${esc(l.productName||'')}</strong> <span style="color:${m.color};font-weight:600">${m.label}</span>${l.brandName?' · '+esc(l.brandName):''}</div>
+      <div class="log-time">${elapsed(l.created_at)}</div>
+    </div>`;
+  }).join('');
 }
 </script>
 </body>

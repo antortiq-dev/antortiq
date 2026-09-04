@@ -1,7 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 const { connect } = require('../db');
-const DemoOrder = require('../models/DemoOrder');
+const DemoOrder  = require('../models/DemoOrder');
+const PixelEvent = require('../models/PixelEvent');
 
 const DEMO_KEY = process.env.DEMO_KEY || 'antortiq-demo';
 
@@ -120,6 +121,105 @@ router.get('/vendors', auth, async (req, res) => {
       { $sort: { orders: -1 } },
     ]);
     res.json({ vendors: rows.map(r => ({ name: r._id, orders: r.orders, revenue: r.revenue, commissionPct: r.pct })) });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// ── PIXEL TRACKER routes (demo-keyed, no admin key needed) ────────────────────
+
+function pixelDateMatch(from, to) {
+  const m = {};
+  if (from) m.created_at = { ...m.created_at, $gte: `${from}T00:00:00.000Z` };
+  if (to)   m.created_at = { ...m.created_at, $lte: `${to}T23:59:59.999Z` };
+  return m;
+}
+
+// GET /api/demo/pixel/summary
+router.get('/pixel/summary', auth, async (req, res) => {
+  try {
+    await connect();
+    const match = pixelDateMatch(req.query.from, req.query.to);
+    const rows = await PixelEvent.aggregate([
+      { $match: match },
+      { $group: { _id: '$eventName', count: { $sum: 1 }, value: { $sum: { $ifNull: ['$value', 0] } } } },
+    ]);
+    const by = Object.fromEntries(rows.map(r => [r._id, r.count]));
+    const vals = Object.fromEntries(rows.map(r => [r._id, r.value]));
+    const views = by.ViewContent || 0, atc = by.AddToCart || 0,
+          checkout = by.InitiateCheckout || 0, purchases = by.Purchase || 0;
+    const effectiveAtc = Math.max(atc, checkout);
+    res.json({
+      views, atc, checkout, purchases,
+      purchaseValue: vals.Purchase || 0,
+      viewToAtcRate:          views        ? (effectiveAtc / views)       * 100 : 0,
+      atcToCheckoutRate:      effectiveAtc ? (checkout / effectiveAtc)    * 100 : 0,
+      checkoutToPurchaseRate: checkout     ? (purchases / checkout)       * 100 : 0,
+      viewToPurchaseRate:     views        ? (purchases / views)          * 100 : 0,
+    });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// GET /api/demo/pixel/top-products
+router.get('/pixel/top-products', auth, async (req, res) => {
+  try {
+    await connect();
+    const VALID = ['ViewContent','AddToCart','InitiateCheckout','Purchase'];
+    const metric = VALID.includes(req.query.metric) ? req.query.metric : 'ViewContent';
+    const limit  = Math.min(parseInt(req.query.limit) || 30, 100);
+    const match  = { ...pixelDateMatch(req.query.from, req.query.to), eventName: metric, productName: { $ne: 'N/A' } };
+    const top = await PixelEvent.aggregate([
+      { $match: match },
+      { $group: { _id: '$productName', count: { $sum: 1 }, image: { $last: '$productImage' } } },
+      { $sort: { count: -1 } },
+      { $limit: limit },
+    ]);
+    res.json({ products: top.map(t => ({ productName: t._id, count: t.count, productImage: t.image || '' })) });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// GET /api/demo/pixel/leaderboard
+router.get('/pixel/leaderboard', auth, async (req, res) => {
+  try {
+    await connect();
+    const limit    = Math.min(parseInt(req.query.limit) || 20, 100);
+    const minViews = parseInt(req.query.minViews) || 5;
+    const match    = { ...pixelDateMatch(req.query.from, req.query.to), productName: { $ne: 'N/A' } };
+    const rows = await PixelEvent.aggregate([
+      { $match: match },
+      { $group: {
+          _id:       '$productName',
+          image:     { $last: '$productImage' },
+          views:     { $sum: { $cond: [{ $eq: ['$eventName','ViewContent'] }, 1, 0] } },
+          atc:       { $sum: { $cond: [{ $eq: ['$eventName','AddToCart'] }, 1, 0] } },
+          checkout:  { $sum: { $cond: [{ $eq: ['$eventName','InitiateCheckout'] }, 1, 0] } },
+          purchases: { $sum: { $cond: [{ $eq: ['$eventName','Purchase'] }, 1, 0] } },
+      }},
+    ]);
+    const SORT_KEYS = ['viewToAtcRate','viewToCheckoutRate','atcToCheckoutRate','checkoutToPurchaseRate','viewToPurchaseRate'];
+    const sortBy = SORT_KEYS.includes(req.query.sortBy) ? req.query.sortBy : 'views';
+    const withRates = rows.filter(r => r.views >= minViews).map(r => {
+      const ea = Math.max(r.atc, r.checkout);
+      return {
+        productName: r._id, productImage: r.image || '',
+        views: r.views, atc: r.atc, checkout: r.checkout, purchases: r.purchases,
+        viewToAtcRate:          r.views   ? (ea / r.views)        * 100 : 0,
+        viewToCheckoutRate:     r.views   ? (r.checkout / r.views)* 100 : 0,
+        atcToCheckoutRate:      ea        ? (r.checkout / ea)     * 100 : 0,
+        checkoutToPurchaseRate: r.checkout? (r.purchases/r.checkout)*100: 0,
+        viewToPurchaseRate:     r.views   ? (r.purchases/r.views) * 100 : 0,
+      };
+    });
+    withRates.sort((a, b) => (b[sortBy] || b.views) - (a[sortBy] || a.views));
+    res.json({ products: withRates.slice(0, limit) });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// GET /api/demo/pixel/recent
+router.get('/pixel/recent', auth, async (req, res) => {
+  try {
+    await connect();
+    const limit = Math.min(parseInt(req.query.limit) || 50, 100);
+    const logs  = await PixelEvent.find({}, { _id: 0 }).sort({ created_at: -1 }).limit(limit).lean();
+    res.json({ logs });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
