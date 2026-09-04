@@ -295,6 +295,49 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 /* ── VENDOR CHIP ── */
 .vendor-chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.5px;background:var(--red-dim);color:var(--red)}
 
+/* ── WHATSAPP BOT PAGE ── */
+.wa-section-label{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.wa-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+/* Phone mockup */
+.wa-phones-row{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none;align-items:flex-start}
+.wa-phones-row::-webkit-scrollbar{display:none}
+.wa-phone{flex-shrink:0;width:220px}
+.wa-phone-label{font-size:10px;font-weight:700;color:var(--text-muted);text-align:center;margin-bottom:8px;letter-spacing:.3px}
+.wa-phone-frame{background:#0a0a0a;border-radius:32px;padding:8px;border:2px solid #2a2a2a;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.wa-screen{background:#0b141a;border-radius:26px;overflow:hidden;min-height:380px;display:flex;flex-direction:column}
+.wa-topbar{background:#1f2c34;padding:8px 12px;display:flex;align-items:center;gap:8px}
+.wa-avatar{width:30px;height:30px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.wa-contact{flex:1;min-width:0}
+.wa-contact-name{font-size:11px;font-weight:700;color:#e9edef}
+.wa-contact-status{font-size:9px;color:#8696a0}
+.wa-msgs{flex:1;padding:8px;display:flex;flex-direction:column;gap:5px;background:#0b141a;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23182229' fill-opacity='0.5'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.wa-bubble-out{align-self:flex-end;background:#005c4b;color:#e9edef;border-radius:12px 2px 12px 12px;padding:6px 9px 4px;font-size:10px;max-width:82%;line-height:1.4;position:relative}
+.wa-bubble-in{align-self:flex-start;background:#1f2c34;color:#e9edef;border-radius:2px 12px 12px 12px;padding:6px 9px 4px;font-size:10px;max-width:82%;line-height:1.4}
+.wa-bubble-sys{align-self:center;background:rgba(17,27,33,.85);color:#8696a0;border-radius:6px;padding:3px 10px;font-size:9px;text-align:center}
+.wa-tick{font-size:8px;color:#53bdeb;margin-left:4px}
+.wa-time{font-size:8px;color:#8696a0;margin-top:2px;text-align:right}
+.wa-cta-btn{display:block;background:#1f2c34;border:1px solid #2a3942;border-radius:8px;padding:7px;text-align:center;color:#53bdeb;font-size:10px;font-weight:700;margin-top:4px;cursor:pointer}
+.wa-img-bubble{width:100%;border-radius:8px;margin-bottom:4px;object-fit:cover;max-height:110px}
+.wa-day-sep{font-size:8px;color:#8696a0;background:rgba(17,27,33,.7);padding:2px 10px;border-radius:6px;align-self:center}
+/* Inbox */
+.wa-inbox-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.wa-inbox-row:hover{background:var(--bg-hover)}
+.wa-inbox-avatar{width:42px;height:42px;border-radius:50%;background:#25d36620;border:2px solid #25d36640;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;position:relative}
+.wa-inbox-online{position:absolute;bottom:0;right:0;width:11px;height:11px;border-radius:50%;background:#25d366;border:2px solid var(--bg-card)}
+.wa-inbox-body{flex:1;min-width:0}
+.wa-inbox-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
+.wa-inbox-name{font-size:13px;font-weight:700;color:var(--text)}
+.wa-inbox-time{font-size:10px;color:var(--text-muted)}
+.wa-inbox-preview{font-size:11px;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wa-inbox-tags{display:flex;gap:5px;margin-top:4px;flex-wrap:wrap}
+.wa-stage-tag{font-size:8px;font-weight:700;padding:2px 7px;border-radius:99px;letter-spacing:.3px}
+.wa-unread-dot{width:18px;height:18px;border-radius:50%;background:#25d366;color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-open-btn{font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;border:1px solid #25d36640;background:#25d36612;color:#25d366;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:var(--font);text-decoration:none;display:inline-block}
+/* Insight cards */
+.wa-insight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.wa-insight-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.wa-insight-title{font-size:12px;font-weight:800;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+
 /* ── RETURNS PAGE ── */
 .rx-kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:16px}
 .rx-kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px 15px;position:relative;overflow:hidden}
@@ -508,7 +551,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <div class="ns">Operations</div>
       <button class="ni active" data-view="dashboard" onclick="switchView(this)"><span class="ico">◈</span> Dashboard</button>
       <button class="ni" data-view="orders" onclick="switchView(this)"><span class="ico">📦</span> Orders</button>
-      <button class="ni locked"><span class="ico">💬</span> WhatsApp Bot <span class="ni-soon">Soon</span></button>
+      <button class="ni" data-view="wabot" onclick="switchView(this)"><span class="ico">💬</span> WhatsApp Bot</button>
       <button class="ni" data-view="returns" onclick="switchView(this)"><span class="ico">↩</span> Returns & Exchange</button>
 
       <div class="ns">Analytics</div>
@@ -856,6 +899,41 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         <div id="rx-list"></div>
       </div><!-- /view-returns -->
 
+      <!-- WHATSAPP BOT VIEW -->
+      <div id="view-wabot" class="view">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+          <div>
+            <div style="font-size:18px;font-weight:900;color:var(--text)">💬 WhatsApp Bot</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Powered by Antortiq AI · Business API · Handles 100% of post-purchase communication automatically</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:6px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.25);border-radius:8px;padding:6px 12px">
+              <div style="width:8px;height:8px;border-radius:50%;background:#25d366;box-shadow:0 0 6px #25d366;animation:livepulse 2s infinite"></div>
+              <span style="font-size:11px;font-weight:700;color:#25d366">BOT ACTIVE</span>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--text-muted)">Today: <strong style="color:var(--text)">143</strong> msgs handled</div>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div id="wa-kpi-row" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:20px"></div>
+
+        <!-- Chat Demos -->
+        <div class="wa-section-label">What our bot can do — live chat previews</div>
+        <div class="wa-phones-row" id="wa-phones-row"></div>
+
+        <!-- Inbox -->
+        <div class="wa-section-label" style="margin-top:24px">Customer chat inbox — handled by bot</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" id="wa-inbox-filters"></div>
+        <div class="dash-section" style="padding:0;margin-bottom:20px;overflow:hidden">
+          <div id="wa-inbox-list"></div>
+        </div>
+
+        <!-- Insights -->
+        <div class="wa-section-label">Bot Intelligence & Insights</div>
+        <div class="wa-insight-grid" id="wa-insights-grid"></div>
+      </div><!-- /view-wabot -->
+
     </div><!-- /page -->
   </div><!-- /content -->
 </div><!-- /app-shell -->
@@ -966,11 +1044,12 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders')  loadOrders(currentPage);
   if(view==='pixel')   initPixel();
   if(view==='returns') initReturns();
+  if(view==='wabot')   initWaBot();
 }
 
 // ── Vendors ───────────────────────────────────────────────────────────────────
@@ -2044,7 +2123,258 @@ function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'
 // Init ann bar on page load (called after login)
 function initAnnBar() { buildAnnBar(); }
 
-// ── RETURNS & EXCHANGE PAGE ───────────────────────────────────────────────────
+// ── WHATSAPP BOT PAGE ────────────────────────────────────────────────────────
+const PRODUCT_IMG = 'https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg';
+
+const WA_CHATS = [
+  { label:'Order Confirmation\n(COD)', flow:[
+    {dir:'out', text:'Hi Rahul! 👋 Your order #2041 has been placed successfully.\n\n📦 *Box-Fit Hoodie — Black/XL*\n💰 ₹1,499 (Cash on Delivery)\n\nPlease confirm your order:\n1️⃣ Yes, confirm\n2️⃣ Cancel order', time:'10:14 AM'},
+    {dir:'in',  text:'1', time:'10:16 AM'},
+    {dir:'out', text:'✅ *Order Confirmed!*\nThank you Rahul. We\'ll notify you once dispatched.\n\nExpected delivery: 3-5 business days 🚀', time:'10:16 AM'},
+  ]},
+  { label:'Dispatch & Transit\nUpdate', flow:[
+    {dir:'sys', text:'Sep 03, 2026'},
+    {dir:'out', text:'📦 *Order Dispatched!*\nOrder #2041 — Box-Fit Hoodie\n\n🚚 Courier: Delhivery\n🔢 AWB: DL8823771900\n📍 Track: bit.ly/trk2041\n\nExpected delivery: Sep 05', time:'9:02 AM'},
+    {dir:'out', text:'🚚 *In Transit Update*\nYour order is moving!\n\nCurrent location: Bengaluru Hub\nNext stop: Local delivery center\n\nEstimated delivery: *Tomorrow*', time:'2:14 PM'},
+  ]},
+  { label:'Delivery Attempt\nFailed — NDR', flow:[
+    {dir:'sys', text:'Automated NDR Flow'},
+    {dir:'out', text:'⚠️ *Delivery Attempt Failed*\nOrder #2041 — We tried to deliver but couldn\'t reach you.\n\n📞 Our delivery agent called at 11:30 AM\n\nWhat would you like to do?\n1️⃣ Reschedule for tomorrow\n2️⃣ Different address\n3️⃣ Call me now', time:'12:04 PM'},
+    {dir:'in',  text:'1', time:'12:31 PM'},
+    {dir:'out', text:'✅ *Rescheduled!*\nWe\'ll attempt delivery again *tomorrow between 10AM–1PM*.\n\nWe\'ll notify you 30 mins before.', time:'12:31 PM'},
+  ]},
+  { label:'Abandoned Cart\nRecovery', flow:[
+    {dir:'sys', text:'Abandoned 2h ago'},
+    {dir:'out', text:'👋 Hey Priya! You left something behind...\n\n👕 *Mesh Red Tee — M*', time:'3:45 PM', img: PRODUCT_IMG},
+    {dir:'out', text:'Only *4 left in stock* 🔥\n\nComplete your order now and get *free shipping*!\n\n👇 Tap to checkout:', time:'3:45 PM'},
+    {dir:'cta', text:'🛒 Complete Purchase →'},
+    {dir:'in',  text:'ok placing now', time:'4:02 PM'},
+    {dir:'out', text:'🎉 *Order placed!* We\'ll confirm shortly.', time:'4:03 PM'},
+  ]},
+  { label:'Return & Exchange\nRequest', flow:[
+    {dir:'in',  text:'I want to return my order, size is too small', time:'11:23 AM'},
+    {dir:'out', text:'Hi Sneha! 👋 I can help with that.\n\nWhich order would you like to return?\n(Share order number or I can look it up)', time:'11:23 AM'},
+    {dir:'in',  text:'#1987', time:'11:24 AM'},
+    {dir:'out', text:'Found it! *Drop-Shoulder Bomber — Beige/L*\n\nWhat would you prefer?\n1️⃣ Exchange for different size\n2️⃣ Full refund\n3️⃣ Store credit (extra ₹100 bonus)', time:'11:24 AM'},
+    {dir:'in',  text:'1 — XL please', time:'11:26 AM'},
+    {dir:'out', text:'✅ *Exchange initiated!*\nXL is in stock. Return pickup scheduled for tomorrow.\n\nWe\'ll send courier details shortly 📦', time:'11:26 AM'},
+  ]},
+  { label:'Customer Query\n& Support', flow:[
+    {dir:'in',  text:'where is my order? its been 5 days', time:'9:45 AM'},
+    {dir:'out', text:'Hi Karan! Let me check that for you right away 🔍\n\n📦 Order #2010 — Cargo Shorts\n🚚 Status: *In Transit*\n📍 Last scan: Delhi Hub, yesterday 6PM\n\nExpected delivery: *today or tomorrow*\n\nTrack live: bit.ly/trk2010', time:'9:45 AM'},
+    {dir:'in',  text:'ok thanks. also do you have size chart?', time:'9:46 AM'},
+    {dir:'out', text:'Here\'s our size guide! 📏\n\n*S* → Chest 36–38\"\n*M* → Chest 38–40\"\n*L* → Chest 40–42\"\n*XL* → Chest 42–44\"\n\nNeed help picking your size? 😊', time:'9:46 AM'},
+  ]},
+  { label:'Escalation\nto Admin', flow:[
+    {dir:'in',  text:'THIS IS RIDICULOUS my order is wrong product and i want refund NOW', time:'2:11 PM'},
+    {dir:'out', text:'I\'m really sorry about this, Rohit! 😔 This should never happen.\n\nI\'m flagging this as *URGENT* and escalating to our team right now.', time:'2:11 PM'},
+    {dir:'sys', text:'🚨 Escalated to admin — Harshit notified'},
+    {dir:'out', text:'Our team lead has been notified and will personally reach out within *15 minutes*.\n\nYour refund of ₹2,499 will be initiated immediately regardless.\n\nTicket ID: #ESC-2041', time:'2:12 PM'},
+    {dir:'in',  text:'ok fine', time:'2:28 PM'},
+  ]},
+  { label:'OFD & Delivery\nConfirmation', flow:[
+    {dir:'sys', text:'Out for Delivery'},
+    {dir:'out', text:'🚴 *Out for Delivery!*\nOrder #2041 is *on its way* right now!\n\nAgent: Ramesh (📞 tap to call)\nETA: 11:30 AM — 1:00 PM\n\nMake sure someone is available 🏠', time:'9:58 AM'},
+    {dir:'out', text:'📦 *Delivered Successfully!*\n\nYour Box-Fit Hoodie has been delivered.\n\nHow would you rate your experience?\n⭐ ⭐⭐ ⭐⭐⭐ ⭐⭐⭐⭐ ⭐⭐⭐⭐⭐', time:'12:32 PM'},
+    {dir:'in',  text:'⭐⭐⭐⭐⭐', time:'12:40 PM'},
+    {dir:'out', text:'🎉 Thank you for the 5-star rating!\nWe\'re thrilled you love it. See you again! 💚', time:'12:40 PM'},
+  ]},
+];
+
+const WA_INBOX = [
+  { name:'Rahul Sharma', phone:'+91 98765 43210', preview:'1 (Order confirmed ✓)', time:'2m ago', avatar:'👨', tags:[{l:'ORDER CONFIRMED',c:'#10b981',bg:'rgba(16,185,129,.1)'},{l:'BOT HANDLED',c:'#a78bfa',bg:'rgba(139,92,246,.1)'}], unread:0, online:true },
+  { name:'Priya Verma',  phone:'+91 91234 56789', preview:'ok placing now', time:'18m ago', avatar:'👩', tags:[{l:'CART RECOVERED',c:'#f59e0b',bg:'rgba(245,158,11,.1)'},{l:'₹1,999 SAVED',c:'#10b981',bg:'rgba(16,185,129,.1)'}], unread:0, online:false },
+  { name:'Rohit Patel',  phone:'+91 96543 21098', preview:'ok fine', time:'1h ago', avatar:'👨', tags:[{l:'ESCALATED',c:'#f87171',bg:'rgba(239,68,68,.1)'},{l:'REFUND INITIATED',c:'#60a5fa',bg:'rgba(96,165,250,.1)'}], unread:0, online:false },
+  { name:'Sneha Gupta',  phone:'+91 87654 32109', preview:'Exchange initiated — XL pickup scheduled', time:'2h ago', avatar:'👩', tags:[{l:'EXCHANGE',c:'#6366f1',bg:'rgba(99,102,241,.1)'},{l:'BOT HANDLED',c:'#a78bfa',bg:'rgba(139,92,246,.1)'}], unread:0, online:true },
+  { name:'Karan Malhotra',phone:'+91 90012 34567', preview:'ok thanks. also do you have size chart?', time:'3h ago', avatar:'👨', tags:[{l:'QUERY RESOLVED',c:'#10b981',bg:'rgba(16,185,129,.1)'},{l:'BOT HANDLED',c:'#a78bfa',bg:'rgba(139,92,246,.1)'}], unread:0, online:false },
+  { name:'Divya Shah',   phone:'+91 81098 76543', preview:'where did my refund go??', time:'4h ago', avatar:'👩', tags:[{l:'REFUND QUERY',c:'#f59e0b',bg:'rgba(245,158,11,.1)'},{l:'PENDING REPLY',c:'#f87171',bg:'rgba(239,68,68,.1)'}], unread:2, online:true },
+  { name:'Amit Singh',   phone:'+91 99887 76655', preview:'Delivery rescheduled for tomorrow ✓', time:'5h ago', avatar:'👨', tags:[{l:'NDR RESOLVED',c:'#60a5fa',bg:'rgba(96,165,250,.1)'},{l:'RESCHEDULED',c:'#a78bfa',bg:'rgba(139,92,246,.1)'}], unread:0, online:false },
+  { name:'Pooja Joshi',  phone:'+91 83210 98765', preview:'Rating: ⭐⭐⭐⭐⭐', time:'6h ago', avatar:'👩', tags:[{l:'DELIVERED',c:'#10b981',bg:'rgba(16,185,129,.1)'},{l:'5★ REVIEW',c:'#f59e0b',bg:'rgba(245,158,11,.1)'}], unread:0, online:false },
+  { name:'Vikram Mehta', phone:'+91 94321 09876', preview:'Press 1 for reschedule, 2 for address change', time:'8h ago', avatar:'👨', tags:[{l:'NDR ACTIVE',c:'#f59e0b',bg:'rgba(245,158,11,.1)'},{l:'AWAITING REPLY',c:'#94a3b8',bg:'rgba(148,163,184,.1)'}], unread:1, online:false },
+  { name:'Anjali Nair',  phone:'+91 85432 10987', preview:'Thank you! Love the hoodie 💚', time:'Yesterday', avatar:'👩', tags:[{l:'DELIVERED',c:'#10b981',bg:'rgba(16,185,129,.1)'},{l:'BOT HANDLED',c:'#a78bfa',bg:'rgba(139,92,246,.1)'}], unread:0, online:false },
+];
+
+const WA_INSIGHTS = [
+  { icon:'🔁', title:'Top Repeated Queries', content:[
+    { q:'Where is my order?', pct:34, c:'#6366f1' },
+    { q:'Size too small/large', pct:22, c:'#f59e0b' },
+    { q:'When will it be delivered?', pct:18, c:'#60a5fa' },
+    { q:'How to return/exchange?', pct:14, c:'#a78bfa' },
+    { q:'Refund not received', pct:12, c:'#f87171' },
+  ], type:'bars' },
+  { icon:'🤖', title:'Bot Performance', content:[
+    { label:'Messages handled', val:'94%', c:'#10b981', sub:'without human' },
+    { label:'Avg response time', val:'4 sec', c:'#60a5fa', sub:'vs 4hr industry' },
+    { label:'Escalation rate', val:'6%', c:'#f87171', sub:'complex issues only' },
+    { label:'Cart recovery rate', val:'31%', c:'#f59e0b', sub:'industry avg 8%' },
+  ], type:'kpis' },
+  { icon:'💡', title:'AI Improvement Suggestions', content:[
+    { icon:'⚡', tip:'Add "Track order" quick reply button — 34% of users ask this. Save 80+ messages/day.', urgency:'high' },
+    { icon:'🔄', tip:'Exchange flow taking avg 3 messages — can cut to 1 with smart size picker button.', urgency:'medium' },
+    { icon:'📊', tip:'Add COD confirmation with order photo — reduces fake orders by ~40%.', urgency:'high' },
+    { icon:'🌙', tip:'23% of messages arrive 10PM–8AM — enable auto-reply for off-hours with ETA.', urgency:'medium' },
+  ], type:'tips' },
+  { icon:'📈', title:'This Week\'s Trends', content:[
+    { label:'NDR rate', val:'12%', trend:'down', prev:'18%', c:'#10b981' },
+    { label:'Cart recoveries', val:'31', trend:'up', prev:'24', c:'#10b981' },
+    { label:'Avg CSAT score', val:'4.6★', trend:'up', prev:'4.2★', c:'#10b981' },
+    { label:'Escalations', val:'8', trend:'down', prev:'14', c:'#10b981' },
+    { label:'Refund requests', val:'5', trend:'up', prev:'3', c:'#f87171' },
+  ], type:'trends' },
+];
+
+let waBotInitialized = false;
+let waInboxFilter = 'all';
+
+function initWaBot() {
+  if (waBotInitialized) return;
+  waBotInitialized = true;
+  renderWaKpis();
+  renderWaPhones();
+  renderWaInboxFilters();
+  renderWaInbox();
+  renderWaInsights();
+}
+
+function renderWaKpis() {
+  const kpis = [
+    { icon:'💬', label:'Total Chats', val:'1,247', sub:'last 30 days', c:'#25d366' },
+    { icon:'🤖', label:'Bot Handled', val:'94%', sub:'1,172 chats', c:'#6366f1' },
+    { icon:'⚡', label:'Avg Response', val:'4 sec', sub:'bot reply time', c:'#60a5fa' },
+    { icon:'🛒', label:'Carts Recovered', val:'₹84K', sub:'this month', c:'#f59e0b' },
+    { icon:'↩', label:'Returns via Bot', val:'100%', sub:'zero manual', c:'#a78bfa' },
+    { icon:'⭐', label:'CSAT Score', val:'4.6/5', sub:'587 ratings', c:'#10b981' },
+  ];
+  document.getElementById('wa-kpi-row').innerHTML = kpis.map(k=>`
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;border-top:3px solid ${k.c}30">
+      <div style="font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">${k.icon} ${k.label}</div>
+      <div style="font-size:22px;font-weight:900;color:${k.c};line-height:1">${k.val}</div>
+      <div style="font-size:9px;color:var(--text-muted);margin-top:3px">${k.sub}</div>
+    </div>`).join('');
+}
+
+function renderWaPhones() {
+  const row = document.getElementById('wa-phones-row');
+  row.innerHTML = WA_CHATS.map(chat => {
+    const msgs = chat.flow.map(m => {
+      if (m.dir==='sys')  return `<div class="wa-bubble-sys">${m.text}</div>`;
+      if (m.dir==='cta')  return `<div class="wa-cta-btn">${m.text}</div>`;
+      const bubbleClass = m.dir==='out' ? 'wa-bubble-out' : 'wa-bubble-in';
+      const imgHtml = m.img ? `<img src="${m.img}" class="wa-img-bubble" onerror="this.style.display='none'">` : '';
+      const txt = m.text.replace(/\*(.*?)\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+      return `<div class="${bubbleClass}">${imgHtml}${txt}<div class="wa-time">${m.time||''}${m.dir==='out'?'<span class="wa-tick">✓✓</span>':''}</div></div>`;
+    }).join('');
+    const labelLines = chat.label.split('\n');
+    return `<div class="wa-phone">
+      <div class="wa-phone-label">${labelLines[0]}<br><span style="opacity:.6">${labelLines[1]||''}</span></div>
+      <div class="wa-phone-frame">
+        <div class="wa-screen">
+          <div class="wa-topbar">
+            <div class="wa-avatar">🤖</div>
+            <div class="wa-contact"><div class="wa-contact-name">Antortiq Bot</div><div class="wa-contact-status">● online</div></div>
+            <span style="font-size:16px;color:#8696a0">⋮</span>
+          </div>
+          <div class="wa-msgs">${msgs}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderWaInboxFilters() {
+  const filters = [
+    {id:'all',label:'All Chats'},
+    {id:'pending',label:'⏳ Pending Reply'},
+    {id:'bot',label:'🤖 Bot Handled'},
+    {id:'escalated',label:'🚨 Escalated'},
+    {id:'recovered',label:'🛒 Cart Recovered'},
+  ];
+  document.getElementById('wa-inbox-filters').innerHTML = filters.map(f=>
+    `<button class="rx-tab${f.id===waInboxFilter?' active':''}" onclick="waSetFilter('${f.id}',this)">${f.label}</button>`
+  ).join('');
+}
+
+function waSetFilter(id, btn) {
+  waInboxFilter = id;
+  document.querySelectorAll('#wa-inbox-filters .rx-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderWaInbox();
+}
+
+function renderWaInbox() {
+  let rows = WA_INBOX;
+  if (waInboxFilter==='pending')   rows = rows.filter(r=>r.tags.some(t=>t.l.includes('PENDING')||t.l.includes('AWAITING')));
+  if (waInboxFilter==='bot')       rows = rows.filter(r=>r.tags.some(t=>t.l==='BOT HANDLED'));
+  if (waInboxFilter==='escalated') rows = rows.filter(r=>r.tags.some(t=>t.l==='ESCALATED'));
+  if (waInboxFilter==='recovered') rows = rows.filter(r=>r.tags.some(t=>t.l.includes('RECOVERED')));
+  const el = document.getElementById('wa-inbox-list');
+  if (!rows.length) { el.innerHTML='<div class="loading-msg">No chats in this filter</div>'; return; }
+  el.innerHTML = rows.map(r=>`
+    <div class="wa-inbox-row">
+      <div class="wa-inbox-avatar">${r.avatar}${r.online?'<div class="wa-inbox-online"></div>':''}</div>
+      <div class="wa-inbox-body">
+        <div class="wa-inbox-top">
+          <div class="wa-inbox-name">${r.name}</div>
+          <div class="wa-inbox-time">${r.time}</div>
+        </div>
+        <div class="wa-inbox-preview">🤖 ${r.preview}</div>
+        <div class="wa-inbox-tags">${r.tags.map(t=>`<span class="wa-stage-tag" style="background:${t.bg};color:${t.c}">${t.l}</span>`).join('')}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;margin-left:10px">
+        ${r.unread>0?`<div class="wa-unread-dot">${r.unread}</div>`:''}
+        <a href="https://wa.me/${r.phone.replace(/\D/g,'')}" target="_blank" class="wa-open-btn">Open ↗</a>
+      </div>
+    </div>`).join('');
+}
+
+function renderWaInsights() {
+  const el = document.getElementById('wa-insights-grid');
+  el.innerHTML = WA_INSIGHTS.map(ins => {
+    let body = '';
+    if (ins.type==='bars') {
+      body = ins.content.map(q=>`
+        <div style="margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px">
+            <span style="color:var(--text)">${q.q}</span>
+            <span style="font-weight:700;color:${q.c}">${q.pct}%</span>
+          </div>
+          <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${q.pct}%;background:${q.c};border-radius:3px"></div>
+          </div>
+        </div>`).join('');
+    } else if (ins.type==='kpis') {
+      body = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">`+
+        ins.content.map(k=>`<div style="background:var(--bg-hover);border-radius:8px;padding:9px 10px">
+          <div style="font-size:18px;font-weight:900;color:${k.c}">${k.val}</div>
+          <div style="font-size:9px;color:var(--text-muted);margin-top:2px">${k.label}</div>
+          <div style="font-size:8px;color:${k.c};margin-top:1px">${k.sub}</div>
+        </div>`).join('')+`</div>`;
+    } else if (ins.type==='tips') {
+      body = ins.content.map(t=>`
+        <div style="display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--border)">
+          <span style="font-size:14px;flex-shrink:0">${t.icon}</span>
+          <div>
+            <div style="font-size:11px;color:var(--text);line-height:1.4">${t.tip}</div>
+            <div style="font-size:8px;font-weight:700;margin-top:4px;color:${t.urgency==='high'?'#f87171':'#f59e0b'};background:${t.urgency==='high'?'rgba(239,68,68,.1)':'rgba(245,158,11,.1)'};border-radius:4px;display:inline-block;padding:1px 6px">${t.urgency.toUpperCase()} PRIORITY</div>
+          </div>
+        </div>`).join('');
+    } else if (ins.type==='trends') {
+      body = ins.content.map(t=>`
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)">
+          <span style="font-size:11px;color:var(--text-muted)">${t.label}</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:9px;color:var(--text-muted)">${t.prev}</span>
+            <span style="font-size:9px;font-weight:800;color:${t.trend==='up'?t.c:'#f87171'}">${t.trend==='up'?'▲':'▼'}</span>
+            <span style="font-size:13px;font-weight:800;color:${t.c}">${t.val}</span>
+          </div>
+        </div>`).join('');
+    }
+    return `<div class="wa-insight-card">
+      <div class="wa-insight-title">${ins.icon} ${ins.title}</div>
+      ${body}
+    </div>`;
+  }).join('');
+}
 const RX_DATA = [
   {
     id:'RX-2041', order:'#2041', type:'exchange', customer:'Rahul Sharma', phone:'9876543210',
