@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Antortiq — Demo Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Sora:wght@400;600;700;800;900&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --font:'IBM Plex Mono',monospace;
+  --font:'Poppins',sans-serif;
   --bg:#060a14;--bg-card:#0a1020;--bg-card2:#0d1428;--bg-hover:#111830;
   --border:#1a2540;--border-hi:#243560;
   --red:#e8344a;--red-dim:#2d0a10;--red-glow:#e8344a28;
@@ -34,12 +34,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .login-box{width:380px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:36px;box-shadow:0 0 60px rgba(232,52,74,.08)}
 .login-logo{font-family:'Sora',sans-serif;font-weight:900;font-size:20px;color:var(--text);text-align:center;margin-bottom:4px}
 .login-logo span{color:var(--red)}
-.login-sub{font-size:10px;color:var(--text-muted);text-align:center;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px}
-.fl{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.login-sub{font-size:10px;color:var(--text-muted);text-align:center;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:28px}
+.fl{display:block;font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
 .fi{width:100%;background:var(--bg-card2);border:1px solid var(--border);border-radius:7px;padding:10px 14px;color:var(--text);font-family:var(--font);font-size:13px;outline:none;transition:border-color .15s;margin-bottom:16px}
 .fi:focus{border-color:var(--red)}
 .fi::placeholder{color:var(--text-muted)}
-.lb{width:100%;padding:11px;border-radius:7px;border:none;cursor:pointer;background:var(--red);color:#fff;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;transition:opacity .15s;margin-top:4px}
+.lb{width:100%;padding:11px;border-radius:7px;border:none;cursor:pointer;background:var(--red);color:#fff;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.3px;transition:opacity .15s;margin-top:4px}
 .lb:hover{opacity:.88}
 .lerr{font-size:12px;color:var(--red);text-align:center;margin-top:10px;min-height:18px}
 
@@ -53,9 +53,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .sb-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#e8344a,#c02040);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:13px;font-weight:900;color:#fff;flex-shrink:0}
 .sb-name{font-family:'Sora',sans-serif;font-weight:800;font-size:14px;color:var(--text)}
 .sb-name span{color:var(--red)}
-.sb-role{font-size:9px;color:var(--red);letter-spacing:1px}
+.sb-role{font-size:9px;color:var(--red);letter-spacing:0.3px}
 .nav{padding:12px 10px;flex:1}
-.ns{font-size:9px;letter-spacing:2px;color:var(--text-muted);padding:8px 8px 4px;text-transform:uppercase}
+.ns{font-size:9px;letter-spacing:0.5px;color:var(--text-muted);padding:8px 8px 4px;text-transform:uppercase}
 .ni{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;cursor:pointer;font-size:12px;color:var(--text-dim);font-weight:500;transition:all .15s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left;font-family:var(--font)}
 .ni:hover{background:var(--bg-hover);color:var(--text)}
 .ni.active{background:var(--red-dim);color:var(--red)}
@@ -67,7 +67,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 /* ── MAIN ── */
 .content{flex:1;min-width:0;display:flex;flex-direction:column}
 .topbar{height:54px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.tb-title{font-size:14px;font-weight:700;letter-spacing:2px;color:var(--text)}
+.tb-title{font-size:14px;font-weight:700;letter-spacing:0.5px;color:var(--text)}
 .tb-right{display:flex;align-items:center;gap:10px}
 .pulse{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -93,7 +93,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:var(--radius) var(--radius) 0 0}
 .sc-red::after{background:var(--red)}.sc-cyan::after{background:var(--cyan)}.sc-green::after{background:var(--green)}.sc-yellow::after{background:var(--yellow)}.sc-orange::after{background:var(--orange)}.sc-purple::after{background:var(--purple)}.sc-blue::after{background:var(--blue)}
 .stat-icon{position:absolute;top:12px;right:12px;font-size:16px;opacity:.18}
-.stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.stat-label{font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
 .stat-val{font-size:22px;font-weight:700;line-height:1;margin-bottom:4px}
 .stat-sub{font-size:10px;color:var(--text-muted)}
 .sc-red .stat-val{color:var(--red)}.sc-cyan .stat-val{color:var(--cyan)}.sc-green .stat-val{color:var(--green)}.sc-yellow .stat-val{color:var(--yellow)}.sc-orange .stat-val{color:var(--orange)}.sc-purple .stat-val{color:var(--purple)}.sc-blue .stat-val{color:var(--blue)}
@@ -101,12 +101,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 /* ── CARD PANEL ── */
 .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px}
 .card-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg-card2)}
-.card-title{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--text)}
+.card-title{font-size:12px;font-weight:700;letter-spacing:0.5px;color:var(--text)}
 .card-sub{font-size:10px;color:var(--text-muted)}
 
 /* ── STAGE TABS ── */
 .stage-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:14px}
-.stab{padding:6px 12px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);letter-spacing:1px;transition:all .15s}
+.stab{padding:6px 12px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);letter-spacing:0.3px;transition:all .15s}
 .stab:hover{background:var(--bg-card2);color:var(--text)}
 .stab.active{background:var(--red);color:#fff;border-color:var(--red)}
 
@@ -123,7 +123,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
 thead tr{background:var(--bg-card2);border-bottom:1px solid var(--border)}
-th{padding:10px 16px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;user-select:none}
+th{padding:10px 16px;text-align:left;font-size:10px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;user-select:none}
 tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--bg-hover)}
@@ -133,7 +133,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 .td-mut{color:var(--text-muted);font-size:11px}
 
 /* ── BADGE ── */
-.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.3px;white-space:nowrap}
 .bdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .b-new{background:var(--bg-hover);color:var(--gray)}.b-new .bdot{background:var(--gray)}
 .b-confirmed{background:var(--cyan-bg);color:var(--cyan)}.b-confirmed .bdot{background:var(--cyan)}
@@ -165,7 +165,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 /* ── BIG METRIC CARDS ── */
 .big-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
 .big-card{border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:4}
-.bc-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
+.bc-label{font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
 .bc-pct{font-size:36px;font-weight:900;line-height:1}
 .bc-sub{font-size:10px;color:var(--text-muted);margin-top:2px}
 .prog{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:4px}
@@ -683,7 +683,7 @@ function renderBigCards(fs, allTime, period) {
 
   const Card = ({icon,label,pct,num,den,sub,revRows}) => `
     <div style="background:${cBg(pct)};border:1px solid ${cBdr(pct)};border-radius:8px;padding:14px 16px">
-      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">${icon} ${label}</div>
+      <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">${icon} ${label}</div>
       <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:6px">
         <span style="font-size:36px;font-weight:900;color:${cPct(pct)};line-height:1">${pct}%</span>
         <span style="font-size:10px;color:var(--text-muted);margin-bottom:4px">${num}/${den}</span>
