@@ -24,6 +24,26 @@
   --text:#e2e8f0;--text-muted:#4b6a8e;--text-dim:#7d9ab8;
   --radius:10px;
 }
+/* ── LIGHT THEME ── */
+body[data-theme="light"]{
+  --bg:#f7f7f8;--bg-card:#ffffff;--bg-card2:#f2f2f4;--bg-hover:#ebebed;
+  --border:#e0e0e4;--border-hi:#c8c8ce;
+  --red:#d42b3f;--red-dim:#fde8eb;--red-glow:#d42b3f18;
+  --indigo:#4f46e5;--indigo-dim:#ede9fe;
+  --cyan:#0e7490;--cyan-bg:#e0f2fe;
+  --green:#16a34a;--green-dim:#dcfce7;
+  --yellow:#b45309;--yellow-bg:#fef9c3;
+  --orange:#c2410c;--orange-bg:#ffedd5;
+  --purple:#7c3aed;--purple-bg:#f3e8ff;
+  --blue:#1d4ed8;--blue-bg:#dbeafe;
+  --gray:#52525b;--gray-bg:#f0f0f2;
+  --text:#18181b;--text-muted:#71717a;--text-dim:#3f3f46;
+}
+body[data-theme="light"] .sidebar{box-shadow:2px 0 12px rgba(0,0,0,.06)}
+body[data-theme="light"] .stat-card{box-shadow:0 1px 4px rgba(0,0,0,.06)}
+body[data-theme="light"] .ann-bar{background:#fef2f4}
+body[data-theme="light"] .ann-item{color:var(--text)}
+body[data-theme="light"] .sc-red::after{background:var(--red)}
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--bg)}
@@ -72,6 +92,38 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .pulse{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .page{padding:20px 24px 40px}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann-bar{display:flex;align-items:center;gap:10px;height:36px;padding:0 10px 0 14px;background:#2d0a10;border-bottom:1px solid var(--border);overflow:hidden;flex-shrink:0}
+.ann-track{display:flex;flex:1;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(to right,transparent,black 20px,black calc(100% - 20px),transparent)}
+.ann-track-inner{display:flex;align-items:center;gap:52px;animation:ann-scroll linear infinite;padding-right:52px}
+@keyframes ann-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ann-item{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:500;color:#f1c6cb;white-space:nowrap}
+.ann-tag{font-size:8.5px;padding:2px 7px;border-radius:9px;font-weight:700;letter-spacing:0.5px;flex-shrink:0}
+.ann-tag-order{background:var(--indigo);color:#fff}
+.ann-tag-admin{background:var(--red);color:#fff}
+.ann-tag-urgent{background:#ef4444;color:#fff;animation:blink .9s step-end infinite}
+.ann-tag-vendor{background:var(--green);color:#052e16}
+.ann-tag-info{background:#334155;color:#cbd5e1}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
+.ann-nav{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.ann-nav-btn{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#f1c6cb;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .15s}
+.ann-nav-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+body[data-theme="light"] .ann-bar{background:#fff0f2;border-bottom-color:var(--border)}
+body[data-theme="light"] .ann-item{color:#7f1d1d}
+body[data-theme="light"] .ann-nav-btn{border-color:rgba(0,0,0,.15);background:rgba(0,0,0,.05);color:#7f1d1d}
+body[data-theme="light"] .ann-nav-btn:hover{background:rgba(0,0,0,.12)}
+
+/* ── THEME PICKER ── */
+.theme-wrap{position:relative}
+.theme-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .12s;font-family:var(--font)}
+.theme-btn:hover{border-color:var(--border-hi);color:var(--text)}
+.theme-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.theme-dd{position:absolute;right:0;top:calc(100% + 6px);background:var(--bg-card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18);z-index:300;min-width:150px;overflow:hidden;display:none}
+.theme-dd.open{display:block}
+.theme-opt{display:flex;align-items:center;gap:8px;padding:9px 12px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text);transition:background .08s;white-space:nowrap}
+.theme-opt:hover{background:var(--bg-hover)}
+.theme-opt.active{color:var(--red);font-weight:700}
 
 /* ── PERIOD PICKER ── */
 .period-wrap{position:relative}
@@ -295,8 +347,30 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <div class="tb-right">
         <div class="pulse"></div>
         <span style="font-size:11px;color:var(--text-muted)">Live Demo</span>
+        <!-- Theme picker -->
+        <div class="theme-wrap">
+          <button class="theme-btn" onclick="toggleThemeDD()" id="theme-btn">
+            <span class="theme-dot" id="theme-dot" style="background:#6b7280"></span>
+            <span id="theme-label">Dark</span> ▾
+          </button>
+          <div class="theme-dd" id="theme-dd">
+            <div class="theme-opt active" onclick="setTheme('dark')"><span class="theme-dot" style="background:#060a14;border:1px solid #333"></span> Dark</div>
+            <div class="theme-opt" onclick="setTheme('light')"><span class="theme-dot" style="background:#f7f7f8;border:1px solid #ccc"></span> Minimal (Light)</div>
+          </div>
+        </div>
         <button class="period-btn" onclick="togglePeriod()" id="period-btn">📅 Last 30 Days ▾</button>
         <div class="period-dd" id="period-dd"></div>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="ann-bar" id="ann-bar">
+      <div class="ann-track">
+        <div class="ann-track-inner" id="ann-track-inner"></div>
+      </div>
+      <div class="ann-nav">
+        <button class="ann-nav-btn" onclick="annNav(-1)">‹</button>
+        <button class="ann-nav-btn" onclick="annNav(1)">›</button>
       </div>
     </div>
 
@@ -548,6 +622,7 @@ async function doLogin() {
     document.getElementById('app').style.display = 'block';
     buildPeriodDD();
     buildStageTabs();
+    initAnnBar();
     await loadVendors();
     await Promise.all([loadDashboard(), loadOrders(1)]);
   } catch(e) { document.getElementById('lerr').textContent = 'Error: '+e.message; }
@@ -948,6 +1023,87 @@ function pxRenderLogs() {
     </div>`;
   }).join('');
 }
+
+// ── THEME ─────────────────────────────────────────────────────────────────────
+const THEMES = {
+  dark:  { label:'Dark',           dot:'#1e293b', dotBorder:'#334155' },
+  light: { label:'Minimal (Light)',dot:'#f7f7f8', dotBorder:'#d1d5db' },
+};
+let currentTheme = 'dark';
+
+function setTheme(id) {
+  currentTheme = id;
+  document.body.dataset.theme = id === 'dark' ? '' : id;
+  if(id === 'dark') delete document.body.dataset.theme;
+  const t = THEMES[id];
+  document.getElementById('theme-label').textContent = t.label;
+  document.getElementById('theme-dot').style.background = t.dot;
+  document.getElementById('theme-dot').style.border = `1px solid ${t.dotBorder}`;
+  document.getElementById('theme-dd').classList.remove('open');
+  document.querySelectorAll('.theme-opt').forEach(o => o.classList.remove('active'));
+  document.querySelectorAll('.theme-opt').forEach(o => { if(o.textContent.trim().startsWith(t.label.split(' ')[0])) o.classList.add('active'); });
+}
+function toggleThemeDD() {
+  const dd = document.getElementById('theme-dd');
+  dd.classList.toggle('open');
+  if(dd.classList.contains('open')) {
+    const close = e => {
+      if(!dd.parentElement.contains(e.target)){ dd.classList.remove('open'); document.removeEventListener('click',close); }
+    };
+    setTimeout(()=>document.addEventListener('click',close),0);
+  }
+}
+
+// ── ANNOUNCEMENT BAR ──────────────────────────────────────────────────────────
+const ANN_ITEMS = [
+  { tag:'URGENT',  tagClass:'ann-tag-urgent',  text:'#1674 — Prepaid ₹1,299 stuck 5 days — customer raised 3 complaints, needs immediate action' },
+  { tag:'ORDER',   tagClass:'ann-tag-order',   text:'#1065 Rahul — angry customer, 4 WhatsApp support tickets in 48 hrs — escalate now' },
+  { tag:'VENDOR',  tagClass:'ann-tag-vendor',  text:'DRIP STUDIOS — 31 confirmed orders sitting 4+ days with zero dispatch update' },
+  { tag:'ADMIN',   tagClass:'ann-tag-admin',   text:'FLYJONE dispatch rate dropped to 34% this week — down from 78% last month' },
+  { tag:'ORDER',   tagClass:'ann-tag-order',   text:'#1821 — RTO marked by courier but AWB tracking shows delivered — investigate immediately' },
+  { tag:'ADMIN',   tagClass:'ann-tag-admin',   text:'COD advance collection gap — 17 orders shipped with ₹0 advance, ₹1,683 exposure' },
+  { tag:'VENDOR',  tagClass:'ann-tag-vendor',  text:'SICOS — 8 orders in "Ready" stage for 6+ days, vendor not responding to dispatch requests' },
+  { tag:'URGENT',  tagClass:'ann-tag-urgent',  text:'#1589 Priya Verma — prepaid return requested, courier picked up but credit not issued in 9 days' },
+  { tag:'ADMIN',   tagClass:'ann-tag-admin',   text:'RTO rate spiked to 28% this week across all brands — review courier partner performance' },
+  { tag:'ORDER',   tagClass:'ann-tag-order',   text:'#1742 — OFD since yesterday 9 AM, customer calling every 2 hrs, delivery partner unreachable' },
+];
+
+let annOffset = 0;
+let annPaused = false;
+
+function buildAnnBar() {
+  const track = document.getElementById('ann-track-inner');
+  // Double items for seamless loop
+  const html = [...ANN_ITEMS, ...ANN_ITEMS].map(a => `
+    <span class="ann-item">
+      <span class="ann-tag ${a.tagClass}">${a.tag}</span>
+      ${escHtml(a.text)}
+    </span>`).join('');
+  track.innerHTML = html;
+  // Set animation duration proportional to content length
+  const dur = ANN_ITEMS.length * 7;
+  track.style.animationDuration = dur + 's';
+}
+
+function annNav(dir) {
+  // Jump to next/prev item by pausing and resetting offset
+  const track = document.getElementById('ann-track-inner');
+  track.style.animation = 'none';
+  annOffset = (annOffset + dir + ANN_ITEMS.length) % ANN_ITEMS.length;
+  const itemW = track.scrollWidth / 2 / ANN_ITEMS.length;
+  track.style.transform = `translateX(-${annOffset * itemW}px)`;
+  setTimeout(() => {
+    track.style.transform = '';
+    track.style.animation = '';
+    track.style.animationDuration = (ANN_ITEMS.length * 7) + 's';
+    track.style.animationDelay = `-${annOffset * 7}s`;
+  }, 50);
+}
+
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Init ann bar on page load (called after login)
+function initAnnBar() { buildAnnBar(); }
 </script>
 </body>
 </html>
