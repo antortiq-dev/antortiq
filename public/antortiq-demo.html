@@ -512,6 +512,55 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
   .od-right{border-top:1px solid var(--border)}
 }
 
+/* ── ABANDON CHECKOUT PAGE ── */
+.ac-kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.ac-kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px 15px;position:relative;overflow:hidden}
+.ac-kpi-lbl{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px}
+.ac-kpi-val{font-size:22px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.ac-kpi-sub{font-size:10px;margin-top:4px;color:var(--text-muted)}
+.ac-kpi-accent{position:absolute;right:12px;top:12px;font-size:20px;opacity:.5}
+.ac-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ac-filter-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .12s}
+.ac-filter-btn.active{border-color:#6366f1;background:rgba(99,102,241,.12);color:#a5b4fc}
+.ac-row{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color .15s}
+.ac-row:hover{border-color:rgba(99,102,241,.4)}
+.ac-row-top{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.ac-row-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+.ac-row-info{flex:1;min-width:0}
+.ac-row-name{font-size:13px;font-weight:700;color:var(--text)}
+.ac-row-product{font-size:11px;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ac-row-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.ac-row-value{font-size:15px;font-weight:900;color:var(--text);font-variant-numeric:tabular-nums}
+.ac-row-time{font-size:10px;color:var(--text-muted)}
+.ac-tags{display:flex;gap:5px;flex-wrap:wrap;padding:0 14px 10px}
+.ac-tag{padding:2px 8px;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:.4px}
+.ac-tag-fresh{background:rgba(16,185,129,.12);color:#34d399;border:1px solid rgba(16,185,129,.25)}
+.ac-tag-sent{background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.25)}
+.ac-tag-highpot{background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.25)}
+.ac-tag-multi{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+.ac-tag-recovered{background:rgba(16,185,129,.18);color:#10b981;border:1px solid rgba(16,185,129,.4)}
+.ac-tag-coupon{background:rgba(139,92,246,.12);color:#c4b5fd;border:1px solid rgba(139,92,246,.25)}
+.ac-tag-cold{background:var(--bg-card2);color:var(--text-muted);border:1px solid var(--border)}
+.ac-row-actions{display:flex;gap:6px;padding:0 14px 12px;flex-wrap:wrap}
+.ac-btn{padding:6px 12px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .12s}
+.ac-btn-wa{background:#25d366;color:#fff}
+.ac-btn-wa:hover{background:#1da851}
+.ac-btn-msg{background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.25)}
+.ac-btn-msg:hover{background:rgba(99,102,241,.2)}
+.ac-btn-coupon{background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.25)}
+.ac-settings-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.ac-settings-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.ac-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ac-field-lbl{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.ac-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 11px;color:var(--text);font-family:var(--font);font-size:12px;box-sizing:border-box;outline:none;transition:border-color .12s}
+.ac-input:focus{border-color:#6366f1}
+.ac-textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 11px;color:var(--text);font-family:var(--font);font-size:12px;box-sizing:border-box;outline:none;resize:vertical;min-height:80px;line-height:1.6;transition:border-color .12s}
+.ac-textarea:focus{border-color:#6366f1}
+.ac-save-btn{margin-top:12px;padding:8px 20px;border-radius:8px;border:none;background:#6366f1;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font)}
+.ac-preview-bubble{background:#005c4b;border-radius:12px 12px 0 12px;padding:10px 13px;font-size:12px;color:#e9edef;line-height:1.6;max-width:280px;margin-top:8px}
+.ac-recovered-banner{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:11px;color:#34d399;font-weight:700;margin-bottom:10px}
+@media(max-width:900px){.ac-settings-grid{grid-template-columns:1fr}.ac-kpi-grid{grid-template-columns:repeat(2,1fr)}}
+
 /* ── CONFIRMATION CARD INNER LAYOUT ── */
 .conf-hdr-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:6px}
 .conf-mini-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:10px}
@@ -684,7 +733,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
     <div class="ns">Analytics</div>
     <button class="ni" data-view="pixel" onclick="mobSidebarNav(this)"><span class="ico">🎯</span> Pixel Tracker</button>
     <button class="ni" data-view="pl" onclick="mobSidebarNav(this)"><span class="ico">📈</span> P&L Report</button>
-    <button class="ni locked"><span class="ico">🛒</span> Abandon Carts <span class="ni-soon">Soon</span></button>
+    <button class="ni" data-view="abandon" onclick="mobSidebarNav(this)"><span class="ico">🛒</span> Abandon Checkout</button>
     <div class="ns">Settings</div>
     <button class="ni locked"><span class="ico">⚙️</span> Brand Settings <span class="ni-soon">Soon</span></button>
   </nav>
@@ -714,7 +763,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <div class="ns">Analytics</div>
       <button class="ni" data-view="pixel" onclick="switchView(this)"><span class="ico">🎯</span> Pixel Tracker</button>
       <button class="ni" data-view="pl" onclick="switchView(this)"><span class="ico">📈</span> P&L Report</button>
-      <button class="ni locked"><span class="ico">🛒</span> Abandon Carts <span class="ni-soon">Soon</span></button>
+      <button class="ni" data-view="abandon" onclick="switchView(this)"><span class="ico">🛒</span> Abandon Checkout</button>
       <button class="ni locked"><span class="ico">🔗</span> Shopify Sync <span class="ni-soon">Soon</span></button>
 
       <div class="ns">Settings</div>
@@ -1148,6 +1197,69 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         </div>
       </div><!-- /view-pl -->
 
+      <!-- ── ABANDON CHECKOUT ── -->
+      <div id="view-abandon" class="view">
+        <div class="page">
+
+          <!-- KPIs -->
+          <div class="ac-kpi-grid" id="ac-kpi-grid"></div>
+
+          <!-- Settings Panel -->
+          <div class="ac-settings-panel">
+            <div class="ac-settings-title">⚙️ Bot Settings <span style="font-size:10px;font-weight:600;color:var(--text-muted);margin-left:auto">Changes apply to next send</span></div>
+            <div class="ac-settings-grid">
+              <div>
+                <div class="ac-field-lbl">COMEBACK Coupon Code</div>
+                <input class="ac-input" id="ac-coupon-input" value="COMEBACK15" placeholder="e.g. COMEBACK15">
+                <div style="font-size:10px;color:var(--text-muted);margin-top:4px">Sent with recovery message · 15% off</div>
+                <div>
+                  <div class="ac-field-lbl" style="margin-top:12px">Trigger Delay</div>
+                  <select class="ac-input" id="ac-delay-input">
+                    <option>1 hour after abandonment</option>
+                    <option selected>2 hours after abandonment</option>
+                    <option>6 hours after abandonment</option>
+                    <option>24 hours after abandonment</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div class="ac-field-lbl">WhatsApp Message Template</div>
+                <textarea class="ac-textarea" id="ac-template-input">Hey {{name}} 👋
+
+You left something behind!
+
+🛍️ *{{product}}* is waiting in your cart.
+
+Use code *{{coupon}}* for 15% OFF — limited time only!
+
+Complete your order here 👇
+{{cart_link}}</textarea>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:4px">Variables: {{name}} {{product}} {{coupon}} {{cart_link}}</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
+              <button class="ac-save-btn" onclick="acSaveSettings()">Save Settings</button>
+              <button class="ac-save-btn" style="background:var(--bg-card2);color:var(--text-muted);border:1px solid var(--border)" onclick="acPreview()">Preview Message</button>
+              <div id="ac-preview-out" style="flex:1"></div>
+            </div>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="ac-filters" id="ac-filters">
+            <button class="ac-filter-btn active" data-filter="all" onclick="acSetFilter(this)">All</button>
+            <button class="ac-filter-btn" data-filter="fresh" onclick="acSetFilter(this)">🟢 Fresh</button>
+            <button class="ac-filter-btn" data-filter="sent" onclick="acSetFilter(this)">💬 WA Sent</button>
+            <button class="ac-filter-btn" data-filter="highpot" onclick="acSetFilter(this)">⭐ High Potential</button>
+            <button class="ac-filter-btn" data-filter="multi" onclick="acSetFilter(this)">🔴 Abandoned 3x+</button>
+            <button class="ac-filter-btn" data-filter="recovered" onclick="acSetFilter(this)">✅ Recovered</button>
+          </div>
+
+          <!-- Abandon list -->
+          <div id="ac-list"></div>
+
+        </div>
+      </div><!-- /view-abandon -->
+
     </div><!-- /page -->
   </div><!-- /content -->
 </div><!-- /app-shell -->
@@ -1292,13 +1404,14 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders')  loadOrders(currentPage);
   if(view==='pixel')   initPixel();
   if(view==='returns') initReturns();
   if(view==='wabot')   initWaBot();
   if(view==='pl')      initPL();
+  if(view==='abandon') initAbandon();
   // sync mobile bottom nav
   document.querySelectorAll('#mob-nav .mob-nav-item').forEach(b=>{
     b.classList.toggle('active', b.dataset.view===view);
@@ -3625,6 +3738,211 @@ function odSetMode(mode) {
   exBtn.style.cssText = mode==='express' ? activeStyle : inactiveStyle;
   sfBtn.style.cssText = mode==='surface' ? activeStyle : inactiveStyle;
   document.getElementById('od-rates').innerHTML = renderRates();
+}
+
+// ── ABANDON CHECKOUT ─────────────────────────────────────────────────────────
+let acInitialized = false;
+let acFilter = 'all';
+
+const PRODUCTS_AC = [
+  'Oversized Acid Wash Tee','Cargo Utility Shorts','Box-Fit Hoodie','Relaxed Chinos',
+  'Patchwork Denim Jacket','Ribbed Tank Top','Y2K Track Pants','Crewneck Sweatshirt',
+  'Washed Baggy Jeans','Graphic Print Tee','Fleece Zip-Up Hoodie','Drop-Shoulder Bomber',
+];
+const CUSTOMERS_AC = [
+  ['Rahul Sharma','9876543210'],['Priya Verma','9123456789'],['Amit Singh','9988776655'],
+  ['Sneha Gupta','8765432109'],['Rohit Patel','9654321098'],['Anjali Nair','8543210987'],
+  ['Vikram Mehta','9432109876'],['Pooja Joshi','8321098765'],['Arun Kumar','9210987654'],
+  ['Divya Shah','8109876543'],['Karan Malhotra','9001234567'],['Simran Kaur','8890123456'],
+  ['Nikhil Rao','9789012345'],['Meera Pillai','8678901234'],['Akash Yadav','9567890123'],
+  ['Riya Kapoor','8456789012'],['Deepak Bose','9345678901'],['Nisha Sinha','8234567890'],
+];
+const SIZES_AC = ['XS','S','M','L','XL','XXL'];
+const PRICES_AC = [699,799,899,999,1199,1299,1499,1699,1799,1999,2199,2499];
+
+function acSeed(n) {
+  let x = Math.sin(n+1)*10000; return x - Math.floor(x);
+}
+
+function acGenCheckouts() {
+  const now = Date.now();
+  const checkouts = [];
+  const TOTAL = 38;
+  for (let i = 0; i < TOTAL; i++) {
+    const s = i * 13 + 7;
+    const [name, phone] = CUSTOMERS_AC[Math.floor(acSeed(s)*CUSTOMERS_AC.length)];
+    const product = PRODUCTS_AC[Math.floor(acSeed(s+1)*PRODUCTS_AC.length)];
+    const size = SIZES_AC[Math.floor(acSeed(s+2)*SIZES_AC.length)];
+    const qty = Math.floor(acSeed(s+3)*2)+1;
+    const price = PRICES_AC[Math.floor(acSeed(s+4)*PRICES_AC.length)];
+    const total = price * qty;
+    const minsAgo = Math.floor(acSeed(s+5)*60*48) + 30;
+    const abandonCount = Math.floor(acSeed(s+6)*4)+1;
+
+    // Determine state
+    let tags = [];
+    let state;
+    if (i < 5) {
+      state = 'recovered'; tags = ['recovered','coupon'];
+    } else if (i < 9) {
+      state = 'fresh'; tags = ['fresh'];
+    } else if (abandonCount >= 3) {
+      state = 'multi'; tags = ['multi','sent','highpot'];
+    } else if (total >= 1500) {
+      state = 'highpot'; tags = ['highpot','sent'];
+    } else {
+      state = 'sent'; tags = ['sent'];
+    }
+    if (minsAgo > 60*24) tags.push('cold');
+
+    checkouts.push({ i, name, phone, product, size, qty, price, total, minsAgo, abandonCount, tags, state });
+  }
+  return checkouts;
+}
+
+const AC_CHECKOUTS = acGenCheckouts();
+
+function acTimeAgo(mins) {
+  if (mins < 60) return `${mins}m ago`;
+  if (mins < 1440) return `${Math.floor(mins/60)}h ago`;
+  return `${Math.floor(mins/1440)}d ago`;
+}
+
+function acTagHtml(tags) {
+  const MAP = {
+    fresh: ['ac-tag-fresh','🟢 Fresh'],
+    sent:  ['ac-tag-sent','💬 WA Sent'],
+    highpot: ['ac-tag-highpot','⭐ High Potential'],
+    multi: ['ac-tag-multi',`🔴 Abandoned ${3}x`],
+    recovered: ['ac-tag-recovered','✅ Recovered'],
+    coupon: ['ac-tag-coupon','🏷️ Coupon Sent'],
+    cold: ['ac-tag-cold','❄️ Cold'],
+  };
+  return tags.map(t => MAP[t] ? `<span class="ac-tag ${MAP[t][0]}">${MAP[t][1]}</span>` : '').join('');
+}
+
+function acRenderList() {
+  const list = document.getElementById('ac-list');
+  if (!list) return;
+  const filtered = acFilter === 'all' ? AC_CHECKOUTS : AC_CHECKOUTS.filter(c => c.state === acFilter || c.tags.includes(acFilter));
+
+  if (!filtered.length) { list.innerHTML = '<div class="empty-msg">No checkouts match this filter</div>'; return; }
+
+  const coupon = document.getElementById('ac-coupon-input')?.value || 'COMEBACK15';
+
+  list.innerHTML = filtered.map(c => {
+    const initial = c.name[0];
+    const waLink = `https://wa.me/91${c.phone}?text=${encodeURIComponent(`Hey ${c.name.split(' ')[0]} 👋 You left ${c.product} in your cart! Use ${coupon} for 15% off 🎁`)}`;
+    const recovBanner = c.state === 'recovered' ? `<div class="ac-recovered-banner">✅ Cart Recovered · ₹${c.total.toLocaleString('en-IN')} revenue saved · Coupon ${coupon} used</div>` : '';
+    const msgStatus = c.tags.includes('sent') ? `<span style="font-size:10px;color:#a5b4fc">✓✓ WA delivered · ${acTimeAgo(c.minsAgo - 30)}</span>` : '';
+    return `<div class="ac-row" data-state="${c.state}">
+      <div class="ac-row-top">
+        <div class="ac-row-avatar">${initial}</div>
+        <div class="ac-row-info">
+          <div class="ac-row-name">${c.name} <span style="font-size:10px;font-weight:500;color:var(--text-muted)">+91 ${c.phone}</span></div>
+          <div class="ac-row-product">${c.product} · ${c.size} · Qty ${c.qty}</div>
+          ${msgStatus}
+        </div>
+        <div class="ac-row-right">
+          <div class="ac-row-value">₹${c.total.toLocaleString('en-IN')}</div>
+          <div class="ac-row-time">${acTimeAgo(c.minsAgo)}</div>
+          ${c.abandonCount > 1 ? `<div style="font-size:9px;color:#f87171;font-weight:700">${c.abandonCount}x abandoned</div>` : ''}
+        </div>
+      </div>
+      <div class="ac-tags">${acTagHtml(c.tags)}</div>
+      ${recovBanner}
+      <div class="ac-row-actions">
+        <a href="${waLink}" target="_blank" class="ac-btn ac-btn-wa">💬 Chat on WhatsApp</a>
+        <button class="ac-btn ac-btn-msg" onclick="acSendMsg(${c.i})">📤 Send Recovery Msg</button>
+        ${!c.tags.includes('coupon') && c.state !== 'recovered' ? `<button class="ac-btn ac-btn-coupon" onclick="acSendCoupon(${c.i})">🏷️ Send Coupon</button>` : ''}
+        <button class="ac-btn" style="background:var(--bg-card2);color:var(--text-muted);border:1px solid var(--border)" onclick="acMarkRecovered(${c.i})">✅ Mark Recovered</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function acRenderKPIs() {
+  const total = AC_CHECKOUTS.length;
+  const recovered = AC_CHECKOUTS.filter(c=>c.state==='recovered').length;
+  const revRecovered = AC_CHECKOUTS.filter(c=>c.state==='recovered').reduce((s,c)=>s+c.total,0);
+  const totalRev = AC_CHECKOUTS.reduce((s,c)=>s+c.total,0);
+  const sent = AC_CHECKOUTS.filter(c=>c.tags.includes('sent')||c.state==='recovered').length;
+  const highpot = AC_CHECKOUTS.filter(c=>c.tags.includes('highpot')).length;
+  const couponUsed = AC_CHECKOUTS.filter(c=>c.tags.includes('coupon')||c.state==='recovered').length;
+  const recovRate = Math.round(recovered/total*100);
+
+  document.getElementById('ac-kpi-grid').innerHTML = [
+    {lbl:'Total Abandons',val:total,sub:`₹${(totalRev/1000).toFixed(0)}k at risk`,icon:'🛒',color:'#94a3b8'},
+    {lbl:'Recovered',val:recovered,sub:`${recovRate}% recovery rate`,icon:'✅',color:'#10b981'},
+    {lbl:'Revenue Saved',val:`₹${(revRecovered/1000).toFixed(1)}k`,sub:`via COMEBACK coupons`,icon:'💰',color:'#34d399'},
+    {lbl:'WA Msgs Sent',val:sent,sub:`${Math.round(sent/total*100)}% outreach rate`,icon:'💬',color:'#a5b4fc'},
+    {lbl:'High Potential',val:highpot,sub:'Cart value ≥ ₹1,500',icon:'⭐',color:'#fbbf24'},
+    {lbl:'Coupons Sent',val:couponUsed,sub:'COMEBACK15 applied',icon:'🏷️',color:'#c4b5fd'},
+  ].map(k=>`<div class="ac-kpi" style="border-left:3px solid ${k.color}20">
+    <div class="ac-kpi-lbl">${k.lbl}</div>
+    <div class="ac-kpi-val" style="color:${k.color}">${k.val}</div>
+    <div class="ac-kpi-sub">${k.sub}</div>
+    <div class="ac-kpi-accent">${k.icon}</div>
+  </div>`).join('');
+}
+
+function acSetFilter(btn) {
+  document.querySelectorAll('.ac-filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  acFilter = btn.dataset.filter;
+  acRenderList();
+}
+
+function acSaveSettings() {
+  const btn = event.target;
+  btn.textContent = '✓ Saved!';
+  btn.style.background = '#10b981';
+  setTimeout(()=>{ btn.textContent='Save Settings'; btn.style.background='#6366f1'; }, 2000);
+  acRenderList();
+}
+
+function acPreview() {
+  const name = 'Rahul';
+  const product = 'Box-Fit Hoodie';
+  const coupon = document.getElementById('ac-coupon-input')?.value || 'COMEBACK15';
+  const template = document.getElementById('ac-template-input')?.value || '';
+  const msg = template.replace('{{name}}',name).replace('{{product}}',product).replace('{{coupon}}',coupon).replace('{{cart_link}}','https://yourbrand.com/cart/recover');
+  document.getElementById('ac-preview-out').innerHTML = `<div class="ac-preview-bubble">${msg.replace(/\n/g,'<br>').replace(/\*(.*?)\*/g,'<strong>$1</strong>')}</div>`;
+}
+
+function acSendMsg(idx) {
+  const c = AC_CHECKOUTS[idx];
+  if (!c) return;
+  if (!c.tags.includes('sent')) c.tags.push('sent');
+  c.state = c.state === 'fresh' ? 'sent' : c.state;
+  acRenderList();
+  alert(`✅ Recovery message sent to ${c.name} via WhatsApp!\n\nCoupon ${document.getElementById('ac-coupon-input')?.value||'COMEBACK15'} included.\n\n(Demo mode)`);
+}
+
+function acSendCoupon(idx) {
+  const c = AC_CHECKOUTS[idx];
+  if (!c) return;
+  if (!c.tags.includes('coupon')) c.tags.push('coupon');
+  if (!c.tags.includes('sent')) c.tags.push('sent');
+  acRenderList();
+  alert(`🏷️ Coupon ${document.getElementById('ac-coupon-input')?.value||'COMEBACK15'} sent to ${c.name}!\n\n(Demo mode)`);
+}
+
+function acMarkRecovered(idx) {
+  const c = AC_CHECKOUTS[idx];
+  if (!c) return;
+  c.state = 'recovered';
+  if (!c.tags.includes('recovered')) c.tags.push('recovered');
+  if (!c.tags.includes('coupon')) c.tags.push('coupon');
+  acRenderKPIs();
+  acRenderList();
+}
+
+function initAbandon() {
+  if (acInitialized) { acRenderList(); return; }
+  acInitialized = true;
+  acRenderKPIs();
+  acRenderList();
 }
 
 function odCreateShipment(orderName) {
