@@ -512,6 +512,55 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
   .od-right{border-top:1px solid var(--border)}
 }
 
+/* ── STAFF ACCOUNTS PAGE ── */
+.sa-kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.sa-kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px 15px;position:relative;overflow:hidden}
+.sa-kpi-lbl{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.sa-kpi-val{font-size:22px;font-weight:900;line-height:1}
+.sa-kpi-sub{font-size:10px;color:var(--text-muted);margin-top:3px}
+.sa-kpi-dot{position:absolute;right:12px;top:14px;width:8px;height:8px;border-radius:50%}
+.sa-create-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.sa-create-grid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:flex-end}
+.sa-field-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin-bottom:4px}
+.sa-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 11px;color:var(--text);font-family:var(--font);font-size:12px;box-sizing:border-box;outline:none;transition:border-color .12s}
+.sa-input:focus{border-color:#6366f1}
+.sa-create-btn{padding:9px 18px;border-radius:8px;border:none;background:#6366f1;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap}
+.sa-role-badge{display:inline-block;padding:2px 9px;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:.4px}
+.sa-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:1px}
+.sa-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px;transition:border-color .15s}
+.sa-card:hover{border-color:rgba(99,102,241,.35)}
+.sa-card-top{display:flex;align-items:flex-start;gap:12px}
+.sa-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;color:#fff;flex-shrink:0}
+.sa-info{flex:1;min-width:0}
+.sa-name{font-size:14px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sa-email{font-size:11px;color:var(--text-muted);margin-top:1px}
+.sa-meta-row{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.sa-meta{display:flex;flex-direction:column;gap:2px}
+.sa-meta-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted)}
+.sa-meta-val{font-size:13px;font-weight:800;color:var(--text)}
+.sa-perf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.sa-perf-item{text-align:center}
+.sa-perf-val{font-size:16px;font-weight:900;line-height:1}
+.sa-perf-lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--text-muted);margin-top:2px}
+.sa-hours-wrap{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.sa-hours-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin-bottom:8px}
+.sa-hours-bars{display:flex;align-items:flex-end;gap:3px;height:36px}
+.sa-hour-bar{flex:1;border-radius:2px 2px 0 0;min-height:2px;transition:height .3s}
+.sa-hours-days{display:flex;gap:3px;margin-top:3px}
+.sa-hours-day{flex:1;font-size:7px;text-align:center;color:var(--text-muted);font-weight:600}
+.sa-card-actions{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap}
+.sa-btn{padding:6px 12px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-size:10px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .12s}
+.sa-btn:hover{border-color:#6366f1;color:#a5b4fc}
+.sa-btn-danger{border-color:rgba(239,68,68,.3);color:#f87171}
+.sa-btn-danger:hover{border-color:#ef4444;background:rgba(239,68,68,.08)}
+.sa-edit-form{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:none}
+.sa-edit-form.open{display:block}
+.sa-perm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:10px}
+.sa-perm-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:7px;font-size:11px;color:var(--text);cursor:pointer}
+.sa-perm-item input{accent-color:#6366f1}
+.sa-invite-sent{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:10px 14px;font-size:11px;color:#34d399;font-weight:700;display:none;margin-top:10px}
+@media(max-width:900px){.sa-create-grid{grid-template-columns:1fr 1fr}.sa-perf-grid{grid-template-columns:repeat(2,1fr)}.sa-card-top{flex-wrap:wrap}}
+
 /* ── EMAIL SETTINGS PAGE ── */
 /* Reuse cc-email / cc-carousel styles from homepage */
 .cc-email{flex:0 0 210px;scroll-snap-align:start;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.4);transition:transform .25s;flex-shrink:0}
@@ -836,7 +885,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <button class="ni" data-view="email" onclick="switchView(this)"><span class="ico">✉️</span> Email Settings</button>
 
       <div class="ns">Settings</div>
-      <button class="ni locked"><span class="ico">👤</span> Staff Accounts <span class="ni-soon">Soon</span></button>
+      <button class="ni" data-view="staff" onclick="switchView(this)"><span class="ico">👤</span> Staff Accounts</button>
       <button class="ni locked"><span class="ico">🚚</span> Shipping Partners <span class="ni-soon">Soon</span></button>
       <button class="ni locked"><span class="ico">⚙️</span> Brand Settings <span class="ni-soon">Soon</span></button>
     </nav>
@@ -1329,6 +1378,35 @@ Complete your order here 👇
         </div>
       </div><!-- /view-abandon -->
 
+      <!-- ── STAFF ACCOUNTS ── -->
+      <div id="view-staff" class="view">
+        <div class="page">
+          <div class="sa-kpi-grid" id="sa-kpi-grid"></div>
+          <!-- Create New Staff -->
+          <div class="sa-create-panel">
+            <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:14px">➕ Add New Staff Member</div>
+            <div class="sa-create-grid">
+              <div><div class="sa-field-lbl">Full Name</div><input class="sa-input" id="sa-new-name" placeholder="e.g. Pooja Joshi"></div>
+              <div><div class="sa-field-lbl">Email</div><input class="sa-input" id="sa-new-email" placeholder="team@yourbrand.com"></div>
+              <div><div class="sa-field-lbl">Access Role</div>
+                <select class="sa-input" id="sa-new-role">
+                  <option value="support">Customer Support</option>
+                  <option value="orders">Order Management</option>
+                  <option value="returns">Returns Handler</option>
+                  <option value="finance">Finance / P&amp;L</option>
+                  <option value="admin">Admin</option>
+                  <option value="readonly">Read Only</option>
+                </select>
+              </div>
+              <div><button class="sa-create-btn" onclick="saCreateStaff()">Send Invite →</button></div>
+            </div>
+            <div class="sa-invite-sent" id="sa-invite-sent">✅ Invite sent! They'll receive an email to set their password.</div>
+          </div>
+          <!-- Staff list -->
+          <div id="sa-list"></div>
+        </div>
+      </div><!-- /view-staff -->
+
       <!-- ── EMAIL SETTINGS ── -->
       <div id="view-email" class="view">
         <div class="page">
@@ -1609,7 +1687,7 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS', staff:'STAFF ACCOUNTS' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders')  loadOrders(currentPage);
   if(view==='pixel')   initPixel();
@@ -1618,6 +1696,7 @@ function switchView(btn) {
   if(view==='pl')      initPL();
   if(view==='abandon') initAbandon();
   if(view==='email')   initEmail();
+  if(view==='staff')   initStaff();
   // sync mobile bottom nav
   document.querySelectorAll('#mob-nav .mob-nav-item').forEach(b=>{
     b.classList.toggle('active', b.dataset.view===view);
@@ -3954,6 +4033,247 @@ function odSetMode(mode) {
   exBtn.style.cssText = mode==='express' ? activeStyle : inactiveStyle;
   sfBtn.style.cssText = mode==='surface' ? activeStyle : inactiveStyle;
   document.getElementById('od-rates').innerHTML = renderRates();
+}
+
+// ── STAFF ACCOUNTS ───────────────────────────────────────────────────────────
+let staffInitialized = false;
+
+const SA_ROLES = {
+  admin:    { label:'Admin',            bg:'rgba(239,68,68,.12)',   c:'#f87171',  border:'rgba(239,68,68,.3)'   },
+  orders:   { label:'Order Management', bg:'rgba(99,102,241,.12)',  c:'#a5b4fc',  border:'rgba(99,102,241,.3)'  },
+  support:  { label:'Customer Support', bg:'rgba(16,185,129,.12)',  c:'#34d399',  border:'rgba(16,185,129,.3)'  },
+  returns:  { label:'Returns Handler',  bg:'rgba(245,158,11,.12)',  c:'#fbbf24',  border:'rgba(245,158,11,.3)'  },
+  finance:  { label:'Finance / P&L',    bg:'rgba(96,165,250,.12)',  c:'#93c5fd',  border:'rgba(96,165,250,.3)'  },
+  readonly: { label:'Read Only',        bg:'rgba(148,163,184,.12)', c:'#94a3b8',  border:'rgba(148,163,184,.3)' },
+};
+
+const SA_PERMS = {
+  admin:    ['dashboard','orders','returns','wabot','pixel','pl','abandon','email','staff'],
+  orders:   ['dashboard','orders'],
+  support:  ['dashboard','orders','wabot'],
+  returns:  ['dashboard','orders','returns'],
+  finance:  ['dashboard','pl'],
+  readonly: ['dashboard'],
+};
+
+const ALL_PERMS = [
+  { key:'dashboard', label:'📊 Dashboard' },
+  { key:'orders',    label:'📦 Orders' },
+  { key:'returns',   label:'↩ Returns & Exchange' },
+  { key:'wabot',     label:'💬 WhatsApp Bot' },
+  { key:'pixel',     label:'🎯 Pixel Tracker' },
+  { key:'pl',        label:'📈 P&L Report' },
+  { key:'abandon',   label:'🛒 Abandon Checkout' },
+  { key:'email',     label:'✉️ Email Settings' },
+  { key:'staff',     label:'👤 Staff Accounts' },
+];
+
+const STAFF_COLORS = ['#6366f1','#10b981','#f59e0b','#ef4444','#8b5cf6','#06b6d4'];
+const DAYS = ['M','T','W','T','F','S','S'];
+
+let SA_STAFF = [
+  {
+    id:1, name:'Harsh Vijay', email:'harsh@antortiq.com', role:'admin', status:'online',
+    joined:'Jan 2025', lastActive:'Now', phone:'+91 98765 43210',
+    actionsToday:47, ordersHandled:23, avgResponse:'4m', ticketsResolved:8,
+    hoursWeek:[7.5,8,6.5,8,7,0,0], editOpen:false,
+    perms: [...SA_PERMS.admin],
+  },
+  {
+    id:2, name:'Isha Vijay', email:'isha@antortiq.com', role:'admin', status:'online',
+    joined:'Jan 2025', lastActive:'Now', phone:'+91 98765 43211',
+    actionsToday:38, ordersHandled:19, avgResponse:'6m', ticketsResolved:5,
+    hoursWeek:[7,7.5,8,7,6.5,0,0], editOpen:false,
+    perms: [...SA_PERMS.admin],
+  },
+  {
+    id:3, name:'Priya Sharma', email:'priya@yourbrand.com', role:'support', status:'online',
+    joined:'Mar 2025', lastActive:'2m ago', phone:'+91 87654 32109',
+    actionsToday:31, ordersHandled:0, avgResponse:'8m', ticketsResolved:12,
+    hoursWeek:[6,7,7,6.5,5,0,0], editOpen:false,
+    perms: [...SA_PERMS.support],
+  },
+  {
+    id:4, name:'Rohit Patel', email:'rohit@yourbrand.com', role:'orders', status:'away',
+    joined:'Apr 2025', lastActive:'22m ago', phone:'+91 76543 21098',
+    actionsToday:18, ordersHandled:41, avgResponse:'—', ticketsResolved:0,
+    hoursWeek:[8,7.5,6,7,4,0,0], editOpen:false,
+    perms: [...SA_PERMS.orders],
+  },
+  {
+    id:5, name:'Anjali Nair', email:'anjali@yourbrand.com', role:'returns', status:'offline',
+    joined:'Jun 2025', lastActive:'3h ago', phone:'+91 65432 10987',
+    actionsToday:9, ordersHandled:0, avgResponse:'15m', ticketsResolved:3,
+    hoursWeek:[5,6,5.5,4,3,0,0], editOpen:false,
+    perms: [...SA_PERMS.returns],
+  },
+];
+
+function saStatusColor(s) {
+  return s==='online'?'#10b981':s==='away'?'#f59e0b':'#94a3b8';
+}
+function saStatusLabel(s) {
+  return s==='online'?'Online':s==='away'?'Away':'Offline';
+}
+
+function saRenderKPIs() {
+  const online = SA_STAFF.filter(s=>s.status==='online').length;
+  const totalActions = SA_STAFF.reduce((a,s)=>a+s.actionsToday,0);
+  const avgResp = '7m';
+  const totalOrders = SA_STAFF.reduce((a,s)=>a+s.ordersHandled,0);
+  document.getElementById('sa-kpi-grid').innerHTML = [
+    {lbl:'Total Staff',   val:SA_STAFF.length, sub:'Across all roles',     c:'#6366f1', dot:'#6366f1'},
+    {lbl:'Online Now',    val:online,           sub:`${SA_STAFF.length-online} offline/away`, c:'#10b981', dot:'#10b981'},
+    {lbl:'Actions Today', val:totalActions,     sub:'Across all accounts', c:'#a5b4fc', dot:'#a5b4fc'},
+    {lbl:'Orders Handled',val:totalOrders,      sub:'Today by team',       c:'#fbbf24', dot:'#fbbf24'},
+    {lbl:'Avg Response',  val:avgResp,          sub:'Customer queries',    c:'#34d399', dot:'#34d399'},
+  ].map(k=>`<div class="sa-kpi"><div class="sa-kpi-lbl">${k.lbl}</div><div class="sa-kpi-val" style="color:${k.c}">${k.val}</div><div class="sa-kpi-sub">${k.sub}</div><div class="sa-kpi-dot" style="background:${k.dot}"></div></div>`).join('');
+}
+
+function saHoursBar(hours) {
+  const max = Math.max(...hours, 1);
+  return `<div class="sa-hours-bars">
+    ${hours.map((h,i)=>{
+      const pct = Math.round(h/max*100);
+      const isToday = i===4; // Friday = today
+      return `<div class="sa-hour-bar" style="height:${pct}%;background:${isToday?'#6366f1':h>0?'rgba(99,102,241,.35)':'var(--border)'}" title="${h}h"></div>`;
+    }).join('')}
+  </div>
+  <div class="sa-hours-days">${DAYS.map(d=>`<div class="sa-hours-day">${d}</div>`).join('')}</div>
+  <div style="font-size:9px;color:var(--text-muted);margin-top:4px">Active hours this week · Total: ${hours.reduce((a,h)=>a+h,0)}h</div>`;
+}
+
+function saRenderList() {
+  const el = document.getElementById('sa-list');
+  el.innerHTML = SA_STAFF.map((s,idx) => {
+    const role = SA_ROLES[s.role];
+    const color = STAFF_COLORS[idx % STAFF_COLORS.length];
+    const initial = s.name.split(' ').map(w=>w[0]).join('').slice(0,2);
+    const permsHtml = ALL_PERMS.map(p=>`
+      <label class="sa-perm-item">
+        <input type="checkbox" ${s.perms.includes(p.key)?'checked':''} onchange="saTogglePerm(${s.id},'${p.key}',this.checked)" ${s.role==='admin'?'disabled':''}>
+        <span>${p.label}</span>
+      </label>`).join('');
+    return `<div class="sa-card" id="sacard-${s.id}">
+      <div class="sa-card-top">
+        <div class="sa-avatar" style="background:${color}">${initial}</div>
+        <div class="sa-info">
+          <div class="sa-name">
+            ${s.name}
+            <div class="sa-status-dot" style="background:${saStatusColor(s.status)}"></div>
+            <span style="font-size:9px;font-weight:600;color:${saStatusColor(s.status)}">${saStatusLabel(s.status)}</span>
+            <span class="sa-role-badge" style="background:${role.bg};color:${role.c};border:1px solid ${role.border}">${role.label}</span>
+          </div>
+          <div class="sa-email">${s.email} · ${s.phone}</div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Joined ${s.joined} · Last active: <strong style="color:var(--text)">${s.lastActive}</strong></div>
+        </div>
+        <div class="sa-card-actions">
+          <button class="sa-btn" onclick="saToggleEdit(${s.id})">✏️ Edit</button>
+          ${s.role!=='admin'?`<button class="sa-btn sa-btn-danger" onclick="saDeactivate(${s.id})">Deactivate</button>`:''}
+        </div>
+      </div>
+
+      <div class="sa-perf-grid">
+        <div class="sa-perf-item"><div class="sa-perf-val" style="color:#a5b4fc">${s.actionsToday}</div><div class="sa-perf-lbl">Actions Today</div></div>
+        <div class="sa-perf-item"><div class="sa-perf-val" style="color:#34d399">${s.ordersHandled}</div><div class="sa-perf-lbl">Orders Handled</div></div>
+        <div class="sa-perf-item"><div class="sa-perf-val" style="color:#fbbf24">${s.avgResponse}</div><div class="sa-perf-lbl">Avg Response</div></div>
+        <div class="sa-perf-item"><div class="sa-perf-val" style="color:#60a5fa">${s.ticketsResolved}</div><div class="sa-perf-lbl">Tickets Resolved</div></div>
+      </div>
+
+      <div class="sa-hours-wrap">
+        <div class="sa-hours-lbl">Panel Activity — This Week</div>
+        ${saHoursBar(s.hoursWeek)}
+      </div>
+
+      <div class="sa-edit-form ${s.editOpen?'open':''}" id="sa-edit-${s.id}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <div>
+            <div class="sa-field-lbl">Change Role</div>
+            <select class="sa-input" onchange="saChangeRole(${s.id},this.value)">
+              ${Object.entries(SA_ROLES).map(([k,v])=>`<option value="${k}" ${s.role===k?'selected':''}>${v.label}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <div class="sa-field-lbl">Phone</div>
+            <input class="sa-input" value="${s.phone}" onchange="SA_STAFF[${idx}].phone=this.value">
+          </div>
+        </div>
+        <div class="sa-field-lbl">Module Permissions</div>
+        <div class="sa-perm-grid">${permsHtml}</div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="sa-create-btn" style="font-size:11px;padding:7px 16px" onclick="saSaveEdit(${s.id})">Save Changes</button>
+          <button class="sa-btn" onclick="saToggleEdit(${s.id})">Cancel</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function saToggleEdit(id) {
+  const s = SA_STAFF.find(x=>x.id===id);
+  if (!s) return;
+  s.editOpen = !s.editOpen;
+  const el = document.getElementById(`sa-edit-${id}`);
+  if (el) el.classList.toggle('open', s.editOpen);
+}
+
+function saChangeRole(id, role) {
+  const s = SA_STAFF.find(x=>x.id===id);
+  if (!s) return;
+  s.role = role;
+  s.perms = [...(SA_PERMS[role]||[])];
+}
+
+function saTogglePerm(id, perm, on) {
+  const s = SA_STAFF.find(x=>x.id===id);
+  if (!s) return;
+  if (on && !s.perms.includes(perm)) s.perms.push(perm);
+  if (!on) s.perms = s.perms.filter(p=>p!==perm);
+}
+
+function saSaveEdit(id) {
+  const s = SA_STAFF.find(x=>x.id===id);
+  if (s) s.editOpen = false;
+  saRenderList();
+  saRenderKPIs();
+}
+
+function saDeactivate(id) {
+  const s = SA_STAFF.find(x=>x.id===id);
+  if (!s) return;
+  if (!confirm(`Deactivate ${s.name}? They will lose panel access immediately.`)) return;
+  s.status = 'offline';
+  saRenderList();
+  saRenderKPIs();
+}
+
+function saCreateStaff() {
+  const name  = document.getElementById('sa-new-name').value.trim();
+  const email = document.getElementById('sa-new-email').value.trim();
+  const role  = document.getElementById('sa-new-role').value;
+  if (!name || !email) { alert('Enter name and email to send invite.'); return; }
+  const newStaff = {
+    id: Date.now(), name, email, role, status:'offline',
+    joined:'Sep 2026', lastActive:'Never', phone:'—',
+    actionsToday:0, ordersHandled:0, avgResponse:'—', ticketsResolved:0,
+    hoursWeek:[0,0,0,0,0,0,0], editOpen:false,
+    perms:[...(SA_PERMS[role]||[])],
+  };
+  SA_STAFF.push(newStaff);
+  document.getElementById('sa-new-name').value='';
+  document.getElementById('sa-new-email').value='';
+  const inv = document.getElementById('sa-invite-sent');
+  inv.style.display='block';
+  setTimeout(()=>{ inv.style.display='none'; }, 3500);
+  saRenderList();
+  saRenderKPIs();
+}
+
+function initStaff() {
+  if (staffInitialized) return;
+  staffInitialized = true;
+  saRenderKPIs();
+  saRenderList();
 }
 
 // ── EMAIL SETTINGS ───────────────────────────────────────────────────────────
