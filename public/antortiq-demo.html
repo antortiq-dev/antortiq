@@ -576,6 +576,18 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 .st-cta-btn-wa:hover{background:#1da851}
 @media(max-width:900px){.st-row{grid-template-columns:1fr}.st-cta{flex-direction:column;align-items:flex-start}}
 
+/* ── CONTACT SYNC PAGE ── */
+.cs-tf{padding:5px 11px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);font-size:11px;font-weight:700;cursor:pointer;transition:all .12s}
+.cs-tf.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cs-row{display:grid;grid-template-columns:40px 1fr 160px 120px 90px;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer}
+.cs-row:hover{background:var(--bg-hover)}
+.cs-row:last-child{border-bottom:none}
+.cs-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0}
+.cs-name{font-size:13px;font-weight:700;color:var(--text)}
+.cs-phone{font-size:11px;color:var(--text-muted);margin-top:1px;font-family:monospace}
+.cs-order-tag{font-size:10px;font-weight:700;color:#6366f1;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:5px;padding:2px 7px;display:inline-block}
+.cs-tag-pill{font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;letter-spacing:.3px}
+@media(max-width:768px){.cs-row{grid-template-columns:40px 1fr 80px}}
 /* ── SHIPPING PARTNERS PAGE ── */
 .sp-section{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px}
 .sp-section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:8px;flex-wrap:wrap}
@@ -983,6 +995,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
     <button class="ni" data-view="pixel" onclick="mobSidebarNav(this)"><span class="ico">🎯</span> Pixel Tracker</button>
     <button class="ni" data-view="pl" onclick="mobSidebarNav(this)"><span class="ico">📈</span> P&L Report</button>
     <button class="ni" data-view="abandon" onclick="mobSidebarNav(this)"><span class="ico">🛒</span> Abandon Checkout</button>
+    <button class="ni" data-view="contacts" onclick="mobSidebarNav(this)"><span class="ico">📱</span> Contact Sync</button>
     <div class="ns">Settings</div>
     <button class="ni" data-view="settings" onclick="switchView(this)"><span class="ico">⚙️</span> Settings</button>
   </nav>
@@ -1016,6 +1029,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <button class="ni" data-view="email" onclick="switchView(this)"><span class="ico">✉️</span> Email Settings</button>
 
       <div class="ns">Settings</div>
+      <button class="ni" data-view="contacts" onclick="switchView(this)"><span class="ico">📱</span> Contact Sync</button>
       <button class="ni" data-view="staff" onclick="switchView(this)"><span class="ico">👤</span> Staff Accounts</button>
       <button class="ni" data-view="shipping" onclick="switchView(this)"><span class="ico">🚚</span> Shipping Partners</button>
       <button class="ni" data-view="settings" onclick="switchView(this)"><span class="ico">⚙️</span> Settings</button>
@@ -1853,6 +1867,57 @@ Complete your order here 👇
         </div>
       </div><!-- /view-shipping -->
 
+      <!-- ── CONTACT SYNC VIEW ── -->
+      <div id="view-contacts" class="view">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+          <div>
+            <div style="font-size:18px;font-weight:900;color:var(--text)">📱 Contact Sync</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Contacts from your connected device — matched to orders and customers automatically</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div id="cs-device-pill" style="display:flex;align-items:center;gap:7px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.25);border-radius:8px;padding:6px 12px">
+              <div style="width:7px;height:7px;border-radius:50%;background:#25d366;box-shadow:0 0 5px #25d366;animation:livepulse 2s infinite"></div>
+              <span style="font-size:11px;font-weight:700;color:#25d366">iPhone 15 Pro · Connected</span>
+            </div>
+            <button onclick="csSyncNow()" style="padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:var(--font);font-size:11px;font-weight:700;cursor:pointer">⟳ Sync Now</button>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div id="cs-kpis" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:20px"></div>
+
+        <!-- Device info + search row -->
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <div style="flex:1;min-width:200px;position:relative">
+            <input id="cs-search" oninput="csFilter()" placeholder="Search name or number…" style="width:100%;padding:8px 12px 8px 34px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;font-family:var(--font);font-size:13px;color:var(--text);outline:none">
+            <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--text-muted)">🔍</span>
+          </div>
+          <div style="display:flex;gap:6px" id="cs-tag-filters">
+            <button class="cs-tf active" onclick="csTF(this,'all')">All</button>
+            <button class="cs-tf" onclick="csTF(this,'matched')">✓ Matched</button>
+            <button class="cs-tf" onclick="csTF(this,'vip')">⭐ VIP</button>
+            <button class="cs-tf" onclick="csTF(this,'unmatched')">○ Unmatched</button>
+          </div>
+        </div>
+
+        <!-- Contact list -->
+        <div class="dash-section" style="padding:0;overflow:hidden;margin-bottom:20px">
+          <div style="display:grid;grid-template-columns:1fr;gap:0" id="cs-list"></div>
+        </div>
+
+        <!-- Device panel -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px" id="cs-device-grid">
+          <div class="dash-section" style="padding:16px 18px">
+            <div style="font-size:12px;font-weight:800;color:var(--text);margin-bottom:12px">📱 Connected Device</div>
+            <div style="display:flex;flex-direction:column;gap:10px" id="cs-device-info"></div>
+          </div>
+          <div class="dash-section" style="padding:16px 18px">
+            <div style="font-size:12px;font-weight:800;color:var(--text);margin-bottom:12px">⚡ Sync Activity</div>
+            <div style="display:flex;flex-direction:column;gap:8px" id="cs-sync-log"></div>
+          </div>
+        </div>
+      </div><!-- /view-contacts -->
+
       <!-- ── STAFF ACCOUNTS ── -->
       <div id="view-staff" class="view">
         <div class="page">
@@ -2241,7 +2306,7 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS', staff:'STAFF ACCOUNTS', shipping:'SHIPPING PARTNERS', settings:'SETTINGS' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS', staff:'STAFF ACCOUNTS', shipping:'SHIPPING PARTNERS', contacts:'CONTACT SYNC', settings:'SETTINGS' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders')  loadOrders(currentPage);
   if(view==='pixel')   initPixel();
@@ -2252,6 +2317,7 @@ function switchView(btn) {
   if(view==='email')   initEmail();
   if(view==='staff')    initStaff();
   if(view==='shipping')  initShipping();
+  if(view==='contacts')  initContacts();
   if(view==='settings')  initSettings();
   // sync mobile bottom nav
   document.querySelectorAll('#mob-nav .mob-nav-item').forEach(b=>{
@@ -4777,6 +4843,176 @@ function initSettings() {
 }
 
 // ── SHIPPING PARTNERS ────────────────────────────────────────────────────────
+// ── CONTACT SYNC ─────────────────────────────────────────────────────────────
+let contactsInitialized = false;
+
+const CS_CONTACTS = [
+  { name:'Harsh Vijay',      phone:'9876543210', orders:['#3037','#2891'], tag:'vip',      last:'2d ago',  spend:5670, avatar:'HV', color:'#6366f1' },
+  { name:'Priya Sharma',     phone:'9123456789', orders:['#3041'],         tag:'matched',  last:'5d ago',  spend:1835, avatar:'PS', color:'#8b5cf6' },
+  { name:'Rahul Mehta',      phone:'9988776655', orders:['#3005','#2940'], tag:'vip',      last:'1d ago',  spend:4220, avatar:'RM', color:'#ec4899' },
+  { name:'Sneha Gupta',      phone:'8765432109', orders:['#2998'],         tag:'matched',  last:'1w ago',  spend:999,  avatar:'SG', color:'#10b981' },
+  { name:'Amit Singh',       phone:'9654321098', orders:['#3039'],         tag:'matched',  last:'3d ago',  spend:2199, avatar:'AS', color:'#f59e0b' },
+  { name:'Divya Nair',       phone:'8543210987', orders:[],                tag:'unmatched',last:'—',       spend:0,    avatar:'DN', color:'#60a5fa' },
+  { name:'Vikram Kapoor',    phone:'9432109876', orders:['#2867','#2901','#3012'], tag:'vip', last:'Today', spend:7840, avatar:'VK', color:'#e8344a' },
+  { name:'Anjali Verma',     phone:'8321098765', orders:['#3044'],         tag:'matched',  last:'6h ago',  spend:1299, avatar:'AV', color:'#14b8a6' },
+  { name:'Rohit Yadav',      phone:'9210987654', orders:[],                tag:'unmatched',last:'—',       spend:0,    avatar:'RY', color:'#a78bfa' },
+  { name:'Meera Pillai',     phone:'8109876543', orders:['#2945'],         tag:'matched',  last:'2w ago',  spend:799,  avatar:'MP', color:'#fb7185' },
+  { name:'Karan Malhotra',   phone:'9001234567', orders:['#3048','#3021'], tag:'vip',      last:'Today',   spend:3998, avatar:'KM', color:'#34d399' },
+  { name:'Simran Kaur',      phone:'8890123456', orders:['#3002'],         tag:'matched',  last:'4d ago',  spend:1499, avatar:'SK', color:'#fbbf24' },
+  { name:'Deepak Bose',      phone:'9345678901', orders:[],                tag:'unmatched',last:'—',       spend:0,    avatar:'DB', color:'#94a3b8' },
+  { name:'Nisha Sinha',      phone:'8234567890', orders:['#2880'],         tag:'matched',  last:'3w ago',  spend:2499, avatar:'NS', color:'#c084fc' },
+  { name:'Arjun Desai',      phone:'9901234568', orders:['#3050'],         tag:'matched',  last:'1d ago',  spend:1199, avatar:'AD', color:'#38bdf8' },
+  { name:'Shreya Dubey',     phone:'8890123457', orders:[],                tag:'unmatched',last:'—',       spend:0,    avatar:'SD', color:'#6b7280' },
+  { name:'Suresh Reddy',     phone:'9113456780', orders:['#2990','#3033'], tag:'vip',      last:'Today',   spend:5199, avatar:'SR', color:'#f97316' },
+  { name:'Pallavi Mishra',   phone:'8446789013', orders:['#3018'],         tag:'matched',  last:'5d ago',  spend:899,  avatar:'PM', color:'#a3e635' },
+  { name:'Tarun Saxena',     phone:'9335678902', orders:[],                tag:'unmatched',last:'—',       spend:0,    avatar:'TS', color:'#64748b' },
+  { name:'Riya Kapoor',      phone:'8456789012', orders:['#3055','#2922'], tag:'vip',      last:'2d ago',  spend:4398, avatar:'RK', color:'#818cf8' },
+];
+
+const TAG_STYLE = {
+  vip:      'background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.3)',
+  matched:  'background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.25)',
+  unmatched:'background:rgba(107,114,128,.1);color:#9ca3af;border:1px solid rgba(107,114,128,.2)',
+};
+const TAG_LABEL = { vip:'⭐ VIP', matched:'✓ Matched', unmatched:'○ No Orders' };
+
+let csActiveTag = 'all';
+let csQuery = '';
+let csAllContacts = [...CS_CONTACTS];
+
+function initContacts() {
+  if (contactsInitialized) return;
+  contactsInitialized = true;
+  renderCsKpis();
+  renderCsList();
+  renderCsDevice();
+  renderCsSyncLog();
+}
+
+function renderCsKpis() {
+  const total   = CS_CONTACTS.length;
+  const matched = CS_CONTACTS.filter(c=>c.tag!=='unmatched').length;
+  const vips    = CS_CONTACTS.filter(c=>c.tag==='vip').length;
+  const totalSpend = CS_CONTACTS.reduce((s,c)=>s+c.spend,0);
+  const kpis = [
+    { label:'Total Contacts', value: total,                  sub:'synced from device',       icon:'📱', col:'#6366f1' },
+    { label:'Matched to Orders', value: matched,             sub:`${Math.round(matched/total*100)}% match rate`, icon:'✓',  col:'#10b981' },
+    { label:'VIP Customers',  value: vips,                   sub:'3+ orders or high spend',  icon:'⭐', col:'#fbbf24' },
+    { label:'Total Spend',    value:'₹'+totalSpend.toLocaleString('en-IN'), sub:'from matched contacts', icon:'💰', col:'#8b5cf6' },
+  ];
+  document.getElementById('cs-kpis').innerHTML = kpis.map(k=>`
+    <div class="dash-section" style="padding:14px 16px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px">
+        <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px">${k.label}</div>
+        <div style="font-size:16px">${k.icon}</div>
+      </div>
+      <div style="font-size:22px;font-weight:900;color:${k.col}">${k.value}</div>
+      <div style="font-size:10px;color:var(--text-muted);margin-top:3px">${k.sub}</div>
+    </div>`).join('');
+}
+
+function renderCsList() {
+  const filtered = CS_CONTACTS.filter(c => {
+    if (csActiveTag !== 'all' && c.tag !== csActiveTag) return false;
+    if (csQuery) {
+      const q = csQuery.toLowerCase();
+      if (!c.name.toLowerCase().includes(q) && !c.phone.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const hdr = `<div class="cs-row" style="background:var(--bg);cursor:default;border-bottom:2px solid var(--border)">
+    <div></div>
+    <div style="font-size:9px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px">Contact</div>
+    <div style="font-size:9px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px">Orders</div>
+    <div style="font-size:9px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px">Total Spend</div>
+    <div style="font-size:9px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px">Tag</div>
+  </div>`;
+
+  const rows = filtered.length ? filtered.map(c => `
+    <div class="cs-row">
+      <div class="cs-avatar" style="background:${c.color}22;color:${c.color}">${c.avatar}</div>
+      <div>
+        <div class="cs-name">${c.name}</div>
+        <div class="cs-phone">+91 ${c.phone.slice(0,5)} ${c.phone.slice(5)}</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        ${c.orders.length ? c.orders.map(o=>`<span class="cs-order-tag">${o}</span>`).join('') : `<span style="font-size:10px;color:var(--text-muted)">—</span>`}
+      </div>
+      <div style="font-size:13px;font-weight:700;color:var(--text)">${c.spend?'₹'+c.spend.toLocaleString('en-IN'):'—'}<div style="font-size:10px;color:var(--text-muted);font-weight:400">Last: ${c.last}</div></div>
+      <div><span class="cs-tag-pill" style="${TAG_STYLE[c.tag]}">${TAG_LABEL[c.tag]}</span></div>
+    </div>`).join('') : `<div style="padding:32px;text-align:center;color:var(--text-muted);font-size:13px">No contacts match this filter</div>`;
+
+  document.getElementById('cs-list').innerHTML = hdr + rows;
+}
+
+function csFilter() {
+  csQuery = document.getElementById('cs-search').value;
+  renderCsList();
+}
+
+function csTF(btn, tag) {
+  csActiveTag = tag;
+  document.querySelectorAll('.cs-tf').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCsList();
+}
+
+function renderCsDevice() {
+  document.getElementById('cs-device-info').innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+      <div style="font-size:32px">📱</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--text)">iPhone 15 Pro</div>
+        <div style="font-size:11px;color:var(--text-muted)">iOS 18.2 · WhatsApp 24.25.74</div>
+        <div style="display:flex;align-items:center;gap:5px;margin-top:4px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#25d366"></div>
+          <span style="font-size:10px;color:#25d366;font-weight:700">Bot Active · Connected</span>
+        </div>
+      </div>
+    </div>
+    ${[
+      ['Contacts on Device', CS_CONTACTS.length + ' synced'],
+      ['Last Sync',          'Today, 9:41 AM'],
+      ['Sync Interval',      'Every 6 hours'],
+      ['Number',             '+91 90795 60327'],
+      ['WhatsApp Linked',    'Antortiq Bot Account'],
+      ['Battery at Sync',    '84%'],
+    ].map(([l,v])=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)">
+      <span style="font-size:11px;color:var(--text-muted)">${l}</span>
+      <span style="font-size:11px;font-weight:700;color:var(--text)">${v}</span>
+    </div>`).join('')}`;
+}
+
+function renderCsSyncLog() {
+  const logs = [
+    { icon:'✅', msg:'Full sync completed', meta:'20 contacts · 0 errors', time:'Today 9:41 AM', col:'#34d399' },
+    { icon:'➕', msg:'2 new contacts added', meta:'Tarun Saxena, Shreya Dubey', time:'Today 9:41 AM', col:'#6366f1' },
+    { icon:'✅', msg:'Full sync completed', meta:'18 contacts · 0 errors', time:'Yesterday 9:41 AM', col:'#34d399' },
+    { icon:'🔗', msg:'3 contacts matched to orders', meta:'Anjali Verma → #3044 · Arjun Desai → #3050 · Simran Kaur → #3002', time:'Yesterday 9:41 AM', col:'#8b5cf6' },
+    { icon:'⚠️', msg:'Sync delayed — device offline', meta:'Retried after 12 min', time:'2d ago 3:20 PM', col:'#f59e0b' },
+    { icon:'✅', msg:'Full sync completed', meta:'18 contacts · 0 errors', time:'2d ago 9:41 AM', col:'#34d399' },
+  ];
+  document.getElementById('cs-sync-log').innerHTML = logs.map(l=>`
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border)">
+      <div style="font-size:14px;flex-shrink:0;margin-top:1px">${l.icon}</div>
+      <div style="flex:1">
+        <div style="font-size:12px;font-weight:700;color:${l.col}">${l.msg}</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:1px">${l.meta}</div>
+      </div>
+      <div style="font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">${l.time}</div>
+    </div>`).join('');
+}
+
+function csSyncNow() {
+  const pill = document.getElementById('cs-device-pill');
+  pill.innerHTML = '<div style="width:7px;height:7px;border-radius:50%;background:#f59e0b;animation:livepulse 1s infinite"></div><span style="font-size:11px;font-weight:700;color:#f59e0b">Syncing…</span>';
+  setTimeout(()=>{
+    pill.innerHTML = '<div style="width:7px;height:7px;border-radius:50%;background:#25d366;box-shadow:0 0 5px #25d366;animation:livepulse 2s infinite"></div><span style="font-size:11px;font-weight:700;color:#25d366">iPhone 15 Pro · Connected</span>';
+  }, 2200);
+}
+
 let shippingInitialized = false;
 let spCronFilterActive = 'all';
 let spSelectedBox = 0;
