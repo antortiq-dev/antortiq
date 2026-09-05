@@ -317,8 +317,9 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
   .content{padding-bottom:0}
   /* Order drawer full width on mobile */
   .od-drawer{width:100vw}
-  .od-body{grid-template-columns:1fr}
-  .od-right{border-top:1px solid var(--border)}
+  .od-body{grid-template-columns:1fr;display:flex;flex-direction:column;overflow-y:auto;min-height:0}
+  .od-left{overflow-y:visible;min-height:unset;flex:none}
+  .od-right{overflow-y:visible;min-height:unset;flex:none;border-top:1px solid var(--border)}
   /* Dispatch quality — wrap */
   .dq-grid{grid-template-columns:repeat(3,1fr)}
   /* WA phones scroll fine */
@@ -474,9 +475,9 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 .od-order-name{font-size:18px;font-weight:900;color:var(--text)}
 .od-close{margin-left:auto;background:transparent;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:var(--font);font-size:12px;font-weight:600}
 .od-close:hover{background:var(--bg-hover)}
-.od-body{flex:1;overflow-y:auto;display:grid;grid-template-columns:1fr 340px;gap:0}
-.od-left{padding:20px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:16px;overflow-y:auto}
-.od-right{padding:20px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;background:var(--bg-card)}
+.od-body{flex:1;min-height:0;display:grid;grid-template-columns:1fr 340px;gap:0}
+.od-left{padding:20px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:16px;overflow-y:auto;min-height:0}
+.od-right{padding:20px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;background:var(--bg-card);min-height:0}
 .od-block{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .od-block-hdr{padding:10px 14px;border-bottom:1px solid var(--border);font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;justify-content:space-between}
 .od-block-body{padding:14px}
@@ -508,8 +509,9 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 .od-action-btn.green{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:#10b981}
 .od-action-btn.red{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);color:#f87171}
 @media(max-width:700px){
-  .od-body{grid-template-columns:1fr}
-  .od-right{border-top:1px solid var(--border)}
+  .od-body{grid-template-columns:1fr;display:flex;flex-direction:column;overflow-y:auto;min-height:0}
+  .od-left{overflow-y:visible;min-height:unset;flex:none}
+  .od-right{overflow-y:visible;min-height:unset;flex:none;border-top:1px solid var(--border)}
 }
 
 /* ── SETTINGS PAGE ── */
@@ -4391,7 +4393,7 @@ async function renderOrderDrawer(order) {
       <div class="od-block-hdr">📦 Product Details <span style="color:var(--text-dim)">${order.vendorName}</span></div>
       <div class="od-block-body">
         <div class="od-prod-row">
-          <div class="od-prod-img" id="od-prod-img">🧥</div>
+          <div class="od-prod-img" id="od-prod-img"><img src="${RX_PRODUCT_IMGS[Math.abs(parseInt((order.shopifyId||'0').toString().replace(/\D/g,'').slice(-4))||0) % RX_PRODUCT_IMGS.length]}" style="width:100%;height:100%;object-fit:cover;border-radius:8px" onerror="this.parentNode.innerHTML='🧥'"></div>
           <div style="flex:1">
             <div style="font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px">${order.productName||'—'}</div>
             <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px">Variant: <strong style="color:var(--text)">${variant}</strong> &nbsp;·&nbsp; Qty: <strong style="color:var(--text)">1</strong></div>
@@ -4556,11 +4558,7 @@ async function renderOrderDrawer(order) {
       </div>`).join('')}
     </div>`;
 
-  // Async: fetch product image from pixel, fetch recent orders
-  fetchProductImage(order.productName).then(img => {
-    const el = document.getElementById('od-prod-img');
-    if (el && img) el.innerHTML = `<img src="${img}" onerror="this.parentElement.textContent='🧥'">`;
-  });
+  // Async: fetch recent orders
   fetchRecentOrders(order.customerName, order.orderName||order.shopifyId).then(rows => {
     const el = document.getElementById('od-recent-orders');
     if (!el) return;
