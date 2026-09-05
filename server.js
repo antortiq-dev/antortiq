@@ -38,6 +38,9 @@ app.get('/pixel', (req, res) => {
 app.get('/demo', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'antortiq-demo.html'));
 });
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacy.html'));
+});
 app.use('/webhooks', webhooksRoute);
 app.use('/order', orderRoute);
 app.use('/api/contact', contactRoute);
