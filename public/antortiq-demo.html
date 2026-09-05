@@ -2275,7 +2275,7 @@ function plCalcNumbers(slice) {
   const platformFee = Math.round(rev * .035);         // Shopify + payment gateway 3.5%
   const packaging   = Math.round(orders * 22);        // ₹22/order packaging
   const warehouse   = Math.round(orders * 28);        // ₹28/order warehousing
-  const waBot       = Math.round(orders * 8);         // ₹8/order WA bot cost
+  const waBot       = 970;                             // ₹970/month flat WA bot cost
   const staffing    = Math.round(rev * .028);         // 2.8% staffing
   const misc        = Math.round(rev * .012);         // 1.2% misc
 
