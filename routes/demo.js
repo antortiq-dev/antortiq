@@ -228,6 +228,17 @@ router.get('/pixel/recent', auth, async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// ── POST /api/demo/email-demo — send demo emails to an address ───────────────
+router.post('/email-demo', auth, async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email || !/\S+@\S+\.\S+/.test(email)) return res.status(400).json({ error: 'valid email required' });
+    const { sendDemoEmails } = require('../lib/demo-emails');
+    sendDemoEmails(email).catch(e => console.error('[email-demo] error:', e.message));
+    res.json({ ok: true, to: email });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 // ── POST /api/demo/wa-demo — send demo WA messages to a phone number ──────────
 router.post('/wa-demo', auth, async (req, res) => {
   try {

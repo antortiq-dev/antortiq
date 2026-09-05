@@ -1377,6 +1377,53 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         <div class="wa-section-label">What our bot can do — live chat previews</div>
         <div class="wa-phones-row" id="wa-phones-row"></div>
 
+        <!-- ── GET DEMO ON WHATSAPP ── -->
+        <div style="margin-top:20px;margin-bottom:28px;background:linear-gradient(135deg,rgba(37,211,102,.07) 0%,rgba(99,102,241,.07) 100%);border:1.5px solid rgba(37,211,102,.3);border-radius:16px;padding:24px 24px 20px;position:relative;overflow:hidden">
+          <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(37,211,102,.15),transparent 70%);border-radius:50%;pointer-events:none"></div>
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:36px;height:36px;background:#25d366;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💬</div>
+              <div>
+                <div style="font-size:15px;font-weight:900;color:var(--text)">See It On Your WhatsApp — Live</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:1px">Enter your number · We send real messages your customers actually receive</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <div style="font-size:9px;font-weight:800;color:#25d366;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);border-radius:20px;padding:3px 10px;letter-spacing:.5px">LIVE DEMO</div>
+              <div style="font-size:9px;font-weight:800;color:#a5b4fc;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:3px 10px;letter-spacing:.5px">FREE</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+            <div style="display:flex;align-items:center;background:var(--bg);border:1.5px solid rgba(37,211,102,.4);border-radius:10px;overflow:hidden;flex:1;min-width:200px;max-width:360px">
+              <div style="padding:0 12px;font-size:13px;font-weight:700;color:#25d366;white-space:nowrap;border-right:1px solid var(--border)">🇮🇳 +91</div>
+              <input id="wa-demo-phone" type="tel" maxlength="10" placeholder="Mobile number" style="flex:1;padding:10px 12px;background:transparent;border:none;outline:none;font-family:var(--font);font-size:13px;color:var(--text)">
+            </div>
+            <button onclick="waSendDemo('full')" style="padding:10px 18px;background:#25d366;color:#fff;border:none;border-radius:10px;font-family:var(--font);font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">🚀 Send Full Demo</button>
+          </div>
+          <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Or send a specific flow</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px">
+            <div onclick="waSendDemo('abandon')" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 13px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='#f59e0b';this.style.background='rgba(245,158,11,.05)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--bg)'">
+              <div style="font-size:17px;margin-bottom:4px">🛒</div>
+              <div style="font-size:11px;font-weight:800;color:var(--text)">Abandon Cart</div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Product image + coupon + link</div>
+              <div style="font-size:9px;color:#f59e0b;font-weight:700;margin-top:4px">1 msg · instant</div>
+            </div>
+            <div onclick="waSendDemo('tracking')" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 13px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='#60a5fa';this.style.background='rgba(96,165,250,.05)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--bg)'">
+              <div style="font-size:17px;margin-bottom:4px">📦</div>
+              <div style="font-size:11px;font-weight:800;color:var(--text)">Shipment Updates</div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Shipped → Transit → Delivered</div>
+              <div style="font-size:9px;color:#60a5fa;font-weight:700;margin-top:4px">4 msgs · ~1.2s apart</div>
+            </div>
+            <div onclick="waSendDemo('return')" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 13px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='#c084fc';this.style.background='rgba(192,132,252,.05)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--bg)'">
+              <div style="font-size:17px;margin-bottom:4px">🔄</div>
+              <div style="font-size:11px;font-weight:800;color:var(--text)">Return & Exchange</div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Pickup scheduled notification</div>
+              <div style="font-size:9px;color:#c084fc;font-weight:700;margin-top:4px">1 msg · instant</div>
+            </div>
+          </div>
+          <div id="wa-demo-status" style="display:none;margin-top:12px;padding:10px 14px;border-radius:9px;font-size:12px;font-weight:600"></div>
+        </div>
+
         <!-- Inbox -->
         <div class="wa-section-label" style="margin-top:24px">Customer chat inbox — handled by bot</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" id="wa-inbox-filters"></div>
@@ -1387,68 +1434,6 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         <!-- Insights -->
         <div class="wa-section-label">Bot Intelligence & Insights</div>
         <div class="wa-insight-grid" id="wa-insights-grid"></div>
-
-        <!-- ── GET DEMO ON WHATSAPP ── -->
-        <div style="margin-top:32px;background:linear-gradient(135deg,rgba(37,211,102,.07) 0%,rgba(99,102,241,.07) 100%);border:1.5px solid rgba(37,211,102,.3);border-radius:16px;padding:28px 28px 24px;position:relative;overflow:hidden">
-          <!-- decorative blobs -->
-          <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(37,211,102,.15),transparent 70%);border-radius:50%;pointer-events:none"></div>
-          <div style="position:absolute;bottom:-20px;left:60px;width:100px;height:100px;background:radial-gradient(circle,rgba(99,102,241,.12),transparent 70%);border-radius:50%;pointer-events:none"></div>
-
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px">
-            <div>
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-                <div style="width:38px;height:38px;background:#25d366;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">💬</div>
-                <div>
-                  <div style="font-size:17px;font-weight:900;color:var(--text)">See It On Your WhatsApp — Live</div>
-                  <div style="font-size:11px;color:var(--text-muted);margin-top:1px">Enter your number · We send real messages your customers actually receive</div>
-                </div>
-              </div>
-            </div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <div style="font-size:9px;font-weight:800;color:#25d366;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);border-radius:20px;padding:3px 10px;letter-spacing:.5px">LIVE DEMO</div>
-              <div style="font-size:9px;font-weight:800;color:#a5b4fc;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:3px 10px;letter-spacing:.5px">FREE</div>
-            </div>
-          </div>
-
-          <!-- Phone input row -->
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px">
-            <div style="display:flex;align-items:center;background:var(--bg);border:1.5px solid rgba(37,211,102,.4);border-radius:10px;overflow:hidden;flex:1;min-width:220px;max-width:380px">
-              <div style="padding:0 12px;font-size:13px;font-weight:700;color:#25d366;white-space:nowrap;border-right:1px solid var(--border)">🇮🇳 +91</div>
-              <input id="wa-demo-phone" type="tel" maxlength="10" placeholder="Mobile number" style="flex:1;padding:11px 12px;background:transparent;border:none;outline:none;font-family:var(--font);font-size:13px;color:var(--text)">
-            </div>
-            <button onclick="waSendDemo('full')" style="padding:11px 20px;background:#25d366;color:#fff;border:none;border-radius:10px;font-family:var(--font);font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">🚀 Send Full Demo</button>
-          </div>
-
-          <!-- Message type cards -->
-          <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Or send a specific flow</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px" id="wa-demo-cards">
-
-            <div onclick="waSendDemo('abandon')" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px 14px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='#f59e0b';this.style.background='rgba(245,158,11,.05)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--bg)'">
-              <div style="font-size:18px;margin-bottom:5px">🛒</div>
-              <div style="font-size:11px;font-weight:800;color:var(--text)">Abandon Cart</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Product image + coupon + link</div>
-              <div style="font-size:9px;color:#f59e0b;font-weight:700;margin-top:5px">1 msg · instant</div>
-            </div>
-
-            <div onclick="waSendDemo('tracking')" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px 14px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='#60a5fa';this.style.background='rgba(96,165,250,.05)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--bg)'">
-              <div style="font-size:18px;margin-bottom:5px">📦</div>
-              <div style="font-size:11px;font-weight:800;color:var(--text)">Shipment Updates</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Shipped → In-Transit → Delivered</div>
-              <div style="font-size:9px;color:#60a5fa;font-weight:700;margin-top:5px">4 msgs · ~5s apart</div>
-            </div>
-
-            <div onclick="waSendDemo('return')" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px 14px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='#c084fc';this.style.background='rgba(192,132,252,.05)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--bg)'">
-              <div style="font-size:18px;margin-bottom:5px">🔄</div>
-              <div style="font-size:11px;font-weight:800;color:var(--text)">Return & Exchange</div>
-              <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Pickup scheduled notification</div>
-              <div style="font-size:9px;color:#c084fc;font-weight:700;margin-top:5px">1 msg · instant</div>
-            </div>
-
-          </div>
-
-          <!-- Status/feedback -->
-          <div id="wa-demo-status" style="display:none;margin-top:14px;padding:11px 14px;border-radius:9px;font-size:12px;font-weight:600"></div>
-        </div>
       </div><!-- /view-wabot -->
 
       <!-- P&L VIEW -->
@@ -1922,6 +1907,53 @@ Complete your order here 👇
               </div>
               <div style="font-size:10px;color:var(--text-muted);margin-top:8px;text-align:center;letter-spacing:.3px">← Drag to explore the full email journey →</div>
             </div>
+          </div>
+
+          <!-- ── GET DEMO ON EMAIL ── -->
+          <div style="margin-bottom:24px;background:linear-gradient(135deg,rgba(96,165,250,.07) 0%,rgba(99,102,241,.07) 100%);border:1.5px solid rgba(96,165,250,.3);border-radius:16px;padding:24px 24px 20px;position:relative;overflow:hidden">
+            <div style="position:absolute;top:-30px;right:-30px;width:130px;height:130px;background:radial-gradient(circle,rgba(96,165,250,.15),transparent 70%);border-radius:50%;pointer-events:none"></div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:36px;height:36px;background:linear-gradient(135deg,#6366f1,#60a5fa);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">✉️</div>
+                <div>
+                  <div style="font-size:15px;font-weight:900;color:var(--text)">See It In Your Inbox — Live</div>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:1px">Enter your email · We send the real branded emails your customers receive</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:6px">
+                <div style="font-size:9px;font-weight:800;color:#60a5fa;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);border-radius:20px;padding:3px 10px;letter-spacing:.5px">LIVE DEMO</div>
+                <div style="font-size:9px;font-weight:800;color:#a5b4fc;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:3px 10px;letter-spacing:.5px">FREE</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+              <div style="display:flex;align-items:center;background:var(--bg);border:1.5px solid rgba(96,165,250,.4);border-radius:10px;overflow:hidden;flex:1;min-width:200px;max-width:380px">
+                <div style="padding:0 12px;font-size:13px;color:#60a5fa;white-space:nowrap;border-right:1px solid var(--border)">📧</div>
+                <input id="em-demo-email" type="email" placeholder="your@email.com" style="flex:1;padding:10px 12px;background:transparent;border:none;outline:none;font-family:var(--font);font-size:13px;color:var(--text)">
+              </div>
+              <button onclick="emSendDemo()" style="padding:10px 18px;background:linear-gradient(135deg,#6366f1,#60a5fa);color:#fff;border:none;border-radius:10px;font-family:var(--font);font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">🚀 Send Demo Emails</button>
+            </div>
+            <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">What you'll receive</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px">
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 13px">
+                <div style="font-size:17px;margin-bottom:4px">🚚</div>
+                <div style="font-size:11px;font-weight:800;color:var(--text)">Shipped Email</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:2px">AWB + courier + track link</div>
+                <div style="font-size:9px;color:#60a5fa;font-weight:700;margin-top:4px">Email 1</div>
+              </div>
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 13px">
+                <div style="font-size:17px;margin-bottom:4px">📍</div>
+                <div style="font-size:11px;font-weight:800;color:var(--text)">Out for Delivery</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Arriving today alert</div>
+                <div style="font-size:9px;color:#f59e0b;font-weight:700;margin-top:4px">Email 2</div>
+              </div>
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 13px">
+                <div style="font-size:17px;margin-bottom:4px">🔄</div>
+                <div style="font-size:11px;font-weight:800;color:var(--text)">Return Initiated</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Pickup + portal link</div>
+                <div style="font-size:9px;color:#c084fc;font-weight:700;margin-top:4px">Email 3</div>
+              </div>
+            </div>
+            <div id="em-demo-status" style="display:none;margin-top:12px;padding:10px 14px;border-radius:9px;font-size:12px;font-weight:600"></div>
           </div>
 
           <div class="em-2col">
@@ -4500,6 +4532,39 @@ function renderTimeline(order) {
     </div>`);
   }
   return rows.join('');
+}
+
+async function emSendDemo() {
+  const emailEl = document.getElementById('em-demo-email');
+  const statusEl = document.getElementById('em-demo-status');
+  const email = emailEl ? emailEl.value.trim() : '';
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    statusEl.style.display = 'block';
+    statusEl.style.background = 'rgba(239,68,68,.1)';
+    statusEl.style.border = '1px solid rgba(239,68,68,.3)';
+    statusEl.style.color = '#f87171';
+    statusEl.textContent = '⚠️ Enter a valid email address first.';
+    return;
+  }
+  statusEl.style.display = 'block';
+  statusEl.style.background = 'rgba(245,158,11,.08)';
+  statusEl.style.border = '1px solid rgba(245,158,11,.25)';
+  statusEl.style.color = '#fbbf24';
+  statusEl.textContent = '⏳ Sending 3 demo emails — check your inbox in a moment...';
+  try {
+    const res = await fetch('/api/demo/email-demo', { method:'POST', headers:{'Content-Type':'application/json','x-demo-key':DEMO_KEY}, body:JSON.stringify({ email }) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed');
+    statusEl.style.background = 'rgba(96,165,250,.08)';
+    statusEl.style.border = '1px solid rgba(96,165,250,.25)';
+    statusEl.style.color = '#60a5fa';
+    statusEl.textContent = `✅ 3 demo emails queued to ${data.to} — check your inbox (and spam, just in case)!`;
+  } catch(e) {
+    statusEl.style.background = 'rgba(239,68,68,.1)';
+    statusEl.style.border = '1px solid rgba(239,68,68,.3)';
+    statusEl.style.color = '#f87171';
+    statusEl.textContent = `❌ ${e.message}`;
+  }
 }
 
 async function waSendDemo(type) {
