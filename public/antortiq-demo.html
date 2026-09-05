@@ -2180,35 +2180,14 @@ function fmtCur(n) { if(n==null) return '₹0'; return '₹'+Math.round(n).toLoc
 function fmtDate(s) { if(!s) return '—'; const d=new Date(s); return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'}); }
 
 const ORD_CAMPS = [
-  { type:'REELS', name:'REDTEE',    budget:2500  },
-  { type:'REELS', name:'HOODIE24',  budget:3000  },
-  { type:'REELS', name:'BLACKFIT',  budget:1800  },
-  { type:'CATALOG',name:'SWS',      budget:1500  },
-  { type:'CATALOG',name:'CARGO25',  budget:2200  },
-  { type:'CATALOG',name:'OVERSIZED',budget:1200  },
-  { type:'SWS',   name:'MESHRED',   budget:2000  },
-  { type:'SWS',   name:'ACIDWASH',  budget:1600  },
-  { type:'STORY', name:'DROPTEE',   budget:900   },
-  { type:'STORY', name:'SUMMERFIT', budget:1100  },
-  { type:'REELS', name:'JOGGER23',  budget:3500  },
-  { type:'COLLAB',name:'DRIP×ANT',  budget:5000  },
-  { type:'SEARCH',name:'HOODIE+',   budget:800   },
-  { type:'REELS', name:'FITS2026',  budget:4200  },
-  { type:'CATALOG',name:'JACKETS',  budget:1900  },
+  'REELS | REDTEE | 2500',
+  'CATALOG | AUGUST 2025 | 1500',
+  'REELS | BLACKFIT | 3000',
+  'NEW SALES | HOODIE DROP | 2000',
 ];
-const CAMP_COLORS = {
-  REELS:'#f59e0b', CATALOG:'#6366f1', SWS:'#10b981',
-  STORY:'#ec4899', COLLAB:'#8b5cf6', SEARCH:'#60a5fa',
-};
 function ordCamp(o) {
   const seed = parseInt((o.shopifyId||'').toString().replace(/\D/g,'').slice(-6)) || 1;
-  const c = ORD_CAMPS[seed % ORD_CAMPS.length];
-  const col = CAMP_COLORS[c.type] || '#7179a0';
-  return `<span style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;white-space:nowrap">
-    <span style="background:${col}18;color:${col};border:1px solid ${col}40;border-radius:4px;padding:1px 5px;letter-spacing:.3px">${c.type}</span>
-    <span style="color:var(--text)">${c.name}</span>
-    <span style="color:var(--text-muted)">₹${c.budget.toLocaleString('en-IN')}</span>
-  </span>`;
+  return `<span style="font-size:11px;color:var(--text-muted)">${ORD_CAMPS[seed % ORD_CAMPS.length]}</span>`;
 }
 
 async function apiFetch(path) {
