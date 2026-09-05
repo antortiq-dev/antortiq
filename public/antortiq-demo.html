@@ -4912,6 +4912,7 @@ function renderCsList() {
       <div>
         <div class="cs-name">${c.name}</div>
         <div class="cs-phone">+91 ${c.phone.slice(0,5)} ${c.phone.slice(5)}</div>
+        ${c.orders.length ? `<div style="display:inline-flex;align-items:center;gap:4px;margin-top:3px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:99px;padding:2px 7px"><span style="font-size:9px;color:#34d399">✅ Saved as</span><span style="font-size:9px;font-weight:800;color:#34d399">${c.name.split(' ')[0]} ${c.orders[0]}</span></div>` : ''}
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:4px">
         ${c.orders.length ? c.orders.map(o=>`<span class="cs-order-tag">${o}</span>`).join('') : `<span style="font-size:10px;color:var(--text-muted)">—</span>`}
