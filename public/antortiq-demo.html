@@ -654,7 +654,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 </div>
 
 <!-- MOBILE BOTTOM NAV -->
-<div id="mob-nav">
+<div id="mob-nav" style="display:none">
   <button class="mob-nav-item active" data-view="dashboard" onclick="mobNav(this)"><span class="mob-nav-ico">◈</span>Dashboard</button>
   <button class="mob-nav-item" data-view="orders" onclick="mobNav(this)"><span class="mob-nav-ico">📦</span>Orders</button>
   <button class="mob-nav-item" data-view="returns" onclick="mobNav(this)"><span class="mob-nav-ico">↩</span>Returns</button>
@@ -1219,7 +1219,10 @@ async function doLogin() {
     if (r.status === 401) { document.getElementById('lerr').textContent = '✕ Wrong code — hint: it\'s just "1"'; return; }
     DEMO_KEY = key;
     document.getElementById('login-screen').style.display = 'none';
-    if (window.innerWidth < 900) { document.getElementById('mob-popup').classList.add('show'); }
+    if (window.innerWidth < 900) {
+      document.getElementById('mob-nav').style.display = 'flex';
+      document.getElementById('mob-popup').classList.add('show');
+    }
     document.getElementById('app').style.display = 'block';
     buildPeriodDD();
     buildStageTabs();
