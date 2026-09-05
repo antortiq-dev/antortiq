@@ -306,9 +306,11 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 #mob-sidebar-panel.open{left:0}
 
 @media(max-width:900px){
+  /* Prevent ALL horizontal overflow */
+  body,#app,.app-shell,.content,.page{overflow-x:hidden;max-width:100vw}
   .big-grid{grid-template-columns:1fr}
   .sidebar{display:none}
-  .page{padding:12px 10px 80px}
+  .page{padding:12px 10px 80px;overflow-x:hidden}
   .stats-grid{grid-template-columns:repeat(2,1fr)!important}
   #mob-nav{display:flex}
   .topbar{padding:0 14px}
@@ -326,10 +328,22 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
   .pl-big-num{font-size:28px}
   /* Waterfall scroll */
   .wf-wrap{padding:14px 0 36px}
-  /* Stats grid 2 col on small screens */
-  .stats-grid{grid-template-columns:repeat(2,1fr)!important}
   /* Topbar right — hide some items */
   .tb-right .pulse,.tb-right>span:first-of-type{display:none}
+  /* Card inner grids must not overflow */
+  .card,.dash-section{overflow:hidden}
+  /* Revenue chart — never wider than container */
+  #rev-canvas{max-width:100%}
+  /* Announcement bar no overflow */
+  .ann-bar{overflow:hidden}
+  /* Any inline grid inside dynamically rendered cards */
+  #big-grid *{box-sizing:border-box}
+  /* Collapse inner 3-col mini-box grids */
+  #big-grid [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr 1fr!important}
+  /* Stage label min-width fix */
+  #big-grid [style*="min-width:90px"]{min-width:60px!important;font-size:9px!important}
+  /* Pie/donut chart containers */
+  .pay-grid,.dq-grid,.meta-card{overflow:hidden}
 }
 
 /* ── VIEWS ── */
