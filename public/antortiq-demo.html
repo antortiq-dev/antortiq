@@ -4241,20 +4241,64 @@ async function renderOrderDrawer(order) {
     <div class="od-block">
       <div class="od-block-hdr">🚚 Create Shipment
         <div style="display:flex;gap:6px">
-          <button onclick="odSetMode('express',this)" id="od-mode-express" style="font-size:9px;font-weight:700;padding:3px 9px;border-radius:6px;border:1px solid #6366f1;background:#6366f130;color:#a5b4fc;font-family:var(--font);cursor:pointer">⚡ Express</button>
-          <button onclick="odSetMode('surface',this)" id="od-mode-surface" style="font-size:9px;font-weight:700;padding:3px 9px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);cursor:pointer">📦 Surface</button>
+          <button onclick="odSetMode('express')" id="od-mode-express" style="font-size:9px;font-weight:700;padding:4px 11px;border-radius:6px;border:1px solid #6366f1;background:#6366f130;color:#a5b4fc;font-family:var(--font);cursor:pointer">⚡ Express</button>
+          <button onclick="odSetMode('surface')" id="od-mode-surface" style="font-size:9px;font-weight:700;padding:4px 11px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);cursor:pointer">📦 Surface</button>
         </div>
       </div>
-      <div class="od-block-body">
-        <div style="margin-bottom:10px">
-          <div style="font-size:10px;font-weight:700;color:var(--text-muted);margin-bottom:5px">PICKUP LOCATION</div>
+      <div class="od-block-body" style="display:flex;flex-direction:column;gap:12px">
+
+        <!-- Step 1: Pickup location -->
+        <div>
+          <div style="font-size:9px;font-weight:800;color:var(--text-muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">① Pickup Location</div>
           <select class="od-stage-select" onchange="odSelected.pickup=this.value">${PICKUP_LOCATIONS.map(l=>`<option>${l}</option>`).join('')}</select>
         </div>
-        <div style="margin-bottom:10px">
-          <div style="font-size:10px;font-weight:700;color:var(--text-muted);margin-bottom:5px">SELECT COURIER — LIVE RATES</div>
+
+        <!-- Step 2: Box preset -->
+        <div>
+          <div style="font-size:9px;font-weight:800;color:var(--text-muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">② Box Dimensions</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px" id="od-box-presets">
+            ${SP_BOXES.map((b,i)=>`<div onclick="odSelectBox(${i})" id="od-box-${i}" style="border:1px solid ${i===0?'#6366f1':'var(--border)'};background:${i===0?'rgba(99,102,241,.08)':'var(--bg)'};border-radius:7px;padding:7px 8px;cursor:pointer;transition:all .12s">
+              <div style="font-size:13px;margin-bottom:2px">${b.icon}</div>
+              <div style="font-size:10px;font-weight:700;color:var(--text)">${b.name}</div>
+              <div style="font-size:9px;color:var(--text-muted)">${b.l}×${b.w}×${b.h}cm</div>
+              <div style="font-size:9px;color:#a5b4fc;font-weight:700">≤${b.wt}kg</div>
+            </div>`).join('')}
+          </div>
+          <div id="od-box-detail" style="margin-top:7px;font-size:10px;color:var(--text-muted);padding:6px 10px;background:var(--bg);border:1px solid var(--border);border-radius:7px">${SP_BOXES[0].l}×${SP_BOXES[0].w}×${SP_BOXES[0].h} cm &nbsp;·&nbsp; Max ${SP_BOXES[0].wt} kg</div>
+        </div>
+
+        <!-- Step 3: Courier rates -->
+        <div>
+          <div style="font-size:9px;font-weight:800;color:var(--text-muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">③ Select Courier — Live Rates</div>
           <div style="display:flex;flex-direction:column;gap:7px" id="od-rates">${renderRates()}</div>
         </div>
-        <button class="od-action-btn primary" onclick="odCreateShipment('${order.orderName||order.shopifyId}')">🚀 Create Shipment & Assign AWB</button>
+
+        <!-- Create button -->
+        <button class="od-action-btn primary" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);font-size:13px;padding:11px" onclick="odCreateShipment('${order.orderName||order.shopifyId}')">🚀 Create Shipment & Generate AWB</button>
+        <div style="font-size:9px;color:var(--text-muted);text-align:center;margin-top:-6px">Tracking link will be sent to customer via Email & WhatsApp automatically</div>
+      </div>
+    </div>` : order.stage==='confirmed' ? `
+    <div class="od-block" style="border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.03)">
+      <div class="od-block-hdr" style="color:#34d399">✅ Shipment Ready</div>
+      <div class="od-block-body">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px">
+            <span style="font-size:18px">✅</span>
+            <div><div style="font-size:12px;font-weight:800;color:#34d399">Order Confirmed</div><div style="font-size:10px;color:var(--text-muted)">Customer verified · Ready for dispatch</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:8px">
+            <span style="font-size:18px">🚚</span>
+            <div><div style="font-size:12px;font-weight:800;color:#60a5fa">Shipment Generated — Delhivery</div><div style="font-size:10px;color:var(--text-muted)">AWB: DL${Math.abs(parseInt((order.shopifyId||'1234567890').toString().replace(/\D/g,'').slice(-9)))+1000000000} &nbsp;·&nbsp; ${odSelected.mode==='surface'?'Surface':'Express'}</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px">
+            <span style="font-size:18px">📅</span>
+            <div><div style="font-size:12px;font-weight:800;color:#fbbf24">Pickup Scheduled — Tomorrow</div><div style="font-size:10px;color:var(--text-muted)">Delhivery agent arriving between 10 AM – 2 PM</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:8px">
+            <span style="font-size:18px">📤</span>
+            <div><div style="font-size:12px;font-weight:800;color:#c4b5fd">Tracking Shared with Customer</div><div style="font-size:10px;color:var(--text-muted)">Sent via ✉️ Email &amp; 💬 WhatsApp · Just now</div></div>
+          </div>
+        </div>
       </div>
     </div>` : order.awb ? `
     <div class="od-block">
@@ -4458,11 +4502,26 @@ function odSetMode(mode) {
   const exBtn = document.getElementById('od-mode-express');
   const sfBtn = document.getElementById('od-mode-surface');
   if (!exBtn) return;
-  const activeStyle  = 'font-size:9px;font-weight:700;padding:3px 9px;border-radius:6px;border:1px solid #6366f1;background:#6366f130;color:#a5b4fc;font-family:var(--font);cursor:pointer';
-  const inactiveStyle= 'font-size:9px;font-weight:700;padding:3px 9px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);cursor:pointer';
+  const activeStyle  = 'font-size:9px;font-weight:700;padding:4px 11px;border-radius:6px;border:1px solid #6366f1;background:#6366f130;color:#a5b4fc;font-family:var(--font);cursor:pointer';
+  const inactiveStyle= 'font-size:9px;font-weight:700;padding:4px 11px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:var(--font);cursor:pointer';
   exBtn.style.cssText = mode==='express' ? activeStyle : inactiveStyle;
   sfBtn.style.cssText = mode==='surface' ? activeStyle : inactiveStyle;
-  document.getElementById('od-rates').innerHTML = renderRates();
+  const rates = document.getElementById('od-rates');
+  if (rates) rates.innerHTML = renderRates();
+}
+
+let odSelectedBox = 0;
+function odSelectBox(idx) {
+  odSelectedBox = idx;
+  SP_BOXES.forEach((_, i) => {
+    const el = document.getElementById(`od-box-${i}`);
+    if (!el) return;
+    el.style.border = i === idx ? '1px solid #6366f1' : '1px solid var(--border)';
+    el.style.background = i === idx ? 'rgba(99,102,241,.08)' : 'var(--bg)';
+  });
+  const b = SP_BOXES[idx];
+  const detail = document.getElementById('od-box-detail');
+  if (detail) detail.textContent = `${b.l}×${b.w}×${b.h} cm · Max ${b.wt} kg`;
 }
 
 // ── SETTINGS ─────────────────────────────────────────────────────────────────
