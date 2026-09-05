@@ -228,4 +228,85 @@ router.get('/pixel/recent', auth, async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// ── POST /api/demo/wa-demo — send demo WA messages to a phone number ──────────
+router.post('/wa-demo', auth, async (req, res) => {
+  try {
+    const { phone, type } = req.body;
+    if (!phone) return res.status(400).json({ error: 'phone required' });
+
+    const num = phone.toString().replace(/\D/g, '');
+    if (num.length < 10) return res.status(400).json({ error: 'invalid phone' });
+    const fullNum = num.length === 10 ? `91${num}` : num;
+    const jid = `${fullNum}@s.whatsapp.net`;
+
+    let botState;
+    try { botState = require('../wa-bot/index').botState; } catch { botState = null; }
+
+    if (!botState || botState.status !== 'connected' || !botState.sock) {
+      return res.status(503).json({ error: 'WhatsApp bot not connected' });
+    }
+
+    const sock = botState.sock;
+    const { getDemoMessages, TRACK_SHIPPED, TRACK_TRANSIT, TRACK_OFD, TRACK_DELIVERED, RETURN_EXCHANGE } = require('../wa-bot/demos');
+
+    const F = '```';
+    const ABANDON_CART = `${F}
+▪ A N T O R T I Q ▪
+CART LEFT BEHIND 🛒
+────────────────
+Hey! You left something
+great in your cart.
+
+ITEM   Mesh Oversized Tee
+       Red · Size M
+
+PRICE  ₹1,299  →  ₹999
+       USE CODE  COMEBACK10
+
+────────────────
+Complete your order 👇
+https://antortiq.onrender.com
+────────────────
+Offer expires in 24 hrs ⏳
+${F}`;
+
+    let messages = [];
+    if (type === 'abandon') {
+      messages = [
+        { image: { url: 'https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg' }, caption: '' },
+        { text: ABANDON_CART },
+      ];
+    } else if (type === 'tracking') {
+      messages = [
+        { text: TRACK_SHIPPED },
+        { text: TRACK_TRANSIT },
+        { text: TRACK_OFD },
+        { text: TRACK_DELIVERED },
+      ];
+    } else if (type === 'return') {
+      messages = [{ text: RETURN_EXCHANGE }];
+    } else {
+      // full demo: abandon + tracking + return
+      messages = [
+        { image: { url: 'https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg' }, caption: '' },
+        { text: ABANDON_CART },
+        { text: TRACK_SHIPPED },
+        { text: TRACK_OFD },
+        { text: TRACK_DELIVERED },
+        { text: RETURN_EXCHANGE },
+      ];
+    }
+
+    // send sequentially with small delay so they arrive in order
+    (async () => {
+      for (const msg of messages) {
+        await sock.sendMessage(jid, msg);
+        await new Promise(r => setTimeout(r, 1200));
+      }
+    })().catch(e => console.error('[wa-demo] send error:', e.message));
+
+    res.json({ ok: true, sent: messages.length, to: `+${fullNum}` });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 module.exports = router;
