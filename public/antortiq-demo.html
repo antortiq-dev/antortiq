@@ -3919,7 +3919,10 @@ function acPreview() {
   const coupon = document.getElementById('ac-coupon-input')?.value || 'COMEBACK15';
   const template = document.getElementById('ac-template-input')?.value || '';
   const msg = template.replace('{{name}}',name).replace('{{product}}',product).replace('{{coupon}}',coupon).replace('{{cart_link}}','https://yourbrand.com/cart/recover');
-  document.getElementById('ac-preview-out').innerHTML = `<div class="ac-preview-bubble">${msg.replace(/\n/g,'<br>').replace(/\*(.*?)\*/g,'<strong>$1</strong>')}</div>`;
+  document.getElementById('ac-preview-out').innerHTML = `<div class="ac-preview-bubble">
+    <img src="https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg" style="width:100%;border-radius:8px;margin-bottom:8px;display:block;max-height:160px;object-fit:cover">
+    ${msg.replace(/\n/g,'<br>').replace(/\*(.*?)\*/g,'<strong>$1</strong>')}
+  </div>`;
 }
 
 function acSendMsg(idx) {
