@@ -4520,7 +4520,7 @@ async function waSendDemo(type) {
   statusEl.style.color = '#fbbf24';
   statusEl.textContent = '⏳ Sending messages — should arrive on WhatsApp in a few seconds...';
   try {
-    const res = await apiFetch('/api/demo/wa-demo', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ phone, type }) });
+    const res = await fetch('/api/demo/wa-demo', { method:'POST', headers:{'Content-Type':'application/json','x-demo-key':DEMO_KEY}, body:JSON.stringify({ phone, type }) });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Failed');
     statusEl.style.background = 'rgba(37,211,102,.08)';
