@@ -512,6 +512,73 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
   .od-right{border-top:1px solid var(--border)}
 }
 
+/* ── SHIPPING PARTNERS PAGE ── */
+.sp-section{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+.sp-section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:8px;flex-wrap:wrap}
+.sp-section-title{font-size:13px;font-weight:800;color:var(--text)}
+.sp-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.sp-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+/* Partner cards */
+.sp-partner{border:1px solid var(--border);border-radius:10px;padding:16px;background:var(--bg);transition:border-color .15s;position:relative;overflow:hidden}
+.sp-partner.connected{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.03)}
+.sp-partner-logo{font-size:26px;margin-bottom:8px}
+.sp-partner-name{font-size:14px;font-weight:800;color:var(--text);margin-bottom:2px}
+.sp-partner-desc{font-size:10px;color:var(--text-muted);line-height:1.5;margin-bottom:12px}
+.sp-partner-stats{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.sp-partner-stat{display:flex;flex-direction:column;gap:1px}
+.sp-partner-stat-val{font-size:13px;font-weight:800;color:var(--text)}
+.sp-partner-stat-lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted)}
+.sp-connect-btn{width:100%;padding:8px;border-radius:8px;border:none;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .15s}
+.sp-connect-btn.connected{background:rgba(16,185,129,.12);color:#34d399;border:1px solid rgba(16,185,129,.3)}
+.sp-connect-btn.disconnected{background:#6366f1;color:#fff}
+.sp-status-pill{position:absolute;top:12px;right:12px;font-size:8px;font-weight:800;padding:2px 8px;border-radius:99px;letter-spacing:.4px}
+.sp-status-pill.on{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3)}
+.sp-status-pill.off{background:var(--bg-card2);color:var(--text-muted);border:1px solid var(--border)}
+/* API key row */
+.sp-api-row{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.sp-api-input{flex:1;background:var(--bg-card2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;font-size:11px;color:var(--text);font-family:monospace;outline:none}
+/* Pickup addresses */
+.sp-addr-card{border:1px solid var(--border);border-radius:8px;padding:12px 14px;background:var(--bg);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px}
+.sp-addr-card.default-addr{border-color:rgba(99,102,241,.4);background:rgba(99,102,241,.04)}
+.sp-addr-badge{font-size:8px;font-weight:800;padding:2px 7px;border-radius:4px;background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.3);white-space:nowrap}
+.sp-addr-info{flex:1;min-width:0}
+.sp-addr-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+.sp-addr-text{font-size:11px;color:var(--text-muted);line-height:1.5}
+/* Box presets */
+.sp-box-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.sp-box-card{border:1px solid var(--border);border-radius:8px;padding:12px 14px;background:var(--bg);cursor:pointer;transition:border-color .15s;position:relative}
+.sp-box-card:hover,.sp-box-card.selected{border-color:#6366f1}
+.sp-box-card.selected{background:rgba(99,102,241,.06)}
+.sp-box-icon{font-size:22px;margin-bottom:6px}
+.sp-box-name{font-size:12px;font-weight:800;color:var(--text);margin-bottom:2px}
+.sp-box-dims{font-size:10px;color:var(--text-muted)}
+.sp-box-weight{font-size:10px;font-weight:700;color:#a5b4fc;margin-top:3px}
+.sp-box-check{position:absolute;top:8px;right:8px;font-size:12px;display:none}
+.sp-box-card.selected .sp-box-check{display:block}
+/* Cron logs */
+.sp-cron-hdr{display:grid;grid-template-columns:90px 1fr 100px 80px 80px;gap:8px;padding:7px 12px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);border-bottom:1px solid var(--border)}
+.sp-cron-row{display:grid;grid-template-columns:90px 1fr 100px 80px 80px;gap:8px;padding:9px 12px;font-size:11px;border-bottom:1px solid var(--border);align-items:center;transition:background .1s}
+.sp-cron-row:hover{background:var(--bg-hover)}
+.sp-cron-row:last-child{border-bottom:none}
+.sp-cron-stage{font-size:9px;font-weight:800;padding:2px 8px;border-radius:4px;display:inline-block;white-space:nowrap}
+.sp-cron-ok{font-size:9px;font-weight:700;color:#34d399;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:4px;padding:2px 7px}
+.sp-cron-err{font-size:9px;font-weight:700;color:#f87171;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:4px;padding:2px 7px}
+.sp-cron-filters{display:flex;gap:6px;flex-wrap:wrap}
+.sp-cron-filter{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-size:10px;font-weight:700;cursor:pointer;font-family:var(--font)}
+.sp-cron-filter.active{border-color:#6366f1;background:rgba(99,102,241,.12);color:#a5b4fc}
+/* Add form inputs */
+.sp-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 11px;color:var(--text);font-family:var(--font);font-size:12px;box-sizing:border-box;outline:none;transition:border-color .12s}
+.sp-input:focus{border-color:#6366f1}
+.sp-field-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin-bottom:4px}
+.sp-btn{padding:7px 16px;border-radius:8px;border:none;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font)}
+.sp-btn-primary{background:#6366f1;color:#fff}
+.sp-btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text-muted)}
+/* Next-run indicator */
+.sp-next-run{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text-muted)}
+.sp-next-run-dot{width:6px;height:6px;border-radius:50%;background:#10b981;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+@media(max-width:900px){.sp-2col,.sp-3col{grid-template-columns:1fr}.sp-cron-hdr,.sp-cron-row{grid-template-columns:80px 1fr 70px}.sp-cron-hdr span:nth-child(4),.sp-cron-row span:nth-child(4),.sp-cron-hdr span:nth-child(5),.sp-cron-row span:nth-child(5){display:none}}
+
 /* ── STAFF ACCOUNTS PAGE ── */
 .sa-kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
 .sa-kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px 15px;position:relative;overflow:hidden}
@@ -886,7 +953,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 
       <div class="ns">Settings</div>
       <button class="ni" data-view="staff" onclick="switchView(this)"><span class="ico">👤</span> Staff Accounts</button>
-      <button class="ni locked"><span class="ico">🚚</span> Shipping Partners <span class="ni-soon">Soon</span></button>
+      <button class="ni" data-view="shipping" onclick="switchView(this)"><span class="ico">🚚</span> Shipping Partners</button>
       <button class="ni locked"><span class="ico">⚙️</span> Brand Settings <span class="ni-soon">Soon</span></button>
     </nav>
     <div class="sb-footer">Antortiq · Demo v1.0<br>Full access after onboarding</div>
@@ -1378,6 +1445,103 @@ Complete your order here 👇
         </div>
       </div><!-- /view-abandon -->
 
+      <!-- ── SHIPPING PARTNERS ── -->
+      <div id="view-shipping" class="view">
+        <div class="page">
+
+          <!-- Partners -->
+          <div class="sp-section">
+            <div class="sp-section-hdr">
+              <div>
+                <div class="sp-section-title">🔗 Courier Integrations</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Connect your courier accounts to create shipments directly from the order panel</div>
+              </div>
+              <div class="sp-next-run"><div class="sp-next-run-dot"></div>Cron syncing · Next run in <span id="sp-countdown" style="font-weight:700;color:var(--text);margin-left:3px">4m 12s</span></div>
+            </div>
+            <div class="sp-3col" id="sp-partners"></div>
+          </div>
+
+          <div class="sp-2col">
+            <!-- Pickup Addresses -->
+            <div>
+              <div class="sp-section" style="margin-bottom:0">
+                <div class="sp-section-hdr">
+                  <div class="sp-section-title">📍 Pickup Addresses</div>
+                  <button class="sp-btn sp-btn-primary" onclick="spToggleAddrForm()">+ Add</button>
+                </div>
+                <div id="sp-addr-form" style="display:none;margin-bottom:14px;padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:8px">
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+                    <div><div class="sp-field-lbl">Location Name</div><input class="sp-input" id="sp-addr-name-in" placeholder="e.g. Mumbai Warehouse"></div>
+                    <div><div class="sp-field-lbl">Contact Person</div><input class="sp-input" id="sp-addr-contact" placeholder="Name"></div>
+                  </div>
+                  <div style="margin-bottom:8px"><div class="sp-field-lbl">Full Address</div><input class="sp-input" id="sp-addr-text-in" placeholder="Building, Street, Area, City, PIN"></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+                    <div><div class="sp-field-lbl">Phone</div><input class="sp-input" id="sp-addr-phone" placeholder="+91 98765 43210"></div>
+                    <div><div class="sp-field-lbl">PIN Code</div><input class="sp-input" id="sp-addr-pin" placeholder="400001"></div>
+                  </div>
+                  <div style="display:flex;gap:8px">
+                    <button class="sp-btn sp-btn-primary" onclick="spSaveAddr()">Save Address</button>
+                    <button class="sp-btn sp-btn-ghost" onclick="spToggleAddrForm()">Cancel</button>
+                  </div>
+                </div>
+                <div id="sp-addr-list"></div>
+              </div>
+            </div>
+
+            <!-- Box Presets -->
+            <div>
+              <div class="sp-section" style="margin-bottom:0">
+                <div class="sp-section-hdr">
+                  <div class="sp-section-title">📦 Box Dimension Presets</div>
+                  <button class="sp-btn sp-btn-primary" onclick="spAddBox()">+ Add</button>
+                </div>
+                <div class="sp-box-grid" id="sp-box-grid"></div>
+                <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+                  <div style="font-size:10px;font-weight:700;color:var(--text-muted);margin-bottom:8px">SELECTED PRESET DETAILS</div>
+                  <div id="sp-box-selected" style="font-size:12px;color:var(--text-muted)">Click a preset to see details</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cron Job Tracker -->
+          <div class="sp-section">
+            <div class="sp-section-hdr">
+              <div>
+                <div class="sp-section-title">⚙️ Automated Tracking Cron</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Runs every 5 minutes — polls courier APIs and auto-moves orders through stages</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <div class="sp-cron-filters" id="sp-cron-filters">
+                  <button class="sp-cron-filter active" data-cf="all" onclick="spCronFilter(this)">All</button>
+                  <button class="sp-cron-filter" data-cf="transit" onclick="spCronFilter(this)">Transit</button>
+                  <button class="sp-cron-filter" data-cf="ofd" onclick="spCronFilter(this)">OFD</button>
+                  <button class="sp-cron-filter" data-cf="delivered" onclick="spCronFilter(this)">Delivered</button>
+                  <button class="sp-cron-filter" data-cf="ndr" onclick="spCronFilter(this)">NDR</button>
+                  <button class="sp-cron-filter" data-cf="rto" onclick="spCronFilter(this)">RTO</button>
+                  <button class="sp-cron-filter" data-cf="error" onclick="spCronFilter(this)">⚠ Errors</button>
+                </div>
+              </div>
+            </div>
+            <!-- Cron stats strip -->
+            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:8px">
+              <div><div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)">Last Run</div><div style="font-size:12px;font-weight:800;color:var(--text)">2m ago</div></div>
+              <div><div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)">AWBs Checked</div><div style="font-size:12px;font-weight:800;color:var(--text)">247</div></div>
+              <div><div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)">Stage Updates</div><div style="font-size:12px;font-weight:800;color:#34d399">38</div></div>
+              <div><div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)">NDR Flagged</div><div style="font-size:12px;font-weight:800;color:#f87171">4</div></div>
+              <div><div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)">RTO Initiated</div><div style="font-size:12px;font-weight:800;color:#f59e0b">2</div></div>
+              <div><div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)">WA Alerts Sent</div><div style="font-size:12px;font-weight:800;color:#a5b4fc">12</div></div>
+              <div><div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)">API Errors</div><div style="font-size:12px;font-weight:800;color:#f87171">2</div></div>
+            </div>
+            <div style="overflow-x:auto">
+              <div class="sp-cron-hdr"><span>Time</span><span>Order / AWB</span><span>Stage Change</span><span>Courier</span><span>Status</span></div>
+              <div id="sp-cron-body"></div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /view-shipping -->
+
       <!-- ── STAFF ACCOUNTS ── -->
       <div id="view-staff" class="view">
         <div class="page">
@@ -1687,7 +1851,7 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS', staff:'STAFF ACCOUNTS' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS', staff:'STAFF ACCOUNTS', shipping:'SHIPPING PARTNERS' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders')  loadOrders(currentPage);
   if(view==='pixel')   initPixel();
@@ -1696,7 +1860,8 @@ function switchView(btn) {
   if(view==='pl')      initPL();
   if(view==='abandon') initAbandon();
   if(view==='email')   initEmail();
-  if(view==='staff')   initStaff();
+  if(view==='staff')    initStaff();
+  if(view==='shipping') initShipping();
   // sync mobile bottom nav
   document.querySelectorAll('#mob-nav .mob-nav-item').forEach(b=>{
     b.classList.toggle('active', b.dataset.view===view);
@@ -4033,6 +4198,254 @@ function odSetMode(mode) {
   exBtn.style.cssText = mode==='express' ? activeStyle : inactiveStyle;
   sfBtn.style.cssText = mode==='surface' ? activeStyle : inactiveStyle;
   document.getElementById('od-rates').innerHTML = renderRates();
+}
+
+// ── SHIPPING PARTNERS ────────────────────────────────────────────────────────
+let shippingInitialized = false;
+let spCronFilterActive = 'all';
+let spSelectedBox = 0;
+
+const SP_PARTNERS = [
+  {
+    id:'delhivery', logo:'🚀', name:'Delhivery', connected:true,
+    desc:'India\'s largest logistics network. Surface, Express, B2B and reverse pickup. Best NDR management.',
+    apiKey:'DL_LIVE_••••••••••••••••••7f3a',
+    stats:{ deliveryRate:'94.2%', avgDays:'2.8d', coverage:'19,000+ PIN codes', activeCOD:'₹12.4k pending' },
+    rates:{ express:65, surface:45, rto:48 },
+  },
+  {
+    id:'shiprocket', logo:'🛸', name:'Shiprocket', connected:true,
+    desc:'Multi-courier platform. Smart courier recommendation engine. Auto-assign best partner per PIN code.',
+    apiKey:'SR_LIVE_••••••••••••••••••2c9b',
+    stats:{ deliveryRate:'91.8%', avgDays:'3.4d', coverage:'26,000+ PIN codes', activeCOD:'₹8.2k pending' },
+    rates:{ express:72, surface:52, rto:55 },
+  },
+  {
+    id:'ecom', logo:'📦', name:'Ecom Express', connected:false,
+    desc:'Strong in Tier 2/3 cities. Low RTO rates. Good for COD-heavy brands targeting non-metro buyers.',
+    apiKey:'',
+    stats:{ deliveryRate:'89.4%', avgDays:'3.9d', coverage:'27,000+ PIN codes', activeCOD:'—' },
+    rates:{ express:68, surface:48, rto:50 },
+  },
+];
+
+let SP_ADDRESSES = [
+  { id:1, name:'Mumbai HQ', contact:'Harsh Vijay', text:'Plot 42, MIDC Industrial Area, Andheri East, Mumbai', phone:'+91 98765 43210', pin:'400093', isDefault:true },
+  { id:2, name:'Delhi Warehouse', contact:'Rohit Patel', text:'Sector 63, Phase 2, Noida Industrial Zone, Delhi NCR', phone:'+91 87654 32109', pin:'201301', isDefault:false },
+];
+
+const SP_BOXES = [
+  { id:0, name:'Tee / Small',  icon:'👕', l:28, w:22, h:4,  wt:0.3, desc:'T-shirts, tanks, small accessories' },
+  { id:1, name:'Hoodie / M',   icon:'🧥', l:35, w:28, h:8,  wt:0.7, desc:'Hoodies, sweatshirts, jackets (M)' },
+  { id:2, name:'Jacket / L',   icon:'🧣', l:42, w:35, h:12, wt:1.2, desc:'Jackets, coats, bulky winter wear' },
+  { id:3, name:'Shorts / Pants',icon:'👖', l:32, w:25, h:5,  wt:0.5, desc:'Cargo pants, shorts, trousers' },
+  { id:4, name:'Multi-item',   icon:'🎁', l:45, w:38, h:15, wt:2.0, desc:'2-3 item combo, gift packaging' },
+];
+
+const SP_STAGE_COLORS = {
+  pickup:    ['#f59e0b','rgba(245,158,11,.12)'],
+  transit:   ['#60a5fa','rgba(96,165,250,.12)'],
+  ofd:       ['#a78bfa','rgba(167,139,250,.12)'],
+  delivered: ['#10b981','rgba(16,185,129,.12)'],
+  ndr:       ['#f87171','rgba(239,68,68,.12)'],
+  rto:       ['#ef4444','rgba(239,68,68,.15)'],
+  hold:      ['#94a3b8','rgba(148,163,184,.12)'],
+};
+
+const SP_CRON_LOGS = [
+  { time:'2m ago',  order:'#2339', awb:'DL8012003045', from:'transit',  to:'ofd',       courier:'Delhivery',   ok:true,  note:'OFD scan: Andheri hub' },
+  { time:'2m ago',  order:'#2337', awb:'SR7712039011', from:'ofd',      to:'delivered', courier:'Shiprocket',  ok:true,  note:'Delivered · Signed by customer' },
+  { time:'2m ago',  order:'#2335', awb:'DL9001234568', from:'ofd',      to:'ndr',       courier:'Delhivery',   ok:true,  note:'NDR: Customer not available · WA sent' },
+  { time:'2m ago',  order:'#2331', awb:'SR6678901235', from:'pickup',   to:'transit',   courier:'Shiprocket',  ok:true,  note:'First scan: Mumbai hub' },
+  { time:'7m ago',  order:'#2328', awb:'DL7789012346', from:'transit',  to:'ofd',       courier:'Delhivery',   ok:true,  note:'OFD scan: Pune delivery center' },
+  { time:'7m ago',  order:'#2326', awb:'SR5567890124', from:'ofd',      to:'ndr',       courier:'Shiprocket',  ok:true,  note:'NDR: Wrong address · Escalated to support' },
+  { time:'7m ago',  order:'#2322', awb:'DL4456789013', from:'ndr',      to:'rto',       courier:'Delhivery',   ok:true,  note:'3 NDR attempts exceeded · RTO initiated' },
+  { time:'12m ago', order:'#2318', awb:'SR3345678902', from:'transit',  to:'transit',   courier:'Shiprocket',  ok:false, note:'API timeout · Retry scheduled' },
+  { time:'12m ago', order:'#2315', awb:'DL2234567891', from:'pickup',   to:'transit',   courier:'Delhivery',   ok:true,  note:'In-scan: Delhi hub 3' },
+  { time:'12m ago', order:'#2312', awb:'SR1123456780', from:'ofd',      to:'delivered', courier:'Shiprocket',  ok:true,  note:'Delivered · OTP confirmed' },
+  { time:'17m ago', order:'#2309', awb:'DL0012345679', from:'ready',    to:'pickup',    courier:'Delhivery',   ok:true,  note:'Pickup confirmed · Manifest closed' },
+  { time:'17m ago', order:'#2305', awb:'SR9901234568', from:'transit',  to:'ofd',       courier:'Shiprocket',  ok:true,  note:'OFD scan: Chennai hub' },
+  { time:'17m ago', order:'#2301', awb:'DL8890123457', from:'ndr',      to:'ndr',       courier:'Delhivery',   ok:false, note:'NDR update failed · Invalid AWB response' },
+  { time:'22m ago', order:'#2298', awb:'SR7779012346', from:'ofd',      to:'delivered', courier:'Shiprocket',  ok:true,  note:'Delivered · Left at door (customer consent)' },
+  { time:'22m ago', order:'#2295', awb:'DL6668901235', from:'transit',  to:'transit',   courier:'Delhivery',   ok:true,  note:'In-transit · Bengaluru hub 2' },
+  { time:'27m ago', order:'#2291', awb:'SR5557890124', from:'rto',      to:'rto',       courier:'Shiprocket',  ok:true,  note:'RTO in transit · ETA 2 days to origin' },
+  { time:'27m ago', order:'#2288', awb:'DL4446789013', from:'pickup',   to:'pickup',    courier:'Delhivery',   ok:true,  note:'Pickup pending · Manifest not closed yet' },
+  { time:'32m ago', order:'#2284', awb:'SR3335678902', from:'ofd',      to:'delivered', courier:'Shiprocket',  ok:true,  note:'Delivered · Hyderabad · Rating requested' },
+];
+
+function spRenderPartners() {
+  document.getElementById('sp-partners').innerHTML = SP_PARTNERS.map(p => `
+    <div class="sp-partner ${p.connected?'connected':''}" id="spp-${p.id}">
+      <div class="sp-status-pill ${p.connected?'on':'off'}">${p.connected?'● CONNECTED':'○ NOT CONNECTED'}</div>
+      <div class="sp-partner-logo">${p.logo}</div>
+      <div class="sp-partner-name">${p.name}</div>
+      <div class="sp-partner-desc">${p.desc}</div>
+      <div class="sp-partner-stats">
+        ${Object.entries(p.stats).map(([k,v])=>`<div class="sp-partner-stat"><div class="sp-partner-stat-val">${v}</div><div class="sp-partner-stat-lbl">${k.replace(/([A-Z])/g,' $1').trim()}</div></div>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;padding:8px;background:var(--bg-card2);border-radius:7px">
+        <div style="text-align:center"><div style="font-size:9px;color:var(--text-muted);font-weight:700">Express</div><div style="font-size:13px;font-weight:900;color:var(--text)">₹${p.rates.express}</div></div>
+        <div style="text-align:center;border-left:1px solid var(--border);border-right:1px solid var(--border)"><div style="font-size:9px;color:var(--text-muted);font-weight:700">Surface</div><div style="font-size:13px;font-weight:900;color:var(--text)">₹${p.rates.surface}</div></div>
+        <div style="text-align:center"><div style="font-size:9px;color:var(--text-muted);font-weight:700">RTO</div><div style="font-size:13px;font-weight:900;color:#f87171">₹${p.rates.rto}</div></div>
+      </div>
+      <button class="sp-connect-btn ${p.connected?'connected':'disconnected'}" onclick="spTogglePartner('${p.id}')">${p.connected?'✓ Connected — Click to Disconnect':'Connect '+p.name}</button>
+      ${p.connected?`<div class="sp-api-row"><input class="sp-api-input" value="${p.apiKey}" readonly><button style="padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-size:10px;font-weight:700;cursor:pointer;font-family:var(--font)" onclick="spRegenKey('${p.id}')">Regen</button></div>`:''}
+    </div>`).join('');
+}
+
+function spTogglePartner(id) {
+  const p = SP_PARTNERS.find(x=>x.id===id);
+  if (!p) return;
+  if (p.connected) {
+    if (!confirm(`Disconnect ${p.name}? You won't be able to create new shipments until reconnected.`)) return;
+    p.connected = false;
+  } else {
+    const key = prompt(`Enter your ${p.name} API key:`);
+    if (!key) return;
+    p.connected = true; p.apiKey = key.slice(0,6)+'••••••••••••••••••'+key.slice(-4);
+  }
+  spRenderPartners();
+}
+
+function spRegenKey(id) {
+  alert(`New API key generated for ${id}.\n\nUpdate your Antortiq panel settings with the new key from the courier dashboard.\n\n(Demo mode)`);
+}
+
+function spRenderAddresses() {
+  document.getElementById('sp-addr-list').innerHTML = SP_ADDRESSES.map(a => `
+    <div class="sp-addr-card ${a.isDefault?'default-addr':''}">
+      <span style="font-size:18px">📍</span>
+      <div class="sp-addr-info">
+        <div class="sp-addr-name">${a.name} ${a.isDefault?'<span class="sp-addr-badge">DEFAULT</span>':''}</div>
+        <div class="sp-addr-text">${a.text} — ${a.pin}<br>${a.contact} · ${a.phone}</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-shrink:0">
+        ${!a.isDefault?`<button class="sp-btn sp-btn-ghost" style="font-size:10px;padding:5px 10px" onclick="spSetDefault(${a.id})">Set Default</button>`:''}
+        <button class="sp-btn sp-btn-ghost" style="font-size:10px;padding:5px 10px;color:#f87171;border-color:rgba(239,68,68,.3)" onclick="spDeleteAddr(${a.id})">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+function spToggleAddrForm() {
+  const f = document.getElementById('sp-addr-form');
+  f.style.display = f.style.display==='none' ? 'block' : 'none';
+}
+
+function spSaveAddr() {
+  const name = document.getElementById('sp-addr-name-in').value.trim();
+  const text = document.getElementById('sp-addr-text-in').value.trim();
+  if (!name || !text) { alert('Enter location name and address.'); return; }
+  SP_ADDRESSES.push({
+    id: Date.now(),
+    name, contact: document.getElementById('sp-addr-contact').value.trim()||'—',
+    text, phone: document.getElementById('sp-addr-phone').value.trim()||'—',
+    pin: document.getElementById('sp-addr-pin').value.trim()||'—',
+    isDefault: false,
+  });
+  spToggleAddrForm();
+  spRenderAddresses();
+}
+
+function spSetDefault(id) {
+  SP_ADDRESSES.forEach(a=>a.isDefault=a.id===id);
+  spRenderAddresses();
+}
+
+function spDeleteAddr(id) {
+  SP_ADDRESSES = SP_ADDRESSES.filter(a=>a.id!==id);
+  spRenderAddresses();
+}
+
+function spRenderBoxes() {
+  document.getElementById('sp-box-grid').innerHTML = SP_BOXES.map(b => `
+    <div class="sp-box-card ${b.id===spSelectedBox?'selected':''}" onclick="spSelectBox(${b.id})">
+      <div class="sp-box-check">✓</div>
+      <div class="sp-box-icon">${b.icon}</div>
+      <div class="sp-box-name">${b.name}</div>
+      <div class="sp-box-dims">${b.l}×${b.w}×${b.h} cm</div>
+      <div class="sp-box-weight">≤ ${b.wt} kg</div>
+    </div>`).join('');
+  spShowBoxDetail(spSelectedBox);
+}
+
+function spSelectBox(id) {
+  spSelectedBox = id;
+  spRenderBoxes();
+}
+
+function spShowBoxDetail(id) {
+  const b = SP_BOXES.find(x=>x.id===id);
+  if (!b) return;
+  document.getElementById('sp-box-selected').innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg);border:1px solid rgba(99,102,241,.3);border-radius:8px">
+      <div style="font-size:28px">${b.icon}</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px">${b.name}</div>
+        <div style="font-size:11px;color:var(--text-muted)">${b.desc}</div>
+        <div style="font-size:11px;color:#a5b4fc;margin-top:4px;font-weight:700">${b.l} × ${b.w} × ${b.h} cm &nbsp;·&nbsp; Max weight: ${b.wt} kg</div>
+      </div>
+    </div>`;
+}
+
+function spAddBox() {
+  const name = prompt('Box preset name (e.g. "Oversized Hoodie"):');
+  if (!name) return;
+  const dims = prompt('Dimensions L×W×H in cm (e.g. 40×32×10):');
+  if (!dims) return;
+  const wt   = parseFloat(prompt('Max weight in kg (e.g. 1.5):') || '1');
+  const [l,w,h] = (dims.match(/\d+/g)||['30','25','8']).map(Number);
+  SP_BOXES.push({ id:SP_BOXES.length, name, icon:'📦', l, w, h, wt, desc:'Custom preset' });
+  spRenderBoxes();
+}
+
+const SP_STAGE_LABELS = { pickup:'Pickup',transit:'Transit',ofd:'OFD',delivered:'Delivered',ndr:'NDR',rto:'RTO',hold:'Hold',ready:'Ready' };
+
+function spRenderCron() {
+  const logs = spCronFilterActive==='all' ? SP_CRON_LOGS
+    : spCronFilterActive==='error' ? SP_CRON_LOGS.filter(l=>!l.ok)
+    : SP_CRON_LOGS.filter(l=>l.to===spCronFilterActive);
+
+  document.getElementById('sp-cron-body').innerHTML = logs.map(l => {
+    const [tc,tbg] = SP_STAGE_COLORS[l.to] || ['#94a3b8','rgba(148,163,184,.1)'];
+    const [fc] = SP_STAGE_COLORS[l.from] || ['#94a3b8'];
+    return `<div class="sp-cron-row">
+      <span style="color:var(--text-muted)">${l.time}</span>
+      <span><strong style="color:var(--text)">${l.order}</strong> <span style="font-size:10px;color:var(--text-muted);font-family:monospace">${l.awb}</span><div style="font-size:9px;color:var(--text-muted);margin-top:1px">${l.note}</div></span>
+      <span><span style="font-size:9px;font-weight:700;color:${fc}">${SP_STAGE_LABELS[l.from]||l.from}</span> <span style="color:var(--text-muted)">→</span> <span class="sp-cron-stage" style="color:${tc};background:${tbg};border:1px solid ${tc}30">${SP_STAGE_LABELS[l.to]||l.to}</span></span>
+      <span style="font-size:10px;color:var(--text-muted)">${l.courier}</span>
+      <span>${l.ok?'<span class="sp-cron-ok">✓ Updated</span>':'<span class="sp-cron-err">✕ Error</span>'}</span>
+    </div>`;
+  }).join('') || '<div class="empty-msg">No logs for this filter</div>';
+}
+
+function spCronFilter(btn) {
+  document.querySelectorAll('.sp-cron-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  spCronFilterActive = btn.dataset.cf;
+  spRenderCron();
+}
+
+function spStartCountdown() {
+  let secs = 252; // 4m 12s
+  const el = document.getElementById('sp-countdown');
+  if (!el) return;
+  const iv = setInterval(()=>{
+    if (!document.getElementById('sp-countdown')) { clearInterval(iv); return; }
+    secs--;
+    if (secs < 0) secs = 300;
+    const m = Math.floor(secs/60), s = secs%60;
+    document.getElementById('sp-countdown').textContent = `${m}m ${s<10?'0':''}${s}s`;
+  }, 1000);
+}
+
+function initShipping() {
+  if (shippingInitialized) return;
+  shippingInitialized = true;
+  spRenderPartners();
+  spRenderAddresses();
+  spRenderBoxes();
+  spRenderCron();
+  spStartCountdown();
 }
 
 // ── STAFF ACCOUNTS ───────────────────────────────────────────────────────────
