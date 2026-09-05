@@ -3271,22 +3271,20 @@ const RX_TYPE_META = {
 let rxFilter = 'all';
 let rxInitialized = false;
 
+const RX_PRODUCT_IMGS = [
+  'https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg',
+  'https://i.ibb.co/x5Cb7HL/002-fotor-20240712163918.webp',
+  'https://i.ibb.co/Z1pyv3T/Sintitulo-1.webp',
+  'https://i.ibb.co/PZTF3ywR/Untitled-design-74.png',
+];
+
 function initReturns() {
   if (rxInitialized) return;
   rxInitialized = true;
+  RX_DATA.forEach((r, i) => { r.productImg = RX_PRODUCT_IMGS[i % RX_PRODUCT_IMGS.length]; });
   renderRxKpis();
   renderRxFilters();
   renderRxList();
-  // Fetch real product images from pixel tracker and patch into RX_DATA
-  apiFetch('/api/demo/pixel/top-products?metric=ViewContent&limit=20').then(data => {
-    const imgs = (data.products || []).filter(p => p.productImage && p.productImage.startsWith('http'));
-    if (!imgs.length) return;
-    RX_DATA.forEach((r, i) => {
-      const match = imgs.find(p => p.productImage) || imgs[i % imgs.length];
-      if (match) r.productImg = match.productImage;
-    });
-    renderRxList(); // re-render with real images
-  }).catch(()=>{});
 }
 
 function renderRxKpis() {
