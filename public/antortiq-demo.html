@@ -279,11 +279,57 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
 /* ── RESPONSIVE ── */
+/* ── MOBILE NAV ── */
+#mob-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9000;align-items:flex-end;justify-content:center}
+#mob-popup.show{display:flex}
+.mob-popup-box{background:var(--bg-card);border-radius:20px 20px 0 0;padding:28px 24px 36px;width:100%;max-width:480px;text-align:center}
+.mob-popup-icon{font-size:32px;margin-bottom:10px}
+.mob-popup-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px}
+.mob-popup-desc{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:20px}
+.mob-popup-btns{display:flex;gap:10px;justify-content:center}
+.mob-popup-ok{flex:1;padding:11px;border-radius:10px;border:none;background:#6366f1;color:#fff;font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font)}
+.mob-popup-skip{flex:1;padding:11px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-size:13px;cursor:pointer;font-family:var(--font)}
+
+/* Mobile bottom nav */
+#mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:var(--bg-card);border-top:1px solid var(--border);z-index:500;align-items:stretch}
+.mob-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;color:var(--text-muted);font-size:9px;font-weight:700;letter-spacing:.3px;cursor:pointer;font-family:var(--font);transition:color .12s;padding:0}
+.mob-nav-item.active{color:#6366f1}
+.mob-nav-ico{font-size:18px;line-height:1}
+.mob-nav-menu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;color:var(--text-muted);font-size:9px;font-weight:700;cursor:pointer;font-family:var(--font)}
+.mob-nav-hamburger{font-size:20px;line-height:1;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.mob-nav-hamburger span{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;transition:.2s}
+
+/* Mobile sidebar overlay */
+#mob-sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600}
+#mob-sidebar-overlay.open{display:block}
+#mob-sidebar-panel{position:fixed;left:-260px;top:0;bottom:0;width:260px;background:var(--bg-card);border-right:1px solid var(--border);z-index:601;transition:left .25s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
+#mob-sidebar-panel.open{left:0}
+
 @media(max-width:900px){
   .big-grid{grid-template-columns:1fr}
   .sidebar{display:none}
-  .page{padding:12px 10px 20px}
+  .page{padding:12px 10px 80px}
   .stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  #mob-nav{display:flex}
+  .topbar{padding:0 14px}
+  .content{padding-bottom:0}
+  /* Order drawer full width on mobile */
+  .od-drawer{width:100vw}
+  .od-body{grid-template-columns:1fr}
+  .od-right{border-top:1px solid var(--border)}
+  /* Dispatch quality — wrap */
+  .dq-grid{grid-template-columns:repeat(3,1fr)}
+  /* WA phones scroll fine */
+  .wa-phones-row{padding-bottom:8px}
+  /* P&L kpi wrap */
+  .pl-kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .pl-big-num{font-size:28px}
+  /* Waterfall scroll */
+  .wf-wrap{padding:14px 0 36px}
+  /* Stats grid 2 col on small screens */
+  .stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Topbar right — hide some items */
+  .tb-right .pulse,.tb-right>span:first-of-type{display:none}
 }
 
 /* ── VIEWS ── */
@@ -573,6 +619,56 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <div style="font-size:11px;color:var(--text-muted)">Code is <strong style="color:var(--text)">1</strong> — most brands leave with a lighter wallet. Enter at your own risk.</div>
     </div>
   </div>
+</div>
+
+<!-- MOBILE DESKTOP SUGGESTION POPUP -->
+<div id="mob-popup">
+  <div class="mob-popup-box">
+    <div class="mob-popup-icon">🖥️</div>
+    <div class="mob-popup-title">Better on Desktop</div>
+    <div class="mob-popup-desc">We fully support mobile — but this demo is packed with charts, tables, and analytics that shine on a bigger screen.<br><br>For the full experience, open it on your laptop or desktop.</div>
+    <div class="mob-popup-btns">
+      <button class="mob-popup-ok" onclick="closeMobPopup()">Got it, continue on mobile</button>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<div id="mob-nav">
+  <button class="mob-nav-item active" data-view="dashboard" onclick="mobNav(this)"><span class="mob-nav-ico">◈</span>Dashboard</button>
+  <button class="mob-nav-item" data-view="orders" onclick="mobNav(this)"><span class="mob-nav-ico">📦</span>Orders</button>
+  <button class="mob-nav-item" data-view="returns" onclick="mobNav(this)"><span class="mob-nav-ico">↩</span>Returns</button>
+  <button class="mob-nav-item" data-view="pl" onclick="mobNav(this)"><span class="mob-nav-ico">📈</span>P&L</button>
+  <button class="mob-nav-menu" onclick="openMobSidebar()">
+    <div class="mob-nav-hamburger"><span></span><span></span><span></span></div>
+    <span style="font-size:9px;font-weight:700;letter-spacing:.3px">More</span>
+  </button>
+</div>
+
+<!-- MOBILE SIDEBAR OVERLAY -->
+<div id="mob-sidebar-overlay" onclick="closeMobSidebar()"></div>
+<div id="mob-sidebar-panel">
+  <div class="sb-brand" style="padding:20px 16px 16px">
+    <div class="sb-mark">A</div>
+    <div>
+      <div class="sb-name">Antor<span>tiq</span></div>
+      <div class="sb-role">Command Center</div>
+    </div>
+  </div>
+  <nav class="nav" style="flex:1">
+    <div class="ns">Operations</div>
+    <button class="ni active" data-view="dashboard" onclick="mobSidebarNav(this)"><span class="ico">◈</span> Dashboard</button>
+    <button class="ni" data-view="orders" onclick="mobSidebarNav(this)"><span class="ico">📦</span> Orders</button>
+    <button class="ni" data-view="wabot" onclick="mobSidebarNav(this)"><span class="ico">💬</span> WhatsApp Bot</button>
+    <button class="ni" data-view="returns" onclick="mobSidebarNav(this)"><span class="ico">↩</span> Returns & Exchange</button>
+    <div class="ns">Analytics</div>
+    <button class="ni" data-view="pixel" onclick="mobSidebarNav(this)"><span class="ico">🎯</span> Pixel Tracker</button>
+    <button class="ni" data-view="pl" onclick="mobSidebarNav(this)"><span class="ico">📈</span> P&L Report</button>
+    <button class="ni locked"><span class="ico">🛒</span> Abandon Carts <span class="ni-soon">Soon</span></button>
+    <div class="ns">Settings</div>
+    <button class="ni locked"><span class="ico">⚙️</span> Brand Settings <span class="ni-soon">Soon</span></button>
+  </nav>
+  <div class="sb-footer" style="padding:14px 16px">Antortiq · Demo v1.0<br>Full access after onboarding</div>
 </div>
 
 <!-- APP -->
@@ -1103,6 +1199,7 @@ async function doLogin() {
     if (r.status === 401) { document.getElementById('lerr').textContent = '✕ Wrong code — hint: it\'s just "1"'; return; }
     DEMO_KEY = key;
     document.getElementById('login-screen').style.display = 'none';
+    if (window.innerWidth < 900) { document.getElementById('mob-popup').classList.add('show'); }
     document.getElementById('app').style.display = 'block';
     buildPeriodDD();
     buildStageTabs();
@@ -1112,6 +1209,35 @@ async function doLogin() {
   } catch(e) { document.getElementById('lerr').textContent = 'Error: '+e.message; }
 }
 document.getElementById('lkey').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+function closeMobPopup(){ document.getElementById('mob-popup').classList.remove('show'); }
+
+function openMobSidebar(){
+  document.getElementById('mob-sidebar-overlay').classList.add('open');
+  document.getElementById('mob-sidebar-panel').classList.add('open');
+}
+function closeMobSidebar(){
+  document.getElementById('mob-sidebar-overlay').classList.remove('open');
+  document.getElementById('mob-sidebar-panel').classList.remove('open');
+}
+
+function mobNav(btn){
+  document.querySelectorAll('#mob-nav .mob-nav-item').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  // trigger main switchView
+  const ni = document.querySelector(`.ni[data-view="${btn.dataset.view}"]`);
+  if(ni) ni.click();
+}
+
+function mobSidebarNav(btn){
+  closeMobSidebar();
+  const ni = document.querySelector(`.sidebar .ni[data-view="${btn.dataset.view}"]`);
+  if(ni){ ni.click(); }
+  // sync bottom nav highlight
+  document.querySelectorAll('#mob-nav .mob-nav-item').forEach(b=>{
+    b.classList.toggle('active', b.dataset.view===btn.dataset.view);
+  });
+}
 
 // ── Period picker ─────────────────────────────────────────────────────────────
 function buildPeriodDD() {
@@ -1150,6 +1276,10 @@ function switchView(btn) {
   if(view==='returns') initReturns();
   if(view==='wabot')   initWaBot();
   if(view==='pl')      initPL();
+  // sync mobile bottom nav
+  document.querySelectorAll('#mob-nav .mob-nav-item').forEach(b=>{
+    b.classList.toggle('active', b.dataset.view===view);
+  });
 }
 
 // ── Vendors ───────────────────────────────────────────────────────────────────
