@@ -41,6 +41,9 @@ app.get('/demo', (req, res) => {
 app.get('/privacy', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'privacy.html'));
 });
+app.get('/themes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'themes.html'));
+});
 app.use('/webhooks', webhooksRoute);
 app.use('/order', orderRoute);
 app.use('/api/contact', contactRoute);

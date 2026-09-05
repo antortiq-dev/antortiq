@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Antortiq Themes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg:       #09090d;
+  --surf:     #111218;
+  --surf2:    #16181f;
+  --bdr:      #1d2030;
+  --text:     #eaecf4;
+  --muted:    #6c7494;
+  --accent:   #e8344a;
+  --font-d:   'Syne', system-ui, sans-serif;
+  --font-b:   'Inter', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-b);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 60px; border-bottom: 1px solid var(--bdr);
+  position: sticky; top: 0; background: rgba(9,9,13,.9);
+  backdrop-filter: blur(12px); z-index: 100;
+}
+.logo { font-family: var(--font-d); font-size: 17px; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -.3px; }
+.logo span { color: var(--accent); }
+.topbar-cta { display: flex; align-items: center; gap: 12px; }
+.btn-ghost { font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 7px 14px; border-radius: 8px; border: 1px solid var(--bdr); transition: color .15s, border-color .15s; }
+.btn-ghost:hover { color: var(--text); border-color: #333650; }
+.btn-primary { font-size: 12px; font-weight: 700; color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 8px; background: var(--accent); transition: opacity .15s; }
+.btn-primary:hover { opacity: .85; }
+
+.hero { text-align: center; padding: 80px 24px 64px; max-width: 720px; margin: 0 auto; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); background: rgba(232,52,74,.08); border: 1px solid rgba(232,52,74,.2); border-radius: 99px; padding: 4px 14px; margin-bottom: 24px; }
+.hero h1 { font-family: var(--font-d); font-size: clamp(32px,5vw,52px); font-weight: 800; line-height: 1.1; letter-spacing: -.5px; text-wrap: balance; margin-bottom: 18px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 520px; margin: 0 auto 32px; }
+.hero-note { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); background: var(--surf); border: 1px solid var(--bdr); border-radius: 8px; padding: 8px 14px; }
+.hero-note kbd { background: var(--surf2); border: 1px solid var(--bdr); border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: var(--text); font-family: monospace; }
+
+.grid-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+.theme-card { background: var(--surf); border: 1px solid var(--bdr); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+.theme-card:hover { border-color: #333650; transform: translateY(-3px); }
+
+.browser { position: relative; height: 210px; overflow: hidden; border-bottom: 1px solid var(--bdr); background: #111; }
+.browser-bar { position: absolute; top: 0; left: 0; right: 0; height: 28px; display: flex; align-items: center; gap: 5px; padding: 0 10px; z-index: 2; background: rgba(0,0,0,.65); backdrop-filter: blur(4px); }
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+.url-bar { flex: 1; background: rgba(255,255,255,.07); border-radius: 4px; height: 16px; margin: 0 8px; display: flex; align-items: center; padding: 0 8px; font-size: 9px; color: rgba(255,255,255,.4); font-family: monospace; overflow: hidden; white-space: nowrap; }
+.preview-img { position: absolute; top: 28px; left: 0; right: 0; bottom: 0; }
+.preview-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+.card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+.theme-name { font-family: var(--font-d); font-size: 17px; font-weight: 800; color: var(--text); }
+.theme-price { font-size: 11px; font-weight: 700; color: var(--accent); background: rgba(232,52,74,.08); border: 1px solid rgba(232,52,74,.2); border-radius: 6px; padding: 3px 9px; }
+.theme-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.tag-pill { font-size: 9px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--muted); background: var(--surf2); border: 1px solid var(--bdr); border-radius: 5px; padding: 2px 7px; }
+.pw-note { font-size: 10px; color: var(--muted); display: flex; align-items: center; gap: 4px; margin-bottom: 10px; }
+.pw-note code { background: var(--surf2); border: 1px solid var(--bdr); border-radius: 4px; padding: 1px 6px; font-size: 10px; color: var(--text); font-family: monospace; }
+.theme-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+.card-footer { display: flex; align-items: center; gap: 8px; padding-top: 14px; border-top: 1px solid var(--bdr); }
+.preview-btn { flex: 1; padding: 9px 0; text-align: center; font-size: 12px; font-weight: 700; color: #fff; background: var(--accent); border-radius: 8px; text-decoration: none; transition: opacity .15s; display: block; }
+.preview-btn:hover { opacity: .85; }
+.enquire-btn { padding: 9px 14px; font-size: 12px; font-weight: 600; color: var(--muted); background: var(--surf2); border: 1px solid var(--bdr); border-radius: 8px; text-decoration: none; transition: color .15s; white-space: nowrap; }
+.enquire-btn:hover { color: var(--text); }
+
+.cta-box { max-width: 1100px; margin: 0 auto 60px; padding: 0 24px; }
+.cta-inner { background: var(--surf); border: 1px solid var(--bdr); border-radius: 20px; padding: 50px 40px; text-align: center; }
+.cta-inner h2 { font-family: var(--font-d); font-size: clamp(22px,3vw,32px); font-weight: 800; margin-bottom: 12px; text-wrap: balance; }
+.cta-inner p { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
+.cta-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+footer { padding: 20px 40px; border-top: 1px solid var(--bdr); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); }
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 20px; }
+  .topbar-cta .btn-ghost { display: none; }
+  .grid-wrap { grid-template-columns: 1fr; padding: 0 16px 60px; }
+  footer { padding: 16px 20px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="/demo">Antorti<span>q</span></a>
+  <div class="topbar-cta">
+    <a class="btn-ghost" href="/demo">Panel Demo</a>
+    <a class="btn-primary" href="https://wa.me/918209544626" target="_blank">Get This Theme</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">✦ Shopify Themes</div>
+  <h1>Themes built for<br><em>D2C fashion brands</em></h1>
+  <p>Every theme is fully set up, brand-ready, and optimised for conversion. Pick a look — we handle the rest.</p>
+  <div class="hero-note">🔑 Preview password for all themes: <kbd>1</kbd></div>
+</section>
+
+<div class="grid-wrap">
+
+  <!-- 1. SANCTUM -->
+  <div class="theme-card">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <div class="url-bar">sanctum-vyujmfkf.myshopify.com</div>
+      </div>
+      <div class="preview-img">
+        <img src="https://materiathemes.com/cdn/shop/files/sanctum-preview.webp"
+             alt="Sanctum theme preview"
+             onerror="this.closest('.browser').style.background='linear-gradient(160deg,#050508,#0d0a10)';this.style.display='none'">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="theme-name">Sanctum</div>
+        <div class="theme-price">Contact Us</div>
+      </div>
+      <div class="theme-tags">
+        <span class="tag-pill">Luxury</span>
+        <span class="tag-pill">Dark Mode</span>
+        <span class="tag-pill">Minimalist</span>
+        <span class="tag-pill">Premium Drops</span>
+      </div>
+      <div class="pw-note">🔑 Preview password: <code>1</code></div>
+      <p class="theme-desc">A refined dark-first theme built for luxury D2C brands. Cinematic product presentation and a drop-focused layout that creates a sense of exclusivity from the first scroll.</p>
+      <div class="card-footer">
+        <a class="preview-btn" href="https://sanctum-vyujmfkf.myshopify.com/" target="_blank">Preview Live ↗</a>
+        <a class="enquire-btn" href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20the%20Sanctum%20theme" target="_blank">Enquire</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MATERIA STREETWEAR -->
+  <div class="theme-card">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <div class="url-bar">materia-streetwear-3minimal.myshopify.com</div>
+      </div>
+      <div class="preview-img">
+        <img src="https://materiathemes.com/cdn/shop/files/Untitled_design_-_2025-03-29T123656.374-_1.webp?v=1745133272&width=1400"
+             alt="Materia Streetwear theme preview"
+             onerror="this.closest('.browser').style.background='linear-gradient(160deg,#111,#1a1a1a)';this.style.display='none'">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="theme-name">Materia</div>
+        <div class="theme-price">Contact Us</div>
+      </div>
+      <div class="theme-tags">
+        <span class="tag-pill">Streetwear</span>
+        <span class="tag-pill">Bold Typography</span>
+        <span class="tag-pill">High Contrast</span>
+        <span class="tag-pill">Urban</span>
+      </div>
+      <div class="pw-note">🔑 Preview password: <code>1</code></div>
+      <p class="theme-desc">Raw energy, oversized type, and zero clutter. Built for streetwear and hype-driven brands that lead with personality. Every section makes your product feel like a statement.</p>
+      <div class="card-footer">
+        <a class="preview-btn" href="https://materia-streetwear-3minimal.myshopify.com/" target="_blank">Preview Live ↗</a>
+        <a class="enquire-btn" href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20the%20Materia%20Streetwear%20theme" target="_blank">Enquire</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SORA -->
+  <div class="theme-card">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <div class="url-bar">materia-demo-sora-password-1.myshopify.com</div>
+      </div>
+      <div class="preview-img">
+        <img src="https://materiathemes.com/cdn/shop/files/sora-preview.webp"
+             alt="Sora theme preview"
+             onerror="this.closest('.browser').style.background='linear-gradient(135deg,#e07050,#f0c060)';this.style.display='none'">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="theme-name">Sora</div>
+        <div class="theme-price">Contact Us</div>
+      </div>
+      <div class="theme-tags">
+        <span class="tag-pill">Vibrant</span>
+        <span class="tag-pill">Playful</span>
+        <span class="tag-pill">DTC Ready</span>
+        <span class="tag-pill">High Conversion</span>
+      </div>
+      <div class="pw-note">🔑 Preview password: <code>1</code></div>
+      <p class="theme-desc">Bold colours, social proof front-and-centre, and a layout built to convert. Sora is for brands that want their product to pop and their checkout numbers to follow.</p>
+      <div class="card-footer">
+        <a class="preview-btn" href="https://materia-demo-sora-password-1.myshopify.com/" target="_blank">Preview Live ↗</a>
+        <a class="enquire-btn" href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20the%20Sora%20theme" target="_blank">Enquire</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. HIVE -->
+  <div class="theme-card">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <div class="url-bar">hive-sxhaacu4.myshopify.com</div>
+      </div>
+      <div class="preview-img">
+        <img src="https://materiathemes.com/cdn/shop/files/hive-preview.webp"
+             alt="Hive theme preview"
+             onerror="this.closest('.browser').style.background='linear-gradient(160deg,#0a0f1a,#1a2030)';this.style.display='none'">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="theme-name">Hive</div>
+        <div class="theme-price">Contact Us</div>
+      </div>
+      <div class="theme-tags">
+        <span class="tag-pill">Streetwear</span>
+        <span class="tag-pill">Flash Sales</span>
+        <span class="tag-pill">Countdown</span>
+        <span class="tag-pill">Structured</span>
+      </div>
+      <div class="pw-note">🔑 Preview password: <code>1</code></div>
+      <p class="theme-desc">Built for urgency and volume. Flash sale countdown, announcement bars, and a layout that pushes buyers toward checkout. Perfect for drops and limited-time campaigns.</p>
+      <div class="card-footer">
+        <a class="preview-btn" href="https://hive-sxhaacu4.myshopify.com/" target="_blank">Preview Live ↗</a>
+        <a class="enquire-btn" href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20the%20Hive%20theme" target="_blank">Enquire</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. STEEZ -->
+  <div class="theme-card">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <div class="url-bar">eden-pheitedc.myshopify.com</div>
+      </div>
+      <div class="preview-img">
+        <img src="https://materiathemes.com/cdn/shop/files/steez-preview.webp"
+             alt="Steez theme preview"
+             onerror="this.closest('.browser').style.background='linear-gradient(160deg,#0e0e0e,#1c1c1c)';this.style.display='none'">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="theme-name">Steez</div>
+        <div class="theme-price">Contact Us</div>
+      </div>
+      <div class="theme-tags">
+        <span class="tag-pill">Street Culture</span>
+        <span class="tag-pill">Editorial</span>
+        <span class="tag-pill">Clean</span>
+        <span class="tag-pill">Collections</span>
+      </div>
+      <div class="pw-note">🔑 Preview password: <code>1</code></div>
+      <p class="theme-desc">Street culture meets clean editorial. Full-bleed hero sections, split collection layouts, and a storefront that lets your photography carry the brand.</p>
+      <div class="card-footer">
+        <a class="preview-btn" href="https://eden-pheitedc.myshopify.com/" target="_blank">Preview Live ↗</a>
+        <a class="enquire-btn" href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20the%20Steez%20theme" target="_blank">Enquire</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-box">
+  <div class="cta-inner">
+    <h2>Want us to set one up for your store?</h2>
+    <p>We don't just drop a theme file. We set it up, configure it to your brand, and make sure it's conversion-ready before you go live.</p>
+    <div class="cta-group">
+      <a class="btn-primary" style="padding:11px 24px;font-size:13px" href="https://wa.me/918209544626?text=Hi%2C%20I%20want%20to%20set%20up%20a%20Shopify%20theme%20for%20my%20brand" target="_blank">💬 WhatsApp Us</a>
+      <a class="btn-ghost" style="padding:11px 20px;font-size:13px" href="/demo">See the Full Platform →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Antortiq Technologies</span>
+  <div style="display:flex;gap:20px">
+    <a href="/privacy">Privacy</a>
+    <a href="/demo">Panel Demo</a>
+    <a href="https://wa.me/918209544626" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+</body>
+</html>
