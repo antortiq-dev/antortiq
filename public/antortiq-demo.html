@@ -295,6 +295,43 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 /* ── VENDOR CHIP ── */
 .vendor-chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.5px;background:var(--red-dim);color:var(--red)}
 
+/* ── P&L PAGE ── */
+.pl-period-btn{font-size:11px;font-weight:700;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;font-family:var(--font);transition:all .12s}
+.pl-period-btn.active{border-color:#6366f1;background:rgba(99,102,241,.1);color:#a5b4fc}
+.pl-big-num{font-size:38px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.pl-kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px}
+.pl-kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:13px 15px}
+.pl-kpi-lbl{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px}
+.pl-kpi-val{font-size:24px;font-weight:900;line-height:1}
+.pl-kpi-sub{font-size:10px;margin-top:4px}
+/* Waterfall */
+.wf-wrap{display:flex;align-items:flex-end;gap:6px;overflow-x:auto;padding:20px 4px 40px;scrollbar-width:none;position:relative}
+.wf-wrap::-webkit-scrollbar{display:none}
+.wf-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;min-width:72px}
+.wf-bar-wrap{position:relative;width:52px}
+.wf-bar{width:100%;border-radius:4px 4px 0 0;position:relative;transition:opacity .2s}
+.wf-bar:hover{opacity:.85}
+.wf-connector{position:absolute;right:0;height:2px;background:rgba(255,255,255,.12);top:0;width:6px}
+.wf-lbl{font-size:9px;font-weight:700;color:var(--text-muted);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72px}
+.wf-val{font-size:10px;font-weight:800;text-align:center;white-space:nowrap}
+/* Cost table */
+.cost-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.cost-row:last-child{border-bottom:none}
+.cost-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.cost-lbl{flex:1;font-size:12px;color:var(--text);font-weight:500}
+.cost-pct{font-size:10px;color:var(--text-muted);min-width:30px;text-align:right}
+.cost-bar-bg{width:90px;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.cost-bar-fill{height:100%;border-radius:3px;transition:width .4s}
+.cost-amt{font-size:12px;font-weight:800;min-width:70px;text-align:right;font-variant-numeric:tabular-nums}
+/* Vendor table */
+.pl-vendor-row{display:grid;grid-template-columns:120px 80px 80px 80px 60px 80px;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);align-items:center;font-size:11px}
+.pl-vendor-row.hdr{font-size:9px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted);border-bottom:2px solid var(--border)}
+/* Trend mini canvas */
+.pl-trend-wrap{position:relative;height:90px;margin-top:4px}
+/* Break-even */
+.be-gauge{position:relative;width:130px;height:65px;overflow:hidden;margin:0 auto}
+@media(max-width:900px){.pl-vendor-row{grid-template-columns:100px 70px 70px 60px 50px 70px;font-size:10px}}
+
 /* ── WHATSAPP BOT PAGE ── */
 .wa-section-label{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .wa-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
@@ -556,7 +593,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 
       <div class="ns">Analytics</div>
       <button class="ni" data-view="pixel" onclick="switchView(this)"><span class="ico">🎯</span> Pixel Tracker</button>
-      <button class="ni locked"><span class="ico">📈</span> P/L Report <span class="ni-soon">Soon</span></button>
+      <button class="ni" data-view="pl" onclick="switchView(this)"><span class="ico">📈</span> P&L Report</button>
       <button class="ni locked"><span class="ico">🛒</span> Abandon Carts <span class="ni-soon">Soon</span></button>
       <button class="ni locked"><span class="ico">🔗</span> Shopify Sync <span class="ni-soon">Soon</span></button>
 
@@ -934,6 +971,63 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         <div class="wa-insight-grid" id="wa-insights-grid"></div>
       </div><!-- /view-wabot -->
 
+      <!-- P&L VIEW -->
+      <div id="view-pl" class="view">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+          <div>
+            <div style="font-size:18px;font-weight:900;color:var(--text)">📈 Profit & Loss Report</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Full financial visibility — revenue, costs, margins, vendor-wise contribution</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap" id="pl-period-row"></div>
+        </div>
+        <!-- Hero P&L summary -->
+        <div id="pl-hero"></div>
+        <!-- KPI strip -->
+        <div class="pl-kpi-grid" id="pl-kpi-grid"></div>
+        <!-- Waterfall + Cost breakdown side by side -->
+        <div class="dash-2col" style="margin-bottom:14px">
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr"><div class="dash-section-title">🌊 Revenue to Profit Waterfall</div><div style="font-size:9px;color:var(--text-muted)">Where every rupee goes</div></div>
+            <div class="wf-wrap" id="pl-waterfall"></div>
+          </div>
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr"><div class="dash-section-title">🧮 Cost Breakdown</div></div>
+            <div id="pl-costs"></div>
+          </div>
+        </div>
+        <!-- Monthly trend + Break-even -->
+        <div class="dash-2col" style="margin-bottom:14px">
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr"><div class="dash-section-title">📅 6-Month Profit Trend</div><div style="font-size:9px;color:var(--text-muted)">Net profit per month</div></div>
+            <canvas id="pl-trend-canvas" style="width:100%;height:130px;display:block"></canvas>
+            <div id="pl-trend-labels" style="display:flex;justify-content:space-between;padding:4px 8px 0;font-size:9px;color:var(--text-muted)"></div>
+          </div>
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr"><div class="dash-section-title">⚖️ Break-Even Analysis</div></div>
+            <div id="pl-breakeven"></div>
+          </div>
+        </div>
+        <!-- Vendor P&L -->
+        <div class="dash-section" style="margin-bottom:14px">
+          <div class="dash-section-hdr"><div class="dash-section-title">🏢 Brand-wise P&L Contribution</div><div style="font-size:9px;color:var(--text-muted)">Net contribution after COGS + shipping + returns</div></div>
+          <div style="overflow-x:auto">
+            <div class="pl-vendor-row hdr"><span>Brand</span><span>Revenue</span><span>COGS</span><span>Shipping</span><span>Margin</span><span>Net Profit</span></div>
+            <div id="pl-vendor-table"></div>
+          </div>
+        </div>
+        <!-- Top profitable products + AI recommendations -->
+        <div class="dash-2col">
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr"><div class="dash-section-title">🏆 Most Profitable Products</div></div>
+            <div id="pl-top-products"></div>
+          </div>
+          <div class="dash-section" style="margin-bottom:0">
+            <div class="dash-section-hdr"><div class="dash-section-title">💡 Finance AI Insights</div><div class="rx-auto-badge">🤖 AI GENERATED</div></div>
+            <div id="pl-ai-insights"></div>
+          </div>
+        </div>
+      </div><!-- /view-pl -->
+
     </div><!-- /page -->
   </div><!-- /content -->
 </div><!-- /app-shell -->
@@ -1044,12 +1138,13 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders')  loadOrders(currentPage);
   if(view==='pixel')   initPixel();
   if(view==='returns') initReturns();
   if(view==='wabot')   initWaBot();
+  if(view==='pl')      initPL();
 }
 
 // ── Vendors ───────────────────────────────────────────────────────────────────
@@ -2122,6 +2217,419 @@ function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'
 
 // Init ann bar on page load (called after login)
 function initAnnBar() { buildAnnBar(); }
+
+// ── P&L PAGE ──────────────────────────────────────────────────────────────────
+const PL_PERIODS = [
+  { label:'This Month',   months:1,  key:'1m' },
+  { label:'Last 3 Months',months:3,  key:'3m' },
+  { label:'Last 6 Months',months:6,  key:'6m' },
+  { label:'This Year',    months:12, key:'1y' },
+];
+let plPeriod = '3m';
+let plInitialized = false;
+
+// Seeded monthly data — realistic D2C clothing brand at ₹10-15L/month revenue scale
+const PL_MONTHLY = [
+  { month:'Apr', rev:842000, orders:312, adSpend:126000 },
+  { month:'May', rev:978000, orders:351, adSpend:147000 },
+  { month:'Jun', rev:1124000,orders:403, adSpend:168000 },
+  { month:'Jul', rev:1356000,orders:487, adSpend:203000 },
+  { month:'Aug', rev:1189000,orders:421, adSpend:178000 },
+  { month:'Sep', rev:1412000,orders:509, adSpend:212000 },
+];
+
+const PL_VENDORS = [
+  { name:'DRIP STUDIOS', rev:512000, cogsPct:.38, rtoRate:.11, orders:186 },
+  { name:'SICOS',        rev:384000, cogsPct:.42, rtoRate:.17, orders:141 },
+  { name:'FLYJONE',      rev:321000, cogsPct:.44, rtoRate:.21, orders:118 },
+  { name:'Odd Affair',   rev:268000, cogsPct:.36, rtoRate:.09, orders:98  },
+  { name:'2WENT6EX',     rev:223000, cogsPct:.40, rtoRate:.13, orders:82  },
+  { name:'AHEGAS',       rev:142000, cogsPct:.45, rtoRate:.19, orders:52  },
+  { name:'BOOZEE',       rev:89000,  cogsPct:.48, rtoRate:.24, orders:33  },
+];
+
+const PL_PRODUCTS = [
+  { name:'Oversized Acid Wash Tee', rev:283658, cogs:107790, orders:142, margin:62 },
+  { name:'Patchwork Denim Jacket',  rev:117000, cogs:52650,  orders:39,  margin:55 },
+  { name:'Box-Fit Hoodie',          rev:145403, cogs:65431,  orders:97,  margin:55 },
+  { name:'Cargo Utility Shorts',    rev:106182, cogs:42473,  orders:118, margin:60 },
+  { name:'Drop-Shoulder Bomber',    rev:113652, cogs:56826,  orders:58,  margin:50 },
+  { name:'Y2K Track Pants',         rev:82731,  cogs:37229,  orders:69,  margin:55 },
+  { name:'Washed Baggy Jeans',      rev:109284, cogs:54642,  orders:84,  margin:50 },
+  { name:'Graphic Print Tee',       rev:68324,  cogs:23313,  orders:76,  margin:66 },
+];
+
+function plGetSlice(key) {
+  const n = key==='1m'?1:key==='3m'?3:key==='6m'?6:12;
+  return PL_MONTHLY.slice(-n);
+}
+
+function plCalcNumbers(slice) {
+  const rev         = slice.reduce((s,m)=>s+m.rev,0);
+  const orders      = slice.reduce((s,m)=>s+m.orders,0);
+  const adSpend     = slice.reduce((s,m)=>s+m.adSpend,0);
+  const cogs        = Math.round(rev * .41);          // 41% avg COGS (fashion D2C)
+  const rtoLoss     = Math.round(rev * .052);         // 5.2% RTO revenue loss
+  const rtoShipping = Math.round(orders * 85 * .15);  // return shipping on 15% RTOs
+  const fwdShipping = Math.round(orders * 68);        // forward shipping ₹68/order
+  const platformFee = Math.round(rev * .035);         // Shopify + payment gateway 3.5%
+  const packaging   = Math.round(orders * 22);        // ₹22/order packaging
+  const warehouse   = Math.round(orders * 28);        // ₹28/order warehousing
+  const waBot       = Math.round(orders * 8);         // ₹8/order WA bot cost
+  const staffing    = Math.round(rev * .028);         // 2.8% staffing
+  const misc        = Math.round(rev * .012);         // 1.2% misc
+
+  const grossProfit = rev - cogs;
+  const totalCosts  = adSpend + rtoLoss + rtoShipping + fwdShipping + platformFee + packaging + warehouse + waBot + staffing + misc;
+  const ebitda      = grossProfit - totalCosts;
+  const netProfit   = Math.round(ebitda * .85); // ~15% tax provision
+
+  const grossMargin = Math.round(grossProfit / rev * 100);
+  const netMargin   = Math.round(netProfit   / rev * 100);
+  const aov         = Math.round(rev / orders);
+  const cac         = Math.round(adSpend / orders);
+  const roas        = +(rev / adSpend).toFixed(1);
+  const contrib     = Math.round((rev - cogs - fwdShipping - adSpend) / rev * 100);
+
+  return { rev, orders, adSpend, cogs, rtoLoss, rtoShipping, fwdShipping, platformFee, packaging, warehouse, waBot, staffing, misc,
+           grossProfit, totalCosts, ebitda, netProfit, grossMargin, netMargin, aov, cac, roas, contrib };
+}
+
+function initPL() {
+  if (!plInitialized) {
+    plInitialized = true;
+    renderPlPeriodRow();
+  }
+  renderPL(plPeriod);
+}
+
+function renderPlPeriodRow() {
+  document.getElementById('pl-period-row').innerHTML = PL_PERIODS.map(p=>
+    `<button class="pl-period-btn${p.key===plPeriod?' active':''}" onclick="plSetPeriod('${p.key}',this)">${p.label}</button>`
+  ).join('');
+}
+
+function plSetPeriod(key, btn) {
+  plPeriod = key;
+  document.querySelectorAll('.pl-period-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPL(key);
+}
+
+function renderPL(key) {
+  const slice = plGetSlice(key);
+  const N = plCalcNumbers(slice);
+
+  renderPlHero(N);
+  renderPlKpis(N);
+  renderPlWaterfall(N);
+  renderPlCosts(N);
+  renderPlTrend(slice);
+  renderPlBreakeven(N);
+  renderPlVendorTable(slice, key);
+  renderPlTopProducts();
+  renderPlAiInsights(N);
+}
+
+function renderPlHero(N) {
+  const profitColor = N.netProfit >= 0 ? '#10b981' : '#f87171';
+  const marginColor = N.netMargin >= 15 ? '#10b981' : N.netMargin >= 8 ? '#f59e0b' : '#f87171';
+  document.getElementById('pl-hero').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px">
+      <div style="background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.2);border-radius:12px;padding:18px 20px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#818cf8;margin-bottom:8px">💰 Gross Revenue</div>
+        <div class="pl-big-num" style="color:#6366f1">${fmtCur(N.rev)}</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:6px">${N.orders} confirmed orders · AOV ${fmtCur(N.aov)}</div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <div style="flex:1;background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px">
+            <div style="font-size:8px;font-weight:700;color:#818cf8">COGS</div>
+            <div style="font-size:13px;font-weight:800;color:#6366f1">${fmtCur(N.cogs)}</div>
+          </div>
+          <div style="flex:1;background:rgba(16,185,129,.1);border-radius:6px;padding:6px 10px">
+            <div style="font-size:8px;font-weight:700;color:#34d399">GROSS PROFIT</div>
+            <div style="font-size:13px;font-weight:800;color:#10b981">${fmtCur(N.grossProfit)}</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:18px 20px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#f87171;margin-bottom:8px">📉 Total Deductions</div>
+        <div class="pl-big-num" style="color:#f87171">${fmtCur(N.totalCosts + N.cogs)}</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:6px">Ads · COGS · Shipping · Platform · Ops</div>
+        <div style="margin-top:10px">
+          <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${Math.round((N.totalCosts+N.cogs)/N.rev*100)}%;background:linear-gradient(90deg,#6366f1,#ef4444);border-radius:3px"></div>
+          </div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:4px">${Math.round((N.totalCosts+N.cogs)/N.rev*100)}% of gross revenue consumed</div>
+        </div>
+      </div>
+      <div style="background:${N.netProfit>=0?'rgba(16,185,129,.07)':'rgba(239,68,68,.07)'};border:1px solid ${N.netProfit>=0?'rgba(16,185,129,.25)':'rgba(239,68,68,.25)'};border-radius:12px;padding:18px 20px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:${profitColor};margin-bottom:8px">📊 Net Profit</div>
+        <div class="pl-big-num" style="color:${profitColor}">${fmtCur(N.netProfit)}</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:6px">After tax provision · <strong style="color:${marginColor}">${N.netMargin}% net margin</strong></div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <div style="flex:1;background:${marginColor}18;border-radius:6px;padding:6px 10px">
+            <div style="font-size:8px;font-weight:700;color:${marginColor}">GROSS MARGIN</div>
+            <div style="font-size:13px;font-weight:800;color:${marginColor}">${N.grossMargin}%</div>
+          </div>
+          <div style="flex:1;background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px">
+            <div style="font-size:8px;font-weight:700;color:#818cf8">EBITDA</div>
+            <div style="font-size:13px;font-weight:800;color:#6366f1">${fmtCur(N.ebitda)}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderPlKpis(N) {
+  const kpis = [
+    { lbl:'ROAS',             val:N.roas+'x',         sub:'Return on ad spend', c: N.roas>=3?'#10b981':N.roas>=2?'#f59e0b':'#f87171' },
+    { lbl:'CAC',              val:fmtCur(N.cac),       sub:'Cost to acquire 1 order', c:'#60a5fa' },
+    { lbl:'Contribution Margin',val:N.contrib+'%',    sub:'Rev − COGS − Ship − Ads', c:N.contrib>=25?'#10b981':'#f59e0b' },
+    { lbl:'Ad Spend',         val:fmtCur(N.adSpend),   sub:Math.round(N.adSpend/N.rev*100)+'% of revenue', c:'#a78bfa' },
+    { lbl:'RTO Revenue Lost', val:fmtCur(N.rtoLoss),   sub:'5.2% RTO rate impact', c:'#f87171' },
+    { lbl:'Shipping Cost',    val:fmtCur(N.fwdShipping+N.rtoShipping), sub:'Fwd + return combined', c:'#fb923c' },
+    { lbl:'Platform Fees',    val:fmtCur(N.platformFee),sub:'Shopify + gateway 3.5%', c:'#94a3b8' },
+    { lbl:'Per-Order Profit', val:fmtCur(Math.round(N.netProfit/N.orders)), sub:'Avg net per order', c:N.netProfit/N.orders>0?'#10b981':'#f87171' },
+  ];
+  document.getElementById('pl-kpi-grid').innerHTML = kpis.map(k=>`
+    <div class="pl-kpi" style="border-left:3px solid ${k.c}">
+      <div class="pl-kpi-lbl">${k.lbl}</div>
+      <div class="pl-kpi-val" style="color:${k.c}">${k.val}</div>
+      <div class="pl-kpi-sub" style="color:var(--text-muted)">${k.sub}</div>
+    </div>`).join('');
+}
+
+function renderPlWaterfall(N) {
+  const steps = [
+    { label:'Gross\nRevenue',  val:N.rev,         type:'start', c:'#6366f1' },
+    { label:'COGS',            val:-N.cogs,        type:'neg',   c:'#f87171' },
+    { label:'Ad\nSpend',       val:-N.adSpend,     type:'neg',   c:'#f87171' },
+    { label:'RTO\nLoss',       val:-N.rtoLoss,     type:'neg',   c:'#f87171' },
+    { label:'Shipping',        val:-(N.fwdShipping+N.rtoShipping), type:'neg', c:'#fb923c' },
+    { label:'Platform\nFees',  val:-N.platformFee, type:'neg',   c:'#f59e0b' },
+    { label:'Ops\nCosts',      val:-(N.packaging+N.warehouse+N.waBot+N.staffing+N.misc), type:'neg', c:'#f59e0b' },
+    { label:'Net\nProfit',     val:N.netProfit,    type:'result',c:N.netProfit>=0?'#10b981':'#f87171' },
+  ];
+
+  const maxVal = N.rev;
+  const BAR_H  = 140;
+  let running  = N.rev;
+  let html = '';
+
+  steps.forEach((s, i) => {
+    const isStart  = s.type === 'start';
+    const isResult = s.type === 'result';
+    const isNeg    = s.type === 'neg';
+    const absVal   = Math.abs(s.val);
+    const barH     = Math.round(absVal / maxVal * BAR_H);
+    const floatH   = isStart||isResult ? 0 : Math.round((running + s.val) / maxVal * BAR_H);
+    if (!isStart && !isResult) running += s.val;
+    const shortVal = absVal >= 100000 ? '₹'+(absVal/100000).toFixed(1)+'L' : '₹'+(absVal/1000).toFixed(0)+'k';
+
+    html += `<div class="wf-col">
+      <div style="font-size:10px;font-weight:800;color:${s.c};margin-bottom:4px;text-align:center">${isNeg?'−':''}${shortVal}</div>
+      <div class="wf-bar-wrap" style="height:${BAR_H}px;display:flex;flex-direction:column;justify-content:flex-end">
+        ${!isStart&&!isResult?`<div style="height:${floatH}px;flex-shrink:0"></div>`:''}
+        <div class="wf-bar" style="height:${barH}px;background:${s.c};${isNeg?'opacity:.75':''}"></div>
+      </div>
+      <div class="wf-lbl" style="color:var(--text-muted);margin-top:6px">${s.label.replace('\n','<br>')}</div>
+    </div>`;
+  });
+
+  document.getElementById('pl-waterfall').innerHTML = html;
+}
+
+function renderPlCosts(N) {
+  const costs = [
+    { lbl:'Cost of Goods Sold (COGS)', val:N.cogs,        pct:Math.round(N.cogs/N.rev*100),        c:'#f87171' },
+    { lbl:'Meta / Google Ad Spend',    val:N.adSpend,      pct:Math.round(N.adSpend/N.rev*100),      c:'#a78bfa' },
+    { lbl:'Forward Shipping',          val:N.fwdShipping,  pct:Math.round(N.fwdShipping/N.rev*100),  c:'#fb923c' },
+    { lbl:'RTO Revenue Loss',          val:N.rtoLoss,      pct:Math.round(N.rtoLoss/N.rev*100),      c:'#f59e0b' },
+    { lbl:'Platform Fees (3.5%)',       val:N.platformFee,  pct:Math.round(N.platformFee/N.rev*100),  c:'#60a5fa' },
+    { lbl:'Return Shipping',           val:N.rtoShipping,  pct:Math.round(N.rtoShipping/N.rev*100),  c:'#f59e0b' },
+    { lbl:'Staffing & Ops',            val:N.staffing,     pct:Math.round(N.staffing/N.rev*100),     c:'#94a3b8' },
+    { lbl:'Packaging',                 val:N.packaging,    pct:Math.round(N.packaging/N.rev*100),    c:'#94a3b8' },
+    { lbl:'Warehouse & Fulfillment',   val:N.warehouse,    pct:Math.round(N.warehouse/N.rev*100),    c:'#94a3b8' },
+    { lbl:'WhatsApp Bot',              val:N.waBot,        pct:Math.round(N.waBot/N.rev*100),        c:'#10b981' },
+  ];
+  const maxPct = Math.max(...costs.map(c=>c.pct));
+  document.getElementById('pl-costs').innerHTML = costs.map(c=>`
+    <div class="cost-row">
+      <div class="cost-dot" style="background:${c.c}"></div>
+      <div class="cost-lbl">${c.lbl}</div>
+      <div class="cost-bar-bg"><div class="cost-bar-fill" style="width:${Math.round(c.pct/maxPct*100)}%;background:${c.c}"></div></div>
+      <div class="cost-pct" style="color:${c.c}">${c.pct}%</div>
+      <div class="cost-amt" style="color:var(--text)">${fmtCur(c.val)}</div>
+    </div>`).join('');
+}
+
+function renderPlTrend(slice) {
+  const canvas = document.getElementById('pl-trend-canvas');
+  if (!canvas) return;
+  const W = canvas.offsetWidth || 500;
+  const H = 130;
+  canvas.width  = W * devicePixelRatio;
+  canvas.height = H * devicePixelRatio;
+  canvas.style.height = H+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  const profits = slice.map(m => {
+    const N = plCalcNumbers([m]);
+    return N.netProfit;
+  });
+  const PAD = {top:16, right:20, bottom:10, left:10};
+  const pw = W - PAD.left - PAD.right;
+  const ph = H - PAD.top  - PAD.bottom;
+  const maxP = Math.max(...profits.map(Math.abs), 1);
+  const n = profits.length;
+  const step = pw / Math.max(n-1, 1);
+  const yOf = v => PAD.top + ph/2 - (v/maxP)*(ph/2);
+
+  // Zero line
+  ctx.strokeStyle = 'rgba(255,255,255,.08)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD.left, PAD.top+ph/2); ctx.lineTo(PAD.left+pw, PAD.top+ph/2); ctx.stroke();
+
+  // Area fill
+  const grad = ctx.createLinearGradient(0, PAD.top, 0, PAD.top+ph);
+  grad.addColorStop(0, 'rgba(16,185,129,.25)');
+  grad.addColorStop(1, 'rgba(16,185,129,.02)');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.moveTo(PAD.left, PAD.top+ph/2);
+  profits.forEach((p,i) => { const x=PAD.left+i*step; const y=yOf(p); i===0?ctx.lineTo(x,y):ctx.lineTo(x,y); });
+  ctx.lineTo(PAD.left+(n-1)*step, PAD.top+ph/2);
+  ctx.closePath(); ctx.fill();
+
+  // Line
+  ctx.strokeStyle = '#10b981';
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  profits.forEach((p,i) => { const x=PAD.left+i*step; const y=yOf(p); i===0?ctx.moveTo(x,y):ctx.lineTo(x,y); });
+  ctx.stroke();
+
+  // Dots + labels
+  profits.forEach((p,i) => {
+    const x = PAD.left+i*step;
+    const y = yOf(p);
+    ctx.fillStyle = p>=0?'#10b981':'#f87171';
+    ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2); ctx.fill();
+    const lbl = p>=100000?'₹'+(p/100000).toFixed(1)+'L':'₹'+(p/1000).toFixed(0)+'k';
+    ctx.textAlign = i===0?'left':i===n-1?'right':'center';
+    ctx.font = 'bold 9px -apple-system,sans-serif';
+    ctx.fillStyle = p>=0?'#10b981':'#f87171';
+    ctx.fillText(lbl, x, y-8);
+  });
+
+  document.getElementById('pl-trend-labels').innerHTML = slice.map(m=>`<span>${m.month}</span>`).join('');
+}
+
+function renderPlBreakeven(N) {
+  const fixedCosts    = N.adSpend + N.platformFee + N.staffing + N.warehouse;
+  const variablePerOrder = Math.round((N.cogs + N.fwdShipping + N.packaging + N.waBot) / N.orders);
+  const contributionPerOrder = N.aov - variablePerOrder;
+  const breakEvenOrders = contributionPerOrder > 0 ? Math.ceil(fixedCosts / contributionPerOrder) : 0;
+  const breakEvenDay = Math.ceil(breakEvenOrders / (N.orders/30));
+  const currentDailyOrders = Math.round(N.orders/30);
+  const beReached = currentDailyOrders * breakEvenDay <= N.orders;
+
+  document.getElementById('pl-breakeven').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      ${[
+        ['Fixed Costs',       fmtCur(fixedCosts),          '#6366f1', 'Ads + platform + staff + warehouse'],
+        ['Variable / Order',  fmtCur(variablePerOrder),    '#f59e0b', 'COGS + shipping + packaging'],
+        ['Contribution / Order',fmtCur(contributionPerOrder),'#10b981','Revenue left after variable costs'],
+        ['Break-Even Orders', breakEvenOrders.toLocaleString(),'#60a5fa','Orders needed to cover fixed costs'],
+      ].map(([l,v,c,s])=>`<div style="background:${c}12;border:1px solid ${c}25;border-radius:8px;padding:10px 12px">
+        <div style="font-size:8px;font-weight:700;color:${c};letter-spacing:.4px;margin-bottom:4px">${l.toUpperCase()}</div>
+        <div style="font-size:18px;font-weight:900;color:${c}">${v}</div>
+        <div style="font-size:9px;color:var(--text-muted);margin-top:2px">${s}</div>
+      </div>`).join('')}
+    </div>
+    <div style="background:${beReached?'rgba(16,185,129,.07)':'rgba(245,158,11,.07)'};border:1px solid ${beReached?'rgba(16,185,129,.25)':'rgba(245,158,11,.25)'};border-radius:10px;padding:14px">
+      <div style="font-size:12px;font-weight:800;color:${beReached?'#10b981':'#f59e0b'};margin-bottom:6px">${beReached?'✅':'⚠'} Break-even in ${breakEvenDay} days at current velocity</div>
+      <div style="font-size:11px;color:var(--text-muted);line-height:1.5">At <strong style="color:var(--text)">${currentDailyOrders} orders/day</strong>, you cover fixed costs on day ${breakEvenDay}. Every order after that is <strong style="color:#10b981">${fmtCur(contributionPerOrder)} pure margin.</strong></div>
+      <div style="margin-top:10px">
+        <div style="font-size:9px;color:var(--text-muted);margin-bottom:4px">Break-even progress this month</div>
+        <div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:${Math.min(100,Math.round(N.orders/breakEvenOrders*100))}%;background:${beReached?'#10b981':'#f59e0b'};border-radius:3px"></div>
+        </div>
+        <div style="font-size:9px;color:var(--text-muted);margin-top:3px">${N.orders} / ${breakEvenOrders} orders · ${Math.round(N.orders/breakEvenOrders*100)}% of break-even</div>
+      </div>
+    </div>`;
+}
+
+function renderPlVendorTable(slice, key) {
+  const factor = slice.length / 6;
+  const el = document.getElementById('pl-vendor-table');
+  const marginColor = m => m>=45?'#10b981':m>=35?'#f59e0b':'#f87171';
+  el.innerHTML = PL_VENDORS.map(v => {
+    const rev  = Math.round(v.rev * factor);
+    const cogs = Math.round(rev * v.cogsPct);
+    const ship = Math.round(v.orders * factor * 68);
+    const rtoL = Math.round(rev * v.rtoRate * .5);
+    const net  = rev - cogs - ship - rtoL;
+    const margin = Math.round((1-v.cogsPct)*100 - Math.round(ship/rev*100) - Math.round(rtoL/rev*100));
+    const mc = marginColor(margin);
+    return `<div class="pl-vendor-row">
+      <span style="font-size:10px;font-weight:700;color:var(--text)">${v.name}</span>
+      <span style="font-weight:700;color:var(--text);font-variant-numeric:tabular-nums">${fmtCur(rev)}</span>
+      <span style="color:#f87171;font-variant-numeric:tabular-nums">${fmtCur(cogs)}</span>
+      <span style="color:#fb923c;font-variant-numeric:tabular-nums">${fmtCur(ship+rtoL)}</span>
+      <span style="font-weight:800;color:${mc}">${margin}%</span>
+      <span style="font-weight:800;color:${net>=0?'#10b981':'#f87171'};font-variant-numeric:tabular-nums">${fmtCur(net)}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderPlTopProducts() {
+  const sorted = [...PL_PRODUCTS].sort((a,b)=>b.margin-a.margin);
+  document.getElementById('pl-top-products').innerHTML = sorted.map((p,i) => {
+    const net = p.rev - p.cogs - Math.round(p.orders*68) - Math.round(p.rev*.035);
+    const mc  = p.margin>=60?'#10b981':p.margin>=50?'#f59e0b':'#f87171';
+    return `<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)">
+      <div style="font-size:16px;font-weight:900;color:var(--text-muted);min-width:22px">#${i+1}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:11px;font-weight:700;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.name}</div>
+        <div style="font-size:9px;color:var(--text-muted);margin-top:2px">${p.orders} orders · ${fmtCur(Math.round(p.rev/p.orders))} AOV</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:14px;font-weight:900;color:${mc}">${p.margin}%</div>
+        <div style="font-size:9px;color:var(--text-muted)">margin</div>
+      </div>
+      <div style="text-align:right;min-width:70px">
+        <div style="font-size:12px;font-weight:800;color:#10b981;font-variant-numeric:tabular-nums">${fmtCur(net)}</div>
+        <div style="font-size:9px;color:var(--text-muted)">net profit</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderPlAiInsights(N) {
+  const insights = [
+    { icon:'📉', c:'#f87171', title:'COGS is your biggest leak',
+      body:`At ${Math.round(N.cogs/N.rev*100)}% of revenue, COGS alone is eating ${fmtCur(N.cogs)}. Negotiate bulk rates with top 2 vendors — even 3% reduction saves ${fmtCur(Math.round(N.cogs*.03))} this period.` },
+    { icon:'🛒', c:'#f59e0b', title:'RTO is costing you more than you think',
+      body:`${fmtCur(N.rtoLoss + N.rtoShipping)} lost to RTOs — revenue loss + return shipping combined. Switching 15% of COD orders to prepaid (with 5% discount incentive) would save ~${fmtCur(Math.round((N.rtoLoss+N.rtoShipping)*.3))} per period.` },
+    { icon:'📣', c:'#a78bfa', title:'Ad spend ROAS is ${N.roas}x — benchmark is 3x',
+      body:`${N.roas>=3?'Above benchmark! Scale campaigns by 20% — your current ROAS of '+N.roas+'x means you\'re profitable on every ₹1 spent.':'Your ROAS of '+N.roas+'x is below the 3x healthy benchmark. Review audience targeting — cut campaigns below 2x ROAS.'}` },
+    { icon:'⚡', c:'#10b981', title:'Graphic Print Tee is your cash cow',
+      body:`66% gross margin on ₹699 price point with 76 orders. Low price, high volume, high margin — ideal for scaling with paid ads. Allocate 30% more budget here.` },
+    { icon:'🏭', c:'#60a5fa', title:'BOOZEE margin at 48% — danger zone',
+      body:`BOOZEE products have the highest COGS (${Math.round(0.48*100)}%) and highest RTO (24%). Consider renegotiating minimum order quantities or pausing new POs until margins improve.` },
+  ].map(ins=>`<div style="padding:10px 0;border-bottom:1px solid var(--border)">
+    <div style="display:flex;align-items:flex-start;gap:8px">
+      <span style="font-size:16px;flex-shrink:0">${ins.icon}</span>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:${ins.c};margin-bottom:4px">${ins.title.replace('${N.roas}',N.roas)}</div>
+        <div style="font-size:11px;color:var(--text-muted);line-height:1.5">${ins.body.replace(/\$\{N\.roas\}/g,N.roas)}</div>
+      </div>
+    </div>
+  </div>`).join('');
+  document.getElementById('pl-ai-insights').innerHTML = insights;
+}
 
 // ── WHATSAPP BOT PAGE ────────────────────────────────────────────────────────
 const PRODUCT_IMG = 'https://i.ibb.co/7vVcJyM/Mesh-Red-Front.jpg';
