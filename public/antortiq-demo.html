@@ -998,6 +998,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
     <button class="ni" data-view="pl" onclick="mobSidebarNav(this)"><span class="ico">📈</span> P&L Report</button>
     <button class="ni" data-view="abandon" onclick="mobSidebarNav(this)"><span class="ico">🛒</span> Abandon Checkout</button>
     <button class="ni" data-view="contacts" onclick="mobSidebarNav(this)"><span class="ico">📱</span> Contact Sync</button>
+    <button class="ni" data-view="themes" onclick="mobSidebarNav(this)"><span class="ico">🎨</span> Themes</button>
     <div class="ns">Settings</div>
     <button class="ni" data-view="settings" onclick="switchView(this)"><span class="ico">⚙️</span> Settings</button>
   </nav>
@@ -1034,6 +1035,7 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
       <button class="ni" data-view="contacts" onclick="switchView(this)"><span class="ico">📱</span> Contact Sync</button>
       <button class="ni" data-view="staff" onclick="switchView(this)"><span class="ico">👤</span> Staff Accounts</button>
       <button class="ni" data-view="shipping" onclick="switchView(this)"><span class="ico">🚚</span> Shipping Partners</button>
+      <button class="ni" data-view="themes" onclick="switchView(this)"><span class="ico">🎨</span> Themes</button>
       <button class="ni" data-view="settings" onclick="switchView(this)"><span class="ico">⚙️</span> Settings</button>
     </nav>
     <div class="sb-footer">Antortiq · Demo v1.0<br>Full access after onboarding</div>
@@ -2132,6 +2134,196 @@ Complete your order here 👇
         </div>
       </div><!-- /view-email -->
 
+      <!-- ══════════════════════════════════════════════════════════ THEMES -->
+      <div id="view-themes" class="view">
+        <div style="padding:24px;max-width:1060px">
+
+          <!-- Header banner -->
+          <div style="background:linear-gradient(135deg,#0d0f1a 0%,#141828 100%);border:1px solid var(--border);border-radius:16px;padding:32px 36px;margin-bottom:24px;position:relative;overflow:hidden">
+            <div style="position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 70%);pointer-events:none"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+              <div>
+                <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);border-radius:99px;padding:3px 12px;font-size:10px;font-weight:700;letter-spacing:.8px;color:#a5b4fc;margin-bottom:10px">🎨 THEME STORE</div>
+                <div style="font-size:22px;font-weight:800;color:var(--text-main);letter-spacing:-.3px;margin-bottom:6px">Shopify Themes for D2C Brands</div>
+                <div style="font-size:13px;color:var(--text-muted);max-width:480px;line-height:1.6">We design and set up premium Shopify themes tailored to your brand. Pick a style, we handle the rest — setup, config, and launch-ready in days.</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+                <a href="/themes" target="_blank" style="display:inline-flex;align-items:center;gap:7px;background:#6366f1;color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:10px 18px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                  🌐 View Full Theme Page ↗
+                </a>
+                <a href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20a%20Shopify%20theme%20setup" target="_blank" style="display:inline-flex;align-items:center;gap:7px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80;text-decoration:none;font-size:12px;font-weight:700;padding:9px 16px;border-radius:10px">
+                  💬 WhatsApp Us
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats row -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px">
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px">
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;margin-bottom:6px">THEMES AVAILABLE</div>
+              <div style="font-size:26px;font-weight:800;color:var(--text-main)">5</div>
+              <div style="font-size:10px;color:#a5b4fc;margin-top:2px">↑ More coming soon</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px">
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;margin-bottom:6px">AVG SETUP TIME</div>
+              <div style="font-size:26px;font-weight:800;color:var(--text-main)">3</div>
+              <div style="font-size:10px;color:#4ade80;margin-top:2px">Days to launch-ready</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px">
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;margin-bottom:6px">STORES BUILT</div>
+              <div style="font-size:26px;font-weight:800;color:var(--text-main)">40+</div>
+              <div style="font-size:10px;color:#fbbf24;margin-top:2px">D2C brands live</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px">
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;margin-bottom:6px">PREVIEW PASSWORD</div>
+              <div style="font-size:26px;font-weight:800;color:var(--text-main);font-family:monospace">1</div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:2px">All demo stores</div>
+            </div>
+          </div>
+
+          <!-- Theme cards grid -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;margin-bottom:28px">
+
+            <!-- Sanctum -->
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#333650'" onmouseout="this.style.transform='';this.style.borderColor=''">
+              <div style="height:160px;background:linear-gradient(160deg,#050508 0%,#0d0a10 60%,#12080e 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px">
+                <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(196,160,80,.08) 0%,transparent 65%)"></div>
+                <div style="font-size:13px;font-weight:800;color:#c4a050;letter-spacing:4px;text-transform:uppercase;z-index:1">SANCTUM</div>
+                <div style="font-size:8px;color:rgba(196,160,80,.5);letter-spacing:2px;text-transform:uppercase;z-index:1">LUXURY · DARK · PREMIUM</div>
+                <div style="position:absolute;top:12px;right:12px;background:rgba(196,160,80,.1);border:1px solid rgba(196,160,80,.2);border-radius:5px;padding:2px 8px;font-size:8px;font-weight:700;color:#c4a050">DARK</div>
+              </div>
+              <div style="padding:14px 16px">
+                <div style="font-size:14px;font-weight:800;color:var(--text-main);margin-bottom:5px">Sanctum</div>
+                <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:12px">Luxury dark-first layout. Cinematic product hero, drop-style collections. For premium streetwear and high-ticket apparel.</div>
+                <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+                  <span style="font-size:9px;font-weight:700;background:rgba(196,160,80,.08);border:1px solid rgba(196,160,80,.2);color:#c4a050;border-radius:4px;padding:2px 7px">Luxury</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Dark Mode</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Minimal</span>
+                </div>
+                <a href="https://sanctum-vyujmfkf.myshopify.com/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#6366f1;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:8px;border-radius:8px;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                  Preview Live ↗ <span style="font-size:9px;opacity:.7;font-weight:400">pw: 1</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Materia Streetwear -->
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#333650'" onmouseout="this.style.transform='';this.style.borderColor=''">
+              <div style="height:160px;background:#111;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 14px 14px">
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) 1px,transparent 1px,transparent 10px)"></div>
+                <div style="position:absolute;top:12px;left:14px;font-size:9px;font-weight:900;color:#fff;letter-spacing:2px;text-transform:uppercase;opacity:.5">MATERIA</div>
+                <div style="position:absolute;top:12px;right:12px;background:#e8344a;color:#fff;font-size:8px;font-weight:900;padding:2px 7px;letter-spacing:1px;text-transform:uppercase">NEW DROP</div>
+                <div style="font-size:38px;font-weight:900;color:#fff;line-height:.9;letter-spacing:-2px;text-transform:uppercase;opacity:.9;z-index:1">RAW</div>
+              </div>
+              <div style="padding:14px 16px">
+                <div style="font-size:14px;font-weight:800;color:var(--text-main);margin-bottom:5px">Materia</div>
+                <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:12px">Raw energy, oversized type, zero clutter. Built for streetwear brands that lead with personality and attitude.</div>
+                <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+                  <span style="font-size:9px;font-weight:700;background:rgba(232,52,74,.08);border:1px solid rgba(232,52,74,.2);color:#f87171;border-radius:4px;padding:2px 7px">Streetwear</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Bold Type</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Urban</span>
+                </div>
+                <a href="https://materia-streetwear-3minimal.myshopify.com/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#6366f1;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:8px;border-radius:8px;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                  Preview Live ↗ <span style="font-size:9px;opacity:.7;font-weight:400">pw: 1</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Sora -->
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#333650'" onmouseout="this.style.transform='';this.style.borderColor=''">
+              <div style="height:160px;background:linear-gradient(135deg,#d65c38 0%,#e07848 60%,#f0a060 100%);position:relative;overflow:hidden;display:flex;align-items:center;padding:0 18px">
+                <div style="z-index:1">
+                  <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:1px;margin-bottom:4px">⭐⭐⭐⭐⭐ 100K+ Happy Customers</div>
+                  <div style="font-size:16px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:8px">A different<br>kind of store.</div>
+                  <div style="background:#fff;color:#d65c38;font-size:9px;font-weight:800;padding:4px 12px;border-radius:3px;display:inline-block;letter-spacing:.5px;text-transform:uppercase">EXPLORE NOW</div>
+                </div>
+                <div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:90px;height:90px;background:rgba(255,255,255,.1);border-radius:50%"></div>
+              </div>
+              <div style="padding:14px 16px">
+                <div style="font-size:14px;font-weight:800;color:var(--text-main);margin-bottom:5px">Sora</div>
+                <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:12px">Bold colours, social proof front-and-centre, conversion-optimised layout. Perfect for high-volume D2C brands.</div>
+                <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+                  <span style="font-size:9px;font-weight:700;background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.2);color:#fbbf24;border-radius:4px;padding:2px 7px">Vibrant</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">High CVR</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Playful</span>
+                </div>
+                <a href="https://materia-demo-sora-password-1.myshopify.com/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#6366f1;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:8px;border-radius:8px;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                  Preview Live ↗ <span style="font-size:9px;opacity:.7;font-weight:400">pw: 1</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Hive -->
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#333650'" onmouseout="this.style.transform='';this.style.borderColor=''">
+              <div style="height:160px;background:linear-gradient(160deg,#0a1020 0%,#0f1a30 100%);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
+                <div style="font-size:9px;font-weight:800;color:#60a5fa;letter-spacing:3px;text-transform:uppercase">NEW SEASON</div>
+                <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-1px;text-transform:uppercase">GET THE LOOK</div>
+                <div style="background:#fff;color:#0a1020;font-size:9px;font-weight:800;padding:4px 14px;border-radius:2px;letter-spacing:1px;text-transform:uppercase">SHOP NOW</div>
+                <div style="position:absolute;bottom:0;left:0;right:0;height:28px;background:#111;display:flex;align-items:center;justify-content:center;gap:16px">
+                  <span style="font-size:8px;font-weight:800;color:#fff;font-family:monospace">117 : 14 : 01 : 12</span>
+                  <span style="font-size:7px;color:rgba(255,255,255,.5);font-weight:700">FLASH SALE COUNTDOWN</span>
+                </div>
+              </div>
+              <div style="padding:14px 16px">
+                <div style="font-size:14px;font-weight:800;color:var(--text-main);margin-bottom:5px">Hive</div>
+                <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:12px">Built for urgency and volume. Flash sale countdown, marquee bars, and a layout that drives buyers to checkout fast.</div>
+                <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+                  <span style="font-size:9px;font-weight:700;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;border-radius:4px;padding:2px 7px">Flash Sales</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Countdown</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Drops</span>
+                </div>
+                <a href="https://hive-sxhaacu4.myshopify.com/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#6366f1;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:8px;border-radius:8px;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                  Preview Live ↗ <span style="font-size:9px;opacity:.7;font-weight:400">pw: 1</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Steez -->
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#333650'" onmouseout="this.style.transform='';this.style.borderColor=''">
+              <div style="height:160px;background:linear-gradient(160deg,#101010 0%,#1a1a1a 100%);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:14px">
+                <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,transparent 60%)"></div>
+                <div style="position:absolute;top:12px;left:14px;font-size:9px;font-weight:900;color:#fff;letter-spacing:3px;opacity:.6">STEEZ</div>
+                <div style="position:absolute;top:8px;right:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:2px 8px;font-size:7px;font-weight:700;color:rgba(255,255,255,.6)">Free Shipping $100+</div>
+                <div style="z-index:1">
+                  <div style="font-size:8px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:3px">NEW COLLECTION</div>
+                  <div style="font-size:15px;font-weight:800;color:#fff;line-height:1.1">Summer Madness '26</div>
+                </div>
+              </div>
+              <div style="padding:14px 16px">
+                <div style="font-size:14px;font-weight:800;color:var(--text-main);margin-bottom:5px">Steez</div>
+                <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:12px">Street culture meets clean editorial. Full-bleed hero, split collection layout, and a storefront that lets your photography carry the brand.</div>
+                <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+                  <span style="font-size:9px;font-weight:700;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:#4ade80;border-radius:4px;padding:2px 7px">Street Culture</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Editorial</span>
+                  <span style="font-size:9px;font-weight:700;background:var(--bg-main);border:1px solid var(--border);color:var(--text-muted);border-radius:4px;padding:2px 7px">Clean</span>
+                </div>
+                <a href="https://eden-pheitedc.myshopify.com/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#6366f1;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:8px;border-radius:8px;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                  Preview Live ↗ <span style="font-size:9px;opacity:.7;font-weight:400">pw: 1</span>
+                </a>
+              </div>
+            </div>
+
+          </div><!-- /grid -->
+
+          <!-- CTA bottom -->
+          <div style="background:linear-gradient(135deg,rgba(99,102,241,.06) 0%,rgba(99,102,241,.02) 100%);border:1px solid rgba(99,102,241,.15);border-radius:14px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+            <div>
+              <div style="font-size:15px;font-weight:800;color:var(--text-main);margin-bottom:4px">Ready to build your store?</div>
+              <div style="font-size:12px;color:var(--text-muted);max-width:420px">We configure the theme to your brand, handle product setup, and get you live in 3 days — not weeks.</div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a href="/themes" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:var(--bg-main);border:1px solid var(--border);color:var(--text-main);text-decoration:none;font-size:12px;font-weight:700;padding:10px 16px;border-radius:9px">
+                🌐 Full Themes Page
+              </a>
+              <a href="https://wa.me/918209544626?text=Hi%2C%20I%27m%20interested%20in%20a%20Shopify%20theme%20setup" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:10px 16px;border-radius:9px">
+                💬 WhatsApp Now
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /view-themes -->
+
     </div><!-- /page -->
   </div><!-- /content -->
 </div><!-- /app-shell -->
@@ -2287,7 +2479,7 @@ function switchView(btn) {
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
-  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS', staff:'STAFF ACCOUNTS', shipping:'SHIPPING PARTNERS', contacts:'CONTACT SYNC', settings:'SETTINGS' };
+  const titles = { dashboard:'DASHBOARD', orders:'ORDERS', pixel:'PIXEL TRACKER', returns:'RETURNS & EXCHANGE', wabot:'WHATSAPP BOT', pl:'P&L REPORT', abandon:'ABANDON CHECKOUT', email:'EMAIL SETTINGS', staff:'STAFF ACCOUNTS', shipping:'SHIPPING PARTNERS', contacts:'CONTACT SYNC', themes:'THEMES', settings:'SETTINGS' };
   document.getElementById('tb-title').textContent = titles[view] || view.toUpperCase();
   if(view==='orders')  loadOrders(currentPage);
   if(view==='pixel')   initPixel();
