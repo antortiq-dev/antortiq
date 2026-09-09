@@ -16,15 +16,16 @@ function auth(req, res, next) {
 // Demo data was seeded once. As time passes, "last 30 days" finds fewer orders.
 // Fix: shift query windows backward by (now - maxCreatedAt), shift response
 // dates forward by the same amount, so data always looks current.
-let _orderOffsetMs  = null; // ms to subtract from query dates / add to result dates
-let _pixelOffsetMs  = null;
+let _orderOffsetMs  = null;
+let _offsetCachedAt = 0;
+const OFFSET_TTL    = 3600000; // recompute offset every hour so it stays fresh
 
 async function getOrderOffset() {
-  if (_orderOffsetMs !== null) return _orderOffsetMs;
+  if (_orderOffsetMs !== null && Date.now() - _offsetCachedAt < OFFSET_TTL) return _orderOffsetMs;
   const latest = await DemoOrder.findOne({}, { createdAt: 1 }).sort({ createdAt: -1 }).lean();
   _orderOffsetMs = latest ? Date.now() - new Date(latest.createdAt).getTime() : 0;
-  // Clamp to whole days so chart grouping stays clean
   _orderOffsetMs = Math.floor(_orderOffsetMs / 86400000) * 86400000;
+  _offsetCachedAt = Date.now();
   return _orderOffsetMs;
 }
 

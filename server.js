@@ -71,13 +71,17 @@ app.post('/api/demo-login', async (req, res) => {
   }
 });
 
-connect().then(() => {
+connect().then(async () => {
   try { require('./scheduler'); } catch(e) { console.warn('Scheduler failed to load:', e.message); }
   // Start WA bot after DB is ready (needs MongoDB auth state)
   try {
     const { startBot } = require('./wa-bot/index');
     startBot().catch(e => console.warn('[wa-bot] Start error:', e.message));
   } catch(e) { console.warn('[wa-bot] Failed to load:', e.message); }
+
+  // Auto-remap demo order dates so dashboard always shows full 90-day data
+  try { require('./scripts/remap-demo-dates').run(); } catch(e) { console.warn('[remap] skip:', e.message); }
+
   app.listen(PORT, () => console.log(`Antortiq running on port ${PORT}`));
 }).catch(err => {
   console.warn('DB connection failed — starting without DB:', err.message);

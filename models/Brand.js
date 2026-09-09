@@ -11,6 +11,9 @@ const BrandSchema = new mongoose.Schema({
   accentColor:  { type: String, default: '#0f0f0f' },
   logoUrl:      { type: String, default: '' },
   webhooksRegistered: { type: Boolean, default: false },
+  delhiveryToken: { type: String, default: '' },
+  shiprocketEmail: { type: String, default: '' },
+  shiprocketPassword: { type: String, default: '' },
   active:       { type: Boolean, default: true },
   createdAt:    { type: Date, default: Date.now },
 });

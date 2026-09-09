@@ -64,20 +64,37 @@ function generateRevenue(stage, paymentType) {
   return randItem(endings.filter(p => p <= 2999 && p >= 599));
 }
 
-function generateDates(count) {
-  // Spread over last 120 days with recency bias
-  const now = new Date();
-  const dates = [];
-  for (let i = 0; i < count; i++) {
-    // Exponential distribution: more recent orders
-    const u = Math.random();
-    const daysAgo = Math.floor(-Math.log(1 - u * 0.9) * 25);
-    const d = new Date(now - Math.min(daysAgo, 120) * 86400000);
-    // Add random time within the day
-    d.setHours(randInt(8, 22), randInt(0, 59), randInt(0, 59));
-    dates.push(d);
+// Map real Croscrow dates → last 90 days (preserves real business rhythm)
+// realDates: sorted array of Date objects from SQLite (or null for rows without dates)
+function mapDatesToWindow(realDates, windowDays = 90) {
+  const now   = new Date();
+  const winMs = windowDays * 86400000;
+
+  const validTs = realDates.filter(Boolean).map(d => new Date(d).getTime()).filter(t => !isNaN(t));
+
+  if (validTs.length < 2) {
+    // Fallback: uniform spread if no real dates available
+    return realDates.map((_, i) => {
+      const ageMs = (i / Math.max(realDates.length - 1, 1)) * winMs;
+      const d = new Date(now.getTime() - ageMs);
+      d.setHours(randInt(8, 22), randInt(0, 59), randInt(0, 59));
+      return d;
+    });
   }
-  return dates.sort((a, b) => b - a); // newest first
+
+  const minTs = Math.min(...validTs);
+  const maxTs = Math.max(...validTs);
+  const srcRange = maxTs - minTs || 1;
+
+  // Map each real date linearly into [now-windowDays, now-1day]
+  return realDates.map(raw => {
+    const ts = raw ? new Date(raw).getTime() : minTs + Math.random() * srcRange;
+    const ratio = (ts - minTs) / srcRange;             // 0 = oldest, 1 = newest
+    const targetMs = now.getTime() - winMs + ratio * (winMs - 86400000);
+    const d = new Date(targetMs);
+    d.setHours(randInt(8, 22), randInt(0, 59), randInt(0, 59));
+    return d;
+  });
 }
 
 async function run() {
@@ -101,7 +118,10 @@ async function run() {
   db.close();
 
   console.log(`[seed] Processing ${rows.length} orders…`);
-  const dates = generateDates(rows.length);
+
+  // Use real Croscrow created_at dates (or shopify_created_at) — map into last 90 days
+  const realDates = rows.map(r => r.created_at || r.shopify_created_at || r.createdAt || null);
+  const dates = mapDatesToWindow(realDates, 90);
 
   // Base order number — start from a realistic Shopify order number
   const baseOrderNum = 1001;
