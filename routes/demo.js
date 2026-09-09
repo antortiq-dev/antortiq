@@ -12,10 +12,60 @@ function auth(req, res, next) {
   next();
 }
 
-function dateMatch(from, to, vendor) {
+// ── Date-offset engine ────────────────────────────────────────────────────────
+// Demo data was seeded once. As time passes, "last 30 days" finds fewer orders.
+// Fix: shift query windows backward by (now - maxCreatedAt), shift response
+// dates forward by the same amount, so data always looks current.
+let _orderOffsetMs  = null; // ms to subtract from query dates / add to result dates
+let _pixelOffsetMs  = null;
+
+async function getOrderOffset() {
+  if (_orderOffsetMs !== null) return _orderOffsetMs;
+  const latest = await DemoOrder.findOne({}, { createdAt: 1 }).sort({ createdAt: -1 }).lean();
+  _orderOffsetMs = latest ? Date.now() - new Date(latest.createdAt).getTime() : 0;
+  // Clamp to whole days so chart grouping stays clean
+  _orderOffsetMs = Math.floor(_orderOffsetMs / 86400000) * 86400000;
+  return _orderOffsetMs;
+}
+
+async function getPixelOffset() {
+  if (_pixelOffsetMs !== null) return _pixelOffsetMs;
+  const latest = await PixelEvent.findOne({}, { created_at: 1 }).sort({ created_at: -1 }).lean();
+  _pixelOffsetMs = latest ? Date.now() - new Date(latest.created_at).getTime() : 0;
+  _pixelOffsetMs = Math.floor(_pixelOffsetMs / 86400000) * 86400000;
+  return _pixelOffsetMs;
+}
+
+// Shift a YYYY-MM-DD string backward by offsetMs (for querying the DB)
+function shiftDateBack(dateStr, offsetMs) {
+  if (!dateStr) return dateStr;
+  const d = new Date(`${dateStr}T12:00:00.000Z`);
+  d.setTime(d.getTime() - offsetMs);
+  return d.toISOString().slice(0, 10);
+}
+
+// Shift a Date forward by offsetMs (for response dates)
+function shiftDateFwd(date, offsetMs) {
+  if (!date) return date;
+  return new Date(new Date(date).getTime() + offsetMs);
+}
+
+function agoLabel(ms) {
+  const s = Math.floor(ms / 1000);
+  if (s < 60)  return `${s}s ago`;
+  const m = Math.floor(s / 60);
+  if (m < 60)  return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24)  return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
+}
+
+function dateMatch(from, to, vendor, offsetMs = 0) {
   const m = {};
-  if (from) m.createdAt = { ...m.createdAt, $gte: new Date(`${from}T00:00:00.000Z`) };
-  if (to)   m.createdAt = { ...m.createdAt, $lte: new Date(`${to}T23:59:59.999Z`) };
+  const f = shiftDateBack(from, offsetMs);
+  const t = shiftDateBack(to,   offsetMs);
+  if (f) m.createdAt = { ...m.createdAt, $gte: new Date(`${f}T00:00:00.000Z`) };
+  if (t) m.createdAt = { ...m.createdAt, $lte: new Date(`${t}T23:59:59.999Z`) };
   if (vendor && vendor !== 'all') m.vendorName = vendor;
   return m;
 }
@@ -24,7 +74,8 @@ function dateMatch(from, to, vendor) {
 router.get('/summary', auth, async (req, res) => {
   try {
     await connect();
-    const m = dateMatch(req.query.from, req.query.to, req.query.vendor);
+    const off = await getOrderOffset();
+    const m = dateMatch(req.query.from, req.query.to, req.query.vendor, off);
 
     const [stageCounts, revenueAgg, allTimeAgg] = await Promise.all([
       DemoOrder.aggregate([{ $match: m }, { $group: { _id: '$stage', count: { $sum: 1 }, revenue: { $sum: '$myRevenue' } } }]),
@@ -81,8 +132,9 @@ router.get('/summary', auth, async (req, res) => {
 router.get('/orders', auth, async (req, res) => {
   try {
     await connect();
+    const off = await getOrderOffset();
     const { stage, vendor, search, page = 1, limit = 50 } = req.query;
-    const m = dateMatch(req.query.from, req.query.to, vendor);
+    const m = dateMatch(req.query.from, req.query.to, vendor, off);
     if (stage && stage !== 'all') m.stage = stage;
     if (search) {
       const re = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
@@ -93,7 +145,9 @@ router.get('/orders', auth, async (req, res) => {
       DemoOrder.find(m).sort({ createdAt: -1 }).skip(skip).limit(parseInt(limit)).lean(),
       DemoOrder.countDocuments(m),
     ]);
-    res.json({ orders, total, page: parseInt(page), pages: Math.ceil(total / parseInt(limit)) });
+    // Shift dates forward so they appear current
+    const shifted = orders.map(o => ({ ...o, createdAt: shiftDateFwd(o.createdAt, off) }));
+    res.json({ orders: shifted, total, page: parseInt(page), pages: Math.ceil(total / parseInt(limit)) });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
@@ -101,7 +155,8 @@ router.get('/orders', auth, async (req, res) => {
 router.get('/daily', auth, async (req, res) => {
   try {
     await connect();
-    const m = dateMatch(req.query.from, req.query.to, req.query.vendor);
+    const off = await getOrderOffset();
+    const m = dateMatch(req.query.from, req.query.to, req.query.vendor, off);
     const rows = await DemoOrder.aggregate([
       { $match: m },
       { $group: {
@@ -113,7 +168,14 @@ router.get('/daily', auth, async (req, res) => {
       }},
       { $sort: { _id: 1 } },
     ]);
-    res.json({ daily: rows.map(r => ({ date: r._id, orders: r.orders, revenue: r.revenue, delivered: r.delivered, confirmed: r.confirmed })) });
+    // Shift chart dates forward so they plot on correct current days
+    const offDays = Math.round(off / 86400000);
+    const shifted = rows.map(r => {
+      const d = new Date(`${r._id}T12:00:00Z`);
+      d.setDate(d.getDate() + offDays);
+      return { date: d.toISOString().slice(0,10), orders: r.orders, revenue: r.revenue, delivered: r.delivered, confirmed: r.confirmed };
+    });
+    res.json({ daily: shifted });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
@@ -131,10 +193,12 @@ router.get('/vendors', auth, async (req, res) => {
 
 // ── PIXEL TRACKER routes (demo-keyed, no admin key needed) ────────────────────
 
-function pixelDateMatch(from, to) {
+function pixelDateMatch(from, to, offsetMs = 0) {
   const m = {};
-  if (from) m.created_at = { ...m.created_at, $gte: `${from}T00:00:00.000Z` };
-  if (to)   m.created_at = { ...m.created_at, $lte: `${to}T23:59:59.999Z` };
+  const f = shiftDateBack(from, offsetMs);
+  const t = shiftDateBack(to,   offsetMs);
+  if (f) m.created_at = { ...m.created_at, $gte: `${f}T00:00:00.000Z` };
+  if (t) m.created_at = { ...m.created_at, $lte: `${t}T23:59:59.999Z` };
   return m;
 }
 
@@ -142,7 +206,8 @@ function pixelDateMatch(from, to) {
 router.get('/pixel/summary', auth, async (req, res) => {
   try {
     await connect();
-    const match = pixelDateMatch(req.query.from, req.query.to);
+    const off = await getPixelOffset();
+    const match = pixelDateMatch(req.query.from, req.query.to, off);
     const rows = await PixelEvent.aggregate([
       { $match: match },
       { $group: { _id: '$eventName', count: { $sum: 1 }, value: { $sum: { $ifNull: ['$value', 0] } } } },
@@ -167,10 +232,11 @@ router.get('/pixel/summary', auth, async (req, res) => {
 router.get('/pixel/top-products', auth, async (req, res) => {
   try {
     await connect();
+    const off = await getPixelOffset();
     const VALID = ['ViewContent','AddToCart','InitiateCheckout','Purchase'];
     const metric = VALID.includes(req.query.metric) ? req.query.metric : 'ViewContent';
     const limit  = Math.min(parseInt(req.query.limit) || 30, 100);
-    const match  = { ...pixelDateMatch(req.query.from, req.query.to), eventName: metric, productName: { $ne: 'N/A' } };
+    const match  = { ...pixelDateMatch(req.query.from, req.query.to, off), eventName: metric, productName: { $ne: 'N/A' } };
     const top = await PixelEvent.aggregate([
       { $match: match },
       { $group: { _id: '$productName', count: { $sum: 1 }, image: { $last: '$productImage' } } },
@@ -185,9 +251,10 @@ router.get('/pixel/top-products', auth, async (req, res) => {
 router.get('/pixel/leaderboard', auth, async (req, res) => {
   try {
     await connect();
+    const off = await getPixelOffset();
     const limit    = Math.min(parseInt(req.query.limit) || 20, 100);
     const minViews = parseInt(req.query.minViews) || 5;
-    const match    = { ...pixelDateMatch(req.query.from, req.query.to), productName: { $ne: 'N/A' } };
+    const match    = { ...pixelDateMatch(req.query.from, req.query.to, off), productName: { $ne: 'N/A' } };
     const rows = await PixelEvent.aggregate([
       { $match: match },
       { $group: {
@@ -222,9 +289,17 @@ router.get('/pixel/leaderboard', auth, async (req, res) => {
 router.get('/pixel/recent', auth, async (req, res) => {
   try {
     await connect();
+    const off   = await getPixelOffset();
     const limit = Math.min(parseInt(req.query.limit) || 50, 100);
     const logs  = await PixelEvent.find({}, { _id: 0 }).sort({ created_at: -1 }).limit(limit).lean();
-    res.json({ logs });
+    const now   = Date.now();
+    // Spread logs across 0–45 min ago using their original relative order
+    const total = logs.length || 1;
+    const shifted = logs.map((log, i) => {
+      const ageMs = (i / total) * 45 * 60 * 1000; // 0 to 45 min spread
+      return { ...log, ago: agoLabel(ageMs), created_at: new Date(now - ageMs).toISOString() };
+    });
+    res.json({ logs: shifted });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
