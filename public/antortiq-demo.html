@@ -943,12 +943,19 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
     <div class="login-logo">Antor<span>tiq</span></div>
     <div class="login-sub">Brand Command Center · Live Demo</div>
 
+    <!-- Password hint pill -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px">
+      <span style="font-size:11px;color:#a5b4fc;font-weight:600">🔑 Demo password is</span>
+      <span style="font-family:monospace;font-size:22px;font-weight:900;color:#fff;letter-spacing:4px;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);border-radius:7px;padding:2px 14px">1</span>
+      <button onclick="document.getElementById('lkey').value='1';document.getElementById('lkey').focus()" style="font-size:10px;font-weight:700;color:#6366f1;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:var(--font)">Autofill ↗</button>
+    </div>
+
     <input class="fi" type="password" id="lkey" placeholder="Enter access code" autocomplete="off" style="text-align:center;font-size:18px;letter-spacing:4px;margin-bottom:0">
-    <button class="lb" onclick="doLogin()" style="margin-top:10px">Continue</button>
+    <button class="lb" onclick="doLogin()" style="margin-top:10px">Continue →</button>
     <div class="lerr" id="lerr"></div>
 
-    <div style="margin-top:16px;text-align:center">
-      <div style="font-size:11px;color:var(--text-muted)">Code is <strong style="color:var(--text)">1</strong> — most brands leave with a lighter wallet. Enter at your own risk.</div>
+    <div style="margin-top:14px;text-align:center;font-size:10px;color:var(--text-muted)">
+      This is a live demo — real UI, real data flow, zero commitment.
     </div>
   </div>
 </div>
