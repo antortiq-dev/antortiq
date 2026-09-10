@@ -17,6 +17,7 @@ function auth(req, res, next) {
 // Fix: shift query windows backward by (now - maxCreatedAt), shift response
 // dates forward by the same amount, so data always looks current.
 let _orderOffsetMs  = null;
+let _pixelOffsetMs  = null;
 let _offsetCachedAt = 0;
 const OFFSET_TTL    = 3600000; // recompute offset every hour so it stays fresh
 
