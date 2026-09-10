@@ -58,10 +58,13 @@ function randItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function randAWB() { return `${randItem(['DL','XB','SF','EK','DD'])}${randInt(1000000000,9999999999)}`; }
 
 function generateRevenue(stage, paymentType) {
-  const base = randInt(599, 2999);
-  // round to nearest 99/49/00 for realistic look
-  const endings = [99, 199, 299, 399, 499, 649, 799, 899, 999, 1199, 1299, 1499, 1699, 1799, 1999, 2199, 2499, 2799, 2999];
-  return randItem(endings.filter(p => p <= 2999 && p >= 599));
+  // Premium D2C streetwear — multi-item orders, realistic ₹2k-9k range
+  const endings = [1999,2199,2499,2799,2999,3199,3499,3799,3999,4199,4499,4799,4999,5299,5499,5799,5999,6499,6999,7499,7999,8499,8999];
+  const weights  = [2,2,3,3,4,5,5,5,6,6,6,5,5,4,4,3,3,2,2,1,1,1,1];
+  const total = weights.reduce((a,b)=>a+b,0);
+  let r = Math.random()*total;
+  for (let i=0;i<endings.length;i++){r-=weights[i];if(r<=0)return endings[i];}
+  return endings[endings.length-1];
 }
 
 // Map real Croscrow dates → last 90 days (preserves real business rhythm)

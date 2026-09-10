@@ -80,7 +80,9 @@ connect().then(async () => {
   } catch(e) { console.warn('[wa-bot] Failed to load:', e.message); }
 
   // Auto-remap demo order dates so dashboard always shows full 90-day data
-  try { require('./scripts/remap-demo-dates').run(); } catch(e) { console.warn('[remap] skip:', e.message); }
+  try { require('./scripts/remap-demo-dates').run(); } catch(e) { console.warn('[remap-dates] skip:', e.message); }
+  // Auto-remap demo revenue to realistic premium D2C range (₹10-15L/month)
+  try { require('./scripts/remap-demo-revenue').run(); } catch(e) { console.warn('[remap-revenue] skip:', e.message); }
 
   app.listen(PORT, () => console.log(`Antortiq running on port ${PORT}`));
 }).catch(err => {
