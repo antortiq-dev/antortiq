@@ -3339,8 +3339,8 @@ function metaToggleAd(adEl) {
 }
 
 function renderMetaCampaigns() {
-  const rc  = v => v >= 4 ? '#10b981' : v >= 2.5 ? '#f59e0b' : '#f87171';
-  const cc  = v => v >= 4 ? '#10b981' : v >= 2   ? '#60a5fa' : '#94a3b8';
+  const rc  = v => v >= 3.5 ? '#10b981' : v >= 2 ? '#f59e0b' : '#f87171';
+  const cc  = v => v >= 4   ? '#10b981' : v >= 2 ? '#60a5fa' : '#94a3b8';
 
   function segBar(del, rto, can, mot) {
     const total = del+rto+can+mot || 1;
@@ -3380,12 +3380,14 @@ function renderMetaCampaigns() {
   }
 
   function adBlock(ad, c) {
-    const aRoas = rc(ad.roas);
+    const netRoas = +(ad.grossRoas * (1 - (ad.rto + ad.can) / 100)).toFixed(1);
     return `<div class="meta-ad-row" onclick="metaToggleAd(this)">
       <div class="meta-ad-face">
         <div class="meta-ad-name">${ad.name}</div>
         <div class="meta-ad-kpis">
-          <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">ROAS</div><div class="meta-ad-kpi-val" style="color:${aRoas}">${ad.roas}x</div></div>
+          <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">Meta</div><div class="meta-ad-kpi-val" style="color:${rc(ad.roas)}">${ad.roas}x</div></div>
+          <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">Gross</div><div class="meta-ad-kpi-val" style="color:${rc(ad.grossRoas)}">${ad.grossRoas}x</div></div>
+          <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">Net</div><div class="meta-ad-kpi-val" style="color:${rc(netRoas)}">${netRoas}x</div></div>
           <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">Spend</div><div class="meta-ad-kpi-val">${fmtCur(ad.spend)}</div></div>
           <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">Orders</div><div class="meta-ad-kpi-val" style="color:${c}">${ad.orders}</div></div>
         </div>
@@ -3401,10 +3403,12 @@ function renderMetaCampaigns() {
   }
 
   function campCard(c) {
-    const grossRoas = +(c.spend > 0 ? (c.orders * c.avgOrder / c.spend) : 0).toFixed(1);
-    const netSales  = Math.round(c.orders * c.avgOrder * (1 - c.rtoR/100 - c.canR/100));
-    const netRoas   = +(c.spend > 0 ? netSales / c.spend : 0).toFixed(1);
-    const sales     = c.orders * c.avgOrder;
+    // Meta overclaims; Gross = verified orders / spend (pre-set per campaign)
+    // Net = Gross after RTO + cancellation revenue loss
+    const grossRoas = c.grossRoas;
+    const netRoas   = +(grossRoas * (1 - (c.rtoR + c.canR) / 100)).toFixed(1);
+    const sales     = Math.round(c.spend * grossRoas);
+    const netSales  = Math.round(sales * (1 - (c.rtoR + c.canR) / 100));
     const canCount  = Math.round(c.orders * c.canR / 100);
     const rtoCount  = Math.round(c.orders * c.rtoR / 100);
     const delCount  = Math.round(c.orders * c.delR / 100);
@@ -3465,73 +3469,76 @@ function renderMetaCampaigns() {
   }
 
   const CAMPS = [
+    // roas = Meta Ads Manager ROAS (inflated, Meta's own attribution)
+    // grossRoas = verified orders / spend (real, ~10-25% lower than Meta roas)
+    // netRoas computed in campCard = grossRoas × (1 - rtoR% - canR%)
     {
-      name:'DRIP STUDIOS — Streetwear Drop SS25', spend:48200, roas:4.8, ctr:3.2, orders:214,
-      c:'#6366f1', status:'ACTIVE', avgOrder:4200, delR:58, rtoR:17, canR:8,
+      name:'DRIP STUDIOS — Streetwear Drop SS25', spend:48200, roas:4.8, grossRoas:3.9, ctr:3.2, orders:214,
+      c:'#6366f1', status:'ACTIVE', delR:58, rtoR:17, canR:8,
       audHi:22, audMed:38, audCtrl:25, audLo:15,
       products:[['Oversized Acid Wash Tee','68 orders'],['Drop-Shoulder Bomber','51 orders'],['Cargo Utility Shorts','42 orders']],
       states:[['Maharashtra','74 orders'],['Delhi NCR','58 orders'],['Karnataka','39 orders'],['Gujarat','22 orders']],
       ads:[
-        { name:'Reel — "How We Drop" UGC', spend:19400, roas:5.6, orders:92, del:55, rto:15, can:9, mot:21, audHi:18,audMed:41,audCtrl:28,audLo:13 },
-        { name:'Static — New Arrivals Carousel', spend:16800, roas:4.2, orders:74, del:59, rto:18, can:7, mot:16, audHi:24,audMed:35,audCtrl:22,audLo:19 },
-        { name:'DPA — Dynamic Retargeting', spend:12000, roas:3.8, orders:48, del:61, rto:16, can:9, mot:14, audHi:26,audMed:34,audCtrl:21,audLo:19 },
+        { name:'Reel — "How We Drop" UGC',      spend:19400, roas:5.6, grossRoas:4.5, orders:92, del:55, rto:15, can:9,  mot:21, audHi:18,audMed:41,audCtrl:28,audLo:13 },
+        { name:'Static — New Arrivals Carousel', spend:16800, roas:4.2, grossRoas:3.5, orders:74, del:59, rto:18, can:7,  mot:16, audHi:24,audMed:35,audCtrl:22,audLo:19 },
+        { name:'DPA — Dynamic Retargeting',      spend:12000, roas:3.8, grossRoas:3.1, orders:48, del:61, rto:16, can:9,  mot:14, audHi:26,audMed:34,audCtrl:21,audLo:19 },
       ]
     },
     {
-      name:'BOX-FIT HOODIE — Retargeting', spend:18600, roas:6.1, ctr:4.7, orders:89,
-      c:'#10b981', status:'ACTIVE', avgOrder:4800, delR:68, rtoR:11, canR:5,
+      name:'BOX-FIT HOODIE — Retargeting', spend:18600, roas:6.1, grossRoas:6.8, ctr:4.7, orders:89,
+      c:'#10b981', status:'ACTIVE', delR:68, rtoR:11, canR:5,
       audHi:12, audMed:29, audCtrl:34, audLo:25,
       products:[['Box-Fit Hoodie','61 orders'],['Crewneck Sweatshirt','18 orders'],['Quarter-Zip Pullover','10 orders']],
       states:[['Bangalore','32 orders'],['Mumbai','24 orders'],['Pune','18 orders'],['Chennai','15 orders']],
       ads:[
-        { name:'Video — "Fit Check" Hook', spend:10200, roas:7.1, orders:52, del:71, rto:9, can:5, mot:15, audHi:10,audMed:26,audCtrl:38,audLo:26 },
-        { name:'Static — Size Chart + CTA', spend:8400, roas:4.9, orders:37, del:64, rto:14, can:6, mot:16, audHi:15,audMed:32,audCtrl:30,audLo:23 },
+        { name:'Video — "Fit Check" Hook',  spend:10200, roas:7.1, grossRoas:8.1, orders:52, del:71, rto:9,  can:5, mot:15, audHi:10,audMed:26,audCtrl:38,audLo:26 },
+        { name:'Static — Size Chart + CTA', spend:8400,  roas:4.9, grossRoas:4.1, orders:37, del:64, rto:14, can:6, mot:16, audHi:15,audMed:32,audCtrl:30,audLo:23 },
       ]
     },
     {
-      name:'SICOS — Lookalike 3% India', spend:32400, roas:3.4, ctr:2.1, orders:134,
-      c:'#f59e0b', status:'ACTIVE', avgOrder:3800, delR:51, rtoR:22, canR:11,
+      name:'SICOS — Lookalike 3% India', spend:32400, roas:3.4, grossRoas:2.7, ctr:2.1, orders:134,
+      c:'#f59e0b', status:'ACTIVE', delR:51, rtoR:22, canR:11,
       audHi:34, audMed:42, audCtrl:16, audLo:8,
       products:[['Washed Baggy Jeans','48 orders'],['Raw Hem Flare Jeans','36 orders'],['Pleated Trousers','28 orders']],
       states:[['Rajasthan','41 orders'],['UP','38 orders'],['Bihar','27 orders'],['MP','18 orders']],
       ads:[
-        { name:'Video — Street Style Reel', spend:14600, roas:3.9, orders:62, del:54, rto:20, can:10, mot:16, audHi:31,audMed:44,audCtrl:17,audLo:8 },
-        { name:'Carousel — Collection Grid', spend:11400, roas:3.1, orders:48, del:48, rto:24, can:13, mot:15, audHi:37,audMed:40,audCtrl:15,audLo:8 },
-        { name:'Static — Price Drop CTA', spend:6400, roas:2.8, orders:24, del:50, rto:23, can:11, mot:16, audHi:36,audMed:41,audCtrl:14,audLo:9 },
+        { name:'Video — Street Style Reel',   spend:14600, roas:3.9, grossRoas:3.1, orders:62, del:54, rto:20, can:10, mot:16, audHi:31,audMed:44,audCtrl:17,audLo:8 },
+        { name:'Carousel — Collection Grid',  spend:11400, roas:3.1, grossRoas:2.5, orders:48, del:48, rto:24, can:13, mot:15, audHi:37,audMed:40,audCtrl:15,audLo:8 },
+        { name:'Static — Price Drop CTA',     spend:6400,  roas:2.8, grossRoas:2.2, orders:24, del:50, rto:23, can:11, mot:16, audHi:36,audMed:41,audCtrl:14,audLo:9 },
       ]
     },
     {
-      name:'FLYJONE — Cold Audience 18-25', spend:24800, roas:2.9, ctr:1.8, orders:91,
-      c:'#60a5fa', status:'ACTIVE', avgOrder:3500, delR:47, rtoR:26, canR:12,
+      name:'FLYJONE — Cold Audience 18-25', spend:24800, roas:2.9, grossRoas:2.3, ctr:1.8, orders:91,
+      c:'#60a5fa', status:'ACTIVE', delR:47, rtoR:26, canR:12,
       audHi:41, audMed:36, audCtrl:14, audLo:9,
       products:[['Graphic Print Tee','29 orders'],['Y2K Track Pants','24 orders'],['Tie-Dye Camp Shirt','21 orders']],
       states:[['Delhi NCR','28 orders'],['Lucknow','19 orders'],['Jaipur','17 orders'],['Hyderabad','14 orders']],
       ads:[
-        { name:'Reel — Influencer Collab', spend:12600, roas:3.4, orders:51, del:50, rto:23, can:11, mot:16, audHi:38,audMed:38,audCtrl:15,audLo:9 },
-        { name:'Static — "New Drop" Announcement', spend:7800, roas:2.5, orders:26, del:44, rto:29, can:14, mot:13, audHi:44,audMed:34,audCtrl:13,audLo:9 },
-        { name:'DPA — Cart Abandoners', spend:4400, roas:2.2, orders:14, del:46, rto:28, can:12, mot:14, audHi:42,audMed:35,audCtrl:14,audLo:9 },
+        { name:'Reel — Influencer Collab',           spend:12600, roas:3.4, grossRoas:2.7, orders:51, del:50, rto:23, can:11, mot:16, audHi:38,audMed:38,audCtrl:15,audLo:9 },
+        { name:'Static — "New Drop" Announcement',   spend:7800,  roas:2.5, grossRoas:2.0, orders:26, del:44, rto:29, can:14, mot:13, audHi:44,audMed:34,audCtrl:13,audLo:9 },
+        { name:'DPA — Cart Abandoners',              spend:4400,  roas:2.2, grossRoas:1.8, orders:14, del:46, rto:28, can:12, mot:14, audHi:42,audMed:35,audCtrl:14,audLo:9 },
       ]
     },
     {
-      name:'Cargo Shorts — UGC Video Ads', spend:14200, roas:5.3, ctr:5.1, orders:73,
-      c:'#a78bfa', status:'ACTIVE', avgOrder:4400, delR:64, rtoR:14, canR:7,
+      name:'Cargo Shorts — UGC Video Ads', spend:14200, roas:5.3, grossRoas:5.9, ctr:5.1, orders:73,
+      c:'#a78bfa', status:'ACTIVE', delR:64, rtoR:14, canR:7,
       audHi:16, audMed:33, audCtrl:31, audLo:20,
       products:[['Cargo Utility Shorts','44 orders'],['Nylon Wind Jacket','17 orders'],['Twill Worker Jacket','12 orders']],
       states:[['Mumbai','24 orders'],['Bangalore','21 orders'],['Hyderabad','16 orders'],['Chennai','12 orders']],
       ads:[
-        { name:'UGC Reel — "Day in My Drip"', spend:8600, roas:6.2, orders:48, del:67, rto:12, can:6, mot:15, audHi:14,audMed:30,audCtrl:34,audLo:22 },
-        { name:'Static — Product Flat-Lay', spend:5600, roas:4.0, orders:25, del:60, rto:17, can:9, mot:14, audHi:19,audMed:36,audCtrl:27,audLo:18 },
+        { name:'UGC Reel — "Day in My Drip"', spend:8600, roas:6.2, grossRoas:5.1, orders:48, del:67, rto:12, can:6, mot:15, audHi:14,audMed:30,audCtrl:34,audLo:22 },
+        { name:'Static — Product Flat-Lay',   spend:5600, roas:4.0, grossRoas:3.4, orders:25, del:60, rto:17, can:9, mot:14, audHi:19,audMed:36,audCtrl:27,audLo:18 },
       ]
     },
     {
-      name:'ODD AFFAIR — Catalogue Retargeting', spend:11400, roas:2.2, ctr:1.4, orders:47,
-      c:'#f87171', status:'PAUSED', avgOrder:3200, delR:44, rtoR:29, canR:13,
+      name:'ODD AFFAIR — Catalogue Retargeting', spend:11400, roas:2.2, grossRoas:1.7, ctr:1.4, orders:47,
+      c:'#f87171', status:'PAUSED', delR:44, rtoR:29, canR:13,
       audHi:46, audMed:33, audCtrl:13, audLo:8,
       products:[['Ribbed Tank Top','16 orders'],['Mesh Jersey Top','14 orders'],['Ribbed Crop Top','11 orders']],
       states:[['Delhi NCR','16 orders'],['Jaipur','12 orders'],['Chandigarh','10 orders']],
       ads:[
-        { name:'DPA — View-based retargeting', spend:7200, roas:2.4, orders:31, del:46, rto:27, can:12, mot:15, audHi:44,audMed:34,audCtrl:14,audLo:8 },
-        { name:'Static — Discount Banner', spend:4200, roas:1.9, orders:16, del:41, rto:32, can:15, mot:12, audHi:49,audMed:31,audCtrl:12,audLo:8 },
+        { name:'DPA — View-based retargeting', spend:7200, roas:2.4, grossRoas:1.9, orders:31, del:46, rto:27, can:12, mot:15, audHi:44,audMed:34,audCtrl:14,audLo:8 },
+        { name:'Static — Discount Banner',     spend:4200, roas:1.9, grossRoas:1.5, orders:16, del:41, rto:32, can:15, mot:12, audHi:49,audMed:31,audCtrl:12,audLo:8 },
       ]
     },
   ];
