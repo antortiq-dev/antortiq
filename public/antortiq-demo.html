@@ -894,14 +894,63 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
 .state-bar-val{font-size:10px;font-weight:700;min-width:30px;text-align:right}
 
 /* Meta campaigns */
-.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
-.meta-card{border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--bg-hover);position:relative;overflow:hidden}
+.meta-grid{display:flex;flex-direction:column;gap:8px}
+.meta-card{border:1px solid var(--border);border-radius:10px;background:var(--bg-hover);position:relative;overflow:hidden;cursor:pointer;transition:border-color .15s}
+.meta-card:hover{border-color:rgba(255,255,255,.15)}
+.meta-card.organic{border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.03)}
+.meta-card.paused{opacity:.65}
 .meta-card-accent{position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0}
-.meta-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;padding-top:3px}
-.meta-kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.meta-kpi{background:var(--bg-card2);border-radius:6px;padding:6px 8px}
-.meta-kpi-lbl{font-size:8px;font-weight:700;letter-spacing:.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:2px}
-.meta-kpi-val{font-size:14px;font-weight:800}
+.meta-face{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.meta-status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.meta-name{font-size:12px;font-weight:700;color:var(--text);flex:1;min-width:0}
+.meta-roas-trio{display:flex;gap:6px;flex-shrink:0}
+.meta-roas-chip{display:flex;flex-direction:column;align-items:center;background:var(--bg-card2);border-radius:6px;padding:4px 8px;min-width:46px}
+.meta-roas-chip-lbl{font-size:7px;font-weight:700;letter-spacing:.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:1px}
+.meta-roas-chip-val{font-size:12px;font-weight:900}
+.meta-face-right{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:6px}
+.meta-kpi-inline{display:flex;flex-direction:column;align-items:flex-end}
+.meta-kpi-inline-lbl{font-size:7px;font-weight:700;letter-spacing:.4px;color:var(--text-muted);text-transform:uppercase}
+.meta-kpi-inline-val{font-size:12px;font-weight:800;color:var(--text)}
+.meta-chevron{font-size:10px;color:var(--text-muted);transition:transform .2s;flex-shrink:0;margin-left:4px}
+.meta-card.expanded .meta-chevron{transform:rotate(180deg)}
+.meta-body{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.meta-card.expanded .meta-body{display:block}
+.meta-stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;padding-top:12px}
+.meta-stat-box{background:var(--bg-card2);border-radius:7px;padding:8px 10px}
+.meta-stat-lbl{font-size:8px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px}
+.meta-stat-val{font-size:15px;font-weight:900;color:var(--text)}
+.meta-seg-bar{height:16px;border-radius:6px;overflow:hidden;display:flex;margin-bottom:4px}
+.meta-seg-bar-fill{height:100%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:rgba(255,255,255,.9);transition:width .4s;min-width:0;overflow:hidden}
+.meta-seg-labels{display:flex;gap:0;margin-bottom:10px}
+.meta-seg-label{flex:1;min-width:0;font-size:8px;color:var(--text-muted);text-align:center;line-height:1.3}
+.meta-aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px}
+.meta-aud-col{background:var(--bg-card2);border-radius:6px;padding:7px 8px}
+.meta-aud-lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+.meta-aud-bar{height:4px;border-radius:99px;margin-bottom:3px}
+.meta-aud-val{font-size:11px;font-weight:800}
+.meta-two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.meta-mini-list-title{font-size:8px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.meta-mini-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border)}
+.meta-mini-row:last-child{border-bottom:none}
+.meta-mini-name{font-size:10px;color:var(--text);font-weight:500}
+.meta-mini-val{font-size:10px;font-weight:700;color:var(--text-muted)}
+.meta-ads-toggle{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:10px;font-weight:700;color:var(--text-muted);padding:8px 0 4px;border-top:1px solid var(--border);user-select:none;margin-top:4px}
+.meta-ads-toggle:hover{color:var(--text)}
+.meta-ads-chevron{font-size:9px;transition:transform .2s}
+.meta-ads-open .meta-ads-chevron{transform:rotate(180deg)}
+.meta-ads-list{display:none}
+.meta-ads-open .meta-ads-list{display:block}
+.meta-ad-row{background:var(--bg-card2);border-radius:7px;margin-top:6px;overflow:hidden}
+.meta-ad-face{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer}
+.meta-ad-name{font-size:11px;font-weight:600;color:var(--text);flex:1;min-width:0}
+.meta-ad-kpis{display:flex;gap:10px;flex-shrink:0}
+.meta-ad-kpi{display:flex;flex-direction:column;align-items:flex-end}
+.meta-ad-kpi-lbl{font-size:7px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--text-muted)}
+.meta-ad-kpi-val{font-size:11px;font-weight:800}
+.meta-ad-body{display:none;padding:0 12px 10px}
+.meta-ad-row.ad-expanded .meta-ad-body{display:block}
+.meta-ad-chevron{font-size:9px;color:var(--text-muted);transition:transform .2s}
+.meta-ad-row.ad-expanded .meta-ad-chevron{transform:rotate(180deg)}
 
 /* Audience quality */
 .aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
@@ -1257,10 +1306,13 @@ td{padding:11px 16px;font-size:12px;vertical-align:middle}
         <div class="dash-section">
           <div class="dash-section-hdr">
             <div>
-              <div class="dash-section-title">📣 Best Performing Meta Campaigns</div>
-              <div class="dash-section-meta">Connected via Pixel — ranked by ROAS · Last 30 days</div>
+              <div class="dash-section-title">📣 Meta Campaign Insights</div>
+              <div class="dash-section-meta">Pixel-attributed · ROAS · Order outcomes · Last 30 days</div>
             </div>
-            <div class="dash-section-tag" style="background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2)">META ADS</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <button id="meta-toggle-btn" onclick="metaToggleAll()" style="font-size:10px;font-weight:700;color:#60a5fa;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.25);border-radius:6px;padding:5px 10px;cursor:pointer;font-family:var(--font)">Active only</button>
+              <div class="dash-section-tag" style="background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2)">META ADS</div>
+            </div>
           </div>
           <div class="meta-grid" id="meta-grid"></div>
         </div>
@@ -3267,37 +3319,241 @@ function renderAudienceGrid() {
     </div>`).join('');
 }
 
+let _metaShowAll = false;
+function metaToggleAll() {
+  _metaShowAll = !_metaShowAll;
+  document.getElementById('meta-toggle-btn').textContent = _metaShowAll ? 'Showing all 6' : 'Active only';
+  renderMetaCampaigns();
+}
+function metaToggleCard(el) {
+  el.classList.toggle('expanded');
+  event.stopPropagation();
+}
+function metaToggleAds(toggleEl) {
+  toggleEl.parentElement.classList.toggle('meta-ads-open');
+  event.stopPropagation();
+}
+function metaToggleAd(adEl) {
+  adEl.classList.toggle('ad-expanded');
+  event.stopPropagation();
+}
+
 function renderMetaCampaigns() {
-  const CAMPS = [
-    { name:'DRIP STUDIOS — Streetwear Drop SS25', spend:48200, roas:4.8, ctr:3.2, orders:214, c:'#6366f1' },
-    { name:'BOX-FIT HOODIE — Retargeting',         spend:18600, roas:6.1, ctr:4.7, orders:89,  c:'#10b981' },
-    { name:'SICOS — Lookalike 3% India',            spend:32400, roas:3.4, ctr:2.1, orders:134, c:'#f59e0b' },
-    { name:'FLYJONE — Cold Audience 18-25',         spend:24800, roas:2.9, ctr:1.8, orders:91,  c:'#60a5fa' },
-    { name:'Cargo Shorts — UGC Video Ads',          spend:14200, roas:5.3, ctr:5.1, orders:73,  c:'#a78bfa' },
-  ];
-  document.getElementById('meta-grid').innerHTML = CAMPS.map(c => `
-    <div class="meta-card">
-      <div class="meta-card-accent" style="background:linear-gradient(90deg,${c.c},${c.c}88)"></div>
-      <div class="meta-name">${c.name}</div>
-      <div class="meta-kpi-row">
-        <div class="meta-kpi">
-          <div class="meta-kpi-lbl">ROAS</div>
-          <div class="meta-kpi-val" style="color:${c.roas>=4?'#10b981':c.roas>=3?'#f59e0b':'#f87171'}">${c.roas}x</div>
+  const rc  = v => v >= 4 ? '#10b981' : v >= 2.5 ? '#f59e0b' : '#f87171';
+  const cc  = v => v >= 4 ? '#10b981' : v >= 2   ? '#60a5fa' : '#94a3b8';
+
+  function segBar(del, rto, can, mot) {
+    const total = del+rto+can+mot || 1;
+    const pDel = Math.round(del/total*100), pRto = Math.round(rto/total*100),
+          pCan = Math.round(can/total*100), pMot = Math.round(mot/total*100);
+    const seg = (w, bg, lbl) => `<div class="meta-seg-bar-fill" style="width:${w}%;background:${bg}">${w>=8?lbl:''}</div>`;
+    return `
+      <div class="meta-seg-bar">
+        ${seg(pDel,'#10b981','Del')}${seg(pRto,'#ef4444','RTO')}${seg(pCan,'#6b7280','Can')}${seg(pMot,'#6366f1','Mot')}
+      </div>
+      <div class="meta-seg-labels">
+        <div class="meta-seg-label" style="color:#10b981">Del<br>${pDel}%</div>
+        <div class="meta-seg-label" style="color:#ef4444">RTO<br>${pRto}%</div>
+        <div class="meta-seg-label" style="color:#94a3b8">Can<br>${pCan}%</div>
+        <div class="meta-seg-label" style="color:#818cf8">Motion<br>${pMot}%</div>
+      </div>`;
+  }
+
+  function audMix(hi, med, ctrl, lo) {
+    const max = Math.max(hi,med,ctrl,lo)||1;
+    const col = ['#ef4444','#f59e0b','#60a5fa','#10b981'];
+    const lbl = ['High Risk','Medium','Control','Low Risk'];
+    const vals = [hi,med,ctrl,lo];
+    return vals.map((v,i) => `
+      <div class="meta-aud-col">
+        <div class="meta-aud-lbl" style="color:${col[i]}">${lbl[i]}</div>
+        <div class="meta-aud-bar" style="background:${col[i]}22"><div style="height:100%;width:${Math.round(v/max*100)}%;background:${col[i]};border-radius:99px"></div></div>
+        <div class="meta-aud-val" style="color:${col[i]}">${v}%</div>
+      </div>`).join('');
+  }
+
+  function miniList(title, rows) {
+    return `<div>
+      <div class="meta-mini-list-title">${title}</div>
+      ${rows.map(([n,v])=>`<div class="meta-mini-row"><span class="meta-mini-name">${n}</span><span class="meta-mini-val">${v}</span></div>`).join('')}
+    </div>`;
+  }
+
+  function adBlock(ad, c) {
+    const aRoas = rc(ad.roas);
+    return `<div class="meta-ad-row" onclick="metaToggleAd(this)">
+      <div class="meta-ad-face">
+        <div class="meta-ad-name">${ad.name}</div>
+        <div class="meta-ad-kpis">
+          <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">ROAS</div><div class="meta-ad-kpi-val" style="color:${aRoas}">${ad.roas}x</div></div>
+          <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">Spend</div><div class="meta-ad-kpi-val">${fmtCur(ad.spend)}</div></div>
+          <div class="meta-ad-kpi"><div class="meta-ad-kpi-lbl">Orders</div><div class="meta-ad-kpi-val" style="color:${c}">${ad.orders}</div></div>
         </div>
-        <div class="meta-kpi">
-          <div class="meta-kpi-lbl">Spend</div>
-          <div class="meta-kpi-val" style="color:var(--text)">${fmtCur(c.spend)}</div>
+        <div class="meta-ad-chevron">▾</div>
+      </div>
+      <div class="meta-ad-body">
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin-bottom:5px">Order Outcomes</div>
+        ${segBar(ad.del, ad.rto, ad.can, ad.mot)}
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin:8px 0 5px">Audience Mix</div>
+        <div class="meta-aud-grid">${audMix(ad.audHi, ad.audMed, ad.audCtrl, ad.audLo)}</div>
+      </div>
+    </div>`;
+  }
+
+  function campCard(c) {
+    const grossRoas = +(c.spend > 0 ? (c.orders * c.avgOrder / c.spend) : 0).toFixed(1);
+    const netSales  = Math.round(c.orders * c.avgOrder * (1 - c.rtoR/100 - c.canR/100));
+    const netRoas   = +(c.spend > 0 ? netSales / c.spend : 0).toFixed(1);
+    const sales     = c.orders * c.avgOrder;
+    const canCount  = Math.round(c.orders * c.canR / 100);
+    const rtoCount  = Math.round(c.orders * c.rtoR / 100);
+    const delCount  = Math.round(c.orders * c.delR / 100);
+    const motCount  = c.orders - delCount - rtoCount - canCount;
+
+    const statusDot = c.status === 'ACTIVE'
+      ? `<div class="meta-status-dot" style="background:#10b981" title="Active"></div>`
+      : `<div class="meta-status-dot" style="background:#6b7280" title="Paused"></div>`;
+
+    return `<div class="meta-card${c.status==='PAUSED'?' paused':''}" onclick="metaToggleCard(this)">
+      <div class="meta-card-accent" style="background:linear-gradient(90deg,${c.c},${c.c}55)"></div>
+      <div class="meta-face">
+        ${statusDot}
+        <div class="meta-name">${c.name}</div>
+        <div class="meta-roas-trio">
+          <div class="meta-roas-chip">
+            <div class="meta-roas-chip-lbl">Meta</div>
+            <div class="meta-roas-chip-val" style="color:${rc(c.roas)}">${c.roas}x</div>
+          </div>
+          <div class="meta-roas-chip">
+            <div class="meta-roas-chip-lbl">Gross</div>
+            <div class="meta-roas-chip-val" style="color:${rc(grossRoas)}">${grossRoas}x</div>
+          </div>
+          <div class="meta-roas-chip">
+            <div class="meta-roas-chip-lbl">Net</div>
+            <div class="meta-roas-chip-val" style="color:${rc(netRoas)}">${netRoas}x</div>
+          </div>
         </div>
-        <div class="meta-kpi">
-          <div class="meta-kpi-lbl">CTR</div>
-          <div class="meta-kpi-val" style="color:${c.ctr>=4?'#10b981':c.ctr>=2?'#60a5fa':'#94a3b8'}">${c.ctr}%</div>
+        <div class="meta-face-right">
+          <div class="meta-kpi-inline"><div class="meta-kpi-inline-lbl">Spend</div><div class="meta-kpi-inline-val">${fmtCur(c.spend)}</div></div>
+          <div class="meta-kpi-inline"><div class="meta-kpi-inline-lbl">Orders</div><div class="meta-kpi-inline-val" style="color:${c.c}">${c.orders}</div></div>
+          <div class="meta-kpi-inline"><div class="meta-kpi-inline-lbl">CTR</div><div class="meta-kpi-inline-val" style="color:${cc(c.ctr)}">${c.ctr}%</div></div>
         </div>
-        <div class="meta-kpi">
-          <div class="meta-kpi-lbl">Orders</div>
-          <div class="meta-kpi-val" style="color:${c.c}">${c.orders}</div>
+        <div class="meta-chevron">▾</div>
+      </div>
+      <div class="meta-body">
+        <div class="meta-stat-trio">
+          <div class="meta-stat-box"><div class="meta-stat-lbl">Sales</div><div class="meta-stat-val">${fmtCur(sales)}</div></div>
+          <div class="meta-stat-box"><div class="meta-stat-lbl">Net Sales</div><div class="meta-stat-val">${fmtCur(netSales)}</div></div>
+          <div class="meta-stat-box"><div class="meta-stat-lbl">Can / Hold</div><div class="meta-stat-val" style="color:#f87171">${canCount}</div></div>
+        </div>
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin-bottom:6px">Order Outcomes</div>
+        ${segBar(delCount, rtoCount, canCount, motCount)}
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin:10px 0 6px">Audience Risk Mix</div>
+        <div class="meta-aud-grid">${audMix(c.audHi, c.audMed, c.audCtrl, c.audLo)}</div>
+        <div class="meta-two-col">
+          ${miniList('🛍 Top Products', c.products)}
+          ${miniList('📍 Top States', c.states)}
+        </div>
+        <div class="meta-ads-toggle" onclick="metaToggleAds(this)">
+          <span>▾</span><span class="meta-ads-chevron"></span> Ads in this campaign (${c.ads.length})
+        </div>
+        <div class="meta-ads-list">
+          ${c.ads.map(a => adBlock(a, c.c)).join('')}
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }
+
+  const CAMPS = [
+    {
+      name:'DRIP STUDIOS — Streetwear Drop SS25', spend:48200, roas:4.8, ctr:3.2, orders:214,
+      c:'#6366f1', status:'ACTIVE', avgOrder:4200, delR:58, rtoR:17, canR:8,
+      audHi:22, audMed:38, audCtrl:25, audLo:15,
+      products:[['Oversized Acid Wash Tee','68 orders'],['Drop-Shoulder Bomber','51 orders'],['Cargo Utility Shorts','42 orders']],
+      states:[['Maharashtra','74 orders'],['Delhi NCR','58 orders'],['Karnataka','39 orders'],['Gujarat','22 orders']],
+      ads:[
+        { name:'Reel — "How We Drop" UGC', spend:19400, roas:5.6, orders:92, del:55, rto:15, can:9, mot:21, audHi:18,audMed:41,audCtrl:28,audLo:13 },
+        { name:'Static — New Arrivals Carousel', spend:16800, roas:4.2, orders:74, del:59, rto:18, can:7, mot:16, audHi:24,audMed:35,audCtrl:22,audLo:19 },
+        { name:'DPA — Dynamic Retargeting', spend:12000, roas:3.8, orders:48, del:61, rto:16, can:9, mot:14, audHi:26,audMed:34,audCtrl:21,audLo:19 },
+      ]
+    },
+    {
+      name:'BOX-FIT HOODIE — Retargeting', spend:18600, roas:6.1, ctr:4.7, orders:89,
+      c:'#10b981', status:'ACTIVE', avgOrder:4800, delR:68, rtoR:11, canR:5,
+      audHi:12, audMed:29, audCtrl:34, audLo:25,
+      products:[['Box-Fit Hoodie','61 orders'],['Crewneck Sweatshirt','18 orders'],['Quarter-Zip Pullover','10 orders']],
+      states:[['Bangalore','32 orders'],['Mumbai','24 orders'],['Pune','18 orders'],['Chennai','15 orders']],
+      ads:[
+        { name:'Video — "Fit Check" Hook', spend:10200, roas:7.1, orders:52, del:71, rto:9, can:5, mot:15, audHi:10,audMed:26,audCtrl:38,audLo:26 },
+        { name:'Static — Size Chart + CTA', spend:8400, roas:4.9, orders:37, del:64, rto:14, can:6, mot:16, audHi:15,audMed:32,audCtrl:30,audLo:23 },
+      ]
+    },
+    {
+      name:'SICOS — Lookalike 3% India', spend:32400, roas:3.4, ctr:2.1, orders:134,
+      c:'#f59e0b', status:'ACTIVE', avgOrder:3800, delR:51, rtoR:22, canR:11,
+      audHi:34, audMed:42, audCtrl:16, audLo:8,
+      products:[['Washed Baggy Jeans','48 orders'],['Raw Hem Flare Jeans','36 orders'],['Pleated Trousers','28 orders']],
+      states:[['Rajasthan','41 orders'],['UP','38 orders'],['Bihar','27 orders'],['MP','18 orders']],
+      ads:[
+        { name:'Video — Street Style Reel', spend:14600, roas:3.9, orders:62, del:54, rto:20, can:10, mot:16, audHi:31,audMed:44,audCtrl:17,audLo:8 },
+        { name:'Carousel — Collection Grid', spend:11400, roas:3.1, orders:48, del:48, rto:24, can:13, mot:15, audHi:37,audMed:40,audCtrl:15,audLo:8 },
+        { name:'Static — Price Drop CTA', spend:6400, roas:2.8, orders:24, del:50, rto:23, can:11, mot:16, audHi:36,audMed:41,audCtrl:14,audLo:9 },
+      ]
+    },
+    {
+      name:'FLYJONE — Cold Audience 18-25', spend:24800, roas:2.9, ctr:1.8, orders:91,
+      c:'#60a5fa', status:'ACTIVE', avgOrder:3500, delR:47, rtoR:26, canR:12,
+      audHi:41, audMed:36, audCtrl:14, audLo:9,
+      products:[['Graphic Print Tee','29 orders'],['Y2K Track Pants','24 orders'],['Tie-Dye Camp Shirt','21 orders']],
+      states:[['Delhi NCR','28 orders'],['Lucknow','19 orders'],['Jaipur','17 orders'],['Hyderabad','14 orders']],
+      ads:[
+        { name:'Reel — Influencer Collab', spend:12600, roas:3.4, orders:51, del:50, rto:23, can:11, mot:16, audHi:38,audMed:38,audCtrl:15,audLo:9 },
+        { name:'Static — "New Drop" Announcement', spend:7800, roas:2.5, orders:26, del:44, rto:29, can:14, mot:13, audHi:44,audMed:34,audCtrl:13,audLo:9 },
+        { name:'DPA — Cart Abandoners', spend:4400, roas:2.2, orders:14, del:46, rto:28, can:12, mot:14, audHi:42,audMed:35,audCtrl:14,audLo:9 },
+      ]
+    },
+    {
+      name:'Cargo Shorts — UGC Video Ads', spend:14200, roas:5.3, ctr:5.1, orders:73,
+      c:'#a78bfa', status:'ACTIVE', avgOrder:4400, delR:64, rtoR:14, canR:7,
+      audHi:16, audMed:33, audCtrl:31, audLo:20,
+      products:[['Cargo Utility Shorts','44 orders'],['Nylon Wind Jacket','17 orders'],['Twill Worker Jacket','12 orders']],
+      states:[['Mumbai','24 orders'],['Bangalore','21 orders'],['Hyderabad','16 orders'],['Chennai','12 orders']],
+      ads:[
+        { name:'UGC Reel — "Day in My Drip"', spend:8600, roas:6.2, orders:48, del:67, rto:12, can:6, mot:15, audHi:14,audMed:30,audCtrl:34,audLo:22 },
+        { name:'Static — Product Flat-Lay', spend:5600, roas:4.0, orders:25, del:60, rto:17, can:9, mot:14, audHi:19,audMed:36,audCtrl:27,audLo:18 },
+      ]
+    },
+    {
+      name:'ODD AFFAIR — Catalogue Retargeting', spend:11400, roas:2.2, ctr:1.4, orders:47,
+      c:'#f87171', status:'PAUSED', avgOrder:3200, delR:44, rtoR:29, canR:13,
+      audHi:46, audMed:33, audCtrl:13, audLo:8,
+      products:[['Ribbed Tank Top','16 orders'],['Mesh Jersey Top','14 orders'],['Ribbed Crop Top','11 orders']],
+      states:[['Delhi NCR','16 orders'],['Jaipur','12 orders'],['Chandigarh','10 orders']],
+      ads:[
+        { name:'DPA — View-based retargeting', spend:7200, roas:2.4, orders:31, del:46, rto:27, can:12, mot:15, audHi:44,audMed:34,audCtrl:14,audLo:8 },
+        { name:'Static — Discount Banner', spend:4200, roas:1.9, orders:16, del:41, rto:32, can:15, mot:12, audHi:49,audMed:31,audCtrl:12,audLo:8 },
+      ]
+    },
+  ];
+
+  const visible = _metaShowAll ? CAMPS : CAMPS.filter(c => c.status === 'ACTIVE');
+
+  const organicCard = `<div class="meta-card organic" style="cursor:default">
+    <div class="meta-card-accent" style="background:linear-gradient(90deg,#10b981,#10b98155)"></div>
+    <div class="meta-face">
+      <div class="meta-status-dot" style="background:#10b981"></div>
+      <div style="flex:1;min-width:0">
+        <div class="meta-name">🌱 Organic / Other</div>
+        <div style="font-size:9px;color:var(--text-muted);margin-top:2px">Direct traffic · No UTM match · No attributable spend</div>
+      </div>
+      <div class="meta-face-right">
+        <div class="meta-kpi-inline"><div class="meta-kpi-inline-lbl">Orders</div><div class="meta-kpi-inline-val" style="color:#10b981">138</div></div>
+        <div class="meta-kpi-inline"><div class="meta-kpi-inline-lbl">Sales</div><div class="meta-kpi-inline-val">${fmtCur(138*3900)}</div></div>
+      </div>
+    </div>
+  </div>`;
+
+  document.getElementById('meta-grid').innerHTML = visible.map(campCard).join('') + organicCard;
 }
 
 function renderSupportTickets() {
