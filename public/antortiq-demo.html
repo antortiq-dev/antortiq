@@ -3167,38 +3167,42 @@ function renderStuckOrders() {
 
 async function renderTopProducts() {
   const COLORS = ['#6366f1','#10b981','#f59e0b','#60a5fa','#a78bfa','#34d399','#fb923c','#f87171','#22d3ee','#ec4899'];
-  const EMOJIS = ['👕','🧥','👖','🧢','🩳','🧣','🩴','👟','🧤','🎽'];
   const el = document.getElementById('top-prod-row');
   el.innerHTML = '<div class="loading-msg" style="padding:20px">Loading products…</div>';
   try {
-    // Primary: order-based top products (always has data)
-    const data = await apiFetch('/api/demo/orders/top-products?limit=10');
-    let prods = (data.products || []).filter(p => p.productName);
-
-    // Enrich with pixel view counts if available
-    let pixelMap = {};
-    try {
-      const pdata = await apiFetch('/api/demo/pixel/top-products?metric=ViewContent&limit=30');
-      (pdata.products || []).forEach(p => { if (p.productName !== 'N/A') pixelMap[p.productName] = p.count; });
-    } catch(_) {}
+    // Try all event types, collect products with real names + images
+    const metrics = ['Purchase','AddToCart','ViewContent'];
+    let prods = [];
+    const seen = new Set();
+    for (const metric of metrics) {
+      if (prods.length >= 10) break;
+      try {
+        const data = await apiFetch(`/api/demo/pixel/top-products?metric=${metric}&limit=20`);
+        (data.products || []).forEach(p => {
+          if (p.productName && p.productName !== 'N/A' && !seen.has(p.productName)) {
+            seen.add(p.productName);
+            prods.push({ ...p, metric });
+          }
+        });
+      } catch(_) {}
+    }
 
     if (!prods.length) { el.innerHTML = '<div class="loading-msg">No product data yet</div>'; return; }
     const maxC = prods[0].count || 1;
     el.innerHTML = prods.slice(0,10).map((p, i) => {
-      const c       = COLORS[i % COLORS.length];
-      const emoji   = EMOJIS[i % EMOJIS.length];
-      const views   = pixelMap[p.productName];
-      const revFmt  = p.revenue ? '₹'+(p.revenue/1000).toFixed(0)+'K' : '';
+      const c = COLORS[i % COLORS.length];
+      const hasImg = p.productImage && p.productImage.startsWith('http');
       return `<div class="tp-card">
-        <div style="width:100%;height:90px;background:${c}15;position:relative;overflow:hidden;border-radius:9px 9px 0 0;display:flex;align-items:center;justify-content:center;font-size:32px">
-          ${emoji}
+        <div style="width:100%;height:90px;background:var(--bg-card2);position:relative;overflow:hidden;border-radius:9px 9px 0 0">
+          ${hasImg
+            ? `<img src="${p.productImage}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:28px;background:${c}15">👕</div>`
+            : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;background:${c}15">👕</div>`
+          }
           <div style="position:absolute;top:5px;left:5px;font-size:9px;font-weight:800;background:${c};color:#fff;padding:2px 7px;border-radius:99px">#${i+1}</div>
-          ${revFmt ? `<div style="position:absolute;bottom:5px;right:5px;font-size:9px;font-weight:700;background:rgba(0,0,0,.5);color:#fff;padding:1px 6px;border-radius:4px">${revFmt}</div>` : ''}
         </div>
         <div class="tp-info">
           <div class="tp-name">${p.productName}</div>
-          <div class="tp-cnt" style="color:${c}">${p.count} <span style="font-size:9px;font-weight:500;color:var(--text-muted)">orders</span></div>
-          ${views ? `<div style="font-size:9px;color:var(--text-muted);margin-top:2px">👁 ${views} views</div>` : ''}
+          <div class="tp-cnt" style="color:${c}">${p.count} <span style="font-size:9px;font-weight:500;color:var(--text-muted)">${p.metric==='Purchase'?'purchases':p.metric==='AddToCart'?'add-to-cart':'views'}</span></div>
           <div class="prog" style="margin-top:4px"><div class="prog-fill" style="width:${Math.round(p.count/maxC*100)}%;background:${c}"></div></div>
         </div>
       </div>`;
