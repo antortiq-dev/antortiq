@@ -2960,45 +2960,99 @@ function renderBigCards(fs, allTime, period) {
       </div>
     </div>`;
 
-  // ── CARD 3: Delivery + RTO merged ──────────────────────────────────────────
-  const rtoC      = rtoPct < 15 ? '#10b981' : rtoPct < 25 ? '#f59e0b' : '#ef4444';
-  const rtoCBg    = rtoPct < 15 ? 'rgba(16,185,129,.08)' : rtoPct < 25 ? 'rgba(245,158,11,.08)' : 'rgba(239,68,68,.08)';
-  const rtoCBdr   = rtoPct < 15 ? 'rgba(16,185,129,.25)' : rtoPct < 25 ? 'rgba(245,158,11,.25)' : 'rgba(239,68,68,.25)';
-  const revAtRisk = Math.round((fs.revDispatched||0) * rtoPct / 100);
-  const revSafe   = Math.round((fs.revDispatched||0) * (1 - rtoPct/100));
+  // ── CARD 3: Delivery + In Motion + RTO ─────────────────────────────────────
+  const inMotion      = Math.max(0,(fs.dispatched||0)-(fs.delivered||0)-(fs.rto||0));
+  const totalOrd      = fs.total || fs.grandTotal || 1;
+  const overallDeliv  = Math.round((fs.delivered||0) / totalOrd * 100);
+  const overallRTO    = Math.round((fs.rto||0)       / totalOrd * 100);
+  const inMotionPct   = Math.round(inMotion           / totalOrd * 100);
+
+  const rtoC    = overallRTO < 12 ? '#10b981' : overallRTO < 20 ? '#f59e0b' : '#ef4444';
+  const revAtRisk = Math.round((fs.revDispatched||0) * overallRTO / 100);
+  const revSafe   = Math.round((fs.revDispatched||0) * (1 - overallRTO/100));
+
+  // stacked bar segments
+  const segDeliv  = Math.round(overallDeliv);
+  const segMotion = Math.round(inMotionPct);
+  const segRTO    = Math.round(overallRTO);
+
   const card3 = `
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
-      <!-- Delivery Rate section -->
-      <div style="background:${cBg(delivPct)};border:1px solid ${cBdr(delivPct)};border-radius:6px;padding:12px 14px">
-        <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">✅ Delivery Rate</div>
-        <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:5px">
-          <span style="font-size:30px;font-weight:900;color:${cPct(delivPct)};line-height:1">${delivPct}%</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-bottom:3px">${fs.delivered||0}/${fs.dispatched||0} dispatched</span>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:14px">
+
+      <!-- header row -->
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">Fulfilment Breakdown</div>
+        <div style="font-size:9px;color:var(--text-muted)">${totalOrd} total orders</div>
+      </div>
+
+      <!-- stacked progress bar -->
+      <div style="position:relative">
+        <div style="height:6px;border-radius:99px;background:var(--bg-card2);overflow:hidden;display:flex">
+          <div style="width:${segDeliv}%;background:#10b981;transition:width .4s"></div>
+          <div style="width:${segMotion}%;background:#6366f1;transition:width .4s"></div>
+          <div style="width:${segRTO}%;background:#ef4444;transition:width .4s"></div>
         </div>
-        <div class="prog" style="margin-bottom:6px"><div class="prog-fill" style="width:${delivPct}%;background:${cPct(delivPct)}"></div></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:2px">
-          ${miniBox('#10b981','Delivered',fs.delivered||0,true)}
-          ${miniBox('#94a3b8','Still Dispatched',(fs.dispatched||0)-(fs.delivered||0)-(fs.rto||0),true)}
+        <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text-muted)"><span style="width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block"></span>Delivered</span>
+          <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text-muted)"><span style="width:7px;height:7px;border-radius:50%;background:#6366f1;display:inline-block"></span>In Motion</span>
+          <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text-muted)"><span style="width:7px;height:7px;border-radius:50%;background:#ef4444;display:inline-block"></span>RTO</span>
         </div>
       </div>
-      <!-- RTO Rate section -->
-      <div style="background:${rtoCBg};border:1px solid ${rtoCBdr};border-radius:6px;padding:12px 14px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-          <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted)">↩ RTO Rate</div>
-          <div style="font-size:9px;color:${rtoC};font-weight:700">${rtoPct<15?'✓ On Target':'⚠ Above Target'}</div>
+
+      <!-- three metric blocks -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+
+        <!-- Delivery Rate -->
+        <div style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.18);border-radius:7px;padding:11px 13px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:8px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:baseline;gap:6px">
+              <span style="font-size:22px;font-weight:900;color:#10b981;line-height:1">${overallDeliv}%</span>
+              <span style="font-size:10px;font-weight:600;color:#10b981;opacity:.7">overall</span>
+              <span style="font-size:10px;color:var(--text-muted);margin-left:auto">${delivPct}% of dispatched</span>
+            </div>
+            <div style="font-size:10px;font-weight:700;color:#34d399;margin-top:1px">✅ Delivery Rate</div>
+            <div style="font-size:9px;color:var(--text-muted);margin-top:1px">${fs.delivered||0} orders successfully delivered</div>
+          </div>
         </div>
-        <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:5px">
-          <span style="font-size:30px;font-weight:900;color:${rtoC};line-height:1">${rtoPct}%</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-bottom:3px">${fs.rto||0}/${fs.dispatched||0} · target &lt;15%</span>
+
+        <!-- Still in Motion -->
+        <div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.18);border-radius:7px;padding:11px 13px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:8px;background:rgba(99,102,241,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:baseline;gap:6px">
+              <span style="font-size:22px;font-weight:900;color:#818cf8;line-height:1">${inMotion}</span>
+              <span style="font-size:10px;font-weight:600;color:#818cf8;opacity:.7">orders</span>
+              <span style="font-size:10px;color:var(--text-muted);margin-left:auto">${inMotionPct}% of total</span>
+            </div>
+            <div style="font-size:10px;font-weight:700;color:#818cf8;margin-top:1px">🚚 Still in Motion</div>
+            <div style="font-size:9px;color:var(--text-muted);margin-top:1px">Pickup · Transit · Out for Delivery</div>
+          </div>
         </div>
-        <div class="prog" style="margin-bottom:8px">
-          <div class="prog-fill" style="width:${Math.min(rtoPct,100)}%;background:${rtoC}"></div>
-          <div style="position:relative;margin-top:-4px;left:15%;width:1px;height:8px;background:rgba(255,255,255,.4);display:inline-block;vertical-align:top"></div>
+
+        <!-- RTO Rate -->
+        <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.16);border-radius:7px;padding:11px 13px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:8px;background:rgba(239,68,68,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${rtoC}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.1"/></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:baseline;gap:6px">
+              <span style="font-size:22px;font-weight:900;color:${rtoC};line-height:1">${overallRTO}%</span>
+              <span style="font-size:10px;font-weight:600;color:${rtoC};opacity:.7">overall</span>
+              <span style="font-size:10px;color:${rtoC};font-weight:700;margin-left:auto">${overallRTO<12?'✓ On Target':'⚠ Above Target'}</span>
+            </div>
+            <div style="font-size:10px;font-weight:700;color:${rtoC};margin-top:1px">↩ RTO Rate</div>
+            <div style="display:flex;gap:8px;margin-top:4px">
+              <span style="font-size:9px;color:#f87171;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.2);border-radius:4px;padding:2px 6px">Risk ₹${(revAtRisk/100000).toFixed(1)}L</span>
+              <span style="font-size:9px;color:#34d399;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:4px;padding:2px 6px">Safe ₹${(revSafe/100000).toFixed(1)}L</span>
+            </div>
+          </div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-          ${miniBox('#f87171','Revenue at Risk',revAtRisk,false)}
-          ${miniBox('#10b981','Safe Revenue',revSafe,false)}
-        </div>
+
       </div>
     </div>`;
 
