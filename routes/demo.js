@@ -248,6 +248,23 @@ router.get('/pixel/top-products', auth, async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// GET /api/demo/orders/top-products — top products by order count from DemoOrder
+router.get('/orders/top-products', auth, async (req, res) => {
+  try {
+    await connect();
+    const off   = await getOrderOffset();
+    const limit = Math.min(parseInt(req.query.limit) || 10, 20);
+    const m     = dateMatch(req.query.from, req.query.to, null, off);
+    const rows  = await DemoOrder.aggregate([
+      { $match: m },
+      { $group: { _id: '$productName', orders: { $sum: 1 }, revenue: { $sum: '$myRevenue' } } },
+      { $sort: { orders: -1 } },
+      { $limit: limit },
+    ]);
+    res.json({ products: rows.map(r => ({ productName: r._id, count: r.orders, revenue: r.revenue })) });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 // GET /api/demo/pixel/leaderboard
 router.get('/pixel/leaderboard', auth, async (req, res) => {
   try {
