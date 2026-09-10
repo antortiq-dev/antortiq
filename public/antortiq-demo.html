@@ -2980,7 +2980,7 @@ function renderBigCards(fs, allTime, period) {
       <div style="background:${cBg(delivPct)};border:1px solid ${cBdr(delivPct)};border-radius:6px;padding:12px 14px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
           <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted)">✅ Delivery Rate</div>
-          <div style="font-size:9px;font-weight:700;color:var(--text-muted);background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:2px 8px">${overallDeliv}% of all orders</div>
+          <div style="font-size:9px;font-weight:700;color:${cPct(delivPct)};background:${cBg(delivPct)};border:1px solid ${cBdr(delivPct)};border-radius:4px;padding:2px 8px">${overallDeliv}% of all · ${fs.delivered||0}/${totalOrd}</div>
         </div>
         <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:5px">
           <span style="font-size:30px;font-weight:900;color:${cPct(delivPct)};line-height:1">${delivPct}%</span>
@@ -3018,7 +3018,7 @@ function renderBigCards(fs, allTime, period) {
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
           <div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted)">↩ RTO Rate</div>
           <div style="display:flex;align-items:center;gap:6px">
-            <div style="font-size:9px;font-weight:700;color:var(--text-muted);background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:2px 8px">${overallRTO}% of all orders</div>
+            <div style="font-size:9px;font-weight:700;color:${rtoC};background:${rtoCBg};border:1px solid ${rtoCBdr};border-radius:4px;padding:2px 8px">${overallRTO}% of all · ${fs.rto||0}/${totalOrd}</div>
             <div style="font-size:9px;color:${rtoC};font-weight:700">${rtoPct<15?'✓ On Target':'⚠ Above Target'}</div>
           </div>
         </div>
